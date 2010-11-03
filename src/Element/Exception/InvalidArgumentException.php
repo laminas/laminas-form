@@ -14,36 +14,27 @@
  *
  * @category   Zend
  * @package    Zend_Form
- * @subpackage UnitTests
+ * @subpackage Element
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id$
  */
-
-namespace My\Decorator;
-
-use Zend\Form\Decorator\AbstractDecorator;
 
 /**
- * Mock file for testbed
- *
+ * @namespace
+ */
+namespace Zend\Form\Element\Exception;
+
+/**
+ * @uses       Zend\Form\Element\Exception
+ * @uses       \InvalidArgumentException
  * @category   Zend
  * @package    Zend_Form
- * @subpackage UnitTests
+ * @subpackage Element
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Label extends AbstractDecorator
-{
-
-    /**
-     * Test Function for render
-     *
-     * @param  string $content Content to display
-     * @return string
-     */
-    public function render($content)
-    {
-        return $content;
-    }
-
-}
+class InvalidArgumentException 
+    extends \InvalidArgumentException
+    implements \Zend\Form\Element\Exception
+{}
