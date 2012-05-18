@@ -16,10 +16,9 @@
  * @package    Zend_Form
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
  */
 
-namespace Zend\Form\Exception;
+namespace Zend\Form;
 
 /**
  * @category   Zend
@@ -27,7 +26,12 @@ namespace Zend\Form\Exception;
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class UnexpectedValueException 
-    extends \UnexpectedValueException
-    implements \Zend\Form\Exception
-{}
+interface FormFactoryAwareInterface
+{
+    /**
+     * Compose a form factory into the object
+     * 
+     * @param  Factory $factory 
+     */
+    public function setFormFactory(Factory $factory);
+}
