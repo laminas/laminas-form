@@ -14,21 +14,34 @@
  *
  * @category   Zend
  * @package    Zend_Form
- * @subpackage Exception
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
  */
 
-namespace Zend\Form\Exception;
+namespace ZendTest\Form\TestAsset;
+
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
 
 /**
  * @category   Zend
  * @package    Zend_Form
- * @subpackage Exception
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class UnexpectedValueException extends \UnexpectedValueException implements 
-    ExceptionInterface
-{}
+class ValidatingModel extends Model implements InputFilterAwareInterface
+{
+    protected $inputFilter;
+
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
+        $this->inputFilter = $inputFilter;
+    }
+
+    public function getInputFilter()
+    {
+        return $this->inputFilter;
+    }
+}
