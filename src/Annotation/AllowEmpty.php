@@ -14,18 +14,25 @@
  *
  * @category   Zend
  * @package    Zend_Form
+ * @subpackage Annotation
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
  */
 
-namespace Zend\Form;
+namespace Zend\Form\Annotation;
 
 /**
+ * AllowEmpty annotation
+ *
+ * Presence of this annotation is a hint that the associated 
+ * \Zend\InputFilter\Input should enable the allow_empty flag.
+ *
  * @category   Zend
  * @package    Zend_Form
+ * @subpackage Annotation
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Exception
-{}
+class AllowEmpty extends AbstractAnnotation
+{
+}
