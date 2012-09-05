@@ -147,9 +147,9 @@ class FormTest extends TestCase
         $this->form->setInputFilter($inputFilter);
     }
 
-    public function testNoInputFilterPresentByDefault()
+    public function testInputFilterPresentByDefault()
     {
-        $this->assertNull($this->form->getInputFilter());
+        $this->assertNotNull($this->form->getInputFilter());
     }
 
     public function testCanComposeAnInputFilter()
@@ -959,6 +959,28 @@ class FormTest extends TestCase
         $this->assertTrue($this->form->isValid());
     }
 
+    public function testAddNonBaseFieldsetObjectInputFilterToFormInputFilter()
+    {
+        $fieldset = new Fieldset('foobar');
+        $fieldset->add(new Element('foo'));
+        $fieldset->setUseAsBaseFieldset(false);
+        $this->form->add($fieldset);
+
+        $inputFilterFactory = new InputFilterFactory();
+        $inputFilter = $inputFilterFactory->createInputFilter(array(
+            'foo' => array(
+                'name'       => 'foo',
+                'required'   => true,
+            ),
+        ));
+        $model = new TestAsset\ValidatingModel();
+        $model->setInputFilter($inputFilter);
+
+        $this->form->bind($model);
+
+        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $this->form->getInputFilter()->get('foobar'));
+    }
+
     public function testExtractDataHydratorStrategy()
     {
         $this->populateHydratorStrategyForm();
@@ -991,5 +1013,33 @@ class FormTest extends TestCase
 
         $this->assertEquals('AAA', $entities[0]->getField2());
         $this->assertEquals('CCC', $entities[1]->getField2());
+    }
+
+    public function testSetDataWithNullValues()
+    {
+        $this->populateForm();
+
+        $set = array(
+            'foo' => null,
+            'bar' => 'always valid',
+            'foobar' => array(
+                'foo' => 'abcde',
+                'bar' => 'always valid',
+            ),
+        );
+        $this->form->setData($set);
+        $this->assertTrue($this->form->isValid());
+    }
+
+    public function testHydratorAppliedToBaseFieldset()
+    {
+        $fieldset = new Fieldset('foobar');
+        $fieldset->add(new Element('foo'));
+        $fieldset->setUseAsBaseFieldset(true);
+        $this->form->add($fieldset);
+        $this->form->setHydrator(new Hydrator\ArraySerializable());
+
+        $baseHydrator = $this->form->get('foobar')->getHydrator();
+        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ArraySerializable', $baseHydrator);
     }
 }

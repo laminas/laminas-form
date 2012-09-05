@@ -54,8 +54,8 @@ class FormCheckboxTest extends CommonTestCase
         $element->setValue('checked');
         $markup  = $this->helper->render($element);
 
-        $this->assertRegexp('#checked="checked"\s+value="checked"#', $markup);
-        $this->assertNotRegexp('#checked="checked"\s+value="unchecked"#', $markup);
+        $this->assertRegexp('#value="checked"\s+checked="checked"#', $markup);
+        $this->assertNotRegexp('#value="unchecked"\s+checked="checked"#', $markup);
     }
 
     public function testNoOptionsAttributeCreatesDefaultCheckedAndUncheckedValues()
@@ -80,5 +80,15 @@ class FormCheckboxTest extends CommonTestCase
         $element = new Element\Checkbox(0);
         $markup = $this->helper->__invoke($element);
         $this->assertContains('name="0"', $markup);
+    }
+
+    /**
+     * @group ZF2-457
+     */
+    public function testBaseElementType()
+    {
+        $element = new Element('foo');
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $markup = $this->helper->render($element);
     }
 }
