@@ -1,29 +1,18 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form\View\Helper;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Form\Element;
-use Zend\Form\View\HelperConfiguration;
+use Zend\Form\View\HelperConfig;
 use Zend\Form\View\Helper\FormRow as FormRowHelper;
 use Zend\View\Renderer\PhpRenderer;
 
@@ -31,8 +20,6 @@ use Zend\View\Renderer\PhpRenderer;
  * @category   Zend
  * @package    Zend_Form
  * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class FormRowTest extends TestCase
 {
@@ -45,7 +32,7 @@ class FormRowTest extends TestCase
 
         $this->renderer = new PhpRenderer;
         $helpers = $this->renderer->getHelperPluginManager();
-        $config  = new HelperConfiguration();
+        $config  = new HelperConfig();
         $config->configureServiceManager($helpers);
 
         $this->helper->setView($this->renderer);
@@ -67,7 +54,7 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
         $this->helper->setLabelPosition('prepend');
         $markup = $this->helper->render($element);
-        $this->assertContains('<label>The value for foo:<', $markup);
+        $this->assertContains('<label><span>The value for foo:</span><', $markup);
         $this->assertContains('</label>', $markup);
     }
 
@@ -83,7 +70,7 @@ class FormRowTest extends TestCase
         $this->assertContains('</label>', $markup);
     }
 
-    function testCanRenderRowLabelAttributes()
+    public function testCanRenderRowLabelAttributes()
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -98,7 +85,7 @@ class FormRowTest extends TestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'text');
         $markup = $this->helper->render($element);
-        $this->assertRegexp('/<input name="foo" type="text"(\s*\/)?>/', $markup);
+        $this->assertRegexp('/<input name="foo" type="text"[^\/>]*\/?>/', $markup);
     }
 
     public function testCanHandleMultiCheckboxesCorrectly()
@@ -119,6 +106,18 @@ class FormRowTest extends TestCase
         $this->assertContains("<label>", $markup);
     }
 
+
+    public function testRenderAttributeId()
+    {
+        $element = new Element\Text('foo');
+        $element->setAttribute('type', 'text');
+        $element->setAttribute('id', 'textId');
+        $element->setLabel('This is a text');
+        $markup = $this->helper->render($element);
+        $this->assertContains('<label for="textId">This is a text</label>', $markup);
+        $this->assertContains('<input type="text" name="foo" id="textId"', $markup);
+    }
+
     public function testCanRenderErrors()
     {
         $element  = new Element('foo');
@@ -132,8 +131,192 @@ class FormRowTest extends TestCase
         $this->assertRegexp('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
     }
 
+    public function testDoesNotRenderErrorsListIfSetToFalse()
+    {
+        $element  = new Element('foo');
+        $element->setMessages(array(
+            'First error message',
+            'Second error message',
+            'Third error message',
+        ));
+
+        $markup = $this->helper->setRenderErrors(false)->render($element);
+        $this->assertRegexp('/<input name="foo" class="input-error" type="text" [^\/>]*\/?>/', $markup);
+    }
+
+    public function testCanModifyDefaultErrorClass()
+    {
+        $element  = new Element('foo');
+        $element->setMessages(array(
+            'Error message'
+        ));
+
+        $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
+        $this->assertRegexp('/<input name="foo" class="custom-error-class" type="text" [^\/>]*\/?>/', $markup);
+    }
+
+    public function testDoesNotOverrideClassesIfAlreadyPresentWhenThereAreErrors()
+    {
+        $element  = new Element('foo');
+        $element->setMessages(array(
+            'Error message'
+        ));
+        $element->setAttribute('class', 'foo bar');
+
+        $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
+        $this->assertRegexp('/<input name="foo" class="foo bar custom-error-class" type="text" [^\/>]*\/?>/', $markup);
+    }
+
     public function testInvokeWithNoElementChainsHelper()
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
+    }
+
+    public function testLabelWillBeTranslated()
+    {
+        $element = new Element('foo');
+        $element->setLabel('The value for foo:');
+
+        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator->expects($this->any())
+            ->method('translate')
+            ->will($this->returnValue('translated content'));
+
+        $this->helper->setTranslator($mockTranslator);
+        $this->assertTrue($this->helper->hasTranslator());
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('>translated content<', $markup);
+        $this->assertContains('<label', $markup);
+        $this->assertContains('</label>', $markup);
+
+        // Additional coverage when element's id is set
+        $element->setAttribute('id', 'foo');
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('>translated content<', $markup);
+        $this->assertContains('<label', $markup);
+        $this->assertContains('</label>', $markup);
+    }
+
+    public function testTranslatorMethods()
+    {
+        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $this->helper->setTranslator($translatorMock, 'foo');
+
+        $this->assertEquals($translatorMock, $this->helper->getTranslator());
+        $this->assertEquals('foo', $this->helper->getTranslatorTextDomain());
+        $this->assertTrue($this->helper->hasTranslator());
+        $this->assertTrue($this->helper->isTranslatorEnabled());
+
+        $this->helper->setTranslatorEnabled(false);
+        $this->assertFalse($this->helper->isTranslatorEnabled());
+    }
+
+    public function testInvokeSetLabelPositionToAppend()
+    {
+        $element = new Element('foo');
+        $this->helper->__invoke($element, 'append');
+
+        $this->assertSame('append', $this->helper->getLabelPosition());
+    }
+
+    public function testSetLabelPositionInputNullRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->helper->setLabelPosition(null);
+    }
+
+    public function testGetLabelPositionReturnsDefaultPrepend()
+    {
+        $labelPosition = $this->helper->getLabelPosition();
+        $this->assertEquals('prepend', $labelPosition);
+    }
+
+    public function testGetLabelPositionReturnsAppend()
+    {
+        $this->helper->setLabelPosition('append');
+        $labelPosition = $this->helper->getLabelPosition();
+        $this->assertEquals('append', $labelPosition);
+    }
+
+    public function testGetRenderErrorsReturnsDefaultTrue()
+    {
+        $renderErrors = $this->helper->getRenderErrors();
+        $this->assertTrue($renderErrors);
+    }
+
+    public function testGetRenderErrorsSetToFalse()
+    {
+        $this->helper->setRenderErrors(false);
+        $renderErrors = $this->helper->getRenderErrors();
+        $this->assertFalse($renderErrors);
+    }
+
+    public function testSetLabelAttributes()
+    {
+        $this->helper->setLabelAttributes(array('foo', 'bar'));
+        $this->assertEquals(array(0 => 'foo', 1 => 'bar'), $this->helper->getLabelAttributes());
+    }
+
+    public function testWhenUsingIdAndLabelBecomesEmptyRemoveSpan()
+    {
+        $element = new Element('foo');
+        $element->setLabel('The value for foo:');
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('<span', $markup);
+        $this->assertContains('</span>', $markup);
+
+        $element->setAttribute('id', 'foo');
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertNotContains('<span', $markup);
+        $this->assertNotContains('</span>', $markup);
+    }
+
+    public function testShowErrorInMultiCheckbox()
+    {
+        $element = new Element\MultiCheckbox('hobby');
+        $element->setLabel("Hobby");
+        $element->setValueOptions(array(
+            '0'=>'working',
+            '1'=>'coding'
+        ));
+        $element->setMessages(array(
+            'Error message'
+        ));
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('<ul><li>Error message</li></ul>', $markup);
+    }
+
+    public function testShowErrorInRadio()
+    {
+        $element = new Element\Radio('direction');
+        $element->setLabel("Direction");
+        $element->setValueOptions(array(
+            '0'=>'programming',
+            '1'=>'design'
+        ));
+        $element->setMessages(array(
+            'Error message'
+        ));
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('<ul><li>Error message</li></ul>', $markup);
+    }
+
+    public function testErrorShowTwice()
+    {
+        $element = new  Element\Date('birth');
+        $element->setFormat('Y-m-d');
+        $element->setValue('2010-13-13');
+
+        $validator = new \Zend\Validator\Date();
+        $validator->isValid($element->getValue());
+        $element->setMessages($validator->getMessages());
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertEquals(2,  count(explode("<ul><li>The input does not appear to be a valid date</li></ul>", $markup)));
     }
 }

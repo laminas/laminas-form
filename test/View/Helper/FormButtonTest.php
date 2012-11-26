@@ -1,28 +1,16 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form\View\Helper;
 
 use Zend\Form\Element;
-use Zend\Form\Fieldset;
 use Zend\Form\Form;
 use Zend\Form\View\Helper\FormButton as FormButtonHelper;
 
@@ -30,8 +18,6 @@ use Zend\Form\View\Helper\FormButton as FormButtonHelper;
  * @category   Zend
  * @package    Zend_Form
  * @subpackage View
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class FormButtonTest extends CommonTestCase
 {
@@ -78,6 +64,13 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element();
         $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->helper->openTag($element);
+    }
+
+    public function testOpenTagWithWrongElementRaisesException()
+    {
+        $element = new \arrayObject();
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException', 'ArrayObject');
         $this->helper->openTag($element);
     }
 
@@ -191,9 +184,9 @@ class FormButtonTest extends CommonTestCase
             'size'               => 'value',
             'src'                => 'value',
             'step'               => 'value',
-            'value'              => 'value',
             'width'              => 'value',
         ));
+        $element->setValue('value');
         return $element;
     }
 
@@ -203,9 +196,16 @@ class FormButtonTest extends CommonTestCase
     public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
     {
         $element = $this->getCompleteElement();
-        $element->setAttribute('label', '{button_content}');
+        $element->setLabel('{button_content}');
         $markup  = $this->helper->render($element);
-        $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+        switch ($attribute) {
+            case 'value':
+                $expect  = sprintf('%s="%s"', $attribute, $element->getValue());
+                break;
+            default:
+                $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+                break;
+        }
         $this->$assertion($expect, $markup);
     }
 
@@ -219,7 +219,7 @@ class FormButtonTest extends CommonTestCase
     public function testPassingElementToRenderGeneratesButtonMarkup()
     {
         $element = new Element('foo');
-        $element->setAttribute('label', '{button_content}');
+        $element->setLabel('{button_content}');
         $markup = $this->helper->render($element);
         $this->assertContains('>{button_content}<', $markup);
         $this->assertContains('name="foo"', $markup);
@@ -259,5 +259,43 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element('foo');
         $this->assertSame($this->helper, $this->helper->__invoke());
+    }
+
+    public function testDoesNotThrowExceptionIfNameIsZero()
+    {
+        $element = new Element(0);
+        $markup = $this->helper->__invoke($element, '{button_content}');
+        $this->assertContains('name="0"', $markup);
+    }
+
+    public function testCanTranslateContent()
+    {
+        $element = new Element('foo');
+        $element->setLabel('The value for foo:');
+
+        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator->expects($this->exactly(1))
+            ->method('translate')
+            ->will($this->returnValue('translated content'));
+
+        $this->helper->setTranslator($mockTranslator);
+        $this->assertTrue($this->helper->hasTranslator());
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('>translated content<', $markup);
+    }
+
+    public function testTranslatorMethods()
+    {
+        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $this->helper->setTranslator($translatorMock, 'foo');
+
+        $this->assertEquals($translatorMock, $this->helper->getTranslator());
+        $this->assertEquals('foo', $this->helper->getTranslatorTextDomain());
+        $this->assertTrue($this->helper->hasTranslator());
+        $this->assertTrue($this->helper->isTranslatorEnabled());
+
+        $this->helper->setTranslatorEnabled(false);
+        $this->assertFalse($this->helper->isTranslatorEnabled());
     }
 }

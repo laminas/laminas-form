@@ -1,22 +1,11 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form;
@@ -24,22 +13,28 @@ namespace ZendTest\Form;
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Filter;
 use Zend\Form;
+use Zend\Form\FormElementManager;
 use Zend\Form\Factory as FormFactory;
 use Zend\InputFilter;
-use Zend\Validator;
+use Zend\ServiceManager\ServiceManager;
 
 /**
  * @category   Zend
  * @package    Zend_Form
  * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class FactoryTest extends TestCase
 {
+    /**
+     * @var FormFactory
+     */
+    protected $factory;
+
     public function setUp()
     {
-        $this->factory = new FormFactory();
+        $elementManager = new FormElementManager();
+        $elementManager->setServiceLocator(new ServiceManager());
+        $this->factory = new FormFactory($elementManager);
     }
 
     public function testCanCreateElements()
@@ -63,6 +58,7 @@ class FactoryTest extends TestCase
     {
         $fieldset = $this->factory->createFieldset(array(
             'name'       => 'foo',
+            'object'     => 'ZendTest\Form\TestAsset\Model',
             'attributes' => array(
                 'type'         => 'fieldset',
                 'class'        => 'foo-class',
@@ -74,6 +70,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
         $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
+        $this->assertEquals(new \ZendTest\Form\TestAsset\Model, $fieldset->getObject());
     }
 
     public function testCanCreateFieldsetsWithElements()
@@ -234,6 +231,7 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm(array(
             'name'       => 'foo',
+            'object'     => 'ZendTest\Form\TestAsset\Model',
             'attributes' => array(
                 'method' => 'get',
             ),
@@ -241,6 +239,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Zend\Form\FormInterface', $form);
         $this->assertEquals('foo', $form->getName());
         $this->assertEquals('get', $form->getAttribute('method'));
+        $this->assertEquals(new \ZendTest\Form\TestAsset\Model, $form->getObject());
     }
 
     public function testCanCreateFormsWithNamedInputFilters()
@@ -321,6 +320,34 @@ class FactoryTest extends TestCase
             'name'     => 'foo',
             'hydrator' => 'Zend\Stdlib\Hydrator\ObjectProperty',
         ));
+        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $hydrator = $form->getHydrator();
+        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+    }
+
+    public function testCanCreateHydratorFromArray()
+    {
+        $form = $this->factory->createForm(array(
+            'name' => 'foo',
+            'hydrator' => array(
+                'type' => 'Zend\Stdlib\Hydrator\ClassMethods',
+                'options' => array('underscoreSeparatedKeys' => false),
+            ),
+        ));
+
+        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $hydrator = $form->getHydrator();
+        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ClassMethods', $hydrator);
+        $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
+    }
+
+    public function testCanCreateHydratorFromConcreteClass()
+    {
+        $form = $this->factory->createForm(array(
+            'name' => 'foo',
+            'hydrator' => new \Zend\Stdlib\Hydrator\ObjectProperty()
+        ));
+
         $this->assertInstanceOf('Zend\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
         $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
@@ -532,5 +559,39 @@ class FactoryTest extends TestCase
         $this->assertEquals('text', $element->getAttribute('type'));
         $this->assertEquals('foo-class', $element->getAttribute('class'));
         $this->assertEquals('my.form.text', $element->getAttribute('data-js-type'));
+    }
+
+    public function testAutomaticallyAddFieldsetTypeWhenCreateFieldset()
+    {
+        $fieldset = $this->factory->createFieldset(array('name' => 'myFieldset'));
+        $this->assertInstanceOf('Zend\Form\Fieldset', $fieldset);
+        $this->assertEquals('myFieldset', $fieldset->getName());
+    }
+
+    public function testAutomaticallyAddFormTypeWhenCreateForm()
+    {
+        $form = $this->factory->createForm(array('name' => 'myForm'));
+        $this->assertInstanceOf('Zend\Form\Form', $form);
+        $this->assertEquals('myForm', $form->getName());
+    }
+
+    public function testCanPullHydratorThroughServiceManager()
+    {
+        $serviceLocator = $this->factory->getFormElementManager()->getServiceLocator();
+        $serviceLocator->setInvokableClass('MyHydrator', 'Zend\Stdlib\Hydrator\ObjectProperty');
+
+        $fieldset = $this->factory->createFieldset(array(
+            'hydrator' => 'MyHydrator',
+            'name' => 'fieldset',
+            'elements' => array(
+                array(
+                    'flags' => array(
+                        'name' => 'bar',
+                    ),
+                )
+            )
+        ));
+
+        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $fieldset->getHydrator());
     }
 }

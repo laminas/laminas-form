@@ -1,22 +1,11 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form\Annotation;
@@ -48,10 +37,13 @@ class AnnotationBuilderTest extends TestCase
 
         $username = $form->get('username');
         $this->assertInstanceOf('Zend\Form\Element', $username);
+        $this->assertEquals('required', $username->getAttribute('required'));
+
         $password = $form->get('password');
         $this->assertInstanceOf('Zend\Form\Element', $password);
         $attributes = $password->getAttributes();
         $this->assertEquals(array('type' => 'password', 'label' => 'Enter your password', 'name' => 'password'), $attributes);
+        $this->assertNull($password->getAttribute('required'));
 
         $filter = $form->getInputFilter();
         $this->assertTrue($filter->has('username'));
@@ -90,6 +82,9 @@ class AnnotationBuilderTest extends TestCase
         $attributes = $keeper->getAttributes();
         $this->assertArrayHasKey('type', $attributes);
         $this->assertEquals('text', $attributes['type']);
+
+        $this->assertObjectHasAttribute('validationGroup', $form);
+        $this->assertAttributeEquals(array('omit', 'keep'), 'validationGroup', $form);
     }
 
     public function testComplexEntityCreationWithPriorities()
@@ -190,5 +185,27 @@ class AnnotationBuilderTest extends TestCase
 
         $this->assertEquals('Username:', $username->getLabel());
         $this->assertEquals(array('class' => 'label'), $username->getLabelAttributes());
+    }
+
+    public function testCanHandleHydratorArrayAnnotation()
+    {
+        $entity  = new TestAsset\Annotation\EntityWithHydratorArray();
+        $builder = new Annotation\AnnotationBuilder();
+        $form    = $builder->createForm($entity);
+
+        $hydrator = $form->getHydrator();
+        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ClassMethods', $hydrator);
+        $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
+    }
+
+    public function testAllowTypeAsElementNameInInputFilter()
+    {
+        $entity  = new TestAsset\Annotation\EntityWithTypeAsElementName();
+        $builder = new Annotation\AnnotationBuilder();
+        $form    = $builder->createForm($entity);
+
+        $this->assertInstanceOf('Zend\Form\Form', $form);
+        $element = $form->get('type');
+        $this->assertInstanceOf('Zend\Form\Element', $element);
     }
 }

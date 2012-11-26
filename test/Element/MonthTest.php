@@ -1,29 +1,17 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form\Element;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Form\Element\Month as MonthElement;
-use Zend\Form\Factory;
 
 class MonthTest extends TestCase
 {
@@ -32,8 +20,8 @@ class MonthTest extends TestCase
         $element = new MonthElement('foo');
         $element->setAttributes(array(
             'inclusive' => true,
-            'min'       => '2000-01-01T00:00:00Z',
-            'max'       => '2001-01-01T00:00:00Z',
+            'min'       => '2000-01',
+            'max'       => '2001-01',
             'step'      => '1',
         ));
 
@@ -53,11 +41,11 @@ class MonthTest extends TestCase
             switch ($class) {
                 case 'Zend\Validator\GreaterThan':
                     $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2000-01-01T00:00:00Z', $validator->getMin());
+                    $this->assertEquals('2000-01', $validator->getMin());
                     break;
                 case 'Zend\Validator\LessThan':
                     $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2001-01-01T00:00:00Z', $validator->getMax());
+                    $this->assertEquals('2001-01', $validator->getMax());
                     break;
                 case 'Zend\Validator\DateStep':
                     $dateInterval = new \DateInterval('P1M');
@@ -67,5 +55,31 @@ class MonthTest extends TestCase
                     break;
             }
         }
+    }
+
+    public function monthValuesDataProvider()
+    {
+        return array(
+            //    value         expected
+            array('2012-01',    true),
+            array('2012-12',    true),
+            array('2012-13',    false),
+            array('2012-12-01', false),
+            array('12-2012',    false),
+            array('2012-1',     false),
+            array('12-01',      false),
+        );
+    }
+
+    /**
+     * @dataProvider monthValuesDataProvider
+     */
+    public function testHTML5MonthValidation($value, $expected)
+    {
+        $element = new MonthElement('foo');
+        $inputSpec = $element->getInputSpecification();
+        $this->assertArrayHasKey('validators', $inputSpec);
+        $monthValidator = $inputSpec['validators'][0];
+        $this->assertEquals($expected, $monthValidator->isValid($value));
     }
 }

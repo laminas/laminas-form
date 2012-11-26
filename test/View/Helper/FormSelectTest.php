@@ -1,28 +1,17 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form\View\Helper;
 
-use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Form\Element;
+use Zend\Form\Element\Select as SelectElement;
 use Zend\Form\View\Helper\FormSelect as FormSelectHelper;
 
 class FormSelectTest extends CommonTestCase
@@ -33,9 +22,9 @@ class FormSelectTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement() 
+    public function getElement()
     {
-        $element = new Element('foo');
+        $element = new SelectElement('foo');
         $options = array(
             array(
                 'label' => 'This is the first label',
@@ -50,7 +39,7 @@ class FormSelectTest extends CommonTestCase
                 'value' => 'value3',
             ),
         );
-        $element->setAttribute('options', $options);
+        $element->setValueOptions($options);
         return $element;
     }
 
@@ -107,25 +96,36 @@ class FormSelectTest extends CommonTestCase
     public function testCanMarkOptionsAsDisabled()
     {
         $element = $this->getElement();
-        $options = $element->getAttribute('options');
+        $options = $element->getValueOptions('options');
         $options[1]['disabled'] = true;
-        $element->setAttribute('options', $options);
+        $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
         $this->assertRegexp('#option .*?value="value2" .*?disabled="disabled"#', $markup);
     }
 
+    public function testCanMarkOptionsAsSelected()
+    {
+        $element = $this->getElement();
+        $options = $element->getValueOptions('options');
+        $options[1]['selected'] = true;
+        $element->setValueOptions($options);
+
+        $markup = $this->helper->render($element);
+        $this->assertRegexp('#option .*?value="value2" .*?selected="selected"#', $markup);
+    }
+
     public function testOptgroupsAreCreatedWhenAnOptionHasAnOptionsKey()
     {
         $element = $this->getElement();
-        $options = $element->getAttribute('options');
+        $options = $element->getValueOptions('options');
         $options[1]['options'] = array(
             array(
                 'label' => 'foo',
                 'value' => 'bar',
             )
         );
-        $element->setAttribute('options', $options);
+        $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
         $this->assertRegexp('#optgroup[^>]*?label="This is the second label"[^>]*>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#s', $markup);
@@ -134,7 +134,7 @@ class FormSelectTest extends CommonTestCase
     public function testCanDisableAnOptgroup()
     {
         $element = $this->getElement();
-        $options = $element->getAttribute('options');
+        $options = $element->getValueOptions('options');
         $options[1]['disabled'] = true;
         $options[1]['options']  = array(
             array(
@@ -142,7 +142,7 @@ class FormSelectTest extends CommonTestCase
                 'value' => 'bar',
             )
         );
-        $element->setAttribute('options', $options);
+        $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
         $this->assertRegexp('#optgroup .*?label="This is the second label"[^>]*?disabled="disabled"[^>]*?>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#', $markup);
@@ -184,16 +184,16 @@ class FormSelectTest extends CommonTestCase
     public function getScalarOptionsDataProvider()
     {
         return array(
-            array(array('string'  => 'value')),
-            array(array('int'     => 1)),
-            array(array('int-neg' => -1)),
-            array(array('hex'     => 0x1A)),
-            array(array('oct'     => 0123)),
-            array(array('float'   => 2.1)),
-            array(array('float-e' => 1.2e3)),
-            array(array('float-E' => 7E-10)),
-            array(array('bool-t'  => true)),
-            array(array('bool-f'  => false)),
+            array(array('value' => 'string')),
+            array(array(1       => 'int')),
+            array(array(-1      => 'int-neg')),
+            array(array(0x1A    => 'hex')),
+            array(array(0123    => 'oct')),
+            array(array(2.1     => 'float')),
+            array(array(1.2e3   => 'float-e')),
+            array(array(7E-10   => 'float-E')),
+            array(array(true    => 'bool-t')),
+            array(array(false   => 'bool-f')),
         );
     }
 
@@ -203,10 +203,10 @@ class FormSelectTest extends CommonTestCase
      */
     public function testScalarOptionValues($options)
     {
-        $element = new Element('foo');
-        $element->setAttribute('options', $options);
+        $element = new SelectElement('foo');
+        $element->setValueOptions($options);
         $markup = $this->helper->render($element);
-        list($label, $value) = each($options);
+        list($value, $label) = each($options);
         $this->assertRegexp(sprintf('#option .*?value="%s"#', (string)$value), $markup);
     }
 
@@ -214,5 +214,126 @@ class FormSelectTest extends CommonTestCase
     {
         $element = $this->getElement();
         $this->assertSame($this->helper, $this->helper->__invoke());
+    }
+
+    public function testCanTranslateContent()
+    {
+        $element = new SelectElement('foo');
+        $element->setValueOptions(array(
+            array(
+                'label' => 'label1',
+                'value' => 'value1',
+            ),
+        ));
+        $markup = $this->helper->render($element);
+
+        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator->expects($this->exactly(1))
+        ->method('translate')
+        ->will($this->returnValue('translated content'));
+
+        $this->helper->setTranslator($mockTranslator);
+        $this->assertTrue($this->helper->hasTranslator());
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('>translated content<', $markup);
+    }
+
+    public function testTranslatorMethods()
+    {
+        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $this->helper->setTranslator($translatorMock, 'foo');
+
+        $this->assertEquals($translatorMock, $this->helper->getTranslator());
+        $this->assertEquals('foo', $this->helper->getTranslatorTextDomain());
+        $this->assertTrue($this->helper->hasTranslator());
+        $this->assertTrue($this->helper->isTranslatorEnabled());
+
+        $this->helper->setTranslatorEnabled(false);
+        $this->assertFalse($this->helper->isTranslatorEnabled());
+    }
+
+    public function testDoesNotThrowExceptionIfNameIsZero()
+    {
+        $element = $this->getElement();
+        $element->setName(0);
+
+        $this->helper->__invoke($element);
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('name="0"', $markup);
+    }
+
+    public function testCanCreateEmptyOption()
+    {
+        $element = new SelectElement('foo');
+        $element->setEmptyOption('empty');
+        $element->setValueOptions(array(
+            array(
+                'label' => 'label1',
+                'value' => 'value1',
+            ),
+        ));
+        $markup = $this->helper->render($element);
+
+        $this->assertContains('<option value="">empty</option>', $markup);
+    }
+
+    public function testCanCreateEmptyOptionWithEmptyString()
+    {
+        $element = new SelectElement('foo');
+        $element->setEmptyOption('');
+        $element->setValueOptions(array(
+            array(
+                'label' => 'label1',
+                'value' => 'value1',
+            ),
+        ));
+        $markup = $this->helper->render($element);
+
+        $this->assertContains('<option value=""></option>', $markup);
+    }
+
+    public function testDoesNotRenderEmptyOptionByDefault()
+    {
+        $element = new SelectElement('foo');
+        $element->setValueOptions(array(
+            array(
+                'label' => 'label1',
+                'value' => 'value1',
+            ),
+        ));
+        $markup = $this->helper->render($element);
+
+        $this->assertNotContains('<option value=""></option>', $markup);
+    }
+
+    public function testNullEmptyOptionDoesNotRenderEmptyOption()
+    {
+        $element = new SelectElement('foo');
+        $element->setEmptyOption(null);
+        $element->setValueOptions(array(
+            array(
+                'label' => 'label1',
+                'value' => 'value1',
+            ),
+        ));
+        $markup = $this->helper->render($element);
+
+        $this->assertNotContains('<option value=""></option>', $markup);
+    }
+
+    public function testRenderInputNotSelectElementRaisesException()
+    {
+        $element = new Element\Text('foo');
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->helper->render($element);
+    }
+
+    public function testRenderElementWithNoNameRaisesException()
+    {
+        $element = new SelectElement();
+
+        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->helper->render($element);
     }
 }

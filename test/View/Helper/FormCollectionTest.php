@@ -1,40 +1,28 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form\View\Helper;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element;
-use Zend\Form\View\HelperConfiguration;
+use Zend\Form\View\HelperConfig;
 use Zend\Form\View\Helper\FormCollection as FormCollectionHelper;
 use Zend\View\Helper\Doctype;
 use Zend\View\Renderer\PhpRenderer;
 use ZendTest\Form\TestAsset\FormCollection;
+use ZendTest\Form\TestAsset\CustomViewHelper;
+use ZendTest\Form\TestAsset\CustomFieldsetHelper;
 
 /**
  * @category   Zend
  * @package    Zend_Form
  * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class FormCollectionTest extends TestCase
 {
@@ -50,7 +38,7 @@ class FormCollectionTest extends TestCase
 
         $this->renderer = new PhpRenderer;
         $helpers = $this->renderer->getHelperPluginManager();
-        $config  = new HelperConfiguration();
+        $config  = new HelperConfig();
         $config->configureServiceManager($helpers);
 
         $this->helper->setView($this->renderer);
@@ -109,5 +97,69 @@ class FormCollectionTest extends TestCase
         $this->assertContains('fieldsets[0][field]', $markup);
         $this->assertContains('fieldsets[1][field]', $markup);
         $this->assertContains('fieldsets[1][nested_fieldset][anotherField]', $markup);
+    }
+
+    public function testRenderWithCustomHelper()
+    {
+        $form = $this->getForm();
+
+        $collection = $form->get('colors');
+        $collection->setShouldCreateTemplate(false);
+
+        $elementHelper = new CustomViewHelper();
+        $elementHelper->setView($this->renderer);
+
+        $markup = $this->helper->setElementHelper($elementHelper)->render($collection);
+
+        $this->assertContains('id="customcolors0"', $markup);
+        $this->assertContains('id="customcolors1"', $markup);
+    }
+
+    public function testRenderWithCustomFieldsetHelper()
+    {
+        $form = $this->getForm();
+
+        $fieldsetHelper = new CustomFieldsetHelper();
+        $fieldsetHelper->setView($this->renderer);
+
+        $markup = $this->helper->setFieldsetHelper($fieldsetHelper)->render($form);
+
+        $this->assertContains('id="customFieldsetcolors"', $markup);
+        $this->assertContains('id="customFieldsetfieldsets"', $markup);
+    }
+
+    public function testShouldWrapReturnsDefaultTrue()
+    {
+        $this->assertTrue($this->helper->shouldWrap());
+    }
+
+    public function testSetShouldWrapReturnsFalse()
+    {
+        $this->helper->setShouldWrap(false);
+        $this->assertFalse($this->helper->shouldWrap());
+    }
+
+    public function testGetDefaultElementHelperReturnsFormrow()
+    {
+        $defaultElement = $this->helper->getDefaultElementHelper();
+        $this->assertSame('formrow', $defaultElement);
+    }
+
+    public function testSetDefaultElementHelperToFoo()
+    {
+        $this->helper->setDefaultElementHelper('foo');
+        $defaultElement = $this->helper->getDefaultElementHelper();
+        $this->assertSame('foo', $defaultElement);
+    }
+
+    public function testCanRenderTemplateAlone()
+    {
+        $form = $this->getForm();
+        $collection = $form->get('colors');
+        $collection->setShouldCreateTemplate(true);
+
+        $markup = $this->helper->renderTemplate($collection);
+        $this->assertContains('<span data-template', $markup);
+        $this->assertContains($collection->getTemplatePlaceholder(), $markup);
     }
 }

@@ -1,27 +1,16 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage View
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace Zend\Form\View;
 
-use Zend\ServiceManager\ConfigurationInterface;
+use Zend\ServiceManager\ConfigInterface;
 use Zend\ServiceManager\ServiceManager;
 
 /**
@@ -30,10 +19,8 @@ use Zend\ServiceManager\ServiceManager;
  * @category   Zend
  * @package    Zend_Form
  * @subpackage View
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class HelperConfiguration implements ConfigurationInterface
+class HelperConfig implements ConfigInterface
 {
     /**
      * @var array Pre-aliased view helpers
@@ -56,6 +43,8 @@ class HelperConfiguration implements ConfigurationInterface
         'formdate'               => 'Zend\Form\View\Helper\FormDate',
         'formdatetime'           => 'Zend\Form\View\Helper\FormDateTime',
         'formdatetimelocal'      => 'Zend\Form\View\Helper\FormDateTimeLocal',
+        'formdatetimeselect'     => 'Zend\Form\View\Helper\FormDateTimeSelect',
+        'formdateselect'         => 'Zend\Form\View\Helper\FormDateSelect',
         'formelement'            => 'Zend\Form\View\Helper\FormElement',
         'formelementerrors'      => 'Zend\Form\View\Helper\FormElementErrors',
         'formemail'              => 'Zend\Form\View\Helper\FormEmail',
@@ -65,6 +54,7 @@ class HelperConfiguration implements ConfigurationInterface
         'forminput'              => 'Zend\Form\View\Helper\FormInput',
         'formlabel'              => 'Zend\Form\View\Helper\FormLabel',
         'formmonth'              => 'Zend\Form\View\Helper\FormMonth',
+        'formmonthselect'        => 'Zend\Form\View\Helper\FormMonthSelect',
         'formmulticheckbox'      => 'Zend\Form\View\Helper\FormMultiCheckbox',
         'formnumber'             => 'Zend\Form\View\Helper\FormNumber',
         'formpassword'           => 'Zend\Form\View\Helper\FormPassword',
@@ -89,9 +79,7 @@ class HelperConfiguration implements ConfigurationInterface
      * Configure the provided service manager instance with the configuration
      * in this class.
      *
-     * In addition to using each of the internal properties to configure the
-     * service manager, also adds an initializer to inject ServiceManagerAware
-     * classes with the service manager.
+     * Adds the invokables defined in this class to the SM managing helpers.
      *
      * @param  ServiceManager $serviceManager
      * @return void

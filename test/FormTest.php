@@ -1,22 +1,11 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form;
@@ -30,9 +19,15 @@ use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFilterFactory;
 use Zend\Stdlib\Hydrator;
+use ZendTest\Form\TestAsset\Entity;
 
 class FormTest extends TestCase
 {
+    /**
+     * @var Form
+     */
+    protected $form;
+
     public function setUp()
     {
         $this->form = new Form();
@@ -72,6 +67,11 @@ class FormTest extends TestCase
         $product->setCategories(array($firstCategory, $secondCategory));
 
         return $product;
+    }
+
+    public function populateHydratorStrategyForm()
+    {
+        $this->form->add(new Element('entities'));
     }
 
     public function populateForm()
@@ -153,9 +153,9 @@ class FormTest extends TestCase
         $this->form->setInputFilter($inputFilter);
     }
 
-    public function testNoInputFilterPresentByDefault()
+    public function testInputFilterPresentByDefault()
     {
-        $this->assertNull($this->form->getInputFilter());
+        $this->assertNotNull($this->form->getInputFilter());
     }
 
     public function testCanComposeAnInputFilter()
@@ -165,10 +165,31 @@ class FormTest extends TestCase
         $this->assertSame($filter, $this->form->getInputFilter());
     }
 
+    public function testDefaultNonRequiredInputFilterIsSet()
+    {
+        $this->form->add(new Element('foo'));
+        $inputFilter = $this->form->getInputFilter();
+        $fooInput = $inputFilter->get('foo');
+        $this->assertFalse($fooInput->isRequired());
+    }
+
     public function testCallingIsValidRaisesExceptionIfNoDataSet()
     {
         $this->setExpectedException('Zend\Form\Exception\DomainException');
         $this->form->isValid();
+    }
+
+    public function testHasValidatedFlag()
+    {
+        $form = new TestAsset\NewProductForm();
+
+        $this->assertFalse($form->hasValidated());
+
+        $form->setData(array());
+        $form->isValid();
+
+
+        $this->assertTrue($form->hasValidated());
     }
 
     public function testValidatesEntireDataSetByDefault()
@@ -249,6 +270,12 @@ class FormTest extends TestCase
         $this->assertArrayHasKey('foobar', $messages, var_export($messages, 1));
     }
 
+    public function testSetValidationGroupWithNoArgumentsRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->form->setValidationGroup();
+    }
+
     public function testCallingGetDataPriorToValidationRaisesException()
     {
         $this->setExpectedException('Zend\Form\Exception\DomainException');
@@ -277,6 +304,48 @@ class FormTest extends TestCase
 
         $data = $this->form->getData();
         $this->assertInternalType('array', $data);
+    }
+
+    /**
+     * @group ZF2-336
+     */
+    public function testCanAddFileEnctypeAttribute()
+    {
+        $file = new Element\File('file_resource');
+        $file
+            ->setOptions(array())
+            ->setLabel('File');
+        $this->form->add($file);
+
+        $this->form->prepare();
+        $enctype = $this->form->getAttribute('enctype');
+        $this->assertNotEmpty($enctype);
+        $this->assertEquals($enctype, 'multipart/form-data');
+    }
+
+    /**
+     * @group ZF2-336
+     */
+    public function testCanAddFileEnctypeFromCollectionAttribute()
+    {
+        $file = new Element\File('file_resource');
+        $file
+            ->setOptions(array())
+            ->setLabel('File');
+
+        $fileCollection = new Element\Collection('collection');
+        $fileCollection->setOptions(array(
+             'count' => 2,
+             'allow_add' => false,
+             'allow_remove' => false,
+             'target_element' => $file,
+        ));
+        $this->form->add($fileCollection);
+
+        $this->form->prepare();
+        $enctype = $this->form->getAttribute('enctype');
+        $this->assertNotEmpty($enctype);
+        $this->assertEquals($enctype, 'multipart/form-data');
     }
 
     public function testCallingGetDataReturnsNormalizedDataByDefault()
@@ -489,7 +558,7 @@ class FormTest extends TestCase
         $this->assertSame($model->getInputFilter(), $this->form->getInputFilter());
     }
 
-    public function testSettingDataShouldSetElementValueAttributes()
+    public function testSettingDataShouldSetElementValues()
     {
         $this->populateForm();
         $data = array(
@@ -505,10 +574,10 @@ class FormTest extends TestCase
         $fieldset = $this->form->get('foobar');
         foreach (array('foo', 'bar') as $name) {
             $element = $this->form->get($name);
-            $this->assertEquals($data[$name], $element->getAttribute('value'));
+            $this->assertEquals($data[$name], $element->getValue());
 
             $element = $fieldset->get($name);
-            $this->assertEquals($data[$name], $element->getAttribute('value'));
+            $this->assertEquals($data[$name], $element->getValue());
         }
     }
 
@@ -522,9 +591,9 @@ class FormTest extends TestCase
         $this->form->bind($object);
 
         $foo = $this->form->get('foo');
-        $this->assertEquals('foobar', $foo->getAttribute('value'));
+        $this->assertEquals('foobar', $foo->getValue());
         $bar = $this->form->get('bar');
-        $this->assertEquals('barbaz', $bar->getAttribute('value'));
+        $this->assertEquals('barbaz', $bar->getValue());
     }
 
     public function testUsesBoundObjectAsDataSourceWhenNoDataSet()
@@ -641,6 +710,35 @@ class FormTest extends TestCase
         $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
     }
 
+    public function testFormAsFieldsetWillBindValuesToObject()
+    {
+        $parentForm        = new Form('parent');
+        $parentFormObject  = new \ArrayObject(array('parentId' => null));
+        $parentFormElement = new Element('parentId');
+        $parentForm->setObject($parentFormObject);
+        $parentForm->add($parentFormElement);
+
+        $childForm        = new Form('child');
+        $childFormObject  = new \ArrayObject(array('childId' => null));
+        $childFormElement = new Element('childId');
+        $childForm->setObject($childFormObject);
+        $childForm->add($childFormElement);
+
+        $parentForm->add($childForm);
+
+        $data = array(
+            'parentId' => 'mpinkston was here',
+            'child' => array(
+                'childId' => 'testing 123'
+            )
+        );
+
+        $parentForm->setData($data);
+        $this->assertTrue($parentForm->isValid());
+        $this->assertEquals($data['parentId'], $parentFormObject['parentId']);
+        $this->assertEquals($data['child']['childId'], $childFormObject['childId']);
+    }
+
     public function testWillUseInputSpecificationFromElementInInputFilterIfNoMatchingInputFound()
     {
         $element = new TestAsset\ElementWithFilter('foo');
@@ -740,6 +838,16 @@ class FormTest extends TestCase
         $this->assertEquals(2, count($validators));
         $this->assertTrue($input->isRequired());
         $this->assertEquals('foo', $input->getName());
+
+        // Issue #2586 Ensure default filters aren't added twice
+        $filter = $this->form->getInputFilter();
+
+        $this->assertTrue($filter->has('foo'));
+        $input = $filter->get('foo');
+        $filters = $input->getFilterChain();
+        $this->assertEquals(1, count($filters));
+        $validators = $input->getValidatorChain();
+        $this->assertEquals(2, count($validators));
     }
 
     public function testCanProperlyPrepareNestedFieldsets()
@@ -764,7 +872,7 @@ class FormTest extends TestCase
 
         $nestedFieldset = $basicFieldset->get('nested_fieldset');
         $this->assertEquals('basic_fieldset[nested_fieldset][anotherField]', $nestedFieldset->get('anotherField')
-                                                                                            ->getName());
+            ->getName());
     }
 
     public function testCanCorrectlyExtractDataFromComposedEntities()
@@ -775,9 +883,8 @@ class FormTest extends TestCase
         $form->bind($address);
         $form->setBindOnValidate(false);
 
-        if ($form->isValid()) {
-            $this->assertEquals($address, $form->getData());
-        }
+        $this->assertEquals(true, $form->isValid());
+        $this->assertEquals($address, $form->getData());
     }
 
     public function testCanCorrectlyPopulateDataToComposedEntities()
@@ -804,9 +911,8 @@ class FormTest extends TestCase
 
         $form->setData($data);
 
-        if ($form->isValid()) {
-            $this->assertEquals($address, $emptyAddress, var_export($address, 1) . "\n\n" . var_export($emptyAddress, 1));
-        }
+        $this->assertEquals(true, $form->isValid());
+        $this->assertEquals($address, $emptyAddress, var_export($address, 1) . "\n\n" . var_export($emptyAddress, 1));
     }
 
     public function testCanCorrectlyExtractDataFromOneToManyRelationship()
@@ -817,13 +923,15 @@ class FormTest extends TestCase
         $form->bind($product);
         $form->setBindOnValidate(false);
 
-        if ($form->isValid()) {
-            $this->assertEquals($product, $form->getData());
-        }
+        $this->assertEquals(true, $form->isValid());
+        $this->assertEquals($product, $form->getData());
     }
 
     public function testCanCorrectlyPopulateDataToOneToManyEntites()
     {
+        if (!extension_loaded('intl')) {
+            $this->markTestSkipped("The Intl extension is not loaded");
+        }
         $product = $this->getOneToManyEntity();
         $emptyProduct = new TestAsset\Entity\Product();
 
@@ -847,8 +955,305 @@ class FormTest extends TestCase
 
         $form->setData($data);
 
-        if ($form->isValid()) {
-            $this->assertEquals($product, $emptyProduct, var_export($product, 1) . "\n\n" . var_export($emptyProduct, 1));
-        }
+        $this->assertEquals(true, $form->isValid());
+        $this->assertEquals($product, $emptyProduct, var_export($product, 1) . "\n\n" . var_export($emptyProduct, 1));
+    }
+
+    public function testAssertElementsNamesAreNotWrappedAroundFormNameByDefault()
+    {
+        $form = new \ZendTest\Form\TestAsset\FormCollection();
+        $form->prepare();
+
+        $this->assertEquals('colors[0]', $form->get('colors')->get('0')->getName());
+        $this->assertEquals('fieldsets[0][field]', $form->get('fieldsets')->get('0')->get('field')->getName());
+    }
+
+    public function testAssertElementsNamesCanBeWrappedAroundFormName()
+    {
+        $form = new \ZendTest\Form\TestAsset\FormCollection();
+        $form->setWrapElements(true);
+        $form->setName('foo');
+        $form->prepare();
+
+        $this->assertEquals('foo[colors][0]', $form->get('colors')->get('0')->getName());
+        $this->assertEquals('foo[fieldsets][0][field]', $form->get('fieldsets')->get('0')->get('field')->getName());
+    }
+
+    public function testUnsetValuesNotBound()
+    {
+        $model = new stdClass;
+        $validSet = array(
+            'bar' => 'always valid',
+            'foobar' => array(
+                'foo' => 'abcde',
+                'bar' => 'always valid',
+            ),
+        );
+        $this->populateForm();
+        $this->form->setHydrator(new Hydrator\ObjectProperty());
+        $this->form->bind($model);
+        $this->form->setData($validSet);
+        $this->form->isValid();
+        $data = $this->form->getData();
+        $this->assertObjectNotHasAttribute('foo', $data);
+        $this->assertObjectHasAttribute('bar', $data);
+    }
+
+    public function testRemoveCollectionFromValidationGroupWhenZeroCountAndNoData()
+    {
+        $dataWithoutCollection = array(
+            'foo' => 'bar'
+        );
+        $this->populateForm();
+        $this->form->add(array(
+            'type' => 'Zend\Form\Element\Collection',
+            'name' => 'categories',
+            'options' => array(
+                'count' => 0,
+                'target_element' => array(
+                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                )
+            )
+        ));
+        $this->form->setValidationGroup(array(
+            'foo',
+            'categories' => array(
+                'name'
+            )
+        ));
+        $this->form->setData($dataWithoutCollection);
+        $this->assertTrue($this->form->isValid());
+    }
+
+    public function testFieldsetValidationGroupStillPreparedWhenEmptyData()
+    {
+        $emptyData = array();
+
+        $this->populateForm();
+        $this->form->get('foobar')->add(array(
+            'type' => 'Zend\Form\Element\Collection',
+            'name' => 'categories',
+            'options' => array(
+                'count' => 0,
+                'target_element' => array(
+                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                )
+            )
+        ));
+
+        $this->form->setValidationGroup(array(
+            'foobar' => array(
+                'categories' => array(
+                    'name'
+                )
+            )
+        ));
+
+        $this->form->setData($emptyData);
+        $this->assertFalse($this->form->isValid());
+    }
+
+    public function testApplyObjectInputFilterToBaseFieldsetAndApplyValidationGroup()
+    {
+        $fieldset = new Fieldset('foobar');
+        $fieldset->add(new Element('foo'));
+        $fieldset->setUseAsBaseFieldset(true);
+        $this->form->add($fieldset);
+        $this->form->setValidationGroup(array(
+            'foobar'=> array(
+                'foo',
+            )
+        ));
+
+        $inputFilterFactory = new InputFilterFactory();
+        $inputFilter = $inputFilterFactory->createInputFilter(array(
+            'foo' => array(
+                'name'       => 'foo',
+                'required'   => true,
+            ),
+        ));
+        $model = new TestAsset\ValidatingModel();
+        $model->setInputFilter($inputFilter);
+        $this->form->bind($model);
+
+        $this->form->setData(array());
+        $this->assertFalse($this->form->isValid());
+
+        $validSet = array(
+            'foobar' => array(
+                'foo' => 'abcde',
+            )
+        );
+        $this->form->setData($validSet);
+        $this->assertTrue($this->form->isValid());
+    }
+
+    public function testAddNonBaseFieldsetObjectInputFilterToFormInputFilter()
+    {
+        $fieldset = new Fieldset('foobar');
+        $fieldset->add(new Element('foo'));
+        $fieldset->setUseAsBaseFieldset(false);
+        $this->form->add($fieldset);
+
+        $inputFilterFactory = new InputFilterFactory();
+        $inputFilter = $inputFilterFactory->createInputFilter(array(
+            'foo' => array(
+                'name'       => 'foo',
+                'required'   => true,
+            ),
+        ));
+        $model = new TestAsset\ValidatingModel();
+        $model->setInputFilter($inputFilter);
+
+        $this->form->bind($model);
+
+        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $this->form->getInputFilter()->get('foobar'));
+    }
+
+    public function testExtractDataHydratorStrategy()
+    {
+        $this->populateHydratorStrategyForm();
+
+        $hydrator = new Hydrator\ObjectProperty();
+        $hydrator->addStrategy('entities', new TestAsset\HydratorStrategy());
+        $this->form->setHydrator($hydrator);
+
+        $model = new TestAsset\HydratorStrategyEntityA();
+        $this->form->bind($model);
+
+        $validSet = array(
+            'entities' => array(
+                111,
+                333
+            ),
+        );
+
+        $this->form->setData($validSet);
+        $this->form->isValid();
+
+        $data = $this->form->getData(Form::VALUES_AS_ARRAY);
+        $this->assertEquals($validSet, $data);
+
+        $entities = $model->getEntities();
+        $this->assertCount(2, $entities);
+
+        $this->assertEquals(111, $entities[0]->getField1());
+        $this->assertEquals(333, $entities[1]->getField1());
+
+        $this->assertEquals('AAA', $entities[0]->getField2());
+        $this->assertEquals('CCC', $entities[1]->getField2());
+    }
+
+    public function testSetDataWithNullValues()
+    {
+        $this->populateForm();
+
+        $set = array(
+            'foo' => null,
+            'bar' => 'always valid',
+            'foobar' => array(
+                'foo' => 'abcde',
+                'bar' => 'always valid',
+            ),
+        );
+        $this->form->setData($set);
+        $this->assertTrue($this->form->isValid());
+    }
+
+    public function testHydratorAppliedToBaseFieldset()
+    {
+        $fieldset = new Fieldset('foobar');
+        $fieldset->add(new Element('foo'));
+        $fieldset->setUseAsBaseFieldset(true);
+        $this->form->add($fieldset);
+        $this->form->setHydrator(new Hydrator\ArraySerializable());
+
+        $baseHydrator = $this->form->get('foobar')->getHydrator();
+        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ArraySerializable', $baseHydrator);
+    }
+
+    public function testBindWithWrongFlagRaisesException()
+    {
+        $model = new stdClass;
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->form->bind($model, Form::VALUES_AS_ARRAY);
+    }
+
+    public function testSetBindOnValidateWrongFlagRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->form->setBindOnValidate(Form::VALUES_AS_ARRAY);
+    }
+
+    public function testSetDataOnValidateWrongFlagRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->form->setData(null);
+    }
+
+    public function testSetDataIsTraversable()
+    {
+        $this->form->setData(new \ArrayObject(array('foo' => 'bar')));
+        $this->assertTrue($this->form->isValid());
+    }
+
+    public function testResetPasswordValueIfFormIsNotValid()
+    {
+        $this->form->add(array(
+            'type' => 'Zend\Form\Element\Password' ,
+            'name' => 'password'
+        ));
+
+        $this->form->add(array(
+            'type' => 'Zend\Form\Element\Email',
+            'name' => 'email'
+        ));
+
+        $this->form->setData(array(
+            'password' => 'azerty',
+            'email'    => 'wrongEmail'
+        ));
+
+        $this->assertFalse($this->form->isValid());
+        $this->form->prepare();
+
+        $this->assertEquals('', $this->form->get('password')->getValue());
+    }
+
+    public function testCorrectlyHydrateBaseFieldsetWhenHydratorThatDoesNotIgnoreInvalidDataIsUsed()
+    {
+        $fieldset = new Fieldset('example');
+        $fieldset->add(array(
+            'name' => 'foo'
+        ));
+
+        // Add an hydrator that ignores if values does not exist in the
+        $fieldset->setObject(new Entity\SimplePublicProperty());
+        $fieldset->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+
+        $this->form->add($fieldset);
+        $this->form->setBaseFieldset($fieldset);
+        $this->form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+
+        // Add some inputs that do not belong to the base fieldset
+        $this->form->add(array(
+            'type' => 'Zend\Form\Element\Submit',
+            'name' => 'submit'
+        ));
+
+        $object = new Entity\SimplePublicProperty();
+        $this->form->bind($object);
+
+        $this->form->setData(array(
+            'submit' => 'Confirm',
+            'example' => array(
+                'foo' => 'value example'
+            )
+        ));
+
+        $this->assertTrue($this->form->isValid());
+
+        // Make sure the object was not hydrated at the "form level"
+        $this->assertFalse(isset($object->submit));
     }
 }
