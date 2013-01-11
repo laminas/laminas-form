@@ -8,19 +8,16 @@
  * @package   Zend_Form
  */
 
-namespace Zend\Form;
+namespace ZendTest\Form\TestAsset\Annotation;
 
-/**
- * @category   Zend
- * @package    Zend\Form
- */
-interface ElementPrepareAwareInterface
+use Zend\Form\Annotation;
+
+class SampleEntity
 {
     /**
-     * Prepare the form element (mostly used for rendering purposes)
-     *
-     * @param Form $form
-     * @return mixed
+     * @Annotation\ErrorMessage("Invalid or missing sampleinput")
+     * @Annotation\Required(true)
+     * @Annotation\AllowEmpty(true)
      */
-    public function prepareElement(Form $form);
+    public $sampleinput;
 }
