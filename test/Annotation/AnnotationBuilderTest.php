@@ -1,22 +1,11 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form\Annotation;
@@ -27,6 +16,15 @@ use ZendTest\Form\TestAsset;
 
 class AnnotationBuilderTest extends TestCase
 {
+    public function setUp()
+    {
+        if (!defined('TESTS_ZEND_FORM_ANNOTATION_SUPPORT')
+            || !constant('TESTS_ZEND_FORM_ANNOTATION_SUPPORT')
+        ) {
+            $this->markTestSkipped('Enable TESTS_ZEND_FORM_ANNOTATION_SUPPORT to test annotation parsing');
+        }
+    }
+
     public function testCanCreateFormFromStandardEntity()
     {
         $entity  = new TestAsset\Annotation\Entity();
@@ -38,10 +36,13 @@ class AnnotationBuilderTest extends TestCase
 
         $username = $form->get('username');
         $this->assertInstanceOf('Zend\Form\Element', $username);
+        $this->assertEquals('required', $username->getAttribute('required'));
+
         $password = $form->get('password');
         $this->assertInstanceOf('Zend\Form\Element', $password);
         $attributes = $password->getAttributes();
         $this->assertEquals(array('type' => 'password', 'label' => 'Enter your password', 'name' => 'password'), $attributes);
+        $this->assertNull($password->getAttribute('required'));
 
         $filter = $form->getInputFilter();
         $this->assertTrue($filter->has('username'));
@@ -80,6 +81,9 @@ class AnnotationBuilderTest extends TestCase
         $attributes = $keeper->getAttributes();
         $this->assertArrayHasKey('type', $attributes);
         $this->assertEquals('text', $attributes['type']);
+
+        $this->assertObjectHasAttribute('validationGroup', $form);
+        $this->assertAttributeEquals(array('omit', 'keep'), 'validationGroup', $form);
     }
 
     public function testComplexEntityCreationWithPriorities()
@@ -163,5 +167,44 @@ class AnnotationBuilderTest extends TestCase
         $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $composed);
         $this->assertTrue($composed->has('username'));
         $this->assertTrue($composed->has('password'));
+    }
+
+    public function testCanHandleOptionsAnnotation()
+    {
+        $entity  = new TestAsset\Annotation\EntityUsingOptions();
+        $builder = new Annotation\AnnotationBuilder();
+        $form    = $builder->createForm($entity);
+
+        $this->assertTrue($form->useAsBaseFieldset());
+
+        $this->assertTrue($form->has('username'));
+
+        $username = $form->get('username');
+        $this->assertInstanceOf('Zend\Form\Element', $username);
+
+        $this->assertEquals('Username:', $username->getLabel());
+        $this->assertEquals(array('class' => 'label'), $username->getLabelAttributes());
+    }
+
+    public function testAllowTypeAsElementNameInInputFilter()
+    {
+        $entity  = new TestAsset\Annotation\EntityWithTypeAsElementName();
+        $builder = new Annotation\AnnotationBuilder();
+        $form    = $builder->createForm($entity);
+
+        $this->assertInstanceOf('Zend\Form\Form', $form);
+        $element = $form->get('type');
+        $this->assertInstanceOf('Zend\Form\Element', $element);
+    }
+
+    public function testAllowEmptyInput()
+    {
+        $entity  = new TestAsset\Annotation\SampleEntity();
+        $builder = new Annotation\AnnotationBuilder();
+        $form    = $builder->createForm($entity);
+
+        $inputFilter = $form->getInputFilter();
+        $sampleinput = $inputFilter->get('sampleinput');
+        $this->assertTrue($sampleinput->allowEmpty());
     }
 }

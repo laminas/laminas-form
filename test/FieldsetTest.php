@@ -1,36 +1,25 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework (http://framework.zend.com/)
  *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @link      http://github.com/zendframework/zf2 for the canonical source repository
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @package   Zend_Form
  */
 
 namespace ZendTest\Form;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Form\Element;
+use Zend\Form\Form;
 use Zend\Form\Fieldset;
+use Zend\InputFilter\InputFilter;
 
 /**
  * @category   Zend
  * @package    Zend_Form
  * @subpackage UnitTest
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class FieldsetTest extends TestCase
 {
@@ -98,6 +87,18 @@ class FieldsetTest extends TestCase
         );
     }
 
+    public function testExtractOnAnEmptyRelationship()
+    {
+        $form = new TestAsset\FormCollection();
+        $form->populateValues(array('fieldsets' => array()));
+    }
+
+    public function testPopulateValuesWithInvalidElementRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->fieldset->populateValues(null);
+    }
+
     public function testFieldsetIsEmptyByDefault()
     {
         $this->assertEquals(0, count($this->fieldset));
@@ -107,6 +108,22 @@ class FieldsetTest extends TestCase
     {
         $this->fieldset->add(new Element('foo'));
         $this->assertEquals(1, count($this->fieldset));
+    }
+
+    public function testCanSetCustomOptionFromConstructor()
+    {
+        $fieldset = new Fieldset('foo', array(
+            'custom' => 'option'
+        ));
+        $options = $fieldset->getOptions();
+        $this->assertArrayHasKey('custom', $options);
+        $this->assertEquals('option', $options['custom']);
+    }
+
+    public function testAddWithInvalidElementRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->fieldset->add(null);
     }
 
     public function testCanGrabElementByNameWhenNotProvidedWithAlias()
@@ -169,6 +186,25 @@ class FieldsetTest extends TestCase
         $this->assertFalse($this->fieldset->has('foo'));
     }
 
+    public function testCanRemoveElementsByWrongName()
+    {
+        $element = new Element('foo');
+        $this->fieldset->add($element);
+        $element2 = new Element('bar');
+        $this->fieldset->add($element2);
+        $this->assertTrue($this->fieldset->has('foo'));
+        $this->assertTrue($this->fieldset->has('bar'));
+
+        // remove wrong element, bar still available
+        $this->fieldset->remove('bars');
+        $this->assertTrue($this->fieldset->has('foo'));
+        $this->assertTrue($this->fieldset->has('bar'));
+
+        $this->fieldset->remove('bar');
+        $this->assertTrue($this->fieldset->has('foo'));
+        $this->assertFalse($this->fieldset->has('bar'));
+    }
+
     public function testCanRetrieveAllAttachedElementsSeparateFromFieldsetsAtOnce()
     {
         $this->populateFieldset();
@@ -202,6 +238,29 @@ class FieldsetTest extends TestCase
         $this->assertEquals($messages, $test);
     }
 
+    public function testSetMessagesWithInvalidElementRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->fieldset->setMessages(null);
+    }
+
+    public function testOnlyElementsWithErrorsInMessages()
+    {
+        $fieldset = new TestAsset\FieldsetWithInputFilter('set');
+        $fieldset->add(new Element('foo'));
+        $fieldset->add(new Element('bar'));
+
+        $form = new Form();
+        $form->add($fieldset);
+        $form->setInputFilter(new InputFilter());
+        $form->setData(array());
+        $form->isValid();
+
+        $messages = $form->getMessages();
+        $this->assertArrayHasKey('foo', $messages['set']);
+        $this->assertArrayNotHasKey('bar', $messages['set']);
+    }
+
     public function testCanRetrieveMessagesForSingleElementsAfterMessagesHaveBeenSet()
     {
         $this->populateFieldset();
@@ -220,6 +279,12 @@ class FieldsetTest extends TestCase
 
         $test = $this->fieldset->getMessages('barbaz');
         $this->assertEquals($messages['barbaz'], $test);
+    }
+
+    public function testGetMessagesWithInvalidElementRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->fieldset->getMessages('foo');
     }
 
     public function testCountGivesCountOfAttachedElementsAndFieldsets()
@@ -252,5 +317,147 @@ class FieldsetTest extends TestCase
             $test[] = $element->getName();
         }
         $this->assertEquals($expected, $test);
+    }
+
+    public function testIteratingRespectsOrderPriorityProvidedWhenSetLater()
+    {
+        $this->fieldset->add(new Element('foo'), array('priority' => 10));
+        $this->fieldset->add(new Element('bar'), array('priority' => 20));
+        $this->fieldset->add(new Element('baz'), array('priority' => -10));
+        $this->fieldset->add(new Fieldset('barbaz'), array('priority' => 30));
+        $this->fieldset->setPriority('baz', 99);
+
+        $expected = array('baz', 'barbaz', 'bar', 'foo');
+        $test     = array();
+        foreach ($this->fieldset as $element) {
+            $test[] = $element->getName();
+        }
+        $this->assertEquals($expected, $test);
+    }
+
+    public function testIteratingRespectsOrderPriorityWhenCloned()
+    {
+        $this->fieldset->add(new Element('foo'), array('priority' => 10));
+        $this->fieldset->add(new Element('bar'), array('priority' => 20));
+        $this->fieldset->add(new Element('baz'), array('priority' => -10));
+        $this->fieldset->add(new Fieldset('barbaz'), array('priority' => 30));
+
+        $expected = array('barbaz', 'bar', 'foo', 'baz');
+
+        $testOrig  = array();
+        $testClone = array();
+
+        $fieldsetClone = clone $this->fieldset;
+
+        foreach ($this->fieldset as $element) {
+            $testOrig[] = $element->getName();
+        }
+
+        foreach ($fieldsetClone as $element) {
+            $testClone[] = $element->getName();
+        }
+
+        $this->assertEquals($expected, $testClone);
+        $this->assertEquals($testOrig, $testClone);
+    }
+
+    public function testCloneDeepClonesElementsAndObject()
+    {
+        $this->fieldset->add(new Element('foo'));
+        $this->fieldset->add(new Element('bar'));
+        $this->fieldset->setObject(new \stdClass);
+
+        $fieldsetClone = clone $this->fieldset;
+
+        $this->assertNotSame($this->fieldset->get('foo'), $fieldsetClone->get('foo'));
+        $this->assertNotSame($this->fieldset->get('bar'), $fieldsetClone->get('bar'));
+        $this->assertNotSame($this->fieldset->getObject(), $fieldsetClone->getObject());
+    }
+
+    public function testSubFieldsetsBindObject()
+    {
+        $form = new Form();
+        $fieldset = new Fieldset('foobar');
+        $form->add($fieldset);
+        $value = new \ArrayObject(array(
+            'foobar' => 'abc',
+        ));
+        $value['foobar'] = new \ArrayObject(array(
+            'foo' => 'abc'
+        ));
+        $form->bind($value);
+        $this->assertSame($fieldset, $form->get('foobar'));
+    }
+
+    public function testBindEmptyValue()
+    {
+        $value = new \ArrayObject(array(
+            'foo' => 'abc',
+            'bar' => 'def',
+        ));
+
+        $inputFilter = new InputFilter();
+        $inputFilter->add(array('name' => 'foo', 'required' => false));
+        $inputFilter->add(array('name' => 'bar', 'required' => false));
+
+        $form = new Form();
+        $form->add(new Element('foo'));
+        $form->add(new Element('bar'));
+        $form->setInputFilter($inputFilter);
+        $form->bind($value);
+        $form->setData(array(
+            'foo' => '',
+            'bar' => 'ghi',
+        ));
+        $form->isValid();
+
+        $this->assertSame('', $value['foo']);
+        $this->assertSame('ghi', $value['bar']);
+    }
+
+    public function testFieldsetExposesFluentInterface()
+    {
+        $fieldset = $this->fieldset->add(new Element('foo'));
+        $this->assertSame($this->fieldset, $fieldset);
+        $fieldset = $this->fieldset->remove('foo');
+        $this->assertSame($this->fieldset, $fieldset);
+    }
+
+    public function testSetOptions()
+    {
+        $this->fieldset->setOptions(array(
+                                   'foo' => 'bar'
+                              ));
+        $option = $this->fieldset->getOption('foo');
+
+        $this->assertEquals('bar', $option);
+    }
+
+    public function testSetOptionsUseAsBaseFieldset()
+    {
+        $this->fieldset->setOptions(array(
+                                   'use_as_base_fieldset' => 'bar'
+                              ));
+        $option = $this->fieldset->getOption('use_as_base_fieldset');
+
+        $this->assertEquals('bar', $option);
+    }
+
+    public function testGetReturnsNull()
+    {
+        $foo = $this->fieldset->get('foo');
+        $this->assertNull($foo);
+    }
+
+    public function testBindValuesHasNoName()
+    {
+        $bindValues = $this->fieldset->bindValues(array('foo'));
+        $this->assertNull($bindValues);
+    }
+
+    public function testSetObjectWithStringRaisesException()
+    {
+        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->fieldset->setObject('foo');
     }
 }
