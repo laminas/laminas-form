@@ -9,30 +9,26 @@
 
 namespace ZendTest\Form\TestAsset;
 
-use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\Form\Fieldset;
 
-class InputFilterProvider extends Form implements InputFilterProviderInterface
+class MyFieldset extends Fieldset implements InputFilterProviderInterface
 {
-    public function __construct($name = null, $options = array())
+    public function __construct()
     {
-        parent::__construct($name, $options);
-
+        parent::__construct('my-fieldset');
         $this->add(array(
-            'name' => 'foo',
-            'options' => array(
-                'label' => 'Foo'
-            ),
+            'type' => 'Email',
+            'name' => 'email',
         ));
-
     }
 
     public function getInputFilterSpecification()
     {
         return array(
-            'foo' => array(
-                'required' => true,
-            )
+            'email' => array(
+                'required' => false,
+            ),
         );
     }
 }

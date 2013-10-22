@@ -9,20 +9,20 @@
 
 namespace ZendTest\Form\TestAsset;
 
-use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface;
+use Zend\Form\Fieldset;
 
-class ValidatingModel extends Model implements InputFilterAwareInterface
+class ValueStoringFieldset extends Fieldset
 {
-    protected $inputFilter;
+    protected $storedValue;
 
-    public function setInputFilter(InputFilterInterface $inputFilter)
+    public function populateValues($data)
     {
-        $this->inputFilter = $inputFilter;
+        $this->storedValue = $data;
+        parent::populateValues($data);
     }
 
-    public function getInputFilter()
+    public function getStoredValue()
     {
-        return $this->inputFilter;
+        return $this->storedValue;
     }
 }

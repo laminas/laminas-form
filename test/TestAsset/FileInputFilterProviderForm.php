@@ -12,27 +12,15 @@ namespace ZendTest\Form\TestAsset;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
 
-class InputFilterProvider extends Form implements InputFilterProviderInterface
+class FileInputFilterProviderForm extends Form
 {
     public function __construct($name = null, $options = array())
     {
         parent::__construct($name, $options);
 
         $this->add(array(
-            'name' => 'foo',
-            'options' => array(
-                'label' => 'Foo'
-            ),
+            'type' => __NAMESPACE__ . '\FileInputFilterProviderFieldset',
+            'name' => 'file_fieldset',
         ));
-
-    }
-
-    public function getInputFilterSpecification()
-    {
-        return array(
-            'foo' => array(
-                'required' => true,
-            )
-        );
     }
 }

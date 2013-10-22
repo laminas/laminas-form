@@ -9,19 +9,20 @@
 
 namespace ZendTest\Form\TestAsset;
 
-use Zend\Form\Form;
+use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 
-class InputFilterProvider extends Form implements InputFilterProviderInterface
+class FileInputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct($name = null, $options = array())
     {
         parent::__construct($name, $options);
 
         $this->add(array(
-            'name' => 'foo',
+            'type' => 'file',
+            'name' => 'file_field',
             'options' => array(
-                'label' => 'Foo'
+                'label' => 'File Label',
             ),
         ));
 
@@ -30,9 +31,18 @@ class InputFilterProvider extends Form implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return array(
-            'foo' => array(
-                'required' => true,
-            )
+            'file_field' => array(
+                'type'     => 'Zend\InputFilter\FileInput',
+                'filters'  => array(
+                    array(
+                        'name' => 'filerenameupload',
+                        'options' => array(
+                            'target'    => __FILE__,
+                            'randomize' => true,
+                        ),
+                    ),
+                ),
+            ),
         );
     }
 }
