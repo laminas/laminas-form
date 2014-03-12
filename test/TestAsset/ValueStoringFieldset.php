@@ -9,10 +9,20 @@
 
 namespace ZendTest\Form\TestAsset;
 
-class ArrayModel extends Model
+use Zend\Form\Fieldset;
+
+class ValueStoringFieldset extends Fieldset
 {
-    public function toArray()
+    protected $storedValue;
+
+    public function populateValues($data)
     {
-        return $this->getArrayCopy();
+        $this->storedValue = $data;
+        parent::populateValues($data);
+    }
+
+    public function getStoredValue()
+    {
+        return $this->storedValue;
     }
 }
