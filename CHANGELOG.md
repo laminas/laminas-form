@@ -18,4 +18,5 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#1](https://github.com/zendframework/zend-form/pull/1) AbstractHelper was
+  being utilized on the method signature vs. HelperInterface.
