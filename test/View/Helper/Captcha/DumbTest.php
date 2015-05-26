@@ -19,9 +19,7 @@ class DumbTest extends CommonTestCase
     public function setUp()
     {
         $this->helper  = new DumbCaptchaHelper();
-        $this->captcha = new DumbCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-        ));
+        $this->captcha = new DumbCaptcha();
         parent::setUp();
     }
 

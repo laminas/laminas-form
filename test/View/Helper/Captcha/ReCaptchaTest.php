@@ -26,9 +26,7 @@ class ReCaptchaTest extends CommonTestCase
         }
 
         $this->helper  = new ReCaptchaHelper();
-        $this->captcha = new ReCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-        ));
+        $this->captcha = new ReCaptcha();
         $service = $this->captcha->getService();
         $service->setPublicKey($this->publicKey);
         $service->setPrivateKey($this->privateKey);

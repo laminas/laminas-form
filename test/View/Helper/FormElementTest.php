@@ -134,9 +134,7 @@ class FormElementTest extends TestCase
 
     public function testRendersCaptchaAsExpected()
     {
-        $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-        ));
+        $captcha = new Captcha\Dumb();
         $element = new Element\Captcha('foo');
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);

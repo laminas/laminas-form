@@ -30,18 +30,13 @@ class CaptchaTest extends TestCase
         $element = new CaptchaElement();
 
         // by instance
-        $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-        ));
+        $captcha = new Captcha\Dumb();
         $element->setCaptcha($captcha);
         $this->assertSame($captcha, $element->getCaptcha());
 
         // by array
         $captcha = array(
             'class'   => 'dumb',
-            'options' => array(
-                'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-            )
         );
         $element->setCaptcha($captcha);
         $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
@@ -49,9 +44,6 @@ class CaptchaTest extends TestCase
         // by traversable
         $captcha = new ArrayObject(array(
             'class'   => 'dumb',
-            'options' => array(
-                    'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-            )
         ));
         $element->setCaptcha($captcha);
         $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
@@ -67,9 +59,7 @@ class CaptchaTest extends TestCase
     public function testSettingCaptchaSetsCaptchaAttribute()
     {
         $element = new CaptchaElement();
-        $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-        ));
+        $captcha = new Captcha\Dumb();
         $element->setCaptcha($captcha);
         $this->assertSame($captcha, $element->getCaptcha());
     }
@@ -82,10 +72,7 @@ class CaptchaTest extends TestCase
             'name'       => 'foo',
             'options'    => array(
                 'captcha' => array(
-                    'class'   => 'dumb',
-                    'options' => array(
-                        'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-                    )
+                    'class'   => 'dumb'
                 )
             )
         ));
@@ -97,9 +84,7 @@ class CaptchaTest extends TestCase
     public function testProvidesInputSpecificationThatIncludesCaptchaAsValidator()
     {
         $element = new CaptchaElement();
-        $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-        ));
+        $captcha = new Captcha\Dumb();
         $element->setCaptcha($captcha);
 
         $inputSpec = $element->getInputSpecification();
@@ -117,9 +102,6 @@ class CaptchaTest extends TestCase
         $options = new TestAsset\IteratorAggregate(new ArrayIterator(array(
             'captcha' => array(
                 'class'   => 'dumb',
-                'options' => array(
-                    'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
-                ),
             ),
         )));
         $element = new CaptchaElement('captcha', $options);

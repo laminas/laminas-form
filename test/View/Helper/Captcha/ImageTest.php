@@ -41,7 +41,6 @@ class ImageTest extends CommonTestCase
 
         $this->helper  = new ImageCaptchaHelper();
         $this->captcha = new ImageCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
             'imgDir'       => $this->testDir,
             'font'         => __DIR__. '/_files/Vera.ttf',
         ));
