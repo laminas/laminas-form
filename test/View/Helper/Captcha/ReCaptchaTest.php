@@ -52,16 +52,43 @@ class ReCaptchaTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertRegExp('#(type="hidden").*?(name="' . $element->getName() . '\[recaptcha_challenge_field\]")#', $markup);
+        $this->assertRegExp(
+            '#(type="hidden").*?(name="' . $element->getName() . '\&\#x5B;recaptcha_challenge_field\&\#x5D;")#',
+            $markup
+        );
         $this->assertRegExp('#(type="hidden").*?(id="' . $element->getName() . '-challenge")#', $markup);
+    }
+
+    public function testRendersNoscriptTextareaForChallengeField()
+    {
+        $element = $this->getElement();
+        $markup  = $this->helper->render($element);
+        $this->assertRegExp(
+            '#textarea.*?(name="' . $element->getName() . '\[recaptcha_challenge_field\]")#',
+            $markup
+        );
     }
 
     public function testRendersHiddenInputForResponseField()
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertRegExp('#(type="hidden").*?(name="' . $element->getName() . '\[recaptcha_response_field\]")#', $markup);
-        $this->assertRegExp('#(type="hidden").*?(id="' . $element->getName() . '-response")#', $markup);
+        $this->assertRegExp(
+            '#(type="hidden")[^>]*?(name="' . $element->getName() . '\&\#x5B;recaptcha_response_field\&\#x5D;")'
+            . '[^>]*?(id="' . $element->getName() . '-response")#',
+            $markup
+        );
+    }
+
+    public function testRendersNoscriptHiddenInputForResponseField()
+    {
+        $element = $this->getElement();
+        $markup  = $this->helper->render($element);
+        $this->assertRegExp(
+            '#(type="hidden")[^>]*?(name="' . $element->getName() . '\[recaptcha_response_field\]")'
+            . '[^>]*?(value="manual_challenge")#',
+            $markup
+        );
     }
 
     public function testRendersReCaptchaMarkup()
