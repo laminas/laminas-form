@@ -18,6 +18,7 @@
         "zendframework/zend-stdlib": "~2.4"
     },
     "require-dev": {
+        "doctrine/annotations": "~1.0",
         "zendframework/zend-cache": "~2.4",
         "zendframework/zend-captcha": "~2.4",
         "zendframework/zend-code": "~2.4",
