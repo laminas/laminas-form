@@ -115,10 +115,10 @@ class FormCaptchaTest extends CommonTestCase
             @mkdir($this->testDir);
         }
 
-        $captcha = new Captcha\Image(array(
+        $captcha = new Captcha\Image([
             'imgDir'       => $this->testDir,
             'font'         => __DIR__. '/Captcha/_files/Vera.ttf',
-        ));
+        ]);
         $element = $this->getElement();
         $element->setCaptcha($captcha);
         $element->setAttribute('id', 'foo');
