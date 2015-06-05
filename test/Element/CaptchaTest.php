@@ -35,16 +35,16 @@ class CaptchaTest extends TestCase
         $this->assertSame($captcha, $element->getCaptcha());
 
         // by array
-        $captcha = array(
+        $captcha = [
             'class'   => 'dumb',
-        );
+        ];
         $element->setCaptcha($captcha);
         $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
 
         // by traversable
-        $captcha = new ArrayObject(array(
+        $captcha = new ArrayObject([
             'class'   => 'dumb',
-        ));
+        ]);
         $element->setCaptcha($captcha);
         $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
     }
@@ -67,15 +67,15 @@ class CaptchaTest extends TestCase
     public function testCreatingCaptchaElementViaFormFactoryWillCreateCaptcha()
     {
         $factory = new Factory();
-        $element = $factory->createElement(array(
+        $element = $factory->createElement([
             'type'       => 'Zend\Form\Element\Captcha',
             'name'       => 'foo',
-            'options'    => array(
-                'captcha' => array(
+            'options'    => [
+                'captcha' => [
                     'class'   => 'dumb'
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
         $this->assertInstanceOf('Zend\Form\Element\Captcha', $element);
         $captcha = $element->getCaptcha();
         $this->assertInstanceOf('Zend\Captcha\Dumb', $captcha);
@@ -99,11 +99,11 @@ class CaptchaTest extends TestCase
      */
     public function testAllowsPassingTraversableOptionsToConstructor()
     {
-        $options = new TestAsset\IteratorAggregate(new ArrayIterator(array(
-            'captcha' => array(
+        $options = new TestAsset\IteratorAggregate(new ArrayIterator([
+            'captcha' => [
                 'class'   => 'dumb',
-            ),
-        )));
+            ],
+        ]));
         $element = new CaptchaElement('captcha', $options);
         $captcha = $element->getCaptcha();
         $this->assertInstanceOf('Zend\Captcha\Dumb', $captcha);
