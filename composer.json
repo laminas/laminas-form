@@ -14,22 +14,26 @@
     },
     "require": {
         "php": ">=5.3.23",
-        "zendframework/zend-inputfilter": "self.version",
-        "zendframework/zend-stdlib": "self.version"
+        "zendframework/zend-inputfilter": "~2.4.0",
+        "zendframework/zend-stdlib": "~2.4.0"
     },
     "require-dev": {
-        "zendframework/zend-captcha": "self.version",
-        "zendframework/zend-code": "self.version",
-        "zendframework/zend-eventmanager": "self.version",
-        "zendframework/zend-filter": "self.version",
-        "zendframework/zend-i18n": "self.version",
-        "zendframework/zend-servicemanager": "self.version",
-        "zendframework/zend-validator": "self.version",
-        "zendframework/zend-view": "self.version",
-        "zendframework/zendservice-recaptcha": "*",
+        "zendframework/zend-captcha": "~2.4.0",
+        "zendframework/zend-code": "~2.4.0",
+        "zendframework/zend-eventmanager": "~2.4.0",
+        "zendframework/zend-filter": "~2.4.0",
+        "zendframework/zend-i18n": "~2.4.0",
+        "zendframework/zend-servicemanager": "~2.4.0",
+        "zendframework/zend-validator": "~2.4.0",
+        "zendframework/zend-view": "~2.4.0",
+        "zendframework/zendservice-recaptcha": "~2.0",
         "fabpot/php-cs-fixer": "1.7.*",
         "satooshi/php-coveralls": "dev-master",
-        "phpunit/PHPUnit": "~4.0"
+        "phpunit/PHPUnit": "~4.0",
+        "zendframework/zend-text": "~2.4.0",
+        "zendframework/zend-cache": "~2.4.0",
+        "ircmaxell/random-lib": "^1.1",
+        "zendframework/zend-session": "~2.4.0"
     },
     "suggest": {
         "zendframework/zend-captcha": "Zend\\Captcha component",
