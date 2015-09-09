@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.5.2 - TBD
+## 2.5.2 - 2015-09-09
 
 ### Added
 
@@ -10,7 +10,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Deprecated
 
-- Nothing.
+- [#12](https://github.com/zendframework/zend-form/pull/12) deprecates the
+  `AllowEmpty` and `ContinueIfEmpty` annotations, to mirror changes made in
+  [zend-inputfilter#26](https://github.com/zendframework/zend-inputfilter/pull/26).
 
 ### Removed
 
@@ -18,5 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#1](https://github.com/zendframework/zend-form/pull/1) AbstractHelper was
-  being utilized on the method signature vs. HelperInterface.
+- [#1](https://github.com/zendframework/zend-form/pull/1) `AbstractHelper` was
+  being utilized on the method signature vs. `HelperInterface`.
+- [#9](https://github.com/zendframework/zend-form/pull/9) fixes typos in two
+  `aria` attribute names in the `AbstractHelper`.
