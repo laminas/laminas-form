@@ -410,6 +410,6 @@ class FormCollectionTest extends TestCase
         $method = new \ReflectionMethod('Zend\Form\View\Helper\FormCollection', 'getElementHelper');
         $method->setAccessible(true);
 
-        $method->invokeArgs(new FormCollectionHelper(), array());
+        $method->invokeArgs(new FormCollectionHelper(), []);
     }
 }
