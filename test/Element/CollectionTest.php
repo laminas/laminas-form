@@ -1237,14 +1237,14 @@ class CollectionTest extends TestCase
     public function testCanHydrateObject()
     {
         $form = $this->form;
+        $object = new \ArrayObject();
+        $form->bind($object);
         $data = [
             'colors' => [
                 '#ffffff',
             ],
         ];
         $form->setData($data);
-        $object = new \ArrayObject();
-        $form->bind($object);
         $this->assertTrue($form->isValid());
         $this->assertInternalType('array', $object['colors']);
         $this->assertCount(1, $object['colors']);
