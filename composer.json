@@ -15,7 +15,7 @@
     "require": {
         "php": ">=5.5",
         "zendframework/zend-inputfilter": "~2.5",
-        "zendframework/zend-stdlib": "~2.5"
+        "zendframework/zend-stdlib": ">=2.5.0,<2.7.0"
     },
     "require-dev": {
         "doctrine/annotations": "~1.0",
