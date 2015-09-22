@@ -12,7 +12,7 @@ namespace ZendTest\Form\TestAsset;
 use ZendTest\Form\TestAsset\Entity\Category;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
 {

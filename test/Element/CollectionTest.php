@@ -16,8 +16,8 @@ use Zend\Form\Element;
 use Zend\Form\Element\Collection as Collection;
 use Zend\Form\Fieldset;
 use Zend\Form\Form;
-use Zend\Stdlib\Hydrator\ArraySerializable;
-use Zend\Stdlib\Hydrator\ObjectProperty as ObjectPropertyHydrator;
+use Zend\Hydrator\ArraySerializable;
+use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
 use ZendTest\Form\TestAsset\ArrayModel;
 use ZendTest\Form\TestAsset\CustomCollection;
 use ZendTest\Form\TestAsset\Entity\Address;
@@ -351,7 +351,7 @@ class CollectionTest extends TestCase
     public function testExtractFromObjectDoesntTouchOriginalObject()
     {
         $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $form->setHydrator(new \Zend\Hydrator\ClassMethods());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
@@ -399,7 +399,7 @@ class CollectionTest extends TestCase
         }
 
         $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $form->setHydrator(new \Zend\Hydrator\ClassMethods());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
@@ -448,7 +448,7 @@ class CollectionTest extends TestCase
         ]);
 
         $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $form->setHydrator(new \Zend\Hydrator\ClassMethods());
         $form->add($this->productFieldset);
 
         $product = new Product();
@@ -528,7 +528,7 @@ class CollectionTest extends TestCase
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections()
     {
         $addressesFieldeset = new \ZendTest\Form\TestAsset\AddressFieldset();
-        $addressesFieldeset->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $addressesFieldeset->setHydrator(new \Zend\Hydrator\ClassMethods());
         $addressesFieldeset->remove('city');
 
         $form = new Form();
@@ -572,9 +572,9 @@ class CollectionTest extends TestCase
     public function testDoNotCreateExtraFieldsetOnMultipleBind()
     {
         $form = new \Zend\Form\Form();
-        $this->productFieldset->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $this->productFieldset->setHydrator(new \Zend\Hydrator\ClassMethods());
         $form->add($this->productFieldset);
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $form->setHydrator(new \Zend\Hydrator\ObjectProperty());
 
         $product = new Product();
         $categories = [
@@ -633,7 +633,7 @@ class CollectionTest extends TestCase
         $collection = $this->form->get('fieldsets');
         $this->prepareForExtract($collection);
 
-        $mockHydrator = $this->getMock('Zend\Stdlib\Hydrator\HydratorInterface');
+        $mockHydrator = $this->getMock('Zend\Hydrator\HydratorInterface');
         $mockHydrator->expects($this->exactly(2))
             ->method('extract')
             ->will($this->returnCallback(function ($object) {
@@ -721,7 +721,7 @@ class CollectionTest extends TestCase
     public function testCollectionCanBindObjectAndPopulateAndExtractNestedFieldsets()
     {
         $productFieldset = new \ZendTest\Form\TestAsset\ProductFieldset();
-        $productFieldset->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $productFieldset->setHydrator(new \Zend\Hydrator\ClassMethods());
 
         $mainFieldset = new Fieldset();
         $mainFieldset->setObject(new stdClass);
@@ -1024,7 +1024,7 @@ class CollectionTest extends TestCase
     {
         // @see https://github.com/zendframework/zf2/issues/5640
         $addressesFieldeset = new \ZendTest\Form\TestAsset\AddressFieldset();
-        $addressesFieldeset->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $addressesFieldeset->setHydrator(new \Zend\Hydrator\ClassMethods());
 
         $form = new Form();
         $form->setHydrator(new ObjectPropertyHydrator());

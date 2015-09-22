@@ -15,7 +15,7 @@ use Zend\Form;
 use Zend\Form\FormElementManager;
 use Zend\Form\Factory as FormFactory;
 use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\Hydrator\HydratorPluginManager;
+use Zend\Hydrator\HydratorPluginManager;
 
 class FactoryTest extends TestCase
 {
@@ -324,11 +324,11 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm([
             'name'     => 'foo',
-            'hydrator' => 'Zend\Stdlib\Hydrator\ObjectProperty',
+            'hydrator' => 'Zend\Hydrator\ObjectProperty',
         ]);
         $this->assertInstanceOf('Zend\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateFormsAndSpecifyHydratorManagedByHydratorManager()
@@ -344,7 +344,7 @@ class FactoryTest extends TestCase
         ]);
         $this->assertInstanceOf('Zend\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateHydratorFromArray()
@@ -352,14 +352,14 @@ class FactoryTest extends TestCase
         $form = $this->factory->createForm([
             'name' => 'foo',
             'hydrator' => [
-                'type' => 'Zend\Stdlib\Hydrator\ClassMethods',
+                'type' => 'Zend\Hydrator\ClassMethods',
                 'options' => ['underscoreSeparatedKeys' => false],
             ],
         ]);
 
         $this->assertInstanceOf('Zend\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ClassMethods', $hydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ClassMethods', $hydrator);
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
@@ -367,12 +367,12 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm([
             'name' => 'foo',
-            'hydrator' => new \Zend\Stdlib\Hydrator\ObjectProperty()
+            'hydrator' => new \Zend\Hydrator\ObjectProperty()
         ]);
 
         $this->assertInstanceOf('Zend\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateFormsAndSpecifyFactory()
@@ -556,7 +556,7 @@ class FactoryTest extends TestCase
                 ],
             ],
             'input_filter' => 'ZendTest\Form\TestAsset\InputFilter',
-            'hydrator'     => 'Zend\Stdlib\Hydrator\ObjectProperty',
+            'hydrator'     => 'Zend\Hydrator\ObjectProperty',
         ]);
         $this->assertInstanceOf('Zend\Form\FormInterface', $form);
 
@@ -624,7 +624,7 @@ class FactoryTest extends TestCase
 
         // hydrator
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateFormUsingCreate()
@@ -693,7 +693,7 @@ class FactoryTest extends TestCase
     public function testCanPullHydratorThroughServiceManager()
     {
         $serviceLocator = $this->factory->getFormElementManager()->getServiceLocator();
-        $serviceLocator->setInvokableClass('MyHydrator', 'Zend\Stdlib\Hydrator\ObjectProperty');
+        $serviceLocator->setInvokableClass('MyHydrator', 'Zend\Hydrator\ObjectProperty');
 
         $fieldset = $this->factory->createFieldset([
             'hydrator' => 'MyHydrator',
@@ -707,7 +707,7 @@ class FactoryTest extends TestCase
             ]
         ]);
 
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $fieldset->getHydrator());
+        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $fieldset->getHydrator());
     }
 
     public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected()

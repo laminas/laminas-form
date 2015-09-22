@@ -12,7 +12,7 @@ namespace ZendTest\Form\TestAsset;
 use ZendTest\Form\TestAsset\Entity\Product;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -58,7 +58,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
             'type' => 'ZendTest\Form\TestAsset\CountryFieldset',
             'name' => 'made_in_country',
             'object' => 'ZendTest\Form\TestAsset\Entity\Country',
-            'hydrator' => 'Zend\Stdlib\Hydrator\ClassMethods',
+            'hydrator' => 'Zend\Hydrator\ClassMethods',
             'options' => array(
                 'label' => 'Please choose the country',
             )

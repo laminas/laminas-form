@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\TestAsset;
 
-use Zend\Stdlib\Hydrator\Strategy\DefaultStrategy;
+use Zend\Hydrator\Strategy\DefaultStrategy;
 
 class HydratorStrategy extends DefaultStrategy
 {

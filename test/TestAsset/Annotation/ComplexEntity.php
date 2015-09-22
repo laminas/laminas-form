@@ -14,7 +14,7 @@ use Zend\Form\Annotation;
 /**
  * @Annotation\Name("user")
  * @Annotation\Attributes({"legend":"Register"})
- * @Annotation\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Annotation\Hydrator("Zend\Hydrator\ObjectProperty")
  */
 class ComplexEntity
 {

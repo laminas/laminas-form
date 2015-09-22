@@ -14,7 +14,7 @@ use Zend\Form\Annotation;
 /**
  * @Annotation\Name("user")
  * @Annotation\Attributes({"legend":"Register"})
- * @Annotation\Hydrator({"type":"Zend\Stdlib\Hydrator\ClassMethods", "options": {"underscoreSeparatedKeys": false}})
+ * @Annotation\Hydrator({"type":"Zend\Hydrator\ClassMethods", "options": {"underscoreSeparatedKeys": false}})
  */
 class EntityWithHydratorArray
 {
