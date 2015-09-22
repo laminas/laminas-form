@@ -9,10 +9,9 @@
 
 namespace ZendTest\Form\TestAsset;
 
-
 use Zend\Form\Fieldset;
 use Zend\Form\Element;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 use ZendTest\Form\TestAsset\Entity\Phone;
 
 class PhoneFieldset extends Fieldset

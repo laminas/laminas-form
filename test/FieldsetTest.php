@@ -14,7 +14,7 @@ use Zend\Form\Element;
 use Zend\Form\Form;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator;
+use Zend\Hydrator;
 
 class FieldsetTest extends TestCase
 {
@@ -492,7 +492,7 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $form->setHydrator(new \Zend\Hydrator\ObjectProperty());
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -517,7 +517,7 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $form->setHydrator(new \Zend\Hydrator\ObjectProperty());
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);

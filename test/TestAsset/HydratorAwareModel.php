@@ -9,9 +9,9 @@
 
 namespace ZendTest\Form\TestAsset;
 
-use Zend\Stdlib\Hydrator\HydratorAwareInterface;
-use Zend\Stdlib\Hydrator\HydratorInterface;
-use Zend\Stdlib\Hydrator\ClassMethods;
+use Zend\Hydrator\HydratorAwareInterface;
+use Zend\Hydrator\HydratorInterface;
+use Zend\Hydrator\ClassMethods;
 
 class HydratorAwareModel implements HydratorAwareInterface
 {
@@ -41,8 +41,8 @@ class HydratorAwareModel implements HydratorAwareInterface
 
     public function setBar($value)
     {
-       $this->bar = $value;
-       return $this;
+        $this->bar = $value;
+        return $this;
     }
 
     public function getFoo()

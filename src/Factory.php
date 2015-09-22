@@ -11,10 +11,10 @@ namespace Zend\Form;
 
 use ArrayAccess;
 use Traversable;
+use Zend\Hydrator;
 use Zend\InputFilter\Factory as InputFilterFactory;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\Hydrator;
 
 class Factory
 {
@@ -444,7 +444,7 @@ class Factory
 
         if (! isset($hydrator) || !$hydrator instanceof Hydrator\HydratorInterface) {
             throw new Exception\DomainException(sprintf(
-                '%s expects a valid implementation of Zend\Stdlib\Hydrator\HydratorInterface; received "%s"',
+                '%s expects a valid implementation of Zend\Hydrator\HydratorInterface; received "%s"',
                 $method,
                 $hydratorOrName
             ));

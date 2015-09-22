@@ -11,9 +11,9 @@ namespace Zend\Form;
 
 use Traversable;
 use Zend\Code\Reflection\ClassReflection;
-use Zend\Stdlib\Hydrator;
-use Zend\Stdlib\Hydrator\HydratorAwareInterface;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Zend\Hydrator;
+use Zend\Hydrator\HydratorAwareInterface;
+use Zend\Hydrator\HydratorInterface;
 use Zend\Stdlib\PriorityList;
 
 class Fieldset extends Element implements FieldsetInterface
