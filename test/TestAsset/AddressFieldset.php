@@ -11,7 +11,7 @@ namespace ZendTest\Form\TestAsset;
 
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class AddressFieldset extends Fieldset implements InputFilterProviderInterface
 {

@@ -18,7 +18,7 @@ use Zend\Form\Form;
 use Zend\InputFilter\BaseInputFilter;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFilterFactory;
-use Zend\Stdlib\Hydrator;
+use Zend\Hydrator;
 use ZendTest\Form\TestAsset\Entity;
 use ZendTest\Form\TestAsset\HydratorAwareModel;
 
@@ -1373,7 +1373,7 @@ class FormTest extends TestCase
         $this->form->setHydrator(new Hydrator\ArraySerializable());
 
         $baseHydrator = $this->form->get('foobar')->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ArraySerializable', $baseHydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ArraySerializable', $baseHydrator);
     }
 
     public function testBindWithWrongFlagRaisesException()
@@ -1433,11 +1433,11 @@ class FormTest extends TestCase
 
         // Add a hydrator that ignores if values does not exist in the
         $fieldset->setObject(new Entity\SimplePublicProperty());
-        $fieldset->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $fieldset->setHydrator(new \Zend\Hydrator\ObjectProperty());
 
         $this->form->add($fieldset);
         $this->form->setBaseFieldset($fieldset);
-        $this->form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $this->form->setHydrator(new \Zend\Hydrator\ObjectProperty());
 
         // Add some inputs that do not belong to the base fieldset
         $this->form->add([
@@ -1472,7 +1472,7 @@ class FormTest extends TestCase
         ];
 
         $element = new TestAsset\ElementWithStringToArrayFilter('foo');
-        $hydrator = $this->getMock('Zend\Stdlib\Hydrator\ArraySerializable');
+        $hydrator = $this->getMock('Zend\Hydrator\ArraySerializable');
         $hydrator->expects($this->any())->method('hydrate')->with($filteredData, $this->anything());
 
         $this->form->add($element);

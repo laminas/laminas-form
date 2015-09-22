@@ -15,7 +15,7 @@ use Zend\Form\FormAbstractServiceFactory;
 use Zend\Form\FormElementManager;
 use Zend\InputFilter\InputFilterPluginManager;
 use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\Hydrator\HydratorPluginManager;
+use Zend\Hydrator\HydratorPluginManager;
 use Zend\Validator\ValidatorPluginManager;
 
 class FormAbstractServiceFactoryTest extends TestCase
@@ -143,7 +143,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertInstanceOf('Zend\Form\Form', $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
 
         $inputFilter = $form->getInputFilter();
         $this->assertInstanceOf('Zend\InputFilter\InputFilter', $inputFilter);
@@ -194,7 +194,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertInstanceOf('Zend\Form\Form', $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
 
         $inputFilter = $form->getInputFilter();
         $this->assertInstanceOf('Zend\InputFilter\InputFilter', $inputFilter);

@@ -11,7 +11,7 @@ namespace Zend\Form;
 
 use Countable;
 use IteratorAggregate;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Zend\Hydrator\HydratorInterface;
 
 interface FieldsetInterface extends
     Countable,

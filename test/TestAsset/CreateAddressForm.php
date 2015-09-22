@@ -10,7 +10,7 @@
 namespace ZendTest\Form\TestAsset;
 
 use Zend\Form\Form;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CreateAddressForm extends Form
 {
