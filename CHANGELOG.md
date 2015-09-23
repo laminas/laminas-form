@@ -18,7 +18,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#14](https://github.com/zendframework/zend-form/pull/14) ensures that
+  collections can remove all elements when populating values.
 
 ## 2.6.0 - 2015-09-22
 
