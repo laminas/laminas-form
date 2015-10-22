@@ -197,11 +197,14 @@ class FormRow extends AbstractHelper
                 if ($element->hasAttribute('id')
                     && ($element instanceof LabelAwareInterface && !$element->getLabelOption('always_wrap'))
                 ) { 
-                    $labelOpen = $labelHelper->openTag($element);
+                    $labelOpen = '';
+                    $labelClose = '';
+                    $label = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
                 } else {
                     $labelOpen  = $labelHelper->openTag($labelAttributes);
+                    $labelClose = $labelHelper->closeTag();
                 }
-                $labelClose = $labelHelper->closeTag();
+                
 
                 if ($label !== '' && (!$element->hasAttribute('id'))
                     || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
