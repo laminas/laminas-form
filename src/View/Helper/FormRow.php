@@ -196,14 +196,12 @@ class FormRow extends AbstractHelper
                 // If element has label option `always_wrap` it will be nested in any case.
                 if ($element->hasAttribute('id')
                     && ($element instanceof LabelAwareInterface && !$element->getLabelOption('always_wrap'))
-                ) {
-                    $labelOpen = '';
-                    $labelClose = '';
-                    $label = $labelHelper($element);
+                ) { 
+                    $labelOpen = $labelHelper->openTag($element);
                 } else {
                     $labelOpen  = $labelHelper->openTag($labelAttributes);
-                    $labelClose = $labelHelper->closeTag();
                 }
+                $labelClose = $labelHelper->closeTag();
 
                 if ($label !== '' && (!$element->hasAttribute('id'))
                     || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
