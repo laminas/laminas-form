@@ -286,7 +286,7 @@ class FormRowTest extends TestCase
         $this->assertContains('<label', $markup);
         $this->assertContains('</label>', $markup);
     }
-    
+
     public function testSetLabelPositionInputNullRaisesException()
     {
         $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
