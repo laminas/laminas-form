@@ -2135,4 +2135,14 @@ class FormTest extends TestCase
 
         $this->assertEquals($data, $this->form->getData());
     }
+    
+    /**
+     * Test for https://github.com/zendframework/zend-form/pull/24#issue-119023527
+     */
+    public function testGetInputFilterInjectsFormInputFilterFactoryInstance()
+    {
+        $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
+        $inputFilter = $this->form->getInputFilter();
+        $this->assertSame($inputFilterFactory, $inputFilter->getFactory());
+    }
 }
