@@ -687,6 +687,7 @@ class Form extends Fieldset implements FormInterface
 
         if (!isset($this->filter)) {
             $this->filter = new InputFilter();
+            $this->filter->setFactory($this->getFormFactory()->getInputFilterFactory());
         }
 
         if (!$this->hasAddedInputFilterDefaults
