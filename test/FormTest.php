@@ -2135,7 +2135,7 @@ class FormTest extends TestCase
 
         $this->assertEquals($data, $this->form->getData());
     }
-    
+
     /**
      * Test for https://github.com/zendframework/zend-form/pull/24#issue-119023527
      */
