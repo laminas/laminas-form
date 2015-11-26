@@ -2152,6 +2152,7 @@ class FormTest extends TestCase
     public function testGetInputFilterInjectsFormInputFilterFactoryInstanceWhenObjectIsInputFilterAware()
     {
         $this->form->setBaseFieldset(new Fieldset());
+        $this->form->setHydrator(new Hydrator\ClassMethods());
         $this->form->bind(new TestAsset\Entity\Cat());
         $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
         $inputFilter = $this->form->getInputFilter();
