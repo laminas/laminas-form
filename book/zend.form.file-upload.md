@@ -23,9 +23,9 @@ processing, but with some slight caveats that will be described below.
 
 In this example we will:
 
-- Define a **Form** for backend validation and filtering.
-- Create a **view template** with a `<form>` containing a file input.
-- Process the form within a **Controller action**.
+* Define a **Form** for backend validation and filtering.
+* Create a **view template** with a `<form>` containing a file input.
+* Process the form within a **Controller action**.
 
 ### The Form and InputFilter
 
@@ -58,11 +58,11 @@ class UploadForm extends Form
 
 The `File` element provides some automatic features that happen behind the scenes:
 
-- The form's `enctype` will automatically be set to `multipart/form-data` when the form `prepare()`
+* The form's `enctype` will automatically be set to `multipart/form-data` when the form `prepare()`
 method is called.
-- The file element's default input specification will create the correct `Input` type:
+* The file element's default input specification will create the correct `Input` type:
 \[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input).
-- The `FileInput` will automatically prepend an \[UploadFile
+* The `FileInput` will automatically prepend an \[UploadFile
 Validator\](zend.validator.file.upload-file), to securely validate that the file is actually an
 uploaded file, and to report other types of upload errors to the user.
 
@@ -294,10 +294,10 @@ information on its supported options.
 
 Behind the scenes, the `FilePRG` plugin will:
 
-- Run the Form's filters, namely the `RenameUpload` filter, to move the files out of temporary
+* Run the Form's filters, namely the `RenameUpload` filter, to move the files out of temporary
 storage.
-- Store the valid POST data in the session across requests.
-- Change the `required` flag of any file inputs that had valid uploads to `false`. This is so that
+* Store the valid POST data in the session across requests.
+* Change the `required` flag of any file inputs that had valid uploads to `false`. This is so that
 form re-submissions without uploads will not cause validation errors.
 
 > ## Note
@@ -641,17 +641,17 @@ public function uploadFormAction()
 
 Related documentation:
 
-- \[Form File Element\](zend.form.element.file)
-- \[Form File View Helper\](zend.form.view.helper.form-file)
-- \[List of File Validators\](zend.validator.file)
-- \[List of File Filters\](zend.filter.file)
-- \[File Post-Redirect-Get Controller Plugin\](zend.mvc.controller-plugins.file-postredirectget)
-- \[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input)
-- \[Upload Progress Handlers\](zend.progress-bar.upload)
-- \[Upload Progress View Helpers\](zend.form.view.helper.file)
+* \[Form File Element\](zend.form.element.file)
+* \[Form File View Helper\](zend.form.view.helper.form-file)
+* \[List of File Validators\](zend.validator.file)
+* \[List of File Filters\](zend.filter.file)
+* \[File Post-Redirect-Get Controller Plugin\](zend.mvc.controller-plugins.file-postredirectget)
+* \[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input)
+* \[Upload Progress Handlers\](zend.progress-bar.upload)
+* \[Upload Progress View Helpers\](zend.form.view.helper.file)
 
 External resources and blog posts from the community:
 
-- [ZF2FileUploadExamples](https://github.com/cgmartin/ZF2FileUploadExamples) : A ZF2 module with
+* [ZF2FileUploadExamples](https://github.com/cgmartin/ZF2FileUploadExamples) : A ZF2 module with
 several file upload examples.
 

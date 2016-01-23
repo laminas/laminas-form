@@ -498,13 +498,13 @@ $form->add(array(
 In order to set attributes or customize the option elements, an array can be used instead of a
 string. The following keys are supported:
 
-- `"label"` - The string displayed for the option.
-- `"value"` - The form value associated with the option.
-- `"selected"` - Boolean that sets whether the option is marked as selected.
-- `"disabled"` - Boolean that sets whether the option will be disabled
-- `"attributes"` - Array of html attributes that will be set on this option. Merged with the
+* `"label"` - The string displayed for the option.
+* `"value"` - The form value associated with the option.
+* `"selected"` - Boolean that sets whether the option is marked as selected.
+* `"disabled"` - Boolean that sets whether the option will be disabled
+* `"attributes"` - Array of html attributes that will be set on this option. Merged with the
 attributes set on the element.
-- `"label_attributes"` - Array of html attributes that will be set on the label. Merged with the
+* `"label_attributes"` - Array of html attributes that will be set on the label. Merged with the
 attributes set on the element's label.
 
 ```php
