@@ -10,7 +10,7 @@ prevent Cross Site Request Forgery attacks), and the `Captcha` element (to displ
 A `Factory` is provided to facilitate creation of elements, fieldsets, forms, and the related input
 filter. See the \[Zend\\Form Quick Start\](zend.form.quick-start.factory) for more information.
 
-orphan  
+orphan
 
 ## Element Base Class
 
@@ -50,7 +50,7 @@ $form
 
 ## Standard Elements
 
-orphan  
+orphan
 
 ### Button
 
@@ -75,7 +75,7 @@ $form = new Form('my-form');
 $form->add($button);
 ```
 
-orphan  
+orphan
 
 ### Captcha
 
@@ -125,7 +125,7 @@ $form->add(array(
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element
 &lt;zend.form.element.methods&gt;.
 
-orphan  
+orphan
 
 ### Checkbox
 
@@ -157,7 +157,7 @@ Using the array notation:
 ```php
 use Zend\Form\Form;
 
-$form = new Form('my-form');       
+$form = new Form('my-form');
 $form->add(array(
     'type' => 'Zend\Form\Element\Checkbox',
     'name' => 'checkbox',
@@ -178,7 +178,7 @@ element. To have a checkbox checked by default make the value equal to the check
 ```php
 use Zend\Form\Form;
 
-$form = new Form('my-form');       
+$form = new Form('my-form');
 $form->add(array(
     'type' => 'Zend\Form\Element\Checkbox',
     'name' => 'checkbox',
@@ -199,7 +199,7 @@ $form->add(array(
 The following methods are in addition to the inherited \[methods of
 Zend\\Form\\Element\](zend.form.element.methods) .
 
-orphan  
+orphan
 
 ### Collection
 
@@ -234,7 +234,7 @@ Using the array notation:
 use Zend\Form\Element;
 use Zend\Form\Form;
 
-$form = new Form('my-form');       
+$form = new Form('my-form');
 $form->add(array(
     'type' => 'Zend\Form\Element\Collection',
     'options' => array(
@@ -251,7 +251,7 @@ $form->add(array(
 The following methods are in addition to the inherited \[methods of
 Zend\\Form\\Element\](zend.form.element.methods) .
 
-orphan  
+orphan
 
 ### Csrf
 
@@ -304,7 +304,7 @@ form's name or function: "login\_csrf", "registration\_csrf", etc.
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element
 &lt;zend.form.element.methods&gt;.
 
-orphan  
+orphan
 
 ### File
 
@@ -337,7 +337,7 @@ $form->add($file)
      ->add($multiFile);
 ```
 
-orphan  
+orphan
 
 ### Hidden
 
@@ -376,7 +376,7 @@ $form->add(array(
 ));
 ```
 
-orphan  
+orphan
 
 ### Image
 
@@ -400,7 +400,7 @@ $form = new Form('my-form');
 $form->add($image);
 ```
 
-orphan  
+orphan
 
 ### Month Select
 
@@ -444,7 +444,7 @@ $form->add(array(
 The following methods are in addition to the inherited \[methods of
 Zend\\Form\\Element\](zend.form.element.methods).
 
-orphan  
+orphan
 
 ### MultiCheckbox
 
@@ -547,7 +547,7 @@ $form->add(array(
 The following methods are in addition to the inherited \[methods of
 Zend\\Form\\Element\\Checkbox\](zend.form.element.checkbox.methods) .
 
-orphan  
+orphan
 
 ### Password
 
@@ -571,7 +571,7 @@ $form = new Form('my-form');
 $form->add($password);
 ```
 
-orphan  
+orphan
 
 ### Radio
 
@@ -628,7 +628,7 @@ All the methods from the inherited \[methods of
 Zend\\Form\\Element\\MultiCheckbox\](zend.form.element.multicheckbox.methods) are also available for
 this element.
 
-orphan  
+orphan
 
 ### Select
 
@@ -736,7 +736,7 @@ $form->add($select);
 The following methods are in addition to the inherited \[methods of
 Zend\\Form\\Element\](zend.form.element.methods) .
 
-orphan  
+orphan
 
 ### Submit
 
@@ -760,7 +760,7 @@ $form = new Form('my-form');
 $form->add($submit);
 ```
 
-orphan  
+orphan
 
 ### Text
 
@@ -784,7 +784,7 @@ $form = new Form('my-form');
 $form->add($text);
 ```
 
-orphan  
+orphan
 
 ### Textarea
 
@@ -810,7 +810,7 @@ $form->add($textarea);
 
 ## HTML5 Elements
 
-orphan  
+orphan
 
 ### Color
 
@@ -857,7 +857,7 @@ $form->add(array(
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element
 &lt;zend.form.element.methods&gt;.
 
-orphan  
+orphan
 
 ### Date
 
@@ -923,7 +923,7 @@ The following methods are in addition to the inherited methods of
 Zend\\\\Form\\\\Element\\\\DateTime
 &lt;zend.form.element.date-time.methods&gt;.
 
-orphan  
+orphan
 
 ### DateTime
 
@@ -988,7 +988,7 @@ rules.
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element
 &lt;zend.form.element.methods&gt;.
 
-orphan  
+orphan
 
 ### DateTimeLocal
 
@@ -1054,7 +1054,7 @@ The following methods are in addition to the inherited methods of
 Zend\\\\Form\\\\Element\\\\DateTime
 &lt;zend.form.element.date-time.methods&gt;.
 
-orphan  
+orphan
 
 ### Email
 
@@ -1124,7 +1124,7 @@ default input specification for the element may not contain the correct validati
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element
 &lt;zend.form.element.methods&gt;.
 
-orphan  
+orphan
 
 ### Month
 
@@ -1186,7 +1186,7 @@ The following methods are in addition to the inherited methods of
 Zend\\\\Form\\\\Element\\\\DateTime
 &lt;zend.form.element.date-time.methods&gt;.
 
-orphan  
+orphan
 
 ### Number
 
@@ -1247,7 +1247,7 @@ rules.
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element
 &lt;zend.form.element.methods&gt;.
 
-orphan  
+orphan
 
 ### Range
 
@@ -1308,7 +1308,7 @@ rules.
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element\\\\Number
 &lt;zend.form.element.number.methods&gt;.
 
-orphan  
+orphan
 
 ### Time
 
@@ -1380,7 +1380,7 @@ The following methods are in addition to the inherited methods of
 Zend\\\\Form\\\\Element\\\\DateTime
 &lt;zend.form.element.date-time.methods&gt;.
 
-orphan  
+orphan
 
 ### Url
 
@@ -1425,7 +1425,7 @@ $form->add(array(
 The following methods are in addition to the inherited methods of Zend\\\\Form\\\\Element
 &lt;zend.form.element.methods&gt;.
 
-orphan  
+orphan
 
 ### Week
 
