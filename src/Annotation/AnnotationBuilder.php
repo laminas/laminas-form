@@ -126,8 +126,8 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
             __CLASS__,
             get_class($this),
         ]);
-        $events->attach(new ElementAnnotationsListener());
-        $events->attach(new FormAnnotationsListener());
+        (new ElementAnnotationsListener())->attach($events);
+        (new FormAnnotationsListener())->attach($events);
         $this->events = $events;
         return $this;
     }
@@ -318,31 +318,30 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
             'name' => $name,
         ]);
 
-        $event = new Event();
-        $event->setParams([
+        $params = [
             'name'        => $name,
             'elementSpec' => $elementSpec,
             'inputSpec'   => $inputSpec,
             'formSpec'    => $formSpec,
             'filterSpec'  => $filterSpec,
-        ]);
+        ];
         foreach ($annotations as $annotation) {
-            $event->setParam('annotation', $annotation);
-            $events->trigger(__FUNCTION__, $this, $event);
+            $params['annotation'] = $annotation;
+            $events->trigger(__FUNCTION__, $this, $params);
         }
 
         // Since "type" is a reserved name in the filter specification,
         // we need to add the specification without the name as the key.
         // In all other cases, though, the name is fine.
-        if ($event->getParam('inputSpec')->count() > 1) {
+        if ($params['inputSpec']->count() > 1) {
             if ($name === 'type') {
-                $filterSpec[] = $event->getParam('inputSpec');
+                $filterSpec[] = $params['inputSpec'];
             } else {
-                $filterSpec[$name] = $event->getParam('inputSpec');
+                $filterSpec[$name] = $params['inputSpec'];
             }
         }
 
-        $elementSpec = $event->getParam('elementSpec');
+        $elementSpec = $params['elementSpec'];
         $type        = (isset($elementSpec['spec']['type']))
             ? $elementSpec['spec']['type']
             : 'Zend\Form\Element';
@@ -389,12 +388,15 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      */
     protected function discoverName($annotations, $reflection)
     {
-        $results = $this->getEventManager()->trigger('discoverName', $this, [
-            'annotations' => $annotations,
-            'reflection'  => $reflection,
-        ], function ($r) {
-            return (is_string($r) && !empty($r));
-        });
+        $results = $this->getEventManager()->triggerUntil(function ($r) {
+                return (is_string($r) && !empty($r));
+            },
+            'discoverName',
+            $this, [
+                'annotations' => $annotations,
+                'reflection'  => $reflection,
+            ]
+        );
         return $results->last();
     }
 
@@ -406,11 +408,14 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      */
     protected function checkForExclude($annotations)
     {
-        $results = $this->getEventManager()->trigger('checkForExclude', $this, [
-            'annotations' => $annotations,
-        ], function ($r) {
-            return (true === $r);
-        });
+        $results = $this->getEventManager()->triggerUntil(function ($r) {
+                return (true === $r);
+            },
+            'checkForExclude',
+            $this, [
+                'annotations' => $annotations,
+            ]
+        );
         return (bool) $results->last();
     }
 

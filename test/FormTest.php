@@ -92,10 +92,10 @@ class FormTest extends TestCase
                 'required'   => false,
                 'validators' => [
                     [
-                        'name' => 'not_empty',
+                        'name' => 'NotEmpty',
                     ],
                     [
-                        'name' => 'string_length',
+                        'name' => 'StringLength',
                         'options' => [
                             'min' => 3,
                             'max' => 5,
@@ -107,10 +107,10 @@ class FormTest extends TestCase
                 'allow_empty' => true,
                 'filters'     => [
                     [
-                        'name' => 'string_trim',
+                        'name' => 'StringTrim',
                     ],
                     [
-                        'name' => 'string_to_lower',
+                        'name' => 'StringToLower',
                         'options' => [
                             'encoding' => 'ISO-8859-1',
                         ],
@@ -124,10 +124,10 @@ class FormTest extends TestCase
                     'required'   => true,
                     'validators' => [
                         [
-                            'name' => 'not_empty',
+                            'name' => 'NotEmpty',
                         ],
                         [
-                            'name' => 'string_length',
+                            'name' => 'StringLength',
                             'options' => [
                                 'min' => 3,
                                 'max' => 5,
@@ -139,10 +139,10 @@ class FormTest extends TestCase
                     'allow_empty' => true,
                     'filters'     => [
                         [
-                            'name' => 'string_trim',
+                            'name' => 'StringTrim',
                         ],
                         [
-                            'name' => 'string_to_lower',
+                            'name' => 'StringToLower',
                             'options' => [
                                 'encoding' => 'ISO-8859-1',
                             ],
@@ -1722,7 +1722,7 @@ class FormTest extends TestCase
         $this->assertInstanceOf('Zend\InputFilter\FileInput', $fileInput);
 
         $chain = $fileInput->getFilterChain();
-        $this->assertCount(1, $chain, var_export($chain, 1));
+        $this->assertCount(1, $chain, print_r($chain, 1));
     }
 
     public function testInputFilterNotAddedTwiceWhenUsingFieldsets()

@@ -9,9 +9,12 @@
 
 namespace ZendTest\Form;
 
+use Zend\Form\Exception\InvalidElementException;
 use Zend\Form\Factory;
 use Zend\Form\Form;
 use Zend\Form\FormElementManager;
+use Zend\ServiceManager\Exception\InvalidServiceException;
+use Zend\ServiceManager\ServiceManager;
 
 /**
  * @group      Zend_Form
@@ -25,7 +28,7 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->manager = new FormElementManager();
+        $this->manager = new FormElementManager(new ServiceManager());
     }
 
     public function testInjectToFormFactoryAware()
@@ -45,22 +48,30 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
             $form->setFormFactory($factory);
             return $form;
         });
-        $form = $this->manager->get('my-Form');
+        $form = $this->manager->get('my-form');
         $this->assertSame($factory, $form->getFormFactory());
         $this->assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }
 
     public function testRegisteringInvalidElementRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidElementException');
+        $this->setExpectedException($this->getInvalidServiceException());
         $this->manager->setService('test', $this);
     }
 
     public function testLoadingInvalidElementRaisesException()
     {
         $this->manager->setInvokableClass('test', get_class($this));
-        $this->setExpectedException('Zend\Form\Exception\InvalidElementException');
+        $this->setExpectedException($this->getInvalidServiceException());
         $this->manager->get('test');
+    }
+
+    protected function getInvalidServiceException()
+    {
+        if (method_exists($this->manager, 'configure')) {
+            return InvalidServiceException::class;
+        }
+        return InvalidElementException::class;
     }
 
     public function testStringCreationOptions()
