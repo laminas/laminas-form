@@ -130,8 +130,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
         'onvolumechange'     => true,
         'onwaiting'          => true,
         'role'               => true,
-        'aria-labelledby'    => true,
-        'aria-describedby'   => true,
         'spellcheck'         => true,
         'style'              => true,
         'tabindex'           => true,
