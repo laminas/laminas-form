@@ -331,7 +331,6 @@ class ElementTest extends TestCase
         $this->assertTrue($element->hasLabelOption('foo3'));
     }
 
-
 	public function testCanAddMultipleAriaAttributes()
 	{
 		$element = new Element();
@@ -346,7 +345,6 @@ class ElementTest extends TestCase
 		$this->assertTrue($element->hasAttribute('aria-label'));
 		$this->assertTrue($element->hasAttribute('aria-orientation'));
 	}
-
 
 	public function testCanRemoveMultipleAriaAttributes()
 	{
