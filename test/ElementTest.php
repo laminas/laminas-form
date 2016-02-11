@@ -339,7 +339,7 @@ class ElementTest extends TestCase
             'type'             => 'text',
             'aria-label'       => 'alb',
             'aria-describedby' => 'adb',
-	        'aria-orientation' => 'vertical'
+            'aria-orientation' => 'vertical'
         ];
         $element->setAttributes($attributes);
         $this->assertTrue($element->hasAttribute('aria-describedby'));
