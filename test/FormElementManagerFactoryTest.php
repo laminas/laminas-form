@@ -35,6 +35,9 @@ class FormElementManagerFactoryTest extends TestCase
 
     public function setUp()
     {
+        if (!class_exists(FormElementManagerFactory::class)) {
+            $this->markTestSkipped("Mvc dependency not installed");
+        }
         $formElementManagerFactory = new FormElementManagerFactory();
         $config = new ArrayObject(['di' => []]);
         $services = $this->services = new ServiceManager();

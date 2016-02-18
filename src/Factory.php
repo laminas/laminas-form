@@ -14,6 +14,7 @@ use Traversable;
 use Zend\Hydrator;
 use Zend\InputFilter\Factory as InputFilterFactory;
 use Zend\InputFilter\InputFilterInterface;
+use Zend\ServiceManager\ServiceManager;
 use Zend\Stdlib\ArrayUtils;
 
 class Factory
@@ -85,7 +86,7 @@ class Factory
     public function getFormElementManager()
     {
         if ($this->formElementManager === null) {
-            $this->setFormElementManager(new FormElementManager());
+            $this->setFormElementManager(new FormElementManager(new ServiceManager()));
         }
 
         return $this->formElementManager;
@@ -439,7 +440,7 @@ class Factory
         }
 
         if (is_string($hydratorOrName)) {
-            $hydrator = $this->getHydratorFromName($hydratorOrName);
+            $hydrator = $this->getFormElementManager()->getHydratorFromName($hydratorOrName);;
         }
 
         if (! isset($hydrator) || !$hydrator instanceof Hydrator\HydratorInterface) {
@@ -483,7 +484,7 @@ class Factory
         }
 
         if (is_string($factoryOrName)) {
-            $factoryOrName = $this->getFactoryFromName($factoryOrName);
+            $factoryOrName = $this->getFormElementManager()->getFactoryFromName($factoryOrName);
         }
 
         if (!$factoryOrName instanceof Factory) {
@@ -583,28 +584,12 @@ class Factory
      */
     protected function getHydratorFromName($hydratorName)
     {
-        $services = $this->getFormElementManager()->getServiceLocator();
+        trigger_error(sprintf(
+            'Usage of %s is deprecated since v3.0.0; please use FormElementManager::getHydratorFromName() instead',
+            __METHOD__
+        ), E_USER_DEPRECATED);
 
-        if ($services && $services->has('HydratorManager')) {
-            $hydrators = $services->get('HydratorManager');
-            if ($hydrators->has($hydratorName)) {
-                return $hydrators->get($hydratorName);
-            }
-        }
-
-        if ($services && $services->has($hydratorName)) {
-            return $services->get($hydratorName);
-        }
-
-        if (!class_exists($hydratorName)) {
-            throw new Exception\DomainException(sprintf(
-                'Expects string hydrator name to be a valid class name; received "%s"',
-                $hydratorName
-            ));
-        }
-
-        $hydrator = new $hydratorName;
-        return $hydrator;
+        return $this->getFormElementManager()->getHydratorFromName($hydratorName);
     }
 
     /**
@@ -616,20 +601,11 @@ class Factory
      */
     protected function getFactoryFromName($factoryName)
     {
-        $services = $this->getFormElementManager()->getServiceLocator();
+        trigger_error(sprintf(
+            'Usage of %s is deprecated since v3.0.0; please use FormElementManager::getFactoryFromName() instead',
+            __METHOD__
+        ), E_USER_DEPRECATED);
 
-        if ($services && $services->has($factoryName)) {
-            return $services->get($factoryName);
-        }
-
-        if (!class_exists($factoryName)) {
-            throw new Exception\DomainException(sprintf(
-                'Expects string factory name to be a valid class name; received "%s"',
-                $factoryName
-            ));
-        }
-
-        $factory = new $factoryName;
-        return $factory;
+        return $this->getFormElementManager()->getFactoryFromName($factoryName);
     }
 }
