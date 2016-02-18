@@ -11,9 +11,21 @@ namespace ZendTest\Form\Element;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Form\Element\Csrf as CsrfElement;
+use Zend\Session\Container;
 
 class CsrfTest extends TestCase
 {
+    public function setUp()
+    {
+        if (! class_exists(Container::class)) {
+            $this->markTestSkipped(
+                'zend-session-related tests are skipped until the component '
+                . 'is forwards-compatible with zend-servicemanager v3'
+            );
+        }
+
+    }
+
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
     {
         $element = new CsrfElement('foo');

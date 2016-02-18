@@ -22,6 +22,13 @@ class ReCaptchaTest extends CommonTestCase
             $this->markTestSkipped('Enable TESTS_ZEND_FORM_RECAPTCHA_SUPPORT to test PDF render');
         }
 
+        if (! class_exists(ReCaptcha::class)) {
+            $this->markTestSkipped(
+                'zend-captcha-related tests are skipped until the component '
+                . 'is forwards-compatible with zend-servicemanager v3'
+            );
+        }
+
         $this->helper  = new ReCaptchaHelper();
         $this->captcha = new ReCaptcha();
         $service = $this->captcha->getService();

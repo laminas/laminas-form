@@ -33,6 +33,13 @@ class ImageTest extends CommonTestCase
             $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
         }
 
+        if (! class_exists(ImageCaptcha::class)) {
+            $this->markTestSkipped(
+                'zend-captcha-related tests are skipped until the component '
+                . 'is forwards-compatible with zend-servicemanager v3'
+            );
+        }
+
         $this->testDir = $this->getTmpDir() . '/ZF_test_images';
         if (!is_dir($this->testDir)) {
             @mkdir($this->testDir);

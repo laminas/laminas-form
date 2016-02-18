@@ -19,6 +19,16 @@ use ZendTest\Form\TestAsset;
 
 class CaptchaTest extends TestCase
 {
+    public function setUp()
+    {
+        if (! class_exists(Captcha\Dumb::class)) {
+            $this->markTestSkipped(
+                'zend-captcha-related tests are skipped until the component '
+                . 'is forwards-compatible with zend-servicemanager v3'
+            );
+        }
+    }
+
     public function testCaptchaIsUndefinedByDefault()
     {
         $element = new CaptchaElement();
