@@ -23,7 +23,6 @@ class CsrfTest extends TestCase
                 . 'is forwards-compatible with zend-servicemanager v3'
             );
         }
-
     }
 
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

@@ -440,7 +440,7 @@ class Factory
         }
 
         if (is_string($hydratorOrName)) {
-            $hydrator = $this->getFormElementManager()->getHydratorFromName($hydratorOrName);;
+            $hydrator = $this->getFormElementManager()->getHydratorFromName($hydratorOrName);
         }
 
         if (! isset($hydrator) || !$hydrator instanceof Hydrator\HydratorInterface) {

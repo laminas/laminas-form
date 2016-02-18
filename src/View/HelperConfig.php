@@ -9,7 +9,6 @@
 
 namespace Zend\Form\View;
 
-
 use Zend\ServiceManager\ConfigInterface;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\ServiceManager\ServiceManager;
@@ -224,7 +223,7 @@ class HelperConfig implements ConfigInterface
         'formWeek'                   => Helper\FormWeek::class,
         'FormWeek'                   => Helper\FormWeek::class,
     ];
-    
+
     protected $factories = [
         Helper\Form::class                          => InvokableFactory::class,
         Helper\FormButton::class                    => InvokableFactory::class,
