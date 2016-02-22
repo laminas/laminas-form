@@ -25,23 +25,6 @@ All notable changes to this project will be documented in this file, in reverse 
   - zend-hydrator v2.1
   - zend-servicemanager v3
   - zend-stdlib v3
-
-## 2.6.1 - TBD
-
-### Added
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
 - [#14](https://github.com/zendframework/zend-form/pull/14) ensures that
   collections can remove all elements when populating values.
 
