@@ -23,17 +23,11 @@ class FormAbstractServiceFactoryTest extends TestCase
     public function setUp()
     {
         $services     = $this->services = new ServiceManager;
-        $elements     = new FormElementManager;
-        $filters      = new FilterPluginManager;
-        $hydrators    = new HydratorPluginManager;
-        $inputFilters = new InputFilterPluginManager;
-        $validators   = new ValidatorPluginManager;
-
-        $elements->setServiceLocator($services);
-        $filters->setServiceLocator($services);
-        $hydrators->setServiceLocator($services);
-        $inputFilters->setServiceLocator($services);
-        $validators->setServiceLocator($services);
+        $elements     = new FormElementManager($services);
+        $filters      = new FilterPluginManager($services);
+        $hydrators    = new HydratorPluginManager($services);
+        $inputFilters = new InputFilterPluginManager($services);
+        $validators   = new ValidatorPluginManager($services);
 
         $services->setService('FilterManager', $filters);
         $services->setService('FormElementManager', $elements);
@@ -43,7 +37,7 @@ class FormAbstractServiceFactoryTest extends TestCase
 
         $inputFilters->setInvokableClass('FooInputFilter', 'Zend\InputFilter\InputFilter');
 
-        $forms = $this->forms = new FormAbstractServiceFactory;
+        $forms = $this->forms = new FormAbstractServiceFactory($services);
         $services->addAbstractFactory($forms);
     }
 
@@ -54,31 +48,31 @@ class FormAbstractServiceFactoryTest extends TestCase
 
     public function testMissingFormServicePrefixIndicatesCannotCreateForm()
     {
-        $this->services->setService('Config', []);
+        $this->services->setService('config', []);
         $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'foo', 'foo'));
     }
 
     public function testMissingFormManagerConfigIndicatesCannotCreateForm()
     {
-        $this->services->setService('Config', []);
+        $this->services->setService('config', []);
         $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Form\Foo', 'Form\Foo'));
     }
 
     public function testInvalidFormManagerConfigIndicatesCannotCreateForm()
     {
-        $this->services->setService('Config', ['forms' => 'string']);
+        $this->services->setService('config', ['forms' => 'string']);
         $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Form\Foo', 'Form\Foo'));
     }
 
     public function testEmptyFormManagerConfigIndicatesCannotCreateForm()
     {
-        $this->services->setService('Config', ['forms' => []]);
+        $this->services->setService('config', ['forms' => []]);
         $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Form\Foo', 'Form\Foo'));
     }
 
     public function testMissingFormConfigIndicatesCannotCreateForm()
     {
-        $this->services->setService('Config', [
+        $this->services->setService('config', [
             'forms' => [
                 'Bar' => [],
             ],
@@ -88,7 +82,7 @@ class FormAbstractServiceFactoryTest extends TestCase
 
     public function testInvalidFormConfigIndicatesCannotCreateForm()
     {
-        $this->services->setService('Config', [
+        $this->services->setService('config', [
             'forms' => [
                 'Foo' => 'string',
             ],
@@ -98,7 +92,7 @@ class FormAbstractServiceFactoryTest extends TestCase
 
     public function testEmptyFormConfigIndicatesCannotCreateForm()
     {
-        $this->services->setService('Config', [
+        $this->services->setService('config', [
             'forms' => [
                 'Foo' => [],
             ],
@@ -108,7 +102,7 @@ class FormAbstractServiceFactoryTest extends TestCase
 
     public function testPopulatedFormConfigIndicatesFormCanBeCreated()
     {
-        $this->services->setService('Config', [
+        $this->services->setService('config', [
             'forms' => [
                 'Foo' => [
                     'type'     => 'Zend\Form\Form',
@@ -138,7 +132,7 @@ class FormAbstractServiceFactoryTest extends TestCase
             'input_filter' => 'FooInputFilter',
         ];
         $config = ['forms' => ['Foo' => $formConfig]];
-        $this->services->setService('Config', $config);
+        $this->services->setService('config', $config);
         $form = $this->forms->createServiceWithName($this->services, 'Foo', 'Foo');
         $this->assertInstanceOf('Zend\Form\Form', $form);
 
@@ -177,19 +171,19 @@ class FormAbstractServiceFactoryTest extends TestCase
                     'required'   => true,
                     'filters'    => [
                         [
-                            'name' => 'string_trim',
+                            'name' => 'StringTrim',
                         ],
                     ],
                     'validators' => [
                         [
-                            'name' => 'email_address',
+                            'name' => 'EmailAddress',
                         ],
                     ],
                 ],
             ],
         ];
         $config = ['forms' => ['Foo' => $formConfig]];
-        $this->services->setService('Config', $config);
+        $this->services->setService('config', $config);
         $form = $this->forms->createServiceWithName($this->services, 'Foo', 'Foo');
         $this->assertInstanceOf('Zend\Form\Form', $form);
 

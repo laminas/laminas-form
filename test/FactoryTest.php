@@ -24,10 +24,15 @@ class FactoryTest extends TestCase
      */
     protected $factory;
 
+    /**
+     * @var ServiceManager
+     */
+    protected $services;
+
     public function setUp()
     {
-        $elementManager = new FormElementManager();
-        $elementManager->setServiceLocator(new ServiceManager());
+        $this->services = new ServiceManager();
+        $elementManager = new FormElementManager($this->services);
         $this->factory = new FormFactory($elementManager);
     }
 
@@ -257,10 +262,10 @@ class FactoryTest extends TestCase
                     'required'   => false,
                     'validators' => [
                         [
-                            'name' => 'not_empty',
+                            'name' => 'NotEmpty',
                         ],
                         [
-                            'name' => 'string_length',
+                            'name' => 'StringLength',
                             'options' => [
                                 'min' => 3,
                                 'max' => 5,
@@ -272,10 +277,10 @@ class FactoryTest extends TestCase
                     'allow_empty' => true,
                     'filters'     => [
                         [
-                            'name' => 'string_trim',
+                            'name' => 'StringTrim',
                         ],
                         [
-                            'name' => 'string_to_lower',
+                            'name' => 'StringToLower',
                             'options' => [
                                 'encoding' => 'ISO-8859-1',
                             ],
@@ -333,10 +338,7 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormsAndSpecifyHydratorManagedByHydratorManager()
     {
-        $hydrators = new HydratorPluginManager();
-        $services = $this->factory->getFormElementManager()->getServiceLocator();
-        $hydrators->setServiceLocator($services);
-        $services->setService('HydratorManager', new HydratorPluginManager());
+        $this->services->setService('HydratorManager', new HydratorPluginManager($this->services));
 
         $form = $this->factory->createForm([
             'name'     => 'foo',
@@ -415,7 +417,7 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByName()
     {
-        $validatorManager = new \Zend\Validator\ValidatorPluginManager();
+        $validatorManager = new \Zend\Validator\ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', 'Zend\Validator\Digits');
 
         $defaultValidatorChain = new \Zend\Validator\ValidatorChain();
@@ -692,8 +694,7 @@ class FactoryTest extends TestCase
 
     public function testCanPullHydratorThroughServiceManager()
     {
-        $serviceLocator = $this->factory->getFormElementManager()->getServiceLocator();
-        $serviceLocator->setInvokableClass('MyHydrator', 'Zend\Hydrator\ObjectProperty');
+        $this->services->setInvokableClass('MyHydrator', 'Zend\Hydrator\ObjectProperty');
 
         $fieldset = $this->factory->createFieldset([
             'hydrator' => 'MyHydrator',

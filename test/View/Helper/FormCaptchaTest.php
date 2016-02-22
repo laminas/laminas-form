@@ -21,6 +21,13 @@ class FormCaptchaTest extends CommonTestCase
 
     public function setUp()
     {
+        if (! class_exists(Captcha\Dumb::class)) {
+            $this->markTestSkipped(
+                'zend-captcha-related tests are skipped until the component '
+                . 'is forwards-compatible with zend-servicemanager v3'
+            );
+        }
+
         $this->helper = new FormCaptchaHelper();
         parent::setUp();
     }
