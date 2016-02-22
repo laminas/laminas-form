@@ -13,7 +13,6 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\ConfigInterface;
 use Zend\ServiceManager\Exception\InvalidServiceException;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\InitializableInterface;
 
 /**
@@ -44,12 +43,16 @@ class FormElementManager extends AbstractPluginManager
         'date'           => Element\Date::class,
         'Date'           => Element\Date::class,
         'dateselect'     => Element\DateSelect::class,
+        'dateSelect'     => Element\DateSelect::class,
         'DateSelect'     => Element\DateSelect::class,
         'datetime'       => Element\DateTime::class,
+        'dateTime'       => Element\DateTime::class,
         'DateTime'       => Element\DateTime::class,
         'datetimelocal'  => Element\DateTimeLocal::class,
+        'dateTimeLocal'  => Element\DateTimeLocal::class,
         'DateTimeLocal'  => Element\DateTimeLocal::class,
         'datetimeselect' => Element\DateTimeSelect::class,
+        'dateTimeSelect' => Element\DateTimeSelect::class,
         'DateTimeSelect' => Element\DateTimeSelect::class,
         'element'        => Element::class,
         'Element'        => Element::class,
@@ -68,9 +71,13 @@ class FormElementManager extends AbstractPluginManager
         'month'          => Element\Month::class,
         'Month'          => Element\Month::class,
         'monthselect'    => Element\MonthSelect::class,
+        'monthSelect'    => Element\MonthSelect::class,
         'MonthSelect'    => Element\MonthSelect::class,
         'multicheckbox'  => Element\MultiCheckbox::class,
+        'multiCheckbox'  => Element\MultiCheckbox::class,
         'MultiCheckbox'  => Element\MultiCheckbox::class,
+        'multiCheckBox'  => Element\MultiCheckbox::class,
+        'MultiCheckBox'  => Element\MultiCheckbox::class,
         'number'         => Element\Number::class,
         'Number'         => Element\Number::class,
         'password'       => Element\Password::class,
@@ -184,59 +191,77 @@ class FormElementManager extends AbstractPluginManager
      */
     protected $shareByDefault = false;
 
+    /**
+     * Interface all plugins managed by this class must implement.
+     * @var string
+     */
     protected $instanceOf = ElementInterface::class;
 
     /**
+     * Constructor
+     *
+     * Overrides parent constructor in order to add the initializer methods injectFactory()
+     * and callElementInit().
+     *
      * @param null|ConfigInterface|ContainerInterface $configOrContainerInstance
      * @param array $v3config If $configOrContainerInstance is a container, this
      *     value will be passed to the parent constructor.
      */
     public function __construct($configInstanceOrParentLocator = null, array $v3config = [])
     {
-        parent::__construct($configInstanceOrParentLocator, $v3config);
+        $this->initializers[] = [$this, 'injectFactory'];
+        $this->initializers[] = [$this, 'callElementInit'];
 
-        $this->addInitializer([$this, 'injectFactory']);
-        $this->addInitializer([$this, 'callElementInit']);
+        parent::__construct($configInstanceOrParentLocator, $v3config);
     }
 
     /**
      * Inject the factory to any element that implements FormFactoryAwareInterface
      *
-     * @param mixed $first
-     * @param mixed $second
+     * @param mixed $first ContainerInterface when used under zend-servicemanager
+     *     v3, element or form when under v2.
+     * @param mixed $second Element or form when used under zend-servicemanager
+     *     v3, ContainerInterface when under v2.
      */
     public function injectFactory($first, $second)
     {
         if ($first instanceof ContainerInterface) {
+            // Container is the parent container under v3
             $container = $first;
             $instance = $second;
         } else {
-            $container = $second;
+            // Need to retrieve the parent container under v2
+            $container = $second->getServiceLocator() ?: $second;
             $instance = $first;
         }
-        if ($instance instanceof FormFactoryAwareInterface) {
-            $factory = $instance->getFormFactory();
-            $factory->setFormElementManager($this);
 
-            if ($container instanceof ServiceLocatorInterface && $container->has('InputFilterManager')) {
-                $inputFilters = $container->get('InputFilterManager');
-                $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
-            }
+        if (! $instance instanceof FormFactoryAwareInterface) {
+            return;
+        }
+
+        $factory = $instance->getFormFactory();
+        $factory->setFormElementManager($this);
+
+        if ($container && $container->has('InputFilterManager')) {
+            $inputFilters = $container->get('InputFilterManager');
+            $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
         }
     }
 
     /**
      * Call init() on any element that implements InitializableInterface
      *
-     * @internal param $element
+     * @param mixed $first ContainerInterface when used under zend-servicemanager
+     *     v3, element or form when under v2.
+     * @param mixed $second Element or form when used under zend-servicemanager
+     *     v3, ContainerInterface when under v2.
      */
     public function callElementInit($first, $second)
     {
-        if ($first instanceof ContainerInterface) {
-            $instance = $second;
-        } else {
-            $instance = $first;
-        }
+        $instance = ($first instanceof ContainerInterface)
+            ? $second // v3
+            : $first; // v2
+
         if ($instance instanceof InitializableInterface) {
             $instance->init();
         }
@@ -247,18 +272,18 @@ class FormElementManager extends AbstractPluginManager
      *
      * Validates against `$instanceOf`.
      *
-     * @param  mixed $instance
+     * @param  mixed $plugin
      * @throws InvalidServiceException
      * @return void
      */
-    public function validate($instance)
+    public function validate($plugin)
     {
-        if (! $instance instanceof $this->instanceOf) {
+        if (! $plugin instanceof $this->instanceOf) {
             throw new InvalidServiceException(sprintf(
                 '%s can only create instances of %s; %s is invalid',
                 get_class($this),
                 $this->instanceOf,
-                (is_object($instance) ? get_class($instance) : gettype($instance))
+                (is_object($plugin) ? get_class($plugin) : gettype($plugin))
             ));
         }
     }
@@ -268,13 +293,13 @@ class FormElementManager extends AbstractPluginManager
      *
      * Proxies to `validate()`.
      *
-     * @param mixed $instance
+     * @param mixed $plugin
      * @throws Exception\InvalidElementException
      */
-    public function validatePlugin($instance)
+    public function validatePlugin($plugin)
     {
         try {
-            $this->validate($instance);
+            $this->validate($plugin);
         } catch (InvalidServiceException $e) {
             throw new Exception\InvalidElementException(
                 $e->getMessage(),
@@ -313,13 +338,9 @@ class FormElementManager extends AbstractPluginManager
      */
     public function getHydratorFromName($hydratorName)
     {
-        if (method_exists($this, 'configure')) {
-            // v3
-            $services = $this->creationContext;
-        } else {
-            // v2
-            $services = $this->serviceLocator;
-        }
+        $services = isset($this->creationContext)
+            ? $this->creationContext // v3
+            : $this->serviceLocator; // v2
 
         if ($services && $services->has('HydratorManager')) {
             $hydrators = $services->get('HydratorManager');
@@ -332,7 +353,7 @@ class FormElementManager extends AbstractPluginManager
             return $services->get($hydratorName);
         }
 
-        if (!class_exists($hydratorName)) {
+        if (! class_exists($hydratorName)) {
             throw new Exception\DomainException(sprintf(
                 'Expects string hydrator name to be a valid class name; received "%s"',
                 $hydratorName
@@ -352,19 +373,15 @@ class FormElementManager extends AbstractPluginManager
      */
     public function getFactoryFromName($factoryName)
     {
-        if (method_exists($this, 'configure')) {
-            // v3
-            $services = $this->creationContext;
-        } else {
-            // v2
-            $services = $this->serviceLocator;
-        }
+        $services = isset($this->creationContext)
+            ? $this->creationContext // v3
+            : $this->serviceLocator; // v2
 
         if ($services && $services->has($factoryName)) {
             return $services->get($factoryName);
         }
 
-        if (!class_exists($factoryName)) {
+        if (! class_exists($factoryName)) {
             throw new Exception\DomainException(sprintf(
                 'Expects string factory name to be a valid class name; received "%s"',
                 $factoryName

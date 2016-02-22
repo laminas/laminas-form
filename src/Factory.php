@@ -106,7 +106,7 @@ class Factory
     public function create($spec)
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
-        $type = isset($spec['type']) ? $spec['type'] : 'Zend\Form\Element';
+        $type = isset($spec['type']) ? $spec['type'] : Element::class;
 
         $element = $this->getFormElementManager()->get($type);
 
@@ -125,9 +125,9 @@ class Factory
         throw new Exception\DomainException(sprintf(
             '%s expects the $spec["type"] to implement one of %s, %s, or %s; received %s',
             __METHOD__,
-            'Zend\Form\ElementInterface',
-            'Zend\Form\FieldsetInterface',
-            'Zend\Form\FormInterface',
+            ElementInterface::class,
+            FieldsetInterface::class,
+            FormInterface::class,
             $type
         ));
     }
@@ -141,7 +141,7 @@ class Factory
     public function createElement($spec)
     {
         if (!isset($spec['type'])) {
-            $spec['type'] = 'Zend\Form\Element';
+            $spec['type'] = Element::class;
         }
 
         return $this->create($spec);
@@ -156,7 +156,7 @@ class Factory
     public function createFieldset($spec)
     {
         if (!isset($spec['type'])) {
-            $spec['type'] = 'Zend\Form\Fieldset';
+            $spec['type'] = Fieldset::class;
         }
 
         return $this->create($spec);
@@ -171,7 +171,7 @@ class Factory
     public function createForm($spec)
     {
         if (!isset($spec['type'])) {
-            $spec['type'] = 'Zend\Form\Form';
+            $spec['type'] = Form::class;
         }
 
         return $this->create($spec);
