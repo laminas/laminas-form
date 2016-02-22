@@ -279,7 +279,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         foreach ($annotations as $annotation) {
             $events->trigger(__FUNCTION__, $this, [
                 'annotation' => $annotation,
-                'name'        => $name,
+                'name'       => $name,
                 'formSpec'   => $formSpec,
                 'filterSpec' => $filterSpec,
             ]);
@@ -388,14 +388,19 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      */
     protected function discoverName($annotations, $reflection)
     {
-        $results = $this->getEventManager()->triggerUntil(function ($r) {
+        $event = new Event();
+        $event->setName(__FUNCTION__);
+        $event->setTarget($this);
+        $event->setParams([
+            'annotations' => $annotations,
+            'reflection'  => $reflection,
+        ]);
+
+        $results = $this->getEventManager()->triggerEventUntil(
+            function ($r) {
                 return (is_string($r) && !empty($r));
             },
-            'discoverName',
-            $this, [
-                'annotations' => $annotations,
-                'reflection'  => $reflection,
-            ]
+            $event
         );
         return $results->last();
     }
@@ -408,13 +413,16 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      */
     protected function checkForExclude($annotations)
     {
-        $results = $this->getEventManager()->triggerUntil(function ($r) {
+        $event = new Event();
+        $event->setName(__FUNCTION__);
+        $event->setTarget($this);
+        $event->setParams(['annotations' => $annotations]);
+
+        $results = $this->getEventManager()->triggerEventUntil(
+            function ($r) {
                 return (true === $r);
             },
-            'checkForExclude',
-            $this, [
-                'annotations' => $annotations,
-            ]
+            $event
         );
         return (bool) $results->last();
     }
