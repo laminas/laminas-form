@@ -9,10 +9,10 @@
 
 namespace Zend\Form;
 
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\ConfigInterface;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Exception\InvalidServiceException;
 use Zend\Stdlib\InitializableInterface;
 
 /**
@@ -23,114 +23,290 @@ use Zend\Stdlib\InitializableInterface;
 class FormElementManager extends AbstractPluginManager
 {
     /**
-     * Default set of helpers
+     * Aliases for default set of helpers
      *
      * @var array
      */
-    protected $invokableClasses = [
-        'button'        => 'Zend\Form\Element\Button',
-        'captcha'       => 'Zend\Form\Element\Captcha',
-        'checkbox'      => 'Zend\Form\Element\Checkbox',
-        'collection'    => 'Zend\Form\Element\Collection',
-        'color'         => 'Zend\Form\Element\Color',
-        'csrf'          => 'Zend\Form\Element\Csrf',
-        'date'          => 'Zend\Form\Element\Date',
-        'dateselect'    => 'Zend\Form\Element\DateSelect',
-        'datetime'      => 'Zend\Form\Element\DateTime',
-        'datetimelocal' => 'Zend\Form\Element\DateTimeLocal',
-        'datetimeselect' => 'Zend\Form\Element\DateTimeSelect',
-        'element'       => 'Zend\Form\Element',
-        'email'         => 'Zend\Form\Element\Email',
-        'fieldset'      => 'Zend\Form\Fieldset',
-        'file'          => 'Zend\Form\Element\File',
-        'form'          => 'Zend\Form\Form',
-        'hidden'        => 'Zend\Form\Element\Hidden',
-        'image'         => 'Zend\Form\Element\Image',
-        'month'         => 'Zend\Form\Element\Month',
-        'monthselect'   => 'Zend\Form\Element\MonthSelect',
-        'multicheckbox' => 'Zend\Form\Element\MultiCheckbox',
-        'number'        => 'Zend\Form\Element\Number',
-        'password'      => 'Zend\Form\Element\Password',
-        'radio'         => 'Zend\Form\Element\Radio',
-        'range'         => 'Zend\Form\Element\Range',
-        'select'        => 'Zend\Form\Element\Select',
-        'submit'        => 'Zend\Form\Element\Submit',
-        'text'          => 'Zend\Form\Element\Text',
-        'textarea'      => 'Zend\Form\Element\Textarea',
-        'time'          => 'Zend\Form\Element\Time',
-        'url'           => 'Zend\Form\Element\Url',
-        'week'          => 'Zend\Form\Element\Week',
+    protected $aliases = [
+        'button'         => Element\Button::class,
+        'Button'         => Element\Button::class,
+        'captcha'        => Element\Captcha::class,
+        'Captcha'        => Element\Captcha::class,
+        'checkbox'       => Element\Checkbox::class,
+        'Checkbox'       => Element\Checkbox::class,
+        'collection'     => Element\Collection::class,
+        'Collection'     => Element\Collection::class,
+        'color'          => Element\Color::class,
+        'Color'          => Element\Color::class,
+        'csrf'           => Element\Csrf::class,
+        'Csrf'           => Element\Csrf::class,
+        'date'           => Element\Date::class,
+        'Date'           => Element\Date::class,
+        'dateselect'     => Element\DateSelect::class,
+        'dateSelect'     => Element\DateSelect::class,
+        'DateSelect'     => Element\DateSelect::class,
+        'datetime'       => Element\DateTime::class,
+        'dateTime'       => Element\DateTime::class,
+        'DateTime'       => Element\DateTime::class,
+        'datetimelocal'  => Element\DateTimeLocal::class,
+        'dateTimeLocal'  => Element\DateTimeLocal::class,
+        'DateTimeLocal'  => Element\DateTimeLocal::class,
+        'datetimeselect' => Element\DateTimeSelect::class,
+        'dateTimeSelect' => Element\DateTimeSelect::class,
+        'DateTimeSelect' => Element\DateTimeSelect::class,
+        'element'        => Element::class,
+        'Element'        => Element::class,
+        'email'          => Element\Email::class,
+        'Email'          => Element\Email::class,
+        'fieldset'       => Fieldset::class,
+        'Fieldset'       => Fieldset::class,
+        'file'           => Element\File::class,
+        'File'           => Element\File::class,
+        'form'           => Form::class,
+        'Form'           => Form::class,
+        'hidden'         => Element\Hidden::class,
+        'Hidden'         => Element\Hidden::class,
+        'image'          => Element\Image::class,
+        'Image'          => Element\Image::class,
+        'month'          => Element\Month::class,
+        'Month'          => Element\Month::class,
+        'monthselect'    => Element\MonthSelect::class,
+        'monthSelect'    => Element\MonthSelect::class,
+        'MonthSelect'    => Element\MonthSelect::class,
+        'multicheckbox'  => Element\MultiCheckbox::class,
+        'multiCheckbox'  => Element\MultiCheckbox::class,
+        'MultiCheckbox'  => Element\MultiCheckbox::class,
+        'multiCheckBox'  => Element\MultiCheckbox::class,
+        'MultiCheckBox'  => Element\MultiCheckbox::class,
+        'number'         => Element\Number::class,
+        'Number'         => Element\Number::class,
+        'password'       => Element\Password::class,
+        'Password'       => Element\Password::class,
+        'radio'          => Element\Radio::class,
+        'Radio'          => Element\Radio::class,
+        'range'          => Element\Range::class,
+        'Range'          => Element\Range::class,
+        'select'         => Element\Select::class,
+        'Select'         => Element\Select::class,
+        'submit'         => Element\Submit::class,
+        'Submit'         => Element\Submit::class,
+        'text'           => Element\Text::class,
+        'Text'           => Element\Text::class,
+        'textarea'       => Element\Textarea::class,
+        'Textarea'       => Element\Textarea::class,
+        'time'           => Element\Time::class,
+        'Time'           => Element\Time::class,
+        'url'            => Element\Url::class,
+        'Url'            => Element\Url::class,
+        'week'           => Element\Week::class,
+        'Week'           => Element\Week::class,
     ];
 
     /**
-     * Don't share form elements by default
+     * Factories for default set of helpers
+     *
+     * @var array
+     */
+    protected $factories = [
+        Element\Button::class         => ElementFactory::class,
+        Element\Captcha::class        => ElementFactory::class,
+        Element\Checkbox::class       => ElementFactory::class,
+        Element\Collection::class     => ElementFactory::class,
+        Element\Color::class          => ElementFactory::class,
+        Element\Csrf::class           => ElementFactory::class,
+        Element\Date::class           => ElementFactory::class,
+        Element\DateSelect::class     => ElementFactory::class,
+        Element\DateTime::class       => ElementFactory::class,
+        Element\DateTimeLocal::class  => ElementFactory::class,
+        Element\DateTimeSelect::class => ElementFactory::class,
+        Element::class                => ElementFactory::class,
+        Element\Email::class          => ElementFactory::class,
+        Fieldset::class               => ElementFactory::class,
+        Element\File::class           => ElementFactory::class,
+        Form::class                   => ElementFactory::class,
+        Element\Hidden::class         => ElementFactory::class,
+        Element\Image::class          => ElementFactory::class,
+        Element\Month::class          => ElementFactory::class,
+        Element\MonthSelect::class    => ElementFactory::class,
+        Element\MultiCheckbox::class  => ElementFactory::class,
+        Element\Number::class         => ElementFactory::class,
+        Element\Password::class       => ElementFactory::class,
+        Element\Radio::class          => ElementFactory::class,
+        Element\Range::class          => ElementFactory::class,
+        Element\Select::class         => ElementFactory::class,
+        Element\Submit::class         => ElementFactory::class,
+        Element\Text::class           => ElementFactory::class,
+        Element\Textarea::class       => ElementFactory::class,
+        Element\Time::class           => ElementFactory::class,
+        Element\Url::class            => ElementFactory::class,
+        Element\Week::class           => ElementFactory::class,
+
+        // v2 normalized variants
+
+        'zendformelementbutton'         => ElementFactory::class,
+        'zendformelementcaptcha'        => ElementFactory::class,
+        'zendformelementcheckbox'       => ElementFactory::class,
+        'zendformelementcollection'     => ElementFactory::class,
+        'zendformelementcolor'          => ElementFactory::class,
+        'zendformelementcsrf'           => ElementFactory::class,
+        'zendformelementdate'           => ElementFactory::class,
+        'zendformelementdateselect'     => ElementFactory::class,
+        'zendformelementdatetime'       => ElementFactory::class,
+        'zendformelementdatetimelocal'  => ElementFactory::class,
+        'zendformelementdatetimeselect' => ElementFactory::class,
+        'zendformelement'               => ElementFactory::class,
+        'zendformelementemail'          => ElementFactory::class,
+        'zendformfieldset'              => ElementFactory::class,
+        'zendformelementfile'           => ElementFactory::class,
+        'zendformform'                  => ElementFactory::class,
+        'zendformelementhidden'         => ElementFactory::class,
+        'zendformelementimage'          => ElementFactory::class,
+        'zendformelementmonth'          => ElementFactory::class,
+        'zendformelementmonthselect'    => ElementFactory::class,
+        'zendformelementmulticheckbox'  => ElementFactory::class,
+        'zendformelementnumber'         => ElementFactory::class,
+        'zendformelementpassword'       => ElementFactory::class,
+        'zendformelementradio'          => ElementFactory::class,
+        'zendformelementrange'          => ElementFactory::class,
+        'zendformelementselect'         => ElementFactory::class,
+        'zendformelementsubmit'         => ElementFactory::class,
+        'zendformelementtext'           => ElementFactory::class,
+        'zendformelementtextarea'       => ElementFactory::class,
+        'zendformelementtime'           => ElementFactory::class,
+        'zendformelementurl'            => ElementFactory::class,
+        'zendformelementweek'           => ElementFactory::class,
+    ];
+
+    /**
+     * Don't share form elements by default (v3)
+     *
+     * @var bool
+     */
+    protected $sharedByDefault = false;
+
+    /**
+     * Don't share form elements by default (v2)
      *
      * @var bool
      */
     protected $shareByDefault = false;
 
     /**
-     * @param ConfigInterface $configuration
+     * Interface all plugins managed by this class must implement.
+     * @var string
      */
-    public function __construct(ConfigInterface $configuration = null)
-    {
-        parent::__construct($configuration);
+    protected $instanceOf = ElementInterface::class;
 
-        $this->addInitializer([$this, 'injectFactory']);
-        $this->addInitializer([$this, 'callElementInit'], false);
+    /**
+     * Constructor
+     *
+     * Overrides parent constructor in order to add the initializer methods injectFactory()
+     * and callElementInit().
+     *
+     * @param null|ConfigInterface|ContainerInterface $configOrContainerInstance
+     * @param array $v3config If $configOrContainerInstance is a container, this
+     *     value will be passed to the parent constructor.
+     */
+    public function __construct($configInstanceOrParentLocator = null, array $v3config = [])
+    {
+        $this->initializers[] = [$this, 'injectFactory'];
+        $this->initializers[] = [$this, 'callElementInit'];
+
+        parent::__construct($configInstanceOrParentLocator, $v3config);
     }
 
     /**
      * Inject the factory to any element that implements FormFactoryAwareInterface
      *
-     * @param $element
+     * @param mixed $first ContainerInterface when used under zend-servicemanager
+     *     v3, element or form when under v2.
+     * @param mixed $second Element or form when used under zend-servicemanager
+     *     v3, ContainerInterface when under v2.
      */
-    public function injectFactory($element)
+    public function injectFactory($first, $second)
     {
-        if ($element instanceof FormFactoryAwareInterface) {
-            $factory = $element->getFormFactory();
-            $factory->setFormElementManager($this);
+        if ($first instanceof ContainerInterface) {
+            // Container is the parent container under v3
+            $container = $first;
+            $instance = $second;
+        } else {
+            // Need to retrieve the parent container under v2
+            $container = $second->getServiceLocator() ?: $second;
+            $instance = $first;
+        }
 
-            if ($this->serviceLocator instanceof ServiceLocatorInterface
-                && $this->serviceLocator->has('InputFilterManager')
-            ) {
-                $inputFilters = $this->serviceLocator->get('InputFilterManager');
-                $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
-            }
+        if (! $instance instanceof FormFactoryAwareInterface) {
+            return;
+        }
+
+        $factory = $instance->getFormFactory();
+        $factory->setFormElementManager($this);
+
+        if ($container && $container->has('InputFilterManager')) {
+            $inputFilters = $container->get('InputFilterManager');
+            $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
         }
     }
 
     /**
      * Call init() on any element that implements InitializableInterface
      *
-     * @internal param $element
+     * @param mixed $first ContainerInterface when used under zend-servicemanager
+     *     v3, element or form when under v2.
+     * @param mixed $second Element or form when used under zend-servicemanager
+     *     v3, ContainerInterface when under v2.
      */
-    public function callElementInit($element)
+    public function callElementInit($first, $second)
     {
-        if ($element instanceof InitializableInterface) {
-            $element->init();
+        $instance = ($first instanceof ContainerInterface)
+            ? $second // v3
+            : $first; // v2
+
+        if ($instance instanceof InitializableInterface) {
+            $instance->init();
         }
     }
 
     /**
-     * Validate the plugin
+     * Validate the plugin is of the expected type (v3).
      *
-     * Checks that the element is an instance of ElementInterface
+     * Validates against `$instanceOf`.
      *
      * @param  mixed $plugin
-     * @throws Exception\InvalidElementException
+     * @throws InvalidServiceException
      * @return void
+     */
+    public function validate($plugin)
+    {
+        if (! $plugin instanceof $this->instanceOf) {
+            throw new InvalidServiceException(sprintf(
+                '%s can only create instances of %s; %s is invalid',
+                get_class($this),
+                $this->instanceOf,
+                (is_object($plugin) ? get_class($plugin) : gettype($plugin))
+            ));
+        }
+    }
+
+    /**
+     * Validate the plugin is of the expected type (v2).
+     *
+     * Proxies to `validate()`.
+     *
+     * @param mixed $plugin
+     * @throws Exception\InvalidElementException
      */
     public function validatePlugin($plugin)
     {
-        if ($plugin instanceof ElementInterface) {
-            return; // we're okay
+        try {
+            $this->validate($plugin);
+        } catch (InvalidServiceException $e) {
+            throw new Exception\InvalidElementException(
+                $e->getMessage(),
+                $e->getCode(),
+                $e
+            );
         }
-
-        throw new Exception\InvalidElementException(sprintf(
-            'Plugin of type %s is invalid; must implement Zend\Form\ElementInterface',
-            (is_object($plugin) ? get_class($plugin) : gettype($plugin))
-        ));
     }
 
     /**
@@ -154,40 +330,65 @@ class FormElementManager extends AbstractPluginManager
     }
 
     /**
-     * Attempt to create an instance via an invokable class
+     * Try to pull hydrator from the creation context, or instantiates it from its name
      *
-     * Overrides parent implementation by passing $creationOptions to the
-     * constructor, if non-null.
-     *
-     * @param  string $canonicalName
-     * @param  string $requestedName
-     * @return null|\stdClass
-     * @throws ServiceNotCreatedException If resolved class does not exist
+     * @param  string $hydratorName
+     * @return mixed
+     * @throws Exception\DomainException
      */
-    protected function createFromInvokable($canonicalName, $requestedName)
+    public function getHydratorFromName($hydratorName)
     {
-        $invokable = $this->invokableClasses[$canonicalName];
+        $services = isset($this->creationContext)
+            ? $this->creationContext // v3
+            : $this->serviceLocator; // v2
 
-        if (null === $this->creationOptions
-            || (is_array($this->creationOptions) && empty($this->creationOptions))
-        ) {
-            $instance = new $invokable();
-        } else {
-            if (isset($this->creationOptions['name'])) {
-                $name = $this->creationOptions['name'];
-            } else {
-                $name = $requestedName;
+        if ($services && $services->has('HydratorManager')) {
+            $hydrators = $services->get('HydratorManager');
+            if ($hydrators->has($hydratorName)) {
+                return $hydrators->get($hydratorName);
             }
-
-            if (isset($this->creationOptions['options'])) {
-                $options = $this->creationOptions['options'];
-            } else {
-                $options = $this->creationOptions;
-            }
-
-            $instance = new $invokable($name, $options);
         }
 
-        return $instance;
+        if ($services && $services->has($hydratorName)) {
+            return $services->get($hydratorName);
+        }
+
+        if (! class_exists($hydratorName)) {
+            throw new Exception\DomainException(sprintf(
+                'Expects string hydrator name to be a valid class name; received "%s"',
+                $hydratorName
+            ));
+        }
+
+        $hydrator = new $hydratorName;
+        return $hydrator;
+    }
+
+    /**
+     * Try to pull factory from the creation context, or instantiates it from its name
+     *
+     * @param  string $factoryName
+     * @return mixed
+     * @throws Exception\DomainException
+     */
+    public function getFactoryFromName($factoryName)
+    {
+        $services = isset($this->creationContext)
+            ? $this->creationContext // v3
+            : $this->serviceLocator; // v2
+
+        if ($services && $services->has($factoryName)) {
+            return $services->get($factoryName);
+        }
+
+        if (! class_exists($factoryName)) {
+            throw new Exception\DomainException(sprintf(
+                'Expects string factory name to be a valid class name; received "%s"',
+                $factoryName
+            ));
+        }
+
+        $factory = new $factoryName;
+        return $factory;
     }
 }

@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.7.0 - 2016-02-22
+
+### Added
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#40](https://github.com/zendframework/zend-form/pull/40) and
+  [#43](https://github.com/zendframework/zend-form/pull/43) prepare the
+  component to be forwards compatible with each of the following:
+  - zend-eventmanager v3
+  - zend-hydrator v2.1
+  - zend-servicemanager v3
+  - zend-stdlib v3
+
 ## 2.6.1 - TBD
 
 ### Added

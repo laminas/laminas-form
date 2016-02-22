@@ -57,10 +57,10 @@ class Phone extends Element implements InputProviderInterface
     protected $validator;
 
     /**
-    * Get a validator if none has been set.
-    *
-    * @return ValidatorInterface
-    */
+     * Get a validator if none has been set.
+     *
+     * @return ValidatorInterface
+     */
     public function getValidator()
     {
         if (null === $this->validator) {
@@ -160,17 +160,22 @@ First, add the custom element to the plugin manager, in your `Module.php` class:
 ```php
 namespace Application;
 
+use Application\Form\Element\Phone;
+use Zend\Form\ElementFactory;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 
 class Module implements FormElementProviderInterface
 {
     public function getFormElementConfig()
     {
-        return array(
-            'invokables' => array(
-                'phone' => 'Application\Form\Element\Phone'
-            )
-        );
+        return [
+            'aliases' => [
+                'phone' => Phone::class,
+            ],
+            'factories' => [
+                Phone::class => ElementFactory::class,
+            ],
+        ];
     }
 }
 ```
@@ -178,16 +183,19 @@ class Module implements FormElementProviderInterface
 Or, you can do the same in your `module.config.php` file:
 
 ```php
-return array(
-    'form_elements' => array(
-        'invokables' => array(
-            'phone' => 'Application\Form\Element\Phone'
-        )
-    )
-);
+return [
+    'form_elements' => [
+        'aliases' => [
+            'phone' => Phone::class,
+        ],
+        'factories' => [
+            Phone::class => ElementFactory::class,
+        ],
+    ],
+];
 ```
 
-You can use a factory instead of an invokable in order to handle dependencies in your
+`ElementFactory` is the default factory for form elements. Use your own if you need to handle dependencies in your
 elements/fieldsets/forms.
 
 **And now comes the first catch.**
@@ -240,22 +248,27 @@ same key as the element you want to replace:
 ```php
 namespace Application;
 
+use Application\Form\Element\MyEmail;
+use Zend\Form\ElementFactory;
 use Zend\ModuleManager\Feature\FormElementProviderInterface;
 
 class Module implements FormElementProviderInterface
 {
     public function getFormElementConfig()
     {
-        return array(
-            'invokables' => array(
-                'Email' => 'Application\Form\Element\MyEmail'
-            )
-        );
+        return [
+            'aliases' => [
+                'email' => MyEmail::class,
+            ],
+            'factories' => [
+                MyEmail::class => ElementFactory::class,
+            ],
+        ];
     }
 }
 ```
 
-Now, whenever you'll create an element whose `type` is 'Email', it will create the custom Email
+Now, whenever you'll create an element whose `type` is 'email', it will create the custom Email
 element instead of the built-in one.
 
 > ## Note
