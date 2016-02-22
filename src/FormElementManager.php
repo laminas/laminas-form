@@ -133,6 +133,41 @@ class FormElementManager extends AbstractPluginManager
         Element\Time::class           => ElementFactory::class,
         Element\Url::class            => ElementFactory::class,
         Element\Week::class           => ElementFactory::class,
+
+        // v2 normalized variants
+
+        'zendformelementbutton'         => ElementFactory::class,
+        'zendformelementcaptcha'        => ElementFactory::class,
+        'zendformelementcheckbox'       => ElementFactory::class,
+        'zendformelementcollection'     => ElementFactory::class,
+        'zendformelementcolor'          => ElementFactory::class,
+        'zendformelementcsrf'           => ElementFactory::class,
+        'zendformelementdate'           => ElementFactory::class,
+        'zendformelementdateselect'     => ElementFactory::class,
+        'zendformelementdatetime'       => ElementFactory::class,
+        'zendformelementdatetimelocal'  => ElementFactory::class,
+        'zendformelementdatetimeselect' => ElementFactory::class,
+        'zendformelement'               => ElementFactory::class,
+        'zendformelementemail'          => ElementFactory::class,
+        'zendformfieldset'              => ElementFactory::class,
+        'zendformelementfile'           => ElementFactory::class,
+        'zendformform'                  => ElementFactory::class,
+        'zendformelementhidden'         => ElementFactory::class,
+        'zendformelementimage'          => ElementFactory::class,
+        'zendformelementmonth'          => ElementFactory::class,
+        'zendformelementmonthselect'    => ElementFactory::class,
+        'zendformelementmulticheckbox'  => ElementFactory::class,
+        'zendformelementnumber'         => ElementFactory::class,
+        'zendformelementpassword'       => ElementFactory::class,
+        'zendformelementradio'          => ElementFactory::class,
+        'zendformelementrange'          => ElementFactory::class,
+        'zendformelementselect'         => ElementFactory::class,
+        'zendformelementsubmit'         => ElementFactory::class,
+        'zendformelementtext'           => ElementFactory::class,
+        'zendformelementtextarea'       => ElementFactory::class,
+        'zendformelementtime'           => ElementFactory::class,
+        'zendformelementurl'            => ElementFactory::class,
+        'zendformelementweek'           => ElementFactory::class,
     ];
 
     /**
@@ -234,11 +269,19 @@ class FormElementManager extends AbstractPluginManager
      * Proxies to `validate()`.
      *
      * @param mixed $instance
-     * @throws InvalidServiceException
+     * @throws Exception\InvalidElementException
      */
     public function validatePlugin($instance)
     {
-        $this->validate($instance);
+        try {
+            $this->validate($instance);
+        } catch (InvalidServiceException $e) {
+            throw new Exception\InvalidElementException(
+                $e->getMessage(),
+                $e->getCode(),
+                $e
+            );
+        }
     }
 
     /**
@@ -262,52 +305,6 @@ class FormElementManager extends AbstractPluginManager
     }
 
     /**
-     * Attempt to create an instance via an invokable class (v2)
-     *
-     * This method is not used internally and only exists in case extending v2 class is calling it
-     *
-     * Overrides parent implementation by passing $creationOptions to the
-     * constructor, if non-null.
-     *
-     * @deprecated
-     * @param  string $canonicalName
-     * @param  string $requestedName
-     * @return null|\stdClass
-     * @throws ServiceNotCreatedException If resolved class does not exist
-     */
-    protected function createFromInvokable($canonicalName, $requestedName)
-    {
-        trigger_error(sprintf(
-            'Usage of %s is deprecated since v3.0.0; please use aliases and factories instead',
-            __METHOD__
-        ), E_USER_DEPRECATED);
-
-        $invokable = $this->invokableClasses[$canonicalName];
-
-        if (null === $this->creationOptions
-            || (is_array($this->creationOptions) && empty($this->creationOptions))
-        ) {
-            $instance = new $invokable();
-        } else {
-            if (isset($this->creationOptions['name'])) {
-                $name = $this->creationOptions['name'];
-            } else {
-                $name = $requestedName;
-            }
-
-            if (isset($this->creationOptions['options'])) {
-                $options = $this->creationOptions['options'];
-            } else {
-                $options = $this->creationOptions;
-            }
-
-            $instance = new $invokable($name, $options);
-        }
-
-        return $instance;
-    }
-
-    /**
      * Try to pull hydrator from the creation context, or instantiates it from its name
      *
      * @param  string $hydratorName
@@ -316,7 +313,7 @@ class FormElementManager extends AbstractPluginManager
      */
     public function getHydratorFromName($hydratorName)
     {
-        if ($this->creationContext) {
+        if (method_exists($this, 'configure')) {
             // v3
             $services = $this->creationContext;
         } else {
@@ -355,7 +352,7 @@ class FormElementManager extends AbstractPluginManager
      */
     public function getFactoryFromName($factoryName)
     {
-        if ($this->creationContext) {
+        if (method_exists($this, 'configure')) {
             // v3
             $services = $this->creationContext;
         } else {

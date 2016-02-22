@@ -286,7 +286,15 @@ class HelperConfig implements ConfigInterface
      */
     public function configureServiceManager(ServiceManager $serviceManager)
     {
-        return $serviceManager->configure($this->toArray());
+        foreach ($this->factories as $service => $factory) {
+            $serviceManager->setFactory($service, $factory);
+        }
+
+        foreach ($this->aliases as $alias => $target) {
+            $serviceManager->setAlias($alias, $target);
+        }
+
+        return $serviceManager;
     }
 
     public function toArray()
