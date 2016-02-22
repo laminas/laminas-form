@@ -10,10 +10,12 @@
 namespace ZendTest\Form;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use DateTime;
 use Zend\Filter;
 use Zend\Form;
-use Zend\Form\FormElementManager;
 use Zend\Form\Factory as FormFactory;
+use Zend\Form\FormElementManager;
+use Zend\Form\FormInterface;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Hydrator\HydratorPluginManager;
 
@@ -754,5 +756,31 @@ class FactoryTest extends TestCase
         $this->assertTrue($form->has('bar'));
         $this->assertFalse($form->has('baz'));
         $this->assertTrue($form->has('bat'));
+    }
+
+    public function testOptionsArePassedAsCreationOptionsToFactories()
+    {
+        $formManager = $this->factory->getFormElementManager();
+        $formManager->setFactory('customCreatedForm', TestAsset\CustomCreatedFormFactory::class);
+
+        /* @var $form TestAsset\CustomCreatedForm */
+        $form = $this->factory->create([
+            'name'    => 'some_name',
+            'type'    => 'customCreatedForm',
+            'options' => [
+                'created'           => '2016-02-19',
+                'some_other_option' => 1234
+            ]
+        ]);
+
+        $this->assertInstanceOf(FormInterface::class, $form);
+        $this->assertInstanceOf(TestAsset\CustomCreatedForm::class, $form);
+        $this->assertSame('some_name', $form->getName());
+        $this->assertSame(1234, $form->getOption('some_other_option'));
+
+        /* @var $created DateTime */
+        $created = $form->getCreated();
+        $this->assertInstanceOf(DateTime::class, $created);
+        $this->assertSame('2016-02-19', $created->format('Y-m-d'));
     }
 }
