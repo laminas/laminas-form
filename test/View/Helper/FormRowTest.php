@@ -521,13 +521,6 @@ class FormRowTest extends TestCase
      */
     public function testWrapFieldsetAroundCaptchaWithLabel()
     {
-        if (! class_exists(ZendCaptcha\Dump::class)) {
-            $this->markTestSkipped(
-                'zend-captcha-related tests are skipped until the component '
-                . 'is forwards-compatible with zend-servicemanager v3'
-            );
-        }
-
         $this->assertRegexp(
             '#^<fieldset><legend>baz<\/legend>'
             . 'Please type this word backwards <b>[a-z0-9]{8}<\/b>'
