@@ -10,7 +10,6 @@
 namespace ZendTest\Form\View\Helper;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Captcha as ZendCaptcha;
 use Zend\Form\Element;
 use Zend\Form\Element\Captcha;
 use Zend\Form\View\HelperConfig;

@@ -14,7 +14,6 @@ use Zend\Captcha;
 use Zend\Form\Element;
 use Zend\Form\View\HelperConfig;
 use Zend\Form\View\Helper\FormElement as FormElementHelper;
-use Zend\Session\Container;
 use Zend\View\Helper\Doctype;
 use Zend\View\Renderer\PhpRenderer;
 

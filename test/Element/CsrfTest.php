@@ -11,7 +11,6 @@ namespace ZendTest\Form\Element;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Zend\Form\Element\Csrf as CsrfElement;
-use Zend\Session\Container;
 
 class CsrfTest extends TestCase
 {
