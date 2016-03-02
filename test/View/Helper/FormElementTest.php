@@ -14,7 +14,6 @@ use Zend\Captcha;
 use Zend\Form\Element;
 use Zend\Form\View\HelperConfig;
 use Zend\Form\View\Helper\FormElement as FormElementHelper;
-use Zend\Session\Container;
 use Zend\View\Helper\Doctype;
 use Zend\View\Renderer\PhpRenderer;
 
@@ -135,13 +134,6 @@ class FormElementTest extends TestCase
 
     public function testRendersCaptchaAsExpected()
     {
-        if (! class_exists(Captcha\Dumb::class)) {
-            $this->markTestSkipped(
-                'zend-captcha-related tests are skipped until the component '
-                . 'is forwards-compatible with zend-servicemanager v3'
-            );
-        }
-
         $captcha = new Captcha\Dumb();
         $element = new Element\Captcha('foo');
         $element->setCaptcha($captcha);
@@ -152,13 +144,6 @@ class FormElementTest extends TestCase
 
     public function testRendersCsrfAsExpected()
     {
-        if (! class_exists(Container::class)) {
-            $this->markTestSkipped(
-                'zend-session-related tests are skipped until the component '
-                . 'is forwards-compatible with zend-servicemanager v3'
-            );
-        }
-
         $element   = new Element\Csrf('foo');
         $inputSpec = $element->getInputSpecification();
         $hash = '';

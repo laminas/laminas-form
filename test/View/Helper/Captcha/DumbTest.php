@@ -18,13 +18,6 @@ class DumbTest extends CommonTestCase
 {
     public function setUp()
     {
-        if (! class_exists(DumbCaptcha::class)) {
-            $this->markTestSkipped(
-                'zend-captcha-related tests are skipped until the component '
-                . 'is forwards-compatible with zend-servicemanager v3'
-            );
-        }
-
         $this->helper  = new DumbCaptchaHelper();
         $this->captcha = new DumbCaptcha();
         parent::setUp();
