@@ -10,6 +10,7 @@
 namespace ZendTest\Form\View\Helper;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Form\Element;
 use Zend\Form\Element\Captcha;
 use Zend\Form\View\HelperConfig;
@@ -246,6 +247,45 @@ class FormRowTest extends TestCase
 
         $this->helper->setTranslatorEnabled(false);
         $this->assertFalse($this->helper->isTranslatorEnabled());
+    }
+
+    public function testLabelWillBeTranslatedOnceWithoutId()
+    {
+        $element = new Element('foo');
+        $element->setLabel('The value for foo:');
+
+        $mockTranslator = $this->getMock(TranslatorInterface::class);
+        $mockTranslator->expects($this->exactly(1))
+            ->method('translate')
+            ->will($this->returnValue('translated content'));
+
+        $this->helper->setTranslator($mockTranslator);
+        $this->assertTrue($this->helper->hasTranslator());
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('>translated content<', $markup);
+        $this->assertContains('<label', $markup);
+        $this->assertContains('</label>', $markup);
+    }
+
+    public function testLabelWillBeTranslatedOnceWithId()
+    {
+        $element = new Element('foo');
+        $element->setLabel('The value for foo:');
+        $element->setAttribute('id', 'foo');
+
+        $mockTranslator = $this->getMock(TranslatorInterface::class);
+        $mockTranslator->expects($this->exactly(1))
+            ->method('translate')
+            ->will($this->returnValue('translated content'));
+
+        $this->helper->setTranslator($mockTranslator);
+        $this->assertTrue($this->helper->hasTranslator());
+
+        $markup = $this->helper->__invoke($element);
+        $this->assertContains('>translated content<', $markup);
+        $this->assertContains('<label', $markup);
+        $this->assertContains('</label>', $markup);
     }
 
     public function testSetLabelPositionInputNullRaisesException()
