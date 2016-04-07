@@ -481,9 +481,9 @@ string. The following keys are supported:
 - `"selected"` - Boolean that sets whether the option is marked as selected.
 - `"disabled"` - Boolean that sets whether the option will be disabled
 - `"attributes"` - Array of html attributes that will be set on this option. Merged with the
-attributes set on the element.
+  attributes set on the element.
 - `"label_attributes"` - Array of html attributes that will be set on the label. Merged with the
-attributes set on the element's label.
+  attributes set on the element's label.
 
 ```php
 $form = new Form('my-form');

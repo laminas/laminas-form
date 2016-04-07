@@ -59,12 +59,12 @@ class UploadForm extends Form
 The `File` element provides some automatic features that happen behind the scenes:
 
 - The form's `enctype` will automatically be set to `multipart/form-data` when the form `prepare()`
-method is called.
+  method is called.
 - The file element's default input specification will create the correct `Input` type:
-\[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input).
+  \[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input).
 - The `FileInput` will automatically prepend an \[UploadFile
-Validator\](zend.validator.file.upload-file), to securely validate that the file is actually an
-uploaded file, and to report other types of upload errors to the user.
+  Validator\](zend.validator.file.upload-file), to securely validate that the file is actually an
+  uploaded file, and to report other types of upload errors to the user.
 
 ### The View Template
 
@@ -297,10 +297,10 @@ information on its supported options.
 Behind the scenes, the `FilePRG` plugin will:
 
 - Run the Form's filters, namely the `RenameUpload` filter, to move the files out of temporary
-storage.
+  storage.
 - Store the valid POST data in the session across requests.
 - Change the `required` flag of any file inputs that had valid uploads to `false`. This is so that
-form re-submissions without uploads will not cause validation errors.
+  form re-submissions without uploads will not cause validation errors.
 
 > ## Note
 In the case of a partially valid form, it is up to the developer whether to notify the user that
@@ -656,5 +656,5 @@ Related documentation:
 External resources and blog posts from the community:
 
 - [ZF2FileUploadExamples](https://github.com/cgmartin/ZF2FileUploadExamples) : A ZF2 module with
-several file upload examples.
+  several file upload examples.
 
