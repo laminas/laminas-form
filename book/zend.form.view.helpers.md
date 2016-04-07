@@ -10,8 +10,6 @@ See the section on \[view helpers\](zend.view.helpers) for more information.
 
 ## Standard Helpers
 
-orphan
-
 ### Form
 
 The `Form` view helper is used to render a `<form>` HTML element and its attributes.
@@ -45,8 +43,6 @@ echo $this->form($form);
 
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
-
-orphan
 
 ### FormButton
 
@@ -91,8 +87,6 @@ echo $this->formButton()->render($element, 'My Content');
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\FormInput\](zend.form.view.helper.form-input.methods).
 
-orphan
-
 ### FormCaptcha
 
 TODO
@@ -114,8 +108,6 @@ echo $this->formCaptcha($captcha);
 
 // TODO
 ```
-
-orphan
 
 ### FormCheckbox
 
@@ -160,8 +152,6 @@ echo $this->formCheckbox($element);
 // <input type="checkbox" name="my-checkbox" value="yes">
 ```
 
-orphan
-
 ### FormCollection
 
 TODO
@@ -169,8 +159,6 @@ TODO
 Basic usage:
 
 TODO
-
-orphan
 
 ### FormElement
 
@@ -219,8 +207,6 @@ foreach ($form as $element) {
 // Render the closing tag
 echo $this->form()->closeTag();
 ```
-
-orphan
 
 ### FormElementErrors
 
@@ -279,8 +265,6 @@ echo $this->formElementErrors()
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
 
-orphan
-
 ### FormFile
 
 The `FormFile` view helper can be used to render a `<input type="file">` form input. It is meant to
@@ -316,8 +300,6 @@ echo $this->formFile($element);
 // <input type="file" name="my-file" multiple="multiple">
 ```
 
-orphan
-
 ### FormHidden
 
 The `FormHidden` view helper can be used to render a `<input type="hidden">` HTML form input. It is
@@ -338,8 +320,6 @@ $element->setValue('foo');
 echo $this->formHidden($element);
 // <input type="hidden" name="my-hidden" value="foo">
 ```
-
-orphan
 
 ### FormImage
 
@@ -362,8 +342,6 @@ echo $this->formImage($element);
 // <input type="image" name="my-image" src="/img/my-pic.png">
 ```
 
-orphan
-
 ### FormInput
 
 The `FormInput` view helper is used to render a `<input>` HTML form input tag. It acts as a base
@@ -375,8 +353,6 @@ of `FormInput` implements it's own specific map of valid tag attributes.
 
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
-
-orphan
 
 ### FormLabel
 
@@ -457,8 +433,6 @@ manager will automatically attach the translator to the FormLabel view helper. S
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
 
-orphan
-
 ### FormMultiCheckbox
 
 The `FormMultiCheckbox` view helper can be used to render a group `<input type="checkbox">` HTML
@@ -500,8 +474,6 @@ echo $this->formMultiCheckbox($element, 'prepend');
 // <label>Lemon<input type="checkbox" name="my-multicheckbox[]" value="2"></label>
 ```
 
-orphan
-
 ### FormPassword
 
 The `FormPassword` view helper can be used to render a `<input type="password">` HTML form input. It
@@ -526,8 +498,6 @@ Output:
 ```html
 <input type="password" name="my-password" value="">
 ```
-
-orphan
 
 ### FormRadio
 
@@ -566,8 +536,6 @@ echo $this->formRadio($element, 'prepend');
 // <label>Female<input type="checkbox" name="gender[]" value="1"></label>
 ```
 
-orphan
-
 ### FormReset
 
 The `FormReset` view helper can be used to render a `<input type="reset">` HTML form input.
@@ -591,8 +559,6 @@ Output:
 ```html
 <input type="reset" name="my-reset" value="Reset">
 ```
-
-orphan
 
 ### FormRow
 
@@ -661,8 +627,6 @@ echo $this->form()->closeTag();
 > ## Note
 Label content is escaped by default
 
-orphan
-
 ### FormSelect
 
 The `FormSelect` view helper can be used to render a group `<input type="select">` HTML form input.
@@ -693,8 +657,6 @@ $element->setValueOptions(array(
 echo $this->formSelect($element);
 ```
 
-orphan
-
 ### FormSubmit
 
 The `FormSubmit` view helper can be used to render a `<input type="submit">` HTML form input. It is
@@ -718,8 +680,6 @@ Output:
 ```html
 <input type="submit" name="my-submit" value="">
 ```
-
-orphan
 
 ### FormText
 
@@ -745,8 +705,6 @@ Output:
 <input type="text" name="my-text" value="">
 ```
 
-orphan
-
 ### FormTextarea
 
 The `FormTextarea` view helper can be used to render a `<textarea></textarea>` HTML form input. It
@@ -769,8 +727,6 @@ Output:
 <textarea name="my-textarea"></textarea>
 ```
 
-orphan
-
 ### AbstractHelper
 
 The `AbstractHelper` is used as a base abstract class for Form view helpers, providing methods for
@@ -784,8 +740,6 @@ Zend\\\\I18n\\\\View\\\\Helper\\\\AbstractTranslatorHelper
 &lt;zend.i18n.view.helper.abstract-translator-helper.methods&gt;.
 
 ## HTML5 Helpers
-
-orphan
 
 ### FormColor
 
@@ -811,8 +765,6 @@ Output:
 <input type="color" name="my-color" value="">
 ```
 
-orphan
-
 ### FormDate
 
 The `FormDate` view helper can be used to render a `<input type="date">` HTML5 form input. It is
@@ -835,8 +787,6 @@ echo $this->formDate($element);
 // <input type="date" name="my-date" value="">
 ```
 
-orphan
-
 ### FormDateTime
 
 The `FormDateTime` view helper can be used to render a `<input type="datetime">` HTML5 form input.
@@ -858,8 +808,6 @@ $element = new Element\DateTime('my-datetime');
 echo $this->formDateTime($element);
 // <input type="datetime" name="my-datetime" value="">
 ```
-
-orphan
 
 ### FormDateTimeLocal
 
@@ -884,8 +832,6 @@ echo $this->formDateTimeLocal($element);
 // <input type="datetime-local" name="my-datetime" value="">
 ```
 
-orphan
-
 ### FormEmail
 
 The `FormEmail` view helper can be used to render a `<input type="email">` HTML5 form input. It is
@@ -906,8 +852,6 @@ $element = new Element\Email('my-email');
 echo $this->formEmail($element);
 // <input type="email" name="my-email" value="">
 ```
-
-orphan
 
 ### FormMonth
 
@@ -930,8 +874,6 @@ $element = new Element\Month('my-month');
 echo $this->formMonth($element);
 // <input type="month" name="my-month" value="">
 ```
-
-orphan
 
 ### FormNumber
 
@@ -984,8 +926,6 @@ Output:
 <input type="number" name="my-number" min="5" max="20" step="0.5" value="12">
 ```
 
-orphan
-
 ### FormRange
 
 The `FormRange` view helper can be used to render a `<input type="range">` HTML form input. It is
@@ -1037,8 +977,6 @@ Output:
 <input type="range" name="my-range" min="0" max="100" step="5" value="20">
 ```
 
-orphan
-
 ### FormSearch
 
 The `FormSearch` view helper can be used to render a `<input type="search">` HTML5 form input.
@@ -1061,8 +999,6 @@ Output:
 ```html
 <input type="search" name="my-search" value="">
 ```
-
-orphan
 
 ### FormTel
 
@@ -1087,8 +1023,6 @@ Output:
 <input type="tel" name="my-tel" value="">
 ```
 
-orphan
-
 ### FormTime
 
 The `FormTime` view helper can be used to render a `<input type="time">` HTML5 form input. It is
@@ -1110,8 +1044,6 @@ $element = new Element\Time('my-time');
 echo $this->formTime($element);
 // <input type="time" name="my-time" value="">
 ```
-
-orphan
 
 ### FormUrl
 
@@ -1156,8 +1088,6 @@ Output:
 ```html
 <input type="url" name="my-url" pattern="https?://.+" value="">
 ```
-
-orphan
 
 ### FormWeek
 
@@ -1212,8 +1142,6 @@ Output:
 
 ## File Upload Progress Helpers
 
-orphan
-
 ### FormFileApcProgress
 
 The `FormFileApcProgress` view helper can be used to render a `<input type="hidden" ...>` with a
@@ -1245,8 +1173,6 @@ echo $this->formFileApcProgress();
 // <input type="hidden" id="progress_key" name="APC_UPLOAD_PROGRESS" value="12345abcde">
 ```
 
-orphan
-
 ### FormFileSessionProgress
 
 The `FormFileSessionProgress` view helper can be used to render a `<input type="hidden" ...>` which
@@ -1277,8 +1203,6 @@ Basic usage:
 echo $this->formFileSessionProgress();
 // <input type="hidden" id="progress_key" name="PHP_SESSION_UPLOAD_PROGRESS" value="12345abcde">
 ```
-
-orphan
 
 ### FormFileUploadProgress
 
