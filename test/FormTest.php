@@ -2135,4 +2135,27 @@ class FormTest extends TestCase
 
         $this->assertEquals($data, $this->form->getData());
     }
+
+    /**
+     * Test for https://github.com/zendframework/zend-form/pull/24#issue-119023527
+     */
+    public function testGetInputFilterInjectsFormInputFilterFactoryInstanceObjectIsNull()
+    {
+        $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
+        $inputFilter = $this->form->getInputFilter();
+        $this->assertSame($inputFilterFactory, $inputFilter->getFactory());
+    }
+
+    /**
+     * Test for https://github.com/zendframework/zend-form/pull/24#issuecomment-159905491
+     */
+    public function testGetInputFilterInjectsFormInputFilterFactoryInstanceWhenObjectIsInputFilterAware()
+    {
+        $this->form->setBaseFieldset(new Fieldset());
+        $this->form->setHydrator(new Hydrator\ClassMethods());
+        $this->form->bind(new TestAsset\Entity\Cat());
+        $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
+        $inputFilter = $this->form->getInputFilter();
+        $this->assertSame($inputFilterFactory, $inputFilter->getFactory());
+    }
 }
