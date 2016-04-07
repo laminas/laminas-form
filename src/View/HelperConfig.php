@@ -11,7 +11,6 @@ namespace Zend\Form\View;
 
 use Zend\Form\ConfigProvider;
 use Zend\ServiceManager\ConfigInterface;
-use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\ServiceManager\ServiceManager;
 
 /**
