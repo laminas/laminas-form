@@ -16,6 +16,8 @@ use Zend\ServiceManager\ServiceManager;
 
 /**
  * Service manager configuration for form view helpers
+ *
+ * @deprecated since 2.8.0, and scheduled for removal with v3.0.0.
  */
 class HelperConfig implements ConfigInterface
 {
