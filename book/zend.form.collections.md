@@ -419,16 +419,16 @@ entity.
 
 This element has a few interesting options:
 
-* `count`: this is how many times the element (in this case a category) has to be rendered. We've
-set it to two in this examples.
-* `should_create_template`: if set to `true`, it will generate a template markup in a `<span>`
-element, in order to simplify adding new element on the fly (we will speak about this one later).
-* `allow_add`: if set to `true` (which is the default), dynamically added elements will be retrieved
-and validated; otherwise, they will be completely ignored. This, of course, depends on what you want
-to do.
-* `target_element`: this is either an element or, as this is the case in this example, an array that
-describes the element or fieldset that will be used in the collection. In this case, the
-`target_element` is a `Category` fieldset.
+- `count`: this is how many times the element (in this case a category) has to be rendered. We've
+  set it to two in this examples.
+- `should_create_template`: if set to `true`, it will generate a template markup in a `<span>`
+  element, in order to simplify adding new element on the fly (we will speak about this one later).
+- `allow_add`: if set to `true` (which is the default), dynamically added elements will be retrieved
+  and validated; otherwise, they will be completely ignored. This, of course, depends on what you want
+  to do.
+- `target_element`: this is either an element or, as this is the case in this example, an array that
+  describes the element or fieldset that will be used in the collection. In this case, the
+  `target_element` is a `Category` fieldset.
 
 ## The Form Element
 
@@ -550,14 +550,14 @@ echo $this->form()->closeTag();
 
 A few new things here :
 
-* the `prepare()` method. You *must* call it prior to rendering anything in the view (this function
-is only meant to be called in views, not in controllers).
-* the `FormRow` helper renders a label (if present), the input itself, and errors.
-* the `FormCollection` helper will iterate through every element in the collection, and render every
-element with the FormRow helper (you may specify an alternate helper if desired, using the
-`setElementHelper()` method on that `FormCollection` helper instance). If you need more control
-about the way you render your forms, you can iterate through the elements in the collection, and
-render them manually one by one.
+- the `prepare()` method. You *must* call it prior to rendering anything in the view (this function
+  is only meant to be called in views, not in controllers).
+- the `FormRow` helper renders a label (if present), the input itself, and errors.
+- the `FormCollection` helper will iterate through every element in the collection, and render every
+  element with the FormRow helper (you may specify an alternate helper if desired, using the
+  `setElementHelper()` method on that `FormCollection` helper instance). If you need more control
+  about the way you render your forms, you can iterate through the elements in the collection, and
+  render them manually one by one.
 
 Here is the result:
 
@@ -678,14 +678,14 @@ $this->add(array(
 
 There are some limitations to this capability:
 
-* Although you can add new elements and remove them, you *CANNOT* remove more elements in a
-collection than the initial count (for instance, if your code specifies `count == 2`, you will be
-able to add a third one and remove it, but you won't be able to remove any others. If the initial
-count is 2, you *must* have at least two elements.
-* Dynamically added elements have to be added at the end of the collection. They can be added
-anywhere (these elements will still be validated and inserted into the entity), but if the
-validation fails, this newly added element will be automatically be replaced at the end of the
-collection.
+- Although you can add new elements and remove them, you *CANNOT* remove more elements in a
+  collection than the initial count (for instance, if your code specifies `count == 2`, you will be
+  able to add a third one and remove it, but you won't be able to remove any others. If the initial
+  count is 2, you *must* have at least two elements.
+- Dynamically added elements have to be added at the end of the collection. They can be added
+  anywhere (these elements will still be validated and inserted into the entity), but if the
+  validation fails, this newly added element will be automatically be replaced at the end of the
+  collection.
 
 ## Validation groups for fieldsets and collection
 

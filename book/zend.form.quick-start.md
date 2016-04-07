@@ -560,16 +560,16 @@ that in action.
 
 When you `bind()` an object to the form, the following happens:
 
-* The composed `Hydrator` calls `extract()` on the object, and uses the values returned, if any, to
-populate the `value` attributes of all elements. If a form contains a fieldset that itself contains
-another fieldset, the form will recursively extract the values.
-* When `isValid()` is called, if `setData()` has not been previously set, the form uses the composed
-`Hydrator` to extract values from the object, and uses those during validation.
-* If `isValid()` is successful (and the `bindOnValidate` flag is enabled, which is true by default),
-then the `Hydrator` will be passed the validated values to use to hydrate the bound object. (If you
-do not want this behavior, call `setBindOnValidate(FormInterface::BIND_MANUAL)`).
-* If the object implements `Zend\InputFilter\InputFilterAwareInterface`, the input filter it
-composes will be used instead of the one composed on the form.
+- The composed `Hydrator` calls `extract()` on the object, and uses the values returned, if any, to
+  populate the `value` attributes of all elements. If a form contains a fieldset that itself contains
+  another fieldset, the form will recursively extract the values.
+- When `isValid()` is called, if `setData()` has not been previously set, the form uses the composed
+  `Hydrator` to extract values from the object, and uses those during validation.
+- If `isValid()` is successful (and the `bindOnValidate` flag is enabled, which is true by default),
+  then the `Hydrator` will be passed the validated values to use to hydrate the bound object. (If you
+  do not want this behavior, call `setBindOnValidate(FormInterface::BIND_MANUAL)`).
+- If the object implements `Zend\InputFilter\InputFilterAwareInterface`, the input filter it
+  composes will be used instead of the one composed on the form.
 
 This is easier to understand in practice.
 
@@ -856,48 +856,48 @@ have a central place to define all of these?
 Annotations allow us to solve this problem. You can define the following behaviors with the shipped
 annotations in `Zend\Form`:
 
-* *AllowEmpty*: mark an input as allowing an empty value. This annotation does not require a value.
-* *Attributes*: specify the form, fieldset, or element attributes. This annotation requires an
-associative array of values, in a JSON object format:
-`@Attributes({"class":"zend_form","type":"text"})`.
-* *ComposedObject*: specify another object with annotations to parse. Typically, this is used if a
-property references another object, which will then be added to your form as an additional fieldset.
-Expects a string value indicating the class for the object being composed
-`@ComposedObject("Namespace\Model\ComposedObject")` or an array to compose a collection:
-`@ComposedObject({ "target_object":"Namespace\Model\ComposedCollection", "is_collection":"true",
-"options":{"count":2}})` `target_object` is the element to compose, `is_collection` flags this as a
-collection and `options` can take an array of options to pass into the collection.
-* *ErrorMessage*: specify the error message to return for an element in the case of a failed
-validation. Expects a string value.
-* *Exclude*: mark a property to exclude from the form or fieldset. This annotation does not require
-a value.
-* *Filter*: provide a specification for a filter to use on a given element. Expects an associative
-array of values, with a "name" key pointing to a string filter name, and an "options" key pointing
-to an associative array of filter options for the constructor: `@Filter({"name": "Boolean",
-"options": {"casting":true}})`. This annotation may be specified multiple times.
-* *Flags*: flags to pass to the fieldset or form composing an element or fieldset; these are usually
-used to specify the name or priority. The annotation expects an associative array:
-`@Flags({"priority": 100})`.
-* *Hydrator*: specify the hydrator class to use for this given form or fieldset. A string value is
-expected.
-* *InputFilter*: specify the input filter class to use for this given form or fieldset. A string
-value is expected.
-* *Input*: specify the input class to use for this given element. A string value is expected.
-* *Instance*: specify an object class instance to bind to the form or fieldset.
-* *Name*: specify the name of the current element, fieldset, or form. A string value is expected.
-* *Object*: specify an object class instance to bind to the form or fieldset. (Note: this is
-deprecated in 2.4.0; use *Instance* instead.)
-* *Options*: options to pass to the fieldset or form that are used to inform behavior -- things that
-are not attributes; e.g. labels, CAPTCHA adapters, etc. The annotation expects an associative array:
-`@Options({"label": "Username:"})`.
-* *Required*: indicate whether an element is required. A boolean value is expected. By default, all
-elements are required, so this annotation is mainly present to allow disabling a requirement.
-* *Type*: indicate the class to use for the current element, fieldset, or form. A string value is
-expected.
-* *Validator*: provide a specification for a validator to use on a given element. Expects an
-associative array of values, with a "name" key pointing to a string validator name, and an "options"
-key pointing to an associative array of validator options for the constructor: `@Validator({"name":
-"StringLength", "options": {"min":3, "max": 25}})`. This annotation may be specified multiple times.
+- *AllowEmpty*: mark an input as allowing an empty value. This annotation does not require a value.
+- *Attributes*: specify the form, fieldset, or element attributes. This annotation requires an
+  associative array of values, in a JSON object format:
+  `@Attributes({"class":"zend_form","type":"text"})`.
+- *ComposedObject*: specify another object with annotations to parse. Typically, this is used if a
+  property references another object, which will then be added to your form as an additional fieldset.
+  Expects a string value indicating the class for the object being composed
+  `@ComposedObject("Namespace\Model\ComposedObject")` or an array to compose a collection:
+  `@ComposedObject({ "target_object":"Namespace\Model\ComposedCollection", "is_collection":"true",
+  "options":{"count":2}})` `target_object` is the element to compose, `is_collection` flags this as a
+  collection and `options` can take an array of options to pass into the collection.
+- *ErrorMessage*: specify the error message to return for an element in the case of a failed
+  validation. Expects a string value.
+- *Exclude*: mark a property to exclude from the form or fieldset. This annotation does not require
+  a value.
+- *Filter*: provide a specification for a filter to use on a given element. Expects an associative
+  array of values, with a "name" key pointing to a string filter name, and an "options" key pointing
+  to an associative array of filter options for the constructor: `@Filter({"name": "Boolean",
+  "options": {"casting":true}})`. This annotation may be specified multiple times.
+- *Flags*: flags to pass to the fieldset or form composing an element or fieldset; these are usually
+  used to specify the name or priority. The annotation expects an associative array:
+  `@Flags({"priority": 100})`.
+- *Hydrator*: specify the hydrator class to use for this given form or fieldset. A string value is
+  expected.
+- *InputFilter*: specify the input filter class to use for this given form or fieldset. A string
+  value is expected.
+- *Input*: specify the input class to use for this given element. A string value is expected.
+- *Instance*: specify an object class instance to bind to the form or fieldset.
+- *Name*: specify the name of the current element, fieldset, or form. A string value is expected.
+- *Object*: specify an object class instance to bind to the form or fieldset. (Note: this is
+  deprecated in 2.4.0; use *Instance* instead.)
+- *Options*: options to pass to the fieldset or form that are used to inform behavior -- things that
+  are not attributes; e.g. labels, CAPTCHA adapters, etc. The annotation expects an associative array:
+  `@Options({"label": "Username:"})`.
+- *Required*: indicate whether an element is required. A boolean value is expected. By default, all
+  elements are required, so this annotation is mainly present to allow disabling a requirement.
+- *Type*: indicate the class to use for the current element, fieldset, or form. A string value is
+  expected.
+- *Validator*: provide a specification for a validator to use on a given element. Expects an
+  associative array of values, with a "name" key pointing to a string validator name, and an "options"
+  key pointing to an associative array of validator options for the constructor: `@Validator({"name":
+  "StringLength", "options": {"min":3, "max": 25}})`. This annotation may be specified multiple times.
 
 To use annotations, you simply include them in your class and/or property docblocks. Annotation
 names will be resolved according to the import statements in your class; as such, you can make them

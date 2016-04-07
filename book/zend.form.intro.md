@@ -6,11 +6,11 @@ and a small number of methods for binding data to and from the form and attached
 
 The `Zend\Form` component consists of the following objects:
 
-* `Elements`, which simply consist of a name and attributes.
-* `Fieldsets`, which extend from `Elements`, but allow composing other fieldsets and elements.
-* `Forms`, which extend from `Fieldsets` (and thus `Elements`). They provide data and object
-binding, and compose \[InputFilters\](zend.input-filter.intro). Data binding is done via
-\[Zend\\Stdlib\\Hydrator\](zend.stdlib.hydrator).
+- `Elements`, which simply consist of a name and attributes.
+- `Fieldsets`, which extend from `Elements`, but allow composing other fieldsets and elements.
+- `Forms`, which extend from `Fieldsets` (and thus `Elements`). They provide data and object
+  binding, and compose \[InputFilters\](zend.input-filter.intro). Data binding is done via
+  \[Zend\\Stdlib\\Hydrator\](zend.stdlib.hydrator).
 
 To facilitate usage with the view layer, the `Zend\Form` component also aggregates a number of
 form-specific view helpers. These accept elements, fieldsets, and/or forms, and use the attributes
