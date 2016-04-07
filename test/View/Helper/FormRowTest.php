@@ -10,6 +10,7 @@
 namespace ZendTest\Form\View\Helper;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Form\Element;
 use Zend\Form\Element\Captcha;
 use Zend\Form\View\HelperConfig;
@@ -253,7 +254,7 @@ class FormRowTest extends TestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->getMock(TranslatorInterface::class);
         $mockTranslator->expects($this->exactly(1))
             ->method('translate')
             ->will($this->returnValue('translated content'));
@@ -273,7 +274,7 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
         $element->setAttribute('id', 'foo');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->getMock(TranslatorInterface::class);
         $mockTranslator->expects($this->exactly(1))
             ->method('translate')
             ->will($this->returnValue('translated content'));
