@@ -495,27 +495,27 @@ Now, let's create the action in the controller:
 
 ```php
 /**
-  * @return array
-  */
- public function indexAction()
- {
-     $form = new CreateProduct();
-     $product = new Product();
-     $form->bind($product);
+ * @return array
+ */
+public function indexAction()
+{
+    $form = new CreateProduct();
+    $product = new Product();
+    $form->bind($product);
 
-     $request = $this->getRequest();
-     if ($request->isPost()) {
-         $form->setData($request->getPost());
+    $request = $this->getRequest();
+    if ($request->isPost()) {
+        $form->setData($request->getPost());
 
-         if ($form->isValid()) {
-             var_dump($product);
-         }
-     }
+        if ($form->isValid()) {
+            var_dump($product);
+        }
+    }
 
-     return array(
-         'form' => $form,
-     );
- }
+    return array(
+        'form' => $form,
+    );
+}
 ```
 
 This is super easy. Nothing to do in the controllers. All the magic is done behind the scene.
