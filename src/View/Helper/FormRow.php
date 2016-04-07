@@ -199,7 +199,7 @@ class FormRow extends AbstractHelper
                 ) {
                     $labelOpen = '';
                     $labelClose = '';
-                    $label = $labelHelper($element);
+                    $label = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
                 } else {
                     $labelOpen  = $labelHelper->openTag($labelAttributes);
                     $labelClose = $labelHelper->closeTag();
