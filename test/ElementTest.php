@@ -330,4 +330,35 @@ class ElementTest extends TestCase
         $this->assertFalse($element->hasLabelOption('foo2'));
         $this->assertTrue($element->hasLabelOption('foo3'));
     }
+
+    public function testCanAddMultipleAriaAttributes()
+    {
+        $element = new Element();
+        $attributes = [
+            'type'             => 'text',
+            'aria-label'       => 'alb',
+            'aria-describedby' => 'adb',
+            'aria-orientation' => 'vertical'
+        ];
+        $element->setAttributes($attributes);
+        $this->assertTrue($element->hasAttribute('aria-describedby'));
+        $this->assertTrue($element->hasAttribute('aria-label'));
+        $this->assertTrue($element->hasAttribute('aria-orientation'));
+    }
+
+    public function testCanRemoveMultipleAriaAttributes()
+    {
+        $element = new Element();
+        $attributes = [
+            'type'             => 'text',
+            'aria-label'       => 'alb',
+            'aria-describedby' => 'adb',
+            'aria-orientation' => 'vertical'
+        ];
+        $element->setAttributes($attributes);
+        $element->removeAttributes(['aria-label', 'aria-describedby', 'aria-orientation']);
+        $this->assertFalse($element->hasAttribute('aria-describedby'));
+        $this->assertFalse($element->hasAttribute('aria-label'));
+        $this->assertFalse($element->hasAttribute('aria-orientation'));
+    }
 }

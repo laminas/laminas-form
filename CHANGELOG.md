@@ -23,6 +23,9 @@ All notable changes to this project will be documented in this file, in reverse 
   instance, it is populated with the `InputFilterFactory` present in its own
   `FormFactory`. This ensures that any custom inputs, input filters, validators,
   or filters are available to the new instance.
+- [#38](https://github.com/zendframework/zend-form/pull/38) removes the
+  arbitrary restriction of only the "labelledby" and "describedby" aria
+  attributes on form element view helpers; any aria attribute is now allowed.
 
 ## 2.7.0 - 2016-02-22
 
