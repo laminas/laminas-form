@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.8.0 - TBD
+
+### Added
+
+- [#53](https://github.com/zendframework/zend-form/pull/53) adds
+  `Zend\Form\FormElementManagerFactory`, for creating and returning instances of
+  `Zend\Form\FormElementManager`. This factory was ported from zend-mvc, and
+  will replace it for version 3 of that component.
+- [#53](https://github.com/zendframework/zend-form/pull/53) adds
+  `Zend\Form\Annotation\AnnotationBuilderFactory`, for creating and returning
+  instances of `Zend\Form\Annotation\AnnotationBuilder`. This factory was ported
+  from zend-mvc, and will replace it for version 3 of that component.
+- [#53](https://github.com/zendframework/zend-form/pull/53) exposes the package
+  as a config-provider and ZF component, by adding:
+  - `ConfigProvider`, which maps the `FormElementsManager` and
+    `FormAnnotationBuilder` servies previously provided by zend-mvc; the form
+    abstract factory as previously registered by zend-mvc; and all view helper
+    configuration.
+  - `Module`, which maps services and view helpers per the `ConfigProvider`, and
+    provides configuration to the zend-modulemanager `ServiceLocator` in order
+    for modules to provide form and form element configuration.
+
+### Deprecated
+
+- [#53](https://github.com/zendframework/zend-form/pull/53) deprecates
+  `Zend\Form\View\HelperConfig`; the functionality is made obsolete by
+  `ConfigProvider`. It now consumes the latter in order to provide view helper
+  configuration.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 2.7.1 - 2016-04-07
 
 ### Added

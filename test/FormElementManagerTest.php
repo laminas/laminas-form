@@ -134,4 +134,10 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
         $this->manager->get('sharedElement');
         $this->manager->get('sharedElement');
     }
+
+    public function testWillInstantiateFormFromInvokable()
+    {
+        $form = $this->manager->get('form');
+        $this->assertInstanceof(Form::class, $form);
+    }
 }
