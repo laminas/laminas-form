@@ -10,7 +10,7 @@ See the section on \[view helpers\](zend.view.helpers) for more information.
 
 ## Standard Helpers
 
-orphan  
+orphan
 
 ### Form
 
@@ -46,7 +46,7 @@ echo $this->form($form);
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
 
-orphan  
+orphan
 
 ### FormButton
 
@@ -91,7 +91,7 @@ echo $this->formButton()->render($element, 'My Content');
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\FormInput\](zend.form.view.helper.form-input.methods).
 
-orphan  
+orphan
 
 ### FormCaptcha
 
@@ -115,7 +115,7 @@ echo $this->formCaptcha($captcha);
 // TODO
 ```
 
-orphan  
+orphan
 
 ### FormCheckbox
 
@@ -160,7 +160,7 @@ echo $this->formCheckbox($element);
 // <input type="checkbox" name="my-checkbox" value="yes">
 ```
 
-orphan  
+orphan
 
 ### FormCollection
 
@@ -170,7 +170,7 @@ Basic usage:
 
 TODO
 
-orphan  
+orphan
 
 ### FormElement
 
@@ -220,7 +220,7 @@ foreach ($form as $element) {
 echo $this->form()->closeTag();
 ```
 
-orphan  
+orphan
 
 ### FormElementErrors
 
@@ -279,7 +279,7 @@ echo $this->formElementErrors()
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
 
-orphan  
+orphan
 
 ### FormFile
 
@@ -316,7 +316,7 @@ echo $this->formFile($element);
 // <input type="file" name="my-file" multiple="multiple">
 ```
 
-orphan  
+orphan
 
 ### FormHidden
 
@@ -339,7 +339,7 @@ echo $this->formHidden($element);
 // <input type="hidden" name="my-hidden" value="foo">
 ```
 
-orphan  
+orphan
 
 ### FormImage
 
@@ -362,7 +362,7 @@ echo $this->formImage($element);
 // <input type="image" name="my-image" src="/img/my-pic.png">
 ```
 
-orphan  
+orphan
 
 ### FormInput
 
@@ -376,7 +376,7 @@ of `FormInput` implements it's own specific map of valid tag attributes.
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
 
-orphan  
+orphan
 
 ### FormLabel
 
@@ -457,7 +457,7 @@ manager will automatically attach the translator to the FormLabel view helper. S
 The following public methods are in addition to those inherited from
 \[Zend\\Form\\View\\Helper\\AbstractHelper\](zend.form.view.helper.abstract-helper.methods).
 
-orphan  
+orphan
 
 ### FormMultiCheckbox
 
@@ -500,7 +500,7 @@ echo $this->formMultiCheckbox($element, 'prepend');
 // <label>Lemon<input type="checkbox" name="my-multicheckbox[]" value="2"></label>
 ```
 
-orphan  
+orphan
 
 ### FormPassword
 
@@ -523,11 +523,11 @@ echo $this->formPassword($element);
 
 Output:
 
-```php
+```html
 <input type="password" name="my-password" value="">
 ```
 
-orphan  
+orphan
 
 ### FormRadio
 
@@ -566,7 +566,7 @@ echo $this->formRadio($element, 'prepend');
 // <label>Female<input type="checkbox" name="gender[]" value="1"></label>
 ```
 
-orphan  
+orphan
 
 ### FormReset
 
@@ -588,11 +588,11 @@ echo $this->formReset($element);
 
 Output:
 
-```php
+```html
 <input type="reset" name="my-reset" value="Reset">
 ```
 
-orphan  
+orphan
 
 ### FormRow
 
@@ -661,7 +661,7 @@ echo $this->form()->closeTag();
 > ## Note
 Label content is escaped by default
 
-orphan  
+orphan
 
 ### FormSelect
 
@@ -693,7 +693,7 @@ $element->setValueOptions(array(
 echo $this->formSelect($element);
 ```
 
-orphan  
+orphan
 
 ### FormSubmit
 
@@ -715,11 +715,11 @@ echo $this->formSubmit($element);
 
 Output:
 
-```php
+```html
 <input type="submit" name="my-submit" value="">
 ```
 
-orphan  
+orphan
 
 ### FormText
 
@@ -741,11 +741,11 @@ echo $this->formText($element);
 
 Output:
 
-```php
+```html
 <input type="text" name="my-text" value="">
 ```
 
-orphan  
+orphan
 
 ### FormTextarea
 
@@ -765,11 +765,11 @@ echo $this->formTextarea($element);
 
 Output:
 
-```php
+```html
 <textarea name="my-textarea"></textarea>
 ```
 
-orphan  
+orphan
 
 ### AbstractHelper
 
@@ -785,7 +785,7 @@ Zend\\\\I18n\\\\View\\\\Helper\\\\AbstractTranslatorHelper
 
 ## HTML5 Helpers
 
-orphan  
+orphan
 
 ### FormColor
 
@@ -807,11 +807,11 @@ echo $this->formColor($element);
 
 Output:
 
-```php
+```html
 <input type="color" name="my-color" value="">
 ```
 
-orphan  
+orphan
 
 ### FormDate
 
@@ -835,7 +835,7 @@ echo $this->formDate($element);
 // <input type="date" name="my-date" value="">
 ```
 
-orphan  
+orphan
 
 ### FormDateTime
 
@@ -859,7 +859,7 @@ echo $this->formDateTime($element);
 // <input type="datetime" name="my-datetime" value="">
 ```
 
-orphan  
+orphan
 
 ### FormDateTimeLocal
 
@@ -884,7 +884,7 @@ echo $this->formDateTimeLocal($element);
 // <input type="datetime-local" name="my-datetime" value="">
 ```
 
-orphan  
+orphan
 
 ### FormEmail
 
@@ -907,7 +907,7 @@ echo $this->formEmail($element);
 // <input type="email" name="my-email" value="">
 ```
 
-orphan  
+orphan
 
 ### FormMonth
 
@@ -931,7 +931,7 @@ echo $this->formMonth($element);
 // <input type="month" name="my-month" value="">
 ```
 
-orphan  
+orphan
 
 ### FormNumber
 
@@ -980,11 +980,11 @@ echo $this->formNumber($element);
 
 Output:
 
-```php
+```html
 <input type="number" name="my-number" min="5" max="20" step="0.5" value="12">
 ```
 
-orphan  
+orphan
 
 ### FormRange
 
@@ -1008,7 +1008,7 @@ echo $this->formRange($element);
 
 Output:
 
-```php
+```html
 <input type="range" name="my-range" value="">
 ```
 
@@ -1033,11 +1033,11 @@ echo $this->formRange($element);
 
 Output:
 
-```php
+```html
 <input type="range" name="my-range" min="0" max="100" step="5" value="20">
 ```
 
-orphan  
+orphan
 
 ### FormSearch
 
@@ -1058,11 +1058,11 @@ echo $this->formSearch($element);
 
 Output:
 
-```php
+```html
 <input type="search" name="my-search" value="">
 ```
 
-orphan  
+orphan
 
 ### FormTel
 
@@ -1083,11 +1083,11 @@ echo $this->formTel($element);
 
 Output:
 
-```php
+```html
 <input type="tel" name="my-tel" value="">
 ```
 
-orphan  
+orphan
 
 ### FormTime
 
@@ -1111,7 +1111,7 @@ echo $this->formTime($element);
 // <input type="time" name="my-time" value="">
 ```
 
-orphan  
+orphan
 
 ### FormUrl
 
@@ -1135,7 +1135,7 @@ echo $this->formUrl($element);
 
 Output:
 
-```php
+```html
 <input type="url" name="my-url" value="">
 ```
 
@@ -1153,11 +1153,11 @@ echo $this->formUrl($element);
 
 Output:
 
-```php
+```html
 <input type="url" name="my-url" pattern="https?://.+" value="">
 ```
 
-orphan  
+orphan
 
 ### FormWeek
 
@@ -1181,7 +1181,7 @@ echo $this->formWeek($element);
 
 Output:
 
-```php
+```html
 <input type="week" name="my-week" value="">
 ```
 
@@ -1206,13 +1206,13 @@ echo $this->formWeek($element);
 
 Output:
 
-```php
+```html
 <input type="week" name="my-week" min="2012-W01" max="2020-W01" step="2" value="2014-W10">
 ```
 
 ## File Upload Progress Helpers
 
-orphan  
+orphan
 
 ### FormFileApcProgress
 
@@ -1245,7 +1245,7 @@ echo $this->formFileApcProgress();
 // <input type="hidden" id="progress_key" name="APC_UPLOAD_PROGRESS" value="12345abcde">
 ```
 
-orphan  
+orphan
 
 ### FormFileSessionProgress
 
@@ -1278,7 +1278,7 @@ echo $this->formFileSessionProgress();
 // <input type="hidden" id="progress_key" name="PHP_SESSION_UPLOAD_PROGRESS" value="12345abcde">
 ```
 
-orphan  
+orphan
 
 ### FormFileUploadProgress
 

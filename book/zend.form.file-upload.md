@@ -90,7 +90,7 @@ button.
 
 When rendered, the HTML should look similar to:
 
-```php
+```html
 <form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data">
     <div class="form-element">
         <label for="image-file">Avatar Image Upload</label>
@@ -116,7 +116,7 @@ public function uploadFormAction()
 {
     $form = new UploadForm('upload-form');
 
-    $request = $this->getRequest(); 
+    $request = $this->getRequest();
     if ($request->isPost()) {
         // Make certain to merge the files info!
         $post = array_merge_recursive(
@@ -154,6 +154,7 @@ array(1) {
 It is suggested that you always use the `Zend\Http\PhpEnvironment\Request` object to retrieve and
 merge the `$_FILES` information with the form, instead of using `$_FILES` directly.
 This is due to how the file information is mapped in the `$_FILES` array:
+
 ```php
 // A $_FILES array with single input and multiple files:
 array(1) {
@@ -182,6 +183,7 @@ array(1) {
 }
 }
 ```
+
 \[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input) expects the file data be in this
 re-mapped array format.
 
@@ -398,6 +400,7 @@ setup has the appropriate extension or feature enabled.
 For this example we will use PHP **5.4**'s [Session progress
 handler](http://php.net/manual/en/session.upload-progress.php)
 **PHP 5.4 is required** and you may need to verify these php.ini settings for it to work:
+
 ```php
 file_uploads = On
 post_max_size = 50M
@@ -432,7 +435,7 @@ way to add the hidden input based on your handler type.
 
 When rendered, the HTML should look similar to:
 
-```php
+```html
 <form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data">
     <input type="hidden" id="progress_key" name="PHP_SESSION_UPLOAD_PROGRESS" value="12345abcde">
 
@@ -486,9 +489,9 @@ are using the [jQuery Form plugin](https://github.com/malsup/form) to do the AJA
 project uses a different JavaScript framework (or none at all), this will hopefully at least
 illustrate the necessary high-level logic that would need to be performed.
 
-```php
-// File: upload-form.phtml
-// ...after the form...
+```html
+<!-- File: upload-form.phtml -->
+<!-- ...after the form... -->
 
 <!-- Twitter Bootstrap progress bar styles:
      http://twitter.github.com/bootstrap/components.html#progress -->

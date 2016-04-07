@@ -331,7 +331,7 @@ use Zend\Form\Fieldset;
 class AlbumFieldset extends Fieldset
 {
     public function __construct(AlbumTable $albumTable)
-    {           
+    {
         // Add any elements that need to fetch data from database
         // using the album table !
     }
@@ -414,7 +414,7 @@ class AlbumFieldset extends Fieldset implements ServiceLocatorAwareInterface
     protected $serviceLocator;
 
     public function __construct()
-    {           
+    {
         // Here, $this->serviceLocator is null because it has not been
         // injected yet, as initializers are run after __construct
     }
@@ -449,7 +449,7 @@ class AlbumFieldset extends Fieldset implements ServiceLocatorAwareInterface
     protected $serviceLocator;
 
     public function init()
-    {           
+    {
         // Here, we have $this->serviceLocator !!
     }
 
