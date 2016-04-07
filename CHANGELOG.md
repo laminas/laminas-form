@@ -26,6 +26,10 @@ All notable changes to this project will be documented in this file, in reverse 
 - [#38](https://github.com/zendframework/zend-form/pull/38) removes the
   arbitrary restriction of only the "labelledby" and "describedby" aria
   attributes on form element view helpers; any aria attribute is now allowed.
+- [#45](https://github.com/zendframework/zend-form/pull/45) fixes the behavior
+  in `Zend\Form\Factory::create()` when pulling elements from the form element
+  manager; it now will pass specifications provided for the given element when
+  calling the manager's `get()` method.
 
 ## 2.7.0 - 2016-02-22
 
