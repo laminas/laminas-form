@@ -52,6 +52,10 @@
         "branch-alias": {
             "dev-master": "2.7-dev",
             "dev-develop": "2.8-dev"
+        },
+        "zf": {
+            "component": "Zend\\Form",
+            "config-provider": "Zend\\Form\\ConfigProvider"
         }
     },
     "autoload-dev": {
