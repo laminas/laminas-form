@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.8.1 - TBD
+## 2.8.1 - 2016-04-18
 
 ### Added
 
@@ -18,7 +18,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#59](https://github.com/zendframework/zend-form/pull/59) fixes the
+  `Module::init()` method to properly receive a `ModuleManager` instance, and
+  not expect a `ModuleEvent`.
 
 ## 2.8.0 - 2016-04-07
 
