@@ -26,11 +26,12 @@ class Module
     /**
      * Register a specification for the FormElementManager with the ServiceListener.
      *
-     * @param \Zend\ModuleManager\ModuleEvent
+     * @param \Zend\ModuleManager\ModuleManager $moduleManager
      * @return void
      */
-    public function init($event)
+    public function init($moduleManager)
     {
+        $event = $moduleManager->getEvent();
         $container = $event->getParam('ServiceManager');
         $serviceListener = $container->get('ServiceListener');
 
