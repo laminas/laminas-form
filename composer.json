@@ -23,6 +23,7 @@
         "zendframework/zend-cache": "^2.6.1",
         "zendframework/zend-captcha": "^2.5.4",
         "zendframework/zend-code": "^2.6",
+        "zendframework/zend-escaper": "^2.5",
         "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
         "zendframework/zend-filter": "^2.6",
         "zendframework/zend-i18n": "^2.6",
