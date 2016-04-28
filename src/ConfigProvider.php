@@ -38,6 +38,7 @@ class ConfigProvider
             'aliases' => [
                 'Zend\Form\Annotation\FormAnnotationBuilder' => 'FormAnnotationBuilder',
                 Annotation\AnnotationBuilder::class => 'FormAnnotationBuilder',
+                FormElementManager::class => 'FormElementManager',
             ],
             'factories' => [
                 'FormAnnotationBuilder' => Annotation\AnnotationBuilderFactory::class,
