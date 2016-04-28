@@ -9,6 +9,7 @@
 
 namespace ZendTest\Form;
 
+use ReflectionProperty;
 use Zend\Form\Exception\InvalidElementException;
 use Zend\Form\Factory;
 use Zend\Form\Form;
@@ -139,5 +140,57 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
     {
         $form = $this->manager->get('form');
         $this->assertInstanceof(Form::class, $form);
+    }
+
+    /**
+     * @group 58
+     * @group 64
+     */
+    public function testInjectFactoryInitializerShouldBeRegisteredFirst()
+    {
+        // @codingStandardsIgnoreStart
+        $initializers = [
+            function () {},
+            function () {},
+        ];
+        // @codingStandardsIgnoreEnd
+
+        $manager = new FormElementManager(new ServiceManager(), [
+            'initializers' => $initializers,
+        ]);
+
+        $r = new ReflectionProperty($manager, 'initializers');
+        $r->setAccessible(true);
+        $actual = $r->getValue($manager);
+
+        $this->assertGreaterThan(2, count($actual));
+        $first = array_shift($actual);
+        $this->assertSame([$manager, 'injectFactory'], $first);
+    }
+
+    /**
+     * @group 58
+     * @group 64
+     */
+    public function testCallElementInitInitializerShouldBeRegisteredLast()
+    {
+        // @codingStandardsIgnoreStart
+        $initializers = [
+            function () {},
+            function () {},
+        ];
+        // @codingStandardsIgnoreEnd
+
+        $manager = new FormElementManager(new ServiceManager(), [
+            'initializers' => $initializers,
+        ]);
+
+        $r = new ReflectionProperty($manager, 'initializers');
+        $r->setAccessible(true);
+        $actual = $r->getValue($manager);
+
+        $this->assertGreaterThan(2, count($actual));
+        $last = array_pop($actual);
+        $this->assertSame([$manager, 'callElementInit'], $last);
     }
 }
