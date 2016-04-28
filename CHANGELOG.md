@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#60](https://github.com/zendframework/zend-form/pull/60) adds an alias from
+  `Zend\Form\FormElementManager` to `FormElementManager` in the `ConfigProvider`.
 
 ### Deprecated
 
