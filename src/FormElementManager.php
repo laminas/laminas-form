@@ -209,10 +209,11 @@ class FormElementManager extends AbstractPluginManager
      */
     public function __construct($configInstanceOrParentLocator = null, array $v3config = [])
     {
-        $this->initializers[] = [$this, 'injectFactory'];
-        $this->initializers[] = [$this, 'callElementInit'];
-
-        parent::__construct($configInstanceOrParentLocator, $v3config);
+        if (method_exists($this, 'configure')) {
+            $this->initializeForV3($configInstanceOrParentLocator, $v3config);
+        } else {
+            $this->initializeForV2($configInstanceOrParentLocator, $v3config);
+        }
     }
 
     /**
@@ -390,5 +391,44 @@ class FormElementManager extends AbstractPluginManager
 
         $factory = new $factoryName;
         return $factory;
+    }
+
+    /**
+     * Initialize the plugin manager for use with zend-servicemanager v2
+     *
+     * Initializer order is FIFO under zend-servicemanager v3; this method
+     * ensures that the default initializers are registered in the correct
+     * order.
+     *
+     * @param ContainerInterface $parentLocator
+     * @param null|array $config
+     * @return void
+     */
+    private function initializeForV3(ContainerInterface $parentLocator, array $config = null)
+    {
+        $this->addInitializer([$this, 'injectFactory']);
+        parent::__construct($parentLocator, $config);
+        $this->addInitializer([$this, 'callElementInit']);
+    }
+
+    /**
+     * Initialize the plugin manager for use with zend-servicemanager v2
+     *
+     * zend-servicemanager v2 allows passing a flag to addInitializer indicating
+     * whether the initializer should be pushed to the top of the queue or the
+     * bottom, defaulting to the top; this method uses that to ensure the
+     * order of the default initializers.
+     *
+     * @param null|ConfigInterface|ContainerInterface $configOrContainerInstance
+     * @param array $v3config If $configOrContainerInstance is a container, this
+     *     value will be passed to the parent constructor.
+     * @return void
+     */
+    private function initializeForV2($configInstanceOrParentLocator, array $v3config = null)
+    {
+        parent::__construct($configInstanceOrParentLocator, $v3config);
+
+        $this->addInitializer([$this, 'injectFactory']);
+        $this->addInitializer([$this, 'callElementInit'], false);
     }
 }
