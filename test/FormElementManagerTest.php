@@ -9,6 +9,7 @@
 
 namespace ZendTest\Form;
 
+use ReflectionProperty;
 use Zend\Form\Exception\InvalidElementException;
 use Zend\Form\Factory;
 use Zend\Form\Form;
@@ -139,5 +140,32 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
     {
         $form = $this->manager->get('form');
         $this->assertInstanceof(Form::class, $form);
+    }
+
+    /**
+     * @group 58
+     * @group 64
+     */
+    public function testDefaultInitializersShouldBeRegisteredLast()
+    {
+        // @codingStandardsIgnoreStart
+        $initializers = [
+            function () {},
+            function () {},
+        ];
+        // @codingStandardsIgnoreEnd
+
+        $manager = new FormElementManager(new ServiceManager(), [
+            'initializers' => $initializers,
+        ]);
+
+        $r = new ReflectionProperty($manager, 'initializers');
+        $r->setAccessible(true);
+        $actual = $r->getValue($manager);
+
+        $this->assertGreaterThan(2, count($actual));
+        $actual = array_slice($actual, -2);
+        $this->assertContains([$manager, 'injectFactory'], $actual, 'Missing injectFactory initializer');
+        $this->assertContains([$manager, 'callElementInit'], $actual, 'Missing callElementInit initializer');
     }
 }

@@ -209,10 +209,10 @@ class FormElementManager extends AbstractPluginManager
      */
     public function __construct($configInstanceOrParentLocator = null, array $v3config = [])
     {
-        $this->initializers[] = [$this, 'injectFactory'];
-        $this->initializers[] = [$this, 'callElementInit'];
-
         parent::__construct($configInstanceOrParentLocator, $v3config);
+
+        $this->addInitializer([$this, 'injectFactory']);
+        $this->addInitializer([$this, 'callElementInit']);
     }
 
     /**
