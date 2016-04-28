@@ -19,7 +19,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#65](https://github.com/zendframework/zend-form/pull/65) fixes instantiation
+  of `Zend\Form\FormElementManager` to ensure that the default initializers,
+  `injectFactory()` and `callElementInit()` are registered as the first and last
+  initializers, respectively, during construction, restoring the pre-2.7
+  behavior.
 
 ## 2.8.1 - 2016-04-18
 
