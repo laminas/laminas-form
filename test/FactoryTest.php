@@ -783,4 +783,26 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $created);
         $this->assertSame('2016-02-19', $created->format('Y-m-d'));
     }
+
+    public function testCanCreateWithConstructionLogicInOptions()
+    {
+        $formManager = $this->factory->getFormElementManager();
+        $formManager->setFactory(TestAsset\FieldsetWithDependency::class, TestAsset\FieldsetWithDependencyFactory::class);
+
+        $collection = $this->factory->create([
+            'type' => Form\Element\Collection::class,
+            'name' => 'my_fieldset_collection',
+            'options' => [
+                'target_element' => [
+                    'type' => TestAsset\FieldsetWithDependency::class,
+                ],
+            ],
+        ]);
+
+        $this->assertInstanceOf(Form\Element\Collection::class, $collection);
+
+        $targetElement = $collection->getTargetElement();
+        $this->assertInstanceOf(TestAsset\FieldsetWithDependency::class, $targetElement);
+        $this->assertInstanceOf(TestAsset\InputFilter::class, $targetElement->getDependency());
+    }
 }
