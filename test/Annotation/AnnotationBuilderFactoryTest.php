@@ -9,7 +9,6 @@ namespace ZendTest\Form\Annotation;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase as TestCase;
-use Prophecy\Argument;
 use ReflectionProperty;
 use stdClass;
 use Zend\EventManager\EventManagerInterface;

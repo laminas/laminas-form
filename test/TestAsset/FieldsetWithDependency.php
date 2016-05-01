@@ -19,7 +19,7 @@ class FieldsetWithDependency extends Fieldset
 
     public function __construct($name = null, $options = [])
     {
-        parent::__construct('fielset_with_dependency', $options);
+        parent::__construct('fieldset_with_dependency', $options);
     }
     
     public function init()
