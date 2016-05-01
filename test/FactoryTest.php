@@ -10,12 +10,10 @@
 namespace ZendTest\Form;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use DateTime;
 use Zend\Filter;
 use Zend\Form;
 use Zend\Form\Factory as FormFactory;
 use Zend\Form\FormElementManager;
-use Zend\Form\FormInterface;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Hydrator\HydratorPluginManager;
 
@@ -758,29 +756,26 @@ class FactoryTest extends TestCase
         $this->assertTrue($form->has('bat'));
     }
 
-    public function testOptionsArePassedAsCreationOptionsToFactories()
+    public function testCanCreateWithConstructionLogicInOptions()
     {
         $formManager = $this->factory->getFormElementManager();
-        $formManager->setFactory('customCreatedForm', TestAsset\CustomCreatedFormFactory::class);
+        $formManager->setFactory(TestAsset\FieldsetWithDependency::class, TestAsset\FieldsetWithDependencyFactory::class);
 
-        /* @var $form TestAsset\CustomCreatedForm */
-        $form = $this->factory->create([
-            'name'    => 'some_name',
-            'type'    => 'customCreatedForm',
+        $collection = $this->factory->create([
+            'type' => Form\Element\Collection::class,
+            'name' => 'my_fieldset_collection',
             'options' => [
-                'created'           => '2016-02-19',
-                'some_other_option' => 1234
-            ]
+                'target_element' => [
+                    'type' => TestAsset\FieldsetWithDependency::class,
+                ],
+            ],
         ]);
 
-        $this->assertInstanceOf(FormInterface::class, $form);
-        $this->assertInstanceOf(TestAsset\CustomCreatedForm::class, $form);
-        $this->assertSame('some_name', $form->getName());
-        $this->assertSame(1234, $form->getOption('some_other_option'));
+        $this->assertInstanceOf(Form\Element\Collection::class, $collection);
 
-        /* @var $created DateTime */
-        $created = $form->getCreated();
-        $this->assertInstanceOf(DateTime::class, $created);
-        $this->assertSame('2016-02-19', $created->format('Y-m-d'));
+        $targetElement = $collection->getTargetElement();
+
+        $this->assertInstanceOf(TestAsset\FieldsetWithDependency::class, $targetElement);
+        $this->assertInstanceOf(TestAsset\InputFilter::class, $targetElement->getDependency());
     }
 }

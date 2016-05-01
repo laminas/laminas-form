@@ -10,6 +10,7 @@
 namespace ZendTest\Form;
 
 use ReflectionProperty;
+use Zend\Form\ElementFactory;
 use Zend\Form\Exception\InvalidElementException;
 use Zend\Form\Factory;
 use Zend\Form\Form;
@@ -192,5 +193,32 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThan(2, count($actual));
         $last = array_pop($actual);
         $this->assertSame([$manager, 'callElementInit'], $last);
+    }
+
+    /**
+     * @group 62
+     */
+    public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory()
+    {
+        $this->manager->setInvokableClass('foo', TestAsset\ElementWithFilter::class);
+
+        $r = new ReflectionProperty($this->manager, 'aliases');
+        $r->setAccessible(true);
+        $aliases = $r->getValue($this->manager);
+
+        $this->assertArrayHasKey('foo', $aliases);
+        $this->assertEquals(TestAsset\ElementWithFilter::class, $aliases['foo']);
+
+        $r = new ReflectionProperty($this->manager, 'factories');
+        $r->setAccessible(true);
+        $factories = $r->getValue($this->manager);
+
+        if (method_exists($this->manager, 'configure')) {
+            $this->assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
+            $this->assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
+        } else {
+            $this->assertArrayHasKey('zendtestformtestassetelementwithfilter', $factories);
+            $this->assertEquals(ElementFactory::class, $factories['zendtestformtestassetelementwithfilter']);
+        }
     }
 }

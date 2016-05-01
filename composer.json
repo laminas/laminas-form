@@ -10,7 +10,10 @@
     "autoload": {
         "psr-4": {
             "Zend\\Form\\": "src/"
-        }
+        },
+        "files": [
+            "autoload/formElementManagerPolyfill.php"
+        ]
     },
     "require": {
         "php": "^5.5 || ^7.0",

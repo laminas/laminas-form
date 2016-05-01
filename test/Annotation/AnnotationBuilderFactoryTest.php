@@ -9,7 +9,6 @@ namespace ZendTest\Form\Annotation;
 
 use Interop\Container\ContainerInterface;
 use PHPUnit_Framework_TestCase as TestCase;
-use Prophecy\Argument;
 use ReflectionProperty;
 use stdClass;
 use Zend\EventManager\EventManagerInterface;
@@ -27,14 +26,10 @@ class AnnotationBuilderFactoryTest extends TestCase
         $events = $this->prophesize(EventManagerInterface::class);
 
         $elements = $this->prophesize(FormElementManager::class);
-        $elements->injectFactory(
-            $container->reveal(),
-            Argument::type(AnnotationBuilder::class)
-        )->shouldBeCalled();
-
         $container->get('EventManager')->willReturn($events->reveal());
         $container->get('FormElementManager')->willReturn($elements->reveal());
         $container->has('config')->willReturn(false);
+        $container->has('InputFilterManager')->willReturn(false);
 
         $factory = new AnnotationBuilderFactory();
         $this->assertInstanceOf(
@@ -49,13 +44,9 @@ class AnnotationBuilderFactoryTest extends TestCase
         $events = $this->prophesize(EventManagerInterface::class);
 
         $elements = $this->prophesize(FormElementManager::class);
-        $elements->injectFactory(
-            $container->reveal(),
-            Argument::type(AnnotationBuilder::class)
-        )->shouldBeCalled();
-
         $container->get('EventManager')->willReturn($events->reveal());
         $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->has('InputFilterManager')->willReturn(false);
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn([
             'form_annotation_builder' => [
@@ -75,13 +66,9 @@ class AnnotationBuilderFactoryTest extends TestCase
         $events = $this->prophesize(EventManagerInterface::class);
 
         $elements = $this->prophesize(FormElementManager::class);
-        $elements->injectFactory(
-            $container->reveal(),
-            Argument::type(AnnotationBuilder::class)
-        )->shouldBeCalled();
-
         $container->get('EventManager')->willReturn($events->reveal());
         $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->has('InputFilterManager')->willReturn(false);
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn([
             'form_annotation_builder' => [
@@ -110,11 +97,8 @@ class AnnotationBuilderFactoryTest extends TestCase
         $listener->attach($events->reveal())->shouldBeCalled();
 
         $elements = $this->prophesize(FormElementManager::class);
-        $elements->injectFactory(
-            $container->reveal(),
-            Argument::type(AnnotationBuilder::class)
-        )->shouldBeCalled();
 
+        $container->has('InputFilterManager')->willReturn(false);
         $container->get('EventManager')->willReturn($events->reveal());
         $container->get('FormElementManager')->willReturn($elements->reveal());
         $container->has('config')->willReturn(true);
@@ -138,13 +122,10 @@ class AnnotationBuilderFactoryTest extends TestCase
         $listener = $this->prophesize(stdClass::class);
 
         $elements = $this->prophesize(FormElementManager::class);
-        $elements->injectFactory(
-            $container->reveal(),
-            Argument::type(AnnotationBuilder::class)
-        )->shouldBeCalled();
 
         $container->get('EventManager')->willReturn($events->reveal());
         $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->has('InputFilterManager')->willReturn(false);
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn([
             'form_annotation_builder' => [
