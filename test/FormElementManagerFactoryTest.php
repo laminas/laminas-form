@@ -21,7 +21,7 @@ class FormElementManagerFactoryTest extends TestCase
         $container = $this->prophesize(ContainerInterface::class)->reveal();
         $factory = new FormElementManagerFactory();
 
-        $elements = $factory($container, FormElementManagerFactory::class);
+        $elements = $factory($container, FormElementManager::class);
         $this->assertInstanceOf(FormElementManager::class, $elements);
 
         if (method_exists($elements, 'configure')) {
@@ -42,7 +42,7 @@ class FormElementManagerFactoryTest extends TestCase
         $element = $this->prophesize(ElementInterface::class)->reveal();
 
         $factory = new FormElementManagerFactory();
-        $elements = $factory($container, FormElementManagerFactory::class, [
+        $elements = $factory($container, FormElementManager::class, [
             'services' => [
                 'test' => $element,
             ],
