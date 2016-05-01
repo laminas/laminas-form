@@ -26,6 +26,13 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - [#60](https://github.com/zendframework/zend-form/pull/60) adds an alias from
   `Zend\Form\FormElementManager` to `FormElementManager` in the `ConfigProvider`.
+- [#67](https://github.com/zendframework/zend-form/pull/67) adds polyfills for
+  the `FormElementManager` to vary its definitions based on the major version of
+  zend-servicemanager in use. `FormElementManagerFactory` was updated to return
+  the specific polyfill version, and an autoload rule was added to alias the
+  class to the correct polyfill version. The polyfills were necessary to ensure
+  that invokable classes are mapped to the new `ElementFactory` introduced in
+  the 2.7 series, thus ensuring instantiation is performed correctly.
 
 ### Deprecated
 
@@ -42,6 +49,12 @@ All notable changes to this project will be documented in this file, in reverse 
   `injectFactory()` and `callElementInit()` are registered as the first and last
   initializers, respectively, during construction, restoring the pre-2.7
   behavior.
+- [#67](https://github.com/zendframework/zend-form/pull/67) fixes the behavior
+  of `Factory::create()` to the pre-2.7.1 behavior of *not* passing creation
+  options when retrieving an instance from the `FormElementManager`. This
+  ensures that options are not passed to Element/Fieldset/Form instances
+  until after they are fully initialized, ensuring that all dependencies are
+  present.
 
 ## 2.8.1 - 2016-04-18
 

@@ -10,6 +10,7 @@ namespace Zend\Form\Annotation;
 use Interop\Container\ContainerInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
+use Zend\Form\Factory;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -30,8 +31,7 @@ class AnnotationBuilderFactory implements FactoryInterface
         $eventManager      = $container->get('EventManager');
         $annotationBuilder->setEventManager($eventManager);
 
-        $formElementManager = $container->get('FormElementManager');
-        $formElementManager->injectFactory($container, $annotationBuilder);
+        $this->injectFactory($annotationBuilder->getFormFactory(), $container);
 
         $config = $this->marshalConfig($container);
         if (isset($config['preserve_defined_order'])) {
@@ -134,6 +134,24 @@ class AnnotationBuilderFactory implements FactoryInterface
             }
 
             $listener->attach($events);
+        }
+    }
+
+    /**
+     * Inject the annotation builder's factory instance with the FormElementManager.
+     *
+     * Also injects the factory with the InputFilterManager if present.
+     *
+     * @param Factory $factory
+     * @param ContainerInterface $container
+     */
+    private function injectFactory(Factory $factory, ContainerInterface $container)
+    {
+        $factory->setFormElementManager($container->get('FormElementManager'));
+
+        if ($container->has('InputFilterManager')) {
+            $inputFilters = $container->get('InputFilterManager');
+            $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
         }
     }
 }

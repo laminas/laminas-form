@@ -1,27 +1,32 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @link      http://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Form;
+namespace Zend\Form\FormElementManager;
 
 use Interop\Container\ContainerInterface;
+use Zend\Form\Element;
+use Zend\Form\ElementFactory;
+use Zend\Form\ElementInterface;
+use Zend\Form\Fieldset;
+use Zend\Form\Form;
+use Zend\Form\FormFactoryAwareInterface;
 use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\ConfigInterface;
 use Zend\ServiceManager\Exception\InvalidServiceException;
 use Zend\Stdlib\InitializableInterface;
 
 /**
- * Plugin manager implementation for form elements.
+ * zend-servicemanager v3-compatible plugin manager implementation for form elements.
  *
  * Enforces that elements retrieved are instances of ElementInterface.
  */
-class FormElementManager extends AbstractPluginManager
+class FormElementManagerV3Polyfill extends AbstractPluginManager
 {
+    use FormElementManagerTrait;
+
     /**
      * Aliases for default set of helpers
      *
@@ -203,39 +208,24 @@ class FormElementManager extends AbstractPluginManager
      * Overrides parent constructor in order to add the initializer methods injectFactory()
      * and callElementInit().
      *
-     * @param null|ConfigInterface|ContainerInterface $configOrContainerInstance
-     * @param array $v3config If $configOrContainerInstance is a container, this
-     *     value will be passed to the parent constructor.
+     * @param ContainerInterface $parentLocator
+     * @param null|array $config
      */
-    public function __construct($configInstanceOrParentLocator = null, array $v3config = [])
+    public function __construct(ContainerInterface $parentLocator = null, array $config = [])
     {
-        if (method_exists($this, 'configure')) {
-            $this->initializeForV3($configInstanceOrParentLocator, $v3config);
-        } else {
-            $this->initializeForV2($configInstanceOrParentLocator, $v3config);
-        }
+        $this->addInitializer([$this, 'injectFactory']);
+        parent::__construct($parentLocator, $config);
+        $this->addInitializer([$this, 'callElementInit']);
     }
 
     /**
      * Inject the factory to any element that implements FormFactoryAwareInterface
      *
-     * @param mixed $first ContainerInterface when used under zend-servicemanager
-     *     v3, element or form when under v2.
-     * @param mixed $second Element or form when used under zend-servicemanager
-     *     v3, ContainerInterface when under v2.
+     * @param ContainerInterface $container
+     * @param mixed $instance Instance to inspect and optionally inject.
      */
-    public function injectFactory($first, $second)
+    public function injectFactory(ContainerInterface $container, $instance)
     {
-        if ($first instanceof ContainerInterface) {
-            // Container is the parent container under v3
-            $container = $first;
-            $instance = $second;
-        } else {
-            // Need to retrieve the parent container under v2
-            $container = $second->getServiceLocator() ?: $second;
-            $instance = $first;
-        }
-
         if (! $instance instanceof FormFactoryAwareInterface) {
             return;
         }
@@ -252,20 +242,41 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Call init() on any element that implements InitializableInterface
      *
-     * @param mixed $first ContainerInterface when used under zend-servicemanager
-     *     v3, element or form when under v2.
-     * @param mixed $second Element or form when used under zend-servicemanager
-     *     v3, ContainerInterface when under v2.
+     * @param ContainerInterface $container
+     * @param mixed $instance Instance to inspect and optionally initialize.
      */
-    public function callElementInit($first, $second)
+    public function callElementInit(ContainerInterface $container, $instance)
     {
-        $instance = ($first instanceof ContainerInterface)
-            ? $second // v3
-            : $first; // v2
-
         if ($instance instanceof InitializableInterface) {
             $instance->init();
         }
+    }
+
+    /**
+     * Override setInvokableClass
+     *
+     * Overrides setInvokableClass to:
+     *
+     * - add a factory mapping $invokableClass to ElementFactory::class
+     * - alias $name to $invokableClass
+     *
+     * @param string $name
+     * @param null|string $class
+     * @return void
+     */
+    public function setInvokableClass($name, $class = null)
+    {
+        $class = $class ?: $name;
+
+        if (! $this->has($class)) {
+            $this->setFactory($class, ElementFactory::class);
+        }
+
+        if ($class === $name) {
+            return;
+        }
+
+        $this->setAlias($name, $class);
     }
 
     /**
@@ -287,148 +298,5 @@ class FormElementManager extends AbstractPluginManager
                 (is_object($plugin) ? get_class($plugin) : gettype($plugin))
             ));
         }
-    }
-
-    /**
-     * Validate the plugin is of the expected type (v2).
-     *
-     * Proxies to `validate()`.
-     *
-     * @param mixed $plugin
-     * @throws Exception\InvalidElementException
-     */
-    public function validatePlugin($plugin)
-    {
-        try {
-            $this->validate($plugin);
-        } catch (InvalidServiceException $e) {
-            throw new Exception\InvalidElementException(
-                $e->getMessage(),
-                $e->getCode(),
-                $e
-            );
-        }
-    }
-
-    /**
-     * Retrieve a service from the manager by name
-     *
-     * Allows passing an array of options to use when creating the instance.
-     * createFromInvokable() will use these and pass them to the instance
-     * constructor if not null and a non-empty array.
-     *
-     * @param  string $name
-     * @param  string|array $options
-     * @param  bool $usePeeringServiceManagers
-     * @return object
-     */
-    public function get($name, $options = [], $usePeeringServiceManagers = true)
-    {
-        if (is_string($options)) {
-            $options = ['name' => $options];
-        }
-        return parent::get($name, $options, $usePeeringServiceManagers);
-    }
-
-    /**
-     * Try to pull hydrator from the creation context, or instantiates it from its name
-     *
-     * @param  string $hydratorName
-     * @return mixed
-     * @throws Exception\DomainException
-     */
-    public function getHydratorFromName($hydratorName)
-    {
-        $services = isset($this->creationContext)
-            ? $this->creationContext // v3
-            : $this->serviceLocator; // v2
-
-        if ($services && $services->has('HydratorManager')) {
-            $hydrators = $services->get('HydratorManager');
-            if ($hydrators->has($hydratorName)) {
-                return $hydrators->get($hydratorName);
-            }
-        }
-
-        if ($services && $services->has($hydratorName)) {
-            return $services->get($hydratorName);
-        }
-
-        if (! class_exists($hydratorName)) {
-            throw new Exception\DomainException(sprintf(
-                'Expects string hydrator name to be a valid class name; received "%s"',
-                $hydratorName
-            ));
-        }
-
-        $hydrator = new $hydratorName;
-        return $hydrator;
-    }
-
-    /**
-     * Try to pull factory from the creation context, or instantiates it from its name
-     *
-     * @param  string $factoryName
-     * @return mixed
-     * @throws Exception\DomainException
-     */
-    public function getFactoryFromName($factoryName)
-    {
-        $services = isset($this->creationContext)
-            ? $this->creationContext // v3
-            : $this->serviceLocator; // v2
-
-        if ($services && $services->has($factoryName)) {
-            return $services->get($factoryName);
-        }
-
-        if (! class_exists($factoryName)) {
-            throw new Exception\DomainException(sprintf(
-                'Expects string factory name to be a valid class name; received "%s"',
-                $factoryName
-            ));
-        }
-
-        $factory = new $factoryName;
-        return $factory;
-    }
-
-    /**
-     * Initialize the plugin manager for use with zend-servicemanager v2
-     *
-     * Initializer order is FIFO under zend-servicemanager v3; this method
-     * ensures that the default initializers are registered in the correct
-     * order.
-     *
-     * @param ContainerInterface $parentLocator
-     * @param null|array $config
-     * @return void
-     */
-    private function initializeForV3(ContainerInterface $parentLocator, array $config = null)
-    {
-        $this->addInitializer([$this, 'injectFactory']);
-        parent::__construct($parentLocator, $config);
-        $this->addInitializer([$this, 'callElementInit']);
-    }
-
-    /**
-     * Initialize the plugin manager for use with zend-servicemanager v2
-     *
-     * zend-servicemanager v2 allows passing a flag to addInitializer indicating
-     * whether the initializer should be pushed to the top of the queue or the
-     * bottom, defaulting to the top; this method uses that to ensure the
-     * order of the default initializers.
-     *
-     * @param null|ConfigInterface|ContainerInterface $configOrContainerInstance
-     * @param array $v3config If $configOrContainerInstance is a container, this
-     *     value will be passed to the parent constructor.
-     * @return void
-     */
-    private function initializeForV2($configInstanceOrParentLocator, array $v3config = null)
-    {
-        parent::__construct($configInstanceOrParentLocator, $v3config);
-
-        $this->addInitializer([$this, 'injectFactory']);
-        $this->addInitializer([$this, 'callElementInit'], false);
     }
 }
