@@ -221,4 +221,21 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals(ElementFactory::class, $factories['zendtestformtestassetelementwithfilter']);
         }
     }
+
+    public function testAllAliasesShouldBeCanonicalized()
+    {
+        if (method_exists($this->manager, 'configure')) {
+            $this->markTestSkipped('Check canonicalized makes sense only on v2');
+        }
+
+        $r = new ReflectionProperty($this->manager, 'aliases');
+        $r->setAccessible(true);
+        $aliases = $r->getValue($this->manager);
+
+        foreach ($aliases as $name => $alias) {
+            $this->manager->get($name . ' ');
+            $this->manager->get(strtoupper($name));
+            $this->manager->get($name);
+        }
+    }
 }
