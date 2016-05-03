@@ -1,0 +1,87 @@
+docs_dir: doc/book
+site_dir: doc/html
+pages:
+    - index.md
+    - Intro: intro.md
+    - "Quick Start": quick-start.md
+    - Reference:
+        - Elements:
+            - Intro: element/intro.md
+            - Element: element/element.md
+            - button: element/button.md
+            - CAPTCHA: element/captcha.md
+            - checkbox: element/checkbox.md
+            - Collection: element/collection.md
+            - color: element/color.md
+            - CSRF: element/csrf.md
+            - date: element/date.md
+            - datetime: element/date-time.md
+            - datetime-local: element/date-time-local.md
+            - email: element/email.md
+            - file: element/file.md
+            - hidden: element/hidden.md
+            - image: element/image.md
+            - month: element/month.md
+            - MonthSelect: element/month-select.md
+            - MultiCheckbox: element/multi-checkbox.md
+            - number: element/number.md
+            - password: element/password.md
+            - radio: element/radio.md
+            - range: element/range.md
+            - select: element/select.md
+            - submit: element/submit.md
+            - text: element/text.md
+            - textarea: element/textarea.md
+            - time: element/time.md
+            - url: element/url.md
+            - week: element/week.md
+        - Collections: collections.md
+        - "File Uploads": file-upload.md
+        - "View Helpers":
+            - Intro: helper/intro.md
+            - AbstractHelper: helper/abstract-helper.md
+            - formInput: helper/form-input.md
+            - formElement: helper/form-element.md
+            - formElementErrors: helper/form-element-errors.md
+            - formLabel: helper/form-label.md
+            - formRow: helper/form-row.md
+            - formCollection: helper/form-collection.md
+            - form: helper/form.md
+            - formButton: helper/form-button.md
+            - formCaptcha: helper/form-captcha.md
+            - formCheckbox: helper/form-checkbox.md
+            - formColor: helper/form-color.md
+            - formDate: helper/form-date.md
+            - formDateTime: helper/form-date-time.md
+            - formDateTimeLocal: helper/form-date-time-local.md
+            - formEmail: helper/form-email.md
+            - formFile: helper/form-file.md
+            - formHidden: helper/form-hidden.md
+            - formImage: helper/form-image.md
+            - formMonth: helper/form-month.md
+            - formMonthSelect: helper/form-month-select.md
+            - formMultiCheckbox: helper/form-multicheckbox.md
+            - formNumber: helper/form-number.md
+            - formPassword: helper/form-password.md
+            - formRadio: helper/form-radio.md
+            - formRange: helper/form-range.md
+            - formReset: helper/form-reset.md
+            - formSearch: helper/form-search.md
+            - formSelect: helper/form-select.md
+            - formSubmit: helper/form-submit.md
+            - formTel: helper/form-tel.md
+            - formText: helper/form-text.md
+            - formTextarea: helper/form-textarea.md
+            - formTime: helper/form-time.md
+            - formUrl: helper/form-url.md
+            - formWeek: helper/form-week.md
+            - "Upload Progress":
+                - Intro: helper/upload-progress-helpers.md
+                - formFileApcProgress: helper/form-file-apc-progress.md
+                - formFileSessionProgress: helper/form-file-session-progress.md
+                - formFileUploadProgress: helper/form-file-upload-progress.md
+        - Advanced: advanced.md
+site_name: zend-form
+site_description: zend-form
+repo_url: 'https://github.com/zendframework/zend-form'
+copyright: 'Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
