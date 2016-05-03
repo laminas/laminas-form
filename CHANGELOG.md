@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#70](https://github.com/zendframework/zend-form/pull/70) adds and publishes
+  the documentation to https://zendframework.github.io/zend-form/
 
 ### Deprecated
 
