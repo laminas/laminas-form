@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 2.8.3 - TBD
+## 2.8.3 - 2016-05-03
 
 ### Added
 
@@ -37,7 +37,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#69](https://github.com/zendframework/zend-form/pull/69) fixes aliases in the
+  `FormElementManager` polyfill for zend-servicemanager v2 to ensure they are
+  canonicalized correctly.
 
 ## 2.8.2 - 2016-05-01
 
