@@ -242,6 +242,7 @@ class ConfigProvider
                 'FormText'                   => View\Helper\FormText::class,
                 'formtextarea'               => View\Helper\FormTextarea::class,
                 'form_text_area'             => View\Helper\FormTextarea::class,
+                'formTextarea'               => View\Helper\FormTextarea::class,
                 'formTextArea'               => View\Helper\FormTextarea::class,
                 'FormTextArea'               => View\Helper\FormTextarea::class,
                 'formtime'                   => View\Helper\FormTime::class,
