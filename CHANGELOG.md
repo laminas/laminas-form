@@ -38,7 +38,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#77](https://github.com/zendframework/zend-form/pull/77) updates
+  `Zend\Form\View\HelperConfig` to improve performance when running under
+  zend-servicemanager v3.
 
 ## 2.8.3 - 2016-05-03
 
