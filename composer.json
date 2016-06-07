@@ -67,6 +67,9 @@
             "ZendTest\\Form\\": "test/"
         }
     },
+    "config": {
+        "process-timeout": 0
+    },
     "scripts": {
         "check": [
             "@cs-check",
