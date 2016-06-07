@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#57](https://github.com/zendframework/zend-form/pull/57) adds new elements,
+  `FormSearch` and `FormTel`, which map to the `FormSearch` and `FormTel` view
+  helpers.
 
 ### Deprecated
 

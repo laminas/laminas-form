@@ -28,8 +28,10 @@ pages:
             - password: element/password.md
             - radio: element/radio.md
             - range: element/range.md
+            - search: element/search.md
             - select: element/select.md
             - submit: element/submit.md
+            - tel: element/tel.md
             - text: element/text.md
             - textarea: element/textarea.md
             - time: element/time.md
