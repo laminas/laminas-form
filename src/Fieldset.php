@@ -11,6 +11,7 @@ namespace Zend\Form;
 
 use Traversable;
 use Zend\Code\Reflection\ClassReflection;
+use Zend\Form\Element\Collection;
 use Zend\Hydrator;
 use Zend\Hydrator\HydratorAwareInterface;
 use Zend\Hydrator\HydratorInterface;
@@ -564,12 +565,18 @@ class Fieldset extends Element implements FieldsetInterface
         $hydrator = $this->getHydrator();
         $hydratableData = [];
 
-        foreach ($values as $name => $value) {
-            if (!$this->has($name)) {
-                continue;
+        foreach ($this->iterator as $element) {
+            $name = $element->getName();
+
+            if (!array_key_exists($name, $values)) {
+                if (!($element instanceof Collection)) {
+                    continue;
+                }
+
+                $values[$name] = [];
             }
 
-            $element = $this->iterator->get($name);
+            $value = $values[$name];
 
             if ($element instanceof FieldsetInterface && $element->allowValueBinding()) {
                 $value = $element->bindValues($value);

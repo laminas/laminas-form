@@ -527,9 +527,9 @@ class CollectionTest extends TestCase
      */
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections()
     {
-        $addressesFieldeset = new \ZendTest\Form\TestAsset\AddressFieldset();
-        $addressesFieldeset->setHydrator(new \Zend\Hydrator\ClassMethods());
-        $addressesFieldeset->remove('city');
+        $addressesFieldset = new \ZendTest\Form\TestAsset\AddressFieldset();
+        $addressesFieldset->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $addressesFieldset->remove('city');
 
         $form = new Form();
         $form->setHydrator(new ObjectPropertyHydrator());
@@ -537,7 +537,7 @@ class CollectionTest extends TestCase
             'name' => 'addresses',
             'type' => 'Collection',
             'options' => [
-                'target_element' => $addressesFieldeset,
+                'target_element' => $addressesFieldset,
                 'count' => 1
             ],
         ]);
