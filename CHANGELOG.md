@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#74](https://github.com/zendframework/zend-form/pull/74) adds an 
+  alias for the `FormTextarea` view helper that is referenced in the
+  documentation.
 
 ### Deprecated
 
