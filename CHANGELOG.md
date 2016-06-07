@@ -20,7 +20,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- Updates the composer suggestions list to remove those that were redundant, and
+  to add explicit constraints and reasons for each listed (e.g., zend-code is
+  required for annotations support).
 
 ## 2.8.4 - 2016-06-07
 
