@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.9.0 - TBD
+
+### Added
+
+- [#57](https://github.com/zendframework/zend-form/pull/57) adds new elements,
+  `FormSearch` and `FormTel`, which map to the `FormSearch` and `FormTel` view
+  helpers.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Updates the composer suggestions list to remove those that were redundant, and
+  to add explicit constraints and reasons for each listed (e.g., zend-code is
+  required for annotations support).
+
 ## 2.8.4 - 2016-06-07
 
 ### Added
