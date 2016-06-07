@@ -17,7 +17,9 @@ use Zend\Form\Element\Collection as Collection;
 use Zend\Form\Fieldset;
 use Zend\Form\Form;
 use Zend\Hydrator\ArraySerializable;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
+use ZendTest\Form\TestAsset\AddressFieldset;
 use ZendTest\Form\TestAsset\ArrayModel;
 use ZendTest\Form\TestAsset\CustomCollection;
 use ZendTest\Form\TestAsset\Entity\Address;
@@ -527,9 +529,9 @@ class CollectionTest extends TestCase
      */
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections()
     {
-        $addressesFieldeset = new \ZendTest\Form\TestAsset\AddressFieldset();
-        $addressesFieldeset->setHydrator(new \Zend\Hydrator\ClassMethods());
-        $addressesFieldeset->remove('city');
+        $addressesFieldset = new AddressFieldset();
+        $addressesFieldset->setHydrator(new ClassMethodsHydrator());
+        $addressesFieldset->remove('city');
 
         $form = new Form();
         $form->setHydrator(new ObjectPropertyHydrator());
@@ -537,7 +539,7 @@ class CollectionTest extends TestCase
             'name' => 'addresses',
             'type' => 'Collection',
             'options' => [
-                'target_element' => $addressesFieldeset,
+                'target_element' => $addressesFieldset,
                 'count' => 1
             ],
         ]);
