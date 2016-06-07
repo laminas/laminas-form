@@ -23,6 +23,10 @@ All notable changes to this project will be documented in this file, in reverse 
 - [#77](https://github.com/zendframework/zend-form/pull/77) updates
   `Zend\Form\View\HelperConfig` to improve performance when running under
   zend-servicemanager v3.
+- [#19](https://github.com/zendframework/zend-form/pull/19) provides a thorough
+  fix for an issue when removing all items in a collection associated with a
+  form. Prior to this release, values that existed in the collection persisted
+  when a form submission intended to remove them.
 
 ## 2.8.3 - 2016-05-03
 

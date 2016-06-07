@@ -15,6 +15,7 @@ use Zend\Form\Element;
 use Zend\Form\Factory;
 use Zend\Form\Fieldset;
 use Zend\Form\Form;
+use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
 use Zend\InputFilter\BaseInputFilter;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFilterFactory;
@@ -377,10 +378,10 @@ class FormTest extends TestCase
 
         $fileCollection = new Element\Collection('collection');
         $fileCollection->setOptions([
-             'count' => 2,
-             'allow_add' => false,
-             'allow_remove' => false,
-             'target_element' => $file,
+            'count' => 2,
+            'allow_add' => false,
+            'allow_remove' => false,
+            'target_element' => $file,
         ]);
         $this->form->add($fileCollection);
 
@@ -2157,5 +2158,40 @@ class FormTest extends TestCase
         $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
         $inputFilter = $this->form->getInputFilter();
         $this->assertSame($inputFilterFactory, $inputFilter->getFactory());
+    }
+
+    public function testShouldHydrateEmptyCollection()
+    {
+        $fieldset = new Fieldset('example');
+        $fieldset->add([
+            'type' => Element\Collection::class,
+            'name' => 'foo',
+            'options' => [
+                'label' => 'InputFilterProviderFieldset',
+                'count' => 1,
+                'target_element' => [
+                    'type' => 'text'
+                ]
+            ],
+        ]);
+
+        $this->form->add($fieldset);
+        $this->form->setBaseFieldset($fieldset);
+        $this->form->setHydrator(new ObjectPropertyHydrator());
+
+        $object = new Entity\SimplePublicProperty();
+        $object->foo = ['item 1', 'item 2'];
+
+        $this->form->bind($object);
+
+        $this->form->setData([
+            'submit' => 'Confirm',
+            'example' => [
+                //'foo' => [] // $_POST does't have this if collection is empty
+            ]
+        ]);
+
+        $this->assertTrue($this->form->isValid());
+        $this->assertEquals([], $this->form->getObject()->foo);
     }
 }

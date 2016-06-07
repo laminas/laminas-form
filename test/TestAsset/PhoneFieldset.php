@@ -12,9 +12,10 @@ namespace ZendTest\Form\TestAsset;
 use Zend\Form\Fieldset;
 use Zend\Form\Element;
 use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\InputFilter\InputFilterProviderInterface;
 use ZendTest\Form\TestAsset\Entity\Phone;
 
-class PhoneFieldset extends Fieldset
+class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {
@@ -30,5 +31,14 @@ class PhoneFieldset extends Fieldset
         $number->setLabel('Number')
                ->setAttribute('class', 'form-control');
         $this->add($number);
+    }
+
+    public function getInputFilterSpecification()
+    {
+        return [
+            'number' => [
+                'required' => true,
+            ]
+        ];
     }
 }
