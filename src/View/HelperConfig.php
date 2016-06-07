@@ -33,10 +33,14 @@ class HelperConfig implements ConfigInterface
     {
         $config = $this->toArray();
 
+        if (method_exists($serviceManager, 'configure')) {
+            $serviceManager->configure($config);
+            return $serviceManager;
+        }
+
         foreach ($config['factories'] as $service => $factory) {
             $serviceManager->setFactory($service, $factory);
         }
-
         foreach ($config['aliases'] as $alias => $target) {
             $serviceManager->setAlias($alias, $target);
         }
