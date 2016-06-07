@@ -15,6 +15,7 @@ use Zend\Form\Element;
 use Zend\Form\Factory;
 use Zend\Form\Fieldset;
 use Zend\Form\Form;
+use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
 use Zend\InputFilter\BaseInputFilter;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFilterFactory;
@@ -2163,7 +2164,7 @@ class FormTest extends TestCase
     {
         $fieldset = new Fieldset('example');
         $fieldset->add([
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => Element\Collection::class,
             'name' => 'foo',
             'options' => [
                 'label' => 'InputFilterProviderFieldset',
@@ -2176,7 +2177,7 @@ class FormTest extends TestCase
 
         $this->form->add($fieldset);
         $this->form->setBaseFieldset($fieldset);
-        $this->form->setHydrator(new \Zend\Hydrator\ObjectProperty());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
 
         $object = new Entity\SimplePublicProperty();
         $object->foo = ['item 1', 'item 2'];
