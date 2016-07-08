@@ -567,6 +567,35 @@ class FormTest extends TestCase
         $this->assertObjectNotHasAttribute('foobar', $model);
     }
 
+    public function testSettingValidationGroupWithoutCollectionBindsOnlyThoseValuesToModel()
+    {
+        $model = new stdClass;
+        $dataWithoutCollection = [
+            'foo' => 'abcde'
+        ];
+        $this->populateForm();
+        $this->form->add([
+            'type' => 'Zend\Form\Element\Collection',
+            'name' => 'categories',
+            'options' => [
+                'count' => 0,
+                'target_element' => [
+                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                ]
+            ]
+        ]);
+        $this->form->setHydrator(new Hydrator\ObjectProperty());
+        $this->form->bind($model);
+        $this->form->setData($dataWithoutCollection);
+        $this->form->setValidationGroup(array('foo'));
+        $this->form->isValid();
+
+        $this->assertObjectHasAttribute('foo', $model);
+        $this->assertEquals('abcde', $model->foo);
+        $this->assertObjectNotHasAttribute('categories', $model);
+        $this->assertObjectNotHasAttribute('foobar', $model);
+    }
+
     public function testCanBindModelsToArraySerializableObjects()
     {
         $model = new TestAsset\Model();
