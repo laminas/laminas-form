@@ -587,7 +587,7 @@ class FormTest extends TestCase
         $this->form->setHydrator(new Hydrator\ObjectProperty());
         $this->form->bind($model);
         $this->form->setData($dataWithoutCollection);
-        $this->form->setValidationGroup(array('foo'));
+        $this->form->setValidationGroup(['foo']);
         $this->form->isValid();
 
         $this->assertObjectHasAttribute('foo', $model);

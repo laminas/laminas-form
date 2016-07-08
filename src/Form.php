@@ -357,13 +357,14 @@ class Form extends Fieldset implements FormInterface
         }
 
         $data = $this->prepareBindData($data, $this->data);
+        $validationGroup = $this->getValidationGroup();
 
         // If there is a base fieldset, only hydrate beginning from the base fieldset
         if ($this->baseFieldset !== null) {
             $data = $data[$this->baseFieldset->getName()];
-            $this->object = $this->baseFieldset->bindValues($data);
+            $this->object = $this->baseFieldset->bindValues($data, $validationGroup[$this->baseFieldset->getName()]);
         } else {
-            $this->object = parent::bindValues($data);
+            $this->object = parent::bindValues($data, $validationGroup);
         }
     }
 

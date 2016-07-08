@@ -557,9 +557,11 @@ class Fieldset extends Element implements FieldsetInterface
      * Bind values to the bound object
      *
      * @param array $values
+     * @param array $validationGroup
+     *
      * @return mixed|void
      */
-    public function bindValues(array $values = [])
+    public function bindValues(array $values = [], array $validationGroup = null)
     {
         $objectData = $this->extract();
         $hydrator = $this->getHydrator();
@@ -567,6 +569,10 @@ class Fieldset extends Element implements FieldsetInterface
 
         foreach ($this->iterator as $element) {
             $name = $element->getName();
+
+            if ($validationGroup && (array_key_exists($name, $validationGroup) || !in_array($name, $validationGroup))) {
+                continue;
+            }
 
             if (!array_key_exists($name, $values)) {
                 if (!($element instanceof Collection)) {
@@ -579,7 +585,7 @@ class Fieldset extends Element implements FieldsetInterface
             $value = $values[$name];
 
             if ($element instanceof FieldsetInterface && $element->allowValueBinding()) {
-                $value = $element->bindValues($value);
+                $value = $element->bindValues($value, empty($validationGroup[$name]) ? null : $validationGroup[$name]);
             }
 
             // skip post values for disabled elements, get old value from object
