@@ -434,6 +434,11 @@ if ($form->isValid()) {
     $messages = $form->getMessages();
 }
 ```
+**Note:** When form contains select element with options filled from database, 
+for example, make sure the select element contains options **before** validation. 
+Otherwise a `NotInArray` error message after validation will be added. 
+Another way is to disable an `InArray` validator for the select element 
+`$element->setDisableInArrayValidator(true);`.
 
 You can get the raw data if you want, by accessing the composed input filter.
 
