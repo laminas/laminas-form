@@ -32,10 +32,14 @@ class Factory
     /**
      * @param FormElementManager $formElementManager
      */
-    public function __construct(FormElementManager $formElementManager = null)
+    public function __construct(FormElementManager $formElementManager = null, InputFilterFactory $inputFilterFactory = null)
     {
         if ($formElementManager) {
             $this->setFormElementManager($formElementManager);
+        }
+        
+        if($inputFilterFactory) {
+            $this->setInputFilterFactory($inputFilterFactory);
         }
     }
 
