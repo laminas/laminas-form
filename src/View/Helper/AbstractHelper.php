@@ -46,6 +46,13 @@ abstract class AbstractHelper extends BaseAbstractHelper
     ];
 
     /**
+     * Prefixes of translatable HTML attributes
+     *
+     * @var array
+     */
+    protected $translatableAttributePrefixes = [];
+
+    /**
      * @var Doctype
      */
     protected $doctypeHelper;
@@ -219,12 +226,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
                 }
             }
 
-            //check if attribute is translatable
-            if (isset($this->translatableAttributes[$key]) && !empty($value)) {
-                if (($translator = $this->getTranslator()) !== null) {
-                    $value = $translator->translate($value, $this->getTranslatorTextDomain());
-                }
-            }
+            //check if attribute is translatable and translate it
+            $value = $this->translateHtmlAttributeValue($key, $value);
 
             //@TODO Escape event attributes like AbstractHtmlElement view helper does in htmlAttribs ??
             $strings[] = sprintf('%s="%s"', $escape($key), $escapeAttr($value));
@@ -396,5 +399,61 @@ abstract class AbstractHelper extends BaseAbstractHelper
             ? $this->booleanAttributes[$attribute]['on']
             : $this->booleanAttributes[$attribute]['off']
         );
+    }
+
+    /**
+     * Translates the value of the HTML attribute if it should be translated and this view helper has a translator
+     *
+     * @param string $key
+     * @param string $value
+     *
+     * @return string
+     */
+    protected function translateHtmlAttributeValue($key, $value)
+    {
+        if (empty($value) || ($this->getTranslator() === null)) {
+            return $value;
+        }
+
+        if (isset($this->translatableAttributes[$key])) {
+            return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
+        } else {
+            foreach ($this->translatableAttributePrefixes as $prefix) {
+                if (mb_substr($key, 0, mb_strlen($prefix)) === $prefix) {
+                    // prefix matches => return translated $value
+                    return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
+                }
+            }
+        }
+
+        return $value;
+    }
+
+    /**
+     * Adds an HTML attribute to the list of translateale attributes
+     *
+     * @param string $attribute
+     *
+     * @return $this
+     */
+    public function addTranslatableAttribute($attribute)
+    {
+        $this->translatableAttributes[$attribute] = true;
+
+        return $this;
+    }
+
+    /**
+     * Adds an HTML attribute to the list of translateale attributes
+     *
+     * @param string $prefix
+     *
+     * @return $this
+     */
+    public function addTranslatableAttributePrefix($prefix)
+    {
+        $this->translatableAttributePrefixes[] = $prefix;
+
+        return $this;
     }
 }
