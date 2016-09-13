@@ -8,8 +8,13 @@
 namespace ZendTest\Form\Integration;
 
 use PHPUnit_Framework_TestCase as TestCase;
+use Prophecy\Argument;
+use Zend\Form\Element;
+use Zend\Form\Form;
+use Zend\Form\FormElementManager;
 use Zend\Form\FormElementManagerFactory;
 use Zend\ServiceManager\Config;
+use Zend\ServiceManager\InitializerInterface;
 use Zend\ServiceManager\ServiceManager;
 
 class ServiceManagerTest extends TestCase
@@ -26,21 +31,92 @@ class ServiceManagerTest extends TestCase
         $serviceManager = new ServiceManager();
         $serviceManagerConfig->configureServiceManager($serviceManager);
 
+        $formElementManager = $serviceManager->get('FormElementManager');
+
+        $test = 0;
+        $spy = function () use (&$test) {
+            TestCase::assertEquals(1, $test);
+        };
+
+        $element = $this->prophesize(Element::class);
+        $element->init()->will($spy);
+
+        $initializer = $this->prophesize(InitializerInterface::class);
+        $incrementTest = function () use (&$test) {
+            $test += 1;
+        };
+
+        if (method_exists($serviceManager, 'configure')) {
+            $initializer->__invoke(
+                $serviceManager,
+                $element->reveal()
+            )->will($incrementTest)->shouldBeCalled();
+        } else {
+            $initializer->initialize(
+                $element->reveal(),
+                $formElementManager
+            )->will($incrementTest)->shouldBeCalled();
+        }
+
         $formElementManagerConfig = new Config([
-            'invokables' => [
-                'InitializableElement' => TestAsset\InitializableElement::class,
+            'factories' => [
+                'InitializableElement' => function () use ($element) {
+                    return $element->reveal();
+                },
             ],
             'initializers' => [
-                TestAsset\DependencyInitializer::class,
+                $initializer->reveal(),
             ],
         ]);
 
-        $formElementManager = $serviceManager->get('FormElementManager');
         $formElementManagerConfig->configureServiceManager($formElementManager);
 
-        $element = $formElementManager->get('InitializableElement');
+        $formElementManager->get('InitializableElement');
+    }
 
-        $this->assertSame(1, $element->dependency);
-        $this->assertSame(1, $element->dependencyAtTimeOfInit);
+    public function testInjectFactoryInitializerShouldBeFirst()
+    {
+        // Reproducing the behaviour of a full stack MVC + ModuleManager
+        $serviceManagerConfig = new Config([
+            'factories' => [
+                'FormElementManager' => FormElementManagerFactory::class,
+            ],
+        ]);
+
+        $serviceManager = new ServiceManager();
+        $serviceManagerConfig->configureServiceManager($serviceManager);
+
+        $formElementManager = $serviceManager->get('FormElementManager');
+
+        $initializer = $this->prophesize(InitializerInterface::class);
+        $formElementManagerAssertion = function ($form) use ($formElementManager) {
+            TestCase::assertInstanceOf(Form::class, $form);
+            TestCase::assertSame($formElementManager, $form->getFormFactory()->getFormElementManager());
+            return true;
+        };
+        if (method_exists($serviceManager, 'configure')) {
+            $initializer->__invoke(
+                $serviceManager,
+                Argument::that($formElementManagerAssertion)
+            )->shouldBeCalled();
+        } else {
+            $initializer->initialize(
+                Argument::that($formElementManagerAssertion),
+                $formElementManager
+            )->shouldBeCalled();
+        }
+
+        $formElementManagerConfig = new Config([
+            'invokables' => [
+                'MyForm' => Form::class,
+            ],
+            'initializers' => [
+                $initializer->reveal(),
+            ],
+        ]);
+
+        $formElementManagerConfig->configureServiceManager($formElementManager);
+
+        $formElementManager->get('Form');
     }
 }
