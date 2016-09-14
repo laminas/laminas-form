@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#85](https://github.com/zendframework/zend-form/pull/85) adds support for the
+  zend-code 3.0 series (retaining support for the 2.* series).
 
 ### Deprecated
 
