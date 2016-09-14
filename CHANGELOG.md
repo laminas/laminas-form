@@ -18,7 +18,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#119](https://github.com/zendframework/zend-form/pull/119) fixes the order in
+  which the default initializers are injected into the `FormElementManager`,
+  ensuring that the initializer injecting a factory into a `FormFactoryAware`
+  instance is triggered before the initializer that calls `init()`, and also
+  that the initializer calling `init()` is always triggered last.
 
 ## 2.9.0 - 2016-06-07
 
