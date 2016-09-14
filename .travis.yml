@@ -26,7 +26,6 @@ env:
     - secure: "H5t5GcHDEX230xPN0QvXAkKzziCdYb+YQ9EFCsD+hJLm1kdYKmg7NbBibPIr86js01iiVB+q2OZQ+pk6kIigSmNu/zeBR2q2zJYKbOUTGvAGj0pIsje7XpZr/FcSOHUOtm/8yHD8z3KNoood4au3Zsmr8D2bbGvqLe3ZfwFmzIsPTFmB5IvfvHiN4j6NsOP9rGlLzp93Gquv1XSHjuvM2Lr8Jbornf5JVqXaHgIniTRlBzckIcwhaMJKRUjT0jxAnKEZKa9NLkRaj40g+pFDVXxJwq7/5gDj+g7684lbSToZU29ye/akvk1KAkGeXE6f/CYqn/1qi2cfMyFRuwzCaLbKTci7EQBho0iWp39eq/jVT/+XpUKDJikW0xJZYnUMd78uZBseE8iNUdaLojoVUYkOaAevIjr+VaF0j1GWmgcChN2NHyCOj++PNZBLovfL6d2RPUFD82vo6oA6MvtsuZDfEV9F1mWNHcDkb7PgS0Yh6Ag+47iRKptb0nMGgthE2ErieNE7CX1kp0u4tjSQK44XSYP4ObAGCo/Wuxl6xxlgwEYCqGOr+Tu2g2s0R4ocQVsWeRlvKBVdQr5peVxOMcK5Zj15sK9BQ1gjINf6IcpEeh0Tg1Cf9Cy8PwPds/Ym7lc6jv71c0LUCZiLQ/hTkd1euCG3ykzkQ9CEGt+ESLc="
 
 matrix:
-  fast_finish: true
   include:
     - php: 5.5
       env:
@@ -44,12 +43,12 @@ matrix:
     - php: 5.6
       env:
         - DEPS=locked
-        - TEST_COVERAGE=true
         - DEPLOY_DOCS="$(if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then echo -n 'true' ; else echo -n 'false' ; fi)"
         - PATH="$HOME/.local/bin:$PATH"
     - php: 5.6
       env:
         - DEPS=latest
+        - TEST_COVERAGE=true
     - php: 7
       env:
         - DEPS=lowest
