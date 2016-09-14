@@ -203,22 +203,6 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
     protected $instanceOf = ElementInterface::class;
 
     /**
-     * Constructor
-     *
-     * Overrides parent constructor in order to add the initializer methods injectFactory()
-     * and callElementInit().
-     *
-     * @param ContainerInterface $parentLocator
-     * @param null|array $config
-     */
-    public function __construct(ContainerInterface $parentLocator = null, array $config = [])
-    {
-        $this->addInitializer([$this, 'injectFactory']);
-        parent::__construct($parentLocator, $config);
-        $this->addInitializer([$this, 'callElementInit']);
-    }
-
-    /**
      * Inject the factory to any element that implements FormFactoryAwareInterface
      *
      * @param ContainerInterface $container
@@ -298,5 +282,33 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
                 (is_object($plugin) ? get_class($plugin) : gettype($plugin))
             ));
         }
+    }
+
+    /**
+     * Overrides parent::configure in order to ensure default initializers are in expected positions.
+     *
+     * Always pushes `injectFactory` to top of initializer stack, and
+     * `callElementInit` to the bottom.
+     *
+     * {@inheritDoc}
+     */
+    public function configure(array $config)
+    {
+        $firstInitializer = [$this, 'injectFactory'];
+        $lastInitializer  = [$this, 'callElementInit'];
+
+        foreach ([$firstInitializer, $lastInitializer] as $default) {
+            if (false === ($index = array_search($default, $this->initializers))) {
+                continue;
+            }
+            unset($this->initializers[$index]);
+        }
+
+        parent::configure($config);
+
+        array_unshift($this->initializers, $firstInitializer);
+        array_push($this->initializers, $lastInitializer);
+
+        return $this;
     }
 }
