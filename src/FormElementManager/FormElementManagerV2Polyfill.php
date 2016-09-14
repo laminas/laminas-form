@@ -175,10 +175,11 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
      */
     public function __construct($configInstanceOrParentLocator = null, array $v3config = [])
     {
-        parent::__construct($configInstanceOrParentLocator, $v3config);
+        // Provide default initializers, ensuring correct order
+        array_unshift($this->initializers, [$this, 'injectFactory']);
+        array_push($this->initializers, [$this, 'callElementInit']);
 
-        $this->addInitializer([$this, 'injectFactory']);
-        $this->addInitializer([$this, 'callElementInit'], false);
+        parent::__construct($configInstanceOrParentLocator, $v3config);
     }
 
     /**
@@ -260,5 +261,33 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
                 (is_object($plugin) ? get_class($plugin) : gettype($plugin))
             ));
         }
+    }
+
+    /**
+     * Overrides parent::addInitializer in order to ensure default initializers are in expected positions.
+     *
+     * Always pushes `injectFactory` to top of initializer stack, and
+     * `callElementInit` to the bottom.
+     *
+     * {@inheritDoc}
+     */
+    public function addInitializer($initializer, $topOfStack = true)
+    {
+        $firstInitializer = [$this, 'injectFactory'];
+        $lastInitializer  = [$this, 'callElementInit'];
+
+        foreach ([$firstInitializer, $lastInitializer] as $default) {
+            if (false === ($index = array_search($default, $this->initializers))) {
+                continue;
+            }
+            unset($this->initializers[$index]);
+        }
+
+        parent::addInitializer($initializer, $topOfStack);
+
+        array_unshift($this->initializers, $firstInitializer);
+        array_push($this->initializers, $lastInitializer);
+
+        return $this;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @link      http://github.com/zendframework/zend-servicemanager for the canonical source repository
+ * @link      http://github.com/zendframework/zend-form for the canonical source repository
  * @copyright Copyright (c) 2016 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
@@ -74,7 +74,7 @@ class ServiceManagerTest extends TestCase
         $formElementManager->get('InitializableElement');
     }
 
-    public function testInjectFactoryInitializerShouldBeFirst()
+    public function testInjectFactoryInitializerShouldTriggerBeforeInitInitializer()
     {
         // Reproducing the behaviour of a full stack MVC + ModuleManager
         $serviceManagerConfig = new Config([
@@ -107,8 +107,10 @@ class ServiceManagerTest extends TestCase
         }
 
         $formElementManagerConfig = new Config([
-            'invokables' => [
-                'MyForm' => Form::class,
+            'factories' => [
+                'MyForm' => function () {
+                    return new TestAsset\Form();
+                },
             ],
             'initializers' => [
                 $initializer->reveal(),
@@ -117,6 +119,8 @@ class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig->configureServiceManager($formElementManager);
 
-        $formElementManager->get('Form');
+        /** @var TestAsset\Form */
+        $form = $formElementManager->get('MyForm');
+        $this->assertSame($formElementManager, $form->elementManagerAtInit);
     }
 }
