@@ -290,8 +290,7 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
      * Always pushes `injectFactory` to top of initializer stack, and
      * `callElementInit` to the bottom.
      *
-     * @param array $config
-     * @return self
+     * {@inheritDoc}
      */
     public function configure(array $config)
     {
