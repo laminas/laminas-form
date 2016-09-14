@@ -24,6 +24,10 @@ All notable changes to this project will be documented in this file, in reverse 
   ensuring that the initializer injecting a factory into a `FormFactoryAware`
   instance is triggered before the initializer that calls `init()`, and also
   that the initializer calling `init()` is always triggered last.
+- [#106](https://github.com/zendframework/zend-form/pull/106) updates behavior
+  around binding collection values to a fieldset or form such that if the
+  collection is not part of the current validation group, its value will not be
+  overwritten with an empty set.
 
 ## 2.9.0 - 2016-06-07
 

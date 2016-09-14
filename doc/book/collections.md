@@ -816,3 +816,30 @@ cannot say, "validate the name input for the first element of the categories
 collection, but don't validate it for the second one."
 
 Now, the form validates (and the `url` is set to null as we didn't specify it).
+
+## Preventing validation from wiping out previous collection items
+
+In some cases, you may be representing collections within a model, but not
+validating them; as an example, if you use a validation group that excludes the
+collections from validation so that they remain untouched after binding.
+
+Starting in 2.8.4, behavior around collections changed in order to fix some
+underlying bugs. One such change is that if a collection is found in a form, but
+has no associated data, an empty array is assigned to it, even when not in the
+validation group. This effectively wipes out the collection data when you bind
+values.
+
+To prevent this behavior, starting in 2.9.1 you may pass an optional second
+argument to `bindValues()` on either a fieldset or collection,
+`$validationGroup`; when present, these instances will first check if the
+collection is in the validation group before binding the value; if it is not,
+the collection will not be represented. The `Form` class has been updated to
+pass the validation group, if present, on to fieldset and collection instances
+when performing `bindValues()` operations.
+
+For more details, refer to the following issues:
+
+- [zendframework/zend-form#19](https://github.com/zendframework/zend-form/pull/19)
+- [zendframework/zend-form#102](https://github.com/zendframework/zend-form/pull/102)
+- [zendframework/zend-form#103](https://github.com/zendframework/zend-form/pull/103)
+- [zendframework/zend-form#106](https://github.com/zendframework/zend-form/pull/106)
