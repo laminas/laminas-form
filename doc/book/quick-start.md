@@ -435,6 +435,20 @@ if ($form->isValid()) {
 }
 ```
 
+> ### Always populate select elements with options
+> 
+> Always ensure that options for a select element are populated *prior* to
+> validation; otherwise, the element will fail validation, and you will receive
+> a `NotInArray` error message.
+> 
+> If you are populating the options from a database or other data source, make
+> sure this is done prior to validation. Alternately, you may disable the
+> `InArray` validator programmatically prior to validation:
+>
+> ```php
+> $element->setDisableInArrayValidator(true);
+> ```
+
 You can get the raw data if you want, by accessing the composed input filter.
 
 ```php
