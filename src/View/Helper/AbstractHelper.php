@@ -434,7 +434,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $attribute
      *
-     * @return $this
+     * @return AbstractHelper
      */
     public function addTranslatableAttribute($attribute)
     {
@@ -448,7 +448,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $prefix
      *
-     * @return $this
+     * @return AbstractHelper
      */
     public function addTranslatableAttributePrefix($prefix)
     {

@@ -58,24 +58,7 @@ echo $this->formLabel($element);
 
 ## Label translation
 
-Attaching a translator and setting a text domain:
-
-```php
-// Setting a translator
-$this->formLabel()->setTranslator($translator);
-
-// Setting a text domain
-$this->formLabel()->setTranslatorTextDomain('my-text-domain');
-
-// Setting both
-$this->formLabel()->setTranslator($translator, 'my-text-domain');
-```
-
-> ### Enabling translation
->
-> If you have a translator in your application container under either the key,
-> `translator` or `MvcTranslator`, the view helper plugin manager will
-> automatically attach the translator to the `FormLabel` view helper.
+See [AbstractHelper Translation](abstract-helper.md#translation).
 
 ## Public methods
 
