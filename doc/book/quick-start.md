@@ -1031,7 +1031,7 @@ use Zend\Form\Annotation;
 
 /**
  * @Annotation\Name("user")
- * @Annotation\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Annotation\Hydrator("Zend\Hydrator\ObjectProperty")
  */
 class User
 {
@@ -1059,7 +1059,7 @@ class User
 ```
 
 The above will hint to the annotation builder to create a form with name "user",
-which uses the hydrator `Zend\Stdlib\Hydrator\ObjectProperty`. That form will
+which uses the hydrator `Zend\Hydrator\ObjectProperty`. That form will
 have two elements, "username" and "email". The "username" element will have an
 associated input that has a `StringTrim` filter, and two validators: a
 `StringLength` validator indicating the username is between 1 and 25 characters,
