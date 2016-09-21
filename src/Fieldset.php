@@ -570,7 +570,7 @@ class Fieldset extends Element implements FieldsetInterface
         foreach ($this->iterator as $element) {
             $name = $element->getName();
 
-            if ($validationGroup && (array_key_exists($name, $validationGroup) || !in_array($name, $validationGroup))) {
+            if ($validationGroup && (!array_key_exists($name, $validationGroup) && !in_array($name, $validationGroup))) {
                 continue;
             }
 
