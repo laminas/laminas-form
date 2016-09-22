@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 2.9.2 - TBD
+## 2.9.2 - 2016-09-22
 
 ### Added
 
@@ -36,7 +36,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#122](https://github.com/zendframework/zend-form/pull/122) fixes collection
+  binding following successful validation. The fix introduced in #106, while it
+  corrected the behavior around binding a collection that was not re-submitted,
+  broke behavior around binding submitted collections. #122 corrects the issue,
+  retaining the fix from #106.
 
 ## 2.9.1 - 2016-09-14
 
