@@ -37,8 +37,8 @@ class Factory
         if ($formElementManager) {
             $this->setFormElementManager($formElementManager);
         }
-        
-        if($inputFilterFactory) {
+
+        if ($inputFilterFactory) {
             $this->setInputFilterFactory($inputFilterFactory);
         }
     }

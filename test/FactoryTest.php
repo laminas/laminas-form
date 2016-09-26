@@ -469,7 +469,7 @@ class FactoryTest extends TestCase
         }
         $this->assertTrue($found);
     }
-    
+
     public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByNameAndSetinputFilterFactoryInConstructor()
     {
         $validatorManager = new \Zend\Validator\ValidatorPluginManager($this->services);
@@ -481,7 +481,7 @@ class FactoryTest extends TestCase
         $inputFilterFactory = new \Zend\InputFilter\Factory();
         $inputFilterFactory->setDefaultValidatorChain($defaultValidatorChain);
 
-        $factory = new FormFactory(null,$inputFilterFactory);
+        $factory = new FormFactory(null, $inputFilterFactory);
 
         $form = $factory->createForm([
             'name'         => 'foo',
