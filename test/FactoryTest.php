@@ -469,6 +469,60 @@ class FactoryTest extends TestCase
         }
         $this->assertTrue($found);
     }
+    
+    public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByNameAndSetinputFilterFactoryInConstructor()
+    {
+        $validatorManager = new \Zend\Validator\ValidatorPluginManager($this->services);
+        $validatorManager->setInvokableClass('baz', 'Zend\Validator\Digits');
+
+        $defaultValidatorChain = new \Zend\Validator\ValidatorChain();
+        $defaultValidatorChain->setPluginManager($validatorManager);
+
+        $inputFilterFactory = new \Zend\InputFilter\Factory();
+        $inputFilterFactory->setDefaultValidatorChain($defaultValidatorChain);
+
+        $factory = new FormFactory(null,$inputFilterFactory);
+
+        $form = $factory->createForm([
+            'name'         => 'foo',
+            'factory'      => $factory,
+            'input_filter' => [
+                'bar' => [
+                    'name'       => 'bar',
+                    'required'   => true,
+                    'validators' => [
+                        [
+                            'name' => 'baz',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+
+        $inputFilter = $form->getInputFilter();
+        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $inputFilter);
+
+        $input = $inputFilter->get('bar');
+        $this->assertInstanceOf('Zend\InputFilter\Input', $input);
+
+        $validatorChain = $input->getValidatorChain();
+        $this->assertInstanceOf('Zend\Validator\ValidatorChain', $validatorChain);
+
+        $validatorArray = $validatorChain->getValidators();
+        $found = false;
+        foreach ($validatorArray as $validator) {
+            $validatorInstance = $validator['instance'];
+            $this->assertInstanceOf('Zend\Validator\ValidatorInterface', $validatorInstance);
+
+            if ($validatorInstance instanceof \Zend\Validator\Digits) {
+                $found = true;
+                break;
+            }
+        }
+        $this->assertTrue($found);
+    }
 
     public function testCanCreateFormWithHydratorAndInputFilterAndElementsAndFieldsets()
     {
