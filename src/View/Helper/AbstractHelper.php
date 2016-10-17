@@ -21,6 +21,22 @@ use Zend\View\Helper\EscapeHtmlAttr;
 abstract class AbstractHelper extends BaseAbstractHelper
 {
     /**
+     * The default translatable HTML attributes
+     *
+     * @var array
+     */
+    protected static $defaultTranslatableHtmlAttributes = [
+        'title' => true,
+    ];
+
+    /**
+     * The default translatable HTML attribute prefixes
+     *
+     * @var array
+     */
+    protected static $defaultTranslatableHtmlAttributePrefixes = [];
+
+    /**
      * Standard boolean attributes, with expected values for enabling/disabling
      *
      * @var array
@@ -42,7 +58,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     protected $translatableAttributes = [
         'placeholder' => true,
-        'title' => true,
     ];
 
     /**
@@ -415,12 +430,18 @@ abstract class AbstractHelper extends BaseAbstractHelper
             return $value;
         }
 
-        if (isset($this->translatableAttributes[$key])) {
+        if (isset($this->translatableAttributes[$key]) || isset(self::$defaultTranslatableHtmlAttributes[$key])) {
             return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
         } else {
             foreach ($this->translatableAttributePrefixes as $prefix) {
                 if (mb_substr($key, 0, mb_strlen($prefix)) === $prefix) {
                     // prefix matches => return translated $value
+                    return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
+                }
+            }
+            foreach (self::$defaultTranslatableHtmlAttributePrefixes as $prefix) {
+                if (mb_substr($key, 0, mb_strlen($prefix)) === $prefix) {
+                    // default prefix matches => return translated $value
                     return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
                 }
             }
@@ -430,7 +451,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     }
 
     /**
-     * Adds an HTML attribute to the list of translateale attributes
+     * Adds an HTML attribute to the list of translatable attributes
      *
      * @param string $attribute
      *
@@ -444,7 +465,17 @@ abstract class AbstractHelper extends BaseAbstractHelper
     }
 
     /**
-     * Adds an HTML attribute to the list of translateale attributes
+     * Adds an HTML attribute to the list of the default translatable attributes
+     *
+     * @param string $attribute
+     */
+    public static function addDefaultTranslatableAttribute($attribute)
+    {
+        self::$defaultTranslatableHtmlAttributes[$attribute] = true;
+    }
+
+    /**
+     * Adds an HTML attribute to the list of translatable attributes
      *
      * @param string $prefix
      *
@@ -455,5 +486,15 @@ abstract class AbstractHelper extends BaseAbstractHelper
         $this->translatableAttributePrefixes[] = $prefix;
 
         return $this;
+    }
+
+    /**
+     * Adds an HTML attribute to the list of translatable attributes
+     *
+     * @param string $prefix
+     */
+    public static function addDefaultTranslatableAttributePrefix($prefix)
+    {
+        self::$defaultTranslatableHtmlAttributePrefixes[] = $prefix;
     }
 }
