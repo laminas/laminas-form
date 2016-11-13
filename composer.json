@@ -36,8 +36,8 @@
         "zendframework/zend-validator": "^2.6",
         "zendframework/zend-view": "^2.6.2",
         "zendframework/zendservice-recaptcha": "*",
-        "fabpot/php-cs-fixer": "1.7.*",
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^4.8",
+        "zendframework/zend-coding-standard": "~1.0.0"
     },
     "suggest": {
         "zendframework/zend-captcha": "^2.5.4, required for using CAPTCHA form elements",
