@@ -79,19 +79,22 @@ class FormRadioTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label'));
 
         $this->assertContains(
-            sprintf('>%s</label>', 'This is the first label'), $markup
+            sprintf('>%s</label>', 'This is the first label'),
+            $markup
         );
         $this->assertContains(sprintf('value="%s"', 'value1'), $markup);
 
         $this->assertContains(
-            sprintf('>%s</label>', 'This is the second label (overridden)'), $markup
+            sprintf('>%s</label>', 'This is the second label (overridden)'),
+            $markup
         );
         $this->assertContains(sprintf('value="%s"', 'value2'), $markup);
         $this->assertEquals(1, substr_count($markup, 'class="label-class"'));
         $this->assertEquals(1, substr_count($markup, 'class="input-class"'));
 
         $this->assertContains(
-            sprintf('>%s</label>', 'This is the third label'), $markup
+            sprintf('>%s</label>', 'This is the third label'),
+            $markup
         );
         $this->assertContains(sprintf('value="%s"', 'value3'), $markup);
     }

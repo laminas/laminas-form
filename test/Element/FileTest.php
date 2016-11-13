@@ -32,8 +32,10 @@ class FileTest extends TestCase
         $formMock = $this->getMock('Zend\Form\Form');
         $formMock->expects($this->exactly(1))
             ->method('setAttribute')
-            ->with($this->stringContains('enctype'),
-                   $this->stringContains('multipart/form-data'));
+            ->with(
+                $this->stringContains('enctype'),
+                $this->stringContains('multipart/form-data')
+            );
         $file->prepareElement($formMock);
     }
 }

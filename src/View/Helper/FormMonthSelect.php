@@ -51,7 +51,7 @@ class FormMonthSelect extends AbstractHelper
      */
     public function __construct()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             throw new Exception\ExtensionNotLoadedException(sprintf(
                 '%s component requires the intl PHP extension',
                 __NAMESPACE__
@@ -74,7 +74,7 @@ class FormMonthSelect extends AbstractHelper
      */
     public function __invoke(ElementInterface $element = null, $dateType = IntlDateFormatter::LONG, $locale = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -97,7 +97,7 @@ class FormMonthSelect extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
-        if (!$element instanceof MonthSelectElement) {
+        if (! $element instanceof MonthSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s requires that the element is of type Zend\Form\Element\MonthSelect',
                 __METHOD__

@@ -79,7 +79,7 @@ class FormMultiCheckbox extends FormInput
      */
     public function __invoke(ElementInterface $element = null, $labelPosition = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -99,7 +99,7 @@ class FormMultiCheckbox extends FormInput
      */
     public function render(ElementInterface $element)
     {
-        if (!$element instanceof MultiCheckboxElement) {
+        if (! $element instanceof MultiCheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s requires that the element is of type Zend\Form\Element\MultiCheckbox',
                 __METHOD__
@@ -301,7 +301,7 @@ class FormMultiCheckbox extends FormInput
     public function setLabelPosition($labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
-        if (!in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
+        if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
                 __METHOD__,
@@ -437,7 +437,7 @@ class FormMultiCheckbox extends FormInput
             $this->inputHelper = $this->view->plugin('form_input');
         }
 
-        if (!$this->inputHelper instanceof FormInput) {
+        if (! $this->inputHelper instanceof FormInput) {
             $this->inputHelper = new FormInput();
         }
 
@@ -459,7 +459,7 @@ class FormMultiCheckbox extends FormInput
             $this->labelHelper = $this->view->plugin('form_label');
         }
 
-        if (!$this->labelHelper instanceof FormLabel) {
+        if (! $this->labelHelper instanceof FormLabel) {
             $this->labelHelper = new FormLabel();
         }
 

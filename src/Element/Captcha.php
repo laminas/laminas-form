@@ -51,7 +51,7 @@ class Captcha extends Element implements InputProviderInterface
     {
         if (is_array($captcha) || $captcha instanceof Traversable) {
             $captcha = ZendCaptcha\Factory::factory($captcha);
-        } elseif (!$captcha instanceof ZendCaptcha\AdapterInterface) {
+        } elseif (! $captcha instanceof ZendCaptcha\AdapterInterface) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either a Zend\Captcha\AdapterInterface or specification to pass to Zend\Captcha\Factory; received "%s"',
                 __METHOD__,

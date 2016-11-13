@@ -209,7 +209,7 @@ class FormTest extends TestCase
 
     public function testHasValidatedFlag()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
@@ -253,7 +253,7 @@ class FormTest extends TestCase
 
     public function testSpecifyingValidationGroupForcesPartialValidation()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
@@ -275,7 +275,7 @@ class FormTest extends TestCase
 
     public function testSpecifyingValidationGroupForNestedFieldsetsForcesPartialValidation()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
@@ -1073,7 +1073,7 @@ class FormTest extends TestCase
 
     public function testCanCorrectlyExtractDataFromOneToManyRelationship()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
@@ -1090,7 +1090,7 @@ class FormTest extends TestCase
 
     public function testCanCorrectlyPopulateDataToOneToManyEntites()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped("The Intl extension is not loaded");
         }
         $product = $this->getOneToManyEntity();
@@ -1122,7 +1122,7 @@ class FormTest extends TestCase
 
     public function testCanCorrectlyPopulateOrphanedEntities()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped("The Intl extension is not loaded");
         }
 
@@ -1279,7 +1279,7 @@ class FormTest extends TestCase
         $fieldset->setUseAsBaseFieldset(true);
         $this->form->add($fieldset);
         $this->form->setValidationGroup([
-            'foobar'=> [
+            'foobar' => [
                 'foo',
             ]
         ]);
@@ -1567,7 +1567,7 @@ class FormTest extends TestCase
 
     public function testPreserveEntitiesBoundToCollectionAfterValidation()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }

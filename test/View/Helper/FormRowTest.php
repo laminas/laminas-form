@@ -79,7 +79,7 @@ class FormRowTest extends TestCase
         $fooElement->setOptions([
             'label'         => 'The value for foo:',
             'label_options' => [
-                'label_position' =>'prepend'
+                'label_position' => 'prepend'
             ],
         ]);
 
@@ -347,8 +347,8 @@ class FormRowTest extends TestCase
         $element = new Element\MultiCheckbox('hobby');
         $element->setLabel("Hobby");
         $element->setValueOptions([
-            '0'=>'working',
-            '1'=>'coding'
+            '0' => 'working',
+            '1' => 'coding'
         ]);
         $element->setMessages([
             'Error message'
@@ -363,8 +363,8 @@ class FormRowTest extends TestCase
         $element = new Element\Radio('direction');
         $element->setLabel("Direction");
         $element->setValueOptions([
-            '0'=>'programming',
-            '1'=>'design'
+            '0' => 'programming',
+            '1' => 'design'
         ]);
         $element->setMessages([
             'Error message'

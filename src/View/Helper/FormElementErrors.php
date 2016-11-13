@@ -39,7 +39,7 @@ class FormElementErrors extends AbstractHelper
      */
     public function __invoke(ElementInterface $element = null, array $attributes = [])
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -60,7 +60,7 @@ class FormElementErrors extends AbstractHelper
         if (empty($messages)) {
             return '';
         }
-        if (!is_array($messages) && !$messages instanceof Traversable) {
+        if (! is_array($messages) && ! $messages instanceof Traversable) {
             throw new Exception\DomainException(sprintf(
                 '%s expects that $element->getMessages() will return an array or Traversable; received "%s"',
                 __METHOD__,
@@ -71,7 +71,7 @@ class FormElementErrors extends AbstractHelper
         // Prepare attributes for opening tag
         $attributes = array_merge($this->attributes, $attributes);
         $attributes = $this->createAttributesString($attributes);
-        if (!empty($attributes)) {
+        if (! empty($attributes)) {
             $attributes = ' ' . $attributes;
         }
 

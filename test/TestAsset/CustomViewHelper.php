@@ -46,7 +46,7 @@ class CustomViewHelper extends AbstractHelper
             $this->elementHelper = $this->view->plugin('form_element');
         }
 
-        if (!$this->elementHelper instanceof FormElement) {
+        if (! $this->elementHelper instanceof FormElement) {
             $this->elementHelper = new FormElement();
         }
 

@@ -21,7 +21,7 @@ class FieldsetWithDependency extends Fieldset
     {
         parent::__construct('fieldset_with_dependency', $options);
     }
-    
+
     public function init()
     {
         // should not fail

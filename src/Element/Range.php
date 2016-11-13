@@ -41,7 +41,7 @@ class Range extends NumberElement
         $validators[] = new NumberValidator();
 
         $inclusive = true;
-        if (!empty($this->attributes['inclusive'])) {
+        if (! empty($this->attributes['inclusive'])) {
             $inclusive = $this->attributes['inclusive'];
         }
 
@@ -55,7 +55,7 @@ class Range extends NumberElement
             'inclusive' => $inclusive
         ]);
 
-        if (!isset($this->attributes['step'])
+        if (! isset($this->attributes['step'])
             || 'any' !== $this->attributes['step']
         ) {
             $validators[] = new StepValidator([

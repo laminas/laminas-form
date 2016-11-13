@@ -27,7 +27,7 @@ class HydratorAwareModel implements HydratorAwareInterface
 
     public function getHydrator()
     {
-        if (!$this->hydrator) {
+        if (! $this->hydrator) {
             $this->hydrator = new ClassMethods();
         }
         return $this->hydrator;

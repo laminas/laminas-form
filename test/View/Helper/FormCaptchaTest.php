@@ -43,7 +43,7 @@ class FormCaptchaTest extends CommonTestCase
         // remove captcha images
         if (null !== $this->testDir) {
             foreach (new DirectoryIterator($this->testDir) as $file) {
-                if (!$file->isDot() && !$file->isDir()) {
+                if (! $file->isDot() && ! $file->isDir()) {
                     unlink($file->getPathname());
                 }
             }
@@ -105,20 +105,20 @@ class FormCaptchaTest extends CommonTestCase
 
     public function testPassingElementWithImageCaptchaRendersCorrectly()
     {
-        if (!extension_loaded('gd')) {
+        if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
 
             return;
         }
-        if (!function_exists("imagepng")) {
+        if (! function_exists("imagepng")) {
             $this->markTestSkipped("Image CAPTCHA requires PNG support");
         }
-        if (!function_exists("imageftbbox")) {
+        if (! function_exists("imageftbbox")) {
             $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
         }
 
         $this->testDir = $this->getTmpDir() . '/ZF_test_images';
-        if (!is_dir($this->testDir)) {
+        if (! is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
 
@@ -142,7 +142,7 @@ class FormCaptchaTest extends CommonTestCase
 
     public function testPassingElementWithReCaptchaRendersCorrectly()
     {
-        if (!getenv('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
+        if (! getenv('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_ZEND_FORM_RECAPTCHA_SUPPORT to test PDF render');
         }
 
