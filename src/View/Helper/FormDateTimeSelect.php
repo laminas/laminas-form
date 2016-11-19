@@ -198,7 +198,12 @@ class FormDateTimeSelect extends FormDateSelectHelper
     protected function parsePattern($renderDelimiters = true)
     {
         $pattern    = $this->getPattern();
-        $pregResult = preg_split("/([ -,.:\/]*'.*?'[ -,.:\/]*)|([ -,.:\/]+)/", $pattern, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $pregResult = preg_split(
+            "/([ -,.:\/]*'.*?'[ -,.:\/]*)|([ -,.:\/]+)/",
+            $pattern,
+            -1,
+            PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+        );
 
         $result = [];
         foreach ($pregResult as $value) {

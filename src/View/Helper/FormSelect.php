@@ -290,7 +290,8 @@ class FormSelect extends AbstractHelper
 
         if (! isset($attributes['multiple']) || ! $attributes['multiple']) {
             throw new Exception\DomainException(sprintf(
-                '%s does not allow specifying multiple selected values when the element does not have a multiple attribute set to a boolean true',
+                '%s does not allow specifying multiple selected values when the element does not have a multiple '
+                . 'attribute set to a boolean true',
                 __CLASS__
             ));
         }

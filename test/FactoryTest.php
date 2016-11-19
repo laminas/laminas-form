@@ -715,7 +715,10 @@ class FactoryTest extends TestCase
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
         $this->assertAttributeInstanceOf('Zend\Form\Factory', 'factory', $fieldset);
-        $this->assertSame($fieldset->getFormFactory()->getFormElementManager(), $this->factory->getFormElementManager());
+        $this->assertSame(
+            $fieldset->getFormFactory()->getFormElementManager(),
+            $this->factory->getFormElementManager()
+        );
     }
 
     /**
@@ -759,7 +762,10 @@ class FactoryTest extends TestCase
     public function testCanCreateWithConstructionLogicInOptions()
     {
         $formManager = $this->factory->getFormElementManager();
-        $formManager->setFactory(TestAsset\FieldsetWithDependency::class, TestAsset\FieldsetWithDependencyFactory::class);
+        $formManager->setFactory(
+            TestAsset\FieldsetWithDependency::class,
+            TestAsset\FieldsetWithDependencyFactory::class
+        );
 
         $collection = $this->factory->create([
             'type' => Form\Element\Collection::class,

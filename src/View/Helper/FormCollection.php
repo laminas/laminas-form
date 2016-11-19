@@ -262,7 +262,8 @@ class FormCollection extends AbstractHelper
         }
 
         if (! $this->elementHelper instanceof HelperInterface) {
-            throw new RuntimeException('Invalid element helper set in FormCollection. The helper must be an instance of Zend\View\Helper\HelperInterface.');
+            throw new RuntimeException('Invalid element helper set in FormCollection. The helper must be an '
+                . 'instance of Zend\View\Helper\HelperInterface.');
         }
 
         return $this->elementHelper;

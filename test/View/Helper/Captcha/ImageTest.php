@@ -110,7 +110,10 @@ class ImageTest extends CommonTestCase
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
         $this->assertRegExp('#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#', $markup);
-        $this->assertRegExp('#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#', $markup);
+        $this->assertRegExp(
+            '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#',
+            $markup
+        );
     }
 
     public function testRendersTextInputForInput()

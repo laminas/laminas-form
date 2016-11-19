@@ -53,7 +53,8 @@ class Captcha extends Element implements InputProviderInterface
             $captcha = ZendCaptcha\Factory::factory($captcha);
         } elseif (! $captcha instanceof ZendCaptcha\AdapterInterface) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects either a Zend\Captcha\AdapterInterface or specification to pass to Zend\Captcha\Factory; received "%s"',
+                '%s expects either a Zend\Captcha\AdapterInterface or specification to pass to Zend\Captcha\Factory; '
+                . 'received "%s"',
                 __METHOD__,
                 (is_object($captcha) ? get_class($captcha) : gettype($captcha))
             ));

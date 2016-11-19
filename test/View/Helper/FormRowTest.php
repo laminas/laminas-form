@@ -165,7 +165,9 @@ class FormRowTest extends TestCase
         ]);
 
         $markup = $this->helper->render($element);
+        // @codingStandardsIgnoreStart
         $this->assertRegexp('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
+        // @codingStandardsIgnoreEnd
     }
 
     public function testDoesNotRenderErrorsListIfSetToFalse()
@@ -201,7 +203,10 @@ class FormRowTest extends TestCase
         $element->setAttribute('class', 'foo bar');
 
         $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
-        $this->assertRegexp('/<input name="foo" class="foo\&\#x20\;bar\&\#x20\;custom-error-class" type="text" [^\/>]*\/?>/', $markup);
+        $this->assertRegexp(
+            '/<input name="foo" class="foo\&\#x20\;bar\&\#x20\;custom-error-class" type="text" [^\/>]*\/?>/',
+            $markup
+        );
     }
 
     public function testInvokeWithNoElementChainsHelper()
@@ -385,7 +390,10 @@ class FormRowTest extends TestCase
         $element->setMessages($validator->getMessages());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertEquals(2, count(explode("<ul><li>The input does not appear to be a valid date</li></ul>", $markup)));
+        $this->assertEquals(
+            2,
+            count(explode("<ul><li>The input does not appear to be a valid date</li></ul>", $markup))
+        );
     }
 
     public function testInvokeWithNoRenderErrors()
@@ -415,7 +423,10 @@ class FormRowTest extends TestCase
 
         $this->helper->setLabelPosition('append');
         $markup = $this->helper->render($element);
-        $this->assertRegexp('#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#', $markup);
+        $this->assertRegexp(
+            '#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#',
+            $markup
+        );
     }
 
     public function testUsePartialView()
@@ -438,7 +449,10 @@ class FormRowTest extends TestCase
         $element->setLabel('foo');
 
         $markup = $this->helper->render($element);
-        $this->assertRegexp('#^<button type="button" name="button" value=""\/?>foo</button>$#', $markup);
+        $this->assertRegexp(
+            '#^<button type="button" name="button" value=""\/?>foo</button>$#',
+            $markup
+        );
     }
 
     public function testAssertLabelHtmlEscapeIsOnByDefault()
@@ -486,10 +500,16 @@ class FormRowTest extends TestCase
         $element->setLabel('Baz');
 
         $markup = $this->helper->render($element, 'append');
-        $this->assertRegexp('#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#', $markup);
+        $this->assertRegexp(
+            '#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#',
+            $markup
+        );
 
         $markup = $this->helper->render($element, 'prepend');
-        $this->assertRegexp('#^<label for="bar">Baz</label><input name="foo" id="bar" type="text" value=""\/?>$#', $markup);
+        $this->assertRegexp(
+            '#^<label for="bar">Baz</label><input name="foo" id="bar" type="text" value=""\/?>$#',
+            $markup
+        );
     }
 
     public function testSetLabelPositionViaRenderIsNotCached()
@@ -514,10 +534,16 @@ class FormRowTest extends TestCase
         $element->setLabel('Baz');
 
         $markup = $this->helper->__invoke($element, 'append');
-        $this->assertRegexp('#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#', $markup);
+        $this->assertRegexp(
+            '#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#',
+            $markup
+        );
 
         $markup = $this->helper->__invoke($element, 'prepend');
-        $this->assertRegexp('#^<label for="bar">Baz</label><input name="foo" id="bar" type="text" value=""\/?>$#', $markup);
+        $this->assertRegexp(
+            '#^<label for="bar">Baz</label><input name="foo" id="bar" type="text" value=""\/?>$#',
+            $markup
+        );
     }
 
     /**
@@ -552,7 +578,10 @@ class FormRowTest extends TestCase
         $element->setLabel('baz');
 
         $markup = $this->helper->render($element);
-        $this->assertRegexp('#^<label><span>baz</span><input name="foo" id="bar" type="text" value=""\/?></label>$#', $markup);
+        $this->assertRegexp(
+            '#^<label><span>baz</span><input name="foo" id="bar" type="text" value=""\/?></label>$#',
+            $markup
+        );
     }
 
     /**

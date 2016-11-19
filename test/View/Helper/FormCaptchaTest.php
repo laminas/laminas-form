@@ -88,7 +88,10 @@ class FormCaptchaTest extends CommonTestCase
         $markup = $this->helper->render($element);
         $this->assertContains($captcha->getLabel(), $markup);
         $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
-        $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#', $markup);
+        $this->assertRegExp(
+            '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            $markup
+        );
     }
 
     public function testPassingElementWithFigletCaptchaRendersCorrectly()
@@ -100,7 +103,10 @@ class FormCaptchaTest extends CommonTestCase
         $markup = $this->helper->render($element);
         $this->assertContains('<pre>' . $captcha->getFiglet()->render($captcha->getWord()) . '</pre>', $markup);
         $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
-        $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#', $markup);
+        $this->assertRegExp(
+            '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            $markup
+        );
     }
 
     public function testPassingElementWithImageCaptchaRendersCorrectly()
@@ -136,8 +142,14 @@ class FormCaptchaTest extends CommonTestCase
         $this->assertContains(str_replace('/', '&#x2F;', $captcha->getImgUrl()), $markup);
         $this->assertContains($captcha->getId(), $markup);
         $this->assertRegExp('#<img[^>]*(id="' . $element->getAttribute('id') . '-image")[^>]*>#', $markup);
-        $this->assertRegExp('#<input[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
-        $this->assertRegExp('#<input[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#', $markup);
+        $this->assertRegExp(
+            '#<input[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
+            $markup
+        );
+        $this->assertRegExp(
+            '#<input[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            $markup
+        );
     }
 
     public function testPassingElementWithReCaptchaRendersCorrectly()

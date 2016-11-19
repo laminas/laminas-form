@@ -167,8 +167,8 @@ class Form extends Fieldset implements FormInterface
      */
     public function add($elementOrFieldset, array $flags = [])
     {
-        // TODO: find a better solution than duplicating the factory code, the problem being that if $elementOrFieldset is an array,
-        // it is passed by value, and we don't get back the concrete ElementInterface
+        // TODO: find a better solution than duplicating the factory code, the problem being that if
+        // $elementOrFieldset is an array, it is passed by value, and we don't get back the concrete ElementInterface
         if (is_array($elementOrFieldset)
             || ($elementOrFieldset instanceof Traversable && ! $elementOrFieldset instanceof ElementInterface)
         ) {
@@ -607,8 +607,8 @@ class Form extends Fieldset implements FormInterface
     }
 
     /**
-     * Prepare the validation group in case Collection elements were used (this function also handle the case where elements
-     * could have been dynamically added or removed from a collection using JavaScript)
+     * Prepare the validation group in case Collection elements were used (this function also handle
+     * the case where elements could have been dynamically added or removed from a collection using JavaScript)
      *
      * @param FieldsetInterface $formOrFieldset
      * @param array             $data
@@ -766,7 +766,10 @@ class Form extends Fieldset implements FormInterface
             $elements = $fieldset->getElements();
         }
 
-        if (! $fieldset instanceof Collection || ! $fieldset->getTargetElement() instanceof FieldsetInterface || $inputFilter instanceof CollectionInputFilter) {
+        if (! $fieldset instanceof Collection
+            || ! $fieldset->getTargetElement() instanceof FieldsetInterface
+            || $inputFilter instanceof CollectionInputFilter
+        ) {
             foreach ($elements as $name => $element) {
                 if ($this->preferFormInputFilter && $inputFilter->has($name)) {
                     continue;
