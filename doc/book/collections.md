@@ -274,7 +274,7 @@ namespace Application\Form;
 use Application\Entity\Category;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -323,7 +323,7 @@ use Application\Entity\Product;
 use Zend\Form\Element;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -392,7 +392,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
             'price' => [
                 'required' => true,
                 'validators' => [
-                    array(
+                    [
                         'name' => 'Float',
                     ],
                 ],
@@ -442,7 +442,7 @@ namespace Application\Form;
 use Zend\Form\Element;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CreateProduct extends Form
 {
@@ -502,13 +502,16 @@ Now, let's create a zend-mvc controller action:
      $form = new CreateProduct();
      $product = new Product();
      $form->bind($product);
-
      $request = $this->getRequest();
+     $form->setAttribute('action',$request->getRequestUri());
+     
      if ($request->isPost()) {
          $form->setData($request->getPost());
 
          if ($form->isValid()) {
-             var_dump($product);
+            echo '<pre>';
+            var_dump($product);
+            echo '</pre>';
          }
      }
 
@@ -530,7 +533,6 @@ And finally, the view:
 
 ```php
 <?php
-$form->setAttribute('action', $this->url('home'));
 $form->prepare();
 
 echo $this->form()->openTag($form);
@@ -547,7 +549,6 @@ echo $this->formCollection($product->get('categories'));
 $brand = $product->get('brand');
 
 // Since the brand is a 1:1 relationship, its elements are rendered normally:
-echo $this->formRow($product->get('name'));
 echo $this->formRow($brand->get('name'));
 echo $this->formRow($brand->get('url'));
 
@@ -757,7 +758,7 @@ namespace Application\Form;
 use Zend\Form\Element;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CreateProduct extends Form
 {
