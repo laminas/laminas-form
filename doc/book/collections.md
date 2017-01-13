@@ -503,15 +503,12 @@ Now, let's create a zend-mvc controller action:
      $product = new Product();
      $form->bind($product);
      $request = $this->getRequest();
-     $form->setAttribute('action',$request->getRequestUri());
      
      if ($request->isPost()) {
          $form->setData($request->getPost());
 
          if ($form->isValid()) {
-            echo '<pre>';
             var_dump($product);
-            echo '</pre>';
          }
      }
 
@@ -533,8 +530,8 @@ And finally, the view:
 
 ```php
 <?php
+$form->setAttribute('action', $this->url('home'));
 $form->prepare();
-
 echo $this->form()->openTag($form);
 
 $product = $form->get('product');
