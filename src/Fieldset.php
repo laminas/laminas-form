@@ -303,6 +303,7 @@ class Fieldset extends Element implements FieldsetInterface
 
         foreach ($messages as $key => $messageSet) {
             if (!$this->has($key)) {
+                $this->messages[$key] = $messageSet;
                 continue;
             }
             $element = $this->get($key);
@@ -326,7 +327,7 @@ class Fieldset extends Element implements FieldsetInterface
     public function getMessages($elementName = null)
     {
         if (null === $elementName) {
-            $messages = [];
+            $messages = $this->messages;
             foreach ($this->iterator as $name => $element) {
                 $messageSet = $element->getMessages();
                 if (!is_array($messageSet)

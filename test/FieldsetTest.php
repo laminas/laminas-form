@@ -572,4 +572,19 @@ class FieldsetTest extends TestCase
 
         $this->assertSame('New value', $form->get('foo')->getValue());
     }
+
+    /**
+     * Error test for https://github.com/zendframework/zend-form/issues/135
+     */
+    public function testRetrieveErrorMessagesForArrayInputCollection()
+    {
+        $form = new TestAsset\ArrayInputCollectionForm();
+        $form->setData([]);
+        $form->isValid();
+
+        $messages = $form->getMessages();
+
+        $this->assertArrayHasKey('foo', $messages);
+        $this->assertArrayNotHasKey('bar', $messages);
+    }
 }
