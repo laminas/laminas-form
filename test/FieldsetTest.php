@@ -576,15 +576,20 @@ class FieldsetTest extends TestCase
     /**
      * Error test for https://github.com/zendframework/zend-form/issues/135
      */
-    public function testRetrieveErrorMessagesForArrayInputCollection()
+    public function testSetAndGetErrorMessagesForNonExistentElements()
     {
-        $form = new TestAsset\ArrayInputCollectionForm();
-        $form->setData([]);
-        $form->isValid();
+        $messages = [
+            'foo' => [
+                'foo_message_key' => 'foo_message_val',
+            ],
+            'bar' => [
+                'bar_message_key' => 'bar_message_val',
+            ],
+        ];
 
-        $messages = $form->getMessages();
+        $fieldset = new Fieldset();
+        $fieldset->setMessages($messages);
 
-        $this->assertArrayHasKey('foo', $messages);
-        $this->assertArrayNotHasKey('bar', $messages);
+        $this->assertEquals($messages, $fieldset->getMessages());
     }
 }

@@ -13,12 +13,13 @@ use ArrayObject;
 use PHPUnit_Framework_TestCase as TestCase;
 use stdClass;
 use Zend\Form\Element;
-use Zend\Form\Element\Collection as Collection;
+use Zend\Form\Element\Collection;
 use Zend\Form\Fieldset;
 use Zend\Form\Form;
 use Zend\Hydrator\ArraySerializable;
 use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
 use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
+use Zend\InputFilter\ArrayInput;
 use ZendTest\Form\TestAsset\AddressFieldset;
 use ZendTest\Form\TestAsset\ArrayModel;
 use ZendTest\Form\TestAsset\CustomCollection;
@@ -1270,5 +1271,41 @@ class CollectionTest extends TestCase
 
         $collection->populateValues(['colors' => ['0' => 'blue']]);
         $this->assertEquals(1, count($collection->getElements()));
+    }
+
+    public function testGetErrorMessagesForInvalidCollectionElements()
+    {
+        // Configure InputFilter
+        $inputFilter = $this->form->getInputFilter();
+        $inputFilter->add(
+            [
+                'name'     => 'colors',
+                'type'     => ArrayInput::class,
+                'required' => true,
+            ]
+        );
+        $inputFilter->add(
+            [
+                'name'     => 'fieldsets',
+                'type'     => ArrayInput::class,
+                'required' => true,
+            ]
+        );
+
+
+        $this->form->setData([]);
+        $this->form->isValid();
+
+        $this->assertEquals(
+            [
+                'colors'     => [
+                    'isEmpty' => "Value is required and can't be empty",
+                ],
+                'fieldsets' => [
+                    'isEmpty' => "Value is required and can't be empty",
+                ],
+            ],
+            $this->form->getMessages()
+        );
     }
 }
