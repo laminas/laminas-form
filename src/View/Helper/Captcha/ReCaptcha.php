@@ -52,22 +52,17 @@ class ReCaptcha extends FormInput
             ));
         }
 
-        $name          = $element->getName();
-        $id            = isset($attributes['id']) ? $attributes['id'] : $name;
-        $challengeName = empty($name) ? 'recaptcha_challenge_field' : $name . '[recaptcha_challenge_field]';
-        $responseName  = empty($name) ? 'recaptcha_response_field'  : $name . '[recaptcha_response_field]';
-        $challengeId   = $id . '-challenge';
-        $responseId    = $id . '-response';
+        $name = $element->getName();
 
         $markup = $captcha->getService()->getHtml($name);
-        $hidden = $this->renderHiddenInput($challengeName, $challengeId, $responseName, $responseId);
-        $js     = $this->renderJsEvents($challengeId, $responseId);
 
-        return $hidden . $markup . $js;
+        return $markup;
     }
 
     /**
-     * Render hidden input elements for the challenge and response
+     * No longer used with v2 of Recaptcha API
+     *
+     * @deprecated
      *
      * @param  string $challengeName
      * @param  string $challengeId
@@ -77,26 +72,13 @@ class ReCaptcha extends FormInput
      */
     protected function renderHiddenInput($challengeName, $challengeId, $responseName, $responseId)
     {
-        $pattern        = '<input type="hidden" %s%s';
-        $closingBracket = $this->getInlineClosingBracket();
-
-        $attributes = $this->createAttributesString([
-            'name' => $challengeName,
-            'id'   => $challengeId,
-        ]);
-        $challenge = sprintf($pattern, $attributes, $closingBracket);
-
-        $attributes = $this->createAttributesString([
-            'name' => $responseName,
-            'id'   => $responseId,
-        ]);
-        $response = sprintf($pattern, $attributes, $closingBracket);
-
-        return $challenge . $response;
+        return '';
     }
 
     /**
-     * Create the JS events used to bind the challenge and response values to the submitted form.
+     * No longer used with v2 of Recaptcha API
+     *
+     * @deprecated
      *
      * @param  string $challengeId
      * @param  string $responseId
@@ -104,39 +86,6 @@ class ReCaptcha extends FormInput
      */
     protected function renderJsEvents($challengeId, $responseId)
     {
-        $elseif = 'else if'; // php-cs-fixer bug
-        $js =<<<EOJ
-<script type="text/javascript" language="JavaScript">
-function windowOnLoad(fn)
-{
-    var old = window.onload;
-    window.onload = function () {
-        if (old) {
-            old();
-        }
-        fn();
-    };
-}
-function zendBindEvent(el, eventName, eventHandler)
-{
-    if (el.addEventListener) {
-        el.addEventListener(eventName, eventHandler, false);
-    } $elseif (el.attachEvent) {
-        el.attachEvent('on'+eventName, eventHandler);
-    }
-}
-windowOnLoad(function () {
-    zendBindEvent(
-        document.getElementById("$challengeId").form,
-        'submit',
-        function (e) {
-            document.getElementById("$challengeId").value = document.getElementById("recaptcha_challenge_field").value;
-            document.getElementById("$responseId").value = document.getElementById("recaptcha_response_field").value;
-        }
-    );
-});
-</script>
-EOJ;
-        return $js;
+        return '';
     }
 }

@@ -24,7 +24,7 @@
     "require-dev": {
         "doctrine/annotations": "~1.0",
         "zendframework/zend-cache": "^2.6.1",
-        "zendframework/zend-captcha": "^2.5.4",
+        "zendframework/zend-captcha": "^2.7.0",
         "zendframework/zend-code": "^2.6 || ^3.0",
         "zendframework/zend-escaper": "^2.5",
         "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
@@ -35,7 +35,7 @@
         "zendframework/zend-text": "^2.6",
         "zendframework/zend-validator": "^2.6",
         "zendframework/zend-view": "^2.6.2",
-        "zendframework/zendservice-recaptcha": "*",
+        "zendframework/zendservice-recaptcha": "^3.0.0",
         "fabpot/php-cs-fixer": "1.7.*",
         "phpunit/phpunit": "^4.8"
     },
