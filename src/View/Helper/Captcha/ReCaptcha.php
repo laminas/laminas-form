@@ -55,24 +55,39 @@ class ReCaptcha extends FormInput
         $name = $element->getName();
 
         $markup = $captcha->getService()->getHtml($name);
+        $hidden = $this->renderHiddenInput($name);
 
-        return $markup;
+        return $hidden . $markup;
     }
 
     /**
-     * No longer used with v2 of Recaptcha API
+     * Render hidden input element if the element's name is not 'g-recaptcha-response'
+     * so that required validation works
      *
-     * @deprecated
+     * Note that only the first parameter is needed, the other three parameters
+     * are deprecated.
      *
-     * @param  string $challengeName
-     * @param  string $challengeId
-     * @param  string $responseName
-     * @param  string $responseId
+     * @param  string $name
+     * @param  string $challengeId @deprecated
+     * @param  string $responseName @deprecated
+     * @param  string $responseId @deprecated
      * @return string
      */
-    protected function renderHiddenInput($challengeName, $challengeId, $responseName, $responseId)
+    protected function renderHiddenInput($name, $challengeId = '', $responseName = '', $responseId = '')
     {
-        return '';
+        if ($name === 'g-recaptcha-response') {
+            return '';
+        }
+
+        $pattern        = '<input type="hidden" %s%s';
+        $closingBracket = $this->getInlineClosingBracket();
+
+        $attributes = $this->createAttributesString([
+            'name'  => $name,
+            'value' => 'g-recaptcha-response',
+        ]);
+        $challenge = sprintf($pattern, $attributes, $closingBracket);
+        return $challenge;
     }
 
     /**

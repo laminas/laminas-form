@@ -51,6 +51,22 @@ class ReCaptchaTest extends CommonTestCase
         $this->helper->render($element);
     }
 
+    public function testRendersHiddenInputWhenNameIsNotRecaptchaDefault()
+    {
+        $element = $this->getElement();
+        $markup  = $this->helper->render($element);
+        $this->assertContains('type="hidden"', $markup);
+        $this->assertContains('value="g-recaptcha-response"', $markup);
+    }
+
+    public function testDoesNotRenderHiddenInputWhenNameIsRecaptchaDefault()
+    {
+        $element = $this->getElement();
+        $element->setName('g-recaptcha-response');
+        $markup  = $this->helper->render($element);
+        $this->assertNotContains('type="hidden"', $markup);
+    }
+
     public function testRendersReCaptchaMarkup()
     {
         $element = $this->getElement();
