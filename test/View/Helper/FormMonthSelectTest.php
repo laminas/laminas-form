@@ -16,7 +16,7 @@ class FormMonthSelectTest extends CommonTestCase
 {
     public function setUp()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 

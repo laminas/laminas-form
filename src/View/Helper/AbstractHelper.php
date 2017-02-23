@@ -234,7 +234,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
         foreach ($attributes as $key => $value) {
             $key = strtolower($key);
 
-            if (!$value && isset($this->booleanAttributes[$key])) {
+            if (! $value && isset($this->booleanAttributes[$key])) {
                 // Skip boolean attributes that expect empty string as false value
                 if ('' === $this->booleanAttributes[$key]['off']) {
                     continue;
@@ -301,7 +301,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             $this->doctypeHelper = $this->view->plugin('doctype');
         }
 
-        if (!$this->doctypeHelper instanceof Doctype) {
+        if (! $this->doctypeHelper instanceof Doctype) {
             $this->doctypeHelper = new Doctype();
         }
 
@@ -323,7 +323,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             $this->escapeHtmlHelper = $this->view->plugin('escapehtml');
         }
 
-        if (!$this->escapeHtmlHelper instanceof EscapeHtml) {
+        if (! $this->escapeHtmlHelper instanceof EscapeHtml) {
             $this->escapeHtmlHelper = new EscapeHtml();
         }
 
@@ -345,7 +345,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             $this->escapeHtmlAttrHelper = $this->view->plugin('escapehtmlattr');
         }
 
-        if (!$this->escapeHtmlAttrHelper instanceof EscapeHtmlAttr) {
+        if (! $this->escapeHtmlAttrHelper instanceof EscapeHtmlAttr) {
             $this->escapeHtmlAttrHelper = new EscapeHtmlAttr();
         }
 
@@ -368,8 +368,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
         foreach ($attributes as $key => $value) {
             $attribute = strtolower($key);
 
-            if (!isset($this->validGlobalAttributes[$attribute])
-                && !isset($this->validTagAttributes[$attribute])
+            if (! isset($this->validGlobalAttributes[$attribute])
+                && ! isset($this->validTagAttributes[$attribute])
                 && 'data-' != substr($attribute, 0, 5)
                 && 'aria-' != substr($attribute, 0, 5)
                 && 'x-' != substr($attribute, 0, 2)
@@ -405,7 +405,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     protected function prepareBooleanAttributeValue($attribute, $value)
     {
-        if (!is_bool($value) && in_array($value, $this->booleanAttributes[$attribute])) {
+        if (! is_bool($value) && in_array($value, $this->booleanAttributes[$attribute])) {
             return $value;
         }
 

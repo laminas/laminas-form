@@ -10,7 +10,7 @@
 namespace ZendTest\Form\TestAsset;
 
 use Zend\InputFilter\Input;
-use Zend\InputFilter\InputFilter As RealInputFilter;
+use Zend\InputFilter\InputFilter as RealInputFilter;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\InputFilter\InputFilterAwareInterface;
 
@@ -21,7 +21,7 @@ class HydratorStrategyEntityA implements InputFilterAwareInterface
 
     public function __construct()
     {
-        $this->entities = array();
+        $this->entities = [];
     }
 
     public function addEntity(HydratorStrategyEntityB $entity)
@@ -41,7 +41,7 @@ class HydratorStrategyEntityA implements InputFilterAwareInterface
 
     public function getInputFilter()
     {
-        if (!$this->inputFilter) {
+        if (! $this->inputFilter) {
             $input = new Input();
             $input->setName('entities');
             $input->setRequired(false);

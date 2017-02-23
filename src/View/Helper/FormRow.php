@@ -86,9 +86,13 @@ class FormRow extends AbstractHelper
      * @param  string|null           $partial
      * @return string|FormRow
      */
-    public function __invoke(ElementInterface $element = null, $labelPosition = null, $renderErrors = null, $partial = null)
-    {
-        if (!$element) {
+    public function __invoke(
+        ElementInterface $element = null,
+        $labelPosition = null,
+        $renderErrors = null,
+        $partial = null
+    ) {
+        if (! $element) {
             return $this;
         }
 
@@ -137,7 +141,7 @@ class FormRow extends AbstractHelper
         }
 
         // Does this element have errors ?
-        if (count($element->getMessages()) > 0 && !empty($inputErrorClass)) {
+        if (count($element->getMessages()) > 0 && ! empty($inputErrorClass)) {
             $classAttributes = ($element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '');
             $classAttributes = $classAttributes . $inputErrorClass;
 
@@ -195,7 +199,7 @@ class FormRow extends AbstractHelper
                 // Ensure element and label will be separated if element has an `id`-attribute.
                 // If element has label option `always_wrap` it will be nested in any case.
                 if ($element->hasAttribute('id')
-                    && ($element instanceof LabelAwareInterface && !$element->getLabelOption('always_wrap'))
+                    && ($element instanceof LabelAwareInterface && ! $element->getLabelOption('always_wrap'))
                 ) {
                     $labelOpen = '';
                     $labelClose = '';
@@ -205,7 +209,7 @@ class FormRow extends AbstractHelper
                     $labelClose = $labelHelper->closeTag();
                 }
 
-                if ($label !== '' && (!$element->hasAttribute('id'))
+                if ($label !== '' && (! $element->hasAttribute('id'))
                     || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
                 ) {
                     $label = '<span>' . $label . '</span>';
@@ -299,7 +303,7 @@ class FormRow extends AbstractHelper
     public function setLabelPosition($labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
-        if (!in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
+        if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
                 __METHOD__,
@@ -382,7 +386,7 @@ class FormRow extends AbstractHelper
             $this->labelHelper = $this->view->plugin('form_label');
         }
 
-        if (!$this->labelHelper instanceof FormLabel) {
+        if (! $this->labelHelper instanceof FormLabel) {
             $this->labelHelper = new FormLabel();
         }
 
@@ -411,7 +415,7 @@ class FormRow extends AbstractHelper
             $this->elementHelper = $this->view->plugin('form_element');
         }
 
-        if (!$this->elementHelper instanceof FormElement) {
+        if (! $this->elementHelper instanceof FormElement) {
             $this->elementHelper = new FormElement();
         }
 
@@ -433,7 +437,7 @@ class FormRow extends AbstractHelper
             $this->elementErrorsHelper = $this->view->plugin('form_element_errors');
         }
 
-        if (!$this->elementErrorsHelper instanceof FormElementErrors) {
+        if (! $this->elementErrorsHelper instanceof FormElementErrors) {
             $this->elementErrorsHelper = new FormElementErrors();
         }
 

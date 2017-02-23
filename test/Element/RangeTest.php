@@ -16,7 +16,7 @@ class RangeTest extends TestCase
 {
     public function testProvidesInputSpecificationWithDefaultAttributes()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
@@ -56,7 +56,7 @@ class RangeTest extends TestCase
 
     public function testProvidesInputSpecificationThatIncludesValidator()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }

@@ -18,7 +18,7 @@ class ReCaptchaTest extends CommonTestCase
 {
     public function setUp()
     {
-        if (!getenv('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
+        if (! getenv('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_ZEND_FORM_RECAPTCHA_SUPPORT to test PDF render');
         }
 

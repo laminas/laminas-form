@@ -159,7 +159,7 @@ class MultiCheckbox extends Checkbox
      */
     protected function getValidator()
     {
-        if (null === $this->validator && !$this->disableInArrayValidator()) {
+        if (null === $this->validator && ! $this->disableInArrayValidator()) {
             $inArrayValidator = new InArrayValidator([
                 'haystack'  => $this->getValueOptionsValues(),
                 'strict'    => false,

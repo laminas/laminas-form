@@ -51,7 +51,7 @@ class FormMonthSelect extends AbstractHelper
      */
     public function __construct()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             throw new Exception\ExtensionNotLoadedException(sprintf(
                 '%s component requires the intl PHP extension',
                 __NAMESPACE__
@@ -74,7 +74,7 @@ class FormMonthSelect extends AbstractHelper
      */
     public function __invoke(ElementInterface $element = null, $dateType = IntlDateFormatter::LONG, $locale = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -97,7 +97,7 @@ class FormMonthSelect extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
-        if (!$element instanceof MonthSelectElement) {
+        if (! $element instanceof MonthSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s requires that the element is of type Zend\Form\Element\MonthSelect',
                 __METHOD__
@@ -156,7 +156,12 @@ class FormMonthSelect extends AbstractHelper
     protected function parsePattern($renderDelimiters = true)
     {
         $pattern    = $this->getPattern();
-        $pregResult = preg_split("/([ -,.\/]*(?:'[a-zA-Z]+')*[ -,.\/]+)/", $pattern, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $pregResult = preg_split(
+            "/([ -,.\/]*(?:'[a-zA-Z]+')*[ -,.\/]+)/",
+            $pattern,
+            -1,
+            PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+        );
 
         $result = [];
         foreach ($pregResult as $value) {

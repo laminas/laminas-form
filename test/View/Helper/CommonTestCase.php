@@ -43,7 +43,7 @@ abstract class CommonTestCase extends TestCase
 
     public function testUsesUtf8ByDefault()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -52,7 +52,7 @@ abstract class CommonTestCase extends TestCase
 
     public function testCanInjectEncoding()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -62,7 +62,7 @@ abstract class CommonTestCase extends TestCase
 
     public function testInjectingEncodingProxiesToEscapeHelper()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -73,7 +73,7 @@ abstract class CommonTestCase extends TestCase
 
     public function testInjectingEncodingProxiesToAttrEscapeHelper()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -84,7 +84,7 @@ abstract class CommonTestCase extends TestCase
 
     public function testAssumesHtml4LooseDoctypeByDefault()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -95,7 +95,7 @@ abstract class CommonTestCase extends TestCase
 
     public function testCanInjectDoctype()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -105,7 +105,7 @@ abstract class CommonTestCase extends TestCase
 
     public function testCanGetDoctypeFromDoctypeHelper()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
         }
 

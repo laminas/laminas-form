@@ -26,7 +26,7 @@ class ReCaptcha extends FormInput
      */
     public function __invoke(ElementInterface $element = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -45,9 +45,10 @@ class ReCaptcha extends FormInput
         $attributes = $element->getAttributes();
         $captcha = $element->getCaptcha();
 
-        if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
+        if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
-                '%s requires that the element has a "captcha" attribute implementing Zend\Captcha\AdapterInterface; none found',
+                '%s requires that the element has a "captcha" attribute implementing Zend\Captcha\AdapterInterface; '
+                . 'none found',
                 __METHOD__
             ));
         }

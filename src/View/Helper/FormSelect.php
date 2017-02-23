@@ -83,7 +83,7 @@ class FormSelect extends AbstractHelper
      */
     public function __invoke(ElementInterface $element = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -100,7 +100,7 @@ class FormSelect extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
-        if (!$element instanceof SelectElement) {
+        if (! $element instanceof SelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s requires that the element is of type Zend\Form\Element\Select',
                 __METHOD__
@@ -254,7 +254,7 @@ class FormSelect extends AbstractHelper
 
         $this->validTagAttributes = $this->validOptgroupAttributes;
         $attributes = $this->createAttributesString($optgroup);
-        if (!empty($attributes)) {
+        if (! empty($attributes)) {
             $attributes = ' ' . $attributes;
         }
 
@@ -284,13 +284,14 @@ class FormSelect extends AbstractHelper
             return [];
         }
 
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             return (array) $value;
         }
 
-        if (!isset($attributes['multiple']) || !$attributes['multiple']) {
+        if (! isset($attributes['multiple']) || ! $attributes['multiple']) {
             throw new Exception\DomainException(sprintf(
-                '%s does not allow specifying multiple selected values when the element does not have a multiple attribute set to a boolean true',
+                '%s does not allow specifying multiple selected values when the element does not have a multiple '
+                . 'attribute set to a boolean true',
                 __CLASS__
             ));
         }
@@ -311,12 +312,12 @@ class FormSelect extends AbstractHelper
      */
     protected function getFormHiddenHelper()
     {
-        if (!$this->formHiddenHelper) {
+        if (! $this->formHiddenHelper) {
             if (method_exists($this->view, 'plugin')) {
                 $this->formHiddenHelper = $this->view->plugin('formhidden');
             }
 
-            if (!$this->formHiddenHelper instanceof FormHidden) {
+            if (! $this->formHiddenHelper instanceof FormHidden) {
                 $this->formHiddenHelper = new FormHidden();
             }
         }

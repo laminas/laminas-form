@@ -27,7 +27,7 @@ class FieldsetWithDependencyFactory implements FactoryInterface
 
         $form = new FieldsetWithDependency($name, $options);
         $form->setDependency(new InputFilter());
-        
+
         return $form;
     }
 
