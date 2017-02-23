@@ -470,7 +470,7 @@ class FactoryTest extends TestCase
         $this->assertTrue($found);
     }
 
-    public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByNameAndSetinputFilterFactoryInConstructor()
+    public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor()
     {
         $validatorManager = new \Zend\Validator\ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', 'Zend\Validator\Digits');
