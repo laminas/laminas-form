@@ -34,7 +34,7 @@ class Model implements ArraySerializableInterface
     public function exchangeArray(array $array)
     {
         foreach ($array as $key => $value) {
-            if (!property_exists($this, $key)) {
+            if (! property_exists($this, $key)) {
                 continue;
             }
             $this->$key = $value;
@@ -43,10 +43,10 @@ class Model implements ArraySerializableInterface
 
     public function getArrayCopy()
     {
-        return array(
+        return [
             'foo'    => $this->foo,
             'bar'    => $this->bar,
             'foobar' => $this->foobar,
-        );
+        ];
     }
 }

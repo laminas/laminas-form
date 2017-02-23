@@ -26,7 +26,7 @@ class ReCaptcha extends FormInput
      */
     public function __invoke(ElementInterface $element = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -45,9 +45,10 @@ class ReCaptcha extends FormInput
         $attributes = $element->getAttributes();
         $captcha = $element->getCaptcha();
 
-        if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
+        if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
-                '%s requires that the element has a "captcha" attribute implementing Zend\Captcha\AdapterInterface; none found',
+                '%s requires that the element has a "captcha" attribute implementing Zend\Captcha\AdapterInterface; '
+                . 'none found',
                 __METHOD__
             ));
         }
@@ -55,7 +56,7 @@ class ReCaptcha extends FormInput
         $name          = $element->getName();
         $id            = isset($attributes['id']) ? $attributes['id'] : $name;
         $challengeName = empty($name) ? 'recaptcha_challenge_field' : $name . '[recaptcha_challenge_field]';
-        $responseName  = empty($name) ? 'recaptcha_response_field'  : $name . '[recaptcha_response_field]';
+        $responseName  = empty($name) ? 'recaptcha_response_field' : $name . '[recaptcha_response_field]';
         $challengeId   = $id . '-challenge';
         $responseId    = $id . '-response';
 
@@ -105,7 +106,7 @@ class ReCaptcha extends FormInput
     protected function renderJsEvents($challengeId, $responseId)
     {
         $elseif = 'else if'; // php-cs-fixer bug
-        $js =<<<EOJ
+        $js = <<<EOJ
 <script type="text/javascript" language="JavaScript">
 function windowOnLoad(fn)
 {

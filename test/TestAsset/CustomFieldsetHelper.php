@@ -45,7 +45,7 @@ class CustomFieldsetHelper extends AbstractHelper
             $this->fieldsetHelper = $this->view->plugin('form_collection');
         }
 
-        if (!$this->fieldsetHelper instanceof FormCollectionHelper) {
+        if (! $this->fieldsetHelper instanceof FormCollectionHelper) {
             $this->fieldsetHelper = new FormCollectionHelper();
         }
 

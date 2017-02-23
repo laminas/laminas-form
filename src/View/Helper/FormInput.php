@@ -94,7 +94,7 @@ class FormInput extends AbstractHelper
      */
     public function __invoke(ElementInterface $element = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -148,7 +148,7 @@ class FormInput extends AbstractHelper
         }
 
         $type = strtolower($type);
-        if (!isset($this->validTypes[$type])) {
+        if (! isset($this->validTypes[$type])) {
             return 'text';
         }
 

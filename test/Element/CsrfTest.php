@@ -34,7 +34,6 @@ class CsrfTest extends TestCase
                     break;
                 default:
                     break;
-
             }
         }
     }

@@ -58,9 +58,9 @@ class SelectTest extends TestCase
         $element = new SelectElement();
         $element->setValueOptions([
           ['label' => 'group 1', 'options' => [
-            ['value' => 'Option 1', 'label'=> 'Label 1'],
-            ['value' => 'Option 2', 'label'=> 'Label 2'],
-            ['value' => 'Option 3', 'label'=> 'Label 3'],
+            ['value' => 'Option 1', 'label' => 'Label 1'],
+            ['value' => 'Option 2', 'label' => 'Label 2'],
+            ['value' => 'Option 3', 'label' => 'Label 3'],
           ]]]);
 
         $inputSpec = $element->getInputSpecification();
@@ -154,7 +154,7 @@ class SelectTest extends TestCase
         $this->assertInstanceOf('Zend\Validator\InArray', $inArrayValidator);
 
         $element->setValueOptions($options);
-        $haystack=$inArrayValidator->getHaystack();
+        $haystack = $inArrayValidator->getHaystack();
         $this->assertCount(count($options), $haystack);
     }
 

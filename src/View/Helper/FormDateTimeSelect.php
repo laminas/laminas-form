@@ -53,7 +53,7 @@ class FormDateTimeSelect extends FormDateSelectHelper
         $timeType = IntlDateFormatter::LONG,
         $locale = null
     ) {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -77,7 +77,7 @@ class FormDateTimeSelect extends FormDateSelectHelper
      */
     public function render(ElementInterface $element)
     {
-        if (!$element instanceof DateTimeSelectElement) {
+        if (! $element instanceof DateTimeSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s requires that the element is of type Zend\Form\Element\DateTimeSelect',
                 __METHOD__
@@ -198,7 +198,12 @@ class FormDateTimeSelect extends FormDateSelectHelper
     protected function parsePattern($renderDelimiters = true)
     {
         $pattern    = $this->getPattern();
-        $pregResult = preg_split("/([ -,.:\/]*'.*?'[ -,.:\/]*)|([ -,.:\/]+)/", $pattern, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $pregResult = preg_split(
+            "/([ -,.:\/]*'.*?'[ -,.:\/]*)|([ -,.:\/]+)/",
+            $pattern,
+            -1,
+            PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+        );
 
         $result = [];
         foreach ($pregResult as $value) {
@@ -208,7 +213,7 @@ class FormDateTimeSelect extends FormDateSelectHelper
                 $result['month'] = $value;
             } elseif (stripos($value, "'") === false && stripos($value, 'y') !== false) {
                 $result['year'] = $value;
-            } elseif (stripos($value, "'") === false && stripos($value, 'h') !==  false) {
+            } elseif (stripos($value, "'") === false && stripos($value, 'h') !== false) {
                 $result['hour'] = $value;
             } elseif (stripos($value, "'") === false && stripos($value, 'm') !== false) {
                 $result['minute'] = $value;

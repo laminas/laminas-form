@@ -43,7 +43,10 @@ class FigletTest extends CommonTestCase
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
         $this->assertRegExp('#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#', $markup);
-        $this->assertRegExp('#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#', $markup);
+        $this->assertRegExp(
+            '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#',
+            $markup
+        );
     }
 
     public function testRendersTextInputForInput()
@@ -57,7 +60,11 @@ class FigletTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertContains('<pre>' . $this->captcha->getFiglet()->render($this->captcha->getWord()) . '</pre>' . $this->helper->getSeparator() . '<input', $markup);
+        $this->assertContains(
+            '<pre>' . $this->captcha->getFiglet()->render($this->captcha->getWord()) . '</pre>'
+            . $this->helper->getSeparator() . '<input',
+            $markup
+        );
     }
 
     public function testCanRenderFigletFollowingInput()
