@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
+- [#115](https://github.com/zendframework/zend-form/pull/115) adds translatable
+  HTML attributes to the abstract view helper.
 - [#116](https://github.com/zendframework/zend-form/pull/116) adds the InputFilterFactory
   dependency to the constructor.
 
