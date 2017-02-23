@@ -147,18 +147,12 @@ class FormCaptchaTest extends CommonTestCase
         }
 
         $captcha = new Captcha\ReCaptcha();
-        $service = $captcha->getService();
-        $service->setPublicKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY'));
-        $service->setPrivateKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PRIVATE_KEY'));
+        $captcha->setPubKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY'));
+        $captcha->setPrivKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PRIVATE_KEY'));
 
         $element = $this->getElement();
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);
-        $this->assertContains('foo-challenge', $markup);
-        $this->assertContains('foo-response', $markup);
-        $this->assertContains('foo[recaptcha_challenge_field]', $markup);
-        $this->assertContains('foo[recaptcha_response_field]', $markup);
-        $this->assertContains('zendBindEvent', $markup);
-        $this->assertContains($service->getHtml('foo'), $markup);
+        $this->assertContains('data-sitekey="' . getenv('TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY') . '"', $markup);
     }
 }
