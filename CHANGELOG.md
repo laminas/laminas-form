@@ -18,7 +18,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#139](https://github.com/zendframework/zend-form/pull/139) adds support for 
+  ReCaptcha version 2 though zend-captcha 2.7.1.
 
 ## 2.9.3 - TBD
 
