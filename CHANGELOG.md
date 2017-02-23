@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#116](https://github.com/zendframework/zend-form/pull/116) adds the InputFilterFactory
+  dependency to the constructor.
 
 ### Deprecated
 
