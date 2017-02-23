@@ -63,7 +63,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     public function handleAttributesAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-        if (!$annotation instanceof Attributes) {
+        if (! $annotation instanceof Attributes) {
             return;
         }
 
@@ -82,7 +82,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     public function handleFlagsAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-        if (!$annotation instanceof Flags) {
+        if (! $annotation instanceof Flags) {
             return;
         }
 
@@ -101,7 +101,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     public function handleHydratorAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-        if (!$annotation instanceof Hydrator) {
+        if (! $annotation instanceof Hydrator) {
             return;
         }
 
@@ -120,7 +120,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     public function handleInputFilterAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-        if (!$annotation instanceof InputFilter) {
+        if (! $annotation instanceof InputFilter) {
             return;
         }
 
@@ -160,7 +160,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     public function handleOptionsAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-        if (!$annotation instanceof Options) {
+        if (! $annotation instanceof Options) {
             return;
         }
 
@@ -179,7 +179,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     public function handleTypeAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-        if (!$annotation instanceof Type) {
+        if (! $annotation instanceof Type) {
             return;
         }
 
@@ -198,7 +198,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     public function handleValidationGroupAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-        if (!$annotation instanceof ValidationGroup) {
+        if (! $annotation instanceof ValidationGroup) {
             return;
         }
 

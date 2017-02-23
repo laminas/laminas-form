@@ -9,7 +9,6 @@
 
 namespace ZendTest\Form\TestAsset;
 
-
 class HydratorStrategyEntityB
 {
     private $field1;

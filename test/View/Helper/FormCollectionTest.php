@@ -390,7 +390,10 @@ class FormCollectionTest extends TestCase
         $collection = $form->get('colors');
         $collection->setLabel('<strong>Some label</strong>');
         $markup = $this->helper->render($collection);
-        $this->assertRegexp('#<fieldset(.*?)><legend>&lt;strong&gt;Some label&lt;/strong&gt;<\/legend>(.*?)<\/fieldset>#', $markup);
+        $this->assertRegexp(
+            '#<fieldset(.*?)><legend>&lt;strong&gt;Some label&lt;/strong&gt;<\/legend>(.*?)<\/fieldset>#',
+            $markup
+        );
     }
 
     public function testCanDisableLabelHtmlEscape()
@@ -405,7 +408,11 @@ class FormCollectionTest extends TestCase
 
     public function testForElementHelperNotInstanceOfHelperInterface()
     {
-        $this->setExpectedException('RuntimeException', 'Invalid element helper set in FormCollection. The helper must be an instance of Zend\View\Helper\HelperInterface.');
+        $this->setExpectedException(
+            'RuntimeException',
+            'Invalid element helper set in FormCollection. The helper must be an instance of '
+            . 'Zend\View\Helper\HelperInterface.'
+        );
 
         $method = new \ReflectionMethod('Zend\Form\View\Helper\FormCollection', 'getElementHelper');
         $method->setAccessible(true);

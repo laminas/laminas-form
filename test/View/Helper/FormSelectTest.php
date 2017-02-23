@@ -133,7 +133,9 @@ class FormSelectTest extends CommonTestCase
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
+        // @codingStandardsIgnoreStart
         $this->assertRegexp('#optgroup[^>]*?label="This\&\#x20\;is\&\#x20\;the\&\#x20\;second\&\#x20\;label"[^>]*>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#s', $markup);
+        // @codingStandardsIgnoreEnd
     }
 
     public function testCanDisableAnOptgroup()
@@ -150,7 +152,9 @@ class FormSelectTest extends CommonTestCase
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
+        // @codingStandardsIgnoreStart
         $this->assertRegexp('#optgroup .*?label="This\&\#x20\;is\&\#x20\;the\&\#x20\;second\&\#x20\;label"[^>]*?disabled="disabled"[^>]*?>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#', $markup);
+        // @codingStandardsIgnoreEnd
     }
 
     /**

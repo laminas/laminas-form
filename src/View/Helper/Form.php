@@ -42,7 +42,7 @@ class Form extends AbstractHelper
      */
     public function __invoke(FormInterface $form = null)
     {
-        if (!$form) {
+        if (! $form) {
             return $this;
         }
 
@@ -65,9 +65,9 @@ class Form extends AbstractHelper
 
         foreach ($form as $element) {
             if ($element instanceof FieldsetInterface) {
-                $formContent.= $this->getView()->formCollection($element);
+                $formContent .= $this->getView()->formCollection($element);
             } else {
-                $formContent.= $this->getView()->formRow($element);
+                $formContent .= $this->getView()->formRow($element);
             }
         }
 
@@ -94,7 +94,7 @@ class Form extends AbstractHelper
 
         if ($form instanceof FormInterface) {
             $formAttributes = $form->getAttributes();
-            if (!array_key_exists('id', $formAttributes) && array_key_exists('name', $formAttributes)) {
+            if (! array_key_exists('id', $formAttributes) && array_key_exists('name', $formAttributes)) {
                 $formAttributes['id'] = $formAttributes['name'];
             }
             $attributes = array_merge($attributes, $formAttributes);

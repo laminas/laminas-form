@@ -77,7 +77,7 @@ class DateTime extends Element implements InputProviderInterface
     public function getValue($returnFormattedValue = true)
     {
         $value = parent::getValue();
-        if (!$value instanceof PhpDateTime || !$returnFormattedValue) {
+        if (! $value instanceof PhpDateTime || ! $returnFormattedValue) {
             return $value;
         }
         $format = $this->getFormat();
@@ -132,7 +132,7 @@ class DateTime extends Element implements InputProviderInterface
                 'inclusive' => true,
             ]);
         }
-        if (!isset($this->attributes['step'])
+        if (! isset($this->attributes['step'])
             || 'any' !== $this->attributes['step']
         ) {
             $validators[] = $this->getStepValidator();

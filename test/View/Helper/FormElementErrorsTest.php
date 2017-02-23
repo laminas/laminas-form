@@ -43,7 +43,9 @@ class FormElementErrorsTest extends CommonTestCase
         $element->setMessages($messages);
 
         $markup = $this->helper->render($element);
+        // @codingStandardsIgnoreStart
         $this->assertRegexp('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
+        // @codingStandardsIgnoreEnd
     }
 
     public function testCanSpecifyAttributesForOpeningTag()
@@ -79,7 +81,9 @@ class FormElementErrorsTest extends CommonTestCase
                      ->setAttributes(['class' => 'error']);
 
         $markup = $this->helper->render($element);
+        // @codingStandardsIgnoreStart
         $this->assertRegexp('#<div class="error">\s*<span>First error message</span>\s*<span>Second error message</span>\s*<span>Third error message</span>\s*</div>#s', $markup);
+        // @codingStandardsIgnoreEnd
     }
 
     public function testSpecifiedAttributesOverrideDefaults()
@@ -121,7 +125,9 @@ class FormElementErrorsTest extends CommonTestCase
         $element->setMessages($messages);
 
         $markup = $this->helper->render($element, ['class' => 'error']);
+        // @codingStandardsIgnoreStart
         $this->assertRegexp('#<ul class="error">\s*<li>First validator message</li>\s*<li>Second validator first message</li>\s*<li>Second validator second message</li>\s*</ul>#s', $markup);
+        // @codingStandardsIgnoreEnd
     }
 
     public function testCallingTheHelperToRenderInvokeCanReturnObject()

@@ -55,7 +55,7 @@ class FormFile extends FormInput
         }
 
         $value = $element->getValue();
-        if (is_array($value) && isset($value['name']) && !is_array($value['name'])) {
+        if (is_array($value) && isset($value['name']) && ! is_array($value['name'])) {
             $attributes['value'] = $value['name'];
         } elseif (is_string($value)) {
             $attributes['value'] = $value;
