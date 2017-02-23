@@ -10,6 +10,8 @@
 namespace ZendTest\Form\View\Helper;
 
 use Zend\Escaper\Escaper;
+use Zend\Form\View\Helper\AbstractHelper;
+use Zend\I18n\Translator\Translator;
 
 /**
  * Tests for {@see \Zend\Form\View\Helper\AbstractHelper}
@@ -55,6 +57,89 @@ class AbstractHelperTest extends CommonTestCase
         $this->assertNotSame(
             'data-value="' . $escaper->escapeHtmlAttr('Título') . '"',
             $this->helper->createAttributesString(['data-value' => 'Título'])
+        );
+    }
+
+    public function testWillTranslateAttributeValuesCorrectly()
+    {
+        $translator = self::getMockBuilder(Translator::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['translate'])
+            ->getMock();
+
+        $translator
+            ->expects(self::exactly(2))
+            ->method('translate')
+            ->with(
+                self::equalTo('Welcome'),
+                self::equalTo('view-helper-text-domain')
+            )
+            ->willReturn('Willkommen');
+
+        $this->helper
+            ->addTranslatableAttribute('data-translate-me')
+            ->addTranslatableAttributePrefix('data-translatable-')
+            ->setTranslatorEnabled(true)
+            ->setTranslator(
+                $translator,
+                'view-helper-text-domain'
+            );
+
+        $this->assertSame(
+            'data-translate-me="Willkommen"',
+            $this->helper->createAttributesString(['data-translate-me' => 'Welcome'])
+        );
+
+        $this->assertSame(
+            'data-translatable-welcome="Willkommen"',
+            $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome'])
+        );
+
+        $this->assertSame(
+            'class="Welcome"',
+            $this->helper->createAttributesString(['class' => 'Welcome'])
+        );
+    }
+
+    public function testWillTranslateDefaultAttributeValuesCorrectly()
+    {
+        $translator = self::getMockBuilder(Translator::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['translate'])
+            ->getMock();
+
+        $translator
+            ->expects(self::exactly(2))
+            ->method('translate')
+            ->with(
+                self::equalTo('Welcome'),
+                self::equalTo('view-helper-text-domain')
+            )
+            ->willReturn('Willkommen');
+
+        AbstractHelper::addDefaultTranslatableAttribute('data-translate-me');
+        AbstractHelper::addDefaultTranslatableAttributePrefix('data-translatable-');
+
+        $this->helper
+            ->setTranslatorEnabled(true)
+            ->setTranslator(
+                $translator,
+                'view-helper-text-domain'
+            );
+
+        $this->assertSame(
+            'data-translate-me="Willkommen"',
+            $this->helper->createAttributesString(['data-translate-me' => 'Welcome'])
+        );
+
+        $this->assertSame(
+            'data-translatable-welcome="Willkommen"',
+            $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome'])
+        );
+
+        $this->assertSame(
+            'class="Welcome"',
+            $this->helper->createAttributesString(['class' => 'Welcome'])
         );
     }
 }
