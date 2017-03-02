@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\View\Helper;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\View\HelperConfig;
 use Zend\View\Helper\Doctype;
 use Zend\View\Renderer\PhpRenderer;

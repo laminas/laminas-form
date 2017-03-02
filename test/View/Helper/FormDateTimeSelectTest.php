@@ -27,7 +27,8 @@ class FormDateTimeSelectTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new DateTimeSelect();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
 

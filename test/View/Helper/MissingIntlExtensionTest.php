@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\View\Helper;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
 use Zend\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 use Zend\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
@@ -25,30 +25,24 @@ class MissingIntlExtensionTest extends TestCase
 
     public function testFormDateSelectHelper()
     {
-        $this->setExpectedException(
-            'Zend\Form\Exception\ExtensionNotLoadedException',
-            'Zend\Form\View\Helper component requires the intl PHP extension'
-        );
+        $this->expectException('Zend\Form\Exception\ExtensionNotLoadedException');
+        $this->expectExceptionMessage('Zend\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormDateSelectHelper();
     }
 
     public function testFormDateTimeSelectHelper()
     {
-        $this->setExpectedException(
-            'Zend\Form\Exception\ExtensionNotLoadedException',
-            'Zend\Form\View\Helper component requires the intl PHP extension'
-        );
+        $this->expectException('Zend\Form\Exception\ExtensionNotLoadedException');
+        $this->expectExceptionMessage('Zend\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormDateTimeSelectHelper();
     }
 
     public function testFormMonthSelectHelper()
     {
-        $this->setExpectedException(
-            'Zend\Form\Exception\ExtensionNotLoadedException',
-            'Zend\Form\View\Helper component requires the intl PHP extension'
-        );
+        $this->expectException('Zend\Form\Exception\ExtensionNotLoadedException');
+        $this->expectExceptionMessage('Zend\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormMonthSelectHelper();
     }

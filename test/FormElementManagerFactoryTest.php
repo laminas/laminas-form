@@ -8,7 +8,7 @@
 namespace ZendTest\Form;
 
 use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\ElementInterface;
 use Zend\Form\FormElementManager;
 use Zend\Form\FormElementManagerFactory;

@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\File as FileElement;
 use Zend\InputFilter\Factory as InputFilterFactory;
 
@@ -29,7 +29,7 @@ class FileTest extends TestCase
     public function testWillAddFileEnctypeAttributeToForm()
     {
         $file = new FileElement('foo');
-        $formMock = $this->getMock('Zend\Form\Form');
+        $formMock = $this->createMock('Zend\Form\Form');
         $formMock->expects($this->exactly(1))
             ->method('setAttribute')
             ->with(

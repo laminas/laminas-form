@@ -29,7 +29,8 @@ class FormLabelTest extends CommonTestCase
     public function testOpenTagWithWrongElementRaisesException()
     {
         $element = new \arrayObject();
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException', 'ArrayObject');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectExceptionMessage('ArrayObject');
         $this->helper->openTag($element);
     }
 
@@ -70,14 +71,16 @@ class FormLabelTest extends CommonTestCase
     public function testPassingElementToInvokeWillRaiseExceptionIfNoNameOrIdAttributePresent()
     {
         $element = new Element();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'id');
+        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectExceptionMessage('id');
         $markup = $this->helper->__invoke($element);
     }
 
     public function testPassingElementToInvokeWillRaiseExceptionIfNoLabelAttributePresent()
     {
         $element = new Element('foo');
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'label');
+        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectExceptionMessage('label');
         $markup = $this->helper->__invoke($element);
     }
 
@@ -140,7 +143,8 @@ class FormLabelTest extends CommonTestCase
     public function testPassingElementAndContextAndFlagToInvokeRaisesExceptionForMissingLabelAttribute()
     {
         $element = new Element('foo');
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'label');
+        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectExceptionMessage('label');
         $markup = $this->helper->__invoke($element, '<input type="text" id="foo" />', FormLabelHelper::APPEND);
     }
 
@@ -158,7 +162,7 @@ class FormLabelTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
                        ->method('translate')
                        ->will($this->returnValue('translated content'));
@@ -172,7 +176,7 @@ class FormLabelTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->createMock('Zend\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());

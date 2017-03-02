@@ -75,7 +75,8 @@ class FormCaptchaTest extends CommonTestCase
     public function testRaisesExceptionIfElementHasNoCaptcha()
     {
         $element = $this->getElement();
-        $this->setExpectedException('Zend\Form\Exception\ExceptionInterface', 'captcha');
+        $this->expectException('Zend\Form\Exception\ExceptionInterface');
+        $this->expectExceptionMessage('captcha');
         $this->helper->render($element);
     }
 

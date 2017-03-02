@@ -237,7 +237,7 @@ class FormMultiCheckboxTest extends CommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
         ->method('translate')
         ->will($this->returnValue('translated content'));
@@ -251,7 +251,7 @@ class FormMultiCheckboxTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->createMock('Zend\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());
@@ -266,7 +266,7 @@ class FormMultiCheckboxTest extends CommonTestCase
     public function testRenderInputNotSelectElementRaisesException()
     {
         $element = new Element\Text('foo');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $this->helper->render($element);
     }
 
@@ -274,7 +274,7 @@ class FormMultiCheckboxTest extends CommonTestCase
     {
         $element = new MultiCheckboxElement(null);
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->expectException('Zend\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 
@@ -317,7 +317,7 @@ class FormMultiCheckboxTest extends CommonTestCase
 
     public function testSetLabelPositionInputNullRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $this->helper->setLabelPosition(null);
     }
 

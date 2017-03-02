@@ -47,7 +47,7 @@ class ReCaptchaTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->expectException('Zend\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 

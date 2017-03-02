@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\View\Helper;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\View\HelperConfig;
 use Zend\Form\View\Helper\FormCollection as FormCollectionHelper;
 use Zend\View\Helper\Doctype;
@@ -186,7 +186,7 @@ class FormCollectionTest extends TestCase
         $collection->setLabel('untranslated legend');
         $this->helper->setShouldWrap(true);
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
                        ->method('translate')
                        ->will($this->returnValue('translated legend'));
@@ -408,10 +408,9 @@ class FormCollectionTest extends TestCase
 
     public function testForElementHelperNotInstanceOfHelperInterface()
     {
-        $this->setExpectedException(
-            'RuntimeException',
-            'Invalid element helper set in FormCollection. The helper must be an instance of '
-            . 'Zend\View\Helper\HelperInterface.'
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage(
+            'Invalid element helper set in FormCollection. The helper must be an instance of Zend\View\Helper\HelperInterface.'
         );
 
         $method = new \ReflectionMethod('Zend\Form\View\Helper\FormCollection', 'getElementHelper');

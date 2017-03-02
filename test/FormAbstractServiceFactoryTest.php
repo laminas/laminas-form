@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Filter\FilterPluginManager;
 use Zend\Form\FormAbstractServiceFactory;
 use Zend\Form\FormElementManager;

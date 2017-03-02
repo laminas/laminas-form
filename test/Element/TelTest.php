@@ -9,13 +9,13 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripNewlines;
 use Zend\Form\Element\Tel;
 use Zend\Validator\Regex;
 
-class TelTest extends PHPUnit_Framework_TestCase
+class TelTest extends TestCase
 {
     public function testType()
     {

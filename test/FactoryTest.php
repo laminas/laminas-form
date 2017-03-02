@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Filter;
 use Zend\Form;
 use Zend\Form\Factory as FormFactory;
@@ -782,7 +782,7 @@ class FactoryTest extends TestCase
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->expectException('Zend\Form\Exception\DomainException');
         $this->factory->configureFieldset($fieldset, ['hydrator' => 0]);
     }
 
