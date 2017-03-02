@@ -410,7 +410,8 @@ class FormCollectionTest extends TestCase
     {
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage(
-            'Invalid element helper set in FormCollection. The helper must be an instance of Zend\View\Helper\HelperInterface.'
+            'Invalid element helper set in FormCollection. ' .
+            ' The helper must be an instance of Zend\View\Helper\HelperInterface.'
         );
 
         $method = new \ReflectionMethod('Zend\Form\View\Helper\FormCollection', 'getElementHelper');
