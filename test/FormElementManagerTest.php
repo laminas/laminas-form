@@ -224,9 +224,14 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testAutoAddInvokableClass()
     {
-        $instance = $this->manager->get(TestAsset\ConstructedElement::class, ['constructedKey' => 'constructedKey']);
+        $instance = $this->manager->get(
+            TestAsset\ConstructedElement::class,
+            ['constructedKey' => 'constructedKey']
+        );
         $this->assertEquals('constructedelement', $instance->getName());
-        $this->assertEquals(['constructedKey' => 'constructedKey'], $instance->getOptions());
+        $this->assertEquals([
+            'constructedKey' => 'constructedKey'
+        ], $instance->getOptions());
     }
 
     public function testAllAliasesShouldBeCanonicalized()

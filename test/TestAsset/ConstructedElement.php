@@ -1,10 +1,8 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-navigation for the canonical source repository
+ * @copyright Copyright (c) 2017 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\TestAsset;
@@ -13,8 +11,12 @@ use Zend\Form\Element;
 
 class ConstructedElement extends Element
 {
-    public $constructedKey = null;
+    public $constructedKey;
 
+    /**
+     * @param null|int|string $name
+     * @param array $options
+     */
     public function __construct($name = null, $options = array())
     {
         if (isset($options['constructedKey'])) {
