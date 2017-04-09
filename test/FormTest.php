@@ -2259,7 +2259,7 @@ class FormTest extends TestCase
         $this->form->setData([
             'submit' => 'Confirm',
             'example' => [
-                //'foo' => [] // $_POST does't have this if collection is empty
+                //'foo' => [] // $_POST doesn't have this if collection is empty
             ]
         ]);
 
