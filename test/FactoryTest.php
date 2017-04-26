@@ -470,6 +470,60 @@ class FactoryTest extends TestCase
         $this->assertTrue($found);
     }
 
+    public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor()
+    {
+        $validatorManager = new \Zend\Validator\ValidatorPluginManager($this->services);
+        $validatorManager->setInvokableClass('baz', 'Zend\Validator\Digits');
+
+        $defaultValidatorChain = new \Zend\Validator\ValidatorChain();
+        $defaultValidatorChain->setPluginManager($validatorManager);
+
+        $inputFilterFactory = new \Zend\InputFilter\Factory();
+        $inputFilterFactory->setDefaultValidatorChain($defaultValidatorChain);
+
+        $factory = new FormFactory(null, $inputFilterFactory);
+
+        $form = $factory->createForm([
+            'name'         => 'foo',
+            'factory'      => $factory,
+            'input_filter' => [
+                'bar' => [
+                    'name'       => 'bar',
+                    'required'   => true,
+                    'validators' => [
+                        [
+                            'name' => 'baz',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+
+        $inputFilter = $form->getInputFilter();
+        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $inputFilter);
+
+        $input = $inputFilter->get('bar');
+        $this->assertInstanceOf('Zend\InputFilter\Input', $input);
+
+        $validatorChain = $input->getValidatorChain();
+        $this->assertInstanceOf('Zend\Validator\ValidatorChain', $validatorChain);
+
+        $validatorArray = $validatorChain->getValidators();
+        $found = false;
+        foreach ($validatorArray as $validator) {
+            $validatorInstance = $validator['instance'];
+            $this->assertInstanceOf('Zend\Validator\ValidatorInterface', $validatorInstance);
+
+            if ($validatorInstance instanceof \Zend\Validator\Digits) {
+                $found = true;
+                break;
+            }
+        }
+        $this->assertTrue($found);
+    }
+
     public function testCanCreateFormWithHydratorAndInputFilterAndElementsAndFieldsets()
     {
         $form = $this->factory->createForm([
@@ -715,7 +769,10 @@ class FactoryTest extends TestCase
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
         $this->assertAttributeInstanceOf('Zend\Form\Factory', 'factory', $fieldset);
-        $this->assertSame($fieldset->getFormFactory()->getFormElementManager(), $this->factory->getFormElementManager());
+        $this->assertSame(
+            $fieldset->getFormFactory()->getFormElementManager(),
+            $this->factory->getFormElementManager()
+        );
     }
 
     /**
@@ -759,7 +816,10 @@ class FactoryTest extends TestCase
     public function testCanCreateWithConstructionLogicInOptions()
     {
         $formManager = $this->factory->getFormElementManager();
-        $formManager->setFactory(TestAsset\FieldsetWithDependency::class, TestAsset\FieldsetWithDependencyFactory::class);
+        $formManager->setFactory(
+            TestAsset\FieldsetWithDependency::class,
+            TestAsset\FieldsetWithDependencyFactory::class
+        );
 
         $collection = $this->factory->create([
             'type' => Form\Element\Collection::class,

@@ -396,7 +396,7 @@ class CollectionTest extends TestCase
 
     public function testDoesNotCreateNewObjects()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
@@ -439,7 +439,7 @@ class CollectionTest extends TestCase
 
     public function testCreatesNewObjectsIfSpecified()
     {
-        if (!extension_loaded('intl')) {
+        if (! extension_loaded('intl')) {
             // Required by \Zend\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }

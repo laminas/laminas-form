@@ -256,15 +256,27 @@ class FormTextareaTest extends CommonTestCase
         $element->setAttribute($attribute, true);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertContains($expect, $markup, sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup));
+        $this->assertContains(
+            $expect,
+            $markup,
+            sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
+        );
 
         $element->setAttribute($attribute, false);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $off);
         if ($off !== '') {
-            $this->assertContains($expect, $markup, sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup));
+            $this->assertContains(
+                $expect,
+                $markup,
+                sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
+            );
         } else {
-            $this->assertNotContains($expect, $markup, sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup));
+            $this->assertNotContains(
+                $expect,
+                $markup,
+                sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup)
+            );
         }
     }
 

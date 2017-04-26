@@ -42,7 +42,7 @@ class FormLabel extends AbstractHelper
      */
     public function __invoke(ElementInterface $element = null, $labelContent = null, $position = null)
     {
-        if (!$element) {
+        if (! $element) {
             return $this;
         }
 
@@ -108,7 +108,7 @@ class FormLabel extends AbstractHelper
             return sprintf('<label %s>', $attributes);
         }
 
-        if (!$attributesOrElement instanceof ElementInterface) {
+        if (! $attributesOrElement instanceof ElementInterface) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Zend\Form\ElementInterface instance; received "%s"',
                 __METHOD__,
@@ -131,7 +131,7 @@ class FormLabel extends AbstractHelper
 
         $attributes = ['for' => $id];
 
-        if (!empty($labelAttributes)) {
+        if (! empty($labelAttributes)) {
             $attributes = array_merge($labelAttributes, $attributes);
         }
 

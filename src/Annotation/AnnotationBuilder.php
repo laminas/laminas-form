@@ -192,9 +192,9 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      */
     public function getFormSpecification($entity)
     {
-        if (!is_object($entity)) {
-            if ((is_string($entity) && (!class_exists($entity))) // non-existent class
-                || (!is_string($entity)) // not an object or string
+        if (! is_object($entity)) {
+            if ((is_string($entity) && (! class_exists($entity))) // non-existent class
+                || (! is_string($entity)) // not an object or string
             ) {
                 throw new Exception\InvalidArgumentException(sprintf(
                     '%s expects an object or valid class name; received "%s"',
@@ -224,7 +224,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
             }
         }
 
-        if (!isset($formSpec['input_filter'])) {
+        if (! isset($formSpec['input_filter'])) {
             $formSpec['input_filter'] = $filterSpec;
         } elseif (is_array($formSpec['input_filter'])) {
             $formSpec['input_filter'] = ArrayUtils::merge($filterSpec->getArrayCopy(), $formSpec['input_filter']);
@@ -348,13 +348,13 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
 
         // Compose as a fieldset or an element, based on specification type.
         // If preserve defined order is true, all elements are composed as elements to keep their ordering
-        if (!$this->preserveDefinedOrder() && is_subclass_of($type, 'Zend\Form\FieldsetInterface')) {
-            if (!isset($formSpec['fieldsets'])) {
+        if (! $this->preserveDefinedOrder() && is_subclass_of($type, 'Zend\Form\FieldsetInterface')) {
+            if (! isset($formSpec['fieldsets'])) {
                 $formSpec['fieldsets'] = [];
             }
             $formSpec['fieldsets'][] = $elementSpec;
         } else {
-            if (!isset($formSpec['elements'])) {
+            if (! isset($formSpec['elements'])) {
                 $formSpec['elements'] = [];
             }
             $formSpec['elements'][] = $elementSpec;
@@ -398,7 +398,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
 
         $results = $this->getEventManager()->triggerEventUntil(
             function ($r) {
-                return (is_string($r) && !empty($r));
+                return (is_string($r) && ! empty($r));
             },
             $event
         );

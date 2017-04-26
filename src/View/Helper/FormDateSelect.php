@@ -28,7 +28,7 @@ class FormDateSelect extends FormMonthSelectHelper
      */
     public function render(ElementInterface $element)
     {
-        if (!$element instanceof DateSelectElement) {
+        if (! $element instanceof DateSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s requires that the element is of type Zend\Form\Element\DateSelect',
                 __METHOD__

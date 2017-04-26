@@ -86,7 +86,7 @@ class Select extends Element implements InputProviderInterface
             ) {
                 $validator = $this->validator->getValidator();
             }
-            if (!empty($validator)) {
+            if (! empty($validator)) {
                 $validator->setHaystack($this->getValueOptionsValues());
             }
         }
@@ -218,7 +218,7 @@ class Select extends Element implements InputProviderInterface
      */
     protected function getValidator()
     {
-        if (null === $this->validator && !$this->disableInArrayValidator()) {
+        if (null === $this->validator && ! $this->disableInArrayValidator()) {
             $validator = new InArrayValidator([
                 'haystack' => $this->getValueOptionsValues(),
                 'strict'   => false

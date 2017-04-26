@@ -68,7 +68,9 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
             return false;
         }
 
-        return (isset($config[$requestedName]) && is_array($config[$requestedName]) && !empty($config[$requestedName]));
+        return (isset($config[$requestedName])
+            && is_array($config[$requestedName])
+            && ! empty($config[$requestedName]));
     }
 
     /**
@@ -109,14 +111,14 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
             return $this->config;
         }
 
-        if (!$container->has('config')) {
+        if (! $container->has('config')) {
             $this->config = [];
             return $this->config;
         }
 
         $config = $container->get('config');
-        if (!isset($config[$this->configKey])
-            || !is_array($config[$this->configKey])
+        if (! isset($config[$this->configKey])
+            || ! is_array($config[$this->configKey])
         ) {
             $this->config = [];
             return $this->config;
@@ -162,7 +164,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      */
     protected function marshalInputFilter(array &$config, ContainerInterface $container, Factory $formFactory)
     {
-        if (!isset($config['input_filter'])) {
+        if (! isset($config['input_filter'])) {
             return;
         }
 

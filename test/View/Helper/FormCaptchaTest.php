@@ -43,7 +43,7 @@ class FormCaptchaTest extends CommonTestCase
         // remove captcha images
         if (null !== $this->testDir) {
             foreach (new DirectoryIterator($this->testDir) as $file) {
-                if (!$file->isDot() && !$file->isDir()) {
+                if (! $file->isDot() && ! $file->isDir()) {
                     unlink($file->getPathname());
                 }
             }
@@ -88,7 +88,10 @@ class FormCaptchaTest extends CommonTestCase
         $markup = $this->helper->render($element);
         $this->assertContains($captcha->getLabel(), $markup);
         $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
-        $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#', $markup);
+        $this->assertRegExp(
+            '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            $markup
+        );
     }
 
     public function testPassingElementWithFigletCaptchaRendersCorrectly()
@@ -100,25 +103,28 @@ class FormCaptchaTest extends CommonTestCase
         $markup = $this->helper->render($element);
         $this->assertContains('<pre>' . $captcha->getFiglet()->render($captcha->getWord()) . '</pre>', $markup);
         $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
-        $this->assertRegExp('#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#', $markup);
+        $this->assertRegExp(
+            '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            $markup
+        );
     }
 
     public function testPassingElementWithImageCaptchaRendersCorrectly()
     {
-        if (!extension_loaded('gd')) {
+        if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
 
             return;
         }
-        if (!function_exists("imagepng")) {
+        if (! function_exists("imagepng")) {
             $this->markTestSkipped("Image CAPTCHA requires PNG support");
         }
-        if (!function_exists("imageftbbox")) {
+        if (! function_exists("imageftbbox")) {
             $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
         }
 
         $this->testDir = $this->getTmpDir() . '/ZF_test_images';
-        if (!is_dir($this->testDir)) {
+        if (! is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
 
@@ -136,29 +142,29 @@ class FormCaptchaTest extends CommonTestCase
         $this->assertContains(str_replace('/', '&#x2F;', $captcha->getImgUrl()), $markup);
         $this->assertContains($captcha->getId(), $markup);
         $this->assertRegExp('#<img[^>]*(id="' . $element->getAttribute('id') . '-image")[^>]*>#', $markup);
-        $this->assertRegExp('#<input[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
-        $this->assertRegExp('#<input[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#', $markup);
+        $this->assertRegExp(
+            '#<input[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
+            $markup
+        );
+        $this->assertRegExp(
+            '#<input[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            $markup
+        );
     }
 
     public function testPassingElementWithReCaptchaRendersCorrectly()
     {
-        if (!getenv('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
+        if (! getenv('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_ZEND_FORM_RECAPTCHA_SUPPORT to test PDF render');
         }
 
         $captcha = new Captcha\ReCaptcha();
-        $service = $captcha->getService();
-        $service->setPublicKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY'));
-        $service->setPrivateKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PRIVATE_KEY'));
+        $captcha->setPubKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY'));
+        $captcha->setPrivKey(getenv('TESTS_ZEND_FORM_RECAPTCHA_PRIVATE_KEY'));
 
         $element = $this->getElement();
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);
-        $this->assertContains('foo-challenge', $markup);
-        $this->assertContains('foo-response', $markup);
-        $this->assertContains('foo[recaptcha_challenge_field]', $markup);
-        $this->assertContains('foo[recaptcha_response_field]', $markup);
-        $this->assertContains('zendBindEvent', $markup);
-        $this->assertContains($service->getHtml('foo'), $markup);
+        $this->assertContains('data-sitekey="' . getenv('TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY') . '"', $markup);
     }
 }

@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.9.3 - TBD
+## 2.10.1 - TBD
 
 ### Added
 
@@ -18,7 +18,34 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
+- [#134](https://github.com/zendframework/zend-form/pull/134) fixes how the
+  `FormElementManager` handles invokable classes when the `autoAddInvokableClass`
+  flag is enabled. Previously, it used the built-in utilities from
+  zend-servicemanager, but now correctly uses its own `setInvokableClass()`
+  method, which forces usage of the `ElementFactory` for such classes, and thus
+  ensures the name and options are passed to the element constructor.
+
+## 2.10.0 - 2017-02-23
+
+### Added
+
+- [#115](https://github.com/zendframework/zend-form/pull/115) adds translatable
+  HTML attributes to the abstract view helper.
+- [#116](https://github.com/zendframework/zend-form/pull/116) adds the InputFilterFactory
+  dependency to the constructor.
+
+### Deprecated
+
 - Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#139](https://github.com/zendframework/zend-form/pull/139) adds support for 
+  ReCaptcha version 2 though zend-captcha 2.7.1.
 
 ## 2.9.2 - 2016-09-22
 

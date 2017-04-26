@@ -32,10 +32,16 @@ class Factory
     /**
      * @param FormElementManager $formElementManager
      */
-    public function __construct(FormElementManager $formElementManager = null)
-    {
+    public function __construct(
+        FormElementManager $formElementManager = null,
+        InputFilterFactory $inputFilterFactory = null
+    ) {
         if ($formElementManager) {
             $this->setFormElementManager($formElementManager);
+        }
+
+        if ($inputFilterFactory) {
+            $this->setInputFilterFactory($inputFilterFactory);
         }
     }
 
@@ -140,7 +146,7 @@ class Factory
      */
     public function createElement($spec)
     {
-        if (!isset($spec['type'])) {
+        if (! isset($spec['type'])) {
             $spec['type'] = Element::class;
         }
 
@@ -155,7 +161,7 @@ class Factory
      */
     public function createFieldset($spec)
     {
-        if (!isset($spec['type'])) {
+        if (! isset($spec['type'])) {
             $spec['type'] = Fieldset::class;
         }
 
@@ -170,7 +176,7 @@ class Factory
      */
     public function createForm($spec)
     {
-        if (!isset($spec['type'])) {
+        if (! isset($spec['type'])) {
             $spec['type'] = Form::class;
         }
 
@@ -196,8 +202,8 @@ class Factory
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
 
-        $name       = isset($spec['name'])       ? $spec['name']       : null;
-        $options    = isset($spec['options'])    ? $spec['options']    : null;
+        $name       = isset($spec['name']) ? $spec['name'] : null;
+        $options    = isset($spec['options']) ? $spec['options'] : null;
         $attributes = isset($spec['attributes']) ? $spec['attributes'] : null;
 
         if ($name !== null && $name !== '') {
@@ -312,7 +318,7 @@ class Factory
             return $spec;
         }
 
-        if (!$spec instanceof ArrayAccess) {
+        if (! $spec instanceof ArrayAccess) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array, or object implementing Traversable or ArrayAccess; received "%s"',
                 $method,
@@ -341,9 +347,9 @@ class Factory
             }
 
             $flags = isset($elementSpecification['flags']) ? $elementSpecification['flags'] : [];
-            $spec  = isset($elementSpecification['spec'])  ? $elementSpecification['spec']  : [];
+            $spec  = isset($elementSpecification['spec']) ? $elementSpecification['spec'] : [];
 
-            if (!isset($spec['type'])) {
+            if (! isset($spec['type'])) {
                 $spec['type'] = 'Zend\Form\Element';
             }
 
@@ -366,7 +372,7 @@ class Factory
 
         foreach ($fieldsets as $fieldsetSpecification) {
             $flags = isset($fieldsetSpecification['flags']) ? $fieldsetSpecification['flags'] : [];
-            $spec  = isset($fieldsetSpecification['spec'])  ? $fieldsetSpecification['spec']  : [];
+            $spec  = isset($fieldsetSpecification['spec']) ? $fieldsetSpecification['spec'] : [];
 
             $fieldset = $this->createFieldset($spec);
             $masterFieldset->add($fieldset, $flags);
@@ -387,7 +393,7 @@ class Factory
      */
     protected function prepareAndInjectObject($objectName, FieldsetInterface $fieldset, $method)
     {
-        if (!is_string($objectName)) {
+        if (! is_string($objectName)) {
             throw new Exception\DomainException(sprintf(
                 '%s expects string class name; received "%s"',
                 $method,
@@ -395,7 +401,7 @@ class Factory
             ));
         }
 
-        if (!class_exists($objectName)) {
+        if (! class_exists($objectName)) {
             throw new Exception\DomainException(sprintf(
                 '%s expects string class name to be a valid class name; received "%s"',
                 $method,
@@ -427,7 +433,7 @@ class Factory
         }
 
         if (is_array($hydratorOrName)) {
-            if (!isset($hydratorOrName['type'])) {
+            if (! isset($hydratorOrName['type'])) {
                 throw new Exception\DomainException(sprintf(
                     '%s expects array specification to have a type value',
                     $method
@@ -443,7 +449,7 @@ class Factory
             $hydrator = $this->getFormElementManager()->getHydratorFromName($hydratorOrName);
         }
 
-        if (! isset($hydrator) || !$hydrator instanceof Hydrator\HydratorInterface) {
+        if (! isset($hydrator) || ! $hydrator instanceof Hydrator\HydratorInterface) {
             throw new Exception\DomainException(sprintf(
                 '%s expects a valid implementation of Zend\Hydrator\HydratorInterface; received "%s"',
                 $method,
@@ -451,7 +457,7 @@ class Factory
             ));
         }
 
-        if (!empty($hydratorOptions) && $hydrator instanceof Hydrator\HydratorOptionsInterface) {
+        if (! empty($hydratorOptions) && $hydrator instanceof Hydrator\HydratorOptionsInterface) {
             $hydrator->setOptions($hydratorOptions);
         }
 
@@ -474,7 +480,7 @@ class Factory
     protected function prepareAndInjectFactory($factoryOrName, FieldsetInterface $fieldset, $method)
     {
         if (is_array($factoryOrName)) {
-            if (!isset($factoryOrName['type'])) {
+            if (! isset($factoryOrName['type'])) {
                 throw new Exception\DomainException(sprintf(
                     '%s expects array specification to have a type value',
                     $method
@@ -487,7 +493,7 @@ class Factory
             $factoryOrName = $this->getFormElementManager()->getFactoryFromName($factoryOrName);
         }
 
-        if (!$factoryOrName instanceof Factory) {
+        if (! $factoryOrName instanceof Factory) {
             throw new Exception\DomainException(sprintf(
                 '%s expects a valid extention of Zend\Form\Factory; received "%s"',
                 $method,
@@ -522,7 +528,7 @@ class Factory
         }
 
         if (is_string($spec)) {
-            if (!class_exists($spec)) {
+            if (! class_exists($spec)) {
                 throw new Exception\DomainException(sprintf(
                     '%s expects string input filter names to be valid class names; received "%s"',
                     $method,
@@ -530,7 +536,7 @@ class Factory
                 ));
             }
             $filter = new $spec;
-            if (!$filter instanceof InputFilterInterface) {
+            if (! $filter instanceof InputFilterInterface) {
                 throw new Exception\DomainException(sprintf(
                     '%s expects a valid implementation of Zend\InputFilter\InputFilterInterface; received "%s"',
                     $method,
@@ -562,8 +568,8 @@ class Factory
      */
     protected function prepareAndInjectValidationGroup($spec, FormInterface $form, $method)
     {
-        if (!is_array($spec)) {
-            if (!class_exists($spec)) {
+        if (! is_array($spec)) {
+            if (! class_exists($spec)) {
                 throw new Exception\DomainException(sprintf(
                     '%s expects an array for validation group; received "%s"',
                     $method,
