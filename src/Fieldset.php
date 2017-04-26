@@ -302,7 +302,7 @@ class Fieldset extends Element implements FieldsetInterface
         }
 
         foreach ($messages as $key => $messageSet) {
-            if (!$this->has($key)) {
+            if (! $this->has($key)) {
                 $this->messages[$key] = $messageSet;
                 continue;
             }
