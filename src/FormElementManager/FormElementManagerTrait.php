@@ -35,6 +35,18 @@ trait FormElementManagerTrait
         if (is_string($options)) {
             $options = ['name' => $options];
         }
+
+        if (! $this->has($name)) {
+            if (! $this->autoAddInvokableClass || ! class_exists($name)) {
+                throw new Exception\InvalidElementException(sprintf(
+                    'A plugin by the name "%s" was not found in the plugin manager %s',
+                    $name,
+                    get_class($this)
+                ));
+            }
+
+            $this->setInvokableClass($name, $name);
+        }
         return parent::get($name, $options, $usePeeringServiceManagers);
     }
 
