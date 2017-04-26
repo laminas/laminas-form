@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\Week as WeekElement;
 
 class WeekTest extends TestCase

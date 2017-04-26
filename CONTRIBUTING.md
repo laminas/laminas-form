@@ -108,7 +108,7 @@ pull your work into the master repository. We recommend using
 3. Clone the canonical repository locally and enter it.
 
    ```console
-   $ git clone git://github.com:zendframework/zend-form.git
+   $ git clone git@github.com:zendframework/zend-form.git
    $ cd zend-form
    ```
 

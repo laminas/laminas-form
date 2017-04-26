@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\InputFilterProviderFieldset;
 
 class InputFilterProviderFieldsetTest extends TestCase

@@ -9,6 +9,7 @@
 
 namespace ZendTest\Form;
 
+use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 use Zend\Form\ElementFactory;
 use Zend\Form\Exception\InvalidElementException;
@@ -21,7 +22,7 @@ use Zend\ServiceManager\ServiceManager;
 /**
  * @group      Zend_Form
  */
-class FormElementManagerTest extends \PHPUnit_Framework_TestCase
+class FormElementManagerTest extends TestCase
 {
     /**
      * @var FormElementManager
@@ -57,14 +58,14 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisteringInvalidElementRaisesException()
     {
-        $this->setExpectedException($this->getInvalidServiceException());
+        $this->expectException($this->getInvalidServiceException());
         $this->manager->setService('test', $this);
     }
 
     public function testLoadingInvalidElementRaisesException()
     {
         $this->manager->setInvokableClass('test', get_class($this));
-        $this->setExpectedException($this->getInvalidServiceException());
+        $this->expectException($this->getInvalidServiceException());
         $this->manager->get('test');
     }
 
@@ -123,7 +124,9 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSharedFormElementsAreNotInitializedMultipleTimes()
     {
-        $element = $this->getMock('Zend\Form\Element', ['init']);
+        $element = $this->getMockBuilder('Zend\Form\Element')
+            ->setMethods(['init'])
+            ->getMock();
 
         $element->expects($this->once())->method('init');
 
@@ -249,5 +252,7 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
             $this->manager->get(strtoupper($name));
             $this->manager->get($name);
         }
+
+        $this->addToAssertionCount(1);
     }
 }

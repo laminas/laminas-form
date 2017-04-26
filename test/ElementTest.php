@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element;
 
 class ElementTest extends TestCase
@@ -190,7 +190,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $element->setOptions(null);
     }
 
@@ -212,7 +212,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $element->setAttributes(null);
     }
 
@@ -220,7 +220,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $element->setMessages(null);
     }
 

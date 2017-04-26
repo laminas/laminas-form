@@ -34,7 +34,7 @@ class DumbTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->expectException('Zend\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 
@@ -83,7 +83,7 @@ class DumbTest extends CommonTestCase
 
     public function testSetCaptchaPositionWithNullRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $this->helper->setCaptchaPosition(null);
     }
 

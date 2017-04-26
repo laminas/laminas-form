@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use ArrayIterator;
 use ArrayObject;
 use Zend\Captcha;
@@ -52,7 +52,7 @@ class CaptchaTest extends TestCase
     public function testCaptchaWithNullRaisesException()
     {
         $element = new CaptchaElement();
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $element->setCaptcha(null);
     }
 

@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\Number as NumberElement;
 
 class NumberTest extends TestCase

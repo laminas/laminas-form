@@ -23,7 +23,8 @@ class FormInputTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
 
@@ -492,7 +493,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('test');
         $element->setAttribute('placeholder', 'test');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
 
         $mockTranslator->expects($this->exactly(1))
                 ->method('translate')
@@ -512,7 +513,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('test');
         $element->setAttribute('title', 'test');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
 
         $mockTranslator->expects($this->exactly(1))
                 ->method('translate')

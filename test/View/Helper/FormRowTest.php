@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\View\Helper;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Form\Element;
 use Zend\Form\Element\Captcha;
@@ -219,7 +219,7 @@ class FormRowTest extends TestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->any())
             ->method('translate')
             ->will($this->returnValue('translated content'));
@@ -242,7 +242,7 @@ class FormRowTest extends TestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->createMock('Zend\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());
@@ -259,7 +259,7 @@ class FormRowTest extends TestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->getMock(TranslatorInterface::class);
+        $mockTranslator = $this->createMock(TranslatorInterface::class);
         $mockTranslator->expects($this->exactly(1))
             ->method('translate')
             ->will($this->returnValue('translated content'));
@@ -279,7 +279,7 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
         $element->setAttribute('id', 'foo');
 
-        $mockTranslator = $this->getMock(TranslatorInterface::class);
+        $mockTranslator = $this->createMock(TranslatorInterface::class);
         $mockTranslator->expects($this->exactly(1))
             ->method('translate')
             ->will($this->returnValue('translated content'));
@@ -295,7 +295,7 @@ class FormRowTest extends TestCase
 
     public function testSetLabelPositionInputNullRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $this->helper->setLabelPosition(null);
     }
 
@@ -398,7 +398,9 @@ class FormRowTest extends TestCase
 
     public function testInvokeWithNoRenderErrors()
     {
-        $mock = $this->getMock(get_class($this->helper), ['setRenderErrors']);
+        $mock = $this->getMockBuilder(get_class($this->helper))
+            ->setMethods(['setRenderErrors'])
+            ->getMock();
         $mock->expects($this->never())
                 ->method('setRenderErrors');
 
@@ -407,7 +409,9 @@ class FormRowTest extends TestCase
 
     public function testInvokeWithRenderErrorsTrue()
     {
-        $mock = $this->getMock(get_class($this->helper), ['setRenderErrors']);
+        $mock = $this->getMockBuilder(get_class($this->helper))
+            ->setMethods(['setRenderErrors'])
+            ->getMock();
         $mock->expects($this->once())
                 ->method('setRenderErrors')
                 ->with(true);
