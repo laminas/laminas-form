@@ -17,11 +17,13 @@ class FormCreatesCollectionInputFilterTest extends TestCase
     public static function assertValidatorFound($class, array $validators, $message = null)
     {
         $message = $message ?: sprintf('Failed to find validator of type %s in validator list', $class);
-        foreach ($validators as $validator) {
+        foreach ($validators as $instance) {
+            $validator = $instance['instance'];
             if ($validator instanceof $class) {
                 return true;
             }
         }
+        var_export($validators);
         self::fail($message);
     }
 
@@ -63,7 +65,7 @@ class FormCreatesCollectionInputFilterTest extends TestCase
         $this->assertCount(3, $validators);
         $this->assertValidatorFound(Validator\StringLength::class, $validators);
         $this->assertValidatorFound(Validator\Date::class, $validators);
-        $this->assertValidatorFound(Validator\Step::class, $validators);
+        $this->assertValidatorFound(Validator\DateStep::class, $validators);
 
         return $form;
     }
