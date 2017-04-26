@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 2.10.1 - TBD
+## 2.10.1 - 2017-04-26
 
 ### Added
 
@@ -45,6 +45,11 @@ All notable changes to this project will be documented in this file, in reverse 
 - [#136](https://github.com/zendframework/zend-form/pull/136) fixes how error
   messages are provided when an element uses a required `ArrayInput`, but no
   values are submitted. Previously, no messages were returned; now they are.
+- [#156](https://github.com/zendframework/zend-form/pull/156) fixes how elements
+  that act as `InputProvider`s are merged into parent `CollectionInputFilter`s;
+  previously, forms did not check if the element was in the target input filter
+  composed in a `CollectionInputFilter`, leading to duplicate elements with
+  varying behavior; now the inputs are correctly merged.
 
 ## 2.10.0 - 2017-02-23
 

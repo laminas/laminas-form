@@ -792,6 +792,19 @@ class Form extends Fieldset implements FormInterface
                         $inputFilter->replace($input, $name);
                         continue;
                     }
+
+                    // If we are dealing with a collection input filter, check
+                    // the input filter it composes for an element of the same
+                    // name as was done above.
+                    if ($inputFilter instanceof CollectionInputFilter
+                        && $inputFilter->getInputFilter()->has($name)
+                        && $inputFilter->getInputFilter() instanceof ReplaceableInputInterface
+                    ) {
+                        $collectionInputFilter = $inputFilter->getInputFilter();
+                        $input->merge($collectionInputFilter->get($name));
+                        $collectionInputFilter->replace($input, $name);
+                        continue;
+                    }
                 }
 
                 // Add element input filter to CollectionInputFilter
