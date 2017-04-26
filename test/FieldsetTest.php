@@ -572,4 +572,24 @@ class FieldsetTest extends TestCase
 
         $this->assertSame('New value', $form->get('foo')->getValue());
     }
+
+    /**
+     * Error test for https://github.com/zendframework/zend-form/issues/135
+     */
+    public function testSetAndGetErrorMessagesForNonExistentElements()
+    {
+        $messages = [
+            'foo' => [
+                'foo_message_key' => 'foo_message_val',
+            ],
+            'bar' => [
+                'bar_message_key' => 'bar_message_val',
+            ],
+        ];
+
+        $fieldset = new Fieldset();
+        $fieldset->setMessages($messages);
+
+        $this->assertEquals($messages, $fieldset->getMessages());
+    }
 }
