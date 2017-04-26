@@ -9,10 +9,10 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\Search;
 
-class SearchTest extends PHPUnit_Framework_TestCase
+class SearchTest extends TestCase
 {
     public function testType()
     {

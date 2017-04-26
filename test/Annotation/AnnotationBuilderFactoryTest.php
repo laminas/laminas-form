@@ -8,7 +8,7 @@
 namespace ZendTest\Form\Annotation;
 
 use Interop\Container\ContainerInterface;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 use stdClass;
 use Zend\EventManager\EventManagerInterface;
@@ -138,7 +138,8 @@ class AnnotationBuilderFactoryTest extends TestCase
 
         $factory = new AnnotationBuilderFactory();
 
-        $this->setExpectedException(ServiceNotCreatedException::class, 'Invalid event listener');
+        $this->expectException(ServiceNotCreatedException::class);
+        $this->expectExceptionMessage('Invalid event listener');
         $factory($container->reveal(), AnnotationBuilder::class);
     }
 }

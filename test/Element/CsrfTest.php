@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\Csrf as CsrfElement;
 
 class CsrfTest extends TestCase
@@ -41,7 +41,7 @@ class CsrfTest extends TestCase
     public function testAllowSettingCustomCsrfValidator()
     {
         $element = new CsrfElement('foo');
-        $validatorMock = $this->getMock('Zend\Validator\Csrf');
+        $validatorMock = $this->createMock('Zend\Validator\Csrf');
         $element->setCsrfValidator($validatorMock);
         $this->assertEquals($validatorMock, $element->getCsrfValidator());
     }

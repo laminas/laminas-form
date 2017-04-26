@@ -9,7 +9,7 @@
 
 namespace ZendTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\Color as ColorElement;
 
 class ColorTest extends TestCase

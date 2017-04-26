@@ -10,7 +10,7 @@
 namespace ZendTest\Form\Element;
 
 use ArrayObject;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Zend\Form\Element;
 use Zend\Form\Element\Collection;
@@ -63,7 +63,7 @@ class CollectionTest extends TestCase
         $collection->populateValues($data);
         $this->assertEquals(2, count($collection->getElements()));
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->expectException('Zend\Form\Exception\DomainException');
         $data[] = 'orange';
         $collection->populateValues($data);
     }
@@ -245,7 +245,7 @@ class CollectionTest extends TestCase
 
     public function testThrowExceptionIfThereAreLessElementsAndAllowRemoveNotAllowed()
     {
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->expectException('Zend\Form\Exception\DomainException');
 
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(false);
@@ -324,21 +324,21 @@ class CollectionTest extends TestCase
     public function testSetObjectNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $collection->setObject(null);
     }
 
     public function testPopulateValuesNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $collection->populateValues(null);
     }
 
     public function testSetTargetElementNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
         $collection->setTargetElement(null);
     }
 
@@ -636,7 +636,7 @@ class CollectionTest extends TestCase
         $collection = $this->form->get('fieldsets');
         $this->prepareForExtract($collection);
 
-        $mockHydrator = $this->getMock('Zend\Hydrator\HydratorInterface');
+        $mockHydrator = $this->createMock('Zend\Hydrator\HydratorInterface');
         $mockHydrator->expects($this->exactly(2))
             ->method('extract')
             ->will($this->returnCallback(function ($object) {

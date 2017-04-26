@@ -7,7 +7,7 @@
 
 namespace ZendTest\Form\Integration;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Zend\Form\Element;
 use Zend\Form\Form;

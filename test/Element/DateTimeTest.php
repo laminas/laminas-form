@@ -10,7 +10,7 @@
 namespace ZendTest\Form\Element;
 
 use DateTime;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\DateTime as DateTimeElement;
 
 class DateTimeTest extends TestCase

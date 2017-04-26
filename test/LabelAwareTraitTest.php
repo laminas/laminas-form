@@ -8,7 +8,7 @@
  */
 namespace ZendTest\Form;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @requires PHP 5.4

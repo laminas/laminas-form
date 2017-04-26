@@ -96,7 +96,7 @@ class FormTest extends CommonTestCase
 
     public function testRenderPreparesForm()
     {
-        $form = $this->getMock('Zend\\Form\\Form');
+        $form = $this->createMock('Zend\\Form\\Form');
         $form->expects($this->once())->method('prepare');
         $form->expects($this->any())->method('getAttributes')->will($this->returnValue([]));
         $form->expects($this->any())->method('getIterator')->will($this->returnValue(new \ArrayIterator([])));
