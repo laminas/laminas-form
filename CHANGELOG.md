@@ -42,6 +42,9 @@ All notable changes to this project will be documented in this file, in reverse 
   zend-servicemanager, but now correctly uses its own `setInvokableClass()`
   method, which forces usage of the `ElementFactory` for such classes, and thus
   ensures the name and options are passed to the element constructor.
+- [#136](https://github.com/zendframework/zend-form/pull/136) fixes how error
+  messages are provided when an element uses a required `ArrayInput`, but no
+  values are submitted. Previously, no messages were returned; now they are.
 
 ## 2.10.0 - 2017-02-23
 
