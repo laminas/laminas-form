@@ -64,5 +64,16 @@ class FormCreatesCollectionInputFilterTest extends TestCase
         $this->assertValidatorFound(Validator\StringLength::class, $validators);
         $this->assertValidatorFound(Validator\Date::class, $validators);
         $this->assertValidatorFound(Validator\Step::class, $validators);
+
+        return $form;
+    }
+
+    /**
+     * @depends testCollectionInputFilterContainsExpectedValidators
+     */
+    public function testCollectionElementDoesNotCreateDiscreteElementInInputFilter(Form $form)
+    {
+        $inputFilter = $form->getInputFilter();
+        $this->assertFalse($inputFilter->has('date'));
     }
 }
