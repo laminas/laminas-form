@@ -59,13 +59,13 @@ class WeekTest extends TestCase
     public function weekValuesDataProvider()
     {
         return [
-                //    value        expected
-                ['2012-W01',  true],
-                ['2012-W52',  true],
-                ['2012-01',   false],
-                ['W12-2012',  false],
-                ['2012-W1',   false],
-                ['12-W01',    false],
+            //    value        expected
+            ['2012-W01',  true],
+            ['2012-W52',  true],
+            ['2012-01',   false],
+            ['W12-2012',  false],
+            ['2012-W1',   false],
+            ['12-W01',    false],
         ];
     }
 

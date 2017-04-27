@@ -12,6 +12,7 @@ namespace ZendTest\Form\Element;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\DateTime as DateTimeElement;
+use Zend\Form\Exception\InvalidArgumentException;
 
 class DateTimeTest extends TestCase
 {
@@ -118,5 +119,34 @@ class DateTimeTest extends TestCase
         ]);
 
         $this->assertSame($format, $element->getFormat());
+    }
+
+    public function testFailsWithInvalidMinSpecification()
+    {
+        $element = new DateTimeElement('foo');
+        $element->setAttributes(
+            [
+            'inclusive' => true,
+            'min'       => '2000-01-01T00',
+            'step'      => '1',
+            ]
+        );
+
+        $this->expectException(InvalidArgumentException::class);
+        $element->getInputSpecification();
+    }
+
+    public function testFailsWithInvalidMaxSpecification()
+    {
+        $element = new DateTimeElement('foo');
+        $element->setAttributes(
+            [
+            'inclusive' => true,
+            'max'       => '2001-01-01T00',
+            'step'      => '1',
+            ]
+        );
+        $this->expectException(InvalidArgumentException::class);
+        $element->getInputSpecification();
     }
 }
