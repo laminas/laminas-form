@@ -36,7 +36,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#161](https://github.com/zendframework/zend-form/pull/161) adds an import
+  statement to the `ElementFactory`, fixing an error whereby checks for
+  `Traversable` creation options would lead to a service creation exception;
+  these now correctly identify traversable options and convert them to an array.
 
 ## 2.10.1 - 2017-04-26
 
