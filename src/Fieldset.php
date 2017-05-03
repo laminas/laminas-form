@@ -570,7 +570,6 @@ class Fieldset extends Element implements FieldsetInterface
         $hydratableData = [];
 
         foreach ($this->iterator as $name => $element) {
-
             if ($validationGroup
                 && (! array_key_exists($name, $validationGroup) && ! in_array($name, $validationGroup))
             ) {

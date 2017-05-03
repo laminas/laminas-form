@@ -798,9 +798,9 @@ class FormTest extends TestCase
         ];
         $this->populateForm();
         $this->form->setHydrator(new Hydrator\ObjectProperty());
-		$this->form->setName('formName');
+        $this->form->setName('formName');
         $this->form->setWrapElements(true);
-		$this->form->prepare();
+        $this->form->prepare();
         $this->form->bind($model);
         $this->form->setData($validSet);
 
