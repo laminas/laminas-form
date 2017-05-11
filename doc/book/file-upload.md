@@ -3,7 +3,7 @@
 zend-form provides support for file uploading by using features from each of
 [zend-inputfilter](https://github.com/zendframework/zend-inputfilter),
 [zend-validator](https://github.com/zendframework/zend-validator),
-[zend-filter](https://zendframework.github.io/zend-filter), and
+[zend-filter](https://docs.zendframework.com/zend-filter), and
 [zend-progressbar](https://github.com/zendframework/zend-progressbar). These
 reusable framework components provide a convenient and secure way for handling
 file uploads in your projects.
@@ -208,7 +208,7 @@ One strategy to get around this is to split the form into multiple forms. One
 form for the file upload inputs and another for the other standard inputs.
 
 When you cannot separate the forms, the [File Post-Redirect-Get
-Plugin](https://zendframework.github.io/zend-mvc-plugin-fileprg/) can be used to
+Plugin](https://docs.zendframework.com/zend-mvc-plugin-fileprg/) can be used to
 manage the file inputs and save off valid uploads until the entire form is
 valid.
 
@@ -674,7 +674,7 @@ Related documentation:
 - [Form File View Helper](helper/form-file.md)
 - [List of File Validators](http://framework.zend.com/manual/current/en/modules/zend.validator.file.html)
 - [List of File Filters](http://zendframework.github.io/zend-filter/file/)
-- [File Post-Redirect-Get Controller Plugin](https://zendframework.github.io/zend-mvc-plugin-fileprg/)
+- [File Post-Redirect-Get Controller Plugin](https://docs.zendframework.com/zend-mvc-plugin-fileprg/)
 - [Zend\InputFilter\FileInput](http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html)
 - [Upload Progress Handlers](http://framework.zend.com/manual/current/en/modules/zend.progress-bar.upload.html)
 - [Upload Progress View Helpers](helper/upload-progress-helpers.md)
