@@ -13,7 +13,7 @@ An `id` attribute with a value of `"progress_key"` will automatically be added.
 > The view helper **must** be rendered *before* the file input in the form, or
 > upload progress will not work correctly.
 
-Best used with the [Zend\ProgressBar\Upload\ApcProgress](http://framework.zend.com/manual/current/en/modules/zend.progress-bar.upload.html#apc-progress-handler)
+Best used with the [Zend\ProgressBar\Upload\ApcProgress](https://docs.zendframework.com/zend-progressbar/upload/#apc-progress-handler)
 handler.
 
 See the `apc.rfc1867` ini setting in the [APC Configuration](http://php.net/apc.configuration)
