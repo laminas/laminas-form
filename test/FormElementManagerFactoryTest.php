@@ -72,7 +72,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertSame($element, $elements->get('test'));
     }
 
-    public function testConfiguresValidatorServicesWhenFound()
+    public function testConfiguresFormElementsServicesWhenFound()
     {
         $element = $this->prophesize(ElementInterface::class)->reveal();
         $config = [
@@ -105,7 +105,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertSame($element, $elements->get('test-too'));
     }
 
-    public function testDoesNotConfigureValidatorServicesWhenServiceListenerPresent()
+    public function testDoesNotConfigureFormElementsServicesWhenServiceListenerPresent()
     {
         $element = $this->prophesize(ElementInterface::class)->reveal();
         $config = [
@@ -136,7 +136,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertFalse($elements->has('test-too'));
     }
 
-    public function testDoesNotConfigureValidatorServicesWhenConfigServiceNotPresent()
+    public function testDoesNotConfigureFormElementsServicesWhenConfigServiceNotPresent()
     {
         $container = $this->prophesize(ServiceLocatorInterface::class);
         $container->willImplement(ContainerInterface::class);
@@ -151,7 +151,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertInstanceOf(FormElementManager::class, $elements);
     }
 
-    public function testDoesNotConfigureValidatorServicesWhenConfigServiceDoesNotContainValidatorsConfig()
+    public function testDoesNotConfigureFormElementServicesWhenConfigServiceDoesNotContainFormElementsConfig()
     {
         $container = $this->prophesize(ServiceLocatorInterface::class);
         $container->willImplement(ContainerInterface::class);
