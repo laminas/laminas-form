@@ -9,6 +9,7 @@ namespace Zend\Form;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\AbstractPluginManager;
+use Zend\ServiceManager\Config;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -28,11 +29,32 @@ class FormElementManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
-        if ($this->isV3Container()) {
-            return new FormElementManager\FormElementManagerV3Polyfill($container, $options ?: []);
+        $pluginManager = $this->isV3Container()
+            ? new FormElementManager\FormElementManagerV3Polyfill($container, $options ?: [])
+            : new FormElementManager\FormElementManagerV2Polyfill($container, $options ?: []);
+
+        // If this is in a zend-mvc application, the ServiceListener will inject
+        // merged configuration during bootstrap.
+        if ($container->has('ServiceListener')) {
+            return $pluginManager;
         }
 
-        return new FormElementManager\FormElementManagerV2Polyfill($container, $options ?: []);
+        // If we do not have a config service, nothing more to do
+        if (! $container->has('config')) {
+            return $pluginManager;
+        }
+
+        $config = $container->get('config');
+
+        // If we do not have form_elements configuration, nothing more to do
+        if (! isset($config['form_elements']) || ! is_array($config['form_elements'])) {
+            return $pluginManager;
+        }
+
+        // Wire service configuration for forms and elements
+        (new Config($config['form_elements']))->configureServiceManager($pluginManager);
+
+        return $pluginManager;
     }
 
     /**
