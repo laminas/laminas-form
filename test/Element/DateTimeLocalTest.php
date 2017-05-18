@@ -11,6 +11,7 @@ namespace ZendTest\Form\Element;
 
 use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\DateTimeLocal as DateTimeLocalElement;
+use Zend\Form\Exception\InvalidArgumentException;
 
 class DateTimeLocalTest extends TestCase
 {
@@ -19,8 +20,8 @@ class DateTimeLocalTest extends TestCase
         $element = new DateTimeLocalElement('foo');
         $element->setAttributes([
             'inclusive' => true,
-            'min'       => '2000-01-01T00:00Z',
-            'max'       => '2001-01-01T00:00Z',
+            'min'       => '2000-01-01T00:00',
+            'max'       => '2001-01-01T00:00',
             'step'      => '1',
         ]);
 
@@ -40,11 +41,11 @@ class DateTimeLocalTest extends TestCase
             switch ($class) {
                 case 'Zend\Validator\GreaterThan':
                     $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2000-01-01T00:00Z', $validator->getMin());
+                    $this->assertEquals('2000-01-01T00:00', $validator->getMin());
                     break;
                 case 'Zend\Validator\LessThan':
                     $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2001-01-01T00:00Z', $validator->getMax());
+                    $this->assertEquals('2001-01-01T00:00', $validator->getMax());
                     break;
                 case 'Zend\Validator\DateStep':
                     $dateInterval = new \DateInterval('PT1M');
@@ -54,5 +55,34 @@ class DateTimeLocalTest extends TestCase
                     break;
             }
         }
+    }
+
+    public function testFailsWithInvalidMinSpecification()
+    {
+        $element = new DateTimeLocalElement('foo');
+        $element->setAttributes(
+            [
+            'inclusive' => true,
+            'min'       => '2001-01-01T00:00Z',
+            'step'      => '1',
+            ]
+        );
+
+        $this->expectException(InvalidArgumentException::class);
+        $element->getInputSpecification();
+    }
+
+    public function testFailsWithInvalidMaxSpecification()
+    {
+        $element = new DateTimeLocalElement('foo');
+        $element->setAttributes(
+            [
+            'inclusive' => true,
+            'max'       => '2001-01-01T00:00Z',
+            'step'      => '1',
+            ]
+        );
+        $this->expectException(InvalidArgumentException::class);
+        $element->getInputSpecification();
     }
 }
