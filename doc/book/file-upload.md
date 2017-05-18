@@ -3,7 +3,7 @@
 zend-form provides support for file uploading by using features from each of
 [zend-inputfilter](https://github.com/zendframework/zend-inputfilter),
 [zend-validator](https://github.com/zendframework/zend-validator),
-[zend-filter](https://zendframework.github.io/zend-filter), and
+[zend-filter](https://docs.zendframework.com/zend-filter), and
 [zend-progressbar](https://github.com/zendframework/zend-progressbar). These
 reusable framework components provide a convenient and secure way for handling
 file uploads in your projects.
@@ -61,8 +61,8 @@ The `File` element provides several automated features:
 - The form's `enctype` will automatically be set to `multipart/form-data` when
   the form's `prepare()` method is called.
 - The file element's default input specification will create the correct `Input`
-  type: [`Zend\InputFilter\FileInput`](http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html).
-- The `FileInput` will automatically prepend an [UploadFile validator](http://framework.zend.com/manual/current/en/modules/zend.validator.file.html#uploadfile)
+  type: [`Zend\InputFilter\FileInput`](https://docs.zendframework.com/zend-inputfilter/file-input/).
+- The `FileInput` will automatically prepend an [UploadFile validator](https://docs.zendframework.com/zend-validator/validators/file/upload-file/)
   to securely validate that the file is actually an uploaded file, and to report
   any upload errors to the user.
 
@@ -189,7 +189,7 @@ array(1) {
 > }
 > ```
 >
-> [`Zend\InputFilter\FileInput`](http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html) expects the file data be in this
+> [`Zend\InputFilter\FileInput`](https://docs.zendframework.com/zend-inputfilter/file-input/) expects the file data be in this
 > re-mapped array format.
 >
 > Note: [PSR-7](http://www.php-fig.org/psr/psr-7/) also remaps the `$_FILES`
@@ -208,7 +208,7 @@ One strategy to get around this is to split the form into multiple forms. One
 form for the file upload inputs and another for the other standard inputs.
 
 When you cannot separate the forms, the [File Post-Redirect-Get
-Plugin](https://zendframework.github.io/zend-mvc-plugin-fileprg/) can be used to
+Plugin](https://docs.zendframework.com/zend-mvc-plugin-fileprg/) can be used to
 manage the file inputs and save off valid uploads until the entire form is
 valid.
 
@@ -413,7 +413,7 @@ must use a server-side progress solution.
 
 `Zend\ProgressBar\Upload` provides handlers that can give you the actual state
 of a file upload in progress. To use this feature, you need to choose one of the
-[Upload Progress Handlers](http://framework.zend.com/manual/current/en/modules/zend.progress-bar.upload.html)
+[Upload Progress Handlers](https://docs.zendframework.com/zend-progressbar/upload/)
 (APC, uploadprogress, or Session) and ensure that your server setup has the
 appropriate extension or feature enabled.
 
@@ -672,11 +672,11 @@ Related documentation:
 
 - [Form File Element](element/file.md)
 - [Form File View Helper](helper/form-file.md)
-- [List of File Validators](http://framework.zend.com/manual/current/en/modules/zend.validator.file.html)
+- [List of File Validators](https://docs.zendframework.com/zend-validator/validators/file/intro/)
 - [List of File Filters](http://zendframework.github.io/zend-filter/file/)
-- [File Post-Redirect-Get Controller Plugin](https://zendframework.github.io/zend-mvc-plugin-fileprg/)
-- [Zend\InputFilter\FileInput](http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html)
-- [Upload Progress Handlers](http://framework.zend.com/manual/current/en/modules/zend.progress-bar.upload.html)
+- [File Post-Redirect-Get Controller Plugin](https://docs.zendframework.com/zend-mvc-plugin-fileprg/)
+- [Zend\InputFilter\FileInput](https://docs.zendframework.com/zend-inputfilter/file-input/)
+- [Upload Progress Handlers](https://docs.zendframework.com/zend-progressbar/upload/)
 - [Upload Progress View Helpers](helper/upload-progress-helpers.md)
 
 External resources and blog posts from the community:
