@@ -12,7 +12,7 @@ The component consists of the following objects:
   elements.
 - Forms, which extend from Fieldsets (and thus Elements). They provide data and
   object binding, and compose [InputFilters](https://github.com/zendframework/zend-inputfilter/).
-  Data binding is done via [zend-hydrator](https://zendframework.github.io/zend-hydrator/).
+  Data binding is done via [zend-hydrator](https://docs.zendframework.com/zend-hydrator/).
 
 To facilitate usage with the view layer, zend-form also aggregates a number of
 form-specific view helpers. These accept elements, fieldsets, and/or forms, and
@@ -21,7 +21,7 @@ use the attributes they compose to render markup.
 A small number of specialized elements are provided for accomplishing
 application-centric tasks.  These include the `Csrf` element, used to prevent
 Cross Site Request Forgery attacks, and the `Captcha` element, used to display
-and validate [CAPTCHAs](https://zendframework.github.io/zend-captcha).
+and validate [CAPTCHAs](https://docs.zendframework.com/zend-captcha).
 
 A `Factory` is provided to facilitate creation of elements, fieldsets, forms,
 and the related input filter. The default `Form` implementation is backed by a

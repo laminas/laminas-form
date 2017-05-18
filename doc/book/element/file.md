@@ -2,7 +2,7 @@
 
 `Zend\Form\Element\File` represents a form file input and
 provides a default input specification with a type of
-[FileInput](http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html)
+[FileInput](https://docs.zendframework.com/zend-inputfilter/file-input/)
 (important for handling validators and filters correctly).
 It is intended for use with the [FormFile](../helper/form-file.md) view helper.
 
