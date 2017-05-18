@@ -46,6 +46,11 @@ All notable changes to this project will be documented in this file, in reverse 
   and thus seeding it with configured form/form element services.  This means
   that the `form_elements` configuration will now be honored in non-zend-mvc
   contexts.
+- [#159](https://github.com/zendframework/zend-form/pull/159) fixes the behavior
+  of the `min` and `max` attributes of the various `DateTime` elements, ensuring
+  that the elements raise an exception during instantiation if the values
+  provided are in a format that `DateTime` does not recognize for the element
+  type in question.
 
 ## 2.10.1 - 2017-04-26
 
