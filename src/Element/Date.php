@@ -16,6 +16,9 @@ use Zend\Validator\DateStep as DateStepValidator;
 
 class Date extends DateTimeElement
 {
+
+    const DATETIME_FORMAT = 'Y-m-d';
+
     /**
      * Seed attributes
      *

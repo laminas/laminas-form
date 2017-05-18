@@ -11,6 +11,7 @@ namespace ZendTest\Form\Element;
 
 use PHPUnit\Framework\TestCase;
 use Zend\Form\Element\Time as TimeElement;
+use Zend\Form\Exception\InvalidArgumentException;
 
 class TimeTest extends TestCase
 {
@@ -57,5 +58,34 @@ class TimeTest extends TestCase
                     break;
             }
         }
+    }
+
+    public function testFailsWithInvalidMinSpecification()
+    {
+        $element = new TimeElement('foo');
+        $element->setAttributes(
+            [
+            'inclusive' => true,
+            'min'       => '00:00',
+            'step'      => '1',
+            ]
+        );
+
+        $this->expectException(InvalidArgumentException::class);
+        $element->getInputSpecification();
+    }
+
+    public function testFailsWithInvalidMaxSpecification()
+    {
+        $element = new TimeElement('foo');
+        $element->setAttributes(
+            [
+            'inclusive' => true,
+            'max'       => '00:00',
+            'step'      => '1',
+            ]
+        );
+        $this->expectException(InvalidArgumentException::class);
+        $element->getInputSpecification();
     }
 }
