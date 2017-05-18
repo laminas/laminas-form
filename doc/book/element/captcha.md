@@ -8,7 +8,7 @@ CAPTCHA adapter in use.
 ## Basic Usage
 
 A CAPTCHA adapter must be attached in order for validation to be included in the
-element's input filter specification. See the [zend-captcha documentation](https://zendframework.github.io/zend-captcha/adapters/)
+element's input filter specification. See the [zend-captcha documentation](https://docs.zendframework.com/zend-captcha/adapters/)
 for more information on what adapters are available.
 
 ```php

@@ -671,7 +671,7 @@ use Zend\Form\FormInterface;
 $data = $form->getData(FormInterface::VALUES_AS_ARRAY);
 ```
 
-Zend Framework ships several standard [hydrators](https://zendframework.github.io/zend-hydrator/);
+Zend Framework ships several standard [hydrators](https://docs.zendframework.com/zend-hydrator/);
 you can create custom hydrators by implementing `Zend\Hydrator\HydratorInterface`,
 which looks like this:
 
