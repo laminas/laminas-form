@@ -22,6 +22,12 @@ All notable changes to this project will be documented in this file, in reverse 
   statement to the `ElementFactory`, fixing an error whereby checks for
   `Traversable` creation options would lead to a service creation exception;
   these now correctly identify traversable options and convert them to an array.
+- [#164](https://github.com/zendframework/zend-form/pull/164) fixes how the
+  `FormElementManagerFactory` factory initializes the plugin manager instance,
+  ensuring it is injecting the relevant configuration from the `config` service
+  and thus seeding it with configured form/form element services.  This means
+  that the `form_elements` configuration will now be honored in non-zend-mvc
+  contexts.
 
 ## 2.10.1 - 2017-04-26
 
