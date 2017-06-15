@@ -484,7 +484,7 @@ Notice the `use_as_base_fieldset` option. This option is here to say to the
 form: "hey, the object I bind to you is, in fact, bound to the fieldset that is
 the base fieldset." This will be to true in most situations.
 
-This approach allws each entity can have its own `Fieldset`, and enables re-use.
+This approach allows each entity to have its own `Fieldset`, and enables re-use.
 You describe the elements, the filters, and validators for each entity only
 once, and the concrete `Form` instance will only compose those fieldsets. You no
 longer have to add the "username" input to every form that deals with users!
