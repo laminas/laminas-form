@@ -125,8 +125,8 @@ class DateTest extends TestCase
     {
         $element = new DateElement('foo');
         $element->setAttributes([
-            'min'       => '2012-01-01',
-            'max'       => '2012-12-31',
+            'min'       => '01-01-2012',
+            'max'       => '31-12-2012',
         ]);
         $element->setFormat('d-m-Y');
 

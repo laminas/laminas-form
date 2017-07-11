@@ -17,6 +17,7 @@ class MonthTest extends TestCase
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
     {
         $element = new MonthElement('foo');
+        $element->setFormat('Y-m');
         $element->setAttributes([
             'inclusive' => true,
             'min'       => '2000-01',
