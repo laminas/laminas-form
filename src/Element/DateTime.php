@@ -66,9 +66,9 @@ class DateTime extends Element implements InputProviderInterface
     /**
      * Retrieve the element value
      *
-     * If the value is a DateTime object, and $returnFormattedValue is true
-     * (the default), we return the string
-     * representation using the currently registered format.
+     * If the value is instance of DateTimeInterface, and $returnFormattedValue
+     * is true (the default), we return the string representation using the
+     * currently registered format.
      *
      * If $returnFormattedValue is false, the original value will be
      * returned, regardless of type.
@@ -79,7 +79,7 @@ class DateTime extends Element implements InputProviderInterface
     public function getValue($returnFormattedValue = true)
     {
         $value = parent::getValue();
-        if (! $value instanceof PhpDateTime || ! $returnFormattedValue) {
+        if (! $value instanceof DateTimeInterface || ! $returnFormattedValue) {
             return $value;
         }
         $format = $this->getFormat();
