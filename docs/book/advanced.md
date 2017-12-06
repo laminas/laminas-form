@@ -381,7 +381,7 @@ use Zend\Form\Fieldset;
 class AlbumFieldset extends Fieldset
 {
     public function __construct(AlbumTable $albumTable)
-    {           
+    {
         // Add any elements that need to fetch data from database
         // using the album table !
     }

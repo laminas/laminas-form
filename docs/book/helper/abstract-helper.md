@@ -49,7 +49,7 @@ $this->formLabel()->setTranslator($translator, 'my-text-domain');
 
 ### What will be translated?
 
-The specific view helpers are responsible to determine what exactly should be translated 
+The specific view helpers are responsible to determine what exactly should be translated
 (e. g. the Label in the FormLabel view helper or the "title" HTML attribute).
 
 If you want to have certain HTML attribute values translated you can mark them as "translatable":

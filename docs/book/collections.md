@@ -503,7 +503,7 @@ Now, let's create a zend-mvc controller action:
      $product = new Product();
      $form->bind($product);
      $request = $this->getRequest();
-     
+
      if ($request->isPost()) {
          $form->setData($request->getPost());
 

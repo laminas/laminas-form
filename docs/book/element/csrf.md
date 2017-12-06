@@ -41,7 +41,7 @@ $form->add([
 ```
 
 > ### Multiple CSRF elements must be uniquely named
-> 
+>
 > If you are using more than one form on a page, and each contains its own CSRF
 > element, you will need to make sure that each form uniquely names its element;
 > if you do not, it's possible for the value of one to override the other within

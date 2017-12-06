@@ -25,7 +25,7 @@ $month->setAttributes([
 $form = new Form('my-form');
 $form->add($month);
 ```
-   
+
 Using array notation:
 
 ```php
@@ -48,7 +48,7 @@ $form->add([
 ```
 
 > ### Set all attributes before calling prepare
-> 
+>
 > The `min`, `max`, and `step` attributes should be set prior to calling
 > `Zend\Form::prepare()`. Otherwise, the default input specification for the
 > element may not contain the correct validation rules.

@@ -117,7 +117,7 @@ public function uploadFormAction()
 {
     $form = new UploadForm('upload-form');
 
-    $request = $this->getRequest(); 
+    $request = $this->getRequest();
     if ($request->isPost()) {
         // Make certain to merge the $_FILES info!
         $post = array_merge_recursive(
