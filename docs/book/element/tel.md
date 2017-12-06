@@ -22,7 +22,7 @@ $phone->setLabel('Phone');
 $form = new Form('my-form');
 $form->add($phone);
 ```
-   
+
 Using array notation:
 
 ```php

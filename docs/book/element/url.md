@@ -20,7 +20,7 @@ $url->setLabel('Webpage URL');
 $form = new Form('my-form');
 $form->add($url);
 ```
-   
+
 Using array notation:
 
 ```php

@@ -58,7 +58,7 @@ $form->add([
 > element may not contain the correct validation rules.
 
 > ### Default date format
-> 
+>
 > The default date format for the validator is `H:i:s`. However, a valid time
 > string is not required to have a "seconds" representation. In fact, some user
 > agent UIs such as Google Chrome and Opera submit time elements using the `H:i`

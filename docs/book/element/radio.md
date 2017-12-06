@@ -49,8 +49,8 @@ $form->add([
 ## Advanced Usage
 
 See [MultiCheckbox for examples](multi-checkbox.md) of how to apply attributes
-and options to each radio button. 
-    
+and options to each radio button.
+
 ## Public Methods
 
 The `Radio` element extends the `MultiCheckbox` element, and inherits

@@ -381,7 +381,7 @@ use Zend\Form\Fieldset;
 class AlbumFieldset extends Fieldset
 {
     public function __construct(AlbumTable $albumTable)
-    {           
+    {
         // Add any elements that need to fetch data from database
         // using the album table !
     }
@@ -457,7 +457,7 @@ The method is defined in `Zend\Stdlib\InitializableInterface`, which
 instantiation!
 
 Within zend-form, the `FormElementManager` defines an
-[initializer](http://zendframework.github.io/zend-servicemanager/configuring-the-service-manager/#initializers)
+[initializer](http://docs.zendframework.com/zend-servicemanager/configuring-the-service-manager/#initializers)
 that is pushed to the bottom of the initializer stack, making it the last
 initializer invoked. This initializer checks if the instance created implements
 `InitializableInterface`, and, if so, calls its `init()` method.

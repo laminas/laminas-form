@@ -20,7 +20,7 @@ $search->setLabel('Search');
 $form = new Form('my-form');
 $form->add($search);
 ```
-   
+
 Using array notation:
 
 ```php
