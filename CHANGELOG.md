@@ -29,6 +29,12 @@ All notable changes to this project will be documented in this file, in reverse 
   binding values in a fieldset will correctly identify the elements in the
   provided data.
 
+- [#172](https://github.com/zendframework/zend-form/pull/172) fixes the
+  `DateTime` element such that it no longer attempts to use its
+  `DATETIME_FORMAT` constant, but, rather, the value of the `$format` property,
+  when representing the element; this change allows developers to override the
+  format, which was the original intention.
+
 ## 2.10.3 - TBD
 
 ### Added
