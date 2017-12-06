@@ -35,6 +35,11 @@ All notable changes to this project will be documented in this file, in reverse 
   when representing the element; this change allows developers to override the
   format, which was the original intention.
 
+- [#178](https://github.com/zendframework/zend-form/pull/178) loosens the checks
+  in `Zend\Form\Element\DateTime::getValue()` to check against PHP's `DateTimeInterface` (vs
+  `DateTime`) when retrieving the value; this fixes edge cases where it was
+  instead returning the format for `DateTimeImmutable` values.
+
 ## 2.10.3 - TBD
 
 ### Added
