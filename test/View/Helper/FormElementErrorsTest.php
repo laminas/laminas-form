@@ -50,7 +50,7 @@ class FormElementErrorsTest extends CommonTestCase
 
     public function testRendersErrorMessagesUsingUnorderedListTranslated()
     {
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
         $mockTranslator->expects($this->at(0))
             ->method('translate')
             ->will($this->returnValue('Translated first error message'));
