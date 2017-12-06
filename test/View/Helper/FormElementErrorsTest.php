@@ -71,7 +71,9 @@ class FormElementErrorsTest extends CommonTestCase
         $element->setMessages($messages);
 
         $markup = $this->helper->render($element);
+        // @codingStandardsIgnoreStart
         $this->assertRegexp('#<ul>\s*<li>Translated first error message</li>\s*<li>Translated second error message</li>\s*<li>Translated third error message</li>\s*</ul>#s', $markup);
+        // @codingStandardsIgnoreEnd
     }
 
     public function testCanSpecifyAttributesForOpeningTag()
