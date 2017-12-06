@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#104](https://github.com/zendframework/zend-form/pull/104) adds the ability
+  for the `FormElementErrors` view helper to translate validation error messages
+  using the composed translator and text domain instances.
 
 ### Deprecated
 
