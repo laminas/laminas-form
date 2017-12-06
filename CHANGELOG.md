@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file, in reverse 
   for the `FormElementErrors` view helper to translate validation error messages
   using the composed translator and text domain instances.
 
+### Changed
+
+- Nothing.
+
 ### Deprecated
 
 - Nothing.
@@ -20,7 +24,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#162](https://github.com/zendframework/zend-form/pull/162) fixes an issue
+  with hydration when a form has called `setWrapElements(true)`, ensuring that
+  binding values in a fieldset will correctly identify the elements in the
+  provided data.
 
 ## 2.10.3 - TBD
 

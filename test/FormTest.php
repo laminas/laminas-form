@@ -785,6 +785,39 @@ class FormTest extends TestCase
         ], $model->foobar);
     }
 
+    public function testBindValuesWithWrappingPopulatesBoundObject()
+    {
+        $model = new stdClass;
+        $validSet = [
+            'foo' => 'abcde',
+            'bar' => ' ALWAYS valid ',
+            'foobar' => [
+                'foo' => 'abcde',
+                'bar' => ' always VALID',
+            ],
+        ];
+        $this->populateForm();
+        $this->form->setHydrator(new Hydrator\ObjectProperty());
+        $this->form->setName('formName');
+        $this->form->setWrapElements(true);
+        $this->form->prepare();
+        $this->form->bind($model);
+        $this->form->setData($validSet);
+
+        $this->assertObjectNotHasAttribute('foo', $model);
+        $this->assertObjectNotHasAttribute('bar', $model);
+        $this->assertObjectNotHasAttribute('foobar', $model);
+
+        $this->form->isValid();
+
+        $this->assertEquals($validSet['foo'], $model->foo);
+        $this->assertEquals('always valid', $model->bar);
+        $this->assertEquals([
+            'foo' => 'abcde',
+            'bar' => 'always valid',
+        ], $model->foobar);
+    }
+
     public function testHasFactoryComposedByDefault()
     {
         $factory = $this->form->getFormFactory();
