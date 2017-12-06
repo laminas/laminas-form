@@ -135,7 +135,7 @@ class DateTime extends Element implements InputProviderInterface
             throw new InvalidArgumentException(sprintf(
                 '%1$s expects "min" to conform to %2$s; received "%3$s"',
                 __METHOD__,
-                static::DATETIME_FORMAT,
+                $this->format,
                 $this->attributes['min']
             ));
         }
@@ -153,7 +153,7 @@ class DateTime extends Element implements InputProviderInterface
             throw new InvalidArgumentException(sprintf(
                 '%1$s expects "max" to conform to %2$s; received "%3$s"',
                 __METHOD__,
-                static::DATETIME_FORMAT,
+                $this->format,
                 $this->attributes['max']
             ));
         }
@@ -226,7 +226,7 @@ class DateTime extends Element implements InputProviderInterface
     private function valueIsValidDateTimeFormat($value)
     {
         return PhpDateTime::createFromFormat(
-            static::DATETIME_FORMAT,
+            $this->format,
             $value
         ) instanceof DateTimeInterface;
     }
