@@ -58,9 +58,9 @@ $form->add([
 	],
 ]);
 ```
-    
+
 > ### Set multiple attribute before calling prepare
-> 
+>
 > Note: the `multiple` attribute should be set prior to calling
 > `Zend\Form::prepare()`. Otherwise, the default input specification for the
 > element may not contain the correct validation rules.

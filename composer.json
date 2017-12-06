@@ -1,23 +1,23 @@
 {
     "name": "zendframework/zend-form",
-    "description": " ",
+    "description": "Validate and display simple and complex forms, casting forms to business objects and vice versa",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "zf",
+        "zendframework",
         "form"
     ],
-    "homepage": "https://github.com/zendframework/zend-form",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Form\\": "src/"
-        },
-        "files": [
-            "autoload/formElementManagerPolyfill.php"
-        ]
+    "support": {
+        "docs": "https://docs.zendframework.com/zend-form/",
+        "issues": "https://github.com/zendframework/zend-form/issues",
+        "source": "https://github.com/zendframework/zend-form",
+        "rss": "https://github.com/zendframework/zend-form/releases.atom",
+        "slack": "https://zendframework-slack.herokuapp.com",
+        "forum": "https://discourse.zendframework.com/c/questions/components"
     },
     "require": {
-        "php": "^7.0 || ^5.6",
-        "zendframework/zend-inputfilter": "^2.6",
+        "php": "^5.6 || ^7.0",
+        "zendframework/zend-inputfilter": "^2.8",
         "zendframework/zend-hydrator": "^1.1 || ^2.1",
         "zendframework/zend-stdlib": "^2.7 || ^3.0"
     },
@@ -31,12 +31,12 @@
         "zendframework/zend-filter": "^2.6",
         "zendframework/zend-i18n": "^2.6",
         "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
-        "zendframework/zend-session": "^2.6.2",
+        "zendframework/zend-session": "^2.8.1",
         "zendframework/zend-text": "^2.6",
         "zendframework/zend-validator": "^2.6",
         "zendframework/zend-view": "^2.6.2",
         "zendframework/zendservice-recaptcha": "^3.0.0",
-        "phpunit/phpunit": "^6.0.8 || ^5.7.15",
+        "phpunit/phpunit": "^5.7.23 || ^6.5.3",
         "zendframework/zend-coding-standard": "~1.0.0"
     },
     "suggest": {
@@ -48,8 +48,22 @@
         "zendframework/zend-view": "^2.6.2, required for using the zend-form view helpers",
         "zendframework/zendservice-recaptcha": "in order to use the ReCaptcha form element"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Zend\\Form\\": "src/"
+        },
+        "files": [
+            "autoload/formElementManagerPolyfill.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ZendTest\\Form\\": "test/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.10-dev",
@@ -59,14 +73,6 @@
             "component": "Zend\\Form",
             "config-provider": "Zend\\Form\\ConfigProvider"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ZendTest\\Form\\": "test/"
-        }
-    },
-    "config": {
-        "process-timeout": 0
     },
     "scripts": {
         "check": [

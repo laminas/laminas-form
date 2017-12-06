@@ -216,7 +216,8 @@ class FormSelectTest extends CommonTestCase
         $element = new SelectElement('foo');
         $element->setValueOptions($options);
         $markup = $this->helper->render($element);
-        list($value, $label) = each($options);
+        $value = key($options);
+        $label = current($options);
         $this->assertRegexp(sprintf('#option .*?value="%s"#', (string) $value), $markup);
     }
 

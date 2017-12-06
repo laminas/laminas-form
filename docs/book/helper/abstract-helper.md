@@ -10,7 +10,7 @@ allows setting a translator and text domain.
 ## Public methods
 
 The following public methods are in addition to the inherited methods of
-[Zend\I18n\View\Helper\AbstractTranslatorHelper](http://zendframework.github.io/zend-i18n/view-helpers/#abstract-translator-helper).
+[Zend\I18n\View\Helper\AbstractTranslatorHelper](http://docs.zendframework.com/zend-i18n/view-helpers/#abstract-translator-helper).
 
 Method signature                                               | Description
 -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ $this->formLabel()->setTranslator($translator, 'my-text-domain');
 
 ### What will be translated?
 
-The specific view helpers are responsible to determine what exactly should be translated 
+The specific view helpers are responsible to determine what exactly should be translated
 (e. g. the Label in the FormLabel view helper or the "title" HTML attribute).
 
 If you want to have certain HTML attribute values translated you can mark them as "translatable":

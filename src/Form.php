@@ -328,7 +328,7 @@ class Form extends Fieldset implements FormInterface
      * @param array $values
      * @return mixed
      */
-    public function bindValues(array $values = [])
+    public function bindValues(array $values = [], array $validationGroup = null)
     {
         if (! is_object($this->object)) {
             if ($this->baseFieldset === null || $this->baseFieldset->allowValueBinding() == false) {

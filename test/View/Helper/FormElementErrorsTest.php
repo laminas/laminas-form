@@ -48,6 +48,34 @@ class FormElementErrorsTest extends CommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
+    public function testRendersErrorMessagesUsingUnorderedListTranslated()
+    {
+        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
+        $mockTranslator->expects($this->at(0))
+            ->method('translate')
+            ->will($this->returnValue('Translated first error message'));
+        $mockTranslator->expects($this->at(1))
+            ->method('translate')
+            ->will($this->returnValue('Translated second error message'));
+        $mockTranslator->expects($this->at(2))
+            ->method('translate')
+            ->will($this->returnValue('Translated third error message'));
+
+        $this->helper->setTranslator($mockTranslator);
+        $this->assertTrue($this->helper->hasTranslator());
+
+        $this->helper->setTranslatorTextDomain('default');
+
+        $messages = $this->getMessageList();
+        $element  = new Element('foo');
+        $element->setMessages($messages);
+
+        $markup = $this->helper->render($element);
+        // @codingStandardsIgnoreStart
+        $this->assertRegexp('#<ul>\s*<li>Translated first error message</li>\s*<li>Translated second error message</li>\s*<li>Translated third error message</li>\s*</ul>#s', $markup);
+        // @codingStandardsIgnoreEnd
+    }
+
     public function testCanSpecifyAttributesForOpeningTag()
     {
         $messages = $this->getMessageList();

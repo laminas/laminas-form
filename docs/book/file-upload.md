@@ -117,7 +117,7 @@ public function uploadFormAction()
 {
     $form = new UploadForm('upload-form');
 
-    $request = $this->getRequest(); 
+    $request = $this->getRequest();
     if ($request->isPost()) {
         // Make certain to merge the $_FILES info!
         $post = array_merge_recursive(
@@ -268,7 +268,7 @@ class UploadForm extends Form
 The `filerenameupload` options above would cause an uploaded file to be
 renamed and moved to: `./data/tmpuploads/avatar_4b3403665fea6.png`.
 
-See the [RenameUpload filter](http://zendframework.github.io/zend-filter/file/#renameupload)
+See the [RenameUpload filter](http://docs.zendframework.com/zend-filter/file/#renameupload)
 documentation for more information on its supported options.
 
 ### Call the fileprg plugin
@@ -673,7 +673,7 @@ Related documentation:
 - [Form File Element](element/file.md)
 - [Form File View Helper](helper/form-file.md)
 - [List of File Validators](https://docs.zendframework.com/zend-validator/validators/file/intro/)
-- [List of File Filters](http://zendframework.github.io/zend-filter/file/)
+- [List of File Filters](http://docs.zendframework.com/zend-filter/file/)
 - [File Post-Redirect-Get Controller Plugin](https://docs.zendframework.com/zend-mvc-plugin-fileprg/)
 - [Zend\InputFilter\FileInput](https://docs.zendframework.com/zend-inputfilter/file-input/)
 - [Upload Progress Handlers](https://docs.zendframework.com/zend-progressbar/upload/)
