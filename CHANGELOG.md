@@ -10,6 +10,11 @@ All notable changes to this project will be documented in this file, in reverse 
   for the `FormElementErrors` view helper to translate validation error messages
   using the composed translator and text domain instances.
 
+- [#171](https://github.com/zendframework/zend-form/pull/171),
+  [#186](https://github.com/zendframework/zend-form/pull/186), and
+  [#187](https://github.com/zendframework/zend-form/pull/187) add support for
+  PHP 7.2.
+
 ### Changed
 
 - Nothing.
@@ -20,7 +25,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#171](https://github.com/zendframework/zend-form/pull/171) removes support
+  for HHVM.
+
+- [#186](https://github.com/zendframework/zend-form/pull/186) removes support
+  for PHP 5.5.
 
 ### Fixed
 
