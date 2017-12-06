@@ -10,7 +10,7 @@ allows setting a translator and text domain.
 ## Public methods
 
 The following public methods are in addition to the inherited methods of
-[Zend\I18n\View\Helper\AbstractTranslatorHelper](http://zendframework.github.io/zend-i18n/view-helpers/#abstract-translator-helper).
+[Zend\I18n\View\Helper\AbstractTranslatorHelper](http://docs.zendframework.com/zend-i18n/view-helpers/#abstract-translator-helper).
 
 Method signature                                               | Description
 -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------
