@@ -96,7 +96,7 @@ $form->add([
     ],
 ]);
 ```
-    
+
 ## Public Methods
 
 The following methods are specific to the `MultiCheckbox` element; all other methods

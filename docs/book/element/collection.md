@@ -30,8 +30,8 @@ Using array notation:
 ```php
 use Zend\Form\Element;
 use Zend\Form\Form;
- 
-$form = new Form('my-form');       
+
+$form = new Form('my-form');
 $form->add([
     'type' => Element\Collection::class,
     'options' => [

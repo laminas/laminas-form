@@ -46,7 +46,7 @@ $form->add([
 	],
 ]);
 ```
-    
+
 > ### Set all attributes before calling prepare
 >
 > The `min`, `max`, and `step` attributes should be set prior to calling

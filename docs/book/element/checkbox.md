@@ -23,14 +23,14 @@ $checkbox->setUncheckedValue('bad');
 $form = new Form('my-form');
 $form->add($checkbox);
 ```
-   
+
 Using array notation:
 
 ```php
 use Zend\Form\Element;
 use Zend\Form\Form;
- 
-$form = new Form('my-form');       
+
+$form = new Form('my-form');
 $form->add([
     'type' => Element\Checkbox::class,
     'name' => 'checkbox',
@@ -52,8 +52,8 @@ checkbox checked by default, make the `value` equal to the `checked_value` eg:
 ```php
 use Zend\Form\Element;
 use Zend\Form\Form;
- 
-$form = new Form('my-form');       
+
+$form = new Form('my-form');
 $form->add([
     'type' => Element\Checkbox::class,
     'name' => 'checkbox',
