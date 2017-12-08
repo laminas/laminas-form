@@ -10,7 +10,9 @@
 namespace ZendTest\Form\View\Helper;
 
 use Zend\Form\Element;
+use Zend\Form\Form;
 use Zend\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
+use Zend\Validator\AbstractValidator;
 
 class FormElementErrorsTest extends CommonTestCase
 {
@@ -73,6 +75,54 @@ class FormElementErrorsTest extends CommonTestCase
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
         $this->assertRegexp('#<ul>\s*<li>Translated first error message</li>\s*<li>Translated second error message</li>\s*<li>Translated third error message</li>\s*</ul>#s', $markup);
+        // @codingStandardsIgnoreEnd
+    }
+
+    public function testRendersErrorMessagesWithoutDoubleTranslation()
+    {
+        $form = new Form('test_form');
+        $form->add(
+            [
+                'name'    => 'test_element',
+                'type'    => Element\Color::class,
+            ]
+        );
+        $form->setData(['test_element' => 'This is invalid!']);
+
+        $mockValidatorTranslator = $this->createMock('Zend\Validator\Translator\TranslatorInterface');
+        $mockValidatorTranslator
+            ->expects(self::once())
+            ->method('translate')
+            ->willReturnCallback(
+                function ($message) {
+                    self::assertEquals(
+                        'The input does not match against pattern \'%pattern%\'',
+                        $message,
+                        'Unexpected translation key.'
+                    );
+
+                    return 'TRANSLATED: The input does not match against pattern \'%pattern%\'';
+                }
+            );
+
+        AbstractValidator::setDefaultTranslator($mockValidatorTranslator, 'default');
+
+        self::assertFalse($form->isValid());
+
+        $mockFormTranslator = $this->createMock('Zend\I18n\Translator\Translator');
+        $mockFormTranslator
+            ->expects(self::never())
+            ->method('translate');
+
+        $this->helper->setTranslator($mockFormTranslator);
+        $this->assertTrue($this->helper->hasTranslator());
+
+        $this->helper->setTranslatorTextDomain('default');
+
+        $markup = $this->helper->render($form->get('test_element'));
+
+        // @codingStandardsIgnoreStart
+        $this->assertRegexp('#<ul>\s*<li>TRANSLATED: The input does not match against pattern \'/^#[0-9a-fA-F]{6}$/\'</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
