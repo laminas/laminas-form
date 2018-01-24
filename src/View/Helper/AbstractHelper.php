@@ -247,7 +247,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             //@TODO Escape event attributes like AbstractHtmlElement view helper does in htmlAttribs ??
             try {
                 $escapedAttribute = $escapeAttr($value);
-                $strings[] = sprintf('%s="%s"', $escape($key), $escapedAttribute );
+                $strings[] = sprintf('%s="%s"', $escape($key), $escapedAttribute);
             }
             catch( \Zend\Escaper\Exception\RuntimeException $x ){
                 $strings[] = sprintf('%s="%s"', $escape($key), '');

@@ -149,6 +149,5 @@ class AbstractHelperTest extends CommonTestCase
             'data-value=""',
             $this->helper->createAttributesString(['data-value' => "\xc3\x28"])
         );
-
     }
 }
