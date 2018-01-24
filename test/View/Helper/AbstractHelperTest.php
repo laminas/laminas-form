@@ -142,4 +142,13 @@ class AbstractHelperTest extends CommonTestCase
             $this->helper->createAttributesString(['class' => 'Welcome'])
         );
     }
+
+    public function testWillInsulateAgainstBadAttributes()
+    {
+        $this->assertSame(
+            'data-value=""',
+            $this->helper->createAttributesString(['data-value' => "\xc3\x28"])
+        );
+
+    }
 }
