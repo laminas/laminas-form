@@ -248,8 +248,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             try {
                 $escapedAttribute = $escapeAttr($value);
                 $strings[] = sprintf('%s="%s"', $escape($key), $escapedAttribute);
-            }
-            catch( \Zend\Escaper\Exception\RuntimeException $x ){
+            } catch (\Zend\Escaper\Exception\RuntimeException $x) {
                 $strings[] = sprintf('%s="%s"', $escape($key), '');
             }
         }
