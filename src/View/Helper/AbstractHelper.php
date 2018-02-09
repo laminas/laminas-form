@@ -382,7 +382,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
             if (! isset($this->validGlobalAttributes[$attribute])
                 && ! isset($this->validTagAttributes[$attribute])
-                && ! isset($this->validTagAttributePrefixes[substr($attribute, 0, strpos($attribute, '-') + 1)])
+                && ! $this->hasAllowedPrefix($attribute)
             ) {
                 // Invalid attribute for the current tag
                 unset($attributes[$key]);
@@ -554,5 +554,21 @@ abstract class AbstractHelper extends BaseAbstractHelper
     protected function isValidAttributeName($attribute)
     {
         return preg_match('/^[^\t\n\f \/>"\'=]+$/', $attribute);
+    }
+
+    /**
+     * Whether the passed attribute has a valid prefix or not
+     * @param  string  $attribute
+     * @return bool
+     */
+    protected function hasAllowedPrefix($attribute)
+    {
+        foreach ($this->validTagAttributePrefixes as $prefix) {
+            if (substr($attribute, 0, strlen($prefix)) === $prefix) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
