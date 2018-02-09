@@ -168,9 +168,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @var array
      */
     protected $validTagAttributePrefixes = [
-        'data-' => true,
-        'aria-' => true,
-        'x-'    => true,
+        'data-',
+        'aria-',
+        'x-',
     ];
 
     /**
@@ -384,7 +384,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
                 && ! isset($this->validTagAttributes[$attribute])
                 && ! $this->hasAllowedPrefix($attribute)
             ) {
-                // Invalid attribute for the current tag
                 unset($attributes[$key]);
                 continue;
             }
@@ -490,7 +489,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             throw new InvalidArgumentException(sprintf('%s is not a valid attribute prefix', $prefix));
         }
 
-        $this->validTagAttributePrefixes[$prefix] = true;
+        $this->validTagAttributePrefixes[] = $prefix;
         return $this;
     }
 
