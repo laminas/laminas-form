@@ -60,6 +60,26 @@ class AbstractHelperTest extends CommonTestCase
         );
     }
 
+    public function testWillIncludeAdditionalAttributes()
+    {
+        $this->helper->addValidAttribute('px-custom');
+
+        $this->assertSame(
+            'px-custom="value"',
+            $this->helper->createAttributesString(['px-custom' => 'value'])
+        );
+    }
+
+    public function testWillIncludeAdditionalAttributesByPrefix()
+    {
+        $this->helper->addValidAttributePrefix('px-');
+
+        $this->assertSame(
+            'px-custom="value"',
+            $this->helper->createAttributesString(['px-custom' => 'value'])
+        );
+    }
+
     public function testWillTranslateAttributeValuesCorrectly()
     {
         $translator = self::getMockBuilder(Translator::class)

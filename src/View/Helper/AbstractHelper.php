@@ -162,6 +162,17 @@ abstract class AbstractHelper extends BaseAbstractHelper
     ];
 
     /**
+     * Attribute prefixes valid for all tags
+     *
+     * @var array
+     */
+    protected $validTagAttributePrefixes = [
+        'data-' => true,
+        'aria-' => true,
+        'x-'    => true,
+    ];
+
+    /**
      * Attributes valid for the tag represented by this helper
      *
      * This should be overridden in extending classes
@@ -370,9 +381,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
             if (! isset($this->validGlobalAttributes[$attribute])
                 && ! isset($this->validTagAttributes[$attribute])
-                && 'data-' != substr($attribute, 0, 5)
-                && 'aria-' != substr($attribute, 0, 5)
-                && 'x-' != substr($attribute, 0, 2)
+                && ! isset($this->validTagAttributePrefixes[substr($attribute, 0, strpos($attribute, '-') + 1)])
             ) {
                 // Invalid attribute for the current tag
                 unset($attributes[$key]);
@@ -448,6 +457,32 @@ abstract class AbstractHelper extends BaseAbstractHelper
         }
 
         return $value;
+    }
+
+    /**
+     * Adds an HTML attribute to the list of valid attributes
+     *
+     * @param string $attribute
+     *
+     * @return AbstractHelper
+     */
+    public function addValidAttribute($attribute)
+    {
+        $this->validTagAttributes[$attribute] = true;
+        return $this;
+    }
+
+    /**
+     * Adds a prefix to the list of valid attribute prefixes
+     *
+     * @param string $prefix
+     *
+     * @return AbstractHelper
+     */
+    public function addValidAttributePrefix($prefix)
+    {
+        $this->validTagAttributePrefixes[$prefix] = true;
+        return $this;
     }
 
     /**
