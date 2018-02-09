@@ -9,6 +9,7 @@
 
 namespace Zend\Form\View\Helper;
 
+use Zend\Form\Exception\InvalidArgumentException;
 use Zend\Form\ElementInterface;
 use Zend\I18n\View\Helper\AbstractTranslatorHelper as BaseAbstractHelper;
 use Zend\View\Helper\Doctype;
@@ -468,6 +469,10 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     public function addValidAttribute($attribute)
     {
+        if (!$this->isValidAttributeName($attribute)) {
+            throw new InvalidArgumentException(sprintf('%s is not a valid attribute name', $attribute));
+        }
+
         $this->validTagAttributes[$attribute] = true;
         return $this;
     }
@@ -531,5 +536,19 @@ abstract class AbstractHelper extends BaseAbstractHelper
     public static function addDefaultTranslatableAttributePrefix($prefix)
     {
         self::$defaultTranslatableHtmlAttributePrefixes[] = $prefix;
+    }
+
+    /**
+     * Whether the passed attribute is valid or not
+     *
+     * @see https://html.spec.whatwg.org/multipage/syntax.html#attributes-2  Description of valid attributes
+     *
+     * @param  string  $attribute
+     *
+     * @return bool
+     */
+    protected function isValidAttributeName($attribute)
+    {
+        return preg_match('/^[^\t\n\f \/>"\'=]+$/', $attribute);
     }
 }

@@ -10,6 +10,7 @@
 namespace ZendTest\Form\View\Helper;
 
 use Zend\Escaper\Escaper;
+use Zend\Form\Exception\InvalidArgumentException;
 use Zend\Form\View\Helper\AbstractHelper;
 use Zend\I18n\Translator\Translator;
 
@@ -60,13 +61,38 @@ class AbstractHelperTest extends CommonTestCase
         );
     }
 
-    public function testWillIncludeAdditionalAttributes()
+    public function addAttributesData()
     {
-        $this->helper->addValidAttribute('px-custom');
+        return [
+            [ 'valid', 'valid="value"' ],
+            [ 'px-custom', 'px-custom="value"' ],
+            [ 'xlink:custom', 'xlink:custom="value"' ],
+            [ 'attr/', null, true ],
+            [ 'attr"', null, true ],
+            [ 'attr\'', null, true ],
+            [ 'attr>', null, true ],
+            [ 'attr=value', null, true ],
+            [ 'at tr', null, true ],
+            [ "at\ntr", null, true ],
+            [ "at\ttr", null, true ],
+            [ "at\ftr", null, true ],
+        ];
+    }
+
+    /**
+     * @dataProvider addAttributesData
+     */
+    public function testWillIncludeAdditionalAttributes($attribute, $expected = null, $exception = null)
+    {
+        if ($exception) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->helper->addValidAttribute($attribute);
 
         $this->assertSame(
-            'px-custom="value"',
-            $this->helper->createAttributesString(['px-custom' => 'value'])
+            $expected,
+            $this->helper->createAttributesString([$attribute => 'value'])
         );
     }
 
