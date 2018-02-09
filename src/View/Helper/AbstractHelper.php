@@ -486,6 +486,10 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     public function addValidAttributePrefix($prefix)
     {
+        if (!$this->isValidAttributeName($prefix)) {
+            throw new InvalidArgumentException(sprintf('%s is not a valid attribute prefix', $prefix));
+        }
+
         $this->validTagAttributePrefixes[$prefix] = true;
         return $this;
     }

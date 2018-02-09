@@ -96,13 +96,39 @@ class AbstractHelperTest extends CommonTestCase
         );
     }
 
-    public function testWillIncludeAdditionalAttributesByPrefix()
+    public function addAttributesPrefixData()
     {
-        $this->helper->addValidAttributePrefix('px-');
+        return [
+            [ 'v-', 'v-attr="value"' ],
+            [ 'custom-', 'custom-attr="value"' ],
+            [ 'xlink:', 'xlink:attr="value"' ],
+            [ 'abc', 'abcattr="value"' ],
+            [ 'custom/', null, true ],
+            [ 'custom"', null, true ],
+            [ 'custom\'', null, true ],
+            [ 'custom>', null, true ],
+            [ 'custom=', null, true ],
+            [ 'custom ', null, true ],
+            [ "cus\ntom", null, true ],
+            [ "cus\ttom", null, true ],
+            [ "cus\ftom", null, true ],
+        ];
+    }
+
+    /**
+     * @dataProvider addAttributesPrefixData
+     */
+    public function testWillIncludeAdditionalAttributesByPrefix($prefix, $expected = null, $exception = null)
+    {
+        if ($exception) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->helper->addValidAttributePrefix($prefix);
 
         $this->assertSame(
-            'px-custom="value"',
-            $this->helper->createAttributesString(['px-custom' => 'value'])
+            $expected,
+            $this->helper->createAttributesString([$prefix . 'attr' => 'value'])
         );
     }
 
