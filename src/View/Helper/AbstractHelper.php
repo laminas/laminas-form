@@ -468,7 +468,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     public function addValidAttribute($attribute)
     {
-        if (!$this->isValidAttributeName($attribute)) {
+        if (! $this->isValidAttributeName($attribute)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid attribute name', $attribute));
         }
 
@@ -485,7 +485,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     public function addValidAttributePrefix($prefix)
     {
-        if (!$this->isValidAttributeName($prefix)) {
+        if (! $this->isValidAttributeName($prefix)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid attribute prefix', $prefix));
         }
 
