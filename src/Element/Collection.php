@@ -172,7 +172,8 @@ class Collection extends Fieldset
         }
 
         $this->object = $object;
-        $this->count  = count($object) > $this->count ? count($object) : $this->count;
+        $countObject  = count($object);
+        $this->count  = $countObject > $this->count ? $countObject : $this->count;
 
         return $this;
     }
