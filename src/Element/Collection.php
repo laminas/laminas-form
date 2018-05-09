@@ -173,7 +173,7 @@ class Collection extends Fieldset
 
         $this->object = $object;
         $countObject  = count($object);
-        $this->count  = $countObject > $this->count ? $countObject : $this->count;
+        $this->count  = max($countObject, $this->count);
 
         return $this;
     }
