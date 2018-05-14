@@ -16,10 +16,21 @@ use Zend\Validator\AbstractValidator;
 
 class FormElementErrorsTest extends CommonTestCase
 {
+    /**
+     * @var null|\Zend\Validator\Translator\TranslatorInterface
+     */
+    protected $defaultTranslator;
+
     public function setUp()
     {
+        $this->defaultTranslator = AbstractValidator::getDefaultTranslator();
         $this->helper = new FormElementErrorsHelper();
         parent::setUp();
+    }
+
+    public function tearDown()
+    {
+        AbstractValidator::setDefaultTranslator($this->defaultTranslator);
     }
 
     public function getMessageList()
@@ -81,12 +92,10 @@ class FormElementErrorsTest extends CommonTestCase
     public function testRendersErrorMessagesWithoutDoubleTranslation()
     {
         $form = new Form('test_form');
-        $form->add(
-            [
-                'name'    => 'test_element',
-                'type'    => Element\Color::class,
-            ]
-        );
+        $form->add([
+            'name' => 'test_element',
+            'type' => Element\Color::class,
+        ]);
         $form->setData(['test_element' => 'This is invalid!']);
 
         $mockValidatorTranslator = $this->createMock('Zend\Validator\Translator\TranslatorInterface');
@@ -121,9 +130,10 @@ class FormElementErrorsTest extends CommonTestCase
 
         $markup = $this->helper->render($form->get('test_element'));
 
-        // @codingStandardsIgnoreStart
-        $this->assertRegexp('#<ul>\s*<li>TRANSLATED: The input does not match against pattern \'/^#[0-9a-fA-F]{6}$/\'</li>\s*</ul>#s', $markup);
-        // @codingStandardsIgnoreEnd
+        $this->assertRegexp(
+            '#<ul>\s*<li>TRANSLATED: The input does not match against pattern \'/^#[0-9a-fA-F]{6}$/\'</li>\s*</ul>#s',
+            $markup
+        );
     }
 
     public function testCanSpecifyAttributesForOpeningTag()
