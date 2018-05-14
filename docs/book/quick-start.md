@@ -53,7 +53,6 @@ $captcha->setCaptcha(new Captcha\Dumb());
 $captcha->setLabel('Please verify you are human');
 
 // Create a CSRF token:
-$captcha = new Element\Captcha('captcha');
 $csrf = new Element\Csrf('security');
 
 // Create a submit button:
