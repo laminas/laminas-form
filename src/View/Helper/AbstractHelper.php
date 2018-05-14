@@ -370,9 +370,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
             if (! isset($this->validGlobalAttributes[$attribute])
                 && ! isset($this->validTagAttributes[$attribute])
-                && 'data-' != substr($attribute, 0, 5)
-                && 'aria-' != substr($attribute, 0, 5)
-                && 'x-' != substr($attribute, 0, 2)
+                && 0 !== strpos($attribute, 'data-')
+                && 0 !== strpos($attribute, 'aria-')
+                && 0 !== strpos($attribute, 'x-')
             ) {
                 // Invalid attribute for the current tag
                 unset($attributes[$key]);
@@ -434,13 +434,13 @@ abstract class AbstractHelper extends BaseAbstractHelper
             return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
         } else {
             foreach ($this->translatableAttributePrefixes as $prefix) {
-                if (mb_substr($key, 0, mb_strlen($prefix)) === $prefix) {
+                if (0 === mb_strpos($key, $prefix)) {
                     // prefix matches => return translated $value
                     return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
                 }
             }
             foreach (self::$defaultTranslatableHtmlAttributePrefixes as $prefix) {
-                if (mb_substr($key, 0, mb_strlen($prefix)) === $prefix) {
+                if (0 === mb_strpos($key, $prefix)) {
                     // default prefix matches => return translated $value
                     return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
                 }
