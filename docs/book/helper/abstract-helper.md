@@ -25,6 +25,8 @@ Method signature                                               | Description
 `addTranslatableAttributePrefix(string $prefix) : self`        | Marks all HTML attributes that start with the given prefix as translatable.
 `addDefaultTranslatableAttribute(string $attribute) : void`    | Marks the given HTML attribute as translatable for all view helpers.
 `addDefaultTranslatableAttributePrefix(string $prefix) : void` | Marks all HTML attributes that start with the given prefix as translatable for all view helpers.
+`addValidAttribute(string $attribute) : self`                  | Add an HTML attribute to the list of valid attributes for the given element.
+`addValidAttributePrefix(string $prefix) : self`               | Add an HTML attribute prefix to the list of valid attribute prefixes. Any attribute with this preix will be considered valid. By default, the list includes "data-", "aria-", and "x-".
 
 ## Translation
 
@@ -68,4 +70,28 @@ Or you can mark them as translatable for all view helpers (e. g. the title attri
 
 // mark an prefix as translatable
 \Zend\Form\View\Helper\AbstractHelper->addDefaultTranslatableAttributePrefix('data-translatable-');
+```
+
+## Allowing framework-specific attributes
+
+Many JavaScript frameworks use custom attributes and/or attribute prefixes with
+elements, to facilitate various bindings and event listeners. Examples include
+`ng-` for [Angular](https://angularjs.org) elements, and `v-` for
+[Vue](https://vuejs.org).
+
+zend-form view helpers are strict about what attributes they consider valid. If
+you wish to allow additional attributes, you will need to notify the helper of
+them.
+
+The first mechanism is to add a specific attribute:
+
+```php
+$helper->addValidAttribute('some-attribute');
+```
+
+If you wish to allow a set of attributes with a common prefix, use the
+following:
+
+```php
+$helper->addValidAttributePrefix('ng-');
 ```
