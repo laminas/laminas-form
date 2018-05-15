@@ -468,8 +468,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds an HTML attribute to the list of valid attributes
      *
      * @param string $attribute
-     *
      * @return AbstractHelper
+     * @throws InvalidArgumentException for attribute names that are invalid
+     *     per the HTML specifications.
      */
     public function addValidAttribute($attribute)
     {
@@ -485,8 +486,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds a prefix to the list of valid attribute prefixes
      *
      * @param string $prefix
-     *
      * @return AbstractHelper
+     * @throws InvalidArgumentException for attribute prefixes that are invalid
+     *     per the HTML specifications for attribute names.
      */
     public function addValidAttributePrefix($prefix)
     {
@@ -549,10 +551,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Whether the passed attribute is valid or not
      *
-     * @see https://html.spec.whatwg.org/multipage/syntax.html#attributes-2  Description of valid attributes
-     *
-     * @param  string  $attribute
-     *
+     * @see https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
+     *     Description of valid attributes
+     * @param string  $attribute
      * @return bool
      */
     protected function isValidAttributeName($attribute)
@@ -562,7 +563,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Whether the passed attribute has a valid prefix or not
-     * @param  string  $attribute
+     *
+     * @param string  $attribute
      * @return bool
      */
     protected function hasAllowedPrefix($attribute)

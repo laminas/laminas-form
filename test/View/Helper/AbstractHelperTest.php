@@ -1,10 +1,8 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\View\Helper;
@@ -24,7 +22,6 @@ class AbstractHelperTest extends CommonTestCase
     public function setUp()
     {
         $this->helper = $this->getMockForAbstractClass('Zend\Form\View\Helper\AbstractHelper');
-
         parent::setUp();
     }
 
@@ -64,18 +61,18 @@ class AbstractHelperTest extends CommonTestCase
     public function addAttributesData()
     {
         return [
-            [ 'valid', 'valid="value"' ],
-            [ 'px-custom', 'px-custom="value"' ],
-            [ 'xlink:custom', 'xlink:custom="value"' ],
-            [ 'attr/', null, true ],
-            [ 'attr"', null, true ],
-            [ 'attr\'', null, true ],
-            [ 'attr>', null, true ],
-            [ 'attr=value', null, true ],
-            [ 'at tr', null, true ],
-            [ "at\ntr", null, true ],
-            [ "at\ttr", null, true ],
-            [ "at\ftr", null, true ],
+            'valid'                => ['valid', 'valid="value"'],
+            'valid-prefix'         => ['px-custom', 'px-custom="value"'],
+            'xml-ns'               => ['xlink:custom', 'xlink:custom="value"'],
+            'invalid-slash'        => ['attr/', null, true],
+            'invalid-double-quote' => ['attr"', null, true],
+            'invalid-quote'        => ['attr\'', null, true],
+            'invalid-gt'           => ['attr>', null, true],
+            'invalid-equals'       => ['attr=value', null, true],
+            'invalid-space'        => ['at tr', null, true],
+            'invalid-newline'      => ["at\ntr", null, true],
+            'invalid-tab'          => ["at\ttr", null, true],
+            'invalid-formfeed'     => ["at\ftr", null, true],
         ];
     }
 
@@ -99,19 +96,19 @@ class AbstractHelperTest extends CommonTestCase
     public function addAttributesPrefixData()
     {
         return [
-            [ 'v-', 'v-attr="value"' ],
-            [ 'custom-', 'custom-attr="value"' ],
-            [ 'xlink:', 'xlink:attr="value"' ],
-            [ 'abc', 'abcattr="value"' ],
-            [ 'custom/', null, true ],
-            [ 'custom"', null, true ],
-            [ 'custom\'', null, true ],
-            [ 'custom>', null, true ],
-            [ 'custom=', null, true ],
-            [ 'custom ', null, true ],
-            [ "cus\ntom", null, true ],
-            [ "cus\ttom", null, true ],
-            [ "cus\ftom", null, true ],
+            'valid'                => ['v-', 'v-attr="value"'],
+            'valid-dash'           => ['custom-', 'custom-attr="value"'],
+            'xml-ns'               => ['xlink:', 'xlink:attr="value"'],
+            'valid-nodash'         => ['abc', 'abcattr="value"'],
+            'invalid-slash'        => ['custom/', null, true],
+            'invalid-double-quote' => ['custom"', null, true],
+            'invalid-quote'        => ['custom\'', null, true],
+            'invalid-gt'           => ['custom>', null, true],
+            'invalid-equals'       => ['custom=', null, true],
+            'invalid-space'        => ['custom ', null, true],
+            'invalid-newline'      => ["cus\ntom", null, true],
+            'invalid-tab'          => ["cus\ttom", null, true],
+            'invalid-formfeed'     => ["cus\ftom", null, true],
         ];
     }
 
