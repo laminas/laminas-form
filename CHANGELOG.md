@@ -32,7 +32,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Changed
 
-- Nothing.
+- [#193](https://github.com/zendframework/zend-form/pull/193) modifies how attributes are escaped. If zend-espaper raises an exception
+  for an invalid attribute value, helpers will now catch the exception, and use a
+  blank value for the attribute. This prevents 500 errors from being raised for
+  such pages.
 
 ### Deprecated
 
