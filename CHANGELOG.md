@@ -6,7 +6,13 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#194](https://github.com/zendframework/zend-form/pull/194) adds the ability to whitelist additional HTML attributes for use with a view helper,
+  as well as attribute prefixes. These can be enabled via the following:
+  
+  ```php
+  $helper->addValidAttribute('attribute-name');
+  $helper->addValidAttributePrefix('prefix-');
+  ```
 
 ### Changed
 
