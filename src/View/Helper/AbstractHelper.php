@@ -1,14 +1,13 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace Zend\Form\View\Helper;
 
+use Zend\Escaper\Exception\RuntimeException as EscaperException;
 use Zend\Form\ElementInterface;
 use Zend\I18n\View\Helper\AbstractTranslatorHelper as BaseAbstractHelper;
 use Zend\View\Helper\Doctype;
@@ -244,8 +243,14 @@ abstract class AbstractHelper extends BaseAbstractHelper
             //check if attribute is translatable and translate it
             $value = $this->translateHtmlAttributeValue($key, $value);
 
-            //@TODO Escape event attributes like AbstractHtmlElement view helper does in htmlAttribs ??
-            $strings[] = sprintf('%s="%s"', $escape($key), $escapeAttr($value));
+            // @todo Escape event attributes like AbstractHtmlElement view helper does in htmlAttribs ??
+            try {
+                $escapedAttribute = $escapeAttr($value);
+                $strings[] = sprintf('%s="%s"', $escape($key), $escapedAttribute);
+            } catch (EscaperException $x) {
+                // If an escaper exception happens, escape only the key, and use a blank value.
+                $strings[] = sprintf('%s=""', $escape($key));
+            }
         }
 
         return implode(' ', $strings);
