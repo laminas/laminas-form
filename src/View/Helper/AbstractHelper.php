@@ -9,6 +9,7 @@ namespace Zend\Form\View\Helper;
 
 use Zend\Escaper\Exception\RuntimeException as EscaperException;
 use Zend\Form\ElementInterface;
+use Zend\Form\Exception\InvalidArgumentException;
 use Zend\I18n\View\Helper\AbstractTranslatorHelper as BaseAbstractHelper;
 use Zend\View\Helper\Doctype;
 use Zend\View\Helper\EscapeHtml;
@@ -158,6 +159,17 @@ abstract class AbstractHelper extends BaseAbstractHelper
         'xml:base'           => true,
         'xml:lang'           => true,
         'xml:space'          => true,
+    ];
+
+    /**
+     * Attribute prefixes valid for all tags
+     *
+     * @var array
+     */
+    protected $validTagAttributePrefixes = [
+        'data-',
+        'aria-',
+        'x-',
     ];
 
     /**
@@ -375,11 +387,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
             if (! isset($this->validGlobalAttributes[$attribute])
                 && ! isset($this->validTagAttributes[$attribute])
-                && 0 !== strpos($attribute, 'data-')
-                && 0 !== strpos($attribute, 'aria-')
-                && 0 !== strpos($attribute, 'x-')
+                && ! $this->hasAllowedPrefix($attribute)
             ) {
-                // Invalid attribute for the current tag
                 unset($attributes[$key]);
                 continue;
             }
@@ -456,6 +465,40 @@ abstract class AbstractHelper extends BaseAbstractHelper
     }
 
     /**
+     * Adds an HTML attribute to the list of valid attributes
+     *
+     * @param string $attribute
+     *
+     * @return AbstractHelper
+     */
+    public function addValidAttribute($attribute)
+    {
+        if (! $this->isValidAttributeName($attribute)) {
+            throw new InvalidArgumentException(sprintf('%s is not a valid attribute name', $attribute));
+        }
+
+        $this->validTagAttributes[$attribute] = true;
+        return $this;
+    }
+
+    /**
+     * Adds a prefix to the list of valid attribute prefixes
+     *
+     * @param string $prefix
+     *
+     * @return AbstractHelper
+     */
+    public function addValidAttributePrefix($prefix)
+    {
+        if (! $this->isValidAttributeName($prefix)) {
+            throw new InvalidArgumentException(sprintf('%s is not a valid attribute prefix', $prefix));
+        }
+
+        $this->validTagAttributePrefixes[] = $prefix;
+        return $this;
+    }
+
+    /**
      * Adds an HTML attribute to the list of translatable attributes
      *
      * @param string $attribute
@@ -501,5 +544,35 @@ abstract class AbstractHelper extends BaseAbstractHelper
     public static function addDefaultTranslatableAttributePrefix($prefix)
     {
         self::$defaultTranslatableHtmlAttributePrefixes[] = $prefix;
+    }
+
+    /**
+     * Whether the passed attribute is valid or not
+     *
+     * @see https://html.spec.whatwg.org/multipage/syntax.html#attributes-2  Description of valid attributes
+     *
+     * @param  string  $attribute
+     *
+     * @return bool
+     */
+    protected function isValidAttributeName($attribute)
+    {
+        return preg_match('/^[^\t\n\f \/>"\'=]+$/', $attribute);
+    }
+
+    /**
+     * Whether the passed attribute has a valid prefix or not
+     * @param  string  $attribute
+     * @return bool
+     */
+    protected function hasAllowedPrefix($attribute)
+    {
+        foreach ($this->validTagAttributePrefixes as $prefix) {
+            if (substr($attribute, 0, strlen($prefix)) === $prefix) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

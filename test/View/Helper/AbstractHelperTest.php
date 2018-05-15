@@ -10,6 +10,7 @@
 namespace ZendTest\Form\View\Helper;
 
 use Zend\Escaper\Escaper;
+use Zend\Form\Exception\InvalidArgumentException;
 use Zend\Form\View\Helper\AbstractHelper;
 use Zend\I18n\Translator\Translator;
 
@@ -57,6 +58,77 @@ class AbstractHelperTest extends CommonTestCase
         $this->assertNotSame(
             'data-value="' . $escaper->escapeHtmlAttr('Título') . '"',
             $this->helper->createAttributesString(['data-value' => 'Título'])
+        );
+    }
+
+    public function addAttributesData()
+    {
+        return [
+            [ 'valid', 'valid="value"' ],
+            [ 'px-custom', 'px-custom="value"' ],
+            [ 'xlink:custom', 'xlink:custom="value"' ],
+            [ 'attr/', null, true ],
+            [ 'attr"', null, true ],
+            [ 'attr\'', null, true ],
+            [ 'attr>', null, true ],
+            [ 'attr=value', null, true ],
+            [ 'at tr', null, true ],
+            [ "at\ntr", null, true ],
+            [ "at\ttr", null, true ],
+            [ "at\ftr", null, true ],
+        ];
+    }
+
+    /**
+     * @dataProvider addAttributesData
+     */
+    public function testWillIncludeAdditionalAttributes($attribute, $expected = null, $exception = null)
+    {
+        if ($exception) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->helper->addValidAttribute($attribute);
+
+        $this->assertSame(
+            $expected,
+            $this->helper->createAttributesString([$attribute => 'value'])
+        );
+    }
+
+    public function addAttributesPrefixData()
+    {
+        return [
+            [ 'v-', 'v-attr="value"' ],
+            [ 'custom-', 'custom-attr="value"' ],
+            [ 'xlink:', 'xlink:attr="value"' ],
+            [ 'abc', 'abcattr="value"' ],
+            [ 'custom/', null, true ],
+            [ 'custom"', null, true ],
+            [ 'custom\'', null, true ],
+            [ 'custom>', null, true ],
+            [ 'custom=', null, true ],
+            [ 'custom ', null, true ],
+            [ "cus\ntom", null, true ],
+            [ "cus\ttom", null, true ],
+            [ "cus\ftom", null, true ],
+        ];
+    }
+
+    /**
+     * @dataProvider addAttributesPrefixData
+     */
+    public function testWillIncludeAdditionalAttributesByPrefix($prefix, $expected = null, $exception = null)
+    {
+        if ($exception) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->helper->addValidAttributePrefix($prefix);
+
+        $this->assertSame(
+            $expected,
+            $this->helper->createAttributesString([$prefix . 'attr' => 'value'])
         );
     }
 
