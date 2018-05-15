@@ -245,7 +245,12 @@ abstract class AbstractHelper extends BaseAbstractHelper
             $value = $this->translateHtmlAttributeValue($key, $value);
 
             //@TODO Escape event attributes like AbstractHtmlElement view helper does in htmlAttribs ??
-            $strings[] = sprintf('%s="%s"', $escape($key), $escapeAttr($value));
+            try {
+                $escapedAttribute = $escapeAttr($value);
+                $strings[] = sprintf('%s="%s"', $escape($key), $escapedAttribute);
+            } catch (\Zend\Escaper\Exception\RuntimeException $x) {
+                $strings[] = sprintf('%s="%s"', $escape($key), '');
+            }
         }
 
         return implode(' ', $strings);
