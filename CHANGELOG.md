@@ -6,7 +6,19 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#188](https://github.com/zendframework/zend-form/pull/188) adds a new method to the `FormElementErrors` view helper, `setTranslateMessages(bool $flag)`.
+  By default, the helper continues to translate error messages (if a translator
+  is present), as introduced in 2.11.0. However, using this method, you can
+  disable translation, which may be necessary to prevent double translation
+  and/or to reduce logs from missed translation lookups. Because the method
+  implements a fluent interface, you may do so in one line:
+  
+  ```php
+  echo $this->formElementErrors()->setTranslateMessages(false);
+  ```
+  
+  Note: you will need to reset the value afterwards if you want translations to occur
+  in later invocations.
 
 ### Changed
 
