@@ -128,12 +128,12 @@ class FormElementErrorsTest extends CommonTestCase
 
         $this->helper->setTranslatorTextDomain('default');
 
+        // Disable translation...
+        $this->helper->setTranslateMessages(false);
+
         $markup = $this->helper->render($form->get('test_element'));
 
-        $this->assertRegexp(
-            '#<ul>\s*<li>TRANSLATED: The input does not match against pattern \'/^#[0-9a-fA-F]{6}$/\'</li>\s*</ul>#s',
-            $markup
-        );
+        $this->assertRegexp('#^<ul>\s*<li>TRANSLATED#s', $markup);
     }
 
     public function testCanSpecifyAttributesForOpeningTag()
