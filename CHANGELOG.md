@@ -2,9 +2,17 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.11.1 - TBD
+## 2.12.0 - 2018-05-16
 
 ### Added
+
+- [#194](https://github.com/zendframework/zend-form/pull/194) adds the ability to whitelist additional HTML attributes for use with a view helper,
+  as well as attribute prefixes. These can be enabled via the following:
+  
+  ```php
+  $helper->addValidAttribute('attribute-name');
+  $helper->addValidAttributePrefix('prefix-');
+  ```
 
 - [#188](https://github.com/zendframework/zend-form/pull/188) adds a new method to the `FormElementErrors` view helper, `setTranslateMessages(bool $flag)`.
   By default, the helper continues to translate error messages (if a translator
@@ -23,9 +31,9 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Changed
 
 - [#193](https://github.com/zendframework/zend-form/pull/193) modifies how attributes are escaped. If zend-espaper raises an exception
-  for an invalid attribute value, helpers will now catch the exception, and use a
-  blank value for the attribute. This prevents 500 errors from being raised for
-  such pages.
+  for an invalid attribute value, helpers will now catch the exception, and use
+  a blank value for the attribute. This prevents 500 errors from being raised
+  for such pages.
 
 ### Deprecated
 

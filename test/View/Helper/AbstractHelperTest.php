@@ -1,15 +1,14 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\View\Helper;
 
 use Zend\Escaper\Escaper;
+use Zend\Form\Exception\InvalidArgumentException;
 use Zend\Form\View\Helper\AbstractHelper;
 use Zend\I18n\Translator\Translator;
 
@@ -23,7 +22,6 @@ class AbstractHelperTest extends CommonTestCase
     public function setUp()
     {
         $this->helper = $this->getMockForAbstractClass('Zend\Form\View\Helper\AbstractHelper');
-
         parent::setUp();
     }
 
@@ -57,6 +55,77 @@ class AbstractHelperTest extends CommonTestCase
         $this->assertNotSame(
             'data-value="' . $escaper->escapeHtmlAttr('Título') . '"',
             $this->helper->createAttributesString(['data-value' => 'Título'])
+        );
+    }
+
+    public function addAttributesData()
+    {
+        return [
+            'valid'                => ['valid', 'valid="value"'],
+            'valid-prefix'         => ['px-custom', 'px-custom="value"'],
+            'xml-ns'               => ['xlink:custom', 'xlink:custom="value"'],
+            'invalid-slash'        => ['attr/', null, true],
+            'invalid-double-quote' => ['attr"', null, true],
+            'invalid-quote'        => ['attr\'', null, true],
+            'invalid-gt'           => ['attr>', null, true],
+            'invalid-equals'       => ['attr=value', null, true],
+            'invalid-space'        => ['at tr', null, true],
+            'invalid-newline'      => ["at\ntr", null, true],
+            'invalid-tab'          => ["at\ttr", null, true],
+            'invalid-formfeed'     => ["at\ftr", null, true],
+        ];
+    }
+
+    /**
+     * @dataProvider addAttributesData
+     */
+    public function testWillIncludeAdditionalAttributes($attribute, $expected = null, $exception = null)
+    {
+        if ($exception) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->helper->addValidAttribute($attribute);
+
+        $this->assertSame(
+            $expected,
+            $this->helper->createAttributesString([$attribute => 'value'])
+        );
+    }
+
+    public function addAttributesPrefixData()
+    {
+        return [
+            'valid'                => ['v-', 'v-attr="value"'],
+            'valid-dash'           => ['custom-', 'custom-attr="value"'],
+            'xml-ns'               => ['xlink:', 'xlink:attr="value"'],
+            'valid-nodash'         => ['abc', 'abcattr="value"'],
+            'invalid-slash'        => ['custom/', null, true],
+            'invalid-double-quote' => ['custom"', null, true],
+            'invalid-quote'        => ['custom\'', null, true],
+            'invalid-gt'           => ['custom>', null, true],
+            'invalid-equals'       => ['custom=', null, true],
+            'invalid-space'        => ['custom ', null, true],
+            'invalid-newline'      => ["cus\ntom", null, true],
+            'invalid-tab'          => ["cus\ttom", null, true],
+            'invalid-formfeed'     => ["cus\ftom", null, true],
+        ];
+    }
+
+    /**
+     * @dataProvider addAttributesPrefixData
+     */
+    public function testWillIncludeAdditionalAttributesByPrefix($prefix, $expected = null, $exception = null)
+    {
+        if ($exception) {
+            $this->expectException(InvalidArgumentException::class);
+        }
+
+        $this->helper->addValidAttributePrefix($prefix);
+
+        $this->assertSame(
+            $expected,
+            $this->helper->createAttributesString([$prefix . 'attr' => 'value'])
         );
     }
 

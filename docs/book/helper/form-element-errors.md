@@ -70,4 +70,5 @@ Method signature                                                     | Descripti
 `getMessageCloseString() : string`                                   | Returns the string used to close message representation.
 `setAttributes(array $attributes) : void`                            | Set the attributes that will go on the message open format as key/value pairs.
 `getAttributes() : array`                                            | Returns the attributes that will go on the message open format.
+`setTranslateMessages(bool $flag) : self`                            | Indicate whether or not element validation error messages should be translated during `render()`. Default is to translate them.
 `render(ElementInterface $element [, array $attributes = array()]) : string` | Renders validation errors for the provided `$element`. Attributes provided will be used in the `messageOpenFormat`, and merged with any provided previously via `setAttributes()`.
