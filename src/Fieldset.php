@@ -211,7 +211,7 @@ class Fieldset extends Element implements FieldsetInterface
      * Retrieve a named element or fieldset
      *
      * @param  string $elementOrFieldset
-     * @return ElementInterface
+     * @return ElementInterface|FieldsetInterface
      */
     public function get($elementOrFieldset)
     {
