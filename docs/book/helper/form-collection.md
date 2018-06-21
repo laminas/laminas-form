@@ -35,6 +35,11 @@ was bound to the form.
 By default, the collection is wrapped into `<fieldset>` tag. You can overide
 this behavior passing `false` as second parameter of the helper.
 
+You can also prevent fieldset addition using `setShouldWrap()` method.
+
 ```php
-$this->formCollection($collection, false); //not wrapped into a fieldset
+// In a view script
+// Both following lines are equivalent:
+echo $this->formCollection($collection, false);
+echo $this->formCollection($collection)->setShouldWrap(false);
 ```
