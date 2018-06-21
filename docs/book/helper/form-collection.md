@@ -24,7 +24,7 @@ $collection->setAllowAdd(true);
 $collection->setTargetElement([ 'type' => ContactFieldset::class ]);
 
 // In a view script:
-$this->formCollection($collection);
+echo $this->formCollection($collection);
 ```
 
 The above, assuming the fieldset is created correctly, will generate one or more
