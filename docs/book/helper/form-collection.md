@@ -32,7 +32,7 @@ fieldsets with the name `contacts[]`, each containing the elements defined in
 `My\ContactFieldset`. The number of fieldsets created will be based on what data
 was bound to the form.
 
-By default, the collection is wrapped into `<fieldset>` tag. You can overide
+By default, the collection is wrapped into `<fieldset>` tag. You can override
 this behavior passing `false` as second parameter of the helper.
 
 You can also prevent fieldset addition using `setShouldWrap()` method.
