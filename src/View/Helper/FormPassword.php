@@ -25,6 +25,7 @@ class FormPassword extends FormInput
         'disabled'       => true,
         'form'           => true,
         'maxlength'      => true,
+        'minlength'      => true,
         'pattern'        => true,
         'placeholder'    => true,
         'readonly'       => true,
