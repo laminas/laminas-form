@@ -2351,7 +2351,5 @@ class FormTest extends TestCase
 
         $this->assertEquals($value['numbers'][0]['number'], $fieldsetFoo->getObject()->getNumber());
         $this->assertEquals($value['numbers'][1]['number'], $fieldsetBar->getObject()->getNumber());
-
     }
-
 }
