@@ -2299,4 +2299,59 @@ class FormTest extends TestCase
         $this->assertTrue($this->form->isValid());
         $this->assertEquals([], $this->form->getObject()->foo);
     }
+
+    /**
+     * Test for https://github.com/zendframework/zend-form/issues/83
+     */
+    public function testCanBindNestedCollectionAfterPrepare()
+    {
+
+        $collection = new Element\Collection('numbers');
+        $collection->setOptions([
+            'count' => 2,
+            'allow_add' => false,
+            'allow_remove' => false,
+            'target_element' => [
+                'type' => 'ZendTest\Form\TestAsset\PhoneFieldset'
+            ]
+        ]);
+
+        $form = new Form();
+        $object = new \ArrayObject();
+        $phone1 = new \ZendTest\Form\TestAsset\Entity\Phone();
+        $phone2 = new \ZendTest\Form\TestAsset\Entity\Phone();
+        $phone1->setNumber('unmodified');
+        $phone2->setNumber('unmodified');
+        $collection->setObject([$phone1, $phone2]);
+
+        $form->setObject($object);
+        $form->add($collection);
+
+        $value = [
+            'numbers' => [
+                [
+                    'id' => '1',
+                    'number' => 'modified',
+                ],
+                [
+                    'id' => '2',
+                    'number' => 'modified',
+                ],
+            ],
+        ];
+
+        $form->prepare();
+
+        $form->bindValues($value);
+
+        $fieldsets = $collection->getFieldsets();
+
+        $fieldsetFoo = $fieldsets[0];
+        $fieldsetBar = $fieldsets[1];
+
+        $this->assertEquals($value['numbers'][0]['number'], $fieldsetFoo->getObject()->getNumber());
+        $this->assertEquals($value['numbers'][1]['number'], $fieldsetBar->getObject()->getNumber());
+
+    }
+
 }
