@@ -823,16 +823,9 @@ class FormTest extends TestCase
         $baseFieldset = new Fieldset('base_fieldset');
         $baseFieldset->setUseAsBaseFieldset(true);
 
-        $form = new Form('default_form');
+        $form = new Form();
         $form->add($baseFieldset);
         $form->setHydrator(new ObjectPropertyHydrator());
-
-        $baseFieldsetInputFilter = new InputFilter();
-
-        $formInputFilter = new InputFilter();
-        $formInputFilter->add($baseFieldsetInputFilter, 'base_fieldset');
-
-        $form->setInputFilter($formInputFilter);
 
         $model = new stdClass();
         $form->bind($model);
