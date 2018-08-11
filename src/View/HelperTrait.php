@@ -47,6 +47,7 @@ use Zend\Form\View\Helper\FormTime;
 use Zend\Form\View\Helper\FormUrl;
 use Zend\Form\View\Helper\FormWeek;
 
+// @codingStandardsIgnoreStart
 /**
  * Trait HelperTrait
  *
