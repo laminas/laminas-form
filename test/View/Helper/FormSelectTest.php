@@ -12,6 +12,7 @@ namespace ZendTest\Form\View\Helper;
 use Zend\Form\Element;
 use Zend\Form\Element\Select as SelectElement;
 use Zend\Form\View\Helper\FormSelect as FormSelectHelper;
+use ZendTest\Form\TestAsset\Identifier;
 
 class FormSelectTest extends CommonTestCase
 {
@@ -413,5 +414,32 @@ class FormSelectTest extends CommonTestCase
 
         $this->expectException('Zend\Form\Exception\DomainException');
         $this->helper->render($element);
+    }
+
+    public function getElementWithObjectIdentifiers()
+    {
+        $element = new SelectElement('foo');
+        $options = [
+            [
+                'label' => 'This is the first label',
+                'value' => new Identifier(42),
+            ],
+            [
+                'label' => 'This is the second label',
+                'value' => new Identifier(43),
+            ],
+        ];
+        $element->setValueOptions($options);
+        return $element;
+    }
+
+    public function testRenderElementWithObjectIdentifiers()
+    {
+        $element = $this->getElementWithObjectIdentifiers();
+        $element->setValue(new Identifier(42));
+
+        $markup = $this->helper->render($element);
+        $this->assertRegexp('#option .*?value="42" selected="selected"#', $markup);
+        $this->assertNotRegexp('#option .*?value="43" selected="selected"#', $markup);
     }
 }
