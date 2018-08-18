@@ -230,10 +230,12 @@ public function handle(ServerRequestInterface $request) : ResponseInterface
 }
 ```
 
-Upon a successful file upload, `$form->getData()` would return array including the file field name as a key, and 
+Upon a successful file upload, `$form->getData()` would return array including the file field name as a key, and new 
 instance of `UploadedFileInterface` as its value.
 
-> Note: after running `isValid()` on the form instance, you should no longer trust `UploadedFileInterface` instance
+> ### Further operations on the uploaded file
+>
+> After running `isValid()` on the form instance, you should no longer trust `UploadedFileInterface` instance
 > stored in the PSR $request to perform further operations on the uploaded file. The file may be moved by one of the
 > filters attached to form input, but since the request is immutable, the change will not be reflected in it.
 > Therefore, after validation, always use the file information retrieved from `$form->getData()`, 
@@ -315,9 +317,11 @@ renamed and moved to: `./data/tmpuploads/avatar_4b3403665fea6.png`.
 See the [RenameUpload filter](http://docs.zendframework.com/zend-filter/file/#renameupload)
 documentation for more information on its supported options.
 
-> Note: If the file is coming in as a PSR-7 payload, the move operation will be performed on the passed `UploadedFileInterface`
+> ### Further operations on the uploaded file
+>
+> If the file is coming in as a PSR-7 payload, the move operation will be performed on the passed `UploadedFileInterface`
 > instance. Therefore, it will contain expired stream and outdated target file name. After running this filter,
-> _do not use_ the request to get further details about the uploaded file. Use the new instance `UploadedFileInterface` 
+> _do not use_ the request object to get further details about the uploaded file. Use the new instance `UploadedFileInterface` 
 > returned from the filter invocation. 
 
 ### Call the fileprg plugin
