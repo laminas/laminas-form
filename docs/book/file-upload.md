@@ -213,7 +213,7 @@ public function handle(ServerRequestInterface $request) : ResponseInterface
         
         $form->setData($post);
         
-        if($form->isValid()) {
+        if ($form->isValid()) {
             $data = $form->getData();
             
             // Form is valid, save the form!
