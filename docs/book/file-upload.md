@@ -25,7 +25,7 @@ In this example we will:
 
 - Define a **Form** for backend validation and filtering.
 - Create a **view template** with a `<form>` containing a file input.
-- Process the form within a **Controller action**.
+- Process the form within a **Controller action** for HTTP-Server style or in **Request Handler** for Expressive style.
 
 ### The Form and InputFilter
 
@@ -105,7 +105,7 @@ When rendered, the HTML should look similar to:
 
 ### The Controller Action
 
-For the final step, we will instantiate the `UploadForm` and process any
+For the final step if using HTTP-Server MVC, we will instantiate the `UploadForm` and process any
 postbacks in a controller action.
 
 The form processing in the controller action will be similar to normal forms,
@@ -195,6 +195,50 @@ array(1) {
 > Note: [PSR-7](http://www.php-fig.org/psr/psr-7/) also remaps the `$_FILES`
 > array in this way.
 
+### Expressive Request Handler
+
+If using PSR-15 request handler with PSR-7 request payload, the final step involves merging
+`$request->getParsedBody()` with `$request->getUploadedFiles()`.
+
+```php
+public function handle(ServerRequestInterface $request) : ResponseInterface
+{
+    $form = new UploadForm('upload-form');
+
+    if ($request->getMethod() === 'POST') {
+        $post = array_merge_recursive(
+            $request->getParsedBody(),
+            $request->getUploadedFiles()
+        );
+        
+        $form->setData($post);
+        
+        if($form->isValid()) {
+            $data = $form->getData();
+            
+            // Form is valid, save the form!
+            
+            return new RedirectResponse('upload-form/success');
+        }
+    }
+    
+    return new HtmlResponse(
+        $this->template->render('app::page-template', [
+            'form' => $form,
+        ]);    
+    );
+}
+```
+
+Upon a successful file upload, `$form->getData()` would return array including the file field name as a key, and 
+instance of `UploadedFileInterface` as its value.
+
+> Note: after running `isValid()` on the form instance, you should no longer trust `UploadedFileInterface` instance
+> stored in the PSR $request to perform further operations on the uploaded file. The file may be moved by one of the
+> filters attached to form input, but since the request is immutable, the change will not be reflected in it.
+> Therefore, after validation, always use the file information retrieved from `$form->getData()`, 
+> _not_ from `$request->getUploadedFiles()`.
+
 ## File Post-Redirect-Get Plugin
 
 When using other standard form inputs (i.e. `text`, `checkbox`, `select`, etc.)
@@ -270,6 +314,11 @@ renamed and moved to: `./data/tmpuploads/avatar_4b3403665fea6.png`.
 
 See the [RenameUpload filter](http://docs.zendframework.com/zend-filter/file/#renameupload)
 documentation for more information on its supported options.
+
+> Note: If the file is coming in as a PSR-7 payload, the move operation will be performed on the passed `UploadedFileInterface`
+> instance. Therefore, it will contain expired stream and outdated target file name. After running this filter,
+> _do not use_ the request to get further details about the uploaded file. Use the new instance `UploadedFileInterface` 
+> returned from the filter invocation. 
 
 ### Call the fileprg plugin
 
