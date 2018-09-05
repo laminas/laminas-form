@@ -63,7 +63,7 @@ use Zend\Form\View\Helper\FormWeek;
  *
  * The base class is PhpRenderer, followed by the helper trait from
  * the zend-form component. However, multiple helper traits from different
- * Zend components can be chained afterwards.
+ * Zend Framework components can be chained afterwards.
  *
  * @example @var \Zend\View\Renderer\PhpRenderer|\Zend\Form\View\HelperTrait $this
  *
