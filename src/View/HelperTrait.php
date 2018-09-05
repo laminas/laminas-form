@@ -48,6 +48,7 @@ use Zend\Form\View\Helper\FormUrl;
 use Zend\Form\View\Helper\FormWeek;
 
 // @codingStandardsIgnoreStart
+
 /**
  * Trait HelperTrait
  *
@@ -109,3 +110,4 @@ use Zend\Form\View\Helper\FormWeek;
 trait HelperTrait
 {
 }
+// @codingStandardsIgnoreEnd
