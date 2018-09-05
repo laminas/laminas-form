@@ -55,7 +55,7 @@ use Zend\Form\View\Helper\FormWeek;
 // @codingStandardsIgnoreStart
 
 /**
- * Trait HelperTrait
+ * Helper trait for auto-completion of code in modern IDEs.
  *
  * The trait provides convenience methods for view helpers,
  * defined by the zend-form component. It is designed to be used
