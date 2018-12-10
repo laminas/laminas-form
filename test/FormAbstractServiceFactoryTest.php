@@ -16,12 +16,18 @@ use Zend\Form\FormElementManager;
 use Zend\InputFilter\InputFilterPluginManager;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Hydrator\HydratorPluginManager;
+use Zend\Hydrator\ObjectProperty;
+use Zend\Hydrator\ObjectPropertyHydrator;
 use Zend\Validator\ValidatorPluginManager;
 
 class FormAbstractServiceFactoryTest extends TestCase
 {
     public function setUp()
     {
+        $this->objectPropertyHydratorClass = class_exists(ObjectPropertyHydrator::class)
+            ? ObjectPropertyHydrator::class
+            : ObjectProperty::class;
+
         $services     = $this->services = new ServiceManager;
         $elements     = new FormElementManager($services);
         $filters      = new FilterPluginManager($services);
@@ -116,7 +122,9 @@ class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagers()
     {
         $formConfig = [
-            'hydrator' => 'ObjectProperty',
+            'hydrator' => class_exists(ObjectPropertyHydrator::class)
+                ? 'ObjectPropertyHydrator'
+                : 'ObjectProperty',
             'type'     => 'Zend\Form\Form',
             'elements' => [
                 [
@@ -137,7 +145,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertInstanceOf('Zend\Form\Form', $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
 
         $inputFilter = $form->getInputFilter();
         $this->assertInstanceOf('Zend\InputFilter\InputFilter', $inputFilter);
@@ -153,7 +161,9 @@ class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagersExceptInputFilterManager()
     {
         $formConfig = [
-            'hydrator' => 'ObjectProperty',
+            'hydrator' => class_exists(ObjectPropertyHydrator::class)
+                ? 'ObjectPropertyHydrator'
+                : 'ObjectProperty',
             'type'     => 'Zend\Form\Form',
             'elements' => [
                 [
@@ -188,7 +198,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertInstanceOf('Zend\Form\Form', $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
 
         $inputFilter = $form->getInputFilter();
         $this->assertInstanceOf('Zend\InputFilter\InputFilter', $inputFilter);

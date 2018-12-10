@@ -1,11 +1,9 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
-*
-* @link      http://github.com/zendframework/zf2 for the canonical source repository
-* @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
-* @license   http://framework.zend.com/license/new-bsd New BSD License
-*/
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ */
 
 namespace ZendTest\Form\TestAsset;
 
@@ -13,7 +11,11 @@ use Zend\Hydrator\HydratorAwareInterface;
 use Zend\Hydrator\HydratorInterface;
 use Zend\Hydrator\ClassMethods;
 
-class HydratorAwareModel implements HydratorAwareInterface
+/**
+ * This test asset targest zend-hydrator v1 and v2, and will be aliased to
+ * HydratorAwareModel when of those versions is installed.
+ */
+class HydratorAwareModelHydratorV2 implements HydratorAwareInterface
 {
     protected $hydrator = null;
 

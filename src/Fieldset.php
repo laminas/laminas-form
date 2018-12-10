@@ -539,7 +539,11 @@ class Fieldset extends Element implements FieldsetInterface
             if ($this->object instanceof HydratorAwareInterface) {
                 $this->setHydrator($this->object->getHydrator());
             } else {
-                $this->setHydrator(new Hydrator\ArraySerializable());
+                $this->setHydrator(
+                    class_exists(Hydrator\ArraySerializableHydrator::class)
+                    ? new Hydrator\ArraySerializableHydrator()
+                    : new Hydrator\ArraySerializable()
+                );
             }
         }
         return $this->hydrator;
@@ -598,7 +602,7 @@ class Fieldset extends Element implements FieldsetInterface
             }
         }
 
-        if (! empty($hydratableData)) {
+        if (! empty($hydratableData) && $this->object) {
             $this->object = $hydrator->hydrate($hydratableData, $this->object);
         }
 

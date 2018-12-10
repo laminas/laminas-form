@@ -16,7 +16,7 @@ use Zend\Form\Annotation;
  * @Annotation\Attributes({"legend":"Register"})
  * @Annotation\Hydrator("Zend\Hydrator\ObjectProperty")
  */
-class ComplexEntity
+class ComplexEntityHydratorV2
 {
     /**
      * @Annotation\ErrorMessage("Invalid or missing username")
