@@ -27,7 +27,7 @@ matrix:
     - php: 5.6
       env:
         - DEPS=locked
-        - LEGACY_DEPS="phpunit/phpunit doctrine/annotations zendframework/zend-code"
+        - LEGACY_DEPS="phpunit/phpunit doctrine/annotations zendframework/zend-code zendframework/zend-hydrator"
     - php: 5.6
       env:
         - DEPS=latest
@@ -37,7 +37,7 @@ matrix:
     - php: 7
       env:
         - DEPS=locked
-        - LEGACY_DEPS="phpunit/phpunit doctrine/annotations zendframework/zend-code"
+        - LEGACY_DEPS="phpunit/phpunit doctrine/annotations zendframework/zend-code zendframework/zend-hydrator"
     - php: 7
       env:
         - DEPS=latest
@@ -47,6 +47,7 @@ matrix:
     - php: 7.1
       env:
         - DEPS=locked
+        - LEGACY_DEPS="zendframework/zend-hydrator"
         - CS_CHECK=true
         - TEST_COVERAGE=true
     - php: 7.1
