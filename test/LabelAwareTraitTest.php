@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
  */
 class LabelAwareTraitTest extends TestCase
 {
-
     public function testSetLabelAttributes()
     {
         $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
@@ -77,7 +76,6 @@ class LabelAwareTraitTest extends TestCase
             'foo' => 'bar',
             'foo2' => 'bar2',
         ];
-
 
         $object->setLabelOptions($labelOptions);
 
