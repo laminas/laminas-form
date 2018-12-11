@@ -44,7 +44,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#207](https://github.com/zendframework/zend-form/pull/207) fixes the return value annotation for the `Fieldset::get()` method to
+  indicate it can also return a `FieldsetInterface` instance.
 
 ## 2.12.0 - 2018-05-16
 
