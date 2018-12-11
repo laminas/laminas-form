@@ -103,7 +103,8 @@ $form = new Form('language');
 $form->add($select);
 ```
 
-Attributes on the options are supported by providing the options as a specification array instead of key-value pairs:
+Attributes on the options are supported by providing the options as a
+specification array instead of key-value pairs:
 
 ```php
 $select->setValueOptions([
