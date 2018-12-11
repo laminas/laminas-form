@@ -285,7 +285,7 @@ class FormSelect extends AbstractHelper
         }
 
         if (! is_array($value)) {
-            return (array) $value;
+            return [$value];
         }
 
         if (! isset($attributes['multiple']) || ! $attributes['multiple']) {
