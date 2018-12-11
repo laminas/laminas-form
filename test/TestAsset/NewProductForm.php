@@ -1,16 +1,15 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\TestAsset;
 
 use Zend\Form\Form;
-use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethodsHydrator;
 
 class NewProductForm extends Form
 {
@@ -18,9 +17,14 @@ class NewProductForm extends Form
     {
         parent::__construct('create_product');
 
-        $this->setAttribute('method', 'post')
-             ->setHydrator(new ClassMethodsHydrator())
-             ->setInputFilter(new InputFilter());
+        $this
+            ->setAttribute('method', 'post')
+            ->setHydrator(
+                class_exists(ClassMethodsHydrator::class)
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
+            )
+            ->setInputFilter(new InputFilter());
 
         $fieldset = new ProductFieldset();
         $fieldset->setUseAsBaseFieldset(true);

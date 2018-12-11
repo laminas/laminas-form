@@ -16,7 +16,7 @@ use Zend\Form\Annotation;
  * @Annotation\Attributes({"legend":"Register"})
  * @Annotation\Hydrator({"type":"Zend\Hydrator\ClassMethods", "options": {"underscoreSeparatedKeys": false}})
  */
-class EntityWithHydratorArray
+class EntityWithHydratorArrayHydratorV2
 {
     /**
      * @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}})

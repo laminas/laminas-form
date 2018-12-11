@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.13.0 - 2018-12-11
+
+### Added
+
+- [#224](https://github.com/zendframework/zend-form/pull/224) adds support for zend-hydrator v3 releases, while keeping support for
+  versions 1 and 2.
+
+- [#211](https://github.com/zendframework/zend-form/pull/211) adds support for the HTML5 `minlength` attribute in all form elements
+  that support it.
+
+- [#217](https://github.com/zendframework/zend-form/pull/217) adds `Zend\Form\View\HelperTrait`, which can be used to provide IDE
+  autocompletion for view helpers provided by zend-form. See
+  https://docs.zendframework.com/zend-form/view-helpers/#ide-auto-completion-in-templates
+  for more information.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 2.12.1 - 2018-12-11
 
 ### Added

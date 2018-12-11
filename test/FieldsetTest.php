@@ -496,7 +496,11 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new \Zend\Hydrator\ObjectProperty());
+        $form->setHydrator(
+            class_exists(Hydrator\ObjectPropertyHydrator::class)
+            ? new Hydrator\ObjectPropertyHydrator()
+            : new Hydrator\ObjectProperty()
+        );
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -521,7 +525,11 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new \Zend\Hydrator\ObjectProperty());
+        $form->setHydrator(
+            class_exists(Hydrator\ObjectPropertyHydrator::class)
+            ? new Hydrator\ObjectPropertyHydrator()
+            : new Hydrator\ObjectProperty()
+        );
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -560,7 +568,11 @@ class FieldsetTest extends TestCase
     {
         $form = new Form();
         $form->add(new Element('foo'));
-        $form->setHydrator(new Hydrator\ObjectProperty);
+        $form->setHydrator(
+            class_exists(Hydrator\ObjectPropertyHydrator::class)
+            ? new Hydrator\ObjectPropertyHydrator()
+            : new Hydrator\ObjectProperty()
+        );
 
         $object      = new \stdClass();
         $object->foo = 'Initial value';

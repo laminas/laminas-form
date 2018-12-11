@@ -10,16 +10,34 @@
 namespace ZendTest\Form\Annotation;
 
 use PHPUnit\Framework\TestCase;
+use Zend\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethodsHydrator;
+use Zend\Hydrator\ObjectProperty;
+use Zend\Hydrator\ObjectPropertyHydrator;
 use Zend\Form\Annotation;
 use ZendTest\Form\TestAsset;
 
 class AnnotationBuilderTest extends TestCase
 {
+    /** @var string */
+    private $classMethodsHydratorClass;
+
+    /** @var string */
+    private $objectPropertyHydratorClass;
+
     public function setUp()
     {
         if (! getenv('TESTS_ZEND_FORM_ANNOTATION_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_ZEND_FORM_ANNOTATION_SUPPORT to test annotation parsing');
         }
+
+        $this->classMethodsHydratorClass = class_exists(ClassMethodsHydrator::class)
+            ? ClassMethodsHydrator::class
+            : ClassMethods::class;
+
+        $this->objectPropertyHydratorClass = class_exists(ObjectPropertyHydrator::class)
+            ? ObjectPropertyHydrator::class
+            : ObjectProperty::class;
     }
 
     public function testCanCreateFormFromStandardEntity()
@@ -111,7 +129,7 @@ class AnnotationBuilderTest extends TestCase
         $this->assertSame($email, $test, 'Test is element ' . $test->getName());
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
     }
 
     public function testFieldsetOrder()
@@ -292,7 +310,7 @@ class AnnotationBuilderTest extends TestCase
         $form    = $builder->createForm($entity);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Hydrator\ClassMethods', $hydrator);
+        $this->assertInstanceOf($this->classMethodsHydratorClass, $hydrator);
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
@@ -360,7 +378,7 @@ class AnnotationBuilderTest extends TestCase
 
         $this->assertInstanceOf('Zend\Form\Fieldset', $fieldset);
         $this->assertInstanceOf('ZendTest\Form\TestAsset\Annotation\Entity', $fieldset->getObject());
-        $this->assertInstanceOf("Zend\Hydrator\ClassMethods", $fieldset->getHydrator());
+        $this->assertInstanceOf($this->classMethodsHydratorClass, $fieldset->getHydrator());
         $this->assertFalse($fieldset->getHydrator()->getUnderscoreSeparatedKeys());
     }
 
@@ -375,7 +393,7 @@ class AnnotationBuilderTest extends TestCase
 
         $this->assertInstanceOf('Zend\Form\Fieldset', $fieldset);
         $this->assertInstanceOf('ZendTest\Form\TestAsset\Annotation\Entity', $fieldset->getObject());
-        $this->assertInstanceOf("Zend\Hydrator\ClassMethods", $fieldset->getHydrator());
+        $this->assertInstanceOf($this->classMethodsHydratorClass, $fieldset->getHydrator());
         $this->assertFalse($fieldset->getHydrator()->getUnderscoreSeparatedKeys());
     }
 

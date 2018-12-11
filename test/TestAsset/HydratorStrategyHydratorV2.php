@@ -1,17 +1,19 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\TestAsset;
 
 use Zend\Hydrator\Strategy\DefaultStrategy;
 
-class HydratorStrategy extends DefaultStrategy
+/**
+ * This class targets zend-hydrator v1 and v2, and will be aliased to
+ * HydratorStrategy when one of those versions is detected.
+ */
+class HydratorStrategyHydratorV2 extends DefaultStrategy
 {
     /**
      * A simulated storage device which is just an array with Car objects.
@@ -46,7 +48,7 @@ class HydratorStrategy extends DefaultStrategy
                 $result[] = $this->findEntity($field1);
             }
         }
-        return $result;
+        return (object) $result;
     }
 
     private function findEntity($field1)
