@@ -103,6 +103,26 @@ $form = new Form('language');
 $form->add($select);
 ```
 
+Attributes on the options are supported by providing the options as a
+specification array instead of key-value pairs:
+
+```php
+$select->setValueOptions([
+    [
+        'value' => '0',
+        'label' => 'French',
+        'attributes' => [
+            'data-locale' = 'fr'
+        ],
+    ],
+    [
+        'value' => '1',
+        'label' => 'Italian',
+        'disabled' => true,
+    ],
+]);
+```
+
 ## Public Methods
 
 The following methods are specific to the `Select` element; all other methods
