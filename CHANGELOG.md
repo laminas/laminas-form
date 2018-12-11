@@ -22,6 +22,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
+- [#218](https://github.com/zendframework/zend-form/pull/218) ensures object values of select elements can be rendered without error.
+
 - [#216](https://github.com/zendframework/zend-form/pull/216) fixes an issue when performing data binding and a fieldset has no mapped
   input elements, casting `null` values to empty arrays to ensure they can be
   passed to an input filter.
