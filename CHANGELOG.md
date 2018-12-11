@@ -6,7 +6,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#217](https://github.com/zendframework/zend-form/pull/217) adds `Zend\Form\View\HelperTrait`, which can be used to provide IDE
+  autocompletion for view helpers provided by zend-form. See
+  https://docs.zendframework.com/zend-form/view-helpers/#ide-auto-completion-in-templates
+  for more information.
 
 ### Changed
 
