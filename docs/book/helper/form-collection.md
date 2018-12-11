@@ -24,10 +24,22 @@ $collection->setAllowAdd(true);
 $collection->setTargetElement([ 'type' => ContactFieldset::class ]);
 
 // In a view script:
-$this->formCollection($collection);
+echo $this->formCollection($collection);
 ```
 
 The above, assuming the fieldset is created correctly, will generate one or more
 fieldsets with the name `contacts[]`, each containing the elements defined in
 `My\ContactFieldset`. The number of fieldsets created will be based on what data
 was bound to the form.
+
+By default, the collection is wrapped into `<fieldset>` tag. You can override
+this behavior passing `false` as second parameter of the helper.
+
+You can also prevent fieldset addition using `setShouldWrap()` method.
+
+```php
+// In a view script
+// Both following lines are equivalent:
+echo $this->formCollection($collection, false);
+echo $this->formCollection($collection)->setShouldWrap(false);
+```
