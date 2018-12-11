@@ -26,6 +26,7 @@ class FormUrl extends FormInput
         'form'           => true,
         'list'           => true,
         'maxlength'      => true,
+        'minlength'      => true,
         'pattern'        => true,
         'placeholder'    => true,
         'readonly'       => true,
