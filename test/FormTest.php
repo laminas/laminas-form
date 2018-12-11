@@ -15,11 +15,11 @@ use Zend\Form\Element;
 use Zend\Form\Factory;
 use Zend\Form\Fieldset;
 use Zend\Form\Form;
+use Zend\Hydrator;
 use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
 use Zend\InputFilter\BaseInputFilter;
-use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFilterFactory;
-use Zend\Hydrator;
+use Zend\InputFilter\InputFilter;
 use ZendTest\Form\TestAsset\Entity;
 use ZendTest\Form\TestAsset\HydratorAwareModel;
 
@@ -816,6 +816,28 @@ class FormTest extends TestCase
             'foo' => 'abcde',
             'bar' => 'always valid',
         ], $model->foobar);
+    }
+
+    public function testFormBaseFieldsetBindValuesWithoutInputs()
+    {
+        $baseFieldset = new Fieldset('base_fieldset');
+        $baseFieldset->setUseAsBaseFieldset(true);
+
+        $form = new Form();
+        $form->add($baseFieldset);
+        $form->setHydrator(new ObjectPropertyHydrator());
+
+        $model = new stdClass();
+        $form->bind($model);
+
+        $data = [
+            'submit' => 'save',
+        ];
+        $form->setData($data);
+
+        $form->isValid(); // Calls ->bindValues after validation (line: 817)
+
+        $this->assertObjectNotHasAttribute('submit', $model);
     }
 
     public function testHasFactoryComposedByDefault()

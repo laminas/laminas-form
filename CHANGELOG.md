@@ -44,6 +44,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
+- [#216](https://github.com/zendframework/zend-form/pull/216) fixes an issue when performing data binding and a fieldset has no mapped
+  input elements, casting `null` values to empty arrays to ensure they can be
+  passed to an input filter.
+
 - [#207](https://github.com/zendframework/zend-form/pull/207) fixes the return value annotation for the `Fieldset::get()` method to
   indicate it can also return a `FieldsetInterface` instance.
 
