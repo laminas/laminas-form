@@ -1,10 +1,8 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\TestAsset;
@@ -12,15 +10,21 @@ namespace ZendTest\Form\TestAsset;
 use ZendTest\Form\TestAsset\Entity\Product;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethodsHydrator;
 
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {
         parent::__construct('product');
-        $this->setHydrator(new ClassMethodsHydrator())
-             ->setObject(new Product());
+        $this
+            ->setHydrator(
+                class_exists(ClassMethodsHydrator::class)
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
+            )
+            ->setObject(new Product());
 
         $this->add([
             'name' => 'name',
@@ -58,7 +62,9 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
             'type' => 'ZendTest\Form\TestAsset\CountryFieldset',
             'name' => 'made_in_country',
             'object' => 'ZendTest\Form\TestAsset\Entity\Country',
-            'hydrator' => 'Zend\Hydrator\ClassMethods',
+            'hydrator' => class_exists(ClassMethodsHydrator::class)
+                ? ClassMethodsHydrator::class
+                : ClassMethods::class,
             'options' => [
                 'label' => 'Please choose the country',
             ]

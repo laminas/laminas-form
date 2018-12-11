@@ -12,12 +12,12 @@ namespace ZendTest\Form\TestAsset\Annotation;
 use Zend\Form\Annotation;
 
 /**
-* @Annotation\Options({"use_as_base_fieldset":true})
-*/
-class EntityUsingInstanceProperty
+ * @Annotation\Options({"use_as_base_fieldset":true})
+ */
+class EntityUsingObjectPropertyHydratorV2
 {
     /**
-     * @Annotation\Instance("ZendTest\Form\TestAsset\Annotation\Entity")
+     * @Annotation\Object("ZendTest\Form\TestAsset\Annotation\Entity")
      * @Annotation\Type("Zend\Form\Fieldset")
      * @Annotation\Hydrator({"type":"Zend\Hydrator\ClassMethods", "options": {"underscoreSeparatedKeys": false}})
      */

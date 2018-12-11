@@ -1,25 +1,29 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\TestAsset;
 
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethodsHydrator;
 
 class AddressFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {
         parent::__construct('address');
-        $this->setHydrator(new ClassMethodsHydrator(false))
-             ->setObject(new Entity\Address());
+        $this
+            ->setHydrator(
+                class_exists(ClassMethodsHydrator::class)
+                ? new ClassMethodsHydrator(false)
+                : new ClassMethods(false)
+            )
+            ->setObject(new Entity\Address());
 
         $street = new \Zend\Form\Element('street', ['label' => 'Street']);
         $street->setAttribute('type', 'text');

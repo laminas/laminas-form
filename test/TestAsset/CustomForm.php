@@ -1,10 +1,8 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/zendframework/zend-form for the canonical source repository
+ * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
+ * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
  */
 
 namespace ZendTest\Form\TestAsset;
@@ -12,7 +10,8 @@ namespace ZendTest\Form\TestAsset;
 use Zend\Form\Form;
 use Zend\Form\Element;
 use Zend\Validator;
-use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Zend\Hydrator\ClassMethods;
+use Zend\Hydrator\ClassMethodsHydrator;
 
 class CustomForm extends Form
 {
@@ -20,8 +19,13 @@ class CustomForm extends Form
     {
         parent::__construct('test_form');
 
-        $this->setAttribute('method', 'post')
-             ->setHydrator(new ClassMethodsHydrator());
+        $this
+            ->setAttribute('method', 'post')
+            ->setHydrator(
+                class_exists(ClassMethodsHydrator::class)
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
+            );
 
         $field1 = new Element('name', ['label' => 'Name']);
         $field1->setAttribute('type', 'text');
