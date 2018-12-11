@@ -10,13 +10,13 @@
 namespace ZendTest\Form\View\Helper;
 
 use Zend\Form\Element;
-use Zend\Form\View\Helper\FormUrl as FormUrlHelper;
+use Zend\Form\View\Helper\FormSearch as FormSearchHelper;
 
-class FormUrlTest extends CommonTestCase
+class FormSearchTest extends CommonTestCase
 {
     public function setUp()
     {
-        $this->helper = new FormUrlHelper();
+        $this->helper = new FormSearchHelper();
         parent::setUp();
     }
 
@@ -28,56 +28,56 @@ class FormUrlTest extends CommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesUrlInputTagWithElement()
+    public function testGeneratesTextInputTagWithElement()
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
         $this->assertContains('<input ', $markup);
-        $this->assertContains('type="url"', $markup);
+        $this->assertContains('type="search"', $markup);
     }
 
-    public function testGeneratesUrlInputTagRegardlessOfElementType()
+    public function testGeneratesTextInputTagRegardlessOfElementType()
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
         $markup  = $this->helper->render($element);
         $this->assertContains('<input ', $markup);
-        $this->assertContains('type="url"', $markup);
+        $this->assertContains('type="search"', $markup);
     }
 
     public function validAttributes()
     {
         return [
-            ['name',           'assertContains'],
-            ['accept',         'assertNotContains'],
-            ['alt',            'assertNotContains'],
-            ['autocomplete',   'assertContains'],
-            ['autofocus',      'assertContains'],
-            ['checked',        'assertNotContains'],
-            ['dirname',        'assertNotContains'],
-            ['disabled',       'assertContains'],
-            ['form',           'assertContains'],
-            ['formaction',     'assertNotContains'],
-            ['formenctype',    'assertNotContains'],
-            ['formmethod',     'assertNotContains'],
+            ['name', 'assertContains'],
+            ['accept', 'assertNotContains'],
+            ['alt', 'assertNotContains'],
+            ['autocomplete', 'assertContains'],
+            ['autofocus', 'assertContains'],
+            ['checked', 'assertNotContains'],
+            ['dirname', 'assertContains'],
+            ['disabled', 'assertContains'],
+            ['form', 'assertContains'],
+            ['formaction', 'assertNotContains'],
+            ['formenctype', 'assertNotContains'],
+            ['formmethod', 'assertNotContains'],
             ['formnovalidate', 'assertNotContains'],
-            ['formtarget',     'assertNotContains'],
-            ['height',         'assertNotContains'],
-            ['list',           'assertContains'],
-            ['max',            'assertNotContains'],
-            ['maxlength',      'assertContains'],
-            ['min',            'assertNotContains'],
-            ['minlength',      'assertContains'],
-            ['multiple',       'assertNotContains'],
-            ['pattern',        'assertContains'],
-            ['placeholder',    'assertContains'],
-            ['readonly',       'assertContains'],
-            ['required',       'assertContains'],
-            ['size',           'assertContains'],
-            ['src',            'assertNotContains'],
-            ['step',           'assertNotContains'],
-            ['value',          'assertContains'],
-            ['width',          'assertNotContains'],
+            ['formtarget', 'assertNotContains'],
+            ['height', 'assertNotContains'],
+            ['list', 'assertContains'],
+            ['max', 'assertNotContains'],
+            ['maxlength', 'assertContains'],
+            ['min', 'assertNotContains'],
+            ['minlength', 'assertContains'],
+            ['multiple', 'assertNotContains'],
+            ['pattern', 'assertContains'],
+            ['placeholder', 'assertContains'],
+            ['readonly', 'assertContains'],
+            ['required', 'assertContains'],
+            ['size', 'assertContains'],
+            ['src', 'assertNotContains'],
+            ['step', 'assertNotContains'],
+            ['value', 'assertContains'],
+            ['width', 'assertNotContains'],
         ];
     }
 
@@ -144,7 +144,7 @@ class FormUrlTest extends CommonTestCase
         $markup  = $this->helper->__invoke($element);
         $this->assertContains('<input', $markup);
         $this->assertContains('name="foo"', $markup);
-        $this->assertContains('type="url"', $markup);
+        $this->assertContains('type="search"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()
