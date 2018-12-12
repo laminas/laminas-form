@@ -1,12 +1,12 @@
 docs_dir: docs/book
 site_dir: docs/html
 pages:
-    - index.md
-    - Intro: intro.md
+    - Home: index.md
+    - Introduction: intro.md
     - "Quick Start": quick-start.md
     - Reference:
         - Elements:
-            - Intro: element/intro.md
+            - Introduction: element/intro.md
             - Element: element/element.md
             - button: element/button.md
             - CAPTCHA: element/captcha.md
@@ -40,7 +40,7 @@ pages:
         - Collections: collections.md
         - "File Uploads": file-upload.md
         - "View Helpers":
-            - Intro: helper/intro.md
+            - Introduction: helper/intro.md
             - AbstractHelper: helper/abstract-helper.md
             - formInput: helper/form-input.md
             - formElement: helper/form-element.md
@@ -78,7 +78,7 @@ pages:
             - formUrl: helper/form-url.md
             - formWeek: helper/form-week.md
             - "Upload Progress":
-                - Intro: helper/upload-progress-helpers.md
+                - Introduction: helper/upload-progress-helpers.md
                 - formFileApcProgress: helper/form-file-apc-progress.md
                 - formFileSessionProgress: helper/form-file-session-progress.md
                 - formFileUploadProgress: helper/form-file-upload-progress.md
