@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#228](https://github.com/zendframework/zend-form/pull/228) adds support for PHP 7.3.
 
 ### Changed
 
@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#228](https://github.com/zendframework/zend-form/pull/228) removes support for zend-stdlib v2 releases.
 
 ### Fixed
 
