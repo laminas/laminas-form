@@ -1398,4 +1398,25 @@ class CollectionTest extends TestCase
             $this->form->getMessages()
         );
     }
+
+    public function testTargetElementBeingNullNotCausingAnError()
+    {
+        $form = new Form();
+
+        $form->add([
+            'type' => 'Zend\Form\Element\Collection',
+            'name' => 'fieldsets',
+            'options' => [
+                'count' => 2
+            ]
+        ]);
+
+        $collection = $form->get('fieldsets');
+        $data = [];
+        $data['fieldsets'] = ['red', 'green', 'blue'];
+
+        $form->populateValues($data);
+
+        $this->addToAssertionCount(1); // expect no exception being thrown
+    }
 }
