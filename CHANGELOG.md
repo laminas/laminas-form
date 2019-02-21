@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#230](https://github.com/zendframework/zend-form/pull/230) fixes the "__clone method called on non-object" error that happens when the targetElement is null.
 
 ## 2.14.0 - 2019-01-07
 
