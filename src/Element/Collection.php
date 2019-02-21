@@ -227,7 +227,7 @@ class Collection extends Fieldset
         foreach ($data as $key => $value) {
             if ($this->has($key)) {
                 $elementOrFieldset = $this->get($key);
-            } else {
+            } elseif ($this->targetElement) {
                 $elementOrFieldset = $this->addNewTargetElementInstance($key);
 
                 if ($key > $this->lastChildIndex) {
@@ -235,10 +235,12 @@ class Collection extends Fieldset
                 }
             }
 
-            if ($elementOrFieldset instanceof FieldsetInterface) {
-                $elementOrFieldset->populateValues($value);
-            } else {
-                $elementOrFieldset->setAttribute('value', $value);
+            if ($elementOrFieldset) {
+                if ($elementOrFieldset instanceof FieldsetInterface) {
+                    $elementOrFieldset->populateValues($value);
+                } else {
+                    $elementOrFieldset->setAttribute('value', $value);
+                }
             }
         }
 
