@@ -225,6 +225,7 @@ class Collection extends Fieldset
         }
 
         foreach ($data as $key => $value) {
+            $elementOrFieldset = null;
             if ($this->has($key)) {
                 $elementOrFieldset = $this->get($key);
             } elseif ($this->targetElement) {
