@@ -236,7 +236,7 @@ class Collection extends Fieldset
                 }
             }
 
-            if ($elementOrFieldset) {
+            if ($elementOrFieldset !== null) {
                 if ($elementOrFieldset instanceof FieldsetInterface) {
                     $elementOrFieldset->populateValues($value);
                 } else {

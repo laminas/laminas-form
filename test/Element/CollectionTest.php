@@ -1403,20 +1403,34 @@ class CollectionTest extends TestCase
     {
         $form = new Form();
 
-        $form->add([
-            'type' => 'Zend\Form\Element\Collection',
-            'name' => 'fieldsets',
-            'options' => [
-                'count' => 2
+        $form->add(
+            [
+                'type' => \Zend\Form\Element\Collection::class,
+                'name' => 'fieldsets',
+                'options' => [
+                    'count' => 2
+                ]
             ]
-        ]);
+        );
 
         $collection = $form->get('fieldsets');
-        $data = [];
-        $data['fieldsets'] = ['red', 'green', 'blue'];
+        $data = [
+            'fieldsets' => [
+                'red',
+                'green',
+                'blue'
+            ]
+        ];
 
-        $form->populateValues($data);
+        $form->setData($data);
+        $form->isValid();
 
-        $this->addToAssertionCount(1); // expect no exception being thrown
+        // expect the fieldsets key to be an empty array since there's no valid targetElement
+        $this->assertEquals(
+            [
+                'fieldsets' => []
+            ],
+            $form->getData()
+        );
     }
 }
