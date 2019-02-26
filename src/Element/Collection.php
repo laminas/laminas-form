@@ -236,12 +236,13 @@ class Collection extends Fieldset
                 }
             }
 
+            if ($elementOrFieldset instanceof FieldsetInterface) {
+                $elementOrFieldset->populateValues($value);
+                continue;
+            }
+
             if ($elementOrFieldset !== null) {
-                if ($elementOrFieldset instanceof FieldsetInterface) {
-                    $elementOrFieldset->populateValues($value);
-                } else {
-                    $elementOrFieldset->setAttribute('value', $value);
-                }
+                $elementOrFieldset->setAttribute('value', $value);
             }
         }
 
