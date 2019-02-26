@@ -1007,6 +1007,9 @@ behaviors with the shipped annotations in zend-form:
   of validator options for the constructor:
   `@Validator({"name": "StringLength", "options": {"min":3, "max": 25}})`.
   This annotation may be specified multiple times.
+- `ContinueIfEmpty`: indicate whether the element can be submitted when it
+  is empty. A boolean value is expected. If `@Required` is set to `false`, this
+  needs to be set to `true` to allow the field to be empty.
 
 To use annotations, include them in your class and/or property docblocks.
 Annotation names will be resolved according to the import statements in your
