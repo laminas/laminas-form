@@ -1399,27 +1399,28 @@ class CollectionTest extends TestCase
         );
     }
 
-    public function testTargetElementBeingNullNotCausingAnError()
+    /**
+     * @see https://github.com/zendframework/zend-form/pull/230
+     */
+    public function testNullTargetElementShouldResultInEmptyData()
     {
         $form = new Form();
 
-        $form->add(
-            [
-                'type' => \Zend\Form\Element\Collection::class,
-                'name' => 'fieldsets',
-                'options' => [
-                    'count' => 2
-                ]
-            ]
-        );
+        $form->add([
+            'type' => \Zend\Form\Element\Collection::class,
+            'name' => 'fieldsets',
+            'options' => [
+                'count' => 2,
+            ],
+        ]);
 
         $collection = $form->get('fieldsets');
         $data = [
             'fieldsets' => [
                 'red',
                 'green',
-                'blue'
-            ]
+                'blue',
+            ],
         ];
 
         $form->setData($data);
@@ -1428,7 +1429,7 @@ class CollectionTest extends TestCase
         // expect the fieldsets key to be an empty array since there's no valid targetElement
         $this->assertEquals(
             [
-                'fieldsets' => []
+                'fieldsets' => [],
             ],
             $form->getData()
         );
