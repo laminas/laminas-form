@@ -22,7 +22,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#232](https://github.com/zendframework/zend-form/pull/232) fixes validating `$creationOption`
+  of `Zend\Form\ElementFactory`. Allowed values are: array, Traversable or null.
+  If invalid value provided exception will be thrown.
 
 ## 2.14.1 - 2019-02-26
 
