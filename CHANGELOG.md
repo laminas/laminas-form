@@ -26,6 +26,9 @@ All notable changes to this project will be documented in this file, in reverse 
   of `Zend\Form\ElementFactory`. Allowed values are: array, Traversable or null.
   If invalid value provided exception will be thrown.
 
+- [#234](https://github.com/zendframework/zend-form/pull/234) registers `Search` and `Tel` form elements
+  within `Zend\Form\FormElementManager` plugin manager.
+
 ## 2.14.1 - 2019-02-26
 
 ### Added
