@@ -38,6 +38,18 @@ final class ElementFactory implements FactoryInterface
             return;
         }
 
+        if ($creationOptions instanceof Traversable) {
+            $creationOptions = iterator_to_array($creationOptions);
+        }
+
+        if (! is_array($creationOptions)) {
+            throw new InvalidServiceException(sprintf(
+                '%s cannot use non-array, non-traversable, non-null creation options; received %s',
+                __CLASS__,
+                is_object($creationOptions) ? get_class($creationOptions) : gettype($creationOptions)
+            ));
+        }
+
         $this->setCreationOptions($creationOptions);
     }
 
@@ -118,18 +130,6 @@ final class ElementFactory implements FactoryInterface
      */
     public function setCreationOptions(array $creationOptions)
     {
-        if ($creationOptions instanceof Traversable) {
-            $creationOptions = iterator_to_array($creationOptions);
-        }
-
-        if (! is_array($creationOptions)) {
-            throw new InvalidServiceException(sprintf(
-                '%s cannot use non-array, non-traversable creation options; received %s',
-                __CLASS__,
-                (is_object($creationOptions) ? get_class($creationOptions) : gettype($creationOptions))
-            ));
-        }
-
         $this->creationOptions = $creationOptions;
     }
 }
