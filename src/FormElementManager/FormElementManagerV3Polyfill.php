@@ -1,7 +1,7 @@
 <?php
 /**
  * @link      http://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2019 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -91,10 +91,14 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
         'Radio'          => Element\Radio::class,
         'range'          => Element\Range::class,
         'Range'          => Element\Range::class,
+        'search'         => Element\Search::class,
+        'Search'         => Element\Search::class,
         'select'         => Element\Select::class,
         'Select'         => Element\Select::class,
         'submit'         => Element\Submit::class,
         'Submit'         => Element\Submit::class,
+        'tel'            => Element\Tel::class,
+        'Tel'            => Element\Tel::class,
         'text'           => Element\Text::class,
         'Text'           => Element\Text::class,
         'textarea'       => Element\Textarea::class,
@@ -138,8 +142,10 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
         Element\Password::class       => ElementFactory::class,
         Element\Radio::class          => ElementFactory::class,
         Element\Range::class          => ElementFactory::class,
+        Element\Search::class         => ElementFactory::class,
         Element\Select::class         => ElementFactory::class,
         Element\Submit::class         => ElementFactory::class,
+        Element\Tel::class            => ElementFactory::class,
         Element\Text::class           => ElementFactory::class,
         Element\Textarea::class       => ElementFactory::class,
         Element\Time::class           => ElementFactory::class,
@@ -173,8 +179,10 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
         'zendformelementpassword'       => ElementFactory::class,
         'zendformelementradio'          => ElementFactory::class,
         'zendformelementrange'          => ElementFactory::class,
+        'zendformelementsearch'         => ElementFactory::class,
         'zendformelementselect'         => ElementFactory::class,
         'zendformelementsubmit'         => ElementFactory::class,
+        'zendformelementtel'            => ElementFactory::class,
         'zendformelementtext'           => ElementFactory::class,
         'zendformelementtextarea'       => ElementFactory::class,
         'zendformelementtime'           => ElementFactory::class,
