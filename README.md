@@ -8,7 +8,20 @@ the View Layer. It composes a thin layer of objects representing form elements,
 an InputFilter, and a small number of methods for binding data to and from the
 form and attached objects.
 
-- File issues at https://github.com/zendframework/zend-form/issues
-- Ask questions at https://discourse.zendframework.com/c/questions/components
-  (use the tag zend-form)
-- Documentation is at https://docs.zendframework.com/zend-form/
+## Installation
+
+Run the following to install this library:
+
+```bash
+$ composer require zendframework/zend-form
+```
+
+## Documentation
+
+Browse the documentation online at https://docs.zendframework.com/zend-form/
+
+## Support
+
+* [Issues](https://github.com/zendframework/zend-form/issues/)
+* [Chat](https://zendframework-slack.herokuapp.com/)
+* [Forum](https://discourse.zendframework.com/)

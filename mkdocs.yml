@@ -1,6 +1,6 @@
 docs_dir: docs/book
 site_dir: docs/html
-pages:
+nav:
     - Home: index.md
     - Introduction: intro.md
     - "Quick Start": quick-start.md
@@ -86,4 +86,3 @@ pages:
 site_name: zend-form
 site_description: "Validate and display simple and complex forms, casting forms to business objects and vice versa."
 repo_url: 'https://github.com/zendframework/zend-form'
-copyright: 'Copyright (c) 2005-2019 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
