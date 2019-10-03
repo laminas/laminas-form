@@ -212,22 +212,22 @@ public function handle(ServerRequestInterface $request) : ResponseInterface
             $request->getParsedBody(),
             $request->getUploadedFiles()
         );
-        
+
         $form->setData($post);
-        
+
         if ($form->isValid()) {
             $data = $form->getData();
-            
+
             // Form is valid, save the form!
-            
+
             return new RedirectResponse('upload-form/success');
         }
     }
-    
+
     return new HtmlResponse(
         $this->template->render('app::page-template', [
             'form' => $form,
-        ]);    
+        ]);
     );
 }
 ```
@@ -329,7 +329,7 @@ documentation for more information on its supported options.
 > contain an expired stream and outdated target file name. After running this filter,
 > _do not use_ the request object to get further details about the uploaded file;
 > use the new instance of `UploadedFileInterface` returned from the filter
-> invocation. 
+> invocation.
 
 ### Call the fileprg plugin
 
