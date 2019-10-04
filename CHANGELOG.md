@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#235](https://github.com/zendframework/zend-form/pull/235) fixes PHP 7.4 compatibility.
 
 ## 2.14.2 - 2019-10-03
 
