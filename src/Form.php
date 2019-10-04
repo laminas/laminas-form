@@ -364,7 +364,7 @@ class Form extends Fieldset implements FormInterface
             $data = array_key_exists($this->baseFieldset->getName(), $data)
                 ? $data[$this->baseFieldset->getName()]
                 : [];
-            $this->object = $this->baseFieldset->bindValues($data, $validationGroup[$this->baseFieldset->getName()]);
+            $this->object = $this->baseFieldset->bindValues($data, $validationGroup ? $validationGroup[$this->baseFieldset->getName()] : null);
         } else {
             $this->object = parent::bindValues($data, $validationGroup);
         }
