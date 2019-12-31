@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
+use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element\MultiCheckbox as MultiCheckboxElement;
 
 class MultiCheckboxTest extends TestCase
 {
@@ -40,15 +39,15 @@ class MultiCheckboxTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = array(
-            'Zend\Validator\Explode'
+            'Laminas\Validator\Explode'
         );
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertTrue(in_array($class, $expectedClasses), $class);
             switch ($class) {
-                case 'Zend\Validator\Explode':
+                case 'Laminas\Validator\Explode':
                     $inArrayValidator = $validator->getValidator();
-                    $this->assertInstanceOf('Zend\Validator\InArray', $inArrayValidator);
+                    $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
                     break;
                 default:
                     break;
@@ -88,7 +87,7 @@ class MultiCheckboxTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $explodeValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Zend\Validator\Explode', $explodeValidator);
+        $this->assertInstanceOf('Laminas\Validator\Explode', $explodeValidator);
         $this->assertTrue($explodeValidator->isValid($valueTests));
     }
 

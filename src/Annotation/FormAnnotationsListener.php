@@ -1,15 +1,14 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Annotation;
+namespace Laminas\Form\Annotation;
 
-use Zend\EventManager\EventManagerInterface;
+use Laminas\EventManager\EventManagerInterface;
 
 /**
  * Default listeners for form annotations
@@ -57,7 +56,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the attributes key of the form specification.
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleAttributesAnnotation($e)
@@ -76,7 +75,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the flags key of the form specification.
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleFlagsAnnotation($e)
@@ -95,7 +94,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the hydrator class to use in the form specification.
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleHydratorAnnotation($e)
@@ -114,7 +113,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the input filter class to use in the form specification.
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleInputFilterAnnotation($e)
@@ -133,7 +132,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the object to bind to the form or fieldset
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleObjectAnnotation($e)
@@ -152,7 +151,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the options key of the form specification.
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleOptionsAnnotation($e)
@@ -171,7 +170,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the form class to use in the form specification.
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleTypeAnnotation($e)
@@ -190,7 +189,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the validation group to use in the form specification.
      *
-     * @param  \Zend\EventManager\EventInterface $e
+     * @param  \Laminas\EventManager\EventInterface $e
      * @return void
      */
     public function handleValidationGroupAnnotation($e)
