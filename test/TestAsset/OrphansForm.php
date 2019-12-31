@@ -1,15 +1,14 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class OrphansForm extends Form
 {
@@ -24,7 +23,7 @@ class OrphansForm extends Form
         //adds a collection of 2
         $this->add(
             array(
-                'type' => '\Zend\Form\Element\Collection',
+                'type' => '\Laminas\Form\Element\Collection',
                 'name' => 'test',
                 'options' => array(
                     'use_as_base_fieldset' => true,
@@ -32,7 +31,7 @@ class OrphansForm extends Form
                     'should_create_template' => true,
                     'allow_add' => true,
                     'target_element' => array(
-                        'type' => '\ZendTest\Form\TestAsset\OrphansFieldset'
+                        'type' => '\LaminasTest\Form\TestAsset\OrphansFieldset'
                     ),
                 )
             )

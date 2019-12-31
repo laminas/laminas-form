@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
+use Laminas\Form\Element\Email as EmailElement;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element\Email as EmailElement;
 
 class EmailTest extends TestCase
 {
@@ -23,7 +22,7 @@ class EmailTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedValidators = array(
-            'Zend\Validator\Regex'
+            'Laminas\Validator\Regex'
         );
         foreach ($inputSpec['validators'] as $i => $validator) {
             $class = get_class($validator);
@@ -35,8 +34,8 @@ class EmailTest extends TestCase
     {
         return array(
                   // attributes               // expectedValidators
-            array(array('multiple' => true),  array('Zend\Validator\Explode')),
-            array(array('multiple' => false), array('Zend\Validator\Regex')),
+            array(array('multiple' => true),  array('Laminas\Validator\Explode')),
+            array(array('multiple' => false), array('Laminas\Validator\Regex')),
         );
     }
 
@@ -56,8 +55,8 @@ class EmailTest extends TestCase
             $class = get_class($validator);
             $this->assertEquals($expectedValidators[$i], $class);
             switch ($class) {
-                case 'Zend\Validator\Explode':
-                    $this->assertInstanceOf('Zend\Validator\Regex', $validator->getValidator());
+                case 'Laminas\Validator\Explode':
+                    $this->assertInstanceOf('Laminas\Validator\Regex', $validator->getValidator());
                     break;
                 default:
                     break;
