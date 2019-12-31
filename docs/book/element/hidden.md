@@ -1,6 +1,6 @@
 # Hidden
 
-`Zend\Form\Element\Hidden` represents a hidden form input.
+`Laminas\Form\Element\Hidden` represents a hidden form input.
 It can be used with the [FormHidden](../helper/form-hidden.md) view helper.
 
 ## Basic Usage
@@ -8,8 +8,8 @@ It can be used with the [FormHidden](../helper/form-hidden.md) view helper.
 This element automatically adds a `type` attribute of value `hidden`.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $hidden = new Element\Hidden('my-hidden');
 $hidden->setValue('foo');
@@ -21,8 +21,8 @@ $form->add($hidden);
 Using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([

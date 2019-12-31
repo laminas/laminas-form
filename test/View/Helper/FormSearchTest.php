@@ -1,14 +1,15 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\View\Helper\FormSearch as FormSearchHelper;
+use Laminas\Form\Element;
+use Laminas\Form\View\Helper\FormSearch as FormSearchHelper;
 
 class FormSearchTest extends CommonTestCase
 {
@@ -21,7 +22,7 @@ class FormSearchTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectException('Laminas\Form\Exception\DomainException');
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }

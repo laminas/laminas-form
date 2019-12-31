@@ -1,6 +1,6 @@
 # Select
 
-`Zend\Form\Element\Select` is meant to be paired with
+`Laminas\Form\Element\Select` is meant to be paired with
 [FormSelect](../helper/form-select.md) for HTML inputs with type "select". This
 element adds an `InArray` validator to its input filter specification in order
 to validate on the server if the selected value belongs to the values. This
@@ -12,8 +12,8 @@ attribute to the element.
 This element automatically adds a `type` attribute of value `select`.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $select = new Element\Select('language');
 $select->setLabel('Which is your mother tongue?');
@@ -31,8 +31,8 @@ $form->add($select);
 Using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
@@ -54,8 +54,8 @@ You can add an empty option (option with no value) using the `empty_option`
 option:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
@@ -77,8 +77,8 @@ $form->add([
 Option groups are also supported by adding an `options` key to the value options:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $select = new Element\Select('language');
 $select->setLabel('Which is your mother tongue?');

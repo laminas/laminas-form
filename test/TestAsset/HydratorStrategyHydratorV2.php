@@ -1,16 +1,17 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use Zend\Hydrator\Strategy\DefaultStrategy;
+use Laminas\Hydrator\Strategy\DefaultStrategy;
 
 /**
- * This class targets zend-hydrator v1 and v2, and will be aliased to
+ * This class targets laminas-hydrator v1 and v2, and will be aliased to
  * HydratorStrategy when one of those versions is detected.
  */
 class HydratorStrategyHydratorV2 extends DefaultStrategy

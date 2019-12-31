@@ -1,6 +1,6 @@
 # Search
 
-`Zend\Form\Element\Search` is meant to be paired with the
+`Laminas\Form\Element\Search` is meant to be paired with the
 [FormSearch](../helper/form-search.md) helper for
 [HTML5 inputs with type "search"](http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#text-%28type=text%29-state-and-search-state-%28type=search%29)
 
@@ -11,8 +11,8 @@
 This element automatically adds a `type` attribute of value `search`.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $search = new Element\Search('search');
 $search->setLabel('Search');
@@ -24,8 +24,8 @@ $form->add($search);
 Using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([

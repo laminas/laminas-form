@@ -1,18 +1,19 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form;
+namespace Laminas\Form;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 class ConfigProvider
 {
     /**
-     * Return general-purpose zend-i18n configuration.
+     * Return general-purpose laminas-i18n configuration.
      *
      * @return array
      */
@@ -36,9 +37,14 @@ class ConfigProvider
                 FormAbstractServiceFactory::class,
             ],
             'aliases' => [
-                'Zend\Form\Annotation\FormAnnotationBuilder' => 'FormAnnotationBuilder',
+                'Laminas\Form\Annotation\FormAnnotationBuilder' => 'FormAnnotationBuilder',
                 Annotation\AnnotationBuilder::class => 'FormAnnotationBuilder',
                 FormElementManager::class => 'FormElementManager',
+
+                // Legacy Zend Framework aliases
+                'Zend\Form\Annotation\FormAnnotationBuilder' => 'Laminas\Form\Annotation\FormAnnotationBuilder',
+                \Zend\Form\Annotation\AnnotationBuilder::class => Annotation\AnnotationBuilder::class,
+                \Zend\Form\FormElementManager::class => FormElementManager::class,
             ],
             'factories' => [
                 'FormAnnotationBuilder' => Annotation\AnnotationBuilderFactory::class,
@@ -48,7 +54,7 @@ class ConfigProvider
     }
 
     /**
-     * Return zend-form helper configuration.
+     * Return laminas-form helper configuration.
      *
      * Obsoletes View\HelperConfig.
      *
@@ -70,7 +76,7 @@ class ConfigProvider
                 'FormCaptcha'                => View\Helper\FormCaptcha::class,
                 'captchadumb'                => View\Helper\Captcha\Dumb::class,
                 'captcha_dumb'               => View\Helper\Captcha\Dumb::class,
-                // weird alias used by Zend\Captcha
+                // weird alias used by Laminas\Captcha
                 'captcha/dumb'               => View\Helper\Captcha\Dumb::class,
                 'CaptchaDumb'                => View\Helper\Captcha\Dumb::class,
                 'captchaDumb'                => View\Helper\Captcha\Dumb::class,
@@ -79,7 +85,7 @@ class ConfigProvider
                 'formCaptchaDumb'            => View\Helper\Captcha\Dumb::class,
                 'FormCaptchaDumb'            => View\Helper\Captcha\Dumb::class,
                 'captchafiglet'              => View\Helper\Captcha\Figlet::class,
-                // weird alias used by Zend\Captcha
+                // weird alias used by Laminas\Captcha
                 'captcha/figlet'             => View\Helper\Captcha\Figlet::class,
                 'captcha_figlet'             => View\Helper\Captcha\Figlet::class,
                 'captchaFiglet'              => View\Helper\Captcha\Figlet::class,
@@ -89,7 +95,7 @@ class ConfigProvider
                 'formCaptchaFiglet'          => View\Helper\Captcha\Figlet::class,
                 'FormCaptchaFiglet'          => View\Helper\Captcha\Figlet::class,
                 'captchaimage'               => View\Helper\Captcha\Image::class,
-                // weird alias used by Zend\Captcha
+                // weird alias used by Laminas\Captcha
                 'captcha/image'              => View\Helper\Captcha\Image::class,
                 'captcha_image'              => View\Helper\Captcha\Image::class,
                 'captchaImage'               => View\Helper\Captcha\Image::class,
@@ -99,7 +105,7 @@ class ConfigProvider
                 'formCaptchaImage'           => View\Helper\Captcha\Image::class,
                 'FormCaptchaImage'           => View\Helper\Captcha\Image::class,
                 'captcharecaptcha'           => View\Helper\Captcha\ReCaptcha::class,
-                // weird alias used by Zend\Captcha
+                // weird alias used by Laminas\Captcha
                 'captcha/recaptcha'          => View\Helper\Captcha\ReCaptcha::class,
                 'captcha_recaptcha'          => View\Helper\Captcha\ReCaptcha::class,
                 'captchaRecaptcha'           => View\Helper\Captcha\ReCaptcha::class,
@@ -257,6 +263,56 @@ class ConfigProvider
                 'form_week'                  => View\Helper\FormWeek::class,
                 'formWeek'                   => View\Helper\FormWeek::class,
                 'FormWeek'                   => View\Helper\FormWeek::class,
+
+                // Legacy Zend Framework aliases
+                \Zend\Form\View\Helper\Form::class => View\Helper\Form::class,
+                \Zend\Form\View\Helper\FormButton::class => View\Helper\FormButton::class,
+                \Zend\Form\View\Helper\FormCaptcha::class => View\Helper\FormCaptcha::class,
+                \Zend\Form\View\Helper\Captcha\Dumb::class => View\Helper\Captcha\Dumb::class,
+                \Zend\Form\View\Helper\Captcha\Dumb::class => View\Helper\Captcha\Dumb::class,
+                \Zend\Form\View\Helper\Captcha\Figlet::class => View\Helper\Captcha\Figlet::class,
+                \Zend\Form\View\Helper\Captcha\Figlet::class => View\Helper\Captcha\Figlet::class,
+                \Zend\Form\View\Helper\Captcha\Image::class => View\Helper\Captcha\Image::class,
+                \Zend\Form\View\Helper\Captcha\Image::class => View\Helper\Captcha\Image::class,
+                \Zend\Form\View\Helper\Captcha\ReCaptcha::class => View\Helper\Captcha\ReCaptcha::class,
+                \Zend\Form\View\Helper\Captcha\ReCaptcha::class => View\Helper\Captcha\ReCaptcha::class,
+                \Zend\Form\View\Helper\FormCheckbox::class => View\Helper\FormCheckbox::class,
+                \Zend\Form\View\Helper\FormCollection::class => View\Helper\FormCollection::class,
+                \Zend\Form\View\Helper\FormColor::class => View\Helper\FormColor::class,
+                \Zend\Form\View\Helper\FormDate::class => View\Helper\FormDate::class,
+                \Zend\Form\View\Helper\FormDateTime::class => View\Helper\FormDateTime::class,
+                \Zend\Form\View\Helper\FormDateTimeLocal::class => View\Helper\FormDateTimeLocal::class,
+                \Zend\Form\View\Helper\FormDateTimeSelect::class => View\Helper\FormDateTimeSelect::class,
+                \Zend\Form\View\Helper\FormDateSelect::class => View\Helper\FormDateSelect::class,
+                \Zend\Form\View\Helper\FormElement::class => View\Helper\FormElement::class,
+                \Zend\Form\View\Helper\FormElementErrors::class => View\Helper\FormElementErrors::class,
+                \Zend\Form\View\Helper\FormEmail::class => View\Helper\FormEmail::class,
+                \Zend\Form\View\Helper\FormFile::class => View\Helper\FormFile::class,
+                \Zend\Form\View\Helper\File\FormFileApcProgress::class => View\Helper\File\FormFileApcProgress::class,
+                \Zend\Form\View\Helper\File\FormFileSessionProgress::class => View\Helper\File\FormFileSessionProgress::class,
+                \Zend\Form\View\Helper\File\FormFileUploadProgress::class => View\Helper\File\FormFileUploadProgress::class,
+                \Zend\Form\View\Helper\FormHidden::class => View\Helper\FormHidden::class,
+                \Zend\Form\View\Helper\FormImage::class => View\Helper\FormImage::class,
+                \Zend\Form\View\Helper\FormInput::class => View\Helper\FormInput::class,
+                \Zend\Form\View\Helper\FormLabel::class => View\Helper\FormLabel::class,
+                \Zend\Form\View\Helper\FormMonth::class => View\Helper\FormMonth::class,
+                \Zend\Form\View\Helper\FormMonthSelect::class => View\Helper\FormMonthSelect::class,
+                \Zend\Form\View\Helper\FormMultiCheckbox::class => View\Helper\FormMultiCheckbox::class,
+                \Zend\Form\View\Helper\FormNumber::class => View\Helper\FormNumber::class,
+                \Zend\Form\View\Helper\FormPassword::class => View\Helper\FormPassword::class,
+                \Zend\Form\View\Helper\FormRadio::class => View\Helper\FormRadio::class,
+                \Zend\Form\View\Helper\FormRange::class => View\Helper\FormRange::class,
+                \Zend\Form\View\Helper\FormReset::class => View\Helper\FormReset::class,
+                \Zend\Form\View\Helper\FormRow::class => View\Helper\FormRow::class,
+                \Zend\Form\View\Helper\FormSearch::class => View\Helper\FormSearch::class,
+                \Zend\Form\View\Helper\FormSelect::class => View\Helper\FormSelect::class,
+                \Zend\Form\View\Helper\FormSubmit::class => View\Helper\FormSubmit::class,
+                \Zend\Form\View\Helper\FormTel::class => View\Helper\FormTel::class,
+                \Zend\Form\View\Helper\FormText::class => View\Helper\FormText::class,
+                \Zend\Form\View\Helper\FormTextarea::class => View\Helper\FormTextarea::class,
+                \Zend\Form\View\Helper\FormTime::class => View\Helper\FormTime::class,
+                \Zend\Form\View\Helper\FormUrl::class => View\Helper\FormUrl::class,
+                \Zend\Form\View\Helper\FormWeek::class => View\Helper\FormWeek::class,
             ],
             'factories' => [
                 View\Helper\Form::class                          => InvokableFactory::class,

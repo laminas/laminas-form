@@ -3,11 +3,11 @@
 The `Form` view helper is used to render a `<form>` HTML element and its
 attributes.
 
-If provided a `Zend\Form\Form` instance, it will:
+If provided a `Laminas\Form\Form` instance, it will:
 
 - `prepare()` the instance
 - iterate it, and:
-  - pass non-collection `Zend\Form\Element` instances to the `FormRow` helper to
+  - pass non-collection `Laminas\Form\Element` instances to the `FormRow` helper to
     render, and
   - pass collections and fieldsets to the `FormCollection` helper to render.
 
@@ -21,8 +21,8 @@ individual elements and fieldsets.
 /**
  * inside a view template
  *
- * @var \Zend\View\Renderer\PhpRenderer $this
- * @var \Zend\Form\Form $form
+ * @var \Laminas\View\Renderer\PhpRenderer $this
+ * @var \Laminas\Form\Form $form
  */
 
 echo $this->form($form);
