@@ -1,5 +1,3 @@
-sudo: false
-
 language: php
 
 cache:
@@ -8,8 +6,8 @@ cache:
 
 env:
   global:
-    - TESTS_ZEND_FORM_ANNOTATION_SUPPORT=true
-    - TESTS_ZEND_FORM_RECAPTCHA_SUPPORT=true
+    - TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT=true
+    - TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT=true
 
 matrix:
   fast_finish: true
@@ -27,7 +25,6 @@ matrix:
     - php: hhvm
 
 notifications:
-  irc: "irc.freenode.org#zftalk.dev"
   email: false
 
 before_install:
