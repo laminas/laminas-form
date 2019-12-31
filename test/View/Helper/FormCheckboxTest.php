@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\View\Helper\FormCheckbox as FormCheckboxHelper;
+use Laminas\Form\Element;
+use Laminas\Form\View\Helper\FormCheckbox as FormCheckboxHelper;
 
 class FormCheckboxTest extends CommonTestCase
 {
@@ -34,7 +33,7 @@ class FormCheckboxTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element\Checkbox();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException', 'name');
         $this->helper->render($element);
     }
 
@@ -84,12 +83,12 @@ class FormCheckboxTest extends CommonTestCase
     }
 
     /**
-     * @group ZF2-457
+     * @group Laminas-457
      */
     public function testBaseElementType()
     {
         $element = new Element('foo');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $markup = $this->helper->render($element);
     }
 }

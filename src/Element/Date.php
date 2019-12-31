@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
 use DateInterval;
-use Zend\Form\Element;
-use Zend\Form\Element\DateTime as DateTimeElement;
-use Zend\Validator\DateStep as DateStepValidator;
+use Laminas\Form\Element;
+use Laminas\Form\Element\DateTime as DateTimeElement;
+use Laminas\Validator\DateStep as DateStepValidator;
 
 class Date extends DateTimeElement
 {
@@ -36,7 +35,7 @@ class Date extends DateTimeElement
     /**
      * Retrieves a DateStep Validator configured for a Date Input type
      *
-     * @return \Zend\Validator\ValidatorInterface
+     * @return \Laminas\Validator\ValidatorInterface
      */
     protected function getStepValidator()
     {
