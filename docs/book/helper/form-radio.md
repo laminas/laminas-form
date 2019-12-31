@@ -10,7 +10,7 @@ specification for validating a radio.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Radio('likes_chocolate');
 $element->setValueOptions([

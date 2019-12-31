@@ -1,6 +1,6 @@
 # MultiCheckbox
 
-`Zend\Form\Element\MultiCheckbox` is meant to be paired with the
+`Laminas\Form\Element\MultiCheckbox` is meant to be paired with the
 [FormMultiCheckbox](../helper/form-multicheckbox.md) for HTML inputs with type
 "checkbox".  This element adds an `InArray` validator to its input filter
 specification in order to validate on the server if the checkbox contains values
@@ -12,8 +12,8 @@ This element automatically adds a `type` attribute of value `checkbox` for every
 checkboxes.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $multiCheckbox = new Element\MultiCheckbox('multi-checkbox');
 $multiCheckbox->setLabel('What do you like ?');
@@ -30,8 +30,8 @@ $form->add($multiCheckbox);
 Using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([

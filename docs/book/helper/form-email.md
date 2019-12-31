@@ -7,7 +7,7 @@ which provides a default input specification with an email validator.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Email('my-email');
 

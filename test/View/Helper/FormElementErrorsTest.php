@@ -1,23 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\Form;
-use Zend\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
-use Zend\Validator\AbstractValidator;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
+use Laminas\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
+use Laminas\Validator\AbstractValidator;
 
 class FormElementErrorsTest extends CommonTestCase
 {
     /**
-     * @var null|\Zend\Validator\Translator\TranslatorInterface
+     * @var null|\Laminas\Validator\Translator\TranslatorInterface
      */
     protected $defaultTranslator;
 
@@ -63,7 +62,7 @@ class FormElementErrorsTest extends CommonTestCase
 
     public function testRendersErrorMessagesUsingUnorderedListTranslated()
     {
-        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->at(0))
             ->method('translate')
             ->will($this->returnValue('Translated first error message'));
@@ -98,7 +97,7 @@ class FormElementErrorsTest extends CommonTestCase
         ]);
         $form->setData(['test_element' => 'This is invalid!']);
 
-        $mockValidatorTranslator = $this->createMock('Zend\Validator\Translator\TranslatorInterface');
+        $mockValidatorTranslator = $this->createMock('Laminas\Validator\Translator\TranslatorInterface');
         $mockValidatorTranslator
             ->expects(self::once())
             ->method('translate')
@@ -118,7 +117,7 @@ class FormElementErrorsTest extends CommonTestCase
 
         self::assertFalse($form->isValid());
 
-        $mockFormTranslator = $this->createMock('Zend\I18n\Translator\Translator');
+        $mockFormTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
         $mockFormTranslator
             ->expects(self::never())
             ->method('translate');

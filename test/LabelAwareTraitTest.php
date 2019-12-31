@@ -1,24 +1,23 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * @requires PHP 5.4
- * @group      Zend_Form
+ * @group      Laminas_Form
  */
 class LabelAwareTraitTest extends TestCase
 {
     public function testSetLabelAttributes()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $this->assertAttributeEquals(null, 'labelAttributes', $object);
 
@@ -34,7 +33,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetEmptyLabelAttributes()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelAttributes = $object->getLabelAttributes();
 
@@ -43,7 +42,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelAttributes()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelAttributes = [
             'test',
@@ -59,7 +58,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetEmptyLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelOptions = [];
 
@@ -70,7 +69,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelOptions = [
             'foo' => 'bar',
@@ -86,7 +85,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetEmptyLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelOptions = $object->getLabelOptions();
 
@@ -95,7 +94,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelOptions = [
             'foo' => 'bar',
@@ -111,7 +110,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testClearLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelOptions = [
             'foo' => 'bar',
@@ -129,7 +128,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testRemoveLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $labelOptions = [
             'foo' => 'bar',
@@ -155,7 +154,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOption()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $object->setLabelOption('foo', 'bar');
 
@@ -170,7 +169,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetInvalidLabelOption()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $invalidOption = 'foo';
 
@@ -181,7 +180,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelOption()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $option = 'foo';
         $value = 'bar';
@@ -195,7 +194,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testRemoveLabelOption()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $option = 'foo';
         $value = 'bar';
@@ -211,7 +210,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testHasValidLabelOption()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $option = 'foo';
         $value = 'bar';
@@ -224,7 +223,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testHasInvalidLabelOption()
     {
-        $object = $this->getObjectForTrait('\Zend\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
 
         $option = 'foo';
 
