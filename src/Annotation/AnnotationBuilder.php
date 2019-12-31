@@ -1,35 +1,33 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Annotation;
+namespace Laminas\Form\Annotation;
 
 use ArrayObject;
+use Laminas\Code\Annotation\AnnotationCollection;
+use Laminas\Code\Annotation\AnnotationManager;
+use Laminas\Code\Annotation\Parser;
+use Laminas\Code\Reflection\ClassReflection;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\EventManagerAwareInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\Factory;
+use Laminas\Stdlib\ArrayUtils;
 use ReflectionClass;
-use Zend\Code\Annotation\AnnotationCollection;
-use Zend\Code\Annotation\AnnotationManager;
-use Zend\Code\Annotation\Parser;
-use Zend\Code\Reflection\ClassReflection;
-use Zend\EventManager\Event;
-use Zend\EventManager\EventManager;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\Form\Exception;
-use Zend\Form\Factory;
-use Zend\Stdlib\ArrayUtils;
 
 /**
  * Parses a class' properties for annotations in order to create a form and
  * input filter definition.
  *
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage Annotation
  */
 class AnnotationBuilder implements EventManagerAwareInterface
@@ -228,7 +226,7 @@ class AnnotationBuilder implements EventManagerAwareInterface
      * Create a form from an object.
      *
      * @param  string|object $entity
-     * @return \Zend\Form\Form
+     * @return \Laminas\Form\Form
      */
     public function createForm($entity)
     {
@@ -281,7 +279,7 @@ class AnnotationBuilder implements EventManagerAwareInterface
      * Configure an element from annotations
      *
      * @param  AnnotationCollection $annotations
-     * @param  \Zend\Code\Reflection\PropertyReflection $reflection
+     * @param  \Laminas\Code\Reflection\PropertyReflection $reflection
      * @param  ArrayObject $formSpec
      * @param  ArrayObject $filterSpec
      * @return void
@@ -327,10 +325,10 @@ class AnnotationBuilder implements EventManagerAwareInterface
         $elementSpec = $event->getParam('elementSpec');
         $type        = (isset($elementSpec['spec']['type']))
             ? $elementSpec['spec']['type']
-            : 'Zend\Form\Element';
+            : 'Laminas\Form\Element';
 
         // Compose as a fieldset or an element, based on specification type
-        if (self::isSubclassOf($type, 'Zend\Form\FieldsetInterface')) {
+        if (self::isSubclassOf($type, 'Laminas\Form\FieldsetInterface')) {
             if (!isset($formSpec['fieldsets'])) {
                 $formSpec['fieldsets'] = array();
             }
