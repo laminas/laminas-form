@@ -1,26 +1,24 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
 use ArrayObject;
+use Laminas\Form\FormElementManager;
+use Laminas\Mvc\Service\DiAbstractServiceFactoryFactory;
+use Laminas\Mvc\Service\DiFactory;
+use Laminas\Mvc\Service\DiServiceInitializerFactory;
+use Laminas\Mvc\Service\FormElementManagerFactory;
+use Laminas\ServiceManager\Config;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Session\Container as SessionContainer;
+use Laminas\Validator\Csrf;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Mvc\Service\FormElementManagerFactory;
-use Zend\Mvc\Service\DiFactory;
-use Zend\Mvc\Service\DiAbstractServiceFactoryFactory;
-use Zend\Mvc\Service\DiServiceInitializerFactory;
-
-use Zend\ServiceManager\Config;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Form\FormElementManager;
-use Zend\Session\Container as SessionContainer;
-use Zend\Validator\Csrf;
 
 class FormElementManagerFactoryTest extends TestCase
 {
@@ -30,7 +28,7 @@ class FormElementManagerFactoryTest extends TestCase
     protected $services;
 
     /**
-     * @var \Zend\Mvc\Controller\ControllerManager
+     * @var \Laminas\Mvc\Controller\ControllerManager
      */
     protected $loader;
 
@@ -39,7 +37,7 @@ class FormElementManagerFactoryTest extends TestCase
         $formElementManagerFactory = new FormElementManagerFactory();
         $config = new ArrayObject(array('di' => array()));
         $services = $this->services = new ServiceManager();
-        $services->setService('Zend\ServiceManager\ServiceLocatorInterface', $services);
+        $services->setService('Laminas\ServiceManager\ServiceLocatorInterface', $services);
         $services->setFactory('FormElementManager', $formElementManagerFactory);
         $services->setService('Config', $config);
         $services->setFactory('Di', new DiFactory());
@@ -53,7 +51,7 @@ class FormElementManagerFactoryTest extends TestCase
 
     public function tearDown()
     {
-        $ref = new \ReflectionClass('Zend\Validator\Csrf');
+        $ref = new \ReflectionClass('Laminas\Validator\Csrf');
         $hashCache = $ref->getProperty('hashCache');
         $hashCache->setAccessible(true);
         $hashCache->setValue(new Csrf, array());
@@ -63,22 +61,22 @@ class FormElementManagerFactoryTest extends TestCase
     public function testWillInstantiateFormFromInvokable()
     {
         $form = $this->manager->get('form');
-        $this->assertInstanceof('Zend\Form\Form', $form);
+        $this->assertInstanceof('Laminas\Form\Form', $form);
     }
 
     public function testWillInstantiateFormFromDiAbstractFactory()
     {
         //without DiAbstractFactory
-        $this->assertFalse($this->standaloneManager->has('ZendTest\Form\TestAsset\CustomForm'));
+        $this->assertFalse($this->standaloneManager->has('LaminasTest\Form\TestAsset\CustomForm'));
         //with DiAbstractFactory
-        $this->assertTrue($this->manager->has('ZendTest\Form\TestAsset\CustomForm'));
-        $form = $this->manager->get('ZendTest\Form\TestAsset\CustomForm');
-        $this->assertInstanceof('ZendTest\Form\TestAsset\CustomForm', $form);
+        $this->assertTrue($this->manager->has('LaminasTest\Form\TestAsset\CustomForm'));
+        $form = $this->manager->get('LaminasTest\Form\TestAsset\CustomForm');
+        $this->assertInstanceof('LaminasTest\Form\TestAsset\CustomForm', $form);
     }
 
     public function testNoWrapFieldName()
     {
-        $form = $this->manager->get('ZendTest\Form\TestAsset\CustomForm');
+        $form = $this->manager->get('LaminasTest\Form\TestAsset\CustomForm');
         $this->assertFalse($form->wrapElements(), 'ensure wrapElements option');
         $this->assertTrue($form->has('email'), 'ensure the form has email element');
         $emailElement = $form->get('email');
@@ -88,8 +86,8 @@ class FormElementManagerFactoryTest extends TestCase
     public function testCsrfCompatibility()
     {
         $_SESSION = array();
-        $formClass = 'ZendTest\Form\TestAsset\CustomForm';
-        $ref = new \ReflectionClass('Zend\Validator\Csrf');
+        $formClass = 'LaminasTest\Form\TestAsset\CustomForm';
+        $ref = new \ReflectionClass('Laminas\Validator\Csrf');
         $hashPropRef = $ref->getProperty('hash');
         $hashPropRef->setAccessible(true);
         //check bare born
@@ -105,7 +103,7 @@ class FormElementManagerFactoryTest extends TestCase
     public function testCsrfWorkFlow()
     {
         $_SESSION = array();
-        $formClass = 'ZendTest\Form\TestAsset\CustomForm';
+        $formClass = 'LaminasTest\Form\TestAsset\CustomForm';
 
         $preForm = new $formClass;
         $preForm->prepare();
