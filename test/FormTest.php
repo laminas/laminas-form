@@ -1,25 +1,24 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
+use Laminas\Form\Element;
+use Laminas\Form\Factory;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory as InputFilterFactory;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Stdlib\Hydrator;
+use LaminasTest\Form\TestAsset\Entity;
+use LaminasTest\Form\TestAsset\HydratorAwareModel;
 use PHPUnit_Framework_TestCase as TestCase;
 use stdClass;
-use Zend\Form\Element;
-use Zend\Form\Factory;
-use Zend\Form\Fieldset;
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Factory as InputFilterFactory;
-use Zend\Stdlib\Hydrator;
-use ZendTest\Form\TestAsset\Entity;
-use ZendTest\Form\TestAsset\HydratorAwareModel;
 
 class FormTest extends TestCase
 {
@@ -117,7 +116,7 @@ class FormTest extends TestCase
                 ),
             ),
             'foobar' => array(
-                'type'   => 'Zend\InputFilter\InputFilter',
+                'type'   => 'Laminas\InputFilter\InputFilter',
                 'foo' => array(
                     'name'       => 'foo',
                     'required'   => true,
@@ -166,7 +165,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @expectedException Zend\Form\Exception\InvalidElementException
+     * @expectedException Laminas\Form\Exception\InvalidElementException
      */
     public function testShouldThrowExceptionWhenGetInvalidElement()
     {
@@ -201,14 +200,14 @@ class FormTest extends TestCase
 
     public function testCallingIsValidRaisesExceptionIfNoDataSet()
     {
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $this->form->isValid();
     }
 
     public function testHasValidatedFlag()
     {
         if (!extension_loaded('intl')) {
-            // Required by \Zend\I18n\Validator\Float
+            // Required by \Laminas\I18n\Validator\Float
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -252,7 +251,7 @@ class FormTest extends TestCase
     public function testSpecifyingValidationGroupForcesPartialValidation()
     {
         if (!extension_loaded('intl')) {
-            // Required by \Zend\I18n\Validator\Float
+            // Required by \Laminas\I18n\Validator\Float
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -274,7 +273,7 @@ class FormTest extends TestCase
     public function testSpecifyingValidationGroupForNestedFieldsetsForcesPartialValidation()
     {
         if (!extension_loaded('intl')) {
-            // Required by \Zend\I18n\Validator\Float
+            // Required by \Laminas\I18n\Validator\Float
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -313,19 +312,19 @@ class FormTest extends TestCase
 
     public function testSetValidationGroupWithNoArgumentsRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->form->setValidationGroup();
     }
 
     public function testCallingGetDataPriorToValidationRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $this->form->getData();
     }
 
     public function testAttemptingToValidateWithNoInputFilterAttachedRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $this->form->isValid();
     }
 
@@ -348,7 +347,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group ZF2-336
+     * @group Laminas-336
      */
     public function testCanAddFileEnctypeAttribute()
     {
@@ -365,7 +364,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group ZF2-336
+     * @group Laminas-336
      */
     public function testCanAddFileEnctypeFromCollectionAttribute()
     {
@@ -716,7 +715,7 @@ class FormTest extends TestCase
     public function testHasFactoryComposedByDefault()
     {
         $factory = $this->form->getFormFactory();
-        $this->assertInstanceOf('Zend\Form\Factory', $factory);
+        $this->assertInstanceOf('Laminas\Form\Factory', $factory);
     }
 
     public function testCanComposeFactory()
@@ -738,7 +737,7 @@ class FormTest extends TestCase
         ));
         $this->assertTrue($this->form->has('foo'));
         $element = $this->form->get('foo');
-        $this->assertInstanceOf('Zend\Form\ElementInterface', $element);
+        $this->assertInstanceOf('Laminas\Form\ElementInterface', $element);
         $this->assertEquals('foo', $element->getName());
         $this->assertEquals('text', $element->getAttribute('type'));
         $this->assertEquals('foo-class', $element->getAttribute('class'));
@@ -748,7 +747,7 @@ class FormTest extends TestCase
     public function testCanAddFieldsetsUsingSpecs()
     {
         $this->form->add(array(
-            'type'       => 'Zend\Form\Fieldset',
+            'type'       => 'Laminas\Form\Fieldset',
             'name'       => 'foo',
             'attributes' => array(
                 'type'         => 'fieldset',
@@ -758,7 +757,7 @@ class FormTest extends TestCase
         ));
         $this->assertTrue($this->form->has('foo'));
         $fieldset = $this->form->get('foo');
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
         $this->assertEquals('foo', $fieldset->getName());
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
@@ -824,7 +823,7 @@ class FormTest extends TestCase
         $this->assertSame($filter, $test);
         $this->assertTrue($filter->has('set'));
         $input = $filter->get('set');
-        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $input);
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $input);
         $this->assertEquals(2, count($input));
         $this->assertTrue($input->has('foo'));
         $this->assertTrue($input->has('bar'));
@@ -850,7 +849,7 @@ class FormTest extends TestCase
         $this->assertTrue($fieldsetFilter->has('foo'));
 
         $input = $fieldsetFilter->get('foo');
-        $this->assertInstanceOf('Zend\InputFilter\InputInterface', $input);
+        $this->assertInstanceOf('Laminas\InputFilter\InputInterface', $input);
         $filters = $input->getFilterChain();
         $this->assertEquals(1, count($filters));
         $validators = $input->getValidatorChain();
@@ -942,7 +941,7 @@ class FormTest extends TestCase
         ));
 
         $this->form->add(array(
-            'type' => 'ZendTest\Form\TestAsset\BasicFieldset'
+            'type' => 'LaminasTest\Form\TestAsset\BasicFieldset'
         ));
 
         $this->form->prepare();
@@ -1000,7 +999,7 @@ class FormTest extends TestCase
     public function testCanCorrectlyExtractDataFromOneToManyRelationship()
     {
         if (!extension_loaded('intl')) {
-            // Required by \Zend\I18n\Validator\Float
+            // Required by \Laminas\I18n\Validator\Float
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -1104,7 +1103,7 @@ class FormTest extends TestCase
 
     public function testAssertElementsNamesAreNotWrappedAroundFormNameByDefault()
     {
-        $form = new \ZendTest\Form\TestAsset\FormCollection();
+        $form = new \LaminasTest\Form\TestAsset\FormCollection();
         $form->prepare();
 
         $this->assertEquals('colors[0]', $form->get('colors')->get('0')->getName());
@@ -1113,7 +1112,7 @@ class FormTest extends TestCase
 
     public function testAssertElementsNamesCanBeWrappedAroundFormName()
     {
-        $form = new \ZendTest\Form\TestAsset\FormCollection();
+        $form = new \LaminasTest\Form\TestAsset\FormCollection();
         $form->setWrapElements(true);
         $form->setName('foo');
         $form->prepare();
@@ -1149,12 +1148,12 @@ class FormTest extends TestCase
         );
         $this->populateForm();
         $this->form->add(array(
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'categories',
             'options' => array(
                 'count' => 0,
                 'target_element' => array(
-                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
                 )
             )
         ));
@@ -1174,12 +1173,12 @@ class FormTest extends TestCase
 
         $this->populateForm();
         $this->form->get('foobar')->add(array(
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'categories',
             'options' => array(
                 'count' => 0,
                 'target_element' => array(
-                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
                 )
             )
         ));
@@ -1244,14 +1243,14 @@ class FormTest extends TestCase
         $inputFilterFactory = new InputFilterFactory();
         $inputFilter = $inputFilterFactory->createInputFilter(array(
             'items' => array(
-                'type'         => 'Zend\InputFilter\CollectionInputFilter',
+                'type'         => 'Laminas\InputFilter\CollectionInputFilter',
                 'input_filter' => new InputFilter(),
             ),
         ));
 
         $this->form->setInputFilter($inputFilter);
 
-        $this->assertInstanceOf('Zend\InputFilter\CollectionInputFilter', $this->form->getInputFilter()->get('items'));
+        $this->assertInstanceOf('Laminas\InputFilter\CollectionInputFilter', $this->form->getInputFilter()->get('items'));
         $this->assertCount(1, $this->form->getInputFilter()->get('items')->getInputs());
     }
 
@@ -1267,13 +1266,13 @@ class FormTest extends TestCase
         );
         $this->populateForm();
         $this->form->add(array(
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'categories',
             'options' => array(
                 'count' => 1,
                 'allow_add' => true,
                 'target_element' => array(
-                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
                 )
             )
         ));
@@ -1306,7 +1305,7 @@ class FormTest extends TestCase
 
         $this->form->bind($model);
 
-        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $this->form->getInputFilter()->get('foobar'));
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $this->form->getInputFilter()->get('foobar'));
     }
 
     public function testExtractDataHydratorStrategy()
@@ -1368,25 +1367,25 @@ class FormTest extends TestCase
         $this->form->setHydrator(new Hydrator\ArraySerializable());
 
         $baseHydrator = $this->form->get('foobar')->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ArraySerializable', $baseHydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ArraySerializable', $baseHydrator);
     }
 
     public function testBindWithWrongFlagRaisesException()
     {
         $model = new stdClass;
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->form->bind($model, Form::VALUES_AS_ARRAY);
     }
 
     public function testSetBindOnValidateWrongFlagRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->form->setBindOnValidate(Form::VALUES_AS_ARRAY);
     }
 
     public function testSetDataOnValidateWrongFlagRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->form->setData(null);
     }
 
@@ -1399,12 +1398,12 @@ class FormTest extends TestCase
     public function testResetPasswordValueIfFormIsNotValid()
     {
         $this->form->add(array(
-            'type' => 'Zend\Form\Element\Password' ,
+            'type' => 'Laminas\Form\Element\Password' ,
             'name' => 'password'
         ));
 
         $this->form->add(array(
-            'type' => 'Zend\Form\Element\Email',
+            'type' => 'Laminas\Form\Element\Email',
             'name' => 'email'
         ));
 
@@ -1428,15 +1427,15 @@ class FormTest extends TestCase
 
         // Add an hydrator that ignores if values does not exist in the
         $fieldset->setObject(new Entity\SimplePublicProperty());
-        $fieldset->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $fieldset->setHydrator(new \Laminas\Stdlib\Hydrator\ObjectProperty());
 
         $this->form->add($fieldset);
         $this->form->setBaseFieldset($fieldset);
-        $this->form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $this->form->setHydrator(new \Laminas\Stdlib\Hydrator\ObjectProperty());
 
         // Add some inputs that do not belong to the base fieldset
         $this->form->add(array(
-            'type' => 'Zend\Form\Element\Submit',
+            'type' => 'Laminas\Form\Element\Submit',
             'name' => 'submit'
         ));
 
@@ -1467,7 +1466,7 @@ class FormTest extends TestCase
         );
 
         $element = new TestAsset\ElementWithStringToArrayFilter('foo');
-        $hydrator = $this->getMock('Zend\Stdlib\Hydrator\ArraySerializable');
+        $hydrator = $this->getMock('Laminas\Stdlib\Hydrator\ArraySerializable');
         $hydrator->expects($this->any())->method('hydrate')->with($filteredData, $this->anything());
 
         $this->form->add($element);
@@ -1492,11 +1491,11 @@ class FormTest extends TestCase
     public function testPreserveEntitiesBoundToCollectionAfterValidation()
     {
         if (!extension_loaded('intl')) {
-            // Required by \Zend\I18n\Validator\Float
+            // Required by \Laminas\I18n\Validator\Float
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $this->form->setInputFilter(new \Zend\InputFilter\InputFilter());
+        $this->form->setInputFilter(new \Laminas\InputFilter\InputFilter());
         $fieldset = new TestAsset\ProductCategoriesFieldset();
         $fieldset->setUseAsBaseFieldset(true);
 
@@ -1589,7 +1588,7 @@ class FormTest extends TestCase
         $this->form->setPreferFormInputFilter(true);
         $this->form->add(array(
             'name' => 'importance',
-            'type'  => 'Zend\Form\Element\Select',
+            'type'  => 'Laminas\Form\Element\Select',
             'options' => array(
                 'label' => 'Importance',
                 'empty_option' => '',
@@ -1600,8 +1599,8 @@ class FormTest extends TestCase
             ),
         ));
 
-        $inputFilter = new \Zend\InputFilter\BaseInputFilter();
-        $factory     = new \Zend\InputFilter\Factory();
+        $inputFilter = new \Laminas\InputFilter\BaseInputFilter();
+        $factory     = new \Laminas\InputFilter\Factory();
         $inputFilter->add($factory->createInput(array(
             'name'     => 'importance',
             'required' => false,
@@ -1625,7 +1624,7 @@ class FormTest extends TestCase
                 array(
                     'spec' => array(
                         'name' => 'element',
-                        'type' => 'Zend\Form\Element\Checkbox',
+                        'type' => 'Laminas\Form\Element\Checkbox',
                         'options' => array(
                             'use_hidden_element' => true,
                             'checked_value' => '1',
@@ -1712,7 +1711,7 @@ class FormTest extends TestCase
         $fieldsetInputFilter = $formInputFilter->get('file_fieldset');
         $fileInput           = $fieldsetInputFilter->get('file_field');
 
-        $this->assertInstanceOf('Zend\InputFilter\FileInput', $fileInput);
+        $this->assertInstanceOf('Laminas\InputFilter\FileInput', $fileInput);
 
         $chain = $fileInput->getFilterChain();
         $this->assertCount(1, $chain, var_export($chain, 1));

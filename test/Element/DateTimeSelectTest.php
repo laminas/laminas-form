@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
 use DateTime;
+use Laminas\Form\Element\DateTimeSelect as DateTimeSelectElement;
+use Laminas\Form\Exception;
+use Laminas\Form\Factory;
+use Laminas\InputFilter\Factory as InputFilterFactory;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element\DateTimeSelect as DateTimeSelectElement;
-use Zend\Form\Factory;
-use Zend\Form\Exception;
-use Zend\InputFilter\Factory as InputFilterFactory;
 
 class DateTimeSelectTest extends TestCase
 {
@@ -27,13 +26,13 @@ class DateTimeSelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = array(
-            'Zend\Validator\Date'
+            'Laminas\Validator\Date'
         );
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertTrue(in_array($class, $expectedClasses), $class);
             switch ($class) {
-                case 'Zend\Validator\Date':
+                case 'Laminas\Validator\Date':
                     $this->assertEquals('Y-m-d H:i:s', $validator->getFormat());
                     break;
                 default:
@@ -88,7 +87,7 @@ class DateTimeSelectTest extends TestCase
     }
 
     /**
-     * @expectedException \Zend\Form\Exception\InvalidArgumentException
+     * @expectedException \Laminas\Form\Exception\InvalidArgumentException
      */
     public function testThrowsOnInvalidValue()
     {
