@@ -7,7 +7,7 @@ which provides a default input specification for validating a select.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Select('language');
 $element->setValueOptions([

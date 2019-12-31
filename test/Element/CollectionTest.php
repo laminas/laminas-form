@@ -1,29 +1,28 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
 use ArrayObject;
+use Laminas\Form\Element;
+use Laminas\Form\Element\Collection as Collection;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\Hydrator\ArraySerializable;
+use Laminas\Hydrator\ObjectProperty as ObjectPropertyHydrator;
+use LaminasTest\Form\TestAsset\ArrayModel;
+use LaminasTest\Form\TestAsset\CustomCollection;
+use LaminasTest\Form\TestAsset\Entity\Address;
+use LaminasTest\Form\TestAsset\Entity\Phone;
+use LaminasTest\Form\TestAsset\Entity\Product;
+use LaminasTest\Form\TestAsset\ProductFieldset;
 use PHPUnit_Framework_TestCase as TestCase;
 use stdClass;
-use Zend\Form\Element;
-use Zend\Form\Element\Collection as Collection;
-use Zend\Form\Fieldset;
-use Zend\Form\Form;
-use Zend\Hydrator\ArraySerializable;
-use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
-use ZendTest\Form\TestAsset\ArrayModel;
-use ZendTest\Form\TestAsset\CustomCollection;
-use ZendTest\Form\TestAsset\Entity\Address;
-use ZendTest\Form\TestAsset\Entity\Phone;
-use ZendTest\Form\TestAsset\Entity\Product;
-use ZendTest\Form\TestAsset\ProductFieldset;
 
 class CollectionTest extends TestCase
 {
@@ -32,8 +31,8 @@ class CollectionTest extends TestCase
 
     public function setUp()
     {
-        $this->form = new \ZendTest\Form\TestAsset\FormCollection();
-        $this->productFieldset = new \ZendTest\Form\TestAsset\ProductFieldset();
+        $this->form = new \LaminasTest\Form\TestAsset\FormCollection();
+        $this->productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
 
         parent::setUp();
     }
@@ -60,7 +59,7 @@ class CollectionTest extends TestCase
         $collection->populateValues($data);
         $this->assertEquals(2, count($collection->getElements()));
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $data[] = 'orange';
         $collection->populateValues($data);
     }
@@ -242,7 +241,7 @@ class CollectionTest extends TestCase
 
     public function testThrowExceptionIfThereAreLessElementsAndAllowRemoveNotAllowed()
     {
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
 
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(false);
@@ -310,7 +309,7 @@ class CollectionTest extends TestCase
             'should_create_template' => true,
             'template_placeholder' => 'foo',
         ]);
-        $this->assertInstanceOf('Zend\Form\Element', $collection->getOption('target_element'));
+        $this->assertInstanceOf('Laminas\Form\Element', $collection->getOption('target_element'));
         $this->assertEquals(2, $collection->getOption('count'));
         $this->assertEquals(true, $collection->getOption('allow_add'));
         $this->assertEquals(false, $collection->getOption('allow_remove'));
@@ -321,21 +320,21 @@ class CollectionTest extends TestCase
     public function testSetObjectNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $collection->setObject(null);
     }
 
     public function testPopulateValuesNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $collection->populateValues(null);
     }
 
     public function testSetTargetElementNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $collection->setTargetElement(null);
     }
 
@@ -345,13 +344,13 @@ class CollectionTest extends TestCase
         $element = new Element('foo');
         $collection->setTargetElement($element);
 
-        $this->assertInstanceOf('Zend\Form\Element', $collection->getTargetElement());
+        $this->assertInstanceOf('Laminas\Form\Element', $collection->getTargetElement());
     }
 
     public function testExtractFromObjectDoesntTouchOriginalObject()
     {
-        $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $form = new \Laminas\Form\Form();
+        $form->setHydrator(new \Laminas\Hydrator\ClassMethods());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
@@ -362,9 +361,9 @@ class CollectionTest extends TestCase
         $product = new Product();
         $product->setName("foo");
         $product->setPrice(42);
-        $cat1 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat1->setName("bar");
-        $cat2 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat2->setName("bar2");
 
         $product->setCategories([$cat1, $cat2]);
@@ -394,21 +393,21 @@ class CollectionTest extends TestCase
     public function testDoesNotCreateNewObjects()
     {
         if (!extension_loaded('intl')) {
-            // Required by \Zend\I18n\Validator\IsFloat
+            // Required by \Laminas\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $form = new \Laminas\Form\Form();
+        $form->setHydrator(new \Laminas\Hydrator\ClassMethods());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
         $product = new Product();
         $product->setName("foo");
         $product->setPrice(42);
-        $cat1 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat1->setName("bar");
-        $cat2 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat2->setName("bar2");
 
         $product->setCategories([$cat1, $cat2]);
@@ -437,7 +436,7 @@ class CollectionTest extends TestCase
     public function testCreatesNewObjectsIfSpecified()
     {
         if (!extension_loaded('intl')) {
-            // Required by \Zend\I18n\Validator\IsFloat
+            // Required by \Laminas\I18n\Validator\IsFloat
             $this->markTestSkipped('ext/intl not enabled');
         }
 
@@ -447,16 +446,16 @@ class CollectionTest extends TestCase
             'create_new_objects' => true,
         ]);
 
-        $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $form = new \Laminas\Form\Form();
+        $form->setHydrator(new \Laminas\Hydrator\ClassMethods());
         $form->add($this->productFieldset);
 
         $product = new Product();
         $product->setName("foo");
         $product->setPrice(42);
-        $cat1 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat1->setName("bar");
-        $cat2 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat2->setName("bar2");
 
         $product->setCategories([$cat1, $cat2]);
@@ -491,7 +490,7 @@ class CollectionTest extends TestCase
         $form = new Form();
         $form->setHydrator(new ObjectPropertyHydrator());
 
-        $phone = new \ZendTest\Form\TestAsset\PhoneFieldset();
+        $phone = new \LaminasTest\Form\TestAsset\PhoneFieldset();
 
         $form->add([
             'name' => 'phones',
@@ -527,8 +526,8 @@ class CollectionTest extends TestCase
      */
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections()
     {
-        $addressesFieldeset = new \ZendTest\Form\TestAsset\AddressFieldset();
-        $addressesFieldeset->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $addressesFieldeset = new \LaminasTest\Form\TestAsset\AddressFieldset();
+        $addressesFieldeset->setHydrator(new \Laminas\Hydrator\ClassMethods());
         $addressesFieldeset->remove('city');
 
         $form = new Form();
@@ -571,15 +570,15 @@ class CollectionTest extends TestCase
 
     public function testDoNotCreateExtraFieldsetOnMultipleBind()
     {
-        $form = new \Zend\Form\Form();
-        $this->productFieldset->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $form = new \Laminas\Form\Form();
+        $this->productFieldset->setHydrator(new \Laminas\Hydrator\ClassMethods());
         $form->add($this->productFieldset);
-        $form->setHydrator(new \Zend\Hydrator\ObjectProperty());
+        $form->setHydrator(new \Laminas\Hydrator\ObjectProperty());
 
         $product = new Product();
         $categories = [
-            new \ZendTest\Form\TestAsset\Entity\Category(),
-            new \ZendTest\Form\TestAsset\Entity\Category(),
+            new \LaminasTest\Form\TestAsset\Entity\Category(),
+            new \LaminasTest\Form\TestAsset\Entity\Category(),
         ];
         $product->setCategories($categories);
 
@@ -633,7 +632,7 @@ class CollectionTest extends TestCase
         $collection = $this->form->get('fieldsets');
         $this->prepareForExtract($collection);
 
-        $mockHydrator = $this->getMock('Zend\Hydrator\HydratorInterface');
+        $mockHydrator = $this->getMock('Laminas\Hydrator\HydratorInterface');
         $mockHydrator->expects($this->exactly(2))
             ->method('extract')
             ->will($this->returnCallback(function ($object) {
@@ -720,8 +719,8 @@ class CollectionTest extends TestCase
 
     public function testCollectionCanBindObjectAndPopulateAndExtractNestedFieldsets()
     {
-        $productFieldset = new \ZendTest\Form\TestAsset\ProductFieldset();
-        $productFieldset->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
+        $productFieldset->setHydrator(new \Laminas\Hydrator\ClassMethods());
 
         $mainFieldset = new Fieldset();
         $mainFieldset->setObject(new stdClass);
@@ -749,11 +748,11 @@ class CollectionTest extends TestCase
         $shop1->product = new Product();
         $shop1->product->setPrice($prices[0]);
 
-        $category = new \ZendTest\Form\TestAsset\Entity\Category();
+        $category = new \LaminasTest\Form\TestAsset\Entity\Category();
         $category->setName($categoryNames[0]);
         $shop1->product->setCategories([$category]);
 
-        $country = new  \ZendTest\Form\TestAsset\Entity\Country();
+        $country = new  \LaminasTest\Form\TestAsset\Entity\Country();
         $country->setName($productCountries[0]);
         $shop1->product->setMadeInCountry($country);
 
@@ -763,11 +762,11 @@ class CollectionTest extends TestCase
         $shop2->product = new Product();
         $shop2->product->setPrice($prices[1]);
 
-        $category = new \ZendTest\Form\TestAsset\Entity\Category();
+        $category = new \LaminasTest\Form\TestAsset\Entity\Category();
         $category->setName($categoryNames[1]);
         $shop2->product->setCategories([$category]);
 
-        $country = new  \ZendTest\Form\TestAsset\Entity\Country();
+        $country = new  \LaminasTest\Form\TestAsset\Entity\Country();
         $country->setName($productCountries[1]);
         $shop2->product->setMadeInCountry($country);
 
@@ -778,35 +777,35 @@ class CollectionTest extends TestCase
 
         //test for object binding
         $_marketCollection = $form->get('collection');
-        $this->assertInstanceOf('Zend\Form\Element\Collection', $_marketCollection);
+        $this->assertInstanceOf('Laminas\Form\Element\Collection', $_marketCollection);
 
         foreach ($_marketCollection as $_shopFieldset) {
-            $this->assertInstanceOf('Zend\Form\Fieldset', $_shopFieldset);
+            $this->assertInstanceOf('Laminas\Form\Fieldset', $_shopFieldset);
             $this->assertInstanceOf('stdClass', $_shopFieldset->getObject());
 
             // test for collection -> fieldset
             $_productFieldset = $_shopFieldset->get('product');
-            $this->assertInstanceOf('ZendTest\Form\TestAsset\ProductFieldset', $_productFieldset);
-            $this->assertInstanceOf('ZendTest\Form\TestAsset\Entity\Product', $_productFieldset->getObject());
+            $this->assertInstanceOf('LaminasTest\Form\TestAsset\ProductFieldset', $_productFieldset);
+            $this->assertInstanceOf('LaminasTest\Form\TestAsset\Entity\Product', $_productFieldset->getObject());
 
             // test for collection -> fieldset -> fieldset
             $this->assertInstanceOf(
-                'ZendTest\Form\TestAsset\CountryFieldset',
+                'LaminasTest\Form\TestAsset\CountryFieldset',
                 $_productFieldset->get('made_in_country')
             );
             $this->assertInstanceOf(
-                'ZendTest\Form\TestAsset\Entity\Country',
+                'LaminasTest\Form\TestAsset\Entity\Country',
                 $_productFieldset->get('made_in_country')->getObject()
             );
 
             // test for collection -> fieldset -> collection
             $_productCategories = $_productFieldset->get('categories');
-            $this->assertInstanceOf('Zend\Form\Element\Collection', $_productCategories);
+            $this->assertInstanceOf('Laminas\Form\Element\Collection', $_productCategories);
 
             // test for collection -> fieldset -> collection -> fieldset
             foreach ($_productCategories as $_category) {
-                $this->assertInstanceOf('ZendTest\Form\TestAsset\CategoryFieldset', $_category);
-                $this->assertInstanceOf('ZendTest\Form\TestAsset\Entity\Category', $_category->getObject());
+                $this->assertInstanceOf('LaminasTest\Form\TestAsset\CategoryFieldset', $_category);
+                $this->assertInstanceOf('LaminasTest\Form\TestAsset\Entity\Category', $_category->getObject());
             }
         };
 
@@ -906,16 +905,16 @@ class CollectionTest extends TestCase
         // Standalone Collection element
         $collection = new Collection('fieldsets', [
             'count' => 1,
-            'target_element' => new \ZendTest\Form\TestAsset\CategoryFieldset(),
+            'target_element' => new \LaminasTest\Form\TestAsset\CategoryFieldset(),
         ]);
 
         $form = new Form();
         $form->add([
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'collection',
             'options' => [
                 'count' => 1,
-                'target_element' => new \ZendTest\Form\TestAsset\CategoryFieldset(),
+                'target_element' => new \LaminasTest\Form\TestAsset\CategoryFieldset(),
             ]
         ]);
 
@@ -932,7 +931,7 @@ class CollectionTest extends TestCase
     public function testCanRemoveAllElementsIfAllowRemoveIsTrue()
     {
         /**
-         * @var \Zend\Form\Element\Collection $collection
+         * @var \Laminas\Form\Element\Collection $collection
          */
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(true);
@@ -1017,7 +1016,7 @@ class CollectionTest extends TestCase
                     // Each shop fieldset contain a collection with two products in it
                     $this->assertCount(2, $_productfieldset->getFieldsets());
                     foreach ($_productfieldset->getFieldsets() as $_product) {
-                        $this->assertInstanceOf('ZendTest\Form\TestAsset\Entity\Product', $_product->getObject());
+                        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Entity\Product', $_product->getObject());
                     }
                 }
             }
@@ -1027,8 +1026,8 @@ class CollectionTest extends TestCase
     public function testNestedCollections()
     {
         // @see https://github.com/zendframework/zf2/issues/5640
-        $addressesFieldeset = new \ZendTest\Form\TestAsset\AddressFieldset();
-        $addressesFieldeset->setHydrator(new \Zend\Hydrator\ClassMethods());
+        $addressesFieldeset = new \LaminasTest\Form\TestAsset\AddressFieldset();
+        $addressesFieldeset->setHydrator(new \Laminas\Hydrator\ClassMethods());
 
         $form = new Form();
         $form->setHydrator(new ObjectPropertyHydrator());
@@ -1067,16 +1066,16 @@ class CollectionTest extends TestCase
 
         //test for object binding
         foreach ($form->get('addresses')->getFieldsets() as $_fieldset) {
-            $this->assertInstanceOf('ZendTest\Form\TestAsset\Entity\Address', $_fieldset->getObject());
+            $this->assertInstanceOf('LaminasTest\Form\TestAsset\Entity\Address', $_fieldset->getObject());
             foreach ($_fieldset->getFieldsets() as $_childFieldsetName => $_childFieldset) {
                 switch ($_childFieldsetName) {
                     case 'city':
-                        $this->assertInstanceOf('ZendTest\Form\TestAsset\Entity\City', $_childFieldset->getObject());
+                        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Entity\City', $_childFieldset->getObject());
                         break;
                     case 'phones':
                         foreach ($_childFieldset->getFieldsets() as $_phoneFieldset) {
                             $this->assertInstanceOf(
-                                'ZendTest\Form\TestAsset\Entity\Phone',
+                                'LaminasTest\Form\TestAsset\Entity\Phone',
                                 $_phoneFieldset->getObject()
                             );
                         }
@@ -1161,8 +1160,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group zf6263
-     * @group zf6518
+     * @group laminas6263
+     * @group laminas6518
      */
     public function testCollectionProperlyHandlesAddingObjectsOfTypeElementInterface()
     {
@@ -1170,7 +1169,7 @@ class CollectionTest extends TestCase
         $text = new Element\Text('text');
         $form->add([
             'name' => 'text',
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'options' => [
                 'target_element' => $text, 'count' => 2,
             ],
@@ -1192,8 +1191,8 @@ class CollectionTest extends TestCase
     /**
      * Unit test to ensure behavior of extract() method is unaffected by refactor
      *
-     * @group zf6263
-     * @group zf6518
+     * @group laminas6263
+     * @group laminas6518
      */
     public function testCollectionShouldSilentlyIgnorePopulatingFieldsetWithDisallowedObject()
     {
@@ -1253,7 +1252,7 @@ class CollectionTest extends TestCase
     public function testCanRemoveMultipleElements()
     {
         /**
-         * @var \Zend\Form\Element\Collection $collection
+         * @var \Laminas\Form\Element\Collection $collection
          */
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(true);

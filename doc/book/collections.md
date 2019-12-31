@@ -198,10 +198,10 @@ Here is the `Brand` fieldset:
 namespace Application\Form;
 
 use Application\Entity\Brand;
-use Zend\Form\Element;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class BrandFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -255,7 +255,7 @@ When we validate incoming data, the form will automatically iterate through all
 the fieldsets it contains populate all sub-objects, in order to return a
 complete entity.
 
-Notice that the `Url` element has a type of `Zend\Form\Element\Url`. This
+Notice that the `Url` element has a type of `Laminas\Form\Element\Url`. This
 information will be used to validate the input field. You don't need to manually
 add filters or validators for this input as that element provides a reasonable
 input specification.
@@ -272,9 +272,9 @@ Here is the `Category` fieldset:
 namespace Application\Form;
 
 use Application\Entity\Category;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -320,10 +320,10 @@ Finally, the `Product` fieldset:
 namespace Application\Form;
 
 use Application\Entity\Product;
-use Zend\Form\Element;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -379,7 +379,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 
     /**
      * Should return an array specification compatible with
-     * {@link Zend\InputFilter\Factory::createInputFilter()}.
+     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
      *
      * @return array
      */
@@ -413,7 +413,7 @@ populated, and will return a `Brand` entity (as we have specified a
 `Product` entity by calling the `setBrand()` method.
 
 The next element shows you how to handle 1:N relationships. The type is
-`Zend\Form\Element\Collection`, which is a specialized element to handle such
+`Laminas\Form\Element\Collection`, which is a specialized element to handle such
 cases. As you can see, the name of the element ("categories") perfectly matches
 the name of the property in the `Product` entity.
 
@@ -439,10 +439,10 @@ not forms. And only `Form` instances can be validated. So here is the form:
 ```php
 namespace Application\Form;
 
-use Zend\Form\Element;
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CreateProduct extends Form
 {
@@ -489,9 +489,9 @@ You describe the elements, the filters, and validators for each entity only
 once, and the concrete `Form` instance will only compose those fieldsets. You no
 longer have to add the "username" input to every form that deals with users!
 
-## Integrating with zend-mvc
+## Integrating with laminas-mvc
 
-Now, let's create a zend-mvc controller action:
+Now, let's create a laminas-mvc controller action:
 
 ```php
 /**
@@ -524,7 +524,7 @@ All the controller does is:
 - Bind it to an object.
 - Validate it and/or return the form instance for later use by the view.
 
-## Integration with zend-view
+## Integration with laminas-view
 
 And finally, the view:
 
@@ -597,7 +597,7 @@ Remember that `should_create_template` flag? We're going to use it now.
 
 Often, forms are not completely static. In our case, let's say that we don't
 want only two categories, but we want the user to be able to add more at
-runtime. zend-form enables this capability. First, let's see what it generates
+runtime. laminas-form enables this capability. First, let's see what it generates
 when we ask it to create a template:
 
 ![Collection dynamic elements template](images/collections.dynamic-elements.template.png)
@@ -754,10 +754,10 @@ this:
 ```php
 namespace Application\Form;
 
-use Zend\Form\Element;
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CreateProduct extends Form
 {

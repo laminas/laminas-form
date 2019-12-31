@@ -6,7 +6,7 @@ HTML form input. It is meant to work with the [Textarea element](../element/text
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Textarea('my-textarea');
 
