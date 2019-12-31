@@ -1,21 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form;
+namespace Laminas\Form;
 
 use ArrayAccess;
+use Laminas\Hydrator;
+use Laminas\InputFilter\Factory as InputFilterFactory;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Stdlib\ArrayUtils;
 use Traversable;
-use Zend\Hydrator;
-use Zend\InputFilter\Factory as InputFilterFactory;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\ArrayUtils;
 
 class Factory
 {
@@ -187,7 +186,7 @@ class Factory
      * Configure an element based on the provided specification
      *
      * Specification can contain any of the following:
-     * - type: the Element class to use; defaults to \Zend\Form\Element
+     * - type: the Element class to use; defaults to \Laminas\Form\Element
      * - name: what name to provide the element, if any
      * - options: an array, Traversable, or ArrayAccess object of element options
      * - attributes: an array, Traversable, or ArrayAccess object of element
@@ -225,7 +224,7 @@ class Factory
      * Configure a fieldset based on the provided specification
      *
      * Specification can contain any of the following:
-     * - type: the Fieldset class to use; defaults to \Zend\Form\Fieldset
+     * - type: the Fieldset class to use; defaults to \Laminas\Form\Fieldset
      * - name: what name to provide the fieldset, if any
      * - options: an array, Traversable, or ArrayAccess object of element options
      * - attributes: an array, Traversable, or ArrayAccess object of element
@@ -350,7 +349,7 @@ class Factory
             $spec  = isset($elementSpecification['spec']) ? $elementSpecification['spec'] : [];
 
             if (! isset($spec['type'])) {
-                $spec['type'] = 'Zend\Form\Element';
+                $spec['type'] = 'Laminas\Form\Element';
             }
 
             $element = $this->create($spec);
@@ -451,7 +450,7 @@ class Factory
 
         if (! isset($hydrator) || ! $hydrator instanceof Hydrator\HydratorInterface) {
             throw new Exception\DomainException(sprintf(
-                '%s expects a valid implementation of Zend\Hydrator\HydratorInterface; received "%s"',
+                '%s expects a valid implementation of Laminas\Hydrator\HydratorInterface; received "%s"',
                 $method,
                 $hydratorOrName
             ));
@@ -495,7 +494,7 @@ class Factory
 
         if (! $factoryOrName instanceof Factory) {
             throw new Exception\DomainException(sprintf(
-                '%s expects a valid extention of Zend\Form\Factory; received "%s"',
+                '%s expects a valid extention of Laminas\Form\Factory; received "%s"',
                 $method,
                 $factoryOrName
             ));
@@ -538,7 +537,7 @@ class Factory
             $filter = new $spec;
             if (! $filter instanceof InputFilterInterface) {
                 throw new Exception\DomainException(sprintf(
-                    '%s expects a valid implementation of Zend\InputFilter\InputFilterInterface; received "%s"',
+                    '%s expects a valid implementation of Laminas\InputFilter\InputFilterInterface; received "%s"',
                     $method,
                     $spec
                 ));

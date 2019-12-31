@@ -1,21 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Form\Element;
+use Laminas\Form\Element\Captcha;
+use Laminas\Form\View\Helper\FormRow as FormRowHelper;
+use Laminas\Form\View\HelperConfig;
+use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\I18n\Translator\TranslatorInterface;
-use Zend\Form\Element;
-use Zend\Form\Element\Captcha;
-use Zend\Form\View\HelperConfig;
-use Zend\Form\View\Helper\FormRow as FormRowHelper;
-use Zend\View\Renderer\PhpRenderer;
 
 class FormRowTest extends TestCase
 {
@@ -219,7 +218,7 @@ class FormRowTest extends TestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->getMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->any())
             ->method('translate')
             ->will($this->returnValue('translated content'));
@@ -242,7 +241,7 @@ class FormRowTest extends TestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->getMock('Laminas\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());
@@ -295,7 +294,7 @@ class FormRowTest extends TestCase
 
     public function testSetLabelPositionInputNullRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->helper->setLabelPosition(null);
     }
 
@@ -385,7 +384,7 @@ class FormRowTest extends TestCase
         $element->setFormat('Y-m-d');
         $element->setValue('2010.13');
 
-        $validator = new \Zend\Validator\Date();
+        $validator = new \Laminas\Validator\Date();
         $validator->isValid($element->getValue());
         $element->setMessages($validator->getMessages());
 
@@ -491,7 +490,7 @@ class FormRowTest extends TestCase
     }
 
     /**
-     * @covers Zend\Form\View\Helper\FormRow::render
+     * @covers Laminas\Form\View\Helper\FormRow::render
      */
     public function testCanSetLabelPositionViaRender()
     {
@@ -525,7 +524,7 @@ class FormRowTest extends TestCase
     }
 
     /**
-     * @covers Zend\Form\View\Helper\FormRow::__invoke
+     * @covers Laminas\Form\View\Helper\FormRow::__invoke
      */
     public function testCanSetLabelPositionViaInvoke()
     {
@@ -547,7 +546,7 @@ class FormRowTest extends TestCase
     }
 
     /**
-     * @covers Zend\Form\View\Helper\FormRow::__invoke
+     * @covers Laminas\Form\View\Helper\FormRow::__invoke
      */
     public function testSetLabelPositionViaInvokeIsNotCached()
     {

@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
+use Laminas\Form\Element\Checkbox as CheckboxElement;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element\Checkbox as CheckboxElement;
 
 class CheckboxTest extends TestCase
 {
@@ -30,13 +29,13 @@ class CheckboxTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Zend\Validator\InArray'
+            'Laminas\Validator\InArray'
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Zend\Validator\InArray':
+                case 'Laminas\Validator\InArray':
                     $this->assertEquals(
                         [$element->getCheckedValue(), $element->getUncheckedValue()],
                         $validator->getHaystack()

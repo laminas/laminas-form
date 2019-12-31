@@ -6,7 +6,7 @@ form input. It is meant to work with the [color element](../element/color.md).
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Color('my-color');
 

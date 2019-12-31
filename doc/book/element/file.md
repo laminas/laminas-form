@@ -1,8 +1,8 @@
 # File
 
-`Zend\Form\Element\File` represents a form file input and
+`Laminas\Form\Element\File` represents a form file input and
 provides a default input specification with a type of
-[FileInput](http://framework.zend.com/manual/current/en/modules/zend.input-filter.file-input.html)
+[FileInput](https://docs.laminas.dev/laminas.input-filter.file-input.html)
 (important for handling validators and filters correctly).
 It is intended for use with the [FormFile](../helper/form-file.md) view helper.
 
@@ -13,8 +13,8 @@ also set the form's `enctype` to `multipart/form-data` during
 `$form->prepare()`.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 // Single file upload:
 $file = new Element\File('file');
