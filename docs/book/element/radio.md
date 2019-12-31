@@ -1,6 +1,6 @@
 # Radio
 
-`Zend\Form\Element\Radio` is meant to be paired with the
+`Laminas\Form\Element\Radio` is meant to be paired with the
 [FormRadio](../helper/form-radio.md) helper for HTML inputs with type "radio".
 This element adds an `InArray` validator to its input filter specification in
 order to validate on the server if the value is contains within the radio value
@@ -12,8 +12,8 @@ This element automatically adds a `type` attribute of value `radio` for every
 radio.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $radio = new Element\Radio('likes_chocolate');
 $radio->setLabel('Do you like chocolate?');
@@ -29,8 +29,8 @@ $form->add($radio);
 Using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([

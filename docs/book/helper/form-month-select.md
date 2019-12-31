@@ -8,7 +8,7 @@ the selects, as well as validation around input provided by them.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $monthYear = new Element\MonthSelect('monthyear');
 $monthYear->setLabel('Select a month and a year');

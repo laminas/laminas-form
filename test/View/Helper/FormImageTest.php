@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\View\Helper\FormImage as FormImageHelper;
+use Laminas\Form\Element;
+use Laminas\Form\View\Helper\FormImage as FormImageHelper;
 
 class FormImageTest extends CommonTestCase
 {
@@ -24,7 +23,7 @@ class FormImageTest extends CommonTestCase
     {
         $element = new Element();
         $element->setAttribute('src', 'foo.png');
-        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectException('Laminas\Form\Exception\DomainException');
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -32,7 +31,7 @@ class FormImageTest extends CommonTestCase
     public function testRaisesExceptionWhenSrcIsNotPresentInElement()
     {
         $element = new Element('foo');
-        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectException('Laminas\Form\Exception\DomainException');
         $this->expectExceptionMessage('src');
         $this->helper->render($element);
     }

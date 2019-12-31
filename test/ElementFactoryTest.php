@@ -1,19 +1,20 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2019 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
 use ArrayObject;
 use Interop\Container\ContainerInterface;
+use Laminas\Form\ElementFactory;
+use Laminas\ServiceManager\Exception\InvalidServiceException;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use LaminasTest\Form\TestAsset\ArgumentRecorder;
 use PHPUnit\Framework\TestCase;
-use Zend\Form\ElementFactory;
-use Zend\ServiceManager\Exception\InvalidServiceException;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use ZendTest\Form\TestAsset\ArgumentRecorder;
 
 class ElementFactoryTest extends TestCase
 {

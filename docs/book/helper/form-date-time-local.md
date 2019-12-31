@@ -10,7 +10,7 @@ input specification for validating HTML5 datetime values.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\DateTimeLocal('my-datetime');
 

@@ -6,7 +6,7 @@ HTML form input. It is meant to work with the [Submit element](../element/submit
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Submit('my-submit');
 
