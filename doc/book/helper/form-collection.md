@@ -1,7 +1,7 @@
 # FormCollection
 
-`Zend\Form\View\Helper\FormCollection` was originally developed for rendering
-`Zend\Form\Element\Collection` instances, but is capable of rendering any
+`Laminas\Form\View\Helper\FormCollection` was originally developed for rendering
+`Laminas\Form\Element\Collection` instances, but is capable of rendering any
 iterable element type, including fieldsets and forms.
 
 Internally, it iterates the element provided, and calls one of the following
@@ -15,7 +15,7 @@ view helpers based on the element encountered:
 
 ```php
 use My\ContactFieldset;
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $collection = new Element\Collection();
 $collection->setName('contacts');

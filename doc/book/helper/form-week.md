@@ -9,7 +9,7 @@ which provides a default input specification for validating HTML5 week values.
 Basic usage:
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Week('my-week');
 
@@ -26,7 +26,7 @@ Output:
 Usage of `min`, `max` and `step` attributes:
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Week('my-week');
 $element->setAttributes([
