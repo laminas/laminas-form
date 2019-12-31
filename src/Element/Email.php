@@ -1,24 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
-use Zend\Form\Element;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\Validator\Regex as RegexValidator;
-use Zend\Validator\Explode as ExplodeValidator;
-use Zend\Validator\ValidatorInterface;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Explode as ExplodeValidator;
+use Laminas\Validator\Regex as RegexValidator;
+use Laminas\Validator\ValidatorInterface;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage Element
  */
 class Email extends Element implements InputProviderInterface
@@ -94,7 +92,7 @@ class Email extends Element implements InputProviderInterface
      *
      * The default Regex validator is in use to match that of the
      * browser validation, but you are free to set a different
-     * (more strict) email validator such as Zend\Validator\Email
+     * (more strict) email validator such as Laminas\Validator\Email
      * if you wish.
      *
      * @return ValidatorInterface
@@ -136,7 +134,7 @@ class Email extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => array(
-                array('name' => 'Zend\Filter\StringTrim'),
+                array('name' => 'Laminas\Filter\StringTrim'),
             ),
             'validators' => array(
                 $this->getValidator(),
