@@ -1,72 +1,80 @@
 {
-    "name": "zendframework/zend-form",
+    "name": "laminas/laminas-form",
     "description": " ",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "laminas",
         "form"
     ],
-    "homepage": "https://github.com/zendframework/zend-form",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Form\\": "src/"
-        },
-        "files": [
-            "autoload/formElementManagerPolyfill.php"
-        ]
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-form/",
+        "issues": "https://github.com/laminas/laminas-form/issues",
+        "source": "https://github.com/laminas/laminas-form",
+        "rss": "https://github.com/laminas/laminas-form/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": "^5.5 || ^7.0",
-        "zendframework/zend-inputfilter": "^2.6",
-        "zendframework/zend-hydrator": "^1.1 || ^2.1",
-        "zendframework/zend-stdlib": "^2.7 || ^3.0"
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
     },
-    "require-dev": {
-        "doctrine/annotations": "~1.0",
-        "zendframework/zend-cache": "^2.6.1",
-        "zendframework/zend-captcha": "^2.5.4",
-        "zendframework/zend-code": "^2.6",
-        "zendframework/zend-escaper": "^2.5",
-        "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
-        "zendframework/zend-filter": "^2.6",
-        "zendframework/zend-i18n": "^2.6",
-        "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
-        "zendframework/zend-session": "^2.6.2",
-        "zendframework/zend-text": "^2.6",
-        "zendframework/zend-validator": "^2.6",
-        "zendframework/zend-view": "^2.6.2",
-        "zendframework/zendservice-recaptcha": "*",
-        "fabpot/php-cs-fixer": "1.7.*",
-        "phpunit/phpunit": "^4.8"
-    },
-    "suggest": {
-        "zendframework/zend-captcha": "^2.5.4, required for using CAPTCHA form elements",
-        "zendframework/zend-code": "^2.6 || ^3.0, required to use zend-form annotations support",
-        "zendframework/zend-eventmanager": "^2.6.2 || ^3.0, reuired for zend-form annotations support",
-        "zendframework/zend-i18n": "^2.6, required when using zend-form view helpers",
-        "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3, required to use the form factories or provide services",
-        "zendframework/zend-view": "^2.6.2, required for using the zend-form view helpers",
-        "zendframework/zendservice-recaptcha": "in order to use the ReCaptcha form element"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "extra": {
         "branch-alias": {
             "dev-master": "2.9-dev",
             "dev-develop": "2.10-dev"
         },
-        "zf": {
-            "component": "Zend\\Form",
-            "config-provider": "Zend\\Form\\ConfigProvider"
+        "laminas": {
+            "component": "Laminas\\Form",
+            "config-provider": "Laminas\\Form\\ConfigProvider"
         }
+    },
+    "require": {
+        "php": "^5.5 || ^7.0",
+        "laminas/laminas-hydrator": "^1.1 || ^2.1",
+        "laminas/laminas-inputfilter": "^2.6",
+        "laminas/laminas-stdlib": "^2.7 || ^3.0",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "doctrine/annotations": "~1.0",
+        "fabpot/php-cs-fixer": "1.7.*",
+        "laminas/laminas-cache": "^2.6.1",
+        "laminas/laminas-captcha": "^2.5.4",
+        "laminas/laminas-code": "^2.6",
+        "laminas/laminas-escaper": "^2.5",
+        "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
+        "laminas/laminas-filter": "^2.6",
+        "laminas/laminas-i18n": "^2.6",
+        "laminas/laminas-recaptcha": "*",
+        "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
+        "laminas/laminas-session": "^2.6.2",
+        "laminas/laminas-text": "^2.6",
+        "laminas/laminas-validator": "^2.6",
+        "laminas/laminas-view": "^2.6.2",
+        "phpunit/phpunit": "^4.8"
+    },
+    "suggest": {
+        "laminas/laminas-captcha": "^2.5.4, required for using CAPTCHA form elements",
+        "laminas/laminas-code": "^2.6 || ^3.0, required to use laminas-form annotations support",
+        "laminas/laminas-eventmanager": "^2.6.2 || ^3.0, reuired for laminas-form annotations support",
+        "laminas/laminas-i18n": "^2.6, required when using laminas-form view helpers",
+        "laminas/laminas-recaptcha": "in order to use the ReCaptcha form element",
+        "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3, required to use the form factories or provide services",
+        "laminas/laminas-view": "^2.6.2, required for using the laminas-form view helpers"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Form\\": "src/"
+        },
+        "files": [
+            "autoload/formElementManagerPolyfill.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
-            "ZendTest\\Form\\": "test/"
+            "LaminasTest\\Form\\": "test/"
         }
-    },
-    "config": {
-        "process-timeout": 0
     },
     "scripts": {
         "check": [
@@ -78,5 +86,8 @@
         "cs-fix": "php-cs-fixer fix -v",
         "test": "phpunit",
         "test-coverage": "phpunit --coverage-clover clover.xml"
+    },
+    "replace": {
+        "zendframework/zend-form": "self.version"
     }
 }
