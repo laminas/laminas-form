@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper;
+namespace Laminas\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
-use Zend\View\Helper\AbstractHelper as BaseAbstractHelper;
+use Laminas\Form\ElementInterface;
+use Laminas\View\Helper\AbstractHelper as BaseAbstractHelper;
 
 class FormElement extends BaseAbstractHelper
 {
@@ -22,13 +21,13 @@ class FormElement extends BaseAbstractHelper
      * @var array
      */
     protected $classMap = array(
-        'Zend\Form\Element\Button'         => 'formbutton',
-        'Zend\Form\Element\Captcha'        => 'formcaptcha',
-        'Zend\Form\Element\Csrf'           => 'formhidden',
-        'Zend\Form\Element\Collection'     => 'formcollection',
-        'Zend\Form\Element\DateTimeSelect' => 'formdatetimeselect',
-        'Zend\Form\Element\DateSelect'     => 'formdateselect',
-        'Zend\Form\Element\MonthSelect'    => 'formmonthselect',
+        'Laminas\Form\Element\Button'         => 'formbutton',
+        'Laminas\Form\Element\Captcha'        => 'formcaptcha',
+        'Laminas\Form\Element\Csrf'           => 'formhidden',
+        'Laminas\Form\Element\Collection'     => 'formcollection',
+        'Laminas\Form\Element\DateTimeSelect' => 'formdatetimeselect',
+        'Laminas\Form\Element\DateSelect'     => 'formdateselect',
+        'Laminas\Form\Element\MonthSelect'    => 'formmonthselect',
     );
 
     /**
