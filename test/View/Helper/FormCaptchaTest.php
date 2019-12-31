@@ -1,23 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
 use DirectoryIterator;
-use Zend\Captcha;
-use Zend\Form\Element\Captcha as CaptchaElement;
-use Zend\Form\View\Helper\FormCaptcha as FormCaptchaHelper;
+use Laminas\Captcha;
+use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\View\Helper\FormCaptcha as FormCaptchaHelper;
 
 class FormCaptchaTest extends CommonTestCase
 {
-    protected $publicKey  = TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY;
-    protected $privateKey = TESTS_ZEND_FORM_RECAPTCHA_PRIVATE_KEY;
+    protected $publicKey  = TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY;
+    protected $privateKey = TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY;
     protected $testDir    = null;
     protected $tmpDir     = null;
 
@@ -49,7 +48,7 @@ class FormCaptchaTest extends CommonTestCase
      * Determine system TMP directory
      *
      * @return string
-     * @throws Zend_File_Transfer_Exception if unable to determine directory
+     * @throws Laminas_File_Transfer_Exception if unable to determine directory
      */
     protected function getTmpDir()
     {
@@ -70,14 +69,14 @@ class FormCaptchaTest extends CommonTestCase
     public function testRaisesExceptionIfElementHasNoCaptcha()
     {
         $element = $this->getElement();
-        $this->setExpectedException('Zend\Form\Exception\ExceptionInterface', 'captcha');
+        $this->setExpectedException('Laminas\Form\Exception\ExceptionInterface', 'captcha');
         $this->helper->render($element);
     }
 
     public function testPassingElementWithDumbCaptchaRendersCorrectly()
     {
         $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $element = $this->getElement();
         $element->setCaptcha($captcha);
@@ -91,7 +90,7 @@ class FormCaptchaTest extends CommonTestCase
     public function testPassingElementWithFigletCaptchaRendersCorrectly()
     {
         $captcha = new Captcha\Figlet(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $element = $this->getElement();
         $element->setCaptcha($captcha);
@@ -116,13 +115,13 @@ class FormCaptchaTest extends CommonTestCase
             $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
         }
 
-        $this->testDir = $this->getTmpDir() . '/ZF_test_images';
+        $this->testDir = $this->getTmpDir() . '/Laminas_test_images';
         if (!is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
 
         $captcha = new Captcha\Image(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
             'imgDir'       => $this->testDir,
             'font'         => __DIR__. '/Captcha/_files/Vera.ttf',
         ));
@@ -142,12 +141,12 @@ class FormCaptchaTest extends CommonTestCase
 
     public function testPassingElementWithReCaptchaRendersCorrectly()
     {
-        if (!constant('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
-            $this->markTestSkipped('Enable TESTS_ZEND_FORM_RECAPTCHA_SUPPORT to test PDF render');
+        if (!constant('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {
+            $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT to test PDF render');
         }
 
         $captcha = new Captcha\ReCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $service = $captcha->getService();
         $service->setPublicKey($this->publicKey);
@@ -160,7 +159,7 @@ class FormCaptchaTest extends CommonTestCase
         $this->assertContains('foo-response', $markup);
         $this->assertContains('foo[recaptcha_challenge_field]', $markup);
         $this->assertContains('foo[recaptcha_response_field]', $markup);
-        $this->assertContains('zendBindEvent', $markup);
+        $this->assertContains('laminasBindEvent', $markup);
         $this->assertContains($service->getHtml('foo'), $markup);
     }
 }
