@@ -1,17 +1,16 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper;
+namespace Laminas\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\View\Helper\AbstractHelper;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\View\Helper\AbstractHelper;
 
 class FormRow extends AbstractHelper
 {
@@ -109,7 +108,7 @@ class FormRow extends AbstractHelper
      * Utility form helper that renders a label (if it exists), an element and errors
      *
      * @param  ElementInterface $element
-     * @throws \Zend\Form\Exception\DomainException
+     * @throws \Laminas\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
@@ -257,7 +256,7 @@ class FormRow extends AbstractHelper
      * Set the label position
      *
      * @param  string $labelPosition
-     * @throws \Zend\Form\Exception\InvalidArgumentException
+     * @throws \Laminas\Form\Exception\InvalidArgumentException
      * @return FormRow
      */
     public function setLabelPosition($labelPosition)
