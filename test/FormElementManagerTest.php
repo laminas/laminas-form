@@ -1,25 +1,23 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\Form\Factory;
-use Zend\Form\Form;
-use Zend\Form\FormElementManager;
+use Laminas\Form\Factory;
+use Laminas\Form\Form;
+use Laminas\Form\FormElementManager;
+use Laminas\ServiceManager\ServiceManager;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage UnitTests
- * @group      Zend_Form
+ * @group      Laminas_Form
  */
 class FormElementManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,14 +55,14 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testRegisteringInvalidElementRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidElementException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidElementException');
         $this->manager->setService('test', $this);
     }
 
     public function testLoadingInvalidElementRaisesException()
     {
         $this->manager->setInvokableClass('test', get_class($this));
-        $this->setExpectedException('Zend\Form\Exception\InvalidElementException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidElementException');
         $this->manager->get('test');
     }
 }
