@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Stdlib\Hydrator;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element;
-use Zend\Form\Form;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator;
 
 class FieldsetTest extends TestCase
 {
@@ -105,7 +104,7 @@ class FieldsetTest extends TestCase
 
     public function testPopulateValuesWithInvalidElementRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->fieldset->populateValues(null);
     }
 
@@ -132,7 +131,7 @@ class FieldsetTest extends TestCase
 
     public function testAddWithInvalidElementRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->fieldset->add(null);
     }
 
@@ -167,7 +166,7 @@ class FieldsetTest extends TestCase
     public function testAddingAnElementWithNoNameOrAliasWillRaiseException()
     {
         $element = new Element();
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->fieldset->add($element);
     }
 
@@ -250,7 +249,7 @@ class FieldsetTest extends TestCase
 
     public function testSetMessagesWithInvalidElementRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->fieldset->setMessages(null);
     }
 
@@ -293,7 +292,7 @@ class FieldsetTest extends TestCase
 
     public function testGetMessagesWithInvalidElementRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->fieldset->getMessages('foo');
     }
 
@@ -464,7 +463,7 @@ class FieldsetTest extends TestCase
     }
 
     /**
-     * @expectedException Zend\Form\Exception\InvalidElementException
+     * @expectedException Laminas\Form\Exception\InvalidElementException
      */
     public function testShouldThrowExceptionWhenGetInvalidElement()
     {
@@ -492,7 +491,7 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $form->setHydrator(new \Laminas\Stdlib\Hydrator\ObjectProperty());
         $form->bindValues(array('not_disabled' => 'modified', 'disabled' => 'modified'));
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -517,7 +516,7 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $form->setHydrator(new \Laminas\Stdlib\Hydrator\ObjectProperty());
         $form->bindValues(array('not_disabled' => 'modified', 'disabled' => 'modified'));
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -526,7 +525,7 @@ class FieldsetTest extends TestCase
 
     public function testSetObjectWithStringRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->fieldset->setObject('foo');
     }
 
