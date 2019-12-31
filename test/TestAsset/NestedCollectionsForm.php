@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use Zend\Form\Form;
-use Zend\Form\Fieldset;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
 
 class NestedCollectionsForm extends Form
 {
@@ -20,7 +19,7 @@ class NestedCollectionsForm extends Form
 
         $this->add(array(
             'name' => 'testFieldset',
-            'type' => 'Zend\Form\Fieldset',
+            'type' => 'Laminas\Form\Fieldset',
             'options' => array(
                  'use_as_base_fieldset' => true,
              ),
@@ -28,30 +27,30 @@ class NestedCollectionsForm extends Form
                 array(
                     'spec' => array(
                         'name' => 'groups',
-                        'type' => 'Zend\Form\Element\Collection',
+                        'type' => 'Laminas\Form\Element\Collection',
                         'options' => array(
                             'target_element' => array(
-                                'type' => 'Zend\Form\Fieldset',
+                                'type' => 'Laminas\Form\Fieldset',
                                 'name' => 'group',
                                 'elements' => array(
                                     array(
                                         'spec' => array(
-                                            'type' => 'Zend\Form\Element\Text',
+                                            'type' => 'Laminas\Form\Element\Text',
                                             'name' => 'name',
                                         ),
                                     ),
                                     array(
                                         'spec' => array(
-                                            'type' => 'Zend\Form\Element\Collection',
+                                            'type' => 'Laminas\Form\Element\Collection',
                                             'name' => 'items',
                                             'options' => array(
                                                 'target_element' => array(
-                                                    'type' => 'Zend\Form\Fieldset',
+                                                    'type' => 'Laminas\Form\Fieldset',
                                                     'name' => 'item',
                                                     'elements' => array(
                                                         array(
                                                             'spec' => array(
-                                                                'type' => 'Zend\Form\Element\Text',
+                                                                'type' => 'Laminas\Form\Element\Text',
                                                                 'name' => 'itemId',
                                                             ),
                                                         ),
