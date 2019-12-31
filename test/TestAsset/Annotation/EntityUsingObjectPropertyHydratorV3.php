@@ -1,13 +1,14 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset\Annotation;
+namespace LaminasTest\Form\TestAsset\Annotation;
 
-use Zend\Form\Annotation;
+use Laminas\Form\Annotation;
 
 // @codingStandardsIgnoreStart
 /**
@@ -16,9 +17,9 @@ use Zend\Form\Annotation;
 class EntityUsingObjectPropertyHydratorV3
 {
     /**
-     * @Annotation\Object("ZendTest\Form\TestAsset\Annotation\Entity")
-     * @Annotation\Type("Zend\Form\Fieldset")
-     * @Annotation\Hydrator({"type":"Zend\Hydrator\ClassMethodsHydrator", "options": {"underscoreSeparatedKeys": false}})
+     * @Annotation\Object("LaminasTest\Form\TestAsset\Annotation\Entity")
+     * @Annotation\Type("Laminas\Form\Fieldset")
+     * @Annotation\Hydrator({"type":"Laminas\Hydrator\ClassMethodsHydrator", "options": {"underscoreSeparatedKeys": false}})
      */
     public $object;
 }
