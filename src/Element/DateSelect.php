@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
 use DateTime as PhpDateTime;
-use Zend\Form\Exception\InvalidArgumentException;
-use Zend\Form\FormInterface;
-use Zend\Validator\ValidatorInterface;
-use Zend\Validator\Date as DateValidator;
 use Exception;
+use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\Form\FormInterface;
+use Laminas\Validator\Date as DateValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class DateSelect extends MonthSelect
 {
@@ -98,7 +97,7 @@ class DateSelect extends MonthSelect
 
     /**
      * @param  string|array|\ArrayAccess|PhpDateTime $value
-     * @throws \Zend\Form\Exception\InvalidArgumentException
+     * @throws \Laminas\Form\Exception\InvalidArgumentException
      * @return self Provides a fluent interface
      */
     public function setValue($value)
@@ -169,7 +168,7 @@ class DateSelect extends MonthSelect
 
     /**
      * Should return an array specification compatible with
-     * {@link Zend\InputFilter\Factory::createInput()}.
+     * {@link Laminas\InputFilter\Factory::createInput()}.
      *
      * @return array
      */
