@@ -1,13 +1,13 @@
 # FormLabel
 
 The `FormLabel` view helper is used to render a `<label>` HTML element and its
-attributes. If you have a `Zend\I18n\Translator\Translator` attached,
+attributes. If you have a `Laminas\I18n\Translator\Translator` attached,
 `FormLabel` will translate the label contents when rendering.
 
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Text('my-text');
 $element->setLabel('Label');

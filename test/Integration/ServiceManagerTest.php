@@ -1,21 +1,22 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Integration;
+namespace LaminasTest\Form\Integration;
 
+use Laminas\Form\Element;
+use Laminas\Form\Form;
+use Laminas\Form\FormElementManager;
+use Laminas\Form\FormElementManagerFactory;
+use Laminas\ServiceManager\Config;
+use Laminas\ServiceManager\InitializerInterface;
+use Laminas\ServiceManager\ServiceManager;
 use PHPUnit_Framework_TestCase as TestCase;
 use Prophecy\Argument;
-use Zend\Form\Element;
-use Zend\Form\Form;
-use Zend\Form\FormElementManager;
-use Zend\Form\FormElementManagerFactory;
-use Zend\ServiceManager\Config;
-use Zend\ServiceManager\InitializerInterface;
-use Zend\ServiceManager\ServiceManager;
 
 class ServiceManagerTest extends TestCase
 {

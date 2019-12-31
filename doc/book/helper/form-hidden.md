@@ -6,7 +6,7 @@ HTML form input. It is meant to work with the [Hidden element](../element/hidden
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Hidden('my-hidden');
 $element->setValue('foo');

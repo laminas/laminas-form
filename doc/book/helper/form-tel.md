@@ -6,7 +6,7 @@ form input.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element('my-tel');
 

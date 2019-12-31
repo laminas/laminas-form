@@ -1,15 +1,15 @@
 # FormElement
 
 The `FormElement` view helper proxies the rendering to specific form view
-helpers depending on the type of the `Zend\Form\Element` provided. For instance,
+helpers depending on the type of the `Laminas\Form\Element` provided. For instance,
 if the provided element had a type of "text", the `FormElement` helper will
 retrieve and use the `FormText` helper to render the element.
 
 ## Basic usage:
 
 ```php
-use Zend\Form\Form;
-use Zend\Form\Element;
+use Laminas\Form\Form;
+use Laminas\Form\Element;
 
 // Within your view...
 
