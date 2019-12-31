@@ -1,6 +1,6 @@
 <?php
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
 class ProductCategoriesFieldset extends ProductFieldset
 {

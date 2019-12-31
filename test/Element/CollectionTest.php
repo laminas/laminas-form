@@ -1,22 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
-use stdClass;
 use ArrayObject;
+use Laminas\Form\Element;
+use Laminas\Form\Element\Collection as Collection;
+use Laminas\Stdlib\Hydrator\ObjectProperty as ObjectPropertyHydrator;
+use LaminasTest\Form\TestAsset\Entity\Product;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element;
-use Zend\Form\Element\Collection as Collection;
-use Zend\Stdlib\Hydrator\ObjectProperty as ObjectPropertyHydrator;
-use ZendTest\Form\TestAsset\Entity\Product;
+use stdClass;
 
 class CollectionTest extends TestCase
 {
@@ -25,8 +23,8 @@ class CollectionTest extends TestCase
 
     public function setUp()
     {
-        $this->form = new \ZendTest\Form\TestAsset\FormCollection();
-        $this->productFieldset = new \ZendTest\Form\TestAsset\ProductFieldset();
+        $this->form = new \LaminasTest\Form\TestAsset\FormCollection();
+        $this->productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
 
         parent::setUp();
     }
@@ -53,7 +51,7 @@ class CollectionTest extends TestCase
         $collection->populateValues($data);
         $this->assertEquals(2, count($collection->getElements()));
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $data[] = 'orange';
         $collection->populateValues($data);
     }
@@ -139,7 +137,7 @@ class CollectionTest extends TestCase
 
     public function testThrowExceptionIfThereAreLessElementsAndAllowRemoveNotAllowed()
     {
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
 
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(false);
@@ -207,7 +205,7 @@ class CollectionTest extends TestCase
                                   'should_create_template' => true,
                                   'template_placeholder' => 'foo',
                              ));
-        $this->assertInstanceOf('Zend\Form\Element', $collection->getOption('target_element'));
+        $this->assertInstanceOf('Laminas\Form\Element', $collection->getOption('target_element'));
         $this->assertEquals(2, $collection->getOption('count'));
         $this->assertEquals(true, $collection->getOption('allow_add'));
         $this->assertEquals(false, $collection->getOption('allow_remove'));
@@ -218,21 +216,21 @@ class CollectionTest extends TestCase
     public function testSetObjectNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $collection->setObject(null);
     }
 
     public function testPopulateValuesNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $collection->populateValues(null);
     }
 
     public function testSetTargetElementNullRaisesException()
     {
         $collection = $this->form->get('colors');
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $collection->setTargetElement(null);
     }
 
@@ -242,13 +240,13 @@ class CollectionTest extends TestCase
         $element = new Element('foo');
         $collection->setTargetElement($element);
 
-        $this->assertInstanceOf('Zend\Form\Element', $collection->getTargetElement());
+        $this->assertInstanceOf('Laminas\Form\Element', $collection->getTargetElement());
     }
 
     public function testExtractFromObjectDoesntTouchOriginalObject()
     {
-        $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $form = new \Laminas\Form\Form();
+        $form->setHydrator(new \Laminas\Stdlib\Hydrator\ClassMethods());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
@@ -257,9 +255,9 @@ class CollectionTest extends TestCase
         $product = new Product();
         $product->setName("foo");
         $product->setPrice(42);
-        $cat1 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat1->setName("bar");
-        $cat2 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat2->setName("bar2");
 
         $product->setCategories(array($cat1,$cat2));
@@ -286,17 +284,17 @@ class CollectionTest extends TestCase
 
     public function testDoesNotCreateNewObjects()
     {
-        $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $form = new \Laminas\Form\Form();
+        $form->setHydrator(new \Laminas\Stdlib\Hydrator\ClassMethods());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
         $product = new Product();
         $product->setName("foo");
         $product->setPrice(42);
-        $cat1 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat1->setName("bar");
-        $cat2 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat2->setName("bar2");
 
         $product->setCategories(array($cat1,$cat2));
@@ -330,16 +328,16 @@ class CollectionTest extends TestCase
             'create_new_objects' => true,
         ));
 
-        $form = new \Zend\Form\Form();
-        $form->setHydrator(new \Zend\Stdlib\Hydrator\ClassMethods());
+        $form = new \Laminas\Form\Form();
+        $form->setHydrator(new \Laminas\Stdlib\Hydrator\ClassMethods());
         $form->add($this->productFieldset);
 
         $product = new Product();
         $product->setName("foo");
         $product->setPrice(42);
-        $cat1 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat1->setName("bar");
-        $cat2 = new \ZendTest\Form\TestAsset\Entity\Category();
+        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
         $cat2->setName("bar2");
 
         $product->setCategories(array($cat1,$cat2));
@@ -403,7 +401,7 @@ class CollectionTest extends TestCase
         $collection = $this->form->get('fieldsets');
         $this->prepareForExtract($collection);
 
-        $mockHydrator = $this->getMock('Zend\Stdlib\Hydrator\HydratorInterface');
+        $mockHydrator = $this->getMock('Laminas\Stdlib\Hydrator\HydratorInterface');
         $mockHydrator->expects($this->exactly(2))
                      ->method('extract')
                      ->will($this->returnCallback(function ($object) {
