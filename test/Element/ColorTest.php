@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
+use Laminas\Form\Element\Color as ColorElement;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element\Color as ColorElement;
 
 class ColorTest extends TestCase
 {
@@ -41,13 +40,13 @@ class ColorTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Zend\Validator\Regex'
+            'Laminas\Validator\Regex'
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Zend\Validator\Regex':
+                case 'Laminas\Validator\Regex':
                     $this->assertEquals('/^#[0-9a-fA-F]{6}$/', $validator->getPattern());
                     break;
                 default:
