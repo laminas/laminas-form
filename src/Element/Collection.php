@@ -1,29 +1,27 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
+use Laminas\Form\Element;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\Fieldset;
+use Laminas\Form\FieldsetInterface;
+use Laminas\Form\FieldsetPrepareAwareInterface;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Stdlib\ArrayUtils;
 use Traversable;
-use Zend\Form\Element;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\Fieldset;
-use Zend\Form\FieldsetInterface;
-use Zend\Form\FieldsetPrepareAwareInterface;
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\ArrayUtils;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage Element
  */
 class Collection extends Fieldset implements FieldsetPrepareAwareInterface
@@ -165,8 +163,8 @@ class Collection extends Fieldset implements FieldsetPrepareAwareInterface
      * Populate values
      *
      * @param array|\Traversable $data
-     * @throws \Zend\Form\Exception\InvalidArgumentException
-     * @throws \Zend\Form\Exception\DomainException
+     * @throws \Laminas\Form\Exception\InvalidArgumentException
+     * @throws \Laminas\Form\Exception\DomainException
      * @return void
      */
     public function populateValues($data)
@@ -302,7 +300,7 @@ class Collection extends Fieldset implements FieldsetPrepareAwareInterface
      *
      * @param ElementInterface|array|Traversable $elementOrFieldset
      * @return Collection
-     * @throws \Zend\Form\Exception\InvalidArgumentException
+     * @throws \Laminas\Form\Exception\InvalidArgumentException
      */
     public function setTargetElement($elementOrFieldset)
     {

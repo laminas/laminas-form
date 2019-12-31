@@ -1,21 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\View\Helper\FormSubmit as FormSubmitHelper;
+use Laminas\Form\Element;
+use Laminas\Form\View\Helper\FormSubmit as FormSubmitHelper;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage UnitTest
  */
 class FormSubmitTest extends CommonTestCase
@@ -29,7 +27,7 @@ class FormSubmitTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException', 'name');
         $this->helper->render($element);
     }
 
@@ -156,14 +154,14 @@ class FormSubmitTest extends CommonTestCase
     }
 
     /**
-     * @group ZF2-450
+     * @group Laminas-450
      */
     public function testCanTranslateValue()
     {
         $element = new Element('foo');
         $element->setValue('Submit Label');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->getMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
                        ->method('translate')
                        ->will($this->returnValue('translated content'));

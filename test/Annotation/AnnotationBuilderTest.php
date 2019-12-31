@@ -1,27 +1,25 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Annotation;
+namespace LaminasTest\Form\Annotation;
 
+use Laminas\Form\Annotation;
+use LaminasTest\Form\TestAsset;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Annotation;
-use ZendTest\Form\TestAsset;
 
 class AnnotationBuilderTest extends TestCase
 {
     public function setUp()
     {
-        if (!defined('TESTS_ZEND_FORM_ANNOTATION_SUPPORT')
-            || !constant('TESTS_ZEND_FORM_ANNOTATION_SUPPORT')
+        if (!defined('TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT')
+            || !constant('TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT')
         ) {
-            $this->markTestSkipped('Enable TESTS_ZEND_FORM_ANNOTATION_SUPPORT to test annotation parsing');
+            $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT to test annotation parsing');
         }
 
     }
@@ -36,11 +34,11 @@ class AnnotationBuilderTest extends TestCase
         $this->assertTrue($form->has('password'));
 
         $username = $form->get('username');
-        $this->assertInstanceOf('Zend\Form\Element', $username);
+        $this->assertInstanceOf('Laminas\Form\Element', $username);
         $this->assertEquals('required', $username->getAttribute('required'));
 
         $password = $form->get('password');
-        $this->assertInstanceOf('Zend\Form\Element', $password);
+        $this->assertInstanceOf('Laminas\Form\Element', $password);
         $attributes = $password->getAttributes();
         $this->assertEquals(array('type' => 'password', 'label' => 'Enter your password', 'name' => 'password'), $attributes);
         $this->assertNull($password->getAttribute('required'));
@@ -76,7 +74,7 @@ class AnnotationBuilderTest extends TestCase
         $this->assertEquals('Some Fieldset', $attributes['legend']);
 
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('ZendTest\Form\TestAsset\Annotation\InputFilter', $filter);
+        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\InputFilter', $filter);
 
         $keeper     = $form->get('keeper');
         $attributes = $keeper->getAttributes();
@@ -109,7 +107,7 @@ class AnnotationBuilderTest extends TestCase
         $this->assertSame($email, $test, 'Test is element ' . $test->getName());
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanRetrieveOnlyFormSpecification()
@@ -145,9 +143,9 @@ class AnnotationBuilderTest extends TestCase
         $builder = new Annotation\AnnotationBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertInstanceOf('ZendTest\Form\TestAsset\Annotation\Form', $form);
+        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Form', $form);
         $element = $form->get('typed_element');
-        $this->assertInstanceOf('ZendTest\Form\TestAsset\Annotation\Element', $element);
+        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Element', $element);
     }
 
     public function testAllowsComposingChildEntities()
@@ -158,14 +156,14 @@ class AnnotationBuilderTest extends TestCase
 
         $this->assertTrue($form->has('composed'));
         $composed = $form->get('composed');
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $composed);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $composed);
         $this->assertTrue($composed->has('username'));
         $this->assertTrue($composed->has('password'));
 
         $filter = $form->getInputFilter();
         $this->assertTrue($filter->has('composed'));
         $composed = $filter->get('composed');
-        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $composed);
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $composed);
         $this->assertTrue($composed->has('username'));
         $this->assertTrue($composed->has('password'));
     }
@@ -181,7 +179,7 @@ class AnnotationBuilderTest extends TestCase
         $this->assertTrue($form->has('username'));
 
         $username = $form->get('username');
-        $this->assertInstanceOf('Zend\Form\Element', $username);
+        $this->assertInstanceOf('Laminas\Form\Element', $username);
 
         $this->assertEquals('Username:', $username->getLabel());
         $this->assertEquals(array('class' => 'label'), $username->getLabelAttributes());
@@ -193,8 +191,8 @@ class AnnotationBuilderTest extends TestCase
         $builder = new Annotation\AnnotationBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertInstanceOf('Zend\Form\Form', $form);
+        $this->assertInstanceOf('Laminas\Form\Form', $form);
         $element = $form->get('type');
-        $this->assertInstanceOf('Zend\Form\Element', $element);
+        $this->assertInstanceOf('Laminas\Form\Element', $element);
     }
 }

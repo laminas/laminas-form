@@ -1,23 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper;
+namespace Laminas\Form\View\Helper;
 
+use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
 use Traversable;
-use Zend\Form\ElementInterface;
-use Zend\Form\Element\MultiCheckbox as MultiCheckboxElement;
-use Zend\Form\Exception;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage View
  */
 class FormMultiCheckbox extends FormInput
@@ -196,7 +194,7 @@ class FormMultiCheckbox extends FormInput
     {
         if (!$element instanceof MultiCheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Zend\Form\Element\MultiCheckbox',
+                '%s requires that the element is of type Laminas\Form\Element\MultiCheckbox',
                 __METHOD__
             ));
         }
