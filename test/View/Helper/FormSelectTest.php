@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\Element\Select as SelectElement;
-use Zend\Form\View\Helper\FormSelect as FormSelectHelper;
-use ZendTest\Form\TestAsset\Identifier;
+use Laminas\Form\Element;
+use Laminas\Form\Element\Select as SelectElement;
+use Laminas\Form\View\Helper\FormSelect as FormSelectHelper;
+use LaminasTest\Form\TestAsset\Identifier;
 
 class FormSelectTest extends CommonTestCase
 {
@@ -82,7 +81,7 @@ class FormSelectTest extends CommonTestCase
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value2']);
 
-        $this->expectException('Zend\Form\Exception\ExceptionInterface');
+        $this->expectException('Laminas\Form\Exception\ExceptionInterface');
         $this->expectExceptionMessage('multiple');
         $markup = $this->helper->render($element);
     }
@@ -160,7 +159,7 @@ class FormSelectTest extends CommonTestCase
     }
 
     /**
-     * @group ZF2-290
+     * @group Laminas-290
      */
     public function testFalseDisabledValueWillNotRenderOptionsWithDisabledAttribute()
     {
@@ -172,7 +171,7 @@ class FormSelectTest extends CommonTestCase
     }
 
     /**
-     * @group ZF2-290
+     * @group Laminas-290
      */
     public function testOmittingDisabledValueWillNotRenderOptionsWithDisabledAttribute()
     {
@@ -209,7 +208,7 @@ class FormSelectTest extends CommonTestCase
     }
 
     /**
-     * @group ZF2-338
+     * @group Laminas-338
      * @dataProvider getScalarOptionsDataProvider
      */
     public function testScalarOptionValues($options)
@@ -239,7 +238,7 @@ class FormSelectTest extends CommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
         ->method('translate')
         ->will($this->returnValue('translated content'));
@@ -264,7 +263,7 @@ class FormSelectTest extends CommonTestCase
             ],
         ]);
 
-        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->at(0))
                        ->method('translate')
                        ->with('translate me')
@@ -290,7 +289,7 @@ class FormSelectTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->createMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->createMock('Laminas\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());
@@ -404,7 +403,7 @@ class FormSelectTest extends CommonTestCase
     public function testRenderInputNotSelectElementRaisesException()
     {
         $element = new Element\Text('foo');
-        $this->expectException('Zend\Form\Exception\InvalidArgumentException');
+        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
         $this->helper->render($element);
     }
 
@@ -412,7 +411,7 @@ class FormSelectTest extends CommonTestCase
     {
         $element = new SelectElement();
 
-        $this->expectException('Zend\Form\Exception\DomainException');
+        $this->expectException('Laminas\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 

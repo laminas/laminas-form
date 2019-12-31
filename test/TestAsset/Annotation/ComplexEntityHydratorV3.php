@@ -1,18 +1,19 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset\Annotation;
+namespace LaminasTest\Form\TestAsset\Annotation;
 
-use Zend\Form\Annotation;
+use Laminas\Form\Annotation;
 
 /**
  * @Annotation\Name("user")
  * @Annotation\Attributes({"legend":"Register"})
- * @Annotation\Hydrator("Zend\Hydrator\ObjectPropertyHydrator")
+ * @Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")
  */
 class ComplexEntityHydratorV3
 {
@@ -44,7 +45,7 @@ class ComplexEntityHydratorV3
      * @Annotation\AllowEmpty()
      * @Annotation\Required(false)
      * @Annotation\Attributes({"type":"text","label":"Provide a URL for your avatar (optional):"})
-     * @Annotation\Validator({"name":"ZendTest\Form\TestAsset\Annotation\UrlValidator"})
+     * @Annotation\Validator({"name":"LaminasTest\Form\TestAsset\Annotation\UrlValidator"})
      */
     public $avatar;
 

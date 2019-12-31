@@ -1,21 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Annotation;
+namespace Laminas\Form\Annotation;
 
-use Zend\Filter\Boolean as BooleanFilter;
+use Laminas\Filter\Boolean as BooleanFilter;
 
 /**
  * ContinueIfEmpty annotation
  *
  * Presence of this annotation is a hint that the associated
- * \Zend\InputFilter\Input should enable the continueIfEmpty flag.
+ * \Laminas\InputFilter\Input should enable the continueIfEmpty flag.
  *
  * @Annotation
  * @deprecated 2.4.8 Use `@Validator({"name":"NotEmpty"})` instead.

@@ -6,10 +6,10 @@ messages of an element.
 ## Basic usage
 
 ```php
-use Zend\Form\Form;
-use Zend\Form\Element;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Input;
+use Laminas\Form\Form;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputFilter;
+use Laminas\InputFilter\Input;
 
 // Create a form
 $form    = new Form();

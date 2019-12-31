@@ -1,18 +1,19 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use Zend\Form\Fieldset;
-use Zend\Form\Element;
-use Zend\Hydrator\ClassMethods;
-use Zend\Hydrator\ClassMethodsHydrator;
-use Zend\InputFilter\InputFilterProviderInterface;
-use ZendTest\Form\TestAsset\Entity\Phone;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use LaminasTest\Form\TestAsset\Entity\Phone;
 
 class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
 {
