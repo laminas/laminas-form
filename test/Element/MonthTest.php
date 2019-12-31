@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
+use Laminas\Form\Element\Month as MonthElement;
 use PHPUnit\Framework\TestCase;
-use Zend\Form\Element\Month as MonthElement;
 
 class MonthTest extends TestCase
 {
@@ -29,24 +28,24 @@ class MonthTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Zend\Validator\Regex',
-            'Zend\Validator\GreaterThan',
-            'Zend\Validator\LessThan',
-            'Zend\Validator\DateStep',
+            'Laminas\Validator\Regex',
+            'Laminas\Validator\GreaterThan',
+            'Laminas\Validator\LessThan',
+            'Laminas\Validator\DateStep',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Zend\Validator\GreaterThan':
+                case 'Laminas\Validator\GreaterThan':
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2000-01', $validator->getMin());
                     break;
-                case 'Zend\Validator\LessThan':
+                case 'Laminas\Validator\LessThan':
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2001-01', $validator->getMax());
                     break;
-                case 'Zend\Validator\DateStep':
+                case 'Laminas\Validator\DateStep':
                     $dateInterval = new \DateInterval('P1M');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;

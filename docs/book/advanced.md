@@ -27,7 +27,7 @@ $form->add([
 ]);
 ```
 
-Each element provided out-of-the-box by zend-form supports this natively.
+Each element provided out-of-the-box by laminas-form supports this natively.
 
 > ### Use the ::class constant
 >
@@ -38,14 +38,14 @@ Each element provided out-of-the-box by zend-form supports this natively.
 
 ## Creating custom elements
 
-zend-form also supports custom form elements.
+laminas-form also supports custom form elements.
 
-To create a custom form element, make it extend the `Zend\Form\Element` class,
+To create a custom form element, make it extend the `Laminas\Form\Element` class,
 or, if you have a more specific dependency, extend one of the classes in the
-`Zend\Form\Element` namespace.
+`Laminas\Form\Element` namespace.
 
 In the following, we will demonstrate creating a custom `Phone` element for
-entering phone numbers. It will extend `Zend\Form\Element` class and provide
+entering phone numbers. It will extend `Laminas\Form\Element` class and provide
 some default input rules.
 
 Our custom phone element could look something like this:
@@ -53,10 +53,10 @@ Our custom phone element could look something like this:
 ```php
 namespace Application\Form\Element;
 
-use Zend\Filter;
-use Zend\Form\Element;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\Validator\Regex as RegexValidator;
+use Laminas\Filter;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Regex as RegexValidator;
 
 class Phone extends Element implements InputProviderInterface
 {
@@ -120,11 +120,11 @@ class Phone extends Element implements InputProviderInterface
 }
 ```
 
-By implementing `Zend\InputFilter\InputProviderInterface` interface, we are
+By implementing `Laminas\InputFilter\InputProviderInterface` interface, we are
 hinting to our form object that this element provides some default input rules
 for filtering and/or validating values. In this example, the default input
-specification provides a `Zend\Filter\StringTrim` filter and a
-`Zend\Validator\Regex` validator that validates that the value optionally has a
+specification provides a `Laminas\Filter\StringTrim` filter and a
+`Laminas\Validator\Regex` validator that validates that the value optionally has a
 `+` sign at the beginning, and is followed by 11 or 12 digits.
 
 To use the new element in our forms, we can specify it by its fully qualified
@@ -132,7 +132,7 @@ class name (FQCN):
 
 ```php
 use Application\Form\Element\Phone;
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 $form = Form();
 $form->add(array(
@@ -141,12 +141,12 @@ $form->add(array(
 ));
 ```
 
-Or, if you are extending `Zend\Form\Form`:
+Or, if you are extending `Laminas\Form\Form`:
 
 ```php
 namespace Application\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class MyForm extends Form
 {
@@ -163,7 +163,7 @@ class MyForm extends Form
 ```
 
 If you don't want to use the custom element's FQCN, but rather a short name,
-add an entry for it to `Zend\Form\FormElementManager`. You can do this by adding
+add an entry for it to `Laminas\Form\FormElementManager`. You can do this by adding
 an entry under the `form_elements` configuration, or within your `Module` class
 via a `getFormElementConfig()` method.
 
@@ -171,7 +171,7 @@ Configuration via a config file (e.g., `module.config.php`) file looks like the
 following:
 
 ```php
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'form_elements' => [
@@ -190,8 +190,8 @@ The following demonstrates using your `Module` class:
 ```php
 namespace Application;
 
-use Zend\ModuleManager\Feature\FormElementProviderInterface;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 class Module implements FormElementProviderInterface
 {
@@ -213,7 +213,7 @@ If needed, you can define a custom factory for handling dependencies.
 
 **And now comes the first catch.**
 
-If you are creating your form class by extending `Zend\Form\Form`, you *must
+If you are creating your form class by extending `Laminas\Form\Form`, you *must
 not* add the custom element in the constructor (as we have done in the previous
 example where we used the custom element's FQCN), but rather in the `init()`
 method:
@@ -221,7 +221,7 @@ method:
 ```php
 namespace Application\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class MyForm extends Form
 {
@@ -236,13 +236,13 @@ class MyForm extends Form
 ```
 
 **The second catch** is that you *must not* directly instantiate your form
-class, but rather get an instance of it through `Zend\Form\FormElementManager`:
+class, but rather get an instance of it through `Laminas\Form\FormElementManager`:
 
 ```php
 namespace Application\Controller;
 
 use Application\Form\MyForm;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController
 {
@@ -301,9 +301,9 @@ replace:
 ```php
 namespace Application;
 
-use Zend\Form\Element\Email;
-use Zend\ModuleManager\Feature\FormElementProviderInterface;
-use Zend\ServiceManager\Factory\InvokableFactory;
+use Laminas\Form\Element\Email;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
 class Module implements FormElementProviderInterface
 {
@@ -328,7 +328,7 @@ it will create the custom element instead of the built-in one.
 > ### Use the original?
 >
 > If you want to be able to use both the built-in one and your own one, you can
-> still provide the FQCN of the element, e.g. `Zend\Form\Element\Email`.
+> still provide the FQCN of the element, e.g. `Laminas\Form\Element\Email`.
 
 In summary, to create your own form elements (or even reusable fieldsets!) and
 be able to use them in your form, you need to:
@@ -355,7 +355,7 @@ For instance, let's say that a form create a fieldset called `AlbumFieldset`:
 ```php
 namespace Application\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class CreateAlbum extends Form
 {
@@ -376,7 +376,7 @@ object that allows us to fetch albums from the database.
 namespace Application\Form;
 
 use Album\Model\AlbumTable;
-use Zend\Form\Fieldset;
+use Laminas\Form\Fieldset;
 
 class AlbumFieldset extends Fieldset
 {
@@ -395,8 +395,8 @@ namespace Application\Form;
 
 use Album\Model\AlbumTable;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class AlbumFieldsetFactory implements FactoryInterface
 {
@@ -418,7 +418,7 @@ class AlbumFieldsetFactory implements FactoryInterface
 > ### Compatibility
 >
 > The above factory was written to work with both the v2 and v3 releases of
-> zend-servicemanager. If you know you will only be using v3, you can remove the
+> laminas-servicemanager. If you know you will only be using v3, you can remove the
 > `createService()` implementation.
 
 You can now map the fieldset to the factory in your configuration:
@@ -452,12 +452,12 @@ defining an `init()` method for initializing your elements, fieldsets, and
 forms. Where does this come from, and when exactly is it invoked in the object
 lifecycle?
 
-The method is defined in `Zend\Stdlib\InitializableInterface`, which
-`Zend\Form\Element` implements. It is *not*, however, automatically invoked on
+The method is defined in `Laminas\Stdlib\InitializableInterface`, which
+`Laminas\Form\Element` implements. It is *not*, however, automatically invoked on
 instantiation!
 
-Within zend-form, the `FormElementManager` defines an
-[initializer](http://docs.zendframework.com/zend-servicemanager/configuring-the-service-manager/#initializers)
+Within laminas-form, the `FormElementManager` defines an
+[initializer](http://docs.laminas.dev/laminas-servicemanager/configuring-the-service-manager/#initializers)
 that is pushed to the bottom of the initializer stack, making it the last
 initializer invoked. This initializer checks if the instance created implements
 `InitializableInterface`, and, if so, calls its `init()` method.

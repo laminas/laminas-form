@@ -19,8 +19,8 @@ custom partial templates.
 /**
  * inside view template
  *
- * @var \Zend\View\Renderer\PhpRenderer $this
- * @var \Zend\Form\Form $form
+ * @var \Laminas\View\Renderer\PhpRenderer $this
+ * @var \Laminas\Form\Form $form
  */
 
 // Prepare the form
