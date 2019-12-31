@@ -1,24 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper\Captcha;
+namespace LaminasTest\Form\View\Helper\Captcha;
 
 use DirectoryIterator;
-use Zend\Captcha\Image as ImageCaptcha;
-use Zend\Form\Element\Captcha as CaptchaElement;
-use Zend\Form\View\Helper\Captcha\Image as ImageCaptchaHelper;
-use ZendTest\Form\View\Helper\CommonTestCase;
+use Laminas\Captcha\Image as ImageCaptcha;
+use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\View\Helper\Captcha\Image as ImageCaptchaHelper;
+use LaminasTest\Form\View\Helper\CommonTestCase;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage UnitTest
  */
 class ImageTest extends CommonTestCase
@@ -39,7 +37,7 @@ class ImageTest extends CommonTestCase
             $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
         }
 
-        $this->testDir = $this->getTmpDir() . '/ZF_test_images';
+        $this->testDir = $this->getTmpDir() . '/Laminas_test_images';
         if (!is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
@@ -47,7 +45,7 @@ class ImageTest extends CommonTestCase
 
         $this->helper  = new ImageCaptchaHelper();
         $this->captcha = new ImageCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
             'imgDir'       => $this->testDir,
             'font'         => __DIR__. '/_files/Vera.ttf',
         ));
@@ -80,7 +78,7 @@ class ImageTest extends CommonTestCase
      * Determine system TMP directory
      *
      * @return string
-     * @throws Zend_File_Transfer_Exception if unable to determine directory
+     * @throws Laminas_File_Transfer_Exception if unable to determine directory
      */
     protected function getTmpDir()
     {
@@ -101,7 +99,7 @@ class ImageTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 
