@@ -1,21 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Captcha;
+use Laminas\Form\Element;
+use Laminas\Form\View\Helper\FormElement as FormElementHelper;
+use Laminas\Form\View\HelperConfig;
+use Laminas\View\Helper\Doctype;
+use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Captcha;
-use Zend\Form\Element;
-use Zend\Form\View\HelperConfig;
-use Zend\Form\View\Helper\FormElement as FormElementHelper;
-use Zend\View\Helper\Doctype;
-use Zend\View\Renderer\PhpRenderer;
 
 class FormElementTest extends TestCase
 {
@@ -135,7 +134,7 @@ class FormElementTest extends TestCase
     public function testRendersCaptchaAsExpected()
     {
         $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $element = new Element\Captcha('foo');
         $element->setCaptcha($captcha);
@@ -153,7 +152,7 @@ class FormElementTest extends TestCase
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             switch ($class) {
-                case 'Zend\Validator\Csrf':
+                case 'Laminas\Validator\Csrf':
                     $hash = $validator->getHash();
                     break;
                 default:
