@@ -10,9 +10,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Deprecated
 
-- [#12](https://github.com/zendframework/zend-form/pull/12) deprecates the
+- [zendframework/zend-form#12](https://github.com/zendframework/zend-form/pull/12) deprecates the
   AllowEmpty and ContinueIfEmpty annotations, mirroring
-  [zend-inputfilter#26](https://github.com/zendframework/zend-inputfilter/pull/26).
+  [laminas-inputfilter#26](https://github.com/zendframework/zend-inputfilter/pull/26).
 
 ### Removed
 
@@ -20,5 +20,5 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#9](https://github.com/zendframework/zend-form/pull/9) fixes typos in two
+- [zendframework/zend-form#9](https://github.com/zendframework/zend-form/pull/9) fixes typos in two
   `aria` attribute names in the `AbstractHelper`.
