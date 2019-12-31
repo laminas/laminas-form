@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use Zend\Form\Form;
-use Zend\Form\Element;
-use Zend\Validator;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Validator;
 
 class CustomForm extends Form
 {
@@ -33,7 +32,7 @@ class CustomForm extends Form
 
         $this->add(array(
             'name' => 'csrf',
-            'type' => 'Zend\Form\Element\Csrf',
+            'type' => 'Laminas\Form\Element\Csrf',
             'attributes' => array(
             ),
         ));
@@ -52,13 +51,13 @@ class CustomForm extends Form
             'name' => array(
                 'required' => true,
                 'filters'  => array(
-                    array('name' => 'Zend\Filter\StringTrim'),
+                    array('name' => 'Laminas\Filter\StringTrim'),
                 ),
             ),
             'email' => array(
                 'required' => true,
                 'filters'  => array(
-                    array('name' => 'Zend\Filter\StringTrim'),
+                    array('name' => 'Laminas\Filter\StringTrim'),
                 ),
                 'validators' => array(
                     new Validator\EmailAddress(),

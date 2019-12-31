@@ -1,25 +1,24 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form;
+namespace Laminas\Form;
 
+use Laminas\Form\Element\Collection;
+use Laminas\InputFilter\CollectionInputFilter;
+use Laminas\InputFilter\InputFilter;
+use Laminas\InputFilter\InputFilterAwareInterface;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\InputFilter\ReplaceableInputInterface;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\Hydrator\HydratorInterface;
 use Traversable;
-use Zend\Form\Element\Collection;
-use Zend\InputFilter\CollectionInputFilter;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\InputFilterAwareInterface;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\InputFilter\ReplaceableInputInterface;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\Hydrator\HydratorInterface;
 
 class Form extends Fieldset implements FormInterface
 {
@@ -164,7 +163,7 @@ class Form extends Fieldset implements FormInterface
      *
      * @param  array|Traversable|ElementInterface $elementOrFieldset
      * @param  array                              $flags
-     * @return \Zend\Form\Fieldset|\Zend\Form\FieldsetInterface|\Zend\Form\FormInterface
+     * @return \Laminas\Form\Fieldset|\Laminas\Form\FieldsetInterface|\Laminas\Form\FormInterface
      */
     public function add($elementOrFieldset, array $flags = array())
     {
@@ -288,8 +287,8 @@ class Form extends Fieldset implements FormInterface
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects the $flags argument to be one of "%s" or "%s"; received "%s"',
                 __METHOD__,
-                'Zend\Form\FormInterface::VALUES_NORMALIZED',
-                'Zend\Form\FormInterface::VALUES_RAW',
+                'Laminas\Form\FormInterface::VALUES_NORMALIZED',
+                'Laminas\Form\FormInterface::VALUES_RAW',
                 $flags
             ));
         }
