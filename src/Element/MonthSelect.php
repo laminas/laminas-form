@@ -1,21 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
 use DateTime;
-use Zend\Form\Element;
-use Zend\Form\ElementPrepareAwareInterface;
-use Zend\Form\FormInterface;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\Validator\ValidatorInterface;
-use Zend\Validator\Regex as RegexValidator;
+use Laminas\Form\Element;
+use Laminas\Form\ElementPrepareAwareInterface;
+use Laminas\Form\FormInterface;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Regex as RegexValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class MonthSelect extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
@@ -231,7 +230,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * @param mixed $value
-     * @return void|\Zend\Form\Element
+     * @return void|\Laminas\Form\Element
      */
     public function setValue($value)
     {
@@ -271,7 +270,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * Should return an array specification compatible with
-     * {@link Zend\InputFilter\Factory::createInput()}.
+     * {@link Laminas\InputFilter\Factory::createInput()}.
      *
      * @return array
      */
