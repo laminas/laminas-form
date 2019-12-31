@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
+use Laminas\Form\Element\Select as SelectElement;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element\Select as SelectElement;
 
 class SelectTest extends TestCase
 {
@@ -28,7 +27,7 @@ class SelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = array(
-            'Zend\Validator\InArray'
+            'Laminas\Validator\InArray'
         );
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -88,14 +87,14 @@ class SelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = array(
-            'Zend\Validator\Explode'
+            'Laminas\Validator\Explode'
         );
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Zend\Validator\Explode':
-                    $this->assertInstanceOf('Zend\Validator\InArray', $validator->getValidator());
+                case 'Laminas\Validator\Explode':
+                    $this->assertInstanceOf('Laminas\Validator\InArray', $validator->getValidator());
                     break;
                 default:
                     break;
@@ -133,7 +132,7 @@ class SelectTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Zend\Validator\InArray', $inArrayValidator);
+        $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
         foreach ($valueTests as $valueToTest) {
             $this->assertTrue($inArrayValidator->isValid($valueToTest));
         }
@@ -151,7 +150,7 @@ class SelectTest extends TestCase
         $inputSpec = $element->getInputSpecification();
 
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Zend\Validator\InArray', $inArrayValidator);
+        $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
 
         $element->setValueOptions($options);
         $haystack=$inArrayValidator->getHaystack();
