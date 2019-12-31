@@ -1,15 +1,14 @@
 <?php
+
 /**
-* Zend Framework (http://framework.zend.com/)
-*
-* @link http://github.com/zendframework/zf2 for the canonical source repository
-* @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
-* @license http://framework.zend.com/license/new-bsd New BSD License
-*/
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
+ */
 
-namespace ZendTest\Form\TestAsset\Annotation;
+namespace LaminasTest\Form\TestAsset\Annotation;
 
-use Zend\Form\Annotation;
+use Laminas\Form\Annotation;
 
 /**
 * @Annotation\Options({"use_as_base_fieldset":true})
@@ -17,9 +16,9 @@ use Zend\Form\Annotation;
 class EntityUsingInstanceProperty
 {
     /**
-     * @Annotation\Instance("ZendTest\Form\TestAsset\Annotation\Entity")
-     * @Annotation\Type("Zend\Form\Fieldset")
-     * @Annotation\Hydrator({"type":"Zend\Stdlib\Hydrator\ClassMethods", "options": {"underscoreSeparatedKeys": false}})
+     * @Annotation\Instance("LaminasTest\Form\TestAsset\Annotation\Entity")
+     * @Annotation\Type("Laminas\Form\Fieldset")
+     * @Annotation\Hydrator({"type":"Laminas\Stdlib\Hydrator\ClassMethods", "options": {"underscoreSeparatedKeys": false}})
      */
     public $object;
 }
