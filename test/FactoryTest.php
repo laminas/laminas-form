@@ -1,27 +1,25 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
+use Laminas\Filter;
+use Laminas\Form;
+use Laminas\Form\Factory as FormFactory;
+use Laminas\Form\FormElementManager;
+use Laminas\InputFilter;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Stdlib\Hydrator\HydratorPluginManager;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Filter;
-use Zend\Form;
-use Zend\Form\FormElementManager;
-use Zend\Form\Factory as FormFactory;
-use Zend\InputFilter;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\Hydrator\HydratorPluginManager;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage UnitTest
  */
 class FactoryTest extends TestCase
@@ -48,7 +46,7 @@ class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.text',
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\ElementInterface', $element);
+        $this->assertInstanceOf('Laminas\Form\ElementInterface', $element);
         $this->assertEquals('foo', $element->getName());
         $this->assertEquals('text', $element->getAttribute('type'));
         $this->assertEquals('foo-class', $element->getAttribute('class'));
@@ -59,19 +57,19 @@ class FactoryTest extends TestCase
     {
         $fieldset = $this->factory->createFieldset(array(
             'name'       => 'foo',
-            'object'     => 'ZendTest\Form\TestAsset\Model',
+            'object'     => 'LaminasTest\Form\TestAsset\Model',
             'attributes' => array(
                 'type'         => 'fieldset',
                 'class'        => 'foo-class',
                 'data-js-type' => 'my.form.fieldset',
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
         $this->assertEquals('foo', $fieldset->getName());
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
         $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
-        $this->assertEquals(new \ZendTest\Form\TestAsset\Model, $fieldset->getObject());
+        $this->assertEquals(new \LaminasTest\Form\TestAsset\Model, $fieldset->getObject());
     }
 
     public function testCanCreateFieldsetsWithElements()
@@ -117,7 +115,7 @@ class FactoryTest extends TestCase
                 ),
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
         $elements = $fieldset->getElements();
         $this->assertEquals(3, count($elements));
         $this->assertTrue($fieldset->has('bar'));
@@ -197,13 +195,13 @@ class FactoryTest extends TestCase
                 )
             )
         ));
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $masterFieldset);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $masterFieldset);
         $fieldsets = $masterFieldset->getFieldsets();
         $this->assertEquals(1, count($fieldsets));
         $this->assertTrue($masterFieldset->has('bar'));
 
         $fieldset = $masterFieldset->get('bar');
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
 
         $element = $fieldset->get('bar');
         $this->assertEquals('text', $element->getAttribute('type'));
@@ -232,26 +230,26 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm(array(
             'name'       => 'foo',
-            'object'     => 'ZendTest\Form\TestAsset\Model',
+            'object'     => 'LaminasTest\Form\TestAsset\Model',
             'attributes' => array(
                 'method' => 'get',
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $this->assertEquals('foo', $form->getName());
         $this->assertEquals('get', $form->getAttribute('method'));
-        $this->assertEquals(new \ZendTest\Form\TestAsset\Model, $form->getObject());
+        $this->assertEquals(new \LaminasTest\Form\TestAsset\Model, $form->getObject());
     }
 
     public function testCanCreateFormsWithNamedInputFilters()
     {
         $form = $this->factory->createForm(array(
             'name'         => 'foo',
-            'input_filter' => 'ZendTest\Form\TestAsset\InputFilter',
+            'input_filter' => 'LaminasTest\Form\TestAsset\InputFilter',
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('ZendTest\Form\TestAsset\InputFilter', $filter);
+        $this->assertInstanceOf('LaminasTest\Form\TestAsset\InputFilter', $filter);
     }
 
     public function testCanCreateFormsWithInputFilterSpecifications()
@@ -291,21 +289,21 @@ class FactoryTest extends TestCase
                 ),
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('Zend\InputFilter\InputFilterInterface', $filter);
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $filter);
         $this->assertEquals(2, count($filter));
         foreach (array('foo', 'bar') as $name) {
             $input = $filter->get($name);
 
             switch ($name) {
                 case 'foo':
-                    $this->assertInstanceOf('Zend\InputFilter\Input', $input);
+                    $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
                     $this->assertFalse($input->isRequired());
                     $this->assertEquals(2, count($input->getValidatorChain()));
                     break;
                 case 'bar':
-                    $this->assertInstanceOf('Zend\InputFilter\Input', $input);
+                    $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
                     $this->assertTrue($input->allowEmpty());
                     $this->assertEquals(2, count($input->getFilterChain()));
                     break;
@@ -322,7 +320,7 @@ class FactoryTest extends TestCase
             'name'         => 'foo',
             'input_filter' => $filter,
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $test = $form->getInputFilter();
         $this->assertSame($filter, $test);
     }
@@ -331,11 +329,11 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm(array(
             'name'     => 'foo',
-            'hydrator' => 'Zend\Stdlib\Hydrator\ObjectProperty',
+            'hydrator' => 'Laminas\Stdlib\Hydrator\ObjectProperty',
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateFormsAndSpecifyHydratorManagedByHydratorManager()
@@ -349,9 +347,9 @@ class FactoryTest extends TestCase
             'name'     => 'foo',
             'hydrator' => 'ObjectProperty',
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateHydratorFromArray()
@@ -359,14 +357,14 @@ class FactoryTest extends TestCase
         $form = $this->factory->createForm(array(
             'name' => 'foo',
             'hydrator' => array(
-                'type' => 'Zend\Stdlib\Hydrator\ClassMethods',
+                'type' => 'Laminas\Stdlib\Hydrator\ClassMethods',
                 'options' => array('underscoreSeparatedKeys' => false),
             ),
         ));
 
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ClassMethods', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ClassMethods', $hydrator);
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
@@ -374,12 +372,12 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm(array(
             'name' => 'foo',
-            'hydrator' => new \Zend\Stdlib\Hydrator\ObjectProperty()
+            'hydrator' => new \Laminas\Stdlib\Hydrator\ObjectProperty()
         ));
 
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateFormWithHydratorAndInputFilterAndElementsAndFieldsets()
@@ -469,10 +467,10 @@ class FactoryTest extends TestCase
                     ),
                 ),
             ),
-            'input_filter' => 'ZendTest\Form\TestAsset\InputFilter',
-            'hydrator'     => 'Zend\Stdlib\Hydrator\ObjectProperty',
+            'input_filter' => 'LaminasTest\Form\TestAsset\InputFilter',
+            'hydrator'     => 'Laminas\Stdlib\Hydrator\ObjectProperty',
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
 
         $elements = $form->getElements();
         $this->assertEquals(3, count($elements));
@@ -508,7 +506,7 @@ class FactoryTest extends TestCase
         $this->assertTrue($form->has('foobar'));
 
         $fieldset = $form->get('foobar');
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
 
         $element = $fieldset->get('bar');
         $this->assertEquals('text', $element->getAttribute('type'));
@@ -534,23 +532,23 @@ class FactoryTest extends TestCase
 
         // input filter
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('ZendTest\Form\TestAsset\InputFilter', $filter);
+        $this->assertInstanceOf('LaminasTest\Form\TestAsset\InputFilter', $filter);
 
         // hydrator
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $hydrator);
     }
 
     public function testCanCreateFormUsingCreate()
     {
         $form = $this->factory->create(array(
-            'type'       => 'Zend\Form\Form',
+            'type'       => 'Laminas\Form\Form',
             'name'       => 'foo',
             'attributes' => array(
                 'method' => 'get',
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\FormInterface', $form);
+        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $this->assertEquals('foo', $form->getName());
         $this->assertEquals('get', $form->getAttribute('method'));
     }
@@ -558,7 +556,7 @@ class FactoryTest extends TestCase
     public function testCanCreateFieldsetUsingCreate()
     {
         $fieldset = $this->factory->create(array(
-            'type'       => 'Zend\Form\Fieldset',
+            'type'       => 'Laminas\Form\Fieldset',
             'name'       => 'foo',
             'attributes' => array(
                 'type'         => 'fieldset',
@@ -566,7 +564,7 @@ class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.fieldset',
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
         $this->assertEquals('foo', $fieldset->getName());
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
@@ -583,7 +581,7 @@ class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.text',
             ),
         ));
-        $this->assertInstanceOf('Zend\Form\ElementInterface', $element);
+        $this->assertInstanceOf('Laminas\Form\ElementInterface', $element);
         $this->assertEquals('foo', $element->getName());
         $this->assertEquals('text', $element->getAttribute('type'));
         $this->assertEquals('foo-class', $element->getAttribute('class'));
@@ -593,21 +591,21 @@ class FactoryTest extends TestCase
     public function testAutomaticallyAddFieldsetTypeWhenCreateFieldset()
     {
         $fieldset = $this->factory->createFieldset(array('name' => 'myFieldset'));
-        $this->assertInstanceOf('Zend\Form\Fieldset', $fieldset);
+        $this->assertInstanceOf('Laminas\Form\Fieldset', $fieldset);
         $this->assertEquals('myFieldset', $fieldset->getName());
     }
 
     public function testAutomaticallyAddFormTypeWhenCreateForm()
     {
         $form = $this->factory->createForm(array('name' => 'myForm'));
-        $this->assertInstanceOf('Zend\Form\Form', $form);
+        $this->assertInstanceOf('Laminas\Form\Form', $form);
         $this->assertEquals('myForm', $form->getName());
     }
 
     public function testCanPullHydratorThroughServiceManager()
     {
         $serviceLocator = $this->factory->getFormElementManager()->getServiceLocator();
-        $serviceLocator->setInvokableClass('MyHydrator', 'Zend\Stdlib\Hydrator\ObjectProperty');
+        $serviceLocator->setInvokableClass('MyHydrator', 'Laminas\Stdlib\Hydrator\ObjectProperty');
 
         $fieldset = $this->factory->createFieldset(array(
             'hydrator' => 'MyHydrator',
@@ -621,13 +619,13 @@ class FactoryTest extends TestCase
             )
         ));
 
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $fieldset->getHydrator());
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $fieldset->getHydrator());
     }
 
     public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected()
     {
         $fieldset = $this->factory->createFieldset(array('name' => 'myFieldset'));
-        $this->assertAttributeInstanceOf('Zend\Form\Factory', 'factory', $fieldset);
+        $this->assertAttributeInstanceOf('Laminas\Form\Factory', 'factory', $fieldset);
         $this->assertSame($fieldset->getFormFactory()->getFormElementManager(), $this->factory->getFormElementManager());
     }
 }

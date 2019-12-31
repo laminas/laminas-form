@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form;
+namespace Laminas\Form;
 
 use ArrayAccess;
+use Laminas\InputFilter\Factory as InputFilterFactory;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\Hydrator;
 use Traversable;
-use Zend\InputFilter\Factory as InputFilterFactory;
-use Zend\InputFilter\InputFilterInterface;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Stdlib\Hydrator;
 
 class Factory
 {
@@ -105,7 +104,7 @@ class Factory
     public function create($spec)
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
-        $type = isset($spec['type']) ? $spec['type'] : 'Zend\Form\Element';
+        $type = isset($spec['type']) ? $spec['type'] : 'Laminas\Form\Element';
 
         $element = $this->getFormElementManager()->get($type);
 
@@ -124,9 +123,9 @@ class Factory
         throw new Exception\DomainException(sprintf(
             '%s expects the $spec["type"] to implement one of %s, %s, or %s; received %s',
             __METHOD__,
-            'Zend\Form\ElementInterface',
-            'Zend\Form\FieldsetInterface',
-            'Zend\Form\FormInterface',
+            'Laminas\Form\ElementInterface',
+            'Laminas\Form\FieldsetInterface',
+            'Laminas\Form\FormInterface',
             $type
         ));
     }
@@ -140,7 +139,7 @@ class Factory
     public function createElement($spec)
     {
         if (!isset($spec['type'])) {
-            $spec['type'] = 'Zend\Form\Element';
+            $spec['type'] = 'Laminas\Form\Element';
         }
 
         return $this->create($spec);
@@ -155,7 +154,7 @@ class Factory
     public function createFieldset($spec)
     {
         if (!isset($spec['type'])) {
-            $spec['type'] = 'Zend\Form\Fieldset';
+            $spec['type'] = 'Laminas\Form\Fieldset';
         }
 
         return $this->create($spec);
@@ -170,7 +169,7 @@ class Factory
     public function createForm($spec)
     {
         if (!isset($spec['type'])) {
-            $spec['type'] = 'Zend\Form\Form';
+            $spec['type'] = 'Laminas\Form\Form';
         }
 
         return $this->create($spec);
@@ -180,7 +179,7 @@ class Factory
      * Configure an element based on the provided specification
      *
      * Specification can contain any of the following:
-     * - type: the Element class to use; defaults to \Zend\Form\Element
+     * - type: the Element class to use; defaults to \Laminas\Form\Element
      * - name: what name to provide the element, if any
      * - options: an array, Traversable, or ArrayAccess object of element options
      * - attributes: an array, Traversable, or ArrayAccess object of element
@@ -218,7 +217,7 @@ class Factory
      * Configure a fieldset based on the provided specification
      *
      * Specification can contain any of the following:
-     * - type: the Fieldset class to use; defaults to \Zend\Form\Fieldset
+     * - type: the Fieldset class to use; defaults to \Laminas\Form\Fieldset
      * - name: what name to provide the fieldset, if any
      * - options: an array, Traversable, or ArrayAccess object of element options
      * - attributes: an array, Traversable, or ArrayAccess object of element
@@ -336,7 +335,7 @@ class Factory
             $spec  = isset($elementSpecification['spec'])  ? $elementSpecification['spec']  : array();
 
             if (!isset($spec['type'])) {
-                $spec['type'] = 'Zend\Form\Element';
+                $spec['type'] = 'Laminas\Form\Element';
             }
 
             $element = $this->create($spec);
@@ -437,7 +436,7 @@ class Factory
 
         if (!$hydrator instanceof Hydrator\HydratorInterface) {
             throw new Exception\DomainException(sprintf(
-                '%s expects a valid implementation of Zend\Form\Hydrator\HydratorInterface; received "%s"',
+                '%s expects a valid implementation of Laminas\Form\Hydrator\HydratorInterface; received "%s"',
                 $method,
                 $hydratorOrName
             ));
@@ -484,7 +483,7 @@ class Factory
             $filter = new $spec;
             if (!$filter instanceof InputFilterInterface) {
                 throw new Exception\DomainException(sprintf(
-                    '%s expects a valid implementation of Zend\InputFilter\InputFilterInterface; received "%s"',
+                    '%s expects a valid implementation of Laminas\InputFilter\InputFilterInterface; received "%s"',
                     $method,
                     $spec
                 ));
