@@ -1,25 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element\Submit;
-
-use ZendTest\Form\TestAsset\CityFieldset;
-
-use Zend\Form\Form;
-use Zend\Form\View\Helper\Form as FormHelper;
+use Laminas\Form\Element\Submit;
+use Laminas\Form\Form;
+use Laminas\Form\View\Helper\Form as FormHelper;
+use LaminasTest\Form\TestAsset\CityFieldset;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage View
  */
 class FormTest extends CommonTestCase
@@ -103,7 +99,7 @@ class FormTest extends CommonTestCase
 
     public function testRenderPreparesForm()
     {
-        $form = $this->getMock('Zend\\Form\\Form');
+        $form = $this->getMock('Laminas\\Form\\Form');
         $form->expects($this->once())->method('prepare');
         $form->expects($this->any())->method('getAttributes')->will($this->returnValue(array()));
         $form->expects($this->any())->method('getIterator')->will($this->returnValue(new \ArrayIterator(array())));

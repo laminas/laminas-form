@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper;
+namespace Laminas\Form\View\Helper;
 
 use DateTime;
 use IntlDateFormatter;
+use Laminas\Form\Element\MonthSelect as MonthSelectElement;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
 use Locale;
-use Zend\Form\ElementInterface;
-use Zend\Form\Element\MonthSelect as MonthSelectElement;
-use Zend\Form\Exception;
 
 class FormMonthSelect extends AbstractHelper
 {
@@ -50,16 +49,16 @@ class FormMonthSelect extends AbstractHelper
     /**
      * Render a month element that is composed of two selects
      *
-     * @param \Zend\Form\ElementInterface $element
-     * @throws \Zend\Form\Exception\InvalidArgumentException
-     * @throws \Zend\Form\Exception\DomainException
+     * @param \Laminas\Form\ElementInterface $element
+     * @throws \Laminas\Form\Exception\InvalidArgumentException
+     * @throws \Laminas\Form\Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
     {
         if (!$element instanceof MonthSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Zend\Form\Element\MonthSelect',
+                '%s requires that the element is of type Laminas\Form\Element\MonthSelect',
                 __METHOD__
             ));
         }
@@ -109,7 +108,7 @@ class FormMonthSelect extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param \Zend\Form\ElementInterface $element
+     * @param \Laminas\Form\ElementInterface $element
      * @param int                         $dateType
      * @param null|string                 $locale
      * @return FormDateSelect
