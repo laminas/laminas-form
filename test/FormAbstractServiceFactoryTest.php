@@ -1,22 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
+use Laminas\Filter\FilterPluginManager;
+use Laminas\Form\FormAbstractServiceFactory;
+use Laminas\Form\FormElementManager;
+use Laminas\InputFilter\InputFilterPluginManager;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Stdlib\Hydrator\HydratorPluginManager;
+use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Filter\FilterPluginManager;
-use Zend\Form\FormAbstractServiceFactory;
-use Zend\Form\FormElementManager;
-use Zend\InputFilter\InputFilterPluginManager;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Stdlib\Hydrator\HydratorPluginManager;
-use Zend\Validator\ValidatorPluginManager;
 
 class FormAbstractServiceFactoryTest extends TestCase
 {
@@ -41,7 +40,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $services->setService('InputFilterManager', $inputFilters);
         $services->setService('ValidatorManager', $validators);
 
-        $inputFilters->setInvokableClass('FooInputFilter', 'Zend\InputFilter\InputFilter');
+        $inputFilters->setInvokableClass('FooInputFilter', 'Laminas\InputFilter\InputFilter');
 
         $forms = $this->forms = new FormAbstractServiceFactory;
         $services->addAbstractFactory($forms);
@@ -111,7 +110,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->services->setService('Config', [
             'forms' => [
                 'Foo' => [
-                    'type'     => 'Zend\Form\Form',
+                    'type'     => 'Laminas\Form\Form',
                     'elements' => [],
                 ],
             ],
@@ -123,11 +122,11 @@ class FormAbstractServiceFactoryTest extends TestCase
     {
         $formConfig = [
             'hydrator' => 'ObjectProperty',
-            'type'     => 'Zend\Form\Form',
+            'type'     => 'Laminas\Form\Form',
             'elements' => [
                 [
                     'spec' => [
-                        'type' => 'Zend\Form\Element\Email',
+                        'type' => 'Laminas\Form\Element\Email',
                         'name' => 'email',
                         'options' => [
                             'label' => 'Your email address',
@@ -140,16 +139,16 @@ class FormAbstractServiceFactoryTest extends TestCase
         $config = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('Config', $config);
         $form = $this->forms->createServiceWithName($this->services, 'Foo', 'Foo');
-        $this->assertInstanceOf('Zend\Form\Form', $form);
+        $this->assertInstanceOf('Laminas\Form\Form', $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $hydrator);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf('Zend\InputFilter\InputFilter', $inputFilter);
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilter', $inputFilter);
 
         $inputFactory = $inputFilter->getFactory();
-        $this->assertInstanceOf('Zend\InputFilter\Factory', $inputFactory);
+        $this->assertInstanceOf('Laminas\InputFilter\Factory', $inputFactory);
         $filters      = $this->services->get('FilterManager');
         $validators   = $this->services->get('ValidatorManager');
         $this->assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
@@ -160,11 +159,11 @@ class FormAbstractServiceFactoryTest extends TestCase
     {
         $formConfig = [
             'hydrator' => 'ObjectProperty',
-            'type'     => 'Zend\Form\Form',
+            'type'     => 'Laminas\Form\Form',
             'elements' => [
                 [
                     'spec' => [
-                        'type' => 'Zend\Form\Element\Email',
+                        'type' => 'Laminas\Form\Element\Email',
                         'name' => 'email',
                         'options' => [
                             'label' => 'Your email address',
@@ -191,13 +190,13 @@ class FormAbstractServiceFactoryTest extends TestCase
         $config = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('Config', $config);
         $form = $this->forms->createServiceWithName($this->services, 'Foo', 'Foo');
-        $this->assertInstanceOf('Zend\Form\Form', $form);
+        $this->assertInstanceOf('Laminas\Form\Form', $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf('Zend\Stdlib\Hydrator\ObjectProperty', $hydrator);
+        $this->assertInstanceOf('Laminas\Stdlib\Hydrator\ObjectProperty', $hydrator);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf('Zend\InputFilter\InputFilter', $inputFilter);
+        $this->assertInstanceOf('Laminas\InputFilter\InputFilter', $inputFilter);
 
         $inputFactory = $inputFilter->getFactory();
         $filters      = $this->services->get('FilterManager');
