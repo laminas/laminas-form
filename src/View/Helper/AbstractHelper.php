@@ -1,19 +1,20 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper;
+namespace Laminas\Form\View\Helper;
 
-use Zend\Escaper\Exception\RuntimeException as EscaperException;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception\InvalidArgumentException;
-use Zend\I18n\View\Helper\AbstractTranslatorHelper as BaseAbstractHelper;
-use Zend\View\Helper\Doctype;
-use Zend\View\Helper\EscapeHtml;
-use Zend\View\Helper\EscapeHtmlAttr;
+use Laminas\Escaper\Exception\RuntimeException as EscaperException;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\I18n\View\Helper\AbstractTranslatorHelper as BaseAbstractHelper;
+use Laminas\View\Helper\Doctype;
+use Laminas\View\Helper\EscapeHtml;
+use Laminas\View\Helper\EscapeHtmlAttr;
 
 /**
  * Base functionality for all form view helpers

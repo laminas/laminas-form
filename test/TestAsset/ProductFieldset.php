@@ -1,17 +1,18 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use ZendTest\Form\TestAsset\Entity\Product;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Hydrator\ClassMethods;
-use Zend\Hydrator\ClassMethodsHydrator;
+use Laminas\Form\Fieldset;
+use Laminas\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use LaminasTest\Form\TestAsset\Entity\Product;
 
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -47,21 +48,21 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
         ]);
 
         $this->add([
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'categories',
             'options' => [
                 'label' => 'Please choose categories for this product',
                 'count' => 2,
                 'target_element' => [
-                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
                 ]
             ]
         ]);
 
         $this->add([
-            'type' => 'ZendTest\Form\TestAsset\CountryFieldset',
+            'type' => 'LaminasTest\Form\TestAsset\CountryFieldset',
             'name' => 'made_in_country',
-            'object' => 'ZendTest\Form\TestAsset\Entity\Country',
+            'object' => 'LaminasTest\Form\TestAsset\Entity\Country',
             'hydrator' => class_exists(ClassMethodsHydrator::class)
                 ? ClassMethodsHydrator::class
                 : ClassMethods::class,
@@ -73,7 +74,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 
     /**
      * Should return an array specification compatible with
-     * {@link Zend\InputFilter\Factory::createInputFilter()}.
+     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
      *
      * @return array
      */

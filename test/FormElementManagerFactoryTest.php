@@ -1,19 +1,20 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
 use Interop\Container\ContainerInterface;
+use Laminas\Form\Element\Number;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\FormElementManager;
+use Laminas\Form\FormElementManagerFactory;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
-use Zend\Form\ElementInterface;
-use Zend\Form\Element\Number;
-use Zend\Form\FormElementManager;
-use Zend\Form\FormElementManagerFactory;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 class FormElementManagerFactoryTest extends TestCase
 {
@@ -26,10 +27,10 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertInstanceOf(FormElementManager::class, $elements);
 
         if (method_exists($elements, 'configure')) {
-            // zend-servicemanager v3
+            // laminas-servicemanager v3
             $this->assertAttributeSame($container, 'creationContext', $elements);
         } else {
-            // zend-servicemanager v2
+            // laminas-servicemanager v2
             $this->assertSame($container, $elements->getServiceLocator());
         }
     }

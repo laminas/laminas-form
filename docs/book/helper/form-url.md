@@ -7,7 +7,7 @@ provides a default input specification with an URL validator.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Url('my-url');
 
@@ -24,7 +24,7 @@ Output:
 Usage of custom regular expression pattern:
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Url('my-url');
 $element->setAttribute('pattern', 'https?://.+');

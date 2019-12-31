@@ -1,26 +1,27 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\FormElementManager;
+namespace Laminas\Form\FormElementManager;
 
 use Interop\Container\ContainerInterface;
-use Zend\Form\Element;
-use Zend\Form\ElementFactory;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\Fieldset;
-use Zend\Form\Form;
-use Zend\Form\FormFactoryAwareInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\ConfigInterface;
-use Zend\Stdlib\InitializableInterface;
+use Laminas\Form\Element;
+use Laminas\Form\ElementFactory;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\Form\FormFactoryAwareInterface;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\ConfigInterface;
+use Laminas\Stdlib\InitializableInterface;
 
 /**
- * zend-servicemanager v2-compatible plugin manager implementation for form elements.
+ * laminas-servicemanager v2-compatible plugin manager implementation for form elements.
  *
  * Enforces that elements retrieved are instances of ElementInterface.
  */
@@ -66,6 +67,74 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
         'time'           => Element\Time::class,
         'url'            => Element\Url::class,
         'week'           => Element\Week::class,
+
+        // Legacy Zend Framework aliases
+        \Zend\Form\Element\Button::class => Element\Button::class,
+        \Zend\Form\Element\Captcha::class => Element\Captcha::class,
+        \Zend\Form\Element\Checkbox::class => Element\Checkbox::class,
+        \Zend\Form\Element\Collection::class => Element\Collection::class,
+        \Zend\Form\Element\Color::class => Element\Color::class,
+        \Zend\Form\Element\Csrf::class => Element\Csrf::class,
+        \Zend\Form\Element\Date::class => Element\Date::class,
+        \Zend\Form\Element\DateSelect::class => Element\DateSelect::class,
+        \Zend\Form\Element\DateTime::class => Element\DateTime::class,
+        \Zend\Form\Element\DateTimeLocal::class => Element\DateTimeLocal::class,
+        \Zend\Form\Element\DateTimeSelect::class => Element\DateTimeSelect::class,
+        \Zend\Form\Element::class => Element::class,
+        \Zend\Form\Element\Email::class => Element\Email::class,
+        \Zend\Form\Fieldset::class => Fieldset::class,
+        \Zend\Form\Element\File::class => Element\File::class,
+        \Zend\Form\Form::class => Form::class,
+        \Zend\Form\Element\Hidden::class => Element\Hidden::class,
+        \Zend\Form\Element\Image::class => Element\Image::class,
+        \Zend\Form\Element\Month::class => Element\Month::class,
+        \Zend\Form\Element\MonthSelect::class => Element\MonthSelect::class,
+        \Zend\Form\Element\MultiCheckbox::class => Element\MultiCheckbox::class,
+        \Zend\Form\Element\Number::class => Element\Number::class,
+        \Zend\Form\Element\Password::class => Element\Password::class,
+        \Zend\Form\Element\Radio::class => Element\Radio::class,
+        \Zend\Form\Element\Range::class => Element\Range::class,
+        \Zend\Form\Element\Select::class => Element\Select::class,
+        \Zend\Form\Element\Submit::class => Element\Submit::class,
+        \Zend\Form\Element\Text::class => Element\Text::class,
+        \Zend\Form\Element\Textarea::class => Element\Textarea::class,
+        \Zend\Form\Element\Time::class => Element\Time::class,
+        \Zend\Form\Element\Url::class => Element\Url::class,
+        \Zend\Form\Element\Week::class => Element\Week::class,
+
+        // v2 normalized FQCNs
+        'zendformelementbutton' => Element\Button::class,
+        'zendformelementcaptcha' => Element\Captcha::class,
+        'zendformelementcheckbox' => Element\Checkbox::class,
+        'zendformelementcollection' => Element\Collection::class,
+        'zendformelementcolor' => Element\Color::class,
+        'zendformelementcsrf' => Element\Csrf::class,
+        'zendformelementdate' => Element\Date::class,
+        'zendformelementdateselect' => Element\DateSelect::class,
+        'zendformelementdatetime' => Element\DateTime::class,
+        'zendformelementdatetimelocal' => Element\DateTimeLocal::class,
+        'zendformelementdatetimeselect' => Element\DateTimeSelect::class,
+        'zendformelement' => Element::class,
+        'zendformelementemail' => Element\Email::class,
+        'zendformfieldset' => Fieldset::class,
+        'zendformelementfile' => Element\File::class,
+        'zendformform' => Form::class,
+        'zendformelementhidden' => Element\Hidden::class,
+        'zendformelementimage' => Element\Image::class,
+        'zendformelementmonth' => Element\Month::class,
+        'zendformelementmonthselect' => Element\MonthSelect::class,
+        'zendformelementmulticheckbox' => Element\MultiCheckbox::class,
+        'zendformelementnumber' => Element\Number::class,
+        'zendformelementpassword' => Element\Password::class,
+        'zendformelementradio' => Element\Radio::class,
+        'zendformelementrange' => Element\Range::class,
+        'zendformelementselect' => Element\Select::class,
+        'zendformelementsubmit' => Element\Submit::class,
+        'zendformelementtext' => Element\Text::class,
+        'zendformelementtextarea' => Element\Textarea::class,
+        'zendformelementtime' => Element\Time::class,
+        'zendformelementurl' => Element\Url::class,
+        'zendformelementweek' => Element\Week::class,
     ];
 
     /**
@@ -109,38 +178,38 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
 
         // v2 normalized variants
 
-        'zendformelementbutton'         => ElementFactory::class,
-        'zendformelementcaptcha'        => ElementFactory::class,
-        'zendformelementcheckbox'       => ElementFactory::class,
-        'zendformelementcollection'     => ElementFactory::class,
-        'zendformelementcolor'          => ElementFactory::class,
-        'zendformelementcsrf'           => ElementFactory::class,
-        'zendformelementdate'           => ElementFactory::class,
-        'zendformelementdateselect'     => ElementFactory::class,
-        'zendformelementdatetime'       => ElementFactory::class,
-        'zendformelementdatetimelocal'  => ElementFactory::class,
-        'zendformelementdatetimeselect' => ElementFactory::class,
-        'zendformelement'               => ElementFactory::class,
-        'zendformelementemail'          => ElementFactory::class,
-        'zendformfieldset'              => ElementFactory::class,
-        'zendformelementfile'           => ElementFactory::class,
-        'zendformform'                  => ElementFactory::class,
-        'zendformelementhidden'         => ElementFactory::class,
-        'zendformelementimage'          => ElementFactory::class,
-        'zendformelementmonth'          => ElementFactory::class,
-        'zendformelementmonthselect'    => ElementFactory::class,
-        'zendformelementmulticheckbox'  => ElementFactory::class,
-        'zendformelementnumber'         => ElementFactory::class,
-        'zendformelementpassword'       => ElementFactory::class,
-        'zendformelementradio'          => ElementFactory::class,
-        'zendformelementrange'          => ElementFactory::class,
-        'zendformelementselect'         => ElementFactory::class,
-        'zendformelementsubmit'         => ElementFactory::class,
-        'zendformelementtext'           => ElementFactory::class,
-        'zendformelementtextarea'       => ElementFactory::class,
-        'zendformelementtime'           => ElementFactory::class,
-        'zendformelementurl'            => ElementFactory::class,
-        'zendformelementweek'           => ElementFactory::class,
+        'laminasformelementbutton'         => ElementFactory::class,
+        'laminasformelementcaptcha'        => ElementFactory::class,
+        'laminasformelementcheckbox'       => ElementFactory::class,
+        'laminasformelementcollection'     => ElementFactory::class,
+        'laminasformelementcolor'          => ElementFactory::class,
+        'laminasformelementcsrf'           => ElementFactory::class,
+        'laminasformelementdate'           => ElementFactory::class,
+        'laminasformelementdateselect'     => ElementFactory::class,
+        'laminasformelementdatetime'       => ElementFactory::class,
+        'laminasformelementdatetimelocal'  => ElementFactory::class,
+        'laminasformelementdatetimeselect' => ElementFactory::class,
+        'laminasformelement'               => ElementFactory::class,
+        'laminasformelementemail'          => ElementFactory::class,
+        'laminasformfieldset'              => ElementFactory::class,
+        'laminasformelementfile'           => ElementFactory::class,
+        'laminasformform'                  => ElementFactory::class,
+        'laminasformelementhidden'         => ElementFactory::class,
+        'laminasformelementimage'          => ElementFactory::class,
+        'laminasformelementmonth'          => ElementFactory::class,
+        'laminasformelementmonthselect'    => ElementFactory::class,
+        'laminasformelementmulticheckbox'  => ElementFactory::class,
+        'laminasformelementnumber'         => ElementFactory::class,
+        'laminasformelementpassword'       => ElementFactory::class,
+        'laminasformelementradio'          => ElementFactory::class,
+        'laminasformelementrange'          => ElementFactory::class,
+        'laminasformelementselect'         => ElementFactory::class,
+        'laminasformelementsubmit'         => ElementFactory::class,
+        'laminasformelementtext'           => ElementFactory::class,
+        'laminasformelementtextarea'       => ElementFactory::class,
+        'laminasformelementtime'           => ElementFactory::class,
+        'laminasformelementurl'            => ElementFactory::class,
+        'laminasformelementweek'           => ElementFactory::class,
     ];
 
     /**
