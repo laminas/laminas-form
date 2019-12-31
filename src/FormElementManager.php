@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form;
+namespace Laminas\Form;
 
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\ConfigInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\Stdlib\InitializableInterface;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\ConfigInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\Stdlib\InitializableInterface;
 
 /**
  * Plugin manager implementation for form elements.
@@ -27,38 +26,38 @@ class FormElementManager extends AbstractPluginManager
      * @var array
      */
     protected $invokableClasses = array(
-        'button'        => 'Zend\Form\Element\Button',
-        'captcha'       => 'Zend\Form\Element\Captcha',
-        'checkbox'      => 'Zend\Form\Element\Checkbox',
-        'collection'    => 'Zend\Form\Element\Collection',
-        'color'         => 'Zend\Form\Element\Color',
-        'csrf'          => 'Zend\Form\Element\Csrf',
-        'date'          => 'Zend\Form\Element\Date',
-        'dateselect'    => 'Zend\Form\Element\DateSelect',
-        'datetime'      => 'Zend\Form\Element\DateTime',
-        'datetimelocal' => 'Zend\Form\Element\DateTimeLocal',
-        'datetimeselect' => 'Zend\Form\Element\DateTimeSelect',
-        'element'       => 'Zend\Form\Element',
-        'email'         => 'Zend\Form\Element\Email',
-        'fieldset'      => 'Zend\Form\Fieldset',
-        'file'          => 'Zend\Form\Element\File',
-        'form'          => 'Zend\Form\Form',
-        'hidden'        => 'Zend\Form\Element\Hidden',
-        'image'         => 'Zend\Form\Element\Image',
-        'month'         => 'Zend\Form\Element\Month',
-        'monthselect'   => 'Zend\Form\Element\MonthSelect',
-        'multicheckbox' => 'Zend\Form\Element\MultiCheckbox',
-        'number'        => 'Zend\Form\Element\Number',
-        'password'      => 'Zend\Form\Element\Password',
-        'radio'         => 'Zend\Form\Element\Radio',
-        'range'         => 'Zend\Form\Element\Range',
-        'select'        => 'Zend\Form\Element\Select',
-        'submit'        => 'Zend\Form\Element\Submit',
-        'text'          => 'Zend\Form\Element\Text',
-        'textarea'      => 'Zend\Form\Element\Textarea',
-        'time'          => 'Zend\Form\Element\Time',
-        'url'           => 'Zend\Form\Element\Url',
-        'week'          => 'Zend\Form\Element\Week',
+        'button'        => 'Laminas\Form\Element\Button',
+        'captcha'       => 'Laminas\Form\Element\Captcha',
+        'checkbox'      => 'Laminas\Form\Element\Checkbox',
+        'collection'    => 'Laminas\Form\Element\Collection',
+        'color'         => 'Laminas\Form\Element\Color',
+        'csrf'          => 'Laminas\Form\Element\Csrf',
+        'date'          => 'Laminas\Form\Element\Date',
+        'dateselect'    => 'Laminas\Form\Element\DateSelect',
+        'datetime'      => 'Laminas\Form\Element\DateTime',
+        'datetimelocal' => 'Laminas\Form\Element\DateTimeLocal',
+        'datetimeselect' => 'Laminas\Form\Element\DateTimeSelect',
+        'element'       => 'Laminas\Form\Element',
+        'email'         => 'Laminas\Form\Element\Email',
+        'fieldset'      => 'Laminas\Form\Fieldset',
+        'file'          => 'Laminas\Form\Element\File',
+        'form'          => 'Laminas\Form\Form',
+        'hidden'        => 'Laminas\Form\Element\Hidden',
+        'image'         => 'Laminas\Form\Element\Image',
+        'month'         => 'Laminas\Form\Element\Month',
+        'monthselect'   => 'Laminas\Form\Element\MonthSelect',
+        'multicheckbox' => 'Laminas\Form\Element\MultiCheckbox',
+        'number'        => 'Laminas\Form\Element\Number',
+        'password'      => 'Laminas\Form\Element\Password',
+        'radio'         => 'Laminas\Form\Element\Radio',
+        'range'         => 'Laminas\Form\Element\Range',
+        'select'        => 'Laminas\Form\Element\Select',
+        'submit'        => 'Laminas\Form\Element\Submit',
+        'text'          => 'Laminas\Form\Element\Text',
+        'textarea'      => 'Laminas\Form\Element\Textarea',
+        'time'          => 'Laminas\Form\Element\Time',
+        'url'           => 'Laminas\Form\Element\Url',
+        'week'          => 'Laminas\Form\Element\Week',
     );
 
     /**
@@ -119,7 +118,7 @@ class FormElementManager extends AbstractPluginManager
         }
 
         throw new Exception\InvalidElementException(sprintf(
-            'Plugin of type %s is invalid; must implement Zend\Form\ElementInterface',
+            'Plugin of type %s is invalid; must implement Laminas\Form\ElementInterface',
             (is_object($plugin) ? get_class($plugin) : gettype($plugin))
         ));
     }
