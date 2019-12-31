@@ -5,7 +5,7 @@ The `FormImage` view helper can be used to render an `<input type="image">` HTML
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Image('my-image');
 $element->setAttribute('src', '/img/my-pic.png');

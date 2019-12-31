@@ -6,7 +6,7 @@ input. It is meant to work with the [File element](../element/file.md).
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\File('my-file');
 
@@ -20,7 +20,7 @@ For HTML5 multiple file uploads, the `multiple` attribute can be used. Browsers
 that do not support HTML5 will default to a single upload input.
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\File('my-file');
 $element->setAttribute('multiple', true);

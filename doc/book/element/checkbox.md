@@ -1,7 +1,7 @@
 # Checkbox
 
-`Zend\Form\Element\Checkbox` is meant to be paired with the
-`Zend\Form\View\Helper\FormCheckbox` for HTML inputs with type checkbox. This
+`Laminas\Form\Element\Checkbox` is meant to be paired with the
+`Laminas\Form\View\Helper\FormCheckbox` for HTML inputs with type checkbox. This
 element adds an `InArray` validator to its input filter specification in order
 to validate on the server if the checkbox contains either the checked value or
 the unchecked value.
@@ -11,8 +11,8 @@ the unchecked value.
 This element automatically adds a `type` attribute of value `checkbox`.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $checkbox = new Element\Checkbox('checkbox');
 $checkbox->setLabel('A checkbox');
@@ -27,8 +27,8 @@ $form->add($checkbox);
 Using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
  
 $form = new Form('my-form');       
 $form->add([
@@ -50,8 +50,8 @@ checkbox is to set the `value` attribute as for any other element. To have a
 checkbox checked by default, make the `value` equal to the `checked_value` eg:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
  
 $form = new Form('my-form');       
 $form->add([
@@ -84,6 +84,6 @@ Method signature                                        | Description
 `getCheckedValue() : string`                            | Return the value used when the checkbox is checked.
 `setUncheckedValue(string $uncheckedValue) : void`      | Set the value to use when the checkbox is unchecked. For this to work, you must make sure that `use_hidden_element` is set to true.
 `getUncheckedValue() : string`                          | Return the value used when the checkbox is unchecked.
-`getInputSpecification() : array`                       | Returns an input filter specification, which includes `Zend\Validator\InArray` to validate if the value is one of the `checked` or `unchecked` values.
+`getInputSpecification() : array`                       | Returns an input filter specification, which includes `Laminas\Validator\InArray` to validate if the value is one of the `checked` or `unchecked` values.
 `isChecked() : boolean`                                 | Checks if the checkbox is checked.
 `setChecked(bool $value) : void`                        | Checks or unchecks the checkbox.

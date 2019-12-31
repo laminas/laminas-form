@@ -1,5 +1,3 @@
-sudo: false
-
 language: php
 
 branches:
@@ -12,51 +10,43 @@ cache:
     - $HOME/.composer/cache
     - vendor
     - $HOME/.local
-    - zf-mkdoc-theme
+    - laminas-mkdoc-theme
 
 env:
   global:
     - COMPOSER_ARGS="--no-interaction"
     - COVERAGE_DEPS="satooshi/php-coveralls"
     - LEGACY_DEPS="phpunit/phpunit"
-    - TESTS_ZEND_FORM_ANNOTATION_SUPPORT=true
-    - TESTS_ZEND_FORM_RECAPTCHA_SUPPORT=true
-    - SITE_URL: https://zendframework.github.io/zend-form
+    - TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT=true
+    - TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT=true
+    - SITE_URL: https://docs.laminas.dev/laminas-form
     - GH_USER_NAME: "Matthew Weier O'Phinney"
     - GH_USER_EMAIL: matthew@weierophinney.net
-    - GH_REF: github.com/zendframework/zend-form.git
-    - secure: "H5t5GcHDEX230xPN0QvXAkKzziCdYb+YQ9EFCsD+hJLm1kdYKmg7NbBibPIr86js01iiVB+q2OZQ+pk6kIigSmNu/zeBR2q2zJYKbOUTGvAGj0pIsje7XpZr/FcSOHUOtm/8yHD8z3KNoood4au3Zsmr8D2bbGvqLe3ZfwFmzIsPTFmB5IvfvHiN4j6NsOP9rGlLzp93Gquv1XSHjuvM2Lr8Jbornf5JVqXaHgIniTRlBzckIcwhaMJKRUjT0jxAnKEZKa9NLkRaj40g+pFDVXxJwq7/5gDj+g7684lbSToZU29ye/akvk1KAkGeXE6f/CYqn/1qi2cfMyFRuwzCaLbKTci7EQBho0iWp39eq/jVT/+XpUKDJikW0xJZYnUMd78uZBseE8iNUdaLojoVUYkOaAevIjr+VaF0j1GWmgcChN2NHyCOj++PNZBLovfL6d2RPUFD82vo6oA6MvtsuZDfEV9F1mWNHcDkb7PgS0Yh6Ag+47iRKptb0nMGgthE2ErieNE7CX1kp0u4tjSQK44XSYP4ObAGCo/Wuxl6xxlgwEYCqGOr+Tu2g2s0R4ocQVsWeRlvKBVdQr5peVxOMcK5Zj15sK9BQ1gjINf6IcpEeh0Tg1Cf9Cy8PwPds/Ym7lc6jv71c0LUCZiLQ/hTkd1euCG3ykzkQ9CEGt+ESLc="
+    - GH_REF: github.com/laminas/laminas-form.git
+    - secure: "H5t5GcHDEX230xPN0QvXAkKzziCdYb+YQ9EFCsD+hJLm1kdYKmg7NbBibPIr86js01iiVB+q2OZQ+pk6kIigSmNu/zeBR2q2zJYKbOUTGvAGj0pIsje7XpZr/FcSOHUOtm/8yHD8z3KNoood4au3Zsmr8D2bbGvqLe3LaminaswFmzIsPTFmB5IvfvHiN4j6NsOP9rGlLzp93Gquv1XSHjuvM2Lr8Jbornf5JVqXaHgIniTRlBzckIcwhaMJKRUjT0jxAnKEZKa9NLkRaj40g+pFDVXxJwq7/5gDj+g7684lbSToZU29ye/akvk1KAkGeXE6f/CYqn/1qi2cfMyFRuwzCaLbKTci7EQBho0iWp39eq/jVT/+XpUKDJikW0xJZYnUMd78uZBseE8iNUdaLojoVUYkOaAevIjr+VaF0j1GWmgcChN2NHyCOj++PNZBLovfL6d2RPUFD82vo6oA6MvtsuZDfEV9F1mWNHcDkb7PgS0Yh6Ag+47iRKptb0nMGgthE2ErieNE7CX1kp0u4tjSQK44XSYP4ObAGCo/Wuxl6xxlgwEYCqGOr+Tu2g2s0R4ocQVsWeRlvKBVdQr5peVxOMcK5Zj15sK9BQ1gjINf6IcpEeh0Tg1Cf9Cy8PwPds/Ym7lc6jv71c0LUCZiLQ/hTkd1euCG3ykzkQ9CEGt+ESLc="
 
 matrix:
+  fast_finish: true
   include:
     - php: 5.6
       env:
         - DEPS=lowest
     - php: 5.6
       env:
-        - DEPS=locked
+        - DEPS=latest
         - CS_CHECK=true
         - DEPLOY_DOCS="$(if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then echo -n 'true' ; else echo -n 'false' ; fi)"
         - PATH="$HOME/.local/bin:$PATH"
-    - php: 5.6
-      env:
-        - DEPS=latest
         - TEST_COVERAGE=true
     - php: 7
       env:
         - DEPS=lowest
     - php: 7
       env:
-        - DEPS=locked
-    - php: 7
-      env:
         - DEPS=latest
     - php: 7.1
       env:
         - DEPS=lowest
-    - php: 7.1
-      env:
-        - DEPS=locked
     - php: 7.1
       env:
         - DEPS=latest
@@ -88,10 +78,10 @@ script:
   - if [[ $TEST_COVERAGE == 'true' ]]; then composer test-coverage ; fi
   - if [[ $TEST_COVERAGE != 'true' ]]; then composer test ; fi
   - if [[ $CS_CHECK == 'true' ]]; then composer cs-check ; fi
-  - if [[ $DEPLOY_DOCS == "true" && "$TRAVIS_TEST_RESULT" == "0" ]]; then wget -O theme-installer.sh "https://raw.githubusercontent.com/zendframework/zf-mkdoc-theme/master/theme-installer.sh" ; chmod 755 theme-installer.sh ; ./theme-installer.sh ; fi
+  - if [[ $DEPLOY_DOCS == "true" && "$TRAVIS_TEST_RESULT" == "0" ]]; then wget -O theme-installer.sh "https://raw.githubusercontent.com/laminas/laminas-mkdoc-theme/master/theme-installer.sh" ; chmod 755 theme-installer.sh ; ./theme-installer.sh ; fi
 
 after_success:
-  - if [[ $DEPLOY_DOCS == "true" ]]; then echo "Preparing to build and deploy documentation" ; ./zf-mkdoc-theme/deploy.sh ; echo "Completed deploying documentation" ; fi
+  - if [[ $DEPLOY_DOCS == "true" ]]; then echo "Preparing to build and deploy documentation" ; ./laminas-mkdoc-theme/deploy.sh ; echo "Completed deploying documentation" ; fi
 
 after_script:
   - if [[ $TEST_COVERAGE == 'true' ]]; then composer upload-coverage ; fi

@@ -1,16 +1,17 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2017 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Integration;
+namespace LaminasTest\Form\Integration;
 
+use Laminas\Form\Form;
+use Laminas\Form\InputFilterProviderFieldset;
+use Laminas\Validator;
 use PHPUnit\Framework\TestCase;
-use Zend\Form\Form;
-use Zend\Form\InputFilterProviderFieldset;
-use Zend\Validator;
 
 class FormCreatesCollectionInputFilterTest extends TestCase
 {

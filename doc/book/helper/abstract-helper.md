@@ -1,16 +1,16 @@
 # AbstractHelper
 
-The `AbstractHelper` is used as a base abstract class for zend-form view
+The `AbstractHelper` is used as a base abstract class for laminas-form view
 helpers, providing methods for validating form HTML attributes, as well as
 controlling the doctype and character encoding. `AbstractHelper` also extends
-from `Zend\I18n\View\Helper\AbstractTranslatorHelper` which provides an
-implementation for the `Zend\I18n\Translator\TranslatorAwareInterface` that
+from `Laminas\I18n\View\Helper\AbstractTranslatorHelper` which provides an
+implementation for the `Laminas\I18n\Translator\TranslatorAwareInterface` that
 allows setting a translator and text domain.
 
 ## Public methods
 
 The following public methods are in addition to the inherited methods of
-[Zend\I18n\View\Helper\AbstractTranslatorHelper](http://zendframework.github.io/zend-i18n/view-helpers/#abstract-translator-helper).
+[Laminas\I18n\View\Helper\AbstractTranslatorHelper](http://docs.laminas.dev/laminas-i18n/view-helpers/#abstract-translator-helper).
 
 Method signature                                               | Description
 -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,8 +64,8 @@ $this->formLabel()->addTranslatableAttributePrefix('data-translatable-');
 Or you can mark them as translatable for all view helpers (e. g. the title attribute):
 ```php
 // mark one attribute as translatable
-\Zend\Form\View\Helper\AbstractHelper->addDefaultTranslatableAttribute('title');
+\Laminas\Form\View\Helper\AbstractHelper->addDefaultTranslatableAttribute('title');
 
 // mark an prefix as translatable
-\Zend\Form\View\Helper\AbstractHelper->addDefaultTranslatableAttributePrefix('data-translatable-');
+\Laminas\Form\View\Helper\AbstractHelper->addDefaultTranslatableAttributePrefix('data-translatable-');
 ```

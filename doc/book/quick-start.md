@@ -18,12 +18,12 @@ The following example demonstrates element, fieldset, and form creation, and how
 they are wired together.
 
 ```php
-use Zend\Captcha;
-use Zend\Form\Element;
-use Zend\Form\Fieldset;
-use Zend\Form\Form;
-use Zend\InputFilter\Input;
-use Zend\InputFilter\InputFilter;
+use Laminas\Captcha;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Input;
+use Laminas\InputFilter\InputFilter;
 
 // Create a text element to capture the user name:
 $name = new Element('name');
@@ -123,9 +123,9 @@ This is particularly nice if you want to store your forms as pure configuration;
 you can then pass the configuration to the factory and be done.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Factory;
-use Zend\Hydrator\ArraySerializable;
+use Laminas\Form\Element;
+use Laminas\Form\Factory;
+use Laminas\Hydrator\ArraySerializable;
 
 $factory = new Factory();
 $form    = $factory->createForm([
@@ -205,7 +205,7 @@ $form    = $factory->createForm([
      */
 
     // Configuration to pass on to
-    // Zend\InputFilter\Factory::createInputFilter()
+    // Laminas\InputFilter\Factory::createInputFilter()
     'input_filter' => [
         /* ... */
     ],
@@ -216,9 +216,9 @@ If we wanted to use fieldsets, as we demonstrated in the previous example, we
 could do the following:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Factory;
-use Zend\Hydrator\ArraySerializable;
+use Laminas\Form\Element;
+use Laminas\Form\Factory;
+use Laminas\Hydrator\ArraySerializable;
 
 $factory = new Factory();
 $form    = $factory->createForm([
@@ -311,7 +311,7 @@ $form    = $factory->createForm([
     ],
 
     // Configuration to pass on to
-    // Zend\InputFilter\Factory::createInputFilter()
+    // Laminas\InputFilter\Factory::createInputFilter()
     'input_filter' => [
         /* ... */
     ],
@@ -334,9 +334,9 @@ for re-use in your application.
 ```php
 namespace Contact;
 
-use Zend\Captcha\AdapterInterface as CaptchaAdapter;
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 class ContactForm extends Form
 {
@@ -414,7 +414,7 @@ attached. Second, you must inject the data to validate into the form. Third, you
 validate the form. If invalid, you can retrieve the error messages, if any.
 
 ```php
-// assuming $captcha is an instance of some Zend\Captcha\AdapterInterface:
+// assuming $captcha is an instance of some Laminas\Captcha\AdapterInterface:
 $form = new Contact\ContactForm($captcha);
 
 // If the form doesn't define an input filter by default, inject one.
@@ -470,25 +470,25 @@ the input filter for that element, these hints will be retrieved and used to
 create them.
 
 To do so, one of the following must occur. For elements, they must implement
-`Zend\InputFilter\InputProviderInterface`, which defines a
+`Laminas\InputFilter\InputProviderInterface`, which defines a
 `getInputSpecification()` method; for fieldsets (and, by extension, forms), they
-must implement `Zend\InputFilter\InputFilterProviderInterface`, which defines a
+must implement `Laminas\InputFilter\InputFilterProviderInterface`, which defines a
 `getInputFilterSpecification()` method.
 
 In the case of an element, the `getInputSpecification()` method should return
 data to be used by the input filter factory to create an input. Every HTML5
 (`email`, `url`, `color`, etc.) element has a built-in element that uses this
-logic. For instance, here is how the `Zend\Form\Element\Color` element is
+logic. For instance, here is how the `Laminas\Form\Element\Color` element is
 defined:
 
 ```php
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
-use Zend\Filter;
-use Zend\Form\Element;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\Validator\Regex as RegexValidator;
-use Zend\Validator\ValidatorInterface;
+use Laminas\Filter;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Regex as RegexValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class Color extends Element implements InputProviderInterface
 {
@@ -554,10 +554,10 @@ For fieldsets, you do very similarly; the difference is that
 ```php
 namespace Contact\Form;
 
-use Zend\Filter;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Validator;
+use Laminas\Filter;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Validator;
 
 class SenderFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -602,13 +602,13 @@ configuration!
 >
 > If you set custom input filter specification either in
 > `getInputSpecification()` or in `getInputFilterSpecification()`, the
-> `Zend\InputFilter\InputInterface` set for that specific field is reset to the
-> default `Zend\InputFilter\Input`.
+> `Laminas\InputFilter\InputInterface` set for that specific field is reset to the
+> default `Laminas\InputFilter\Input`.
 >
 > Some form elements may need a particular input filter, like
-> `Zend\Form\Element\File`: in this case it's mandatory to specify the `type`
+> `Laminas\Form\Element\File`: in this case it's mandatory to specify the `type`
 > key in your custom specification to match the original one (e.g., for the
-> file element, use `Zend\InputFilter\FileInput`).
+> file element, use `Laminas\InputFilter\FileInput`).
 
 ## Binding an object
 
@@ -628,7 +628,7 @@ When you `bind()` an object to the form, the following happens:
   is true by default), then the `Hydrator` will be passed the validated values
   to use to hydrate the bound object. (If you do not want this behavior, call
   `setBindOnValidate(FormInterface::BIND_MANUAL)`).
-- If the object implements `Zend\InputFilter\InputFilterAwareInterface`, the
+- If the object implements `Laminas\InputFilter\InputFilterAwareInterface`, the
   input filter it composes will be used instead of the one composed on the form.
 
 This is easier to understand with an example.
@@ -667,16 +667,16 @@ by default. If you want to return an associative array instead, you can pass the
 `FormInterface::VALUES_AS_ARRAY` flag to the method.
 
 ```php
-use Zend\Form\FormInterface;
+use Laminas\Form\FormInterface;
 $data = $form->getData(FormInterface::VALUES_AS_ARRAY);
 ```
 
-Zend Framework ships several standard [hydrators](https://zendframework.github.io/zend-hydrator/);
-you can create custom hydrators by implementing `Zend\Hydrator\HydratorInterface`,
+Laminas ships several standard [hydrators](https://docs.laminas.dev/laminas-hydrator/);
+you can create custom hydrators by implementing `Laminas\Hydrator\HydratorInterface`,
 which looks like this:
 
 ``` sourceCode
-namespace Zend\Hydrator;
+namespace Laminas\Hydrator;
 
 interface HydratorInterface
 {
@@ -780,8 +780,8 @@ Following the example above, your view files can quickly become long and
 repetitive to write. While we do not currently provide a single-line form view
 helper (as this reduces the form customization), we do provide convenience
 wrappers around emitting individual elements via the `FormRow` view helper, and
-collections of elements (`Zend\Form\Element\Collection`, `Zend\Form\Fieldset`, or
-`Zend\Form\Form`) via the `FormCollection` view helper (which, internally,
+collections of elements (`Laminas\Form\Element\Collection`, `Laminas\Form\Fieldset`, or
+`Laminas\Form\Form`) via the `FormCollection` view helper (which, internally,
 iterates the collection and calls `FormRow` for each element, recursively
 following collections).
 
@@ -837,7 +837,7 @@ be rendered after the element itself, you can pass an optional parameter to the
 ```
 
 As noted previously, the `FormCollection` view helper will iterate any
-collection &mdash; including `Zend\Form\Element\Collection`, fieldsets, and
+collection &mdash; including `Laminas\Form\Element\Collection`, fieldsets, and
 forms &mdash; emitting each element discovered using `FormRow`. `FormCollection`
 *does not render fieldset or form tags*; you will be responsible for emitting
 those yourself.
@@ -862,7 +862,7 @@ echo $this->formCollection($form);
 echo $this->form()->closeTag();
 ```
 
-Finally, the `Form` view helper can optionally accept a `Zend\Form\Form`
+Finally, the `Form` view helper can optionally accept a `Laminas\Form\Form`
 instance; if provided, it will prepare the form, iterate it, and render all
 elements using either `FormRow` (for non-collection elements) or
 `FormCollection` (for collections and fieldsets):
@@ -890,7 +890,7 @@ this facility only when prototyping.
 ## Taking advantage of HTML5 input attributes
 
 HTML5 brings a lot of exciting features, one of them being simplified client
-form validations. zend-form provides elements corresponding to the various HTML5
+form validations. laminas-form provides elements corresponding to the various HTML5
 elements, specifying the client-side attributes required by them. Additionally,
 each implements `InputProviderInterface`, ensuring that your input filter will
 have reasonable default validation and filtering rules that mimic the
@@ -909,7 +909,7 @@ let's say we're re-using our contact form over a web service; in this case, the
 `Csrf`, `Captcha`, and submit button elements are not of interest, and shouldn't
 be validated.
 
-zend-form provides a proxy method to the underlying `InputFilter`'s
+laminas-form provides a proxy method to the underlying `InputFilter`'s
 `setValidationGroup()` method, allowing us to perform this operation.
 
 ```php
@@ -925,7 +925,7 @@ If you later want to reset the form to validate all elements, pass the
 `FormInterface::VALIDATE_ALL` flag to the `setValidationGroup()` method:
 
 ```php
-use Zend\Form\FormInterface;
+use Laminas\Form\FormInterface;
 $form->setValidationGroup(FormInterface::VALIDATE_ALL);
 ```
 
@@ -955,13 +955,13 @@ and fieldsets to the domain model. Wouldn't it be nice to have a central place
 to define all of these?
 
 Annotations allow us to solve this problem. You can define the following
-behaviors with the shipped annotations in zend-form:
+behaviors with the shipped annotations in laminas-form:
 
 - `AllowEmpty`: mark an input as allowing an empty value. This annotation does
   not require a value.
 - `Attributes`: specify the form, fieldset, or element attributes. This
   annotation requires an associative array of values, in a JSON object format:
-  `@Attributes({"class":"zend_form","type":"text"})`.
+  `@Attributes({"class":"laminas_form","type":"text"})`.
 - `ComposedObject`: specify another object with annotations to parse. Typically,
   this is used if a property references another object, which will then be added
   to your form as an additional fieldset.  Expects a string value indicating the
@@ -1026,11 +1026,11 @@ what you import.
 Here's an example:
 
 ```php
-use Zend\Form\Annotation;
+use Laminas\Form\Annotation;
 
 /**
  * @Annotation\Name("user")
- * @Annotation\Hydrator("Zend\Hydrator\ObjectProperty")
+ * @Annotation\Hydrator("Laminas\Hydrator\ObjectProperty")
  */
 class User
 {
@@ -1050,7 +1050,7 @@ class User
     public $username;
 
     /**
-     * @Annotation\Type("Zend\Form\Element\Email")
+     * @Annotation\Type("Laminas\Form\Element\Email")
      * @Annotation\Options({"label":"Your email address:"})
      */
     public $email;
@@ -1058,19 +1058,19 @@ class User
 ```
 
 The above will hint to the annotation builder to create a form with name "user",
-which uses the hydrator `Zend\Hydrator\ObjectProperty`. That form will
+which uses the hydrator `Laminas\Hydrator\ObjectProperty`. That form will
 have two elements, "username" and "email". The "username" element will have an
 associated input that has a `StringTrim` filter, and two validators: a
 `StringLength` validator indicating the username is between 1 and 25 characters,
 and a `Regex` validator asserting it follows a specific accepted pattern. The
 form element itself will have an attribute "type" with value "text" (a text
 element), and a label "Username:". The "email" element will be of type
-`Zend\Form\Element\Email`, and have the label "Your email address:".
+`Laminas\Form\Element\Email`, and have the label "Your email address:".
 
-To use the above, we need `Zend\Form\Annotation\AnnotationBuilder`:
+To use the above, we need `Laminas\Form\Annotation\AnnotationBuilder`:
 
 ```php
-use Zend\Form\Annotation\AnnotationBuilder;
+use Laminas\Form\Annotation\AnnotationBuilder;
 
 $builder = new AnnotationBuilder();
 $form    = $builder->createForm(User::class);
