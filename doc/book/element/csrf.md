@@ -1,6 +1,6 @@
 # Csrf
 
-`Zend\Form\Element\Csrf` pairs with the [FormHidden](../helper/form-hidden.md)
+`Laminas\Form\Element\Csrf` pairs with the [FormHidden](../helper/form-hidden.md)
 helper to provide protection from CSRF attacks on forms, ensuring the data is
 submitted by the user session that generated the form and not by a rogue script.
 Protection is achieved by adding a hash element to a form and verifying it when
@@ -11,8 +11,8 @@ the form is submitted.
 This element automatically adds a `type` attribute of value `hidden`.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $csrf = new Element\Csrf('csrf');
 
@@ -25,8 +25,8 @@ You can change the options of the CSRF validator using the
 is an example using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
@@ -57,8 +57,8 @@ available.
 
 Method signature                                          | Description
 --------------------------------------------------------- | -----------
-`getInputSpecification() : array`                         | Returns an input filter specification, which includes a `Zend\Filter\StringTrim` filter and `Zend\Validator\Csrf` to validate the CSRF value.
+`getInputSpecification() : array`                         | Returns an input filter specification, which includes a `Laminas\Filter\StringTrim` filter and `Laminas\Validator\Csrf` to validate the CSRF value.
 `setCsrfValidatorOptions(array $options) : void`          | Set the options that are used by the CSRF validator.
 `getCsrfValidatorOptions() : array`                       | Get the options that are used by the CSRF validator.
-`setCsrfValidator(Zend\Validator\Csrf $validator) : void` | Override the default CSRF validator by setting another one.
-`getCsrfValidator() : Zend\Validator\Csrf `               | Get the CSRF validator.
+`setCsrfValidator(Laminas\Validator\Csrf $validator) : void` | Override the default CSRF validator by setting another one.
+`getCsrfValidator() : Laminas\Validator\Csrf `               | Get the CSRF validator.

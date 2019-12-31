@@ -9,7 +9,7 @@ which provides a default input specification for validating HTML5 time values.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Time('my-time');
 
