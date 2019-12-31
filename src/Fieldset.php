@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form;
+namespace Laminas\Form;
 
+use Laminas\Code\Reflection\ClassReflection;
+use Laminas\Stdlib\Hydrator;
+use Laminas\Stdlib\Hydrator\HydratorAwareInterface;
+use Laminas\Stdlib\Hydrator\HydratorInterface;
+use Laminas\Stdlib\PriorityQueue;
 use Traversable;
-use Zend\Code\Reflection\ClassReflection;
-use Zend\Stdlib\Hydrator;
-use Zend\Stdlib\Hydrator\HydratorAwareInterface;
-use Zend\Stdlib\Hydrator\HydratorInterface;
-use Zend\Stdlib\PriorityQueue;
 
 class Fieldset extends Element implements FieldsetInterface
 {
