@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
+use Laminas\Form\Element;
+use Laminas\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
 
 class FormElementErrorsTest extends CommonTestCase
 {
@@ -50,7 +49,7 @@ class FormElementErrorsTest extends CommonTestCase
 
     public function testRendersErrorMessagesUsingUnorderedListTranslated()
     {
-        $mockTranslator = $this->createMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->at(0))
             ->method('translate')
             ->will($this->returnValue('Translated first error message'));

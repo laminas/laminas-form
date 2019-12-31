@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
+use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
+use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 use PHPUnit\Framework\TestCase;
-use Zend\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
-use Zend\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
-use Zend\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
 class MissingIntlExtensionTest extends TestCase
 {
@@ -25,24 +24,24 @@ class MissingIntlExtensionTest extends TestCase
 
     public function testFormDateSelectHelper()
     {
-        $this->expectException('Zend\Form\Exception\ExtensionNotLoadedException');
-        $this->expectExceptionMessage('Zend\Form\View\Helper component requires the intl PHP extension');
+        $this->expectException('Laminas\Form\Exception\ExtensionNotLoadedException');
+        $this->expectExceptionMessage('Laminas\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormDateSelectHelper();
     }
 
     public function testFormDateTimeSelectHelper()
     {
-        $this->expectException('Zend\Form\Exception\ExtensionNotLoadedException');
-        $this->expectExceptionMessage('Zend\Form\View\Helper component requires the intl PHP extension');
+        $this->expectException('Laminas\Form\Exception\ExtensionNotLoadedException');
+        $this->expectExceptionMessage('Laminas\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormDateTimeSelectHelper();
     }
 
     public function testFormMonthSelectHelper()
     {
-        $this->expectException('Zend\Form\Exception\ExtensionNotLoadedException');
-        $this->expectExceptionMessage('Zend\Form\View\Helper component requires the intl PHP extension');
+        $this->expectException('Laminas\Form\Exception\ExtensionNotLoadedException');
+        $this->expectExceptionMessage('Laminas\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormMonthSelectHelper();
     }

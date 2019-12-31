@@ -7,7 +7,7 @@ type="password">` HTML form input. It is meant to work with the
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Password('my-password');
 

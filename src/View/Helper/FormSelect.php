@@ -1,19 +1,18 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper;
+namespace Laminas\Form\View\Helper;
 
-use Zend\Form\Element\Hidden;
-use Zend\Form\ElementInterface;
-use Zend\Form\Element\Select as SelectElement;
-use Zend\Form\Exception;
-use Zend\Stdlib\ArrayUtils;
+use Laminas\Form\Element\Hidden;
+use Laminas\Form\Element\Select as SelectElement;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
+use Laminas\Stdlib\ArrayUtils;
 
 class FormSelect extends AbstractHelper
 {
@@ -102,7 +101,7 @@ class FormSelect extends AbstractHelper
     {
         if (! $element instanceof SelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Zend\Form\Element\Select',
+                '%s requires that the element is of type Laminas\Form\Element\Select',
                 __METHOD__
             ));
         }
