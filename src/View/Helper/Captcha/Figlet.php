@@ -1,22 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper\Captcha;
+namespace Laminas\Form\View\Helper\Captcha;
 
-use Zend\Captcha\Figlet as CaptchaAdapter;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
+use Laminas\Captcha\Figlet as CaptchaAdapter;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage View
  */
 class Figlet extends AbstractWord
@@ -34,7 +32,7 @@ class Figlet extends AbstractWord
 
         if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
-                '%s requires that the element has a "captcha" attribute of type Zend\Captcha\Figlet; none found',
+                '%s requires that the element has a "captcha" attribute of type Laminas\Captcha\Figlet; none found',
                 __METHOD__
             ));
         }
