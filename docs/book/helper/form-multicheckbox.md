@@ -8,7 +8,7 @@ input specification for validating checkbox groups.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\MultiCheckbox('my-multicheckbox');
 $element->setValueOptions([

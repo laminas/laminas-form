@@ -1,17 +1,16 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View;
+namespace Laminas\Form\View;
 
-use Zend\Form\ConfigProvider;
-use Zend\ServiceManager\ConfigInterface;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\Form\ConfigProvider;
+use Laminas\ServiceManager\ConfigInterface;
+use Laminas\ServiceManager\ServiceManager;
 
 /**
  * Service manager configuration for form view helpers
@@ -51,7 +50,7 @@ class HelperConfig implements ConfigInterface
     /**
      * Provide all configuration as an array.
      *
-     * Required by zend-servicemanager v3.
+     * Required by laminas-servicemanager v3.
      *
      * @return array
      */

@@ -7,7 +7,7 @@ which provides a default input specification for validating numerical ranges.
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Range('my-range');
 
@@ -24,7 +24,7 @@ Output:
 Usage of `min`, `max` and `step` attributes:
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Range('my-range');
 $element->setAttributes([
