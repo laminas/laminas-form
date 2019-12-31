@@ -1,6 +1,6 @@
 # Month Select
 
-`Zend\Form\Element\MonthSelect` is meant to be paired with
+`Laminas\Form\Element\MonthSelect` is meant to be paired with
 [FormMonthSelect](../helper/form-month-select.md) view helper.  This element
 creates two select elements, where the first one is populated with months and
 the second is populated with years. By default, it sets 100 years in the past
@@ -9,8 +9,8 @@ for the year element, starting with the current year.
 ## Basic Usage
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $monthYear = new Element\MonthSelect('monthyear');
 $monthYear->setLabel('Select a month and a year');
@@ -23,8 +23,8 @@ $form->add($monthYear);
 Using array notation:
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $form = new Form('dateselect');
 $form->add([
@@ -45,8 +45,8 @@ available.
 
 Method signature                                    | Description
 --------------------------------------------------- | -----------
-`getMonthElement() : Zend\Form\Element\Select`      | Returns the [Select](select.md) element that is used for the months part.
-`getYearElement() : Zend\Form\Element\Select`       | Returns the [Select](select.md) element that is used for the years part.
+`getMonthElement() : Laminas\Form\Element\Select`      | Returns the [Select](select.md) element that is used for the months part.
+`getYearElement() : Laminas\Form\Element\Select`       | Returns the [Select](select.md) element that is used for the years part.
 `setMonthAttributes(array $monthAttributes) : void` | Set attributes on the [Select](select.md) element that is used for the months part.
 `getMonthAttributes() : array`                      | Get attributes on the [Select](select.md) element that is used for the months part.
 `setYearAttributes(array $yearAttributes) : void`   | Set attributes on the [Select](select.md) element that is used for the years part.

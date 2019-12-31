@@ -1,6 +1,6 @@
 docs_dir: doc/book
 site_dir: doc/html
-pages:
+nav:
     - index.md
     - Intro: intro.md
     - "Quick Start": quick-start.md
@@ -81,7 +81,6 @@ pages:
                 - formFileSessionProgress: helper/form-file-session-progress.md
                 - formFileUploadProgress: helper/form-file-upload-progress.md
         - Advanced: advanced.md
-site_name: zend-form
-site_description: zend-form
-repo_url: 'https://github.com/zendframework/zend-form'
-copyright: 'Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
+site_name: laminas-form
+site_description: laminas-form
+repo_url: 'https://github.com/laminas/laminas-form'

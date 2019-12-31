@@ -2,7 +2,7 @@
 
 The `FormFileSessionProgress` view helper can be used to render a `<input
 type="hidden" ...>` which can be used by the PHP 5.4+ File Upload Session
-Progress feature.Unlike other zend-form view helpers, the
+Progress feature.Unlike other laminas-form view helpers, the
 `FormFileSessionProgress` helper does not accept an `Element` as a parameter.
 
 An `id` attribute with a value of `"progress_key"` will automatically be added.
@@ -12,7 +12,7 @@ An `id` attribute with a value of `"progress_key"` will automatically be added.
 > The view helper **must** be rendered *before* the file input in the form, or
 > upload progress will not work correctly.
 
-Best used with the [Zend\ProgressBar\Upload\SessionProgress](http://framework.zend.com/manual/current/en/modules/zend.progress-bar.upload.html#session-progress-handler)
+Best used with the [Laminas\ProgressBar\Upload\SessionProgress](https://docs.laminas.dev/laminas.progress-bar.upload.html#session-progress-handler)
 handler.
 
 See the [Session Upload Progress](http://php.net/session.upload-progress)
