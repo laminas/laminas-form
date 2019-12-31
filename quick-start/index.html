@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Validate and display simple and complex forms, casting forms to business objects and vice versa.">  
+    <link rel="canonical" href="https://docs.laminas.dev/quick-start/">
+    <link rel="shortcut icon" href="/img/trademark-laminas-foundation-rgb.svg">
+
+    <title>Quick Start - laminas-form - Laminas Docs</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body id="page-top" class="components">
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        
+        <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+        </a>
+        <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
+            Documentation
+        </a>
+
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
+                </li>
+            </ul>
+
+            
+            
+                <div class="d-block d-sm-none">
+                    
+    <div class="subnavigation hidden-print">
+        <h4 class="subnavigation__title">
+            <a href="..">laminas-form</a>
+        </h4>
+
+        <h5 class="subnavigation__subtitle">Table of Contents</h5>
+
+        <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item subnavigation__list-item--active">
+                                <a href="./" class="subnavigation__link">Quick Start</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item">
+                                <span class="subnavigation__headline">Reference</span>
+                                <ul class="subnavigation__list">
+                                    
+                                        
+    <li class="subnavigation__list-item">
+        <span class="subnavigation__headline">Elements</span>
+        <ul class="subnavigation__list">
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/intro/" class="subnavigation__link">Introduction</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/element/" class="subnavigation__link">Element</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/button/" class="subnavigation__link">button</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/captcha/" class="subnavigation__link">CAPTCHA</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/checkbox/" class="subnavigation__link">checkbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/collection/" class="subnavigation__link">Collection</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/color/" class="subnavigation__link">color</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/csrf/" class="subnavigation__link">CSRF</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/date/" class="subnavigation__link">date</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/date-time/" class="subnavigation__link">datetime</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/date-time-local/" class="subnavigation__link">datetime-local</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/email/" class="subnavigation__link">email</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/file/" class="subnavigation__link">file</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/hidden/" class="subnavigation__link">hidden</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/image/" class="subnavigation__link">image</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/month/" class="subnavigation__link">month</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/month-select/" class="subnavigation__link">MonthSelect</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/multi-checkbox/" class="subnavigation__link">MultiCheckbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/number/" class="subnavigation__link">number</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/password/" class="subnavigation__link">password</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/radio/" class="subnavigation__link">radio</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/range/" class="subnavigation__link">range</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/search/" class="subnavigation__link">search</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/select/" class="subnavigation__link">select</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/submit/" class="subnavigation__link">submit</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/tel/" class="subnavigation__link">tel</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/text/" class="subnavigation__link">text</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/textarea/" class="subnavigation__link">textarea</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/time/" class="subnavigation__link">time</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/url/" class="subnavigation__link">url</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/week/" class="subnavigation__link">week</a>
+    </li>
+
+            
+        </ul>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item ">
+        <a href="../collections/" class="subnavigation__link">Collections</a>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item ">
+        <a href="../file-upload/" class="subnavigation__link">File Uploads</a>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item">
+        <span class="subnavigation__headline">View Helpers</span>
+        <ul class="subnavigation__list">
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/intro/" class="subnavigation__link">Introduction</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/abstract-helper/" class="subnavigation__link">AbstractHelper</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-input/" class="subnavigation__link">formInput</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-element/" class="subnavigation__link">formElement</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-element-errors/" class="subnavigation__link">formElementErrors</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-label/" class="subnavigation__link">formLabel</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-row/" class="subnavigation__link">formRow</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-collection/" class="subnavigation__link">formCollection</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form/" class="subnavigation__link">form</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-button/" class="subnavigation__link">formButton</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-captcha/" class="subnavigation__link">formCaptcha</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-checkbox/" class="subnavigation__link">formCheckbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-color/" class="subnavigation__link">formColor</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-date/" class="subnavigation__link">formDate</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-date-time/" class="subnavigation__link">formDateTime</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-date-time-local/" class="subnavigation__link">formDateTimeLocal</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-email/" class="subnavigation__link">formEmail</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file/" class="subnavigation__link">formFile</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-hidden/" class="subnavigation__link">formHidden</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-image/" class="subnavigation__link">formImage</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-month/" class="subnavigation__link">formMonth</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-month-select/" class="subnavigation__link">formMonthSelect</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-multicheckbox/" class="subnavigation__link">formMultiCheckbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-number/" class="subnavigation__link">formNumber</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-password/" class="subnavigation__link">formPassword</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-radio/" class="subnavigation__link">formRadio</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-range/" class="subnavigation__link">formRange</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-reset/" class="subnavigation__link">formReset</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-search/" class="subnavigation__link">formSearch</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-select/" class="subnavigation__link">formSelect</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-submit/" class="subnavigation__link">formSubmit</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-tel/" class="subnavigation__link">formTel</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-text/" class="subnavigation__link">formText</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-textarea/" class="subnavigation__link">formTextarea</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-time/" class="subnavigation__link">formTime</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-url/" class="subnavigation__link">formUrl</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-week/" class="subnavigation__link">formWeek</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item">
+        <span class="subnavigation__headline">Upload Progress</span>
+        <ul class="subnavigation__list">
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/upload-progress-helpers/" class="subnavigation__link">Introduction</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file-apc-progress/" class="subnavigation__link">formFileApcProgress</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file-session-progress/" class="subnavigation__link">formFileSessionProgress</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file-upload-progress/" class="subnavigation__link">formFileUploadProgress</a>
+    </li>
+
+            
+        </ul>
+    </li>
+
+            
+        </ul>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item ">
+        <a href="../advanced/" class="subnavigation__link">Advanced</a>
+    </li>
+
+                                    
+                                </ul>
+                            </li>
+                        
+                    
+                
+            
+        </ul>
+    </div>
+
+                </div>
+            
+
+            
+            <div class="d-block d-sm-none">
+                <div class="component-selector">
+    
+    <h5 class="component-selector__subtitle">Find documentation…</h5>
+    <select class="form-control component-selector__control">
+        <option value="/">Overview</option>
+        <optgroup label="Components"></optgroup>
+    </select>
+</div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <header class="header">
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="col-6 offset-md-2">
+                <h1 class="header__title">
+                    Components
+
+                    
+                        <small class="header__subtitle">laminas-form</small>
+                    
+                </h1>
+            </div>
+
+            
+            <div class="col-4 text-sm-right">
+                
+                    
+
+                    <a href="#" class="header__link header__link--search" data-toggle="modal" data-target="#mkdocs_search_modal" title="Open search">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                    <a href="https://github.com/laminas/laminas-form/" class="header__link header__link--github" title="Go to repository of laminas-form">
+                        <i class="fa fa-github"></i> GitHub
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</header>
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                
+    
+
+    
+    
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+                
+                    <li class="toc__entry">
+                        <a href="#programmatic-form-creation" class="toc__link">Programmatic Form Creation</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#creation-via-factory" class="toc__link">Creation via Factory</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#factory-backed-form-extension" class="toc__link">Factory-backed Form Extension</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#validating-forms" class="toc__link">Validating Forms</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#hinting-to-the-input-filter" class="toc__link">Hinting to the Input Filter</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#binding-an-object" class="toc__link">Binding an object</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#rendering" class="toc__link">Rendering</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#taking-advantage-of-html5-input-attributes" class="toc__link">Taking advantage of HTML5 input attributes</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#validation-groups" class="toc__link">Validation Groups</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#using-annotations" class="toc__link">Using Annotations</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+            </div>
+            <div class="col-md-7 col-sm-12 content" role="main" data-spy="scroll" data-target=".toc">
+                
+                    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        
+            <li class="breadcrumb-item"><a href="">Overview</a></li>
+
+            
+                <li class="breadcrumb-item"><a href="..">laminas-form</a></li>
+
+                
+
+                <li class="breadcrumb-item active" aria-current="page">Quick Start</li>
+            
+        
+    </ol>
+</nav>
+
+
+
+
+
+
+    
+    
+
+    <h1 id="quick-start">Quick Start</h1>
+<p>Forms are composed of elements and fieldsets. At the bare minimum, each element
+or fieldset requires a name; in most situations, you'll also provide some
+attributes to hint to the view layer how it might render the item. The form
+itself generally composes an <code>InputFilter</code> &mdash; which you can also create
+directly in the form via a factory. Individual elements can hint as to what
+defaults to use when generating a related input for the input filter.</p>
+<p>Perform form validation by providing an array of data to the <code>setData()</code> method,
+and calling the <code>isValid()</code> method. If you want to simplify your work even more,
+you can bind an object to the form; on successful validation, it will be
+populated from the validated values.</p>
+<h2 id="programmatic-form-creation">Programmatic Form Creation</h2>
+<p>The following example demonstrates element, fieldset, and form creation, and how
+they are wired together.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Captcha;</span>
+<span class=x>use Laminas\Form\Element;</span>
+<span class=x>use Laminas\Form\Fieldset;</span>
+<span class=x>use Laminas\Form\Form;</span>
+<span class=x>use Laminas\InputFilter\Input;</span>
+<span class=x>use Laminas\InputFilter\InputFilter;</span>
+
+<span class=x>// Create a text element to capture the user name:</span>
+<span class=x>$name = new Element(&#39;name&#39;);</span>
+<span class=x>$name-&gt;setLabel(&#39;Your name&#39;);</span>
+<span class=x>$name-&gt;setAttributes([</span>
+<span class=x>    &#39;type&#39; =&gt; &#39;text&#39;,</span>
+<span class=x>]);</span>
+
+<span class=x>// Create a text element to capture the user email address:</span>
+<span class=x>$email = new Element\Email(&#39;email&#39;);</span>
+<span class=x>$email-&gt;setLabel(&#39;Your email address&#39;);</span>
+
+<span class=x>// Create a text element to capture the message subject:</span>
+<span class=x>$subject = new Element(&#39;subject&#39;);</span>
+<span class=x>$subject-&gt;setLabel(&#39;Subject&#39;);</span>
+<span class=x>$subject-&gt;setAttributes([</span>
+<span class=x>    &#39;type&#39; =&gt; &#39;text&#39;,</span>
+<span class=x>]);</span>
+
+<span class=x>// Create a textarea element to capture a message:</span>
+<span class=x>$message = new Element\Textarea(&#39;message&#39;);</span>
+<span class=x>$message-&gt;setLabel(&#39;Message&#39;);</span>
+
+<span class=x>// Create a CAPTCHA:</span>
+<span class=x>$captcha = new Element\Captcha(&#39;captcha&#39;);</span>
+<span class=x>$captcha-&gt;setCaptcha(new Captcha\Dumb());</span>
+<span class=x>$captcha-&gt;setLabel(&#39;Please verify you are human&#39;);</span>
+
+<span class=x>// Create a CSRF token:</span>
+<span class=x>$csrf = new Element\Csrf(&#39;security&#39;);</span>
+
+<span class=x>// Create a submit button:</span>
+<span class=x>$send = new Element(&#39;send&#39;);</span>
+<span class=x>$send-&gt;setValue(&#39;Submit&#39;);</span>
+<span class=x>$send-&gt;setAttributes([</span>
+<span class=x>    &#39;type&#39; =&gt; &#39;submit&#39;,</span>
+<span class=x>]);</span>
+
+<span class=x>// Create the form and add all elements:</span>
+<span class=x>$form = new Form(&#39;contact&#39;);</span>
+<span class=x>$form-&gt;add($name);</span>
+<span class=x>$form-&gt;add($email);</span>
+<span class=x>$form-&gt;add($subject);</span>
+<span class=x>$form-&gt;add($message);</span>
+<span class=x>$form-&gt;add($captcha);</span>
+<span class=x>$form-&gt;add($csrf);</span>
+<span class=x>$form-&gt;add($send);</span>
+
+<span class=x>// Create an input for the &quot;name&quot; element:</span>
+<span class=x>$nameInput = new Input(&#39;name&#39;);</span>
+
+<span class=x>/* ... configure the input, and create and configure all others ... */</span>
+
+<span class=x>// Create the input filter:</span>
+<span class=x>$inputFilter = new InputFilter();</span>
+
+<span class=x>// Attach inputs:</span>
+<span class=x>$inputFilter-&gt;add($nameInput);</span>
+<span class=x>/* ... */</span>
+
+<span class=x>// Attach the input filter to the form:</span>
+<span class=x>$form-&gt;setInputFilter($inputFilter);</span>
+</pre></div></p>
+<p>As a demonstration of fieldsets, let's alter the above slightly. We'll create
+two fieldsets, one for the sender information, and another for the message
+details.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>// Create the fieldset for sender details:</span>
+<span class=x>$sender = new Fieldset(&#39;sender&#39;);</span>
+<span class=x>$sender-&gt;add($name);</span>
+<span class=x>$sender-&gt;add($email);</span>
+
+<span class=x>// Create the fieldset for message details:</span>
+<span class=x>$details = new Fieldset(&#39;details&#39;);</span>
+<span class=x>$details-&gt;add($subject);</span>
+<span class=x>$details-&gt;add($message);</span>
+
+<span class=x>$form = new Form(&#39;contact&#39;);</span>
+<span class=x>$form-&gt;add($sender);</span>
+<span class=x>$form-&gt;add($details);</span>
+<span class=x>$form-&gt;add($captcha);</span>
+<span class=x>$form-&gt;add($csrf);</span>
+<span class=x>$form-&gt;add($send);</span>
+</pre></div></p>
+<p>This manual approach gives maximum flexibility over form creation; however, it
+comes at the expense of verbosity. In the next section, we'll look at another
+approach.</p>
+<h2 id="creation-via-factory">Creation via Factory</h2>
+<p>You can create the entire form and input filter at once using the <code>Factory</code>.
+This is particularly nice if you want to store your forms as pure configuration;
+you can then pass the configuration to the factory and be done.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
+<span class=x>use Laminas\Form\Factory;</span>
+<span class=x>use Laminas\Hydrator\ArraySerializable;</span>
+
+<span class=x>$factory = new Factory();</span>
+<span class=x>$form    = $factory-&gt;createForm([</span>
+<span class=x>    &#39;hydrator&#39; =&gt; ArraySerializable::class,</span>
+<span class=x>    &#39;elements&#39; =&gt; [</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;name&#39;,</span>
+<span class=x>                &#39;options&#39; =&gt; [</span>
+<span class=x>                    &#39;label&#39; =&gt; &#39;Your name&#39;,</span>
+<span class=x>                ],</span>
+<span class=x>                &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;type&#39; =&gt; Element\Email::class,</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;email&#39;,</span>
+<span class=x>                &#39;options&#39; =&gt; [</span>
+<span class=x>                    &#39;label&#39; =&gt; &#39;Your email address&#39;,</span>
+<span class=x>                ]</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;subject&#39;,</span>
+<span class=x>                &#39;options&#39; =&gt; [</span>
+<span class=x>                    &#39;label&#39; =&gt; &#39;Subject&#39;,</span>
+<span class=x>                ],</span>
+<span class=x>                &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;type&#39; =&gt; Element\Textarea::class,</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;message&#39;,</span>
+<span class=x>                &#39;options&#39; =&gt; [</span>
+<span class=x>                    &#39;label&#39; =&gt; &#39;Message&#39;,</span>
+<span class=x>                ]</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;type&#39; =&gt; Element\Captcha::class,</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;captcha&#39;,</span>
+<span class=x>                &#39;options&#39; =&gt; [</span>
+<span class=x>                    &#39;label&#39; =&gt; &#39;Please verify you are human.&#39;,</span>
+<span class=x>                    &#39;captcha&#39; =&gt; [</span>
+<span class=x>                        &#39;class&#39; =&gt; &#39;Dumb&#39;,</span>
+<span class=x>                    ],</span>
+<span class=x>                ],</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;type&#39; =&gt; Element\Csrf::class,</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;security&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;send&#39;,</span>
+<span class=x>                &#39;type&#39;  =&gt; &#39;Submit&#39;,</span>
+<span class=x>                &#39;attributes&#39; =&gt; [</span>
+<span class=x>                    &#39;value&#39; =&gt; &#39;Submit&#39;,</span>
+<span class=x>                ],</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>    ],</span>
+
+<span class=x>    /* If we had fieldsets, they&#39;d go here; fieldsets contain</span>
+<span class=x>     * &quot;elements&quot; and &quot;fieldsets&quot; keys, and potentially a &quot;type&quot;</span>
+<span class=x>     * key indicating the specific FieldsetInterface</span>
+<span class=x>     * implementation to use.</span>
+<span class=x>    &#39;fieldsets&#39; =&gt; [</span>
+<span class=x>    ],</span>
+<span class=x>     */</span>
+
+<span class=x>    // Configuration to pass on to</span>
+<span class=x>    // Laminas\InputFilter\Factory::createInputFilter()</span>
+<span class=x>    &#39;input_filter&#39; =&gt; [</span>
+<span class=x>        /* ... */</span>
+<span class=x>    ],</span>
+<span class=x>]);</span>
+</pre></div></p>
+<p>If we wanted to use fieldsets, as we demonstrated in the previous example, we
+could do the following:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
+<span class=x>use Laminas\Form\Factory;</span>
+<span class=x>use Laminas\Hydrator\ArraySerializable;</span>
+
+<span class=x>$factory = new Factory();</span>
+<span class=x>$form    = $factory-&gt;createForm([</span>
+<span class=x>    &#39;hydrator&#39;  =&gt; ArraySerializable::class,</span>
+
+<span class=x>    // Top-level fieldsets to define:</span>
+<span class=x>    &#39;fieldsets&#39; =&gt; [</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;sender&#39;,</span>
+<span class=x>                &#39;elements&#39; =&gt; [</span>
+<span class=x>                    [</span>
+<span class=x>                        &#39;spec&#39; =&gt; [</span>
+<span class=x>                            &#39;name&#39; =&gt; &#39;name&#39;,</span>
+<span class=x>                            &#39;options&#39; =&gt; [</span>
+<span class=x>                                &#39;label&#39; =&gt; &#39;Your name&#39;,</span>
+<span class=x>                            ],</span>
+<span class=x>                            &#39;type&#39; =&gt; &#39;Text&#39;</span>
+<span class=x>                        ],</span>
+<span class=x>                    ],</span>
+<span class=x>                    [</span>
+<span class=x>                        &#39;spec&#39; =&gt; [</span>
+<span class=x>                            &#39;type&#39; =&gt; Element\Email::class,</span>
+<span class=x>                            &#39;name&#39; =&gt; &#39;email&#39;,</span>
+<span class=x>                            &#39;options&#39; =&gt; [</span>
+<span class=x>                                &#39;label&#39; =&gt; &#39;Your email address&#39;,</span>
+<span class=x>                            ],</span>
+<span class=x>                        ],</span>
+<span class=x>                    ],</span>
+<span class=x>                ],</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;details&#39;,</span>
+<span class=x>                &#39;elements&#39; =&gt; [</span>
+<span class=x>                    [</span>
+<span class=x>                        &#39;spec&#39; =&gt; [</span>
+<span class=x>                            &#39;name&#39; =&gt; &#39;subject&#39;,</span>
+<span class=x>                            &#39;options&#39; =&gt; [</span>
+<span class=x>                                &#39;label&#39; =&gt; &#39;Subject&#39;,</span>
+<span class=x>                            ],</span>
+<span class=x>                            &#39;type&#39; =&gt; &#39;Text&#39;,</span>
+<span class=x>                        ],</span>
+<span class=x>                    ],</span>
+<span class=x>                    [</span>
+<span class=x>                        &#39;spec&#39; =&gt; [</span>
+<span class=x>                            &#39;name&#39; =&gt; &#39;message&#39;,</span>
+<span class=x>                            &#39;type&#39; =&gt; Element\Textarea::class,</span>
+<span class=x>                            &#39;options&#39; =&gt; [</span>
+<span class=x>                                &#39;label&#39; =&gt; &#39;Message&#39;,</span>
+<span class=x>                            ],</span>
+<span class=x>                        ],</span>
+<span class=x>                    ],</span>
+<span class=x>                ],</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>    ],</span>
+
+<span class=x>    // You can specify an &quot;elements&quot; key explicitly:</span>
+<span class=x>    &#39;elements&#39; =&gt; [</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>                &#39;type&#39; =&gt; Element\Captcha::class,</span>
+<span class=x>                &#39;name&#39; =&gt; &#39;captcha&#39;,</span>
+<span class=x>                &#39;options&#39; =&gt; [</span>
+<span class=x>                    &#39;label&#39; =&gt; &#39;Please verify you are human.&#39;,</span>
+<span class=x>                    &#39;captcha&#39; =&gt; [</span>
+<span class=x>                        &#39;class&#39; =&gt; &#39;Dumb&#39;,</span>
+<span class=x>                    ],</span>
+<span class=x>                ],</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>        [</span>
+<span class=x>            &#39;spec&#39; =&gt; [</span>
+<span class=x>            &#39;type&#39; =&gt; Element\Csrf::class,</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;security&#39;,</span>
+<span class=x>        ],</span>
+<span class=x>    ],</span>
+
+<span class=x>    // But entries without string keys are also considered elements:</span>
+<span class=x>    [</span>
+<span class=x>        &#39;spec&#39; =&gt; [</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;send&#39;,</span>
+<span class=x>            &#39;type&#39;  =&gt; &#39;Submit&#39;,</span>
+<span class=x>            &#39;attributes&#39; =&gt; [</span>
+<span class=x>                &#39;value&#39; =&gt; &#39;Submit&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>        ],</span>
+<span class=x>    ],</span>
+
+<span class=x>    // Configuration to pass on to</span>
+<span class=x>    // Laminas\InputFilter\Factory::createInputFilter()</span>
+<span class=x>    &#39;input_filter&#39; =&gt; [</span>
+<span class=x>        /* ... */</span>
+<span class=x>    ],</span>
+<span class=x>]);</span>
+</pre></div></p>
+<p>Note that the chief difference is nesting; otherwise, the information is
+basically the same.</p>
+<p>The chief benefits to using the <code>Factory</code> are allowing you to store definitions
+in configuration, and usage of significant whitespace.</p>
+<h2 id="factory-backed-form-extension">Factory-backed Form Extension</h2>
+<p>The default <code>Form</code> implementation is backed by the <code>Factory</code>. This allows you to
+extend it, and define your form internally. This has the benefit of allowing a
+mixture of programmatic and factory-backed creation, as well as defining a form
+for re-use in your application.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>namespace Contact;</span>
+
+<span class=x>use Laminas\Captcha\AdapterInterface as CaptchaAdapter;</span>
+<span class=x>use Laminas\Form\Element;</span>
+<span class=x>use Laminas\Form\Form;</span>
+
+<span class=x>class ContactForm extends Form</span>
+<span class=x>{</span>
+<span class=x>    protected $captcha;</span>
+
+<span class=x>    public function __construct(CaptchaAdapter $captcha)</span>
+<span class=x>    {</span>
+<span class=x>        parent::__construct();</span>
+
+<span class=x>        $this-&gt;captcha = $captcha;</span>
+
+<span class=x>        // add() can take an Element/Fieldset instance, or a specification, from</span>
+<span class=x>        // which the appropriate object will be built.</span>
+<span class=x>        $this-&gt;add([</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;name&#39;,</span>
+<span class=x>            &#39;options&#39; =&gt; [</span>
+<span class=x>                &#39;label&#39; =&gt; &#39;Your name&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>            &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
+<span class=x>        ]);</span>
+<span class=x>        $this-&gt;add([</span>
+<span class=x>            &#39;type&#39; =&gt; Element\Email::class,</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;email&#39;,</span>
+<span class=x>            &#39;options&#39; =&gt; [</span>
+<span class=x>                &#39;label&#39; =&gt; &#39;Your email address&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>        ]);</span>
+<span class=x>        $this-&gt;add([</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;subject&#39;,</span>
+<span class=x>            &#39;options&#39; =&gt; [</span>
+<span class=x>                &#39;label&#39; =&gt; &#39;Subject&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>            &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
+<span class=x>        ]);</span>
+<span class=x>        $this-&gt;add([</span>
+<span class=x>            &#39;type&#39; =&gt; Element\Textarea::class,</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;message&#39;,</span>
+<span class=x>            &#39;options&#39; =&gt; [</span>
+<span class=x>                &#39;label&#39; =&gt; &#39;Message&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>        ]);</span>
+<span class=x>        $this-&gt;add([</span>
+<span class=x>            &#39;type&#39; =&gt; Element\Captcha::class,</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;captcha&#39;,</span>
+<span class=x>            &#39;options&#39; =&gt; [</span>
+<span class=x>                &#39;label&#39; =&gt; &#39;Please verify you are human.&#39;,</span>
+<span class=x>                &#39;captcha&#39; =&gt; $this-&gt;captcha,</span>
+<span class=x>            ],</span>
+<span class=x>        ]);</span>
+<span class=x>        $this-&gt;add(new Element\Csrf(&#39;security&#39;));</span>
+<span class=x>        $this-&gt;add([</span>
+<span class=x>            &#39;name&#39; =&gt; &#39;send&#39;,</span>
+<span class=x>            &#39;type&#39;  =&gt; &#39;Submit&#39;,</span>
+<span class=x>            &#39;attributes&#39; =&gt; [</span>
+<span class=x>                &#39;value&#39; =&gt; &#39;Submit&#39;,</span>
+<span class=x>            ],</span>
+<span class=x>        ]);</span>
+
+<span class=x>        // We could also define the input filter here, or</span>
+<span class=x>        // lazy-create it in the getInputFilter() method.</span>
+<span class=x>    }</span>
+<span class=x>}</span>
+</pre></div></p>
+<p>In the above example, elements are added in the constructor. This is done to
+allow altering and/or configuring either the form or input filter factory
+instances, which could then have bearing on how elements, inputs, etc. are
+created. In this case, it also allows injection of the CAPTCHA adapter, allowing
+us to configure it elsewhere in our application and inject it into the form.</p>
+<h2 id="validating-forms">Validating Forms</h2>
+<p>Validating forms requires three steps. First, the form must have an input filter
+attached. Second, you must inject the data to validate into the form. Third, you
+validate the form. If invalid, you can retrieve the error messages, if any.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>// assuming $captcha is an instance of some Laminas\Captcha\AdapterInterface:</span>
+<span class=x>$form = new Contact\ContactForm($captcha);</span>
+
+<span class=x>// If the form doesn&#39;t define an input filter by default, inject one.</span>
+<span class=x>$form-&gt;setInputFilter(new Contact\ContactFilter());</span>
+
+<span class=x>// Get the data. In an MVC application, you might try:</span>
+<span class=x>$data = $request-&gt;getPost();  // for POST data</span>
+<span class=x>$data = $request-&gt;getQuery(); // for GET (or query string) data</span>
+
+<span class=x>$form-&gt;setData($data);</span>
+
+<span class=x>// Validate the form</span>
+<span class=x>if ($form-&gt;isValid()) {</span>
+<span class=x>    $validatedData = $form-&gt;getData();</span>
+<span class=x>} else {</span>
+<span class=x>    $messages = $form-&gt;getMessages();</span>
+<span class=x>}</span>
+</pre></div></p>
+<blockquote>
+<h3>Always populate select elements with options</h3>
+<p>Always ensure that options for a select element are populated <em>prior</em> to
+validation; otherwise, the element will fail validation, and you will receive
+a <code>NotInArray</code> error message.</p>
+<p>If you are populating the options from a database or other data source, make
+sure this is done prior to validation. Alternately, you may disable the
+<code>InArray</code> validator programmatically prior to validation:</p>
+<pre class=codehilite><code class=language-php>
+$element-&gt;setDisableInArrayValidator(true);
+</code></pre>
+</blockquote>
+<p>You can get the raw data if you want, by accessing the composed input filter.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$filter = $form-&gt;getInputFilter();</span>
+
+<span class=x>$rawValues    = $filter-&gt;getRawValues();</span>
+<span class=x>$nameRawValue = $filter-&gt;getRawValue(&#39;name&#39;);</span>
+</pre></div></p>
+<h2 id="hinting-to-the-input-filter">Hinting to the Input Filter</h2>
+<p>Often, you'll create elements that you expect to behave in the same way on each
+usage, and for which you'll want specific filters or validation as well. Since
+the input filter is a separate object, how can you achieve these latter points?</p>
+<p>Because the default form implementation composes a factory, and the default
+factory composes an input filter factory, you can have your elements and/or
+fieldsets hint to the input filter. If no input or input filter is provided in
+the input filter for that element, these hints will be retrieved and used to
+create them.</p>
+<p>To do so, one of the following must occur. For elements, they must implement
+<code>Laminas\InputFilter\InputProviderInterface</code>, which defines a
+<code>getInputSpecification()</code> method; for fieldsets (and, by extension, forms), they
+must implement <code>Laminas\InputFilter\InputFilterProviderInterface</code>, which defines a
+<code>getInputFilterSpecification()</code> method.</p>
+<p>In the case of an element, the <code>getInputSpecification()</code> method should return
+data to be used by the input filter factory to create an input. Every HTML5
+(<code>email</code>, <code>url</code>, <code>color</code>, etc.) element has a built-in element that uses this
+logic. For instance, here is how the <code>Laminas\Form\Element\Color</code> element is
+defined:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>namespace Laminas\Form\Element;</span>
+
+<span class=x>use Laminas\Filter;</span>
+<span class=x>use Laminas\Form\Element;</span>
+<span class=x>use Laminas\InputFilter\InputProviderInterface;</span>
+<span class=x>use Laminas\Validator\Regex as RegexValidator;</span>
+<span class=x>use Laminas\Validator\ValidatorInterface;</span>
+
+<span class=x>class Color extends Element implements InputProviderInterface</span>
+<span class=x>{</span>
+<span class=x>    /**</span>
+<span class=x>     * Seed attributes</span>
+<span class=x>     *</span>
+<span class=x>     * @var array</span>
+<span class=x>     */</span>
+<span class=x>    protected $attributes = [</span>
+<span class=x>        &#39;type&#39; =&gt; &#39;color&#39;,</span>
+<span class=x>    ];</span>
+
+<span class=x>    /**</span>
+<span class=x>     * @var ValidatorInterface</span>
+<span class=x>     */</span>
+<span class=x>    protected $validator;</span>
+
+<span class=x>    /**</span>
+<span class=x>     * Get validator</span>
+<span class=x>     *</span>
+<span class=x>     * @return ValidatorInterface</span>
+<span class=x>     */</span>
+<span class=x>    protected function getValidator()</span>
+<span class=x>    {</span>
+<span class=x>        if (null === $this-&gt;validator) {</span>
+<span class=x>            $this-&gt;validator = new RegexValidator(&#39;/^#[0-9a-fA-F]{6}$/&#39;);</span>
+<span class=x>        }</span>
+<span class=x>        return $this-&gt;validator;</span>
+<span class=x>    }</span>
+
+<span class=x>    /**</span>
+<span class=x>     * Provide default input rules for this element</span>
+<span class=x>     *</span>
+<span class=x>     * Attaches an email validator.</span>
+<span class=x>     *</span>
+<span class=x>     * @return array</span>
+<span class=x>     */</span>
+<span class=x>    public function getInputSpecification()</span>
+<span class=x>    {</span>
+<span class=x>        return [</span>
+<span class=x>            &#39;name&#39; =&gt; $this-&gt;getName(),</span>
+<span class=x>            &#39;required&#39; =&gt; true,</span>
+<span class=x>            &#39;filters&#39; =&gt; [</span>
+<span class=x>                [&#39;name&#39; =&gt; Filter\StringTrim::class],</span>
+<span class=x>                [&#39;name&#39; =&gt; Filter\StringToLower::class],</span>
+<span class=x>            ],</span>
+<span class=x>            &#39;validators&#39; =&gt; [</span>
+<span class=x>                $this-&gt;getValidator(),</span>
+<span class=x>            ],</span>
+<span class=x>        ];</span>
+<span class=x>    }</span>
+<span class=x>}</span>
+</pre></div></p>
+<p>The above hints to the input filter to create and attach an input named after
+the element, marking it as required, giving it <code>StringTrim</code> and <code>StringToLower</code>
+filters, and defining a <code>Regex</code> validator. Note that you can either rely on the
+input filter to create filters and validators, or directly instantiate them.</p>
+<p>For fieldsets, you do very similarly; the difference is that
+<code>getInputFilterSpecification()</code> must return configuration for an input filter.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>namespace Contact\Form;</span>
+
+<span class=x>use Laminas\Filter;</span>
+<span class=x>use Laminas\Form\Fieldset;</span>
+<span class=x>use Laminas\InputFilter\InputFilterProviderInterface;</span>
+<span class=x>use Laminas\Validator;</span>
+
+<span class=x>class SenderFieldset extends Fieldset implements InputFilterProviderInterface</span>
+<span class=x>{</span>
+<span class=x>    public function getInputFilterSpecification()</span>
+<span class=x>    {</span>
+<span class=x>        return [</span>
+<span class=x>            &#39;name&#39; =&gt; [</span>
+<span class=x>                &#39;required&#39; =&gt; true,</span>
+<span class=x>                &#39;filters&#39;  =&gt; [</span>
+<span class=x>                    [&#39;name&#39; =&gt; Filter\StringTrim::class],</span>
+<span class=x>                ],</span>
+<span class=x>                &#39;validators&#39; =&gt; [</span>
+<span class=x>                    [</span>
+<span class=x>                        &#39;name&#39; =&gt; Validator\StringLength::class,</span>
+<span class=x>                        &#39;options&#39; =&gt; [</span>
+<span class=x>                            &#39;min&#39; =&gt; 3,</span>
+<span class=x>                            &#39;max&#39; =&gt; 256</span>
+<span class=x>                        ],</span>
+<span class=x>                    ],</span>
+<span class=x>                ],</span>
+<span class=x>            ],</span>
+<span class=x>            &#39;email&#39; =&gt; [</span>
+<span class=x>                &#39;required&#39; =&gt; true,</span>
+<span class=x>                &#39;filters&#39;  =&gt; [</span>
+<span class=x>                    [&#39;name&#39; =&gt; Filter\StringTrim::class],</span>
+<span class=x>                ],</span>
+<span class=x>                &#39;validators&#39; =&gt; [</span>
+<span class=x>                    new Validator\EmailAddress(),</span>
+<span class=x>                ],</span>
+<span class=x>            ],</span>
+<span class=x>        ];</span>
+<span class=x>    }</span>
+<span class=x>}</span>
+</pre></div></p>
+<p>Specifications are a great way to make forms, fieldsets, and elements re-usable
+trivially in your applications. In fact, the <code>Captcha</code> and <code>Csrf</code> elements
+define specifications in order to ensure they can work without additional user
+configuration!</p>
+<blockquote>
+<h3>Use the most specific input type</h3>
+<p>If you set custom input filter specification either in
+<code>getInputSpecification()</code> or in <code>getInputFilterSpecification()</code>, the
+<code>Laminas\InputFilter\InputInterface</code> set for that specific field is reset to the
+default <code>Laminas\InputFilter\Input</code>.</p>
+<p>Some form elements may need a particular input filter, like
+<code>Laminas\Form\Element\File</code>: in this case it's mandatory to specify the <code>type</code>
+key in your custom specification to match the original one (e.g., for the
+file element, use <code>Laminas\InputFilter\FileInput</code>).</p>
+</blockquote>
+<h2 id="binding-an-object">Binding an object</h2>
+<p>As noted in the introduction, forms bridge the domain model and the view layer.
+Let's see that in action.</p>
+<p>When you <code>bind()</code> an object to the form, the following happens:</p>
+<ul>
+<li>The composed <code>Hydrator</code> calls <code>extract()</code> on the object, and uses the values
+  returned, if any, to populate the <code>value</code> attributes of all elements. If a
+  form contains a fieldset that itself contains another fieldset, the form will
+  recursively extract the values.</li>
+<li>When <code>isValid()</code> is called, if <code>setData()</code> has not been previously set, the
+  form uses the composed <code>Hydrator</code> to extract values from the object, and uses
+  those during validation.</li>
+<li>If <code>isValid()</code> is successful (and the <code>bindOnValidate</code> flag is enabled, which
+  is true by default), then the <code>Hydrator</code> will be passed the validated values
+  to use to hydrate the bound object. (If you do not want this behavior, call
+  <code>setBindOnValidate(FormInterface::BIND_MANUAL)</code>).</li>
+<li>If the object implements <code>Laminas\InputFilter\InputFilterAwareInterface</code>, the
+  input filter it composes will be used instead of the one composed on the form.</li>
+</ul>
+<p>This is easier to understand with an example.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$contact = new ArrayObject;</span>
+<span class=x>$contact[&#39;subject&#39;] = &#39;[Contact Form] &#39;;</span>
+<span class=x>$contact[&#39;message&#39;] = &#39;Type your message here&#39;;</span>
+
+<span class=x>$form = new Contact\ContactForm;</span>
+
+<span class=x>$form-&gt;bind($contact); // form now has default values for</span>
+<span class=x>                       // &#39;subject&#39; and &#39;message&#39;</span>
+
+<span class=x>$data = [</span>
+<span class=x>    &#39;name&#39;    =&gt; &#39;John Doe&#39;,</span>
+<span class=x>    &#39;email&#39;   =&gt; &#39;j.doe@example.tld&#39;,</span>
+<span class=x>    &#39;subject&#39; =&gt; &#39;[Contact Form] \&#39;sup?&#39;,</span>
+<span class=x>];</span>
+<span class=x>$form-&gt;setData($data);</span>
+
+<span class=x>if ($form-&gt;isValid()) {</span>
+<span class=x>    // $contact now has the following structure:</span>
+<span class=x>    // [</span>
+<span class=x>    //     &#39;name&#39;    =&gt; &#39;John Doe&#39;,</span>
+<span class=x>    //     &#39;email&#39;   =&gt; &#39;j.doe@example.tld&#39;,</span>
+<span class=x>    //     &#39;subject&#39; =&gt; &#39;[Contact Form] \&#39;sup?&#39;,</span>
+<span class=x>    //     &#39;message&#39; =&gt; &#39;Type your message here&#39;,</span>
+<span class=x>    // ]</span>
+<span class=x>    // But is an ArrayObject instance!</span>
+<span class=x>}</span>
+</pre></div></p>
+<p>When an object is bound to the form, calling <code>getData()</code> will return that object
+by default. If you want to return an associative array instead, you can pass the
+<code>FormInterface::VALUES_AS_ARRAY</code> flag to the method.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\FormInterface;</span>
+<span class=x>$data = $form-&gt;getData(FormInterface::VALUES_AS_ARRAY);</span>
+</pre></div></p>
+<p>Laminas ships several standard <a href="https://docs.laminas.dev/laminas-hydrator/">hydrators</a>;
+you can create custom hydrators by implementing <code>Laminas\Hydrator\HydratorInterface</code>,
+which looks like this:</p>
+<p> <div class=codehilite><pre><span></span><span class=nx>namespace</span> <span class=nx>Laminas</span><span class=err>\</span><span class=nx>Hydrator</span><span class=p>;</span>
+
+<span class=kr>interface</span> <span class=nx>HydratorInterface</span>
+<span class=p>{</span>
+    <span class=cm>/** @return array */</span>
+    <span class=kr>public</span> <span class=kd>function</span> <span class=nx>extract</span><span class=p>(</span><span class=nx>$object</span><span class=p>);</span>
+    <span class=kr>public</span> <span class=kd>function</span> <span class=nx>hydrate</span><span class=p>(</span><span class=nx>array</span> <span class=nx>$data</span><span class=p>,</span> <span class=nx>$object</span><span class=p>);</span>
+<span class=p>}</span>
+</pre></div></p>
+<h2 id="rendering">Rendering</h2>
+<p>As noted previously, forms are meant to bridge the domain model and view layer.
+We've discussed the domain model binding, but what about the view?</p>
+<p>The form component ships a set of form-specific view helpers. These accept the
+various form objects, and introspect them in order to generate markup.
+Typically, they will inspect the attributes, but in special cases, they may look
+at other properties and composed objects.</p>
+<p>When preparing to render, you will generally want to call <code>prepare()</code>. This
+method ensures that certain injections are done, and ensures that elements
+nested in fieldsets and collections generate names in array notation (e.g.,
+<code>scoped[array][notation]</code>).</p>
+<p>The base view helpers used everywhere are <code>Form</code>, <code>FormElement</code>, <code>FormLabel</code>,
+and <code>FormElementErrors</code>. Let's use them to display the contact form.</p>
+<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
+<span class=c1>// within a view script</span>
+<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
+
+<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+
+<span class=c1>// Set the method attribute for the form</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+
+<span class=c1>// Get the form label plugin</span>
+<span class=nv>$formLabel</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>plugin</span><span class=p>(</span><span class=s1>&#39;formLabel&#39;</span><span class=p>);</span>
+
+<span class=c1>// Render the opening tag</span>
+<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
+<span class=cp>?&gt;</span><span class=x></span>
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=cp>&lt;?php</span>
+    <span class=nv>$name</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$name</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formInput</span><span class=p>(</span><span class=nv>$name</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$name</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
+<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=cp>&lt;?php</span>
+    <span class=nv>$subject</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;subject&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$subject</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formInput</span><span class=p>(</span><span class=nv>$subject</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$subject</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
+<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=cp>&lt;?php</span>
+    <span class=nv>$message</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$message</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formTextarea</span><span class=p>(</span><span class=nv>$message</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$message</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
+<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=cp>&lt;?php</span>
+    <span class=nv>$captcha</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;captcha&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$captcha</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formCaptcha</span><span class=p>(</span><span class=nv>$captcha</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$captcha</span><span class=p>);</span>
+    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
+<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+
+<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;security&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;send&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+
+<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>()</span> <span class=cp>?&gt;</span><span class=x></span>
+</pre></div></p>
+<p>There are a few things to note about this. First, to prevent confusion in IDEs
+and editors when syntax highlighting, we use helpers to both open and close the
+form and label tags. Second, there's a lot of repetition happening here; we
+could easily create a partial view script or a composite helper to reduce
+boilerplate. Third, note that not all elements are created equal &mdash; the
+CSRF and submit elements don't need labels or error messages. Finally, note that
+the <code>FormElement</code> helper tries to do the right thing &mdash; it delegates actual
+markup generation to other view helpers. However, it can only guess what
+specific form helper to delegate to based on the list it has. If you introduce
+new form view helpers, you'll need to extend the <code>FormElement</code> helper, or create
+your own.</p>
+<p>Following the example above, your view files can quickly become long and
+repetitive to write. While we do not currently provide a single-line form view
+helper (as this reduces the form customization), we do provide convenience
+wrappers around emitting individual elements via the <code>FormRow</code> view helper, and
+collections of elements (<code>Laminas\Form\Element\Collection</code>, <code>Laminas\Form\Fieldset</code>, or
+<code>Laminas\Form\Form</code>) via the <code>FormCollection</code> view helper (which, internally,
+iterates the collection and calls <code>FormRow</code> for each element, recursively
+following collections).</p>
+<p>The <code>FormRow</code> view helper automatically renders a label (if present), the
+element itself using the <code>FormElement</code> helper, as well as any errors that could
+arise. Here is the previous form, rewritten to take advantage of this helper:</p>
+<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
+<span class=c1>// within a view script</span>
+<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
+
+<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+
+<span class=c1>// Set the method attribute for the form</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+
+<span class=c1>// Render the opening tag</span>
+<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
+<span class=cp>?&gt;</span><span class=x></span>
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+<span class=x>&lt;/div&gt;</span>
+
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;subject&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+<span class=x>&lt;/div&gt;</span>
+
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+<span class=x>&lt;/div&gt;</span>
+
+<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
+<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;captcha&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+<span class=x>&lt;/div&gt;</span>
+
+<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;security&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;send&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+
+<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>()</span> <span class=cp>?&gt;</span><span class=x></span>
+</pre></div></p>
+<p>Note that <code>FormRow</code> helper automatically prepends the label. If you want it to
+be rendered after the element itself, you can pass an optional parameter to the
+<code>FormRow</code> view helper :</p>
+<p> <div class=codehilite><pre><span></span><span class=nt>&lt;div</span> <span class=na>class=</span><span class=s>&quot;form_element&quot;</span><span class=nt>&gt;</span>
+    <span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>),</span> <span class=s1>&#39;append&#39;</span><span class=p>)</span> <span class=cp>?&gt;</span>
+<span class=nt>&lt;/div&gt;</span>
+</pre></div></p>
+<p>As noted previously, the <code>FormCollection</code> view helper will iterate any
+collection &mdash; including <code>Laminas\Form\Element\Collection</code>, fieldsets, and
+forms &mdash; emitting each element discovered using <code>FormRow</code>. <code>FormCollection</code>
+<em>does not render fieldset or form tags</em>; you will be responsible for emitting
+those yourself.</p>
+<p>The above examples can now be rewritten again:</p>
+<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
+<span class=c1>// within a view script</span>
+<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
+
+<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+
+<span class=c1>// Set the method attribute for the form</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+
+<span class=c1>// Render the opening tag</span>
+<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
+<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formCollection</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
+<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
+</pre></div></p>
+<p>Finally, the <code>Form</code> view helper can optionally accept a <code>Laminas\Form\Form</code>
+instance; if provided, it will prepare the form, iterate it, and render all
+elements using either <code>FormRow</code> (for non-collection elements) or
+<code>FormCollection</code> (for collections and fieldsets):</p>
+<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
+<span class=c1>// within a view script</span>
+<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
+
+<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+
+<span class=c1>// Set the method attribute for the form</span>
+<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+
+<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
+</pre></div></p>
+<p>One important point to note about the last two examples: while they greatly
+simplifies emitting the form, you also lose most customization opportunities.
+The above, for example, will not include the <code>&lt;div class="form_element"&gt;&lt;/div&gt;</code>
+wrappers from the previous examples! As such, you will generally want to use
+this facility only when prototyping.</p>
+<h2 id="taking-advantage-of-html5-input-attributes">Taking advantage of HTML5 input attributes</h2>
+<p>HTML5 brings a lot of exciting features, one of them being simplified client
+form validations. laminas-form provides elements corresponding to the various HTML5
+elements, specifying the client-side attributes required by them. Additionally,
+each implements <code>InputProviderInterface</code>, ensuring that your input filter will
+have reasonable default validation and filtering rules that mimic the
+client-side validations.</p>
+<blockquote>
+<h3>Always validate server-side</h3>
+<p>Although client validation is nice from a user experience point of view, it
+must be used in addition to server-side validation, as client validation can
+be easily bypassed.</p>
+</blockquote>
+<h2 id="validation-groups">Validation Groups</h2>
+<p>Sometimes you want to validate only a subset of form elements. As an example,
+let's say we're re-using our contact form over a web service; in this case, the
+<code>Csrf</code>, <code>Captcha</code>, and submit button elements are not of interest, and shouldn't
+be validated.</p>
+<p>laminas-form provides a proxy method to the underlying <code>InputFilter</code>'s
+<code>setValidationGroup()</code> method, allowing us to perform this operation.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$form-&gt;setValidationGroup(&#39;name&#39;, &#39;email&#39;, &#39;subject&#39;, &#39;message&#39;);</span>
+<span class=x>$form-&gt;setData($data);</span>
+<span class=x>if ($form-&gt;isValid()) {</span>
+<span class=x>    // Contains only the &quot;name&quot;, &quot;email&quot;, &quot;subject&quot;, and &quot;message&quot; values</span>
+<span class=x>    $data = $form-&gt;getData();</span>
+<span class=x>}</span>
+</pre></div></p>
+<p>If you later want to reset the form to validate all elements, pass the
+<code>FormInterface::VALIDATE_ALL</code> flag to the <code>setValidationGroup()</code> method:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\FormInterface;</span>
+<span class=x>$form-&gt;setValidationGroup(FormInterface::VALIDATE_ALL);</span>
+</pre></div></p>
+<p>When your form contains nested fieldsets, you can use an array notation to
+validate only a subset of the fieldsets :</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$form-&gt;setValidationGroup([&#39;profile&#39; =&gt; [</span>
+<span class=x>    &#39;firstname&#39;,</span>
+<span class=x>    &#39;lastname&#39;,</span>
+<span class=x>] ]);</span>
+
+<span class=x>$form-&gt;setData($data);</span>
+<span class=x>if ($form-&gt;isValid()) {</span>
+<span class=x>    // Contains only the &quot;firstname&quot; and &quot;lastname&quot; values from the</span>
+<span class=x>    // &quot;profile&quot; fieldset</span>
+<span class=x>    $data = $form-&gt;getData();</span>
+<span class=x>}</span>
+</pre></div></p>
+<h2 id="using-annotations">Using Annotations</h2>
+<p>Creating a complete form solution can often be tedious: you'll create a domain
+model object, an input filter for validating it, a form object for providing a
+representation for it, and potentially a hydrator for mapping the form elements
+and fieldsets to the domain model. Wouldn't it be nice to have a central place
+to define all of these?</p>
+<p>Annotations allow us to solve this problem. You can define the following
+behaviors with the shipped annotations in laminas-form:</p>
+<ul>
+<li><code>AllowEmpty</code>: mark an input as allowing an empty value. This annotation does
+  not require a value.</li>
+<li><code>Attributes</code>: specify the form, fieldset, or element attributes. This
+  annotation requires an associative array of values, in a JSON object format:
+  <code>@Attributes({"class":"laminas_form","type":"text"})</code>.</li>
+<li><code>ComposedObject</code>: specify another object with annotations to parse. Typically,
+  this is used if a property references another object, which will then be added
+  to your form as an additional fieldset.  Expects a string value indicating the
+  class for the object being composed: <code>@ComposedObject("Namespace\Model\ComposedObject")</code>;
+  or an array to compose a collection:
+  <code>@ComposedObject({ "target_object":"Namespace\Model\ComposedCollection", "is_collection":"true", "options":{"count":2}})</code>;
+  <code>target_object</code> is the element to compose, <code>is_collection</code> flags this as a
+  collection, and <code>options</code> can take an array of options to pass into the
+  collection.</li>
+<li><code>ErrorMessage</code>: specify the error message to return for an element in the case
+  of a failed validation. Expects a string value.</li>
+<li><code>Exclude</code>: mark a property to exclude from the form or fieldset. This
+  annotation does not require a value.</li>
+<li><code>Filter</code>: provide a specification for a filter to use on a given element.
+  Expects an associative array of values, with a "name" key pointing to a string
+  filter name, and an "options" key pointing to an associative array of filter
+  options for the constructor: <code>@Filter({"name": "Boolean", "options": {"casting":true}})</code>.
+  This annotation may be specified multiple times.</li>
+<li><code>Flags</code>: flags to pass to the fieldset or form composing an element or
+  fieldset; these are usually used to specify the name or priority. The
+  annotation expects an associative array: <code>@Flags({"priority": 100})</code>.</li>
+<li><code>Hydrator</code>: specify the hydrator class to use for this given form or fieldset.
+  A string value is expected.</li>
+<li><code>InputFilter</code>: specify the input filter class to use for this given form or
+  fieldset. A string value is expected.</li>
+<li><code>Input</code>: specify the input class to use for this given element. A string value
+  is expected.</li>
+<li><code>Instance</code>: specify an object class instance to bind to the form or fieldset.</li>
+<li><code>Name</code>: specify the name of the current element, fieldset, or form. A string
+  value is expected.</li>
+<li><code>Object</code>: specify an object class instance to bind to the form or fieldset.
+  (Note: this is deprecated in 2.4.0; use <code>Instance</code> instead.)</li>
+<li><code>Options</code>: options to pass to the fieldset or form that are used to inform
+  behavior &mdash; things that are not attributes; e.g. labels, CAPTCHA adapters,
+  etc. The annotation expects an associative array: <code>@Options({"label": "Username:"})</code>.</li>
+<li><code>Required</code>: indicate whether an element is required. A boolean value is
+  expected. By default, all elements are required, so this annotation is mainly
+  present to allow disabling a requirement.</li>
+<li><code>Type</code>: indicate the class to use for the current element, fieldset, or form.
+  A string value is expected.</li>
+<li><code>Validator</code>: provide a specification for a validator to use on a given
+  element. Expects an associative array of values, with a "name" key pointing to
+  a string validator name, and an "options" key pointing to an associative array
+  of validator options for the constructor:
+  <code>@Validator({"name": "StringLength", "options": {"min":3, "max": 25}})</code>.
+  This annotation may be specified multiple times.</li>
+<li><code>ContinueIfEmpty</code>: indicate whether the element can be submitted when it
+  is empty. A boolean value is expected. If <code>@Required</code> is set to <code>false</code>, this
+  needs to be set to <code>true</code> to allow the field to be empty.</li>
+</ul>
+<p>To use annotations, include them in your class and/or property docblocks.
+Annotation names will be resolved according to the import statements in your
+class; as such, you can make them as long or as short as you want depending on
+what you import.</p>
+<blockquote>
+<h3>doctrine/common dependency</h3>
+<p>Form annotations require <code>doctrine\common</code>, which contains an annotation
+parsing engine. Install it using composer:</p>
+<pre class=codehilite><code class=language-bash>
+$ composer require doctrine/common
+</code></pre>
+</blockquote>
+<p>Here's an example:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Annotation;</span>
+
+<span class=x>/**</span>
+<span class=x> * @Annotation\Name(&quot;user&quot;)</span>
+<span class=x> * @Annotation\Hydrator(&quot;Laminas\Hydrator\ObjectProperty&quot;)</span>
+<span class=x> */</span>
+<span class=x>class User</span>
+<span class=x>{</span>
+<span class=x>    /**</span>
+<span class=x>     * @Annotation\Exclude()</span>
+<span class=x>     */</span>
+<span class=x>    public $id;</span>
+
+<span class=x>    /**</span>
+<span class=x>     * @Annotation\Filter({&quot;name&quot;:&quot;StringTrim&quot;})</span>
+<span class=x>     * @Annotation\Validator({&quot;name&quot;:&quot;StringLength&quot;, &quot;options&quot;:{&quot;min&quot;:1, &quot;max&quot;:25}})</span>
+<span class=x>     * @Annotation\Validator({&quot;name&quot;:&quot;Regex&quot;,</span>
+<span class=x>&quot;options&quot;:{&quot;pattern&quot;:&quot;/^[a-zA-Z][a-zA-Z0-9_-]{0,24}$/&quot;}})</span>
+<span class=x>     * @Annotation\Attributes({&quot;type&quot;:&quot;text&quot;})</span>
+<span class=x>     * @Annotation\Options({&quot;label&quot;:&quot;Username:&quot;})</span>
+<span class=x>     */</span>
+<span class=x>    public $username;</span>
+
+<span class=x>    /**</span>
+<span class=x>     * @Annotation\Type(&quot;Laminas\Form\Element\Email&quot;)</span>
+<span class=x>     * @Annotation\Options({&quot;label&quot;:&quot;Your email address:&quot;})</span>
+<span class=x>     */</span>
+<span class=x>    public $email;</span>
+<span class=x>}</span>
+</pre></div></p>
+<p>The above will hint to the annotation builder to create a form with name "user",
+which uses the hydrator <code>Laminas\Hydrator\ObjectProperty</code>. That form will
+have two elements, "username" and "email". The "username" element will have an
+associated input that has a <code>StringTrim</code> filter, and two validators: a
+<code>StringLength</code> validator indicating the username is between 1 and 25 characters,
+and a <code>Regex</code> validator asserting it follows a specific accepted pattern. The
+form element itself will have an attribute "type" with value "text" (a text
+element), and a label "Username:". The "email" element will be of type
+<code>Laminas\Form\Element\Email</code>, and have the label "Your email address:".</p>
+<p>To use the above, we need <code>Laminas\Form\Annotation\AnnotationBuilder</code>:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Annotation\AnnotationBuilder;</span>
+
+<span class=x>$builder = new AnnotationBuilder();</span>
+<span class=x>$form    = $builder-&gt;createForm(User::class);</span>
+</pre></div></p>
+<p>At this point, you have a form with the appropriate hydrator attached, an input
+filter with the appropriate inputs, and all elements.</p>
+<blockquote>
+<h3>You're not done</h3>
+<p>In all likelihood, you'll need to add some more elements to the form you
+construct. For example, you'll want a submit button, and likely a
+CSRF-protection element. We recommend creating a fieldset with common elements
+such as these that you can then attach to the form you build via annotations.</p>
+</blockquote>
+
+
+
+
+    <nav>
+    <ul class="page-nav hidden-print">
+
+        
+        <li class="page-nav__item">
+            
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../intro/">
+                    <i class="fa fa-chevron-left"></i> Previous
+                </a>
+            
+        </li>
+
+        
+        <li class="page-nav__item">
+            
+                <a rel="next" class="page-nav__link page-nav__link--next" href="../element/intro/">
+                    Next <i class="fa fa-chevron-right"></i>
+                </a>
+            
+        </li>
+    </ul>
+</nav>
+
+
+
+
+    <div class="help-wanted">
+        <p>
+            Found a mistake or want to contribute to the documentation?
+            <a href="https://github.com/laminas/laminas-form/edit/master/docs/book/quick-start.md" target="_blank" class="help-wanted__link">
+                Edit this page on GitHub!
+            </a>
+        </p>
+    </div>
+
+                
+            </div>
+            <div class="col-md-3 col-sm-12 sidebar">
+                
+                    <div class="component-selector">
+    
+    <h5 class="component-selector__subtitle">Find documentation…</h5>
+    <select class="form-control component-selector__control">
+        <option value="/">Overview</option>
+        <optgroup label="Components"></optgroup>
+    </select>
+</div>
+                    
+    <div class="subnavigation hidden-print">
+        <h4 class="subnavigation__title">
+            <a href="..">laminas-form</a>
+        </h4>
+
+        <h5 class="subnavigation__subtitle">Table of Contents</h5>
+
+        <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item subnavigation__list-item--active">
+                                <a href="./" class="subnavigation__link">Quick Start</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item">
+                                <span class="subnavigation__headline">Reference</span>
+                                <ul class="subnavigation__list">
+                                    
+                                        
+    <li class="subnavigation__list-item">
+        <span class="subnavigation__headline">Elements</span>
+        <ul class="subnavigation__list">
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/intro/" class="subnavigation__link">Introduction</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/element/" class="subnavigation__link">Element</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/button/" class="subnavigation__link">button</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/captcha/" class="subnavigation__link">CAPTCHA</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/checkbox/" class="subnavigation__link">checkbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/collection/" class="subnavigation__link">Collection</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/color/" class="subnavigation__link">color</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/csrf/" class="subnavigation__link">CSRF</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/date/" class="subnavigation__link">date</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/date-time/" class="subnavigation__link">datetime</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/date-time-local/" class="subnavigation__link">datetime-local</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/email/" class="subnavigation__link">email</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/file/" class="subnavigation__link">file</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/hidden/" class="subnavigation__link">hidden</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/image/" class="subnavigation__link">image</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/month/" class="subnavigation__link">month</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/month-select/" class="subnavigation__link">MonthSelect</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/multi-checkbox/" class="subnavigation__link">MultiCheckbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/number/" class="subnavigation__link">number</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/password/" class="subnavigation__link">password</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/radio/" class="subnavigation__link">radio</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/range/" class="subnavigation__link">range</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/search/" class="subnavigation__link">search</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/select/" class="subnavigation__link">select</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/submit/" class="subnavigation__link">submit</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/tel/" class="subnavigation__link">tel</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/text/" class="subnavigation__link">text</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/textarea/" class="subnavigation__link">textarea</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/time/" class="subnavigation__link">time</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/url/" class="subnavigation__link">url</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../element/week/" class="subnavigation__link">week</a>
+    </li>
+
+            
+        </ul>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item ">
+        <a href="../collections/" class="subnavigation__link">Collections</a>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item ">
+        <a href="../file-upload/" class="subnavigation__link">File Uploads</a>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item">
+        <span class="subnavigation__headline">View Helpers</span>
+        <ul class="subnavigation__list">
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/intro/" class="subnavigation__link">Introduction</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/abstract-helper/" class="subnavigation__link">AbstractHelper</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-input/" class="subnavigation__link">formInput</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-element/" class="subnavigation__link">formElement</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-element-errors/" class="subnavigation__link">formElementErrors</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-label/" class="subnavigation__link">formLabel</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-row/" class="subnavigation__link">formRow</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-collection/" class="subnavigation__link">formCollection</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form/" class="subnavigation__link">form</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-button/" class="subnavigation__link">formButton</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-captcha/" class="subnavigation__link">formCaptcha</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-checkbox/" class="subnavigation__link">formCheckbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-color/" class="subnavigation__link">formColor</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-date/" class="subnavigation__link">formDate</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-date-time/" class="subnavigation__link">formDateTime</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-date-time-local/" class="subnavigation__link">formDateTimeLocal</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-email/" class="subnavigation__link">formEmail</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file/" class="subnavigation__link">formFile</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-hidden/" class="subnavigation__link">formHidden</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-image/" class="subnavigation__link">formImage</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-month/" class="subnavigation__link">formMonth</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-month-select/" class="subnavigation__link">formMonthSelect</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-multicheckbox/" class="subnavigation__link">formMultiCheckbox</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-number/" class="subnavigation__link">formNumber</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-password/" class="subnavigation__link">formPassword</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-radio/" class="subnavigation__link">formRadio</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-range/" class="subnavigation__link">formRange</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-reset/" class="subnavigation__link">formReset</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-search/" class="subnavigation__link">formSearch</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-select/" class="subnavigation__link">formSelect</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-submit/" class="subnavigation__link">formSubmit</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-tel/" class="subnavigation__link">formTel</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-text/" class="subnavigation__link">formText</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-textarea/" class="subnavigation__link">formTextarea</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-time/" class="subnavigation__link">formTime</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-url/" class="subnavigation__link">formUrl</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-week/" class="subnavigation__link">formWeek</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item">
+        <span class="subnavigation__headline">Upload Progress</span>
+        <ul class="subnavigation__list">
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/upload-progress-helpers/" class="subnavigation__link">Introduction</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file-apc-progress/" class="subnavigation__link">formFileApcProgress</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file-session-progress/" class="subnavigation__link">formFileSessionProgress</a>
+    </li>
+
+            
+                
+    <li class="subnavigation__list-item ">
+        <a href="../helper/form-file-upload-progress/" class="subnavigation__link">formFileUploadProgress</a>
+    </li>
+
+            
+        </ul>
+    </li>
+
+            
+        </ul>
+    </li>
+
+                                    
+                                        
+    <li class="subnavigation__list-item ">
+        <a href="../advanced/" class="subnavigation__link">Advanced</a>
+    </li>
+
+                                    
+                                </ul>
+                            </li>
+                        
+                    
+                
+            
+        </ul>
+    </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+    <div class="container">
+
+        
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="footer__button" href="#page-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7 offset-md-2">
+                <h5>Laminas</h5>
+                <ul>
+                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
+                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+
+            
+            <div class="col-md-4 offset-md-2">
+                <h4 class="footer__headline">Support</h4>
+                <ul class="support__list">
+                    <li class="support__list-item">
+                        <a href="https://discourse.laminas.dev" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://laminas.dev/chat" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://github.com/laminas" class="support__link" title="Github"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://twitter.com/getlaminas" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://getlaminas.org/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://getlaminas.org/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            
+            <div class="col-md-3">
+                <h4 class="footer__headline">License</h4>
+                <p>
+                    Code licensed under <a
+                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                </p>
+            </div>
+
+            
+            <div class="col-md-3">
+                <h4 class="footer__headline">Copyright</h4>
+                <p>
+                    <!--Built with love by the Laminas team with the help of our
+                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        let base_url = '..',
+            project  = "components",
+            siteName = 'laminas-form';
+    </script>
+    <script src="/js/scripts.js"></script>
+        <script src="../search/main.js"></script>
+
+    
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search in laminas-form" id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>
