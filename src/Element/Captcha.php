@@ -1,30 +1,29 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
+use Laminas\Captcha as LaminasCaptcha;
+use Laminas\Form\Element;
+use Laminas\Form\Exception;
+use Laminas\InputFilter\InputProviderInterface;
 use Traversable;
-use Zend\Captcha as ZendCaptcha;
-use Zend\Form\Element;
-use Zend\Form\Exception;
-use Zend\InputFilter\InputProviderInterface;
 
 class Captcha extends Element implements InputProviderInterface
 {
     /**
-     * @var \Zend\Captcha\AdapterInterface
+     * @var \Laminas\Captcha\AdapterInterface
      */
     protected $captcha;
 
     /**
      * Accepted options for Captcha:
-     * - captcha: a valid Zend\Captcha\AdapterInterface
+     * - captcha: a valid Laminas\Captcha\AdapterInterface
      *
      * @param array|Traversable $options
      * @return Captcha
@@ -43,17 +42,17 @@ class Captcha extends Element implements InputProviderInterface
     /**
      * Set captcha
      *
-     * @param  array|ZendCaptcha\AdapterInterface $captcha
+     * @param  array|LaminasCaptcha\AdapterInterface $captcha
      * @throws Exception\InvalidArgumentException
      * @return Captcha
      */
     public function setCaptcha($captcha)
     {
         if (is_array($captcha) || $captcha instanceof Traversable) {
-            $captcha = ZendCaptcha\Factory::factory($captcha);
-        } elseif (!$captcha instanceof ZendCaptcha\AdapterInterface) {
+            $captcha = LaminasCaptcha\Factory::factory($captcha);
+        } elseif (!$captcha instanceof LaminasCaptcha\AdapterInterface) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects either a Zend\Captcha\AdapterInterface or specification to pass to Zend\Captcha\Factory; received "%s"',
+                '%s expects either a Laminas\Captcha\AdapterInterface or specification to pass to Laminas\Captcha\Factory; received "%s"',
                 __METHOD__,
                 (is_object($captcha) ? get_class($captcha) : gettype($captcha))
             ));
@@ -66,7 +65,7 @@ class Captcha extends Element implements InputProviderInterface
     /**
      * Retrieve captcha (if any)
      *
-     * @return null|ZendCaptcha\AdapterInterface
+     * @return null|LaminasCaptcha\AdapterInterface
      */
     public function getCaptcha()
     {
@@ -86,13 +85,13 @@ class Captcha extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => array(
-                array('name' => 'Zend\Filter\StringTrim'),
+                array('name' => 'Laminas\Filter\StringTrim'),
             ),
         );
 
         // Test that we have a captcha before adding it to the spec
         $captcha = $this->getCaptcha();
-        if ($captcha instanceof ZendCaptcha\AdapterInterface) {
+        if ($captcha instanceof LaminasCaptcha\AdapterInterface) {
             $spec['validators'] = array($captcha);
         }
 
