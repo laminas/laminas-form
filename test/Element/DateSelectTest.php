@@ -1,17 +1,16 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
 use DateTime;
+use Laminas\Form\Element\DateSelect as DateSelectElement;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element\DateSelect as DateSelectElement;
 
 class DateSelectTest extends TestCase
 {
@@ -24,13 +23,13 @@ class DateSelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = array(
-            'Zend\Validator\Date'
+            'Laminas\Validator\Date'
         );
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Zend\Validator\Date':
+                case 'Laminas\Validator\Date':
                     $this->assertEquals('Y-m-d', $validator->getFormat());
                     break;
                 default:
@@ -68,7 +67,7 @@ class DateSelectTest extends TestCase
     }
 
     /**
-     * @expectedException \Zend\Form\Exception\InvalidArgumentException
+     * @expectedException \Laminas\Form\Exception\InvalidArgumentException
      */
     public function testThrowsOnInvalidValue()
     {

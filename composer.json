@@ -1,46 +1,22 @@
 {
-    "name": "zendframework/zend-form",
+    "name": "laminas/laminas-form",
     "description": " ",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "laminas",
         "form"
     ],
-    "homepage": "https://github.com/zendframework/zend-form",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Form\\": "src/"
-        }
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-form/",
+        "issues": "https://github.com/laminas/laminas-form/issues",
+        "source": "https://github.com/laminas/laminas-form",
+        "rss": "https://github.com/laminas/laminas-form/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": ">=5.3.23",
-        "zendframework/zend-inputfilter": "self.version",
-        "zendframework/zend-stdlib": "self.version"
-    },
-    "require-dev": {
-        "zendframework/zend-captcha": "self.version",
-        "zendframework/zend-code": "self.version",
-        "zendframework/zend-eventmanager": "self.version",
-        "zendframework/zend-filter": "self.version",
-        "zendframework/zend-i18n": "self.version",
-        "zendframework/zend-servicemanager": "self.version",
-        "zendframework/zend-validator": "self.version",
-        "zendframework/zend-view": "self.version",
-        "zendframework/zendservice-recaptcha": "*",
-        "fabpot/php-cs-fixer": "1.7.*",
-        "satooshi/php-coveralls": "dev-master",
-        "phpunit/PHPUnit": "~4.0"
-    },
-    "suggest": {
-        "zendframework/zend-captcha": "Zend\\Captcha component",
-        "zendframework/zend-code": "Zend\\Code component",
-        "zendframework/zend-eventmanager": "Zend\\EventManager component",
-        "zendframework/zend-filter": "Zend\\Filter component",
-        "zendframework/zend-i18n": "Zend\\I18n component",
-        "zendframework/zend-servicemanager": "Zend\\ServiceManager component",
-        "zendframework/zend-validator": "Zend\\Validator component",
-        "zendframework/zend-view": "Zend\\View component",
-        "zendframework/zendservice-recaptcha": "ZendService\\ReCaptcha component"
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -48,9 +24,48 @@
             "dev-develop": "2.5-dev"
         }
     },
+    "require": {
+        "php": ">=5.3.23",
+        "laminas/laminas-inputfilter": "self.version",
+        "laminas/laminas-stdlib": "self.version",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "1.7.*",
+        "laminas/laminas-captcha": "self.version",
+        "laminas/laminas-code": "self.version",
+        "laminas/laminas-eventmanager": "self.version",
+        "laminas/laminas-filter": "self.version",
+        "laminas/laminas-i18n": "self.version",
+        "laminas/laminas-recaptcha": "*",
+        "laminas/laminas-servicemanager": "self.version",
+        "laminas/laminas-validator": "self.version",
+        "laminas/laminas-view": "self.version",
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "suggest": {
+        "laminas/laminas-captcha": "Laminas\\Captcha component",
+        "laminas/laminas-code": "Laminas\\Code component",
+        "laminas/laminas-eventmanager": "Laminas\\EventManager component",
+        "laminas/laminas-filter": "Laminas\\Filter component",
+        "laminas/laminas-i18n": "Laminas\\I18n component",
+        "laminas/laminas-recaptcha": "Laminas\\ReCaptcha component",
+        "laminas/laminas-servicemanager": "Laminas\\ServiceManager component",
+        "laminas/laminas-validator": "Laminas\\Validator component",
+        "laminas/laminas-view": "Laminas\\View component"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Form\\": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
-            "ZendTest\\Form\\": "test/"
+            "LaminasTest\\Form\\": "test/"
         }
+    },
+    "replace": {
+        "zendframework/zend-form": "self.version"
     }
 }
