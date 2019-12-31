@@ -1,17 +1,17 @@
 # Button
 
-`Zend\Form\Element\Button` represents a button form input.
-It can be used with the `Zend\Form\View\Helper\FormButton` view helper.
+`Laminas\Form\Element\Button` represents a button form input.
+It can be used with the `Laminas\Form\View\Helper\FormButton` view helper.
 
-`Zend\Form\Element\Button` extends from [`Zend\Form\Element`](element.md).
+`Laminas\Form\Element\Button` extends from [`Laminas\Form\Element`](element.md).
 
 ## Basic Usage
 
 This element automatically adds a `type` attribute of value `button`.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $button = new Element\Button('my-button');
 $button->setLabel('My Button');

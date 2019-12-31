@@ -1,7 +1,7 @@
 # Element Base Class
 
-`Zend\Form\Element` is a base class for all specialized elements and
-`Zend\Form\Fieldset`.
+`Laminas\Form\Element` is a base class for all specialized elements and
+`Laminas\Form\Fieldset`.
 
 ## Basic Usage
 
@@ -10,8 +10,8 @@ typically provide some attributes to hint to the view layer how it might render
 the item.
 
 ```php
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 $username = new Element\Text('username');
 $username->setLabel('Username');

@@ -1,18 +1,19 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Integration\TestAsset;
+namespace LaminasTest\Form\Integration\TestAsset;
 
-use Zend\Form\Form as BaseForm;
+use Laminas\Form\Form as BaseForm;
 
 class Form extends BaseForm
 {
     /**
-     * @param null|\Zend\Form\FormElementManager
+     * @param null|\Laminas\Form\FormElementManager
      */
     public $elementManagerAtInit;
 

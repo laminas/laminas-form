@@ -6,7 +6,7 @@ form input. It is meant to work with the [Text element](../element/text.md).
 ## Basic usage
 
 ```php
-use Zend\Form\Element;
+use Laminas\Form\Element;
 
 $element = new Element\Text('my-text');
 

@@ -1,56 +1,57 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-form/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View;
+namespace Laminas\Form\View;
 
 use IntlDateFormatter;
-use Zend\Form\ElementInterface;
-use Zend\Form\FormInterface;
-use Zend\Form\View\Helper\Captcha\Dumb;
-use Zend\Form\View\Helper\Captcha\Figlet;
-use Zend\Form\View\Helper\Captcha\Image;
-use Zend\Form\View\Helper\Captcha\ReCaptcha;
-use Zend\Form\View\Helper\Form;
-use Zend\Form\View\Helper\FormButton;
-use Zend\Form\View\Helper\FormCaptcha;
-use Zend\Form\View\Helper\FormCheckbox;
-use Zend\Form\View\Helper\FormCollection;
-use Zend\Form\View\Helper\FormColor;
-use Zend\Form\View\Helper\FormDate;
-use Zend\Form\View\Helper\FormDateSelect;
-use Zend\Form\View\Helper\FormDateTime;
-use Zend\Form\View\Helper\FormDateTimeLocal;
-use Zend\Form\View\Helper\FormDateTimeSelect;
-use Zend\Form\View\Helper\FormElement;
-use Zend\Form\View\Helper\FormElementErrors;
-use Zend\Form\View\Helper\FormEmail;
-use Zend\Form\View\Helper\FormFile;
-use Zend\Form\View\Helper\FormHidden;
-use Zend\Form\View\Helper\FormImage;
-use Zend\Form\View\Helper\FormInput;
-use Zend\Form\View\Helper\FormLabel;
-use Zend\Form\View\Helper\FormMonth;
-use Zend\Form\View\Helper\FormMonthSelect;
-use Zend\Form\View\Helper\FormMultiCheckbox;
-use Zend\Form\View\Helper\FormNumber;
-use Zend\Form\View\Helper\FormPassword;
-use Zend\Form\View\Helper\FormRadio;
-use Zend\Form\View\Helper\FormRange;
-use Zend\Form\View\Helper\FormReset;
-use Zend\Form\View\Helper\FormRow;
-use Zend\Form\View\Helper\FormSearch;
-use Zend\Form\View\Helper\FormSelect;
-use Zend\Form\View\Helper\FormSubmit;
-use Zend\Form\View\Helper\FormTel;
-use Zend\Form\View\Helper\FormText;
-use Zend\Form\View\Helper\FormTextarea;
-use Zend\Form\View\Helper\FormTime;
-use Zend\Form\View\Helper\FormUrl;
-use Zend\Form\View\Helper\FormWeek;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\FormInterface;
+use Laminas\Form\View\Helper\Captcha\Dumb;
+use Laminas\Form\View\Helper\Captcha\Figlet;
+use Laminas\Form\View\Helper\Captcha\Image;
+use Laminas\Form\View\Helper\Captcha\ReCaptcha;
+use Laminas\Form\View\Helper\Form;
+use Laminas\Form\View\Helper\FormButton;
+use Laminas\Form\View\Helper\FormCaptcha;
+use Laminas\Form\View\Helper\FormCheckbox;
+use Laminas\Form\View\Helper\FormCollection;
+use Laminas\Form\View\Helper\FormColor;
+use Laminas\Form\View\Helper\FormDate;
+use Laminas\Form\View\Helper\FormDateSelect;
+use Laminas\Form\View\Helper\FormDateTime;
+use Laminas\Form\View\Helper\FormDateTimeLocal;
+use Laminas\Form\View\Helper\FormDateTimeSelect;
+use Laminas\Form\View\Helper\FormElement;
+use Laminas\Form\View\Helper\FormElementErrors;
+use Laminas\Form\View\Helper\FormEmail;
+use Laminas\Form\View\Helper\FormFile;
+use Laminas\Form\View\Helper\FormHidden;
+use Laminas\Form\View\Helper\FormImage;
+use Laminas\Form\View\Helper\FormInput;
+use Laminas\Form\View\Helper\FormLabel;
+use Laminas\Form\View\Helper\FormMonth;
+use Laminas\Form\View\Helper\FormMonthSelect;
+use Laminas\Form\View\Helper\FormMultiCheckbox;
+use Laminas\Form\View\Helper\FormNumber;
+use Laminas\Form\View\Helper\FormPassword;
+use Laminas\Form\View\Helper\FormRadio;
+use Laminas\Form\View\Helper\FormRange;
+use Laminas\Form\View\Helper\FormReset;
+use Laminas\Form\View\Helper\FormRow;
+use Laminas\Form\View\Helper\FormSearch;
+use Laminas\Form\View\Helper\FormSelect;
+use Laminas\Form\View\Helper\FormSubmit;
+use Laminas\Form\View\Helper\FormTel;
+use Laminas\Form\View\Helper\FormText;
+use Laminas\Form\View\Helper\FormTextarea;
+use Laminas\Form\View\Helper\FormTime;
+use Laminas\Form\View\Helper\FormUrl;
+use Laminas\Form\View\Helper\FormWeek;
 
 // @codingStandardsIgnoreStart
 
@@ -58,14 +59,14 @@ use Zend\Form\View\Helper\FormWeek;
  * Helper trait for auto-completion of code in modern IDEs.
  *
  * The trait provides convenience methods for view helpers,
- * defined by the zend-form component. It is designed to be used
- * for type-hinting $this variable inside zend-view templates via doc blocks.
+ * defined by the laminas-form component. It is designed to be used
+ * for type-hinting $this variable inside laminas-view templates via doc blocks.
  *
  * The base class is PhpRenderer, followed by the helper trait from
- * the zend-form component. However, multiple helper traits from different
- * Zend Framework components can be chained afterwards.
+ * the laminas-form component. However, multiple helper traits from different
+ * Laminas components can be chained afterwards.
  *
- * @example @var \Zend\View\Renderer\PhpRenderer|\Zend\Form\View\HelperTrait $this
+ * @example @var \Laminas\View\Renderer\PhpRenderer|\Laminas\Form\View\HelperTrait $this
  *
  * @method string|Form form(FormInterface|null $form = null)
  * @method string|FormButton formButton(ElementInterface|null $element = null, string|null $buttonContent = null)

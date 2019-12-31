@@ -83,6 +83,6 @@ nav:
                 - formFileSessionProgress: helper/form-file-session-progress.md
                 - formFileUploadProgress: helper/form-file-upload-progress.md
         - Advanced: advanced.md
-site_name: zend-form
+site_name: laminas-form
 site_description: "Validate and display simple and complex forms, casting forms to business objects and vice versa."
-repo_url: 'https://github.com/zendframework/zend-form'
+repo_url: 'https://github.com/laminas/laminas-form'
