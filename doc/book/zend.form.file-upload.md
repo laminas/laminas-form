@@ -1,16 +1,16 @@
 # File Uploading
 
-Zend Framework provides support for file uploading by using features in `Zend\Form`,
-`Zend\InputFilter`, `Zend\Validator`, `Zend\Filter`, and `Zend\ProgressBar`. These reusable
+Laminas provides support for file uploading by using features in `Laminas\Form`,
+`Laminas\InputFilter`, `Laminas\Validator`, `Laminas\Filter`, and `Laminas\ProgressBar`. These reusable
 framework components provide a convenient and secure way for handling file uploads in your projects.
 
 > ## Note
-If the reader has experience with file uploading in Zend Framework v1.x, he/she will notice some
-major differences. `Zend_File\Transfer` has been deprecated in favor of using the standard ZF2
-`Zend\Form` and `Zend\InputFilter` features.
+If the reader has experience with file uploading in Laminas v1.x, he/she will notice some
+major differences. `Laminas_File\Transfer` has been deprecated in favor of using the standard Laminas
+`Laminas\Form` and `Laminas\InputFilter` features.
 
 > ## Note
-The file upload features described here are specifically for forms using the `POST` method. Zend
+The file upload features described here are specifically for forms using the `POST` method. Laminas
 Framework itself does not currently provide specific support for handling uploads via the `PUT`
 method, but it is possible with PHP. See the [PUT Method
 Support](http://php.net/manual/en/features.file-upload.put-method.php) in the PHP documentation for
@@ -18,7 +18,7 @@ more information.
 
 ## Standard Example
 
-Handling file uploads is *essentially* the same as how you would use `Zend\Form` for form
+Handling file uploads is *essentially* the same as how you would use `Laminas\Form` for form
 processing, but with some slight caveats that will be described below.
 
 In this example we will:
@@ -29,13 +29,13 @@ In this example we will:
 
 ### The Form and InputFilter
 
-Here we define a `Zend\Form\Element\File` input in a Form class named `UploadForm`.
+Here we define a `Laminas\Form\Element\File` input in a Form class named `UploadForm`.
 
 ``` sourceCode
 // File: UploadForm.php
 
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 class UploadForm extends Form
 {
@@ -61,9 +61,9 @@ The `File` element provides some automatic features that happen behind the scene
 - The form's `enctype` will automatically be set to `multipart/form-data` when the form `prepare()`
 method is called.
 - The file element's default input specification will create the correct `Input` type:
-\[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input).
+\[Laminas\\InputFilter\\FileInput\](laminas.input-filter.file-input).
 - The `FileInput` will automatically prepend an \[UploadFile
-Validator\](zend.validator.file.upload-file), to securely validate that the file is actually an
+Validator\](laminas.validator.file.upload-file), to securely validate that the file is actually an
 uploaded file, and to report other types of upload errors to the user.
 
 ### The View Template
@@ -151,7 +151,7 @@ array(1) {
 ```
 
 > ## Note
-It is suggested that you always use the `Zend\Http\PhpEnvironment\Request` object to retrieve and
+It is suggested that you always use the `Laminas\Http\PhpEnvironment\Request` object to retrieve and
 merge the `$_FILES` information with the form, instead of using `$_FILES` directly.
 This is due to how the file information is mapped in the `$_FILES` array:
 ``` sourceCode
@@ -168,7 +168,7 @@ array(1) {
 }
 }
 }
-// How Zend\Http\PhpEnvironment\Request remaps the $_FILES array:
+// How Laminas\Http\PhpEnvironment\Request remaps the $_FILES array:
 array(1) {
 ["image-file"]=array(2) {
 [0]=array(2) {
@@ -182,7 +182,7 @@ array(1) {
 }
 }
 ```
-\[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input) expects the file data be in this
+\[Laminas\\InputFilter\\FileInput\](laminas.input-filter.file-input) expects the file data be in this
 re-mapped array format.
 
 ## File Post-Redirect-Get Plugin
@@ -197,7 +197,7 @@ One strategy to get around this is to split the form into multiple forms. One fo
 upload inputs and another for the other standard inputs.
 
 When you cannot separate the forms, the \[File Post-Redirect-Get Controller
-Plugin\](zend.mvc.controller-plugins.file-postredirectget) can be used to manage the file inputs and
+Plugin\](laminas.mvc.controller-plugins.file-postredirectget) can be used to manage the file inputs and
 save off valid uploads until the entire form is valid.
 
 Changing our earlier example to use the `fileprg` plugin will require two changes.
@@ -208,9 +208,9 @@ should be stored:
     ``` sourceCode
     // File: UploadForm.php
 
-    use Zend\InputFilter;
-    use Zend\Form\Element;
-    use Zend\Form\Form;
+    use Laminas\InputFilter;
+    use Laminas\Form\Element;
+    use Laminas\Form\Form;
 
     class UploadForm extends Form
     {
@@ -254,7 +254,7 @@ should be stored:
     The `filerenameupload` options above would cause an uploaded file to be renamed and moved to:
 `./data/tmpuploads/avatar_4b3403665fea6.png`.
 
-    See the \[RenameUpload filter\](zend.filter.file.rename-upload) documentation for more
+    See the \[RenameUpload filter\](laminas.filter.file.rename-upload) documentation for more
 information on its supported options.
 
 2.  And, changing the Controller action to use the `fileprg` plugin:
@@ -268,7 +268,7 @@ information on its supported options.
         $tempFile = null;
 
         $prg = $this->fileprg($form);
-        if ($prg instanceof \Zend\Http\PhpEnvironment\Response) {
+        if ($prg instanceof \Laminas\Http\PhpEnvironment\Response) {
             return $prg; // Return PRG redirect response
         } elseif (is_array($prg)) {
             if ($form->isValid()) {
@@ -314,15 +314,15 @@ attribute. Not all [browsers support multiple file uploads](http://caniuse.com/#
 file input will safely remain a single file upload for those browsers that do not support the
 feature.
 
-To enable multiple file uploads in Zend Framework, just set the file element's `multiple` attribute
+To enable multiple file uploads in Laminas, just set the file element's `multiple` attribute
 to true:
 
 ``` sourceCode
 // File: UploadForm.php
 
-use Zend\InputFilter;
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\InputFilter;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 class UploadForm extends Form
 {
@@ -389,9 +389,9 @@ Progress Events](http://www.w3.org/TR/progress-events/), not all browsers have [
 2 support](http://caniuse.com/#feat=xhr2). For upload progress to work in a greater number of
 browsers (IE9 and below), you must use a server-side progress solution.
 
-`Zend\ProgressBar\Upload` provides handlers that can give you the actual state of a file upload in
+`Laminas\ProgressBar\Upload` provides handlers that can give you the actual state of a file upload in
 progress. To use this feature you need to choose one of the \[Upload Progress
-Handlers\](zend.progress-bar.upload) (APC, uploadprogress, or Session) and ensure that your server
+Handlers\](laminas.progress-bar.upload) (APC, uploadprogress, or Session) and ensure that your server
 setup has the appropriate extension or feature enabled.
 
 > ## Note
@@ -409,7 +409,7 @@ session.upload_progress.min_freq = "1"
 ```
 
 When uploading a file with a form POST, you must also include the progress identifier in a hidden
-input. The \[File Upload Progress View Helpers\](zend.form.view.helper.file) provide a convenient
+input. The \[File Upload Progress View Helpers\](laminas.form.view.helper.file) provide a convenient
 way to add the hidden input based on your handler type.
 
 ``` sourceCode
@@ -460,8 +460,8 @@ The following is an example Controller action which provides the progress inform
 public function uploadProgressAction()
 {
     $id = $this->params()->fromQuery('id', null);
-    $progress = new \Zend\ProgressBar\Upload\SessionProgress();
-    return new \Zend\View\Model\JsonModel($progress->getProgress($id));
+    $progress = new \Laminas\ProgressBar\Upload\SessionProgress();
+    return new \Laminas\View\Model\JsonModel($progress->getProgress($id));
 }
 
 // Returns JSON
@@ -476,9 +476,9 @@ public function uploadProgressAction()
 
 > ## Warning
 This is *not* the most efficient way of providing upload progress, since each polling request must
-go through the Zend Framework bootstrap process. A better example would be to use a standalone php
+go through the Laminas bootstrap process. A better example would be to use a standalone php
 file in the public folder that bypasses the MVC bootstrapping and only uses the essential
-`Zend\ProgressBar` adapters.
+`Laminas\ProgressBar` adapters.
 
 Back in our view template, we will add the JavaScript to perform the AJAX POST of the form data, and
 to start a timeout interval for the progress polling. To keep the example code relatively short, we
@@ -641,17 +641,17 @@ public function uploadFormAction()
 
 Related documentation:
 
-- \[Form File Element\](zend.form.element.file)
-- \[Form File View Helper\](zend.form.view.helper.form-file)
-- \[List of File Validators\](zend.validator.file)
-- \[List of File Filters\](zend.filter.file)
-- \[File Post-Redirect-Get Controller Plugin\](zend.mvc.controller-plugins.file-postredirectget)
-- \[Zend\\InputFilter\\FileInput\](zend.input-filter.file-input)
-- \[Upload Progress Handlers\](zend.progress-bar.upload)
-- \[Upload Progress View Helpers\](zend.form.view.helper.file)
+- \[Form File Element\](laminas.form.element.file)
+- \[Form File View Helper\](laminas.form.view.helper.form-file)
+- \[List of File Validators\](laminas.validator.file)
+- \[List of File Filters\](laminas.filter.file)
+- \[File Post-Redirect-Get Controller Plugin\](laminas.mvc.controller-plugins.file-postredirectget)
+- \[Laminas\\InputFilter\\FileInput\](laminas.input-filter.file-input)
+- \[Upload Progress Handlers\](laminas.progress-bar.upload)
+- \[Upload Progress View Helpers\](laminas.form.view.helper.file)
 
 External resources and blog posts from the community:
 
-- [ZF2FileUploadExamples](https://github.com/cgmartin/ZF2FileUploadExamples) : A ZF2 module with
+- [LaminasFileUploadExamples](https://github.com/cgmartin/LaminasFileUploadExamples) : A Laminas module with
 several file upload examples.
 

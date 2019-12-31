@@ -16,12 +16,12 @@ If nothing else, you can simply start creating elements, fieldsets, and forms an
 together.
 
 ``` sourceCode
-use Zend\Captcha;
-use Zend\Form\Element;
-use Zend\Form\Fieldset;
-use Zend\Form\Form;
-use Zend\InputFilter\Input;
-use Zend\InputFilter\InputFilter;
+use Laminas\Captcha;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Input;
+use Laminas\InputFilter\InputFilter;
 
 $name = new Element('name');
 $name->setLabel('Your name');
@@ -100,11 +100,11 @@ you want to store your forms as pure configuration; you can simply pass the conf
 factory and be done.
 
 ``` sourceCode
-use Zend\Form\Factory;
+use Laminas\Form\Factory;
 
 $factory = new Factory();
 $form    = $factory->createForm(array(
-    'hydrator' => 'Zend\Stdlib\Hydrator\ArraySerializable',
+    'hydrator' => 'Laminas\Stdlib\Hydrator\ArraySerializable',
     'elements' => array(
         array(
             'spec' => array(
@@ -117,7 +117,7 @@ $form    = $factory->createForm(array(
         ),
         array(
             'spec' => array(
-                'type' => 'Zend\Form\Element\Email',
+                'type' => 'Laminas\Form\Element\Email',
                 'name' => 'email',
                 'options' => array(
                     'label' => 'Your email address',
@@ -135,7 +135,7 @@ $form    = $factory->createForm(array(
         ),
         array(
             'spec' => array(
-                'type' => 'Zend\Form\Element\Textarea',
+                'type' => 'Laminas\Form\Element\Textarea',
                 'name' => 'message',
                 'options' => array(
                     'label' => 'Message',
@@ -144,7 +144,7 @@ $form    = $factory->createForm(array(
         ),
         array(
             'spec' => array(
-                'type' => 'Zend\Form\Element\Captcha',
+                'type' => 'Laminas\Form\Element\Captcha',
                 'name' => 'captcha',
                 'options' => array(
                     'label' => 'Please verify you are human.',
@@ -156,7 +156,7 @@ $form    = $factory->createForm(array(
         ),
         array(
             'spec' => array(
-                'type' => 'Zend\Form\Element\Csrf',
+                'type' => 'Laminas\Form\Element\Csrf',
                 'name' => 'security',
             ),
         ),
@@ -179,7 +179,7 @@ $form    = $factory->createForm(array(
      */
 
     // Configuration to pass on to
-    // Zend\InputFilter\Factory::createInputFilter()
+    // Laminas\InputFilter\Factory::createInputFilter()
     'input_filter' => array(
         /* ... */
     ),
@@ -190,11 +190,11 @@ If we wanted to use fieldsets, as we demonstrated in the previous example, we co
 following:
 
 ``` sourceCode
-use Zend\Form\Factory;
+use Laminas\Form\Factory;
 
 $factory = new Factory();
 $form    = $factory->createForm(array(
-    'hydrator'  => 'Zend\Stdlib\Hydrator\ArraySerializable',
+    'hydrator'  => 'Laminas\Stdlib\Hydrator\ArraySerializable',
     'fieldsets' => array(
         array(
             'spec' => array(
@@ -211,7 +211,7 @@ $form    = $factory->createForm(array(
                     ),
                     array(
                         'spec' => array(
-                            'type' => 'Zend\Form\Element\Email',
+                            'type' => 'Laminas\Form\Element\Email',
                             'name' => 'email',
                             'options' => array(
                                 'label' => 'Your email address',
@@ -237,7 +237,7 @@ $form    = $factory->createForm(array(
                     array(
                         'spec' => array(
                             'name' => 'message',
-                            'type' => 'Zend\Form\Element\Textarea',
+                            'type' => 'Laminas\Form\Element\Textarea',
                             'options' => array(
                                 'label' => 'Message',
                             ),
@@ -250,7 +250,7 @@ $form    = $factory->createForm(array(
     'elements' => array(
         array(
             'spec' => array(
-                'type' => 'Zend\Form\Element\Captcha',
+                'type' => 'Laminas\Form\Element\Captcha',
                 'name' => 'captcha',
                 'options' => array(
                     'label' => 'Please verify you are human. ',
@@ -262,7 +262,7 @@ $form    = $factory->createForm(array(
         ),
         array(
             'spec' => array(
-            'type' => 'Zend\Form\Element\Csrf',
+            'type' => 'Laminas\Form\Element\Csrf',
             'name' => 'security',
         ),
     ),
@@ -277,7 +277,7 @@ $form    = $factory->createForm(array(
      ),
     ),
     // Configuration to pass on to
-    // Zend\InputFilter\Factory::createInputFilter()
+    // Laminas\InputFilter\Factory::createInputFilter()
     'input_filter' => array(
     /* ... */
     ),
@@ -298,9 +298,9 @@ factory-backed creation, as well as defining a form for re-use in your applicati
 ``` sourceCode
 namespace Contact;
 
-use Zend\Captcha\AdapterInterface as CaptchaAdapter;
-use Zend\Form\Element;
-use Zend\Form\Form;
+use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
 class ContactForm extends Form
 {
@@ -325,7 +325,7 @@ class ContactForm extends Form
             'type'  => 'Text',
         ));
         $this->add(array(
-            'type' => 'Zend\Form\Element\Email',
+            'type' => 'Laminas\Form\Element\Email',
             'name' => 'email',
             'options' => array(
                 'label' => 'Your email address',
@@ -339,14 +339,14 @@ class ContactForm extends Form
             'type'  => 'Text',
         ));
         $this->add(array(
-            'type' => 'Zend\Form\Element\Textarea',
+            'type' => 'Laminas\Form\Element\Textarea',
             'name' => 'message',
             'options' => array(
                 'label' => 'Message',
             ),
         ));
         $this->add(array(
-            'type' => 'Zend\Form\Element\Captcha',
+            'type' => 'Laminas\Form\Element\Captcha',
             'name' => 'captcha',
             'options' => array(
                 'label' => 'Please verify you are human.',
@@ -381,7 +381,7 @@ you must inject the data to validate into the form. Third, you validate the form
 can retrieve the error messages, if any.
 
 ``` sourceCode
-// assuming $captcha is an instance of some Zend\Captcha\AdapterInterface
+// assuming $captcha is an instance of some Laminas\Captcha\AdapterInterface
 $form = new Contact\ContactForm($captcha);
 
 // If the form doesn't define an input filter by default, inject one.
@@ -422,22 +422,22 @@ input or input filter is provided in the input filter for that element, these hi
 retrieved and used to create them.
 
 To do so, one of the following must occur. For elements, they must implement
-`Zend\InputFilter\InputProviderInterface`, which defines a `getInputSpecification()` method; for
-fieldsets, they must implement `Zend\InputFilter\InputFilterProviderInterface`, which defines a
+`Laminas\InputFilter\InputProviderInterface`, which defines a `getInputSpecification()` method; for
+fieldsets, they must implement `Laminas\InputFilter\InputFilterProviderInterface`, which defines a
 `getInputFilterSpecification()` method.
 
 In the case of an element, the `getInputSpecification()` method should return data to be used by the
 input filter factory to create an input. Every HTML5 (email, url, color…) elements have a built-in
-element that use this logic. For instance, here is how the `Zend\Form\Element\Color` element is
+element that use this logic. For instance, here is how the `Laminas\Form\Element\Color` element is
 defined:
 
 ``` sourceCode
-namespace Zend\Form\Element;
+namespace Laminas\Form\Element;
 
-use Zend\Form\Element;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\Validator\Regex as RegexValidator;
-use Zend\Validator\ValidatorInterface;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Regex as RegexValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class Color extends Element implements InputProviderInterface
 {
@@ -481,8 +481,8 @@ class Color extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => array(
-                array('name' => 'Zend\Filter\StringTrim'),
-                array('name' => 'Zend\Filter\StringToLower'),
+                array('name' => 'Laminas\Filter\StringTrim'),
+                array('name' => 'Laminas\Filter\StringToLower'),
             ),
             'validators' => array(
                 $this->getValidator(),
@@ -503,9 +503,9 @@ return configuration for an input filter.
 ``` sourceCode
 namespace Contact\Form;
 
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Validator;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Validator;
 
 class SenderFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -515,11 +515,11 @@ class SenderFieldset extends Fieldset implements InputFilterProviderInterface
             'name' => array(
                 'required' => true,
                 'filters'  => array(
-                    array('name' => 'Zend\Filter\StringTrim'),
+                    array('name' => 'Laminas\Filter\StringTrim'),
                 ),
                 'validators' => array(
                     array(
-                        'name' => 'Zend\Validator\StringLength', 
+                        'name' => 'Laminas\Validator\StringLength', 
                         'options' => array(
                             'min' => 3,
                             'max' => 256
@@ -530,7 +530,7 @@ class SenderFieldset extends Fieldset implements InputFilterProviderInterface
             'email' => array(
                 'required' => true,
                 'filters'  => array(
-                    array('name' => 'Zend\Filter\StringTrim'),
+                    array('name' => 'Laminas\Filter\StringTrim'),
                 ),
                 'validators' => array(
                     new Validator\EmailAddress(),
@@ -547,15 +547,15 @@ they can work without additional user configuration!
 
 > ## Note
 If you set custom input filter specification either in `getInputSpecification()` or in
-`getInputFilterSpecification()`, the `Zend\InputFilter\InputInterface` set for that specific field
-is reset to the default `Zend\InputFilter\Input`.
-Some form elements may need a particular input filter, like `Zend\Form\Element\File`: in this case
+`getInputFilterSpecification()`, the `Laminas\InputFilter\InputInterface` set for that specific field
+is reset to the default `Laminas\InputFilter\Input`.
+Some form elements may need a particular input filter, like `Laminas\Form\Element\File`: in this case
 it's mandatory to specify the `type` key in your custom specification to match the original one (in
-ex. for the file element it's `Zend\InputFilter\FileInput`).
+ex. for the file element it's `Laminas\InputFilter\FileInput`).
 
 ## Binding an object
 
-As noted in the intro, forms in Zend Framework bridge the domain model and the view layer. Let's see
+As noted in the intro, forms in Laminas bridge the domain model and the view layer. Let's see
 that in action.
 
 When you `bind()` an object to the form, the following happens:
@@ -568,7 +568,7 @@ another fieldset, the form will recursively extract the values.
 - If `isValid()` is successful (and the `bindOnValidate` flag is enabled, which is true by default),
 then the `Hydrator` will be passed the validated values to use to hydrate the bound object. (If you
 do not want this behavior, call `setBindOnValidate(FormInterface::BIND_MANUAL)`).
-- If the object implements `Zend\InputFilter\InputFilterAwareInterface`, the input filter it
+- If the object implements `Laminas\InputFilter\InputFilterAwareInterface`, the input filter it
 composes will be used instead of the one composed on the form.
 
 This is easier to understand in practice.
@@ -607,15 +607,15 @@ want to return an associative array instead, you can pass the `FormInterface::VA
 to the method.
 
 ``` sourceCode
-use Zend\Form\FormInterface;
+use Laminas\Form\FormInterface;
 $data = $form->getData(FormInterface::VALUES_AS_ARRAY);
 ```
 
-Zend Framework ships several standard \[hydrators\](zend.stdlib.hydrator), and implementation is as
-simple as implementing `Zend\Stdlib\Hydrator\HydratorInterface`, which looks like this:
+Laminas ships several standard \[hydrators\](laminas.stdlib.hydrator), and implementation is as
+simple as implementing `Laminas\Stdlib\Hydrator\HydratorInterface`, which looks like this:
 
 ``` sourceCode
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
 interface HydratorInterface
 {
@@ -778,7 +778,7 @@ element itself, you can pass an optional parameter to the `FormRow` view helper 
 
 HTML5 brings a lot of exciting features, one of them being a simplified client form validations.
 Adding HTML5 attributes is simple as you just need to add specify the attributes. However, please
-note that adding those attributes does not automatically add Zend validators to the form's input
+note that adding those attributes does not automatically add Laminas validators to the form's input
 filter. You still need to manually add them.
 
 ``` sourceCode
@@ -808,7 +808,7 @@ Sometimes you want to validate only a subset of form elements. As an example, le
 re-using our contact form over a web service; in this case, the `Csrf`, `Captcha`, and submit button
 elements are not of interest, and shouldn't be validated.
 
-`Zend\Form` provides a proxy method to the underlying `InputFilter`'s `setValidationGroup()` method,
+`Laminas\Form` provides a proxy method to the underlying `InputFilter`'s `setValidationGroup()` method,
 allowing us to perform this operation.
 
 ``` sourceCode
@@ -824,7 +824,7 @@ If you later want to reset the form to validate all, simply pass the `FormInterf
 flag to the `setValidationGroup()` method.
 
 ``` sourceCode
-use Zend\Form\FormInterface;
+use Laminas\Form\FormInterface;
 $form->setValidationGroup(FormInterface::VALIDATE_ALL);
 ```
 
@@ -854,12 +854,12 @@ a hydrator for mapping the form elements and fieldsets to the domain model. Woul
 have a central place to define all of these?
 
 Annotations allow us to solve this problem. You can define the following behaviors with the shipped
-annotations in `Zend\Form`:
+annotations in `Laminas\Form`:
 
 - *AllowEmpty*: mark an input as allowing an empty value. This annotation does not require a value.
 - *Attributes*: specify the form, fieldset, or element attributes. This annotation requires an
 associative array of values, in a JSON object format:
-`@Attributes({"class":"zend_form","type":"text"})`.
+`@Attributes({"class":"laminas_form","type":"text"})`.
 - *ComposedObject*: specify another object with annotations to parse. Typically, this is used if a
 property references another object, which will then be added to your form as an additional fieldset.
 Expects a string value indicating the class for the object being composed
@@ -917,11 +917,11 @@ website](http://www.doctrine-project.org/projects/common.html) for more details 
 Here's a simple example.
 
 ``` sourceCode
-use Zend\Form\Annotation;
+use Laminas\Form\Annotation;
 
 /**
  * @Annotation\Name("user")
- * @Annotation\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
+ * @Annotation\Hydrator("Laminas\Stdlib\Hydrator\ObjectProperty")
  */
 class User
 {
@@ -941,7 +941,7 @@ class User
     public $username;
 
     /**
-     * @Annotation\Type("Zend\Form\Element\Email")
+     * @Annotation\Type("Laminas\Form\Element\Email")
      * @Annotation\Options({"label":"Your email address:"})
      */
     public $email;
@@ -949,17 +949,17 @@ class User
 ```
 
 The above will hint to the annotation build to create a form with name "user", which uses the
-hydrator `Zend\Stdlib\Hydrator\ObjectProperty`. That form will have two elements, "username" and
+hydrator `Laminas\Stdlib\Hydrator\ObjectProperty`. That form will have two elements, "username" and
 "email". The "username" element will have an associated input that has a `StringTrim` filter, and
 two validators: a `StringLength` validator indicating the username is between 1 and 25 characters,
 and a `Regex` validator asserting it follows a specific accepted pattern. The form element itself
 will have an attribute "type" with value "text" (a text element), and a label "Username:". The
-"email" element will be of type `Zend\Form\Element\Email`, and have the label "Your email address:".
+"email" element will be of type `Laminas\Form\Element\Email`, and have the label "Your email address:".
 
-To use the above, we need `Zend\Form\Annotation\AnnotationBuilder`:
+To use the above, we need `Laminas\Form\Annotation\AnnotationBuilder`:
 
 ``` sourceCode
-use Zend\Form\Annotation\AnnotationBuilder;
+use Laminas\Form\Annotation\AnnotationBuilder;
 
 $builder = new AnnotationBuilder();
 $form    = $builder->createForm('User');

@@ -197,9 +197,9 @@ Here is the `Brand` fieldset:
 namespace Application\Form;
 
 use Application\Entity\Brand;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class BrandFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -224,7 +224,7 @@ class BrandFieldset extends Fieldset implements InputFilterProviderInterface
 
         $this->add(array(
             'name' => 'url',
-            'type' => 'Zend\Form\Element\Url',
+            'type' => 'Laminas\Form\Element\Url',
             'options' => array(
                 'label' => 'Website of the brand',
             ),
@@ -255,7 +255,7 @@ concrete `Brand` object.
 When the data will be validated, the `Form` will automatically iterate through all the field sets it
 contains, and automatically populate the sub-objects, in order to return a complete entity.
 
-Also notice that the `Url` element has a type of `Zend\Form\Element\Url`. This information will be
+Also notice that the `Url` element has a type of `Laminas\Form\Element\Url`. This information will be
 used to validate the input field. You don't need to manually add filters or validators for this
 input as that element provides a reasonable input specification.
 
@@ -270,9 +270,9 @@ Here is the `Category` fieldset:
 namespace Application\Form;
 
 use Application\Entity\Category;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -320,9 +320,9 @@ And finally the `Product` fieldset:
 namespace Application\Form;
 
 use Application\Entity\Product;
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -364,7 +364,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
         ));
 
         $this->add(array(
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'categories',
             'options' => array(
                 'label' => 'Please choose categories for this product',
@@ -380,7 +380,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 
     /**
      * Should return an array specification compatible with
-     * {@link Zend\InputFilter\Factory::createInputFilter()}.
+     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
      *
      * @return array
      */
@@ -413,7 +413,7 @@ specified a `ClassMethods` hydrator, and bound the fieldset to a `Brand` entity 
 calling the `setBrand()` method.
 
 The next element shows you how to handle OneToMany relationship. The type is
-`Zend\Form\Element\Collection`, which is a specialized element to handle such cases. As you can see,
+`Laminas\Form\Element\Collection`, which is a specialized element to handle such cases. As you can see,
 the name of the element ("categories") perfectly matches the name of the property in the `Product`
 entity.
 
@@ -438,9 +438,9 @@ So far, so good. We now have our field sets in place. But those are field sets, 
 ``` sourceCode
 namespace Application\Form;
 
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CreateProduct extends Form
 {
@@ -462,7 +462,7 @@ class CreateProduct extends Form
         ));
 
         $this->add(array(
-            'type' => 'Zend\Form\Element\Csrf',
+            'type' => 'Laminas\Form\Element\Csrf',
             'name' => 'csrf',
         ));
 
@@ -561,7 +561,7 @@ render them manually one by one.
 
 Here is the result:
 
-![image](../images/zend.form.collections.view.png)
+![image](../images/laminas.form.collections.view.png)
 
 As you can see, collections are wrapped inside a fieldset, and every item in the collection is
 itself wrapped in the fieldset. In fact, the `Collection` element uses label for each item in the
@@ -573,7 +573,7 @@ parameter of the `FormCollection` view helper.
 If you validate, all elements will show errors (this is normal, as we've marked them as required).
 As soon as the form is valid, this is what we get :
 
-![image](../images/zend.form.collections.view.result.png)
+![image](../images/laminas.form.collections.view.result.png)
 
 As you can see, the bound object is completely filled, not with arrays, but with objects!
 
@@ -584,10 +584,10 @@ But that's not all.
 Remember the `should_create_template`? We are going to use it now.
 
 Often, forms are not completely static. In our case, let's say that we don't want only two
-categories, but we want the user to be able to add other ones at runtime. `Zend\Form` has this
+categories, but we want the user to be able to add other ones at runtime. `Laminas\Form` has this
 capability. First, let's see what it generates when we ask it to create a template:
 
-![image](../images/zend.form.collections.dynamic-elements.template.png)
+![image](../images/laminas.form.collections.dynamic-elements.template.png)
 
 As you can see, the collection generates two fieldsets (the two categories) *plus* a span with a
 `data-template` attribute that contains the full HTML code to copy to create a new element in the
@@ -600,7 +600,7 @@ If you want, this placeholder (`__index__` is the default) can be changed using 
 
 ``` sourceCode
 $this->add(array(
-    'type' => 'Zend\Form\Element\Collection',
+    'type' => 'Laminas\Form\Element\Collection',
     'name' => 'categories',
     'options' => array(
         'label' => 'Please choose categories for this product',
@@ -653,7 +653,7 @@ will have the index `2`).
 Now, if we validate the form, it will automatically take into account this new element by validating
 it, filtering it and retrieving it:
 
-![image](../images/zend.form.collections.dynamic-elements.result.png)
+![image](../images/laminas.form.collections.dynamic-elements.result.png)
 
 Of course, if you don't want to allow adding elements in a collection, you must set the option
 `allow_add` to `false`. This way, even if new elements are added, they won't be validated and hence,
@@ -662,7 +662,7 @@ template, either. Here's how you do it:
 
 ``` sourceCode
 $this->add(array(
-    'type' => 'Zend\Form\Element\Collection',
+    'type' => 'Laminas\Form\Element\Collection',
     'name' => 'categories',
     'options' => array(
         'label' => 'Please choose categories for this product',
@@ -723,7 +723,7 @@ echo $this->form()->closeTag();
 
 This is what we get:
 
-![image](../images/zend.form.collections.validation-groups.png)
+![image](../images/laminas.form.collections.validation-groups.png)
 
 The `URL` input has disappeared, but even if we fill every input, the form won't validate. In fact,
 this is normal. We specified in the input filter that the `URL` is a *required* field, so if the
@@ -739,9 +739,9 @@ case, in the `CreateProduct` form) by giving an array of all the elements we wan
 ``` sourceCode
 namespace Application\Form;
 
-use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
-use Zend\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Stdlib\Hydrator\ClassMethods as ClassMethodsHydrator;
 
 class CreateProduct extends Form
 {
@@ -763,7 +763,7 @@ class CreateProduct extends Form
         ));
 
         $this->add(array(
-            'type' => 'Zend\Form\Element\Csrf',
+            'type' => 'Laminas\Form\Element\Csrf',
             'name' => 'csrf',
         ));
 

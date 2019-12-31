@@ -1,26 +1,25 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Escaper\Escaper;
+use Laminas\Escaper\Escaper;
 
 /**
- * Tests for {@see \Zend\Form\View\Helper\AbstractHelper}
+ * Tests for {@see \Laminas\Form\View\Helper\AbstractHelper}
  *
- * @covers \Zend\Form\View\Helper\AbstractHelper
+ * @covers \Laminas\Form\View\Helper\AbstractHelper
  */
 class AbstractHelperTest extends CommonTestCase
 {
     public function setUp()
     {
-        $this->helper = $this->getMockForAbstractClass('Zend\Form\View\Helper\AbstractHelper');
+        $this->helper = $this->getMockForAbstractClass('Laminas\Form\View\Helper\AbstractHelper');
 
         parent::setUp();
     }
