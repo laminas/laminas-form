@@ -1,22 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\Element\MultiCheckbox as MultiCheckboxElement;
-use Zend\Form\View\Helper\FormMultiCheckbox as FormMultiCheckboxHelper;
+use Laminas\Form\Element;
+use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
+use Laminas\Form\View\Helper\FormMultiCheckbox as FormMultiCheckboxHelper;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage UnitTest
  */
 class FormMultiCheckboxTest extends CommonTestCase
@@ -241,7 +239,7 @@ class FormMultiCheckboxTest extends CommonTestCase
         ));
         $markup = $this->helper->render($element);
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->getMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->exactly(1))
         ->method('translate')
         ->will($this->returnValue('translated content'));
@@ -255,7 +253,7 @@ class FormMultiCheckboxTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->getMock('Zend\I18n\Translator\Translator');
+        $translatorMock = $this->getMock('Laminas\I18n\Translator\Translator');
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());

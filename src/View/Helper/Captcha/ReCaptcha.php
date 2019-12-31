@@ -1,24 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Form\View\Helper\Captcha;
+namespace Laminas\Form\View\Helper\Captcha;
 
+use Laminas\Captcha\ReCaptcha as CaptchaAdapter;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
+use Laminas\Form\View\Helper\FormInput;
 use Traversable;
-use Zend\Captcha\ReCaptcha as CaptchaAdapter;
-use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\View\Helper\FormInput;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage View
  */
 class ReCaptcha extends FormInput
@@ -36,7 +34,7 @@ class ReCaptcha extends FormInput
 
         if ($captcha === null || !$captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
-                '%s requires that the element has a "captcha" attribute implementing Zend\Captcha\AdapterInterface; none found',
+                '%s requires that the element has a "captcha" attribute implementing Laminas\Captcha\AdapterInterface; none found',
                 __METHOD__
             ));
         }
@@ -123,7 +121,7 @@ function windowOnLoad(fn)
         fn();
     };
 }
-function zendBindEvent(el, eventName, eventHandler)
+function laminasBindEvent(el, eventName, eventHandler)
 {
     if (el.addEventListener) {
         el.addEventListener(eventName, eventHandler, false);
@@ -132,7 +130,7 @@ function zendBindEvent(el, eventName, eventHandler)
     }
 }
 windowOnLoad(function() {
-    zendBindEvent(
+    laminasBindEvent(
         document.getElementById("$challengeId").form,
         'submit',
         function(e) {

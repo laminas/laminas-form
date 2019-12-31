@@ -1,20 +1,18 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
 use ArrayObject;
-use Zend\Captcha;
-use Zend\Form\Element\Captcha as CaptchaElement;
-use Zend\Form\Factory;
+use Laminas\Captcha;
+use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Factory;
+use PHPUnit_Framework_TestCase as TestCase;
 
 class CaptchaTest extends TestCase
 {
@@ -30,7 +28,7 @@ class CaptchaTest extends TestCase
 
         // by instance
         $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $element->setCaptcha($captcha);
         $this->assertSame($captcha, $element->getCaptcha());
@@ -39,28 +37,28 @@ class CaptchaTest extends TestCase
         $captcha = array(
             'class'   => 'dumb',
             'options' => array(
-                'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+                'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
             )
         );
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
+        $this->assertInstanceOf('Laminas\Captcha\Dumb', $element->getCaptcha());
 
         // by traversable
         $captcha = new ArrayObject(array(
             'class'   => 'dumb',
             'options' => array(
-                    'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+                    'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
             )
         ));
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
+        $this->assertInstanceOf('Laminas\Captcha\Dumb', $element->getCaptcha());
     }
 
     public function testSettingCaptchaSetsCaptchaAttribute()
     {
         $element = new CaptchaElement();
         $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $element->setCaptcha($captcha);
         $this->assertSame($captcha, $element->getCaptcha());
@@ -70,27 +68,27 @@ class CaptchaTest extends TestCase
     {
         $factory = new Factory();
         $element = $factory->createElement(array(
-            'type'       => 'Zend\Form\Element\Captcha',
+            'type'       => 'Laminas\Form\Element\Captcha',
             'name'       => 'foo',
             'options'    => array(
                 'captcha' => array(
                     'class'   => 'dumb',
                     'options' => array(
-                        'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+                        'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
                     )
                 )
             )
         ));
-        $this->assertInstanceOf('Zend\Form\Element\Captcha', $element);
+        $this->assertInstanceOf('Laminas\Form\Element\Captcha', $element);
         $captcha = $element->getCaptcha();
-        $this->assertInstanceOf('Zend\Captcha\Dumb', $captcha);
+        $this->assertInstanceOf('Laminas\Captcha\Dumb', $captcha);
     }
 
     public function testProvidesInputSpecificationThatIncludesCaptchaAsValidator()
     {
         $element = new CaptchaElement();
         $captcha = new Captcha\Dumb(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $element->setCaptcha($captcha);
 
