@@ -1,39 +1,37 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper\Captcha;
+namespace LaminasTest\Form\View\Helper\Captcha;
 
-use Zend\Captcha\ReCaptcha;
-use Zend\Form\Element\Captcha as CaptchaElement;
-use Zend\Form\View\Helper\Captcha\ReCaptcha as ReCaptchaHelper;
-use ZendTest\Form\View\Helper\CommonTestCase;
+use Laminas\Captcha\ReCaptcha;
+use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\View\Helper\Captcha\ReCaptcha as ReCaptchaHelper;
+use LaminasTest\Form\View\Helper\CommonTestCase;
 
 /**
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage UnitTest
  */
 class ReCaptchaTest extends CommonTestCase
 {
-    protected $publicKey  = TESTS_ZEND_FORM_RECAPTCHA_PUBLIC_KEY;
-    protected $privateKey = TESTS_ZEND_FORM_RECAPTCHA_PRIVATE_KEY;
+    protected $publicKey  = TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY;
+    protected $privateKey = TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY;
 
     public function setUp()
     {
-        if (!constant('TESTS_ZEND_FORM_RECAPTCHA_SUPPORT')) {
-            $this->markTestSkipped('Enable TESTS_ZEND_FORM_RECAPTCHA_SUPPORT to test PDF render');
+        if (!constant('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {
+            $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT to test PDF render');
         }
 
         $this->helper  = new ReCaptchaHelper();
         $this->captcha = new ReCaptcha(array(
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
+            'sessionClass' => 'LaminasTest\Captcha\TestAsset\SessionContainer',
         ));
         $service = $this->captcha->getService();
         $service->setPublicKey($this->publicKey);
@@ -52,7 +50,7 @@ class ReCaptchaTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 
@@ -83,7 +81,7 @@ class ReCaptchaTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertContains('function zendBindEvent', $markup);
+        $this->assertContains('function laminasBindEvent', $markup);
         $this->assertContains('document.getElementById("' . $element->getName() . '-challenge")', $markup);
         $this->assertContains('document.getElementById("' . $element->getName() . '-response")', $markup);
     }

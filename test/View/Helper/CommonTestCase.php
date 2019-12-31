@@ -1,25 +1,23 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Form
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Form\View\HelperConfig;
+use Laminas\View\Helper\Doctype;
+use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\View\HelperConfig;
-use Zend\View\Helper\Doctype;
-use Zend\View\Renderer\PhpRenderer;
 
 /**
  * Abstract base test case for all form view helpers
  *
- * @category   Zend
- * @package    Zend_Form
+ * @category   Laminas
+ * @package    Laminas_Form
  * @subpackage UnitTest
  */
 abstract class CommonTestCase extends TestCase
