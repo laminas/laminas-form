@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper;
+namespace LaminasTest\Form\View\Helper;
 
-use Zend\Form\Element;
-use Zend\Form\View\Helper\FormInput as FormInputHelper;
+use Laminas\Form\Element;
+use Laminas\Form\View\Helper\FormInput as FormInputHelper;
 
 class FormInputTest extends CommonTestCase
 {
@@ -23,7 +22,7 @@ class FormInputTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->setExpectedException('Zend\Form\Exception\DomainException', 'name');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException', 'name');
         $this->helper->render($element);
     }
 
@@ -418,7 +417,7 @@ class FormInputTest extends CommonTestCase
     }
 
     /**
-     * @group ZF2-391
+     * @group Laminas-391
      * @dataProvider booleanAttributeTypes
      */
     public function testBooleanAttributeTypesAreRenderedCorrectly($attribute, $on, $off)
@@ -439,7 +438,7 @@ class FormInputTest extends CommonTestCase
             $this->assertNotContains($expect, $markup, sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup));
         }
 
-        // ZF2-391 : Ability to use non-boolean values that match expected end-value
+        // Laminas-391 : Ability to use non-boolean values that match expected end-value
         $element->setAttribute($attribute, $on);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
@@ -471,14 +470,14 @@ class FormInputTest extends CommonTestCase
     }
 
     /**
-     * @group ZF2-489
+     * @group Laminas-489
      */
     public function testCanTranslatePlaceholder()
     {
         $element = new Element('test');
         $element->setAttribute('placeholder', 'test');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->getMock('Laminas\I18n\Translator\Translator');
 
         $mockTranslator->expects($this->exactly(1))
                 ->method('translate')
@@ -498,7 +497,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('test');
         $element->setAttribute('title', 'test');
 
-        $mockTranslator = $this->getMock('Zend\I18n\Translator\Translator');
+        $mockTranslator = $this->getMock('Laminas\I18n\Translator\Translator');
 
         $mockTranslator->expects($this->exactly(1))
                 ->method('translate')

@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use Zend\Form\Element\Color as ColorElement;
-use Zend\Form\Form;
+use Laminas\Form\Element\Color as ColorElement;
+use Laminas\Form\Form;
 
 class FormCollection extends Form
 {
@@ -21,7 +20,7 @@ class FormCollection extends Form
 
         $element = new ColorElement('color');
         $this->add(array(
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'colors',
             'options' => array(
                 'count' => 2,
@@ -31,7 +30,7 @@ class FormCollection extends Form
 
         $fieldset = new BasicFieldset();
         $this->add(array(
-            'type' => 'Zend\Form\Element\Collection',
+            'type' => 'Laminas\Form\Element\Collection',
             'name' => 'fieldsets',
             'options' => array(
                 'count' => 2,
