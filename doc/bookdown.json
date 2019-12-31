@@ -1,13 +1,13 @@
 {
-    "title": "Zend\\Form",
+    "title": "Laminas\\Form",
     "target": "html/",
     "content": [
-        "book/zend.form.intro.md",
-        "book/zend.form.quick-start.md",
-        "book/zend.form.collections.md",
-        "book/zend.form.file-upload.md",
-        "book/zend.form.advanced-use-of-forms.md",
-        "book/zend.form.elements.md",
-        "book/zend.form.view.helpers.md"
+        "book/laminas.form.intro.md",
+        "book/laminas.form.quick-start.md",
+        "book/laminas.form.collections.md",
+        "book/laminas.form.file-upload.md",
+        "book/laminas.form.advanced-use-of-forms.md",
+        "book/laminas.form.elements.md",
+        "book/laminas.form.view.helpers.md"
     ]
 }

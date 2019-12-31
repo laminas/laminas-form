@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
+use Laminas\Form\Element;
 use PHPUnit_Framework_TestCase as TestCase;
-use Zend\Form\Element;
 
 class ElementTest extends TestCase
 {
@@ -190,7 +189,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $element->setOptions(null);
     }
 
@@ -212,7 +211,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $element->setAttributes(null);
     }
 
@@ -220,7 +219,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $element->setMessages(null);
     }
 

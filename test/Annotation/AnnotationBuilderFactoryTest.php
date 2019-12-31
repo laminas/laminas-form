@@ -1,23 +1,24 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/zend-form for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Annotation;
+namespace LaminasTest\Form\Annotation;
 
 use Interop\Container\ContainerInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\ListenerAggregateInterface;
+use Laminas\Form\Annotation\AnnotationBuilder;
+use Laminas\Form\Annotation\AnnotationBuilderFactory;
+use Laminas\Form\FormElementManager;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use PHPUnit_Framework_TestCase as TestCase;
 use Prophecy\Argument;
 use ReflectionProperty;
 use stdClass;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
-use Zend\Form\Annotation\AnnotationBuilder;
-use Zend\Form\Annotation\AnnotationBuilderFactory;
-use Zend\Form\FormElementManager;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 
 class AnnotationBuilderFactoryTest extends TestCase
 {

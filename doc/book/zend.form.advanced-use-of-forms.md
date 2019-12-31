@@ -1,10 +1,10 @@
 # Advanced use of forms
 
-Beginning with Zend Framework 2.1, forms elements can be registered using a designated plugin
-manager of Zend\\\\ServiceManager &lt;zend.service-manager.intro&gt;. This is similar to how view
+Beginning with Laminas.1, forms elements can be registered using a designated plugin
+manager of Laminas\\\\ServiceManager &lt;laminas.service-manager.intro&gt;. This is similar to how view
 helpers, controller plugins, and filters are registered. This new feature has a number of benefits,
 especially when you need to handle complex dependencies in forms/fieldsets. This section describes
-all the benefits of this new architecture in ZF 2.1.
+all the benefits of this new architecture in Laminas 2.1.
 
 ## Short names
 
@@ -13,7 +13,7 @@ names to create new elements through the factory. Therefore, this code:
 
 ``` sourceCode
 $form->add(array(
-    'type' => 'Zend\Form\Element\Email',
+    'type' => 'Laminas\Form\Element\Email',
     'name' => 'email'
 ));
 ```
@@ -27,27 +27,27 @@ $form->add(array(
 ));
 ```
 
-Each element provided out-of-the-box by Zend Framework 2 support this natively, so you can now make
+Each element provided out-of-the-box by Laminas support this natively, so you can now make
 your initialization code more compact.
 
 ## Creating custom elements
 
-`Zend\Form` also supports custom form elements.
+`Laminas\Form` also supports custom form elements.
 
-To create a custom form element, make it extend the `Zend\Form\Element` class, or if you need a more
-specific one, extend one of the `Zend\Form\Element` classes.
+To create a custom form element, make it extend the `Laminas\Form\Element` class, or if you need a more
+specific one, extend one of the `Laminas\Form\Element` classes.
 
 In the following we will show how to create a custom `Phone` element for entering phone numbers. It
-will extend `Zend\Form\Element` class and provide some default input rules.
+will extend `Laminas\Form\Element` class and provide some default input rules.
 
 Our custom phone element could look something like this:
 
 ``` sourceCode
 namespace Application\Form\Element;
 
-use Zend\Form\Element;
-use Zend\InputFilter\InputProviderInterface;
-use Zend\Validator\Regex as RegexValidator;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Regex as RegexValidator;
 
 class Phone extends Element implements InputProviderInterface
 {
@@ -99,7 +99,7 @@ class Phone extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => array(
-                array('name' => 'Zend\Filter\StringTrim'),
+                array('name' => 'Laminas\Filter\StringTrim'),
             ),
             'validators' => array(
                 $this->getValidator(),
@@ -109,29 +109,29 @@ class Phone extends Element implements InputProviderInterface
 }
 ```
 
-By implementing the `Zend\InputFilter\InputProviderInterface` interface, we are hinting to our form
+By implementing the `Laminas\InputFilter\InputProviderInterface` interface, we are hinting to our form
 object that this element provides some default input rules for filtering and/or validating values.
-In this example the default input specification provides a `Zend\Filter\StringTrim` filter and a
-`Zend\Validator\Regex` validator that validates that the value optionally has a + sign at the
+In this example the default input specification provides a `Laminas\Filter\StringTrim` filter and a
+`Laminas\Validator\Regex` validator that validates that the value optionally has a + sign at the
 beginning and is followed by 11 or 12 digits.
 
 The easiest way of start using your new custom element in your forms is to use the custom element's
 FQCN:
 
 ``` sourceCode
-$form = new Zend\Form\Form();
+$form = new Laminas\Form\Form();
 $form->add(array(
     'name' => 'phone',
     'type' => 'Application\Form\Element\Phone',
 ));
 ```
 
-Or, if you are extending `Zend\Form\Form`:
+Or, if you are extending `Laminas\Form\Form`:
 
 ``` sourceCode
 namespace Application\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class MyForm extends Form
 {
@@ -147,8 +147,8 @@ class MyForm extends Form
 }
 ```
 
-If you don't want to use the custom element's FQCN, but rather a short name, as of Zend Framework
-2.1 you can do so by adding them to the `Zend\Form\FormElementManager` plugin manager by utilising
+If you don't want to use the custom element's FQCN, but rather a short name, as of Laminas
+2.1 you can do so by adding them to the `Laminas\Form\FormElementManager` plugin manager by utilising
 the `getFormElementConfig` function.
 
 > ## Warning
@@ -160,7 +160,7 @@ First, add the custom element to the plugin manager, in your `Module.php` class:
 ``` sourceCode
 namespace Application;
 
-use Zend\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
 
 class Module implements FormElementProviderInterface
 {
@@ -192,14 +192,14 @@ elements/fieldsets/forms.
 
 **And now comes the first catch.**
 
-If you are creating your form class by extending `Zend\Form\Form`, you *must not* add the custom
+If you are creating your form class by extending `Laminas\Form\Form`, you *must not* add the custom
 element in the `__construct`-or (as we have done in the previous example where we used the custom
 element's FQCN), but rather in the `init()` method:
 
 ``` sourceCode
 namespace Application\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class MyForm extends Form
 {
@@ -214,12 +214,12 @@ class MyForm extends Form
 ```
 
 **The second catch** is that you *must not* directly instantiate your form class, but rather get an
-instance of it through the `Zend\Form\FormElementManager`:
+instance of it through the `Laminas\Form\FormElementManager`:
 
 ``` sourceCode
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController
 {
@@ -232,7 +232,7 @@ class IndexController extends AbstractActionController
 }
 ```
 
-The biggest gain of this is that you can easily override any built-in Zend Framework form elements
+The biggest gain of this is that you can easily override any built-in Laminas form elements
 if they do not fit your needs. For instance, if you want to create your own Email element instead of
 the standard one, you can simply create your element and add it to the form element config with the
 same key as the element you want to replace:
@@ -240,7 +240,7 @@ same key as the element you want to replace:
 ``` sourceCode
 namespace Application;
 
-use Zend\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
 
 class Module implements FormElementProviderInterface
 {
@@ -260,7 +260,7 @@ element instead of the built-in one.
 
 > ## Note
 if you want to be able to use both the built-in one and your own one, you can still provide the FQCN
-of the element, i.e. `Zend\Form\Element\Email`.
+of the element, i.e. `Laminas\Form\Element\Email`.
 
 As you can see here, we first get the form manager (that we modified in our Module.php class), and
 create the form by specifying the fully qualified class name of the form. Please note that you don't
@@ -279,12 +279,12 @@ it's `init()` method, or after getting an instance of the form.
 
 ## Handling dependencies
 
-One of the most complex issues in `Zend\Form 2.0` was dependency management. For instance, a very
+One of the most complex issues in `Laminas\Form 2.0` was dependency management. For instance, a very
 frequent use case is a form that creates a fieldset, that itself need access to the database to
 populate a `Select` element. Previously in such a situation, you would either rely on the Registry
 using the Singleton pattern, or either you would "transfer" the dependency from controller to form,
 and from form to fieldset (and even from fieldset to another fieldset if you have a complex form).
-This was ugly and not easy to use. Hopefully, `Zend\ServiceManager` solves this use case in an
+This was ugly and not easy to use. Hopefully, `Laminas\ServiceManager` solves this use case in an
 elegant manner.
 
 For instance, let's say that a form create a fieldset called `AlbumFieldset`:
@@ -292,7 +292,7 @@ For instance, let's say that a form create a fieldset called `AlbumFieldset`:
 ``` sourceCode
 namespace Application\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class CreateAlbum extends Form
 {
@@ -313,7 +313,7 @@ albums from the database.
 namespace Application\Form;
 
 use Album\Model\AlbumTable;
-use Zend\Form\Fieldset;
+use Laminas\Form\Fieldset;
 
 class AlbumFieldset extends Fieldset
 {
@@ -332,7 +332,7 @@ Module.php class:
 namespace Application;
 
 use Application\Form\AlbumFieldset;
-use Zend\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
 
 class Module implements FormElementProviderInterface
 {
@@ -381,7 +381,7 @@ over to the fieldset.
 
 In the previous example, we explicitly defined the dependency in the constructor of the
 `AlbumFieldset` class. However, in some cases, you may want to use an initializer (like
-`Zend\ServiceManager\ServiceLocatorAwareInterface`) to inject a specific object to all your
+`Laminas\ServiceManager\ServiceLocatorAwareInterface`) to inject a specific object to all your
 forms/fieldsets/elements.
 
 The problem with initializers is that they are injected AFTER the construction of the object, which
@@ -392,9 +392,9 @@ instance, this example **won't work**:
 namespace Application\Form;
 
 use Album\Model;
-use Zend\Form\Fieldset;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Form\Fieldset;
+use Laminas\ServiceManager\ServiceLocatorAwareInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class AlbumFieldset extends Fieldset implements ServiceLocatorAwareInterface
 {
@@ -419,7 +419,7 @@ class AlbumFieldset extends Fieldset implements ServiceLocatorAwareInterface
 ```
 
 Thankfully, there is an easy workaround: every form element now implements the new interface
-`Zend\Stdlib\InitializableInterface`, that defines a single `init()` function. In the context of
+`Laminas\Stdlib\InitializableInterface`, that defines a single `init()` function. In the context of
 form elements, this `init()` function is automatically called once all the dependencies (including
 all initializers) are resolved. Therefore, the previous example can be rewritten as such:
 
@@ -427,9 +427,9 @@ all initializers) are resolved. Therefore, the previous example can be rewritten
 namespace Application\Form;
 
 use Album\Model;
-use Zend\Form\Fieldset;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Form\Fieldset;
+use Laminas\ServiceManager\ServiceLocatorAwareInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class AlbumFieldset extends Fieldset implements ServiceLocatorAwareInterface
 {
