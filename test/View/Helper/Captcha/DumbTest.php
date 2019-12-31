@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\View\Helper\Captcha;
+namespace LaminasTest\Form\View\Helper\Captcha;
 
-use Zend\Captcha\Dumb as DumbCaptcha;
-use Zend\Form\Element\Captcha as CaptchaElement;
-use Zend\Form\View\Helper\Captcha\Dumb as DumbCaptchaHelper;
-use ZendTest\Form\View\Helper\CommonTestCase;
+use Laminas\Captcha\Dumb as DumbCaptcha;
+use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\View\Helper\Captcha\Dumb as DumbCaptchaHelper;
+use LaminasTest\Form\View\Helper\CommonTestCase;
 
 class DumbTest extends CommonTestCase
 {
@@ -20,8 +19,8 @@ class DumbTest extends CommonTestCase
     {
         if (! class_exists(DumbCaptcha::class)) {
             $this->markTestSkipped(
-                'zend-captcha-related tests are skipped until the component '
-                . 'is forwards-compatible with zend-servicemanager v3'
+                'laminas-captcha-related tests are skipped until the component '
+                . 'is forwards-compatible with laminas-servicemanager v3'
             );
         }
 
@@ -41,7 +40,7 @@ class DumbTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->setExpectedException('Zend\Form\Exception\DomainException');
+        $this->setExpectedException('Laminas\Form\Exception\DomainException');
         $this->helper->render($element);
     }
 
@@ -79,7 +78,7 @@ class DumbTest extends CommonTestCase
 
     public function testSetCaptchaPositionWithNullRaisesException()
     {
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $this->helper->setCaptchaPosition(null);
     }
 

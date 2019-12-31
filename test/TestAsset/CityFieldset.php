@@ -1,17 +1,16 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\TestAsset;
+namespace LaminasTest\Form\TestAsset;
 
-use Zend\Form\Fieldset;
-use Zend\InputFilter\InputFilterProviderInterface;
-use Zend\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\Form\Fieldset;
+use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;
+use Laminas\InputFilter\InputFilterProviderInterface;
 
 class CityFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -21,10 +20,10 @@ class CityFieldset extends Fieldset implements InputFilterProviderInterface
         $this->setHydrator(new ClassMethodsHydrator(false))
              ->setObject(new Entity\City());
 
-        $name = new \Zend\Form\Element('name', array('label' => 'Name of the city'));
+        $name = new \Laminas\Form\Element('name', array('label' => 'Name of the city'));
         $name->setAttribute('type', 'text');
 
-        $zipCode = new \Zend\Form\Element('zipCode', array('label' => 'ZipCode of the city'));
+        $zipCode = new \Laminas\Form\Element('zipCode', array('label' => 'ZipCode of the city'));
         $zipCode->setAttribute('type', 'text');
 
         $country = new CountryFieldset;
@@ -37,7 +36,7 @@ class CityFieldset extends Fieldset implements InputFilterProviderInterface
 
     /**
      * Should return an array specification compatible with
-     * {@link Zend\InputFilter\Factory::createInputFilter()}.
+     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
      *
      * @return array
      */

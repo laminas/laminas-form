@@ -1,21 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form\Element;
+namespace LaminasTest\Form\Element;
 
-use PHPUnit_Framework_TestCase as TestCase;
 use ArrayIterator;
 use ArrayObject;
-use Zend\Captcha;
-use Zend\Form\Element\Captcha as CaptchaElement;
-use Zend\Form\Factory;
-use ZendTest\Form\TestAsset;
+use Laminas\Captcha;
+use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Factory;
+use LaminasTest\Form\TestAsset;
+use PHPUnit_Framework_TestCase as TestCase;
 
 class CaptchaTest extends TestCase
 {
@@ -23,8 +22,8 @@ class CaptchaTest extends TestCase
     {
         if (! class_exists(Captcha\Dumb::class)) {
             $this->markTestSkipped(
-                'zend-captcha-related tests are skipped until the component '
-                . 'is forwards-compatible with zend-servicemanager v3'
+                'laminas-captcha-related tests are skipped until the component '
+                . 'is forwards-compatible with laminas-servicemanager v3'
             );
         }
     }
@@ -49,20 +48,20 @@ class CaptchaTest extends TestCase
             'class'   => 'dumb',
         ];
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
+        $this->assertInstanceOf('Laminas\Captcha\Dumb', $element->getCaptcha());
 
         // by traversable
         $captcha = new ArrayObject([
             'class'   => 'dumb',
         ]);
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf('Zend\Captcha\Dumb', $element->getCaptcha());
+        $this->assertInstanceOf('Laminas\Captcha\Dumb', $element->getCaptcha());
     }
 
     public function testCaptchaWithNullRaisesException()
     {
         $element = new CaptchaElement();
-        $this->setExpectedException('Zend\Form\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Form\Exception\InvalidArgumentException');
         $element->setCaptcha(null);
     }
 
@@ -78,7 +77,7 @@ class CaptchaTest extends TestCase
     {
         $factory = new Factory();
         $element = $factory->createElement([
-            'type'       => 'Zend\Form\Element\Captcha',
+            'type'       => 'Laminas\Form\Element\Captcha',
             'name'       => 'foo',
             'options'    => [
                 'captcha' => [
@@ -86,9 +85,9 @@ class CaptchaTest extends TestCase
                 ]
             ]
         ]);
-        $this->assertInstanceOf('Zend\Form\Element\Captcha', $element);
+        $this->assertInstanceOf('Laminas\Form\Element\Captcha', $element);
         $captcha = $element->getCaptcha();
-        $this->assertInstanceOf('Zend\Captcha\Dumb', $captcha);
+        $this->assertInstanceOf('Laminas\Captcha\Dumb', $captcha);
     }
 
     public function testProvidesInputSpecificationThatIncludesCaptchaAsValidator()
@@ -116,6 +115,6 @@ class CaptchaTest extends TestCase
         ]));
         $element = new CaptchaElement('captcha', $options);
         $captcha = $element->getCaptcha();
-        $this->assertInstanceOf('Zend\Captcha\Dumb', $captcha);
+        $this->assertInstanceOf('Laminas\Captcha\Dumb', $captcha);
     }
 }

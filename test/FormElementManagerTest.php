@@ -1,23 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-form for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Form;
+namespace LaminasTest\Form;
 
-use Zend\Form\Exception\InvalidElementException;
-use Zend\Form\Factory;
-use Zend\Form\Form;
-use Zend\Form\FormElementManager;
-use Zend\ServiceManager\Exception\InvalidServiceException;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\Form\Exception\InvalidElementException;
+use Laminas\Form\Factory;
+use Laminas\Form\Form;
+use Laminas\Form\FormElementManager;
+use Laminas\ServiceManager\Exception\InvalidServiceException;
+use Laminas\ServiceManager\ServiceManager;
 
 /**
- * @group      Zend_Form
+ * @group      Laminas_Form
  */
 class FormElementManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -121,7 +120,7 @@ class FormElementManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSharedFormElementsAreNotInitializedMultipleTimes()
     {
-        $element = $this->getMock('Zend\Form\Element', ['init']);
+        $element = $this->getMock('Laminas\Form\Element', ['init']);
 
         $element->expects($this->once())->method('init');
 
