@@ -86,3 +86,6 @@ nav:
 site_name: laminas-form
 site_description: "Validate and display simple and complex forms, casting forms to business objects and vice versa."
 repo_url: 'https://github.com/laminas/laminas-form'
+extra:
+    project: Components
+    project_url: 'https://docs.laminas.dev'
