@@ -111,4 +111,13 @@ class FormMonthSelectTest extends CommonTestCase
 
         $this->assertEquals(12, count($elements[0]->getValueOptions()));
     }
+
+    public function testSetAndGetPattern()
+    {
+        $this->helper->setLocale('de_DE');
+        $this->assertSame('d. MMMM y', $this->helper->getPattern());
+
+        $this->helper->setPattern('test');
+        $this->assertSame('test', $this->helper->getPattern());
+    }
 }
