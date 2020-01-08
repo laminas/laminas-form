@@ -21,3 +21,30 @@ echo $this->formMonthSelect($monthYear);
 // <select name="monthyear[month]"> ... </select>
 // <select name="monthyear[year]"> ... </select>
 ```
+
+## Advanced usage
+
+### Render each element individually
+
+This can be archived by passing a custom pattern via `setPattern()`:
+
+```php
+<div class="row">
+    <div class="col-lg-7">
+        <!-- Render the select field for month only -->
+        <?=
+            $this->formMonthSelect()
+            ->setPattern('MMMM')
+            ->render($element);
+        ?>
+    </div>
+    <div class="col-lg-5">
+        <!-- Render the select field for day only -->
+        <?=
+             $this->formMonthSelect()
+            ->setPattern('y')
+            ->render($element);
+        ?>
+    </div>
+</div>
+```
