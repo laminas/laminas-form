@@ -194,6 +194,16 @@ class FormMonthSelect extends AbstractHelper
     }
 
     /**
+     * @param string $pattern
+     * @return self
+     */
+    public function setPattern($pattern)
+    {
+        $this->pattern = $pattern;
+        return $this;
+    }
+
+    /**
      * Set date formatter
      *
      * @param  int $dateType
