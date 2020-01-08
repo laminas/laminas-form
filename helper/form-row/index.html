@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -714,50 +718,49 @@ usability features.</p>
 <p>Other options involve label positioning, escaping, toggling errors and using
 custom partial templates.</p>
 <h2 id="basic-usage">Basic Usage</h2>
-<p> <div class=codehilite><pre><span></span><span class=x>/**</span>
-<span class=x> * inside view template</span>
-<span class=x> *</span>
-<span class=x> * @var \Laminas\View\Renderer\PhpRenderer $this</span>
-<span class=x> * @var \Laminas\Form\Form $form</span>
-<span class=x> */</span>
+<pre class=codehilite><code class=language-php>/**
+ * inside view template
+ *
+ * @var \Laminas\View\Renderer\PhpRenderer $this
+ * @var \Laminas\Form\Form $form
+ */
 
-<span class=x>// Prepare the form</span>
-<span class=x>$form-&gt;prepare();</span>
+// Prepare the form
+$form-&gt;prepare();
 
-<span class=x>// Render the opening tag</span>
-<span class=x>echo $this-&gt;form()-&gt;openTag($form);</span>
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
 
-<span class=x>$element = $form-&gt;get(&#39;some_element&#39;);</span>
-<span class=x>$element-&gt;setLabel(&#39;Some Label&#39;);</span>
+$element = $form-&gt;get('some_element');
+$element-&gt;setLabel('Some Label');
 
-<span class=x>// Render &#39;some_element&#39; label, input, and errors if any:</span>
-<span class=x>echo $this-&gt;formRow($element);</span>
-<span class=x>// Result: &lt;label&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;&lt;/label&gt;</span>
+// Render 'some_element' label, input, and errors if any:
+echo $this-&gt;formRow($element);
+// Result: &lt;label&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;&lt;/label&gt;
 
-<span class=x>// Altering label position:</span>
-<span class=x>echo $this-&gt;formRow($element, &#39;append&#39;);</span>
-<span class=x>// Result: &lt;label&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;/label&gt;</span>
+// Altering label position:
+echo $this-&gt;formRow($element, 'append');
+// Result: &lt;label&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;/label&gt;
 
-<span class=x>// Setting the &#39;id&#39; attribute will result in a separated label rather than a</span>
-<span class=x>// wrapping one:</span>
-<span class=x>$element-&gt;setAttribute(&#39;id&#39;, &#39;element_id&#39;);</span>
-<span class=x>echo $this-&gt;formRow($element);</span>
-<span class=x>// Result: &lt;label for=&quot;element_id&quot;&gt;Some Label&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; id=&quot;element_id&quot; value=&quot;&quot;&gt;</span>
+// Setting the 'id' attribute will result in a separated label rather than a
+// wrapping one:
+$element-&gt;setAttribute('id', 'element_id');
+echo $this-&gt;formRow($element);
+// Result: &lt;label for=&quot;element_id&quot;&gt;Some Label&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; id=&quot;element_id&quot; value=&quot;&quot;&gt;
 
-<span class=x>// Turn off escaping for HTML labels:</span>
-<span class=x>$element-&gt;setLabel(&#39;&lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;&#39;);</span>
-<span class=x>$element-&gt;setLabelOptions([&#39;disable_html_escape&#39; =&gt; true]);</span>
-<span class=x>// Result:</span>
-<span class=x>// &lt;label&gt;</span>
-<span class=x>//   &lt;span&gt;</span>
-<span class=x>//       &lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;</span>
-<span class=x>//   &lt;/span&gt;</span>
-<span class=x>//   &lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;</span>
-<span class=x>// &lt;/label&gt;</span>
+// Turn off escaping for HTML labels:
+$element-&gt;setLabel('&lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;');
+$element-&gt;setLabelOptions(['disable_html_escape' =&gt; true]);
+// Result:
+// &lt;label&gt;
+//   &lt;span&gt;
+//       &lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;
+//   &lt;/span&gt;
+//   &lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;
+// &lt;/label&gt;
 
-<span class=x>// Render the closing tag</span>
-<span class=x>echo $this-&gt;form()-&gt;closeTag();</span>
-</pre></div></p>
+// Render the closing tag
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
 <blockquote>
 <h3>Escaping</h3>
 <p>Label content is escaped by default.</p>
@@ -1368,9 +1371,10 @@ custom partial templates.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1407,7 +1411,7 @@ custom partial templates.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1416,8 +1420,8 @@ custom partial templates.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

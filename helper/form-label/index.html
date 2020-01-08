@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -715,49 +719,48 @@
 attributes. If you have a <code>Laminas\I18n\Translator\Translator</code> attached,
 <code>FormLabel</code> will translate the label contents when rendering.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
 
-<span class=x>$element = new Element\Text(&#39;my-text&#39;);</span>
-<span class=x>$element-&gt;setLabel(&#39;Label&#39;);</span>
-<span class=x>$element-&gt;setAttribute(&#39;id&#39;, &#39;text-id&#39;);</span>
-<span class=x>$element-&gt;setLabelAttributes([&#39;class&#39; =&gt; &#39;control-label&#39;]);</span>
+$element = new Element\Text('my-text');
+$element-&gt;setLabel('Label');
+$element-&gt;setAttribute('id', 'text-id');
+$element-&gt;setLabelAttributes(['class' =&gt; 'control-label']);
 
-<span class=x>// Within your view...</span>
+// Within your view...
 
-<span class=x>/**</span>
-<span class=x> * Example #1: Render label in one shot</span>
-<span class=x> */</span>
-<span class=x>echo $this-&gt;formLabel($element);</span>
-<span class=x>// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;Label&lt;/label&gt;</span>
+/**
+ * Example #1: Render label in one shot
+ */
+echo $this-&gt;formLabel($element);
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;Label&lt;/label&gt;
 
-<span class=x>echo $this-&gt;formLabel($element, $this-&gt;formText($element));</span>
-<span class=x>// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;Label&lt;input type=&quot;text&quot; name=&quot;my-text&quot;&gt;&lt;/label&gt;</span>
+echo $this-&gt;formLabel($element, $this-&gt;formText($element));
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;Label&lt;input type=&quot;text&quot; name=&quot;my-text&quot;&gt;&lt;/label&gt;
 
-<span class=x>echo $this-&gt;formLabel($element, $this-&gt;formText($element), &#39;append&#39;);</span>
-<span class=x>// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;my-text&quot;&gt;Label&lt;/label&gt;</span>
+echo $this-&gt;formLabel($element, $this-&gt;formText($element), 'append');
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;my-text&quot;&gt;Label&lt;/label&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #2: Render label in separate steps</span>
-<span class=x> */</span>
-<span class=x>// Render the opening tag</span>
-<span class=x>echo $this-&gt;formLabel()-&gt;openTag($element);</span>
-<span class=x>// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;</span>
+/**
+ * Example #2: Render label in separate steps
+ */
+// Render the opening tag
+echo $this-&gt;formLabel()-&gt;openTag($element);
+// Result: &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;
 
-<span class=x>// Render the closing tag</span>
-<span class=x>echo $this-&gt;formLabel()-&gt;closeTag();</span>
-<span class=x>// Result: &lt;/label&gt;</span>
+// Render the closing tag
+echo $this-&gt;formLabel()-&gt;closeTag();
+// Result: &lt;/label&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #3: Render html label after toggling off escape</span>
-<span class=x> */</span>
-<span class=x>$element-&gt;setLabel(&#39;&lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;&#39;);</span>
-<span class=x>$element-&gt;setLabelOptions([&#39;disable_html_escape&#39; =&gt; true]);</span>
-<span class=x>echo $this-&gt;formLabel($element);</span>
-<span class=x>// Result:</span>
-<span class=x>// &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;</span>
-<span class=x>//     &lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;</span>
-<span class=x>// &lt;/label&gt;</span>
-</pre></div></p>
+/**
+ * Example #3: Render html label after toggling off escape
+ */
+$element-&gt;setLabel('&lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;');
+$element-&gt;setLabelOptions(['disable_html_escape' =&gt; true]);
+echo $this-&gt;formLabel($element);
+// Result:
+// &lt;label class=&quot;control-label&quot; for=&quot;text-id&quot;&gt;
+//     &lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;
+// &lt;/label&gt;</code></pre>
 <blockquote>
 <h3>Escaping</h3>
 <p>HTML escaping only applies to the <code>Element::$label</code> property, not to the
@@ -1396,9 +1399,10 @@ helper <code>$labelContent</code> parameter.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1435,7 +1439,7 @@ helper <code>$labelContent</code> parameter.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1444,8 +1448,8 @@ helper <code>$labelContent</code> parameter.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -716,17 +720,15 @@ especially when you need to handle complex dependencies in forms/fieldsets.</p>
 <p>The first advantage of pulling form elements from the service manager is that
 now you can use short names to create new elements through the factory.
 Therefore, this code:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Email::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;email&#39;,</span>
-<span class=x>]);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$form-&gt;add([
+    'type' =&gt; Element\Email::class,
+    'name' =&gt; 'email',
+]);</code></pre>
 <p>can now be replaced by:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$form-&gt;add([</span>
-<span class=x>     &#39;type&#39; =&gt; &#39;Email&#39;,</span>
-<span class=x>     &#39;name&#39; =&gt; &#39;email&#39;</span>
-<span class=x>]);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$form-&gt;add([
+     'type' =&gt; 'Email',
+     'name' =&gt; 'email'
+]);</code></pre>
 <p>Each element provided out-of-the-box by laminas-form supports this natively.</p>
 <blockquote>
 <h3>Use the ::class constant</h3>
@@ -744,74 +746,73 @@ or, if you have a more specific dependency, extend one of the classes in the
 entering phone numbers. It will extend <code>Laminas\Form\Element</code> class and provide
 some default input rules.</p>
 <p>Our custom phone element could look something like this:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form\Element;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form\Element;
 
-<span class=x>use Laminas\Filter;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\InputFilter\InputProviderInterface;</span>
-<span class=x>use Laminas\Validator\Regex as RegexValidator;</span>
+use Laminas\Filter;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Regex as RegexValidator;
 
-<span class=x>class Phone extends Element implements InputProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    /**</span>
-<span class=x>     * @var ValidatorInterface</span>
-<span class=x>     */</span>
-<span class=x>    protected $validator;</span>
+class Phone extends Element implements InputProviderInterface
+{
+    /**
+     * @var ValidatorInterface
+     */
+    protected $validator;
 
-<span class=x>    /**</span>
-<span class=x>    * Get a validator if none has been set.</span>
-<span class=x>    *</span>
-<span class=x>    * @return ValidatorInterface</span>
-<span class=x>    */</span>
-<span class=x>    public function getValidator()</span>
-<span class=x>    {</span>
-<span class=x>        if (null === $this-&gt;validator) {</span>
-<span class=x>            $validator = new RegexValidator(&#39;/^\+?\d{11,12}$/&#39;);</span>
-<span class=x>            $validator-&gt;setMessage(</span>
-<span class=x>                &#39;Please enter 11 or 12 digits only!&#39;,</span>
-<span class=x>                RegexValidator::NOT_MATCH</span>
-<span class=x>            );</span>
+    /**
+    * Get a validator if none has been set.
+    *
+    * @return ValidatorInterface
+    */
+    public function getValidator()
+    {
+        if (null === $this-&gt;validator) {
+            $validator = new RegexValidator('/^\+?\d{11,12}$/');
+            $validator-&gt;setMessage(
+                'Please enter 11 or 12 digits only!',
+                RegexValidator::NOT_MATCH
+            );
 
-<span class=x>            $this-&gt;validator = $validator;</span>
-<span class=x>        }</span>
+            $this-&gt;validator = $validator;
+        }
 
-<span class=x>        return $this-&gt;validator;</span>
-<span class=x>    }</span>
+        return $this-&gt;validator;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * Sets the validator to use for this element</span>
-<span class=x>     *</span>
-<span class=x>     * @param  ValidatorInterface $validator</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setValidator(ValidatorInterface $validator)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;validator = $validator;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * Sets the validator to use for this element
+     *
+     * @param  ValidatorInterface $validator
+     * @return self
+     */
+    public function setValidator(ValidatorInterface $validator)
+    {
+        $this-&gt;validator = $validator;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * Provide default input rules for this element</span>
-<span class=x>     *</span>
-<span class=x>     * Attaches a phone number validator.</span>
-<span class=x>     *</span>
-<span class=x>     * @return array</span>
-<span class=x>     */</span>
-<span class=x>    public function getInputSpecification()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;name&#39; =&gt; $this-&gt;getName(),</span>
-<span class=x>            &#39;required&#39; =&gt; true,</span>
-<span class=x>            &#39;filters&#39; =&gt; [</span>
-<span class=x>                [&#39;name&#39; =&gt; Filter\StringTrim::class],</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;validators&#39; =&gt; [</span>
-<span class=x>                $this-&gt;getValidator(),</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    /**
+     * Provide default input rules for this element
+     *
+     * Attaches a phone number validator.
+     *
+     * @return array
+     */
+    public function getInputSpecification()
+    {
+        return [
+            'name' =&gt; $this-&gt;getName(),
+            'required' =&gt; true,
+            'filters' =&gt; [
+                ['name' =&gt; Filter\StringTrim::class],
+            ],
+            'validators' =&gt; [
+                $this-&gt;getValidator(),
+            ],
+        ];
+    }
+}</code></pre>
 <p>By implementing <code>Laminas\InputFilter\InputProviderInterface</code> interface, we are
 hinting to our form object that this element provides some default input rules
 for filtering and/or validating values. In this example, the default input
@@ -820,169 +821,160 @@ specification provides a <code>Laminas\Filter\StringTrim</code> filter and a
 <code>+</code> sign at the beginning, and is followed by 11 or 12 digits.</p>
 <p>To use the new element in our forms, we can specify it by its fully qualified
 class name (FQCN):</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Application\Form\Element\Phone;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Application\Form\Element\Phone;
+use Laminas\Form\Form;
 
-<span class=x>$form = Form();</span>
-<span class=x>$form-&gt;add(array(</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;phone&#39;,</span>
-<span class=x>    &#39;type&#39; =&gt; Phone::class,</span>
-<span class=x>));</span>
-</pre></div></p>
+$form = Form();
+$form-&gt;add(array(
+    'name' =&gt; 'phone',
+    'type' =&gt; Phone::class,
+));</code></pre>
 <p>Or, if you are extending <code>Laminas\Form\Form</code>:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Laminas\Form\Form;</span>
+use Laminas\Form\Form;
 
-<span class=x>class MyForm extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function __construct($name = null)</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct($name);</span>
+class MyForm extends Form
+{
+    public function __construct($name = null)
+    {
+        parent::__construct($name);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;phone&#39;,</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Phone::class,</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        $this-&gt;add([
+            'name' =&gt; 'phone',
+            'type' =&gt; Element\Phone::class,
+        ]);
+    }
+}</code></pre>
 <p>If you don't want to use the custom element's FQCN, but rather a short name,
 add an entry for it to <code>Laminas\Form\FormElementManager</code>. You can do this by adding
 an entry under the <code>form_elements</code> configuration, or within your <code>Module</code> class
 via a <code>getFormElementConfig()</code> method.</p>
 <p>Configuration via a config file (e.g., <code>module.config.php</code>) file looks like the
 following:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\ServiceManager\Factory\InvokableFactory;</span>
+<pre class=codehilite><code class=language-php>use Laminas\ServiceManager\Factory\InvokableFactory;
 
-<span class=x>return [</span>
-<span class=x>    &#39;form_elements&#39; =&gt; [</span>
-<span class=x>        &#39;aliases&#39; =&gt; [</span>
-<span class=x>            &#39;phone&#39; =&gt; Application\Form\Element\Phone::class,</span>
-<span class=x>        ],</span>
-<span class=x>        &#39;factories&#39; =&gt; [</span>
-<span class=x>            Application\Form\Element\Phone::class =&gt; InvokableFactory::class,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>];</span>
-</pre></div></p>
+return [
+    'form_elements' =&gt; [
+        'aliases' =&gt; [
+            'phone' =&gt; Application\Form\Element\Phone::class,
+        ],
+        'factories' =&gt; [
+            Application\Form\Element\Phone::class =&gt; InvokableFactory::class,
+        ],
+    ],
+];</code></pre>
 <p>The following demonstrates using your <code>Module</code> class:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application;</span>
+<pre class=codehilite><code class=language-php>namespace Application;
 
-<span class=x>use Laminas\ModuleManager\Feature\FormElementProviderInterface;</span>
-<span class=x>use Laminas\ServiceManager\Factory\InvokableFactory;</span>
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
-<span class=x>class Module implements FormElementProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    public function getFormElementConfig()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;aliases&#39; =&gt; [</span>
-<span class=x>                &#39;phone&#39; =&gt; Form\Element\Phone::class,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;factories&#39; =&gt; [</span>
-<span class=x>                Form\Element\Phone::class =&gt; InvokableFactory::class,</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+class Module implements FormElementProviderInterface
+{
+    public function getFormElementConfig()
+    {
+        return [
+            'aliases' =&gt; [
+                'phone' =&gt; Form\Element\Phone::class,
+            ],
+            'factories' =&gt; [
+                Form\Element\Phone::class =&gt; InvokableFactory::class,
+            ],
+        ];
+    }
+}</code></pre>
 <p>If needed, you can define a custom factory for handling dependencies.</p>
 <p><strong>And now comes the first catch.</strong></p>
 <p>If you are creating your form class by extending <code>Laminas\Form\Form</code>, you <em>must
 not</em> add the custom element in the constructor (as we have done in the previous
 example where we used the custom element's FQCN), but rather in the <code>init()</code>
 method:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Laminas\Form\Form;</span>
+use Laminas\Form\Form;
 
-<span class=x>class MyForm extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function init()</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;phone&#39;,</span>
-<span class=x>            &#39;type&#39; =&gt; &#39;phone&#39;,</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+class MyForm extends Form
+{
+    public function init()
+    {
+        $this-&gt;add([
+            'name' =&gt; 'phone',
+            'type' =&gt; 'phone',
+        ]);
+    }
+}</code></pre>
 <p><strong>The second catch</strong> is that you <em>must not</em> directly instantiate your form
 class, but rather get an instance of it through <code>Laminas\Form\FormElementManager</code>:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Controller;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Controller;
 
-<span class=x>use Application\Form\MyForm;</span>
-<span class=x>use Laminas\Mvc\Controller\AbstractActionController;</span>
+use Application\Form\MyForm;
+use Laminas\Mvc\Controller\AbstractActionController;
 
-<span class=x>class IndexController extends AbstractActionController</span>
-<span class=x>{</span>
-<span class=x>    private $form;</span>
+class IndexController extends AbstractActionController
+{
+    private $form;
 
-<span class=x>    public function __construct(MyForm $form)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;form = $form;</span>
-<span class=x>    }</span>
+    public function __construct(MyForm $form)
+    {
+        $this-&gt;form = $form;
+    }
 
-<span class=x>    public function indexAction()</span>
-<span class=x>    {</span>
-<span class=x>        return array(&#39;form&#39; =&gt; $this-&gt;form);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    public function indexAction()
+    {
+        return array('form' =&gt; $this-&gt;form);
+    }
+}</code></pre>
 <p>This now requires a factory to inject the form instance:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Controller;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Controller;
 
-<span class=x>use Interop\Container\ContainerInterface;</span>
-<span class=x>use Application\Form\MyForm;</span>
+use Interop\Container\ContainerInterface;
+use Application\Form\MyForm;
 
-<span class=x>class IndexControllerFactory</span>
-<span class=x>{</span>
-<span class=x>    public function __invoke(ContainerInterface $container)</span>
-<span class=x>    {</span>
-<span class=x>        $formManager = $container-&gt;get(&#39;FormElementManager&#39;);</span>
-<span class=x>        return new IndexController($formManager-&gt;get(MyForm::class));</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+class IndexControllerFactory
+{
+    public function __invoke(ContainerInterface $container)
+    {
+        $formManager = $container-&gt;get('FormElementManager');
+        return new IndexController($formManager-&gt;get(MyForm::class));
+    }
+}</code></pre>
 <p>Which in turn requires that you map the controller to the factory:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// In module.config.php</span>
-<span class=x>return [</span>
-<span class=x>    /* ... */</span>
-<span class=x>    &#39;controllers&#39; =&gt; [</span>
-<span class=x>        &#39;factories&#39; =&gt; [</span>
-<span class=x>            Application\Controller\IndexController::class =&gt; Application\Controller\IndexControllerFactory::class,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>];</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>// In module.config.php
+return [
+    /* ... */
+    'controllers' =&gt; [
+        'factories' =&gt; [
+            Application\Controller\IndexController::class =&gt; Application\Controller\IndexControllerFactory::class,
+        ],
+    ],
+];</code></pre>
 <p>The biggest gain of this is that you can easily override any built-in form
 elements if they do not fit your needs. For instance, if you want to create your
 own <code>Email</code> element instead of the standard one, create your custom element, and
 add it to the form element config with the same key as the element you want to
 replace:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application;</span>
+<pre class=codehilite><code class=language-php>namespace Application;
 
-<span class=x>use Laminas\Form\Element\Email;</span>
-<span class=x>use Laminas\ModuleManager\Feature\FormElementProviderInterface;</span>
-<span class=x>use Laminas\ServiceManager\Factory\InvokableFactory;</span>
+use Laminas\Form\Element\Email;
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 
-<span class=x>class Module implements FormElementProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    public function getFormElementConfig()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;aliases&#39; =&gt; [</span>
-<span class=x>                &#39;email&#39; =&gt; Form\Element\MyEmail::class,</span>
-<span class=x>                &#39;Email&#39; =&gt; Form\Element\MyEmail::class,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;factories&#39; =&gt; [</span>
-<span class=x>                Form\Element\MyEmail::class =&gt; InvokableFactory::class,</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+class Module implements FormElementProviderInterface
+{
+    public function getFormElementConfig()
+    {
+        return [
+            'aliases' =&gt; [
+                'email' =&gt; Form\Element\MyEmail::class,
+                'Email' =&gt; Form\Element\MyEmail::class,
+            ],
+            'factories' =&gt; [
+                Form\Element\MyEmail::class =&gt; InvokableFactory::class,
+            ],
+        ];
+    }
+}</code></pre>
 <p>Now whenever you create an element with a <code>type</code> of 'email',
 it will create the custom element instead of the built-in one.</p>
 <blockquote>
@@ -1009,61 +1001,58 @@ populate a <code>Select</code> element. Retrieving forms from the <code>FormElem
 solves this issue, as factories it invokes have access to the application
 service container, and can use it to provide dependencies.</p>
 <p>For instance, let's say that a form create a fieldset called <code>AlbumFieldset</code>:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Laminas\Form\Form;</span>
+use Laminas\Form\Form;
 
-<span class=x>class CreateAlbum extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function init()</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;album&#39;,</span>
-<span class=x>            &#39;type&#39; =&gt; AlbumFieldset::class,</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+class CreateAlbum extends Form
+{
+    public function init()
+    {
+        $this-&gt;add([
+            'name' =&gt; 'album',
+            'type' =&gt; AlbumFieldset::class,
+        ]);
+    }
+}</code></pre>
 <p>Let's now create the <code>AlbumFieldset</code>, and have it depend on an <code>AlbumTable</code>
 object that allows us to fetch albums from the database.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Album\Model\AlbumTable;</span>
-<span class=x>use Laminas\Form\Fieldset;</span>
+use Album\Model\AlbumTable;
+use Laminas\Form\Fieldset;
 
-<span class=x>class AlbumFieldset extends Fieldset</span>
-<span class=x>{</span>
-<span class=x>    public function __construct(AlbumTable $albumTable)</span>
-<span class=x>    {</span>
-<span class=x>        // Add any elements that need to fetch data from database</span>
-<span class=x>        // using the album table !</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+class AlbumFieldset extends Fieldset
+{
+    public function __construct(AlbumTable $albumTable)
+    {
+        // Add any elements that need to fetch data from database
+        // using the album table !
+    }
+}</code></pre>
 <p>To enable this, we'll create a factory for our <code>AlbumFieldset</code> as follows:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Album\Model\AlbumTable;</span>
-<span class=x>use Interop\Container\ContainerInterface;</span>
-<span class=x>use Laminas\ServiceManager\FactoryInterface;</span>
-<span class=x>use Laminas\ServiceManager\ServiceLocatorInterface;</span>
+use Album\Model\AlbumTable;
+use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
-<span class=x>class AlbumFieldsetFactory implements FactoryInterface</span>
-<span class=x>{</span>
-<span class=x>    public function __invoke(ContainerInterface $container, $name, array $options = null)</span>
-<span class=x>    {</span>
-<span class=x>        return new AlbumFieldset($container-&gt;get(AlbumTable::class));</span>
-<span class=x>    }</span>
+class AlbumFieldsetFactory implements FactoryInterface
+{
+    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    {
+        return new AlbumFieldset($container-&gt;get(AlbumTable::class));
+    }
 
-<span class=x>    public function createService(ServiceLocatorInterface $formManager)</span>
-<span class=x>    {</span>
-<span class=x>        return $this(</span>
-<span class=x>            $formManager-&gt;getServiceLocator() ?: $formManager,</span>
-<span class=x>            AlbumFieldset::class</span>
-<span class=x>        );</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    public function createService(ServiceLocatorInterface $formManager)
+    {
+        return $this(
+            $formManager-&gt;getServiceLocator() ?: $formManager,
+            AlbumFieldset::class
+        );
+    }
+}</code></pre>
 <blockquote>
 <h3>Compatibility</h3>
 <p>The above factory was written to work with both the v2 and v3 releases of
@@ -1071,22 +1060,20 @@ laminas-servicemanager. If you know you will only be using v3, you can remove th
 <code>createService()</code> implementation.</p>
 </blockquote>
 <p>You can now map the fieldset to the factory in your configuration:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// In module.config.php:</span>
-<span class=x>return [</span>
-<span class=x>    &#39;form_elements&#39; =&gt; [</span>
-<span class=x>        &#39;factories&#39; =&gt; [</span>
-<span class=x>            Application\Form\AlbumFieldset::class =&gt; Application\Form\AlbumFieldsetFactory::class,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>];</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>// In module.config.php:
+return [
+    'form_elements' =&gt; [
+        'factories' =&gt; [
+            Application\Form\AlbumFieldset::class =&gt; Application\Form\AlbumFieldsetFactory::class,
+        ],
+    ],
+];</code></pre>
 <p>Inject your form into your controller, per the example in the previous section.</p>
 <p>As a reminder, to use your fieldset in a view, you need to use the
 <code>formCollection</code> helper:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>echo $this-&gt;form()-&gt;openTag($form);</span>
-<span class=x>echo $this-&gt;formCollection($form-&gt;get(&#39;album&#39;));</span>
-<span class=x>echo $this-&gt;form()-&gt;closeTag();</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>echo $this-&gt;form()-&gt;openTag($form);
+echo $this-&gt;formCollection($form-&gt;get('album'));
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
 <h2 id="initialization">Initialization</h2>
 <p>As noted in previous sections, and in the chapter on elements, we recommend
 defining an <code>init()</code> method for initializing your elements, fieldsets, and
@@ -1706,9 +1693,10 @@ and populated, and shared across all specifications you provide.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1745,7 +1733,7 @@ and populated, and shared across all specifications you provide.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1754,8 +1742,8 @@ and populated, and shared across all specifications you provide.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

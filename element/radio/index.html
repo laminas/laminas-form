@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -719,36 +723,34 @@ elements.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>radio</code> for every
 radio.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$radio = new Element\Radio(&#39;likes_chocolate&#39;);</span>
-<span class=x>$radio-&gt;setLabel(&#39;Do you like chocolate?&#39;);</span>
-<span class=x>$radio-&gt;setValueOptions([</span>
-<span class=x>    &#39;0&#39; =&gt; &#39;No&#39;,</span>
-<span class=x>    &#39;1&#39; =&gt; &#39;Yes&#39;,</span>
-<span class=x>]);</span>
+$radio = new Element\Radio('likes_chocolate');
+$radio-&gt;setLabel('Do you like chocolate?');
+$radio-&gt;setValueOptions([
+    '0' =&gt; 'No',
+    '1' =&gt; 'Yes',
+]);
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add($radio);</span>
-</pre></div></p>
+$form = new Form('my-form');
+$form-&gt;add($radio);</code></pre>
 <p>Using array notation:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Radio::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;likes_chocolate&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;Do you like chocolate?&#39;,</span>
-<span class=x>        &#39;value_options&#39; =&gt; [</span>
-<span class=x>            &#39;0&#39; =&gt; &#39;No&#39;,</span>
-<span class=x>            &#39;1&#39; =&gt; &#39;Yes&#39;,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+$form = new Form('my-form');
+$form-&gt;add([
+    'type' =&gt; Element\Radio::class,
+    'name' =&gt; 'likes_chocolate',
+    'options' =&gt; [
+        'label' =&gt; 'Do you like chocolate?',
+        'value_options' =&gt; [
+            '0' =&gt; 'No',
+            '1' =&gt; 'Yes',
+        ],
+    ],
+]);</code></pre>
 <h2 id="advanced-usage">Advanced Usage</h2>
 <p>See <a href="../multi-checkbox/">MultiCheckbox for examples</a> of how to apply attributes
 and options to each radio button.</p>
@@ -1361,9 +1363,10 @@ and options to each radio button.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1400,7 +1403,7 @@ and options to each radio button.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1409,8 +1412,8 @@ and options to each radio button.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

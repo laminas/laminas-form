@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -710,38 +714,37 @@
 <p>The <code>FormButton</code> view helper is used to render a <code>&lt;button&gt;</code> HTML element and its
 attributes.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
 
-<span class=x>$element = new Element\Button(&#39;my-button&#39;);</span>
-<span class=x>$element-&gt;setLabel(&#39;Reset&#39;);</span>
+$element = new Element\Button('my-button');
+$element-&gt;setLabel('Reset');
 
-<span class=x>// Within your view...</span>
+// Within your view...
 
-<span class=x>/**</span>
-<span class=x> * Example #1: Render entire button in one shot...</span>
-<span class=x> */</span>
-<span class=x>echo $this-&gt;formButton($element);</span>
-<span class=x>// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;Reset&lt;/button&gt;</span>
+/**
+ * Example #1: Render entire button in one shot...
+ */
+echo $this-&gt;formButton($element);
+// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;Reset&lt;/button&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #2: Render button in 3 steps</span>
-<span class=x> */</span>
-<span class=x>// Render the opening tag</span>
-<span class=x>echo $this-&gt;formButton()-&gt;openTag($element);</span>
-<span class=x>// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;</span>
+/**
+ * Example #2: Render button in 3 steps
+ */
+// Render the opening tag
+echo $this-&gt;formButton()-&gt;openTag($element);
+// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;
 
-<span class=x>echo &#39;&lt;span class=&quot;inner&quot;&gt;&#39; . $element-&gt;getLabel() . &#39;&lt;/span&gt;&#39;;</span>
+echo '&lt;span class=&quot;inner&quot;&gt;' . $element-&gt;getLabel() . '&lt;/span&gt;';
 
-<span class=x>// Render the closing tag</span>
-<span class=x>echo $this-&gt;formButton()-&gt;closeTag();</span>
-<span class=x>// Result: &lt;/button&gt;</span>
+// Render the closing tag
+echo $this-&gt;formButton()-&gt;closeTag();
+// Result: &lt;/button&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #3: Override the element label</span>
-<span class=x> */</span>
-<span class=x>echo $this-&gt;formButton()-&gt;render($element, &#39;My Content&#39;);</span>
-<span class=x>// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;My Content&lt;/button&gt;</span>
-</pre></div></p>
+/**
+ * Example #3: Override the element label
+ */
+echo $this-&gt;formButton()-&gt;render($element, 'My Content');
+// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;My Content&lt;/button&gt;</code></pre>
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the
 <a href="../form-input/#public-methods">FormInput</a>:</p>
@@ -1373,9 +1376,10 @@ attributes.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1412,7 +1416,7 @@ attributes.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1421,8 +1425,8 @@ attributes.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

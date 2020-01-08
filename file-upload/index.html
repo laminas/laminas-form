@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -739,28 +743,27 @@ for form processing, but with some slight caveats that will be described below.<
 <h3>The Form and InputFilter</h3>
 <p>Here we define a <code>Laminas\Form\Element\File</code> input in a <code>Form</code> extension named
 <code>UploadForm</code>.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>class UploadForm extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function __construct($name = null, $options = [])</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct($name, $options);</span>
-<span class=x>        $this-&gt;addElements();</span>
-<span class=x>    }</span>
+class UploadForm extends Form
+{
+    public function __construct($name = null, $options = [])
+    {
+        parent::__construct($name, $options);
+        $this-&gt;addElements();
+    }
 
-<span class=x>    public function addElements()</span>
-<span class=x>    {</span>
-<span class=x>        // File Input</span>
-<span class=x>        $file = new Element\File(&#39;image-file&#39;);</span>
-<span class=x>        $file-&gt;setLabel(&#39;Avatar Image Upload&#39;);</span>
-<span class=x>        $file-&gt;setAttribute(&#39;id&#39;, &#39;image-file&#39;);</span>
+    public function addElements()
+    {
+        // File Input
+        $file = new Element\File('image-file');
+        $file-&gt;setLabel('Avatar Image Upload');
+        $file-&gt;setAttribute('id', 'image-file');
 
-<span class=x>        $this-&gt;add($file);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        $this-&gt;add($file);
+    }
+}</code></pre>
 <p>The <code>File</code> element provides several automated features:</p>
 <ul>
 <li>The form's <code>enctype</code> will automatically be set to <code>multipart/form-data</code> when
@@ -774,81 +777,77 @@ for form processing, but with some slight caveats that will be described below.<
 <h3>The View Template</h3>
 <p>In the view template, we render the <code>&lt;form&gt;</code>, a file input (with label and
 errors), and a submit button.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>&lt;!-- File: upload-form.phtml --&gt;</span>
-<span class=cp>&lt;?php</span>
-    <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span> <span class=c1>// The correct enctype is set here</span>
-    <span class=nv>$fileElement</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;image-file&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
+<pre class=codehilite><code class=language-php>&lt;!-- File: upload-form.phtml --&gt;
+&lt;?php
+    $form-&gt;prepare(); // The correct enctype is set here
+    $fileElement = $form-&gt;get('image-file');
+    echo $this-&gt;form()-&gt;openTag($form);
+?&gt;
 
-<span class=x>    &lt;div class=&quot;form-element&quot;&gt;</span>
-<span class=x>        </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formLabel</span><span class=p>(</span><span class=nv>$fileElement</span><span class=p>)</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>        </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formFile</span><span class=p>(</span><span class=nv>$fileElement</span><span class=p>)</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>        </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$fileElement</span><span class=p>)</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>    &lt;/div&gt;</span>
+    &lt;div class=&quot;form-element&quot;&gt;
+        &lt;?= $this-&gt;formLabel($fileElement) ?&gt;
+        &lt;?= $this-&gt;formFile($fileElement) ?&gt;
+        &lt;?= $this-&gt;formElementErrors($fileElement) ?&gt;
+    &lt;/div&gt;
 
-<span class=x>    &lt;button&gt;Submit&lt;/button&gt;</span>
+    &lt;button&gt;Submit&lt;/button&gt;
 
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>()</span> <span class=cp>?&gt;</span><span class=x></span>
-</pre></div></p>
+&lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
 <p>When rendered, the HTML should look similar to:</p>
-<p> <div class=codehilite><pre><span></span><span class=p>&lt;</span><span class=nt>form</span> <span class=na>name</span><span class=o>=</span><span class=s>&quot;upload-form&quot;</span> <span class=na>id</span><span class=o>=</span><span class=s>&quot;upload-form&quot;</span> <span class=na>method</span><span class=o>=</span><span class=s>&quot;post&quot;</span> <span class=na>enctype</span><span class=o>=</span><span class=s>&quot;multipart/form-data&quot;</span><span class=p>&gt;</span>
-    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&quot;form-element&quot;</span><span class=p>&gt;</span>
-        <span class=p>&lt;</span><span class=nt>label</span> <span class=na>for</span><span class=o>=</span><span class=s>&quot;image-file&quot;</span><span class=p>&gt;</span>Avatar Image Upload<span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
-        <span class=p>&lt;</span><span class=nt>input</span> <span class=na>type</span><span class=o>=</span><span class=s>&quot;file&quot;</span> <span class=na>name</span><span class=o>=</span><span class=s>&quot;image-file&quot;</span> <span class=na>id</span><span class=o>=</span><span class=s>&quot;image-file&quot;</span><span class=p>&gt;</span>
-    <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+<pre class=codehilite><code class=language-html>&lt;form name=&quot;upload-form&quot; id=&quot;upload-form&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;div class=&quot;form-element&quot;&gt;
+        &lt;label for=&quot;image-file&quot;&gt;Avatar Image Upload&lt;/label&gt;
+        &lt;input type=&quot;file&quot; name=&quot;image-file&quot; id=&quot;image-file&quot;&gt;
+    &lt;/div&gt;
 
-    <span class=p>&lt;</span><span class=nt>button</span><span class=p>&gt;</span>Submit<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
-<span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
-</pre></div></p>
+    &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
 <h3>The Controller Action</h3>
 <p>When using laminas-mvc, the final step will be to instantiate the <code>UploadForm</code> and
 process any postbacks in a controller action.</p>
 <p>The form processing in the controller action will be similar to normal forms,
 <em>except</em> that you <strong>must</strong> merge the <code>$_FILES</code> information in the request with
 the other post data.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function uploadFormAction()</span>
-<span class=x>{</span>
-<span class=x>    $form = new UploadForm(&#39;upload-form&#39;);</span>
+<pre class=codehilite><code class=language-php>public function uploadFormAction()
+{
+    $form = new UploadForm('upload-form');
 
-<span class=x>    $request = $this-&gt;getRequest();</span>
-<span class=x>    if ($request-&gt;isPost()) {</span>
-<span class=x>        // Make certain to merge the $_FILES info!</span>
-<span class=x>        $post = array_merge_recursive(</span>
-<span class=x>            $request-&gt;getPost()-&gt;toArray(),</span>
-<span class=x>            $request-&gt;getFiles()-&gt;toArray()</span>
-<span class=x>        );</span>
+    $request = $this-&gt;getRequest();
+    if ($request-&gt;isPost()) {
+        // Make certain to merge the $_FILES info!
+        $post = array_merge_recursive(
+            $request-&gt;getPost()-&gt;toArray(),
+            $request-&gt;getFiles()-&gt;toArray()
+        );
 
-<span class=x>        $form-&gt;setData($post);</span>
-<span class=x>        if ($form-&gt;isValid()) {</span>
-<span class=x>            $data = $form-&gt;getData();</span>
+        $form-&gt;setData($post);
+        if ($form-&gt;isValid()) {
+            $data = $form-&gt;getData();
 
-<span class=x>            // Form is valid, save the form!</span>
-<span class=x>            return $this-&gt;redirect()-&gt;toRoute(&#39;upload-form/success&#39;);</span>
-<span class=x>        }</span>
-<span class=x>    }</span>
+            // Form is valid, save the form!
+            return $this-&gt;redirect()-&gt;toRoute('upload-form/success');
+        }
+    }
 
-<span class=x>    return [&#39;form&#39; =&gt; $form];</span>
-<span class=x>}</span>
-</pre></div></p>
+    return ['form' =&gt; $form];
+}</code></pre>
 <p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>array(1) {</span>
-<span class=x>    [&quot;image-file&quot;] =&gt; array(5) {</span>
-<span class=x>        [&quot;name&quot;]     =&gt; string(11) &quot;myimage.png&quot;</span>
-<span class=x>        [&quot;type&quot;]     =&gt; string(9)  &quot;image/png&quot;</span>
-<span class=x>        [&quot;tmp_name&quot;] =&gt; string(22) &quot;/private/tmp/phpgRXd58&quot;</span>
-<span class=x>        [&quot;error&quot;]    =&gt; int(0)</span>
-<span class=x>        [&quot;size&quot;]     =&gt; int(14908679)</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>array(1) {
+    [&quot;image-file&quot;] =&gt; array(5) {
+        [&quot;name&quot;]     =&gt; string(11) &quot;myimage.png&quot;
+        [&quot;type&quot;]     =&gt; string(9)  &quot;image/png&quot;
+        [&quot;tmp_name&quot;] =&gt; string(22) &quot;/private/tmp/phpgRXd58&quot;
+        [&quot;error&quot;]    =&gt; int(0)
+        [&quot;size&quot;]     =&gt; int(14908679)
+    }
+}</code></pre>
 <blockquote>
 <h3>Using nested array notation for uploads</h3>
 <p>It is suggested that you always use the <code>Laminas\Http\PhpEnvironment\Request</code>
 object to retrieve and merge the <code>$_FILES</code> information with the form, instead
 of using <code>$_FILES</code> directly,  due to how the file information is
 mapped in the <code>$_FILES</code> array:</p>
-<pre class=codehilite><code class=language-php>
+<pre class="codehilite"><code class="language-php">
 // A $_FILES array with single input and multiple files:
 array(1) {
     [&quot;image-file&quot;]=array(2) {
@@ -887,34 +886,33 @@ array in this way.</p>
 with <a href="https://www.php-fig.org/psr/psr-7/">PSR-7</a> request payload, the final step
 involves merging <code>$request-&gt;getParsedBody()</code> with
 <code>$request-&gt;getUploadedFiles()</code>.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function handle(ServerRequestInterface $request) : ResponseInterface</span>
-<span class=x>{</span>
-<span class=x>    $form = new UploadForm(&#39;upload-form&#39;);</span>
+<pre class=codehilite><code class=language-php>public function handle(ServerRequestInterface $request) : ResponseInterface
+{
+    $form = new UploadForm('upload-form');
 
-<span class=x>    if ($request-&gt;getMethod() === &#39;POST&#39;) {</span>
-<span class=x>        $post = array_merge_recursive(</span>
-<span class=x>            $request-&gt;getParsedBody(),</span>
-<span class=x>            $request-&gt;getUploadedFiles()</span>
-<span class=x>        );</span>
+    if ($request-&gt;getMethod() === 'POST') {
+        $post = array_merge_recursive(
+            $request-&gt;getParsedBody(),
+            $request-&gt;getUploadedFiles()
+        );
 
-<span class=x>        $form-&gt;setData($post);</span>
+        $form-&gt;setData($post);
 
-<span class=x>        if ($form-&gt;isValid()) {</span>
-<span class=x>            $data = $form-&gt;getData();</span>
+        if ($form-&gt;isValid()) {
+            $data = $form-&gt;getData();
 
-<span class=x>            // Form is valid, save the form!</span>
+            // Form is valid, save the form!
 
-<span class=x>            return new RedirectResponse(&#39;upload-form/success&#39;);</span>
-<span class=x>        }</span>
-<span class=x>    }</span>
+            return new RedirectResponse('upload-form/success');
+        }
+    }
 
-<span class=x>    return new HtmlResponse(</span>
-<span class=x>        $this-&gt;template-&gt;render(&#39;app::page-template&#39;, [</span>
-<span class=x>            &#39;form&#39; =&gt; $form,</span>
-<span class=x>        ]);</span>
-<span class=x>    );</span>
-<span class=x>}</span>
-</pre></div></p>
+    return new HtmlResponse(
+        $this-&gt;template-&gt;render('app::page-template', [
+            'form' =&gt; $form,
+        ]);
+    );
+}</code></pre>
 <p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return array including
 the file field name as a key, and a new instance of <code>UploadedFileInterface</code> as
 its value.</p>
@@ -946,49 +944,48 @@ changes.</p>
 <h3>RenameUpload filter</h3>
 <p>First, we need to add a <code>RenameUpload</code> filter to our form's file input, with
 details on where the valid files should be stored:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\InputFilter;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\InputFilter;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>class UploadForm extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function __construct($name = null, $options = [])</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct($name, $options);</span>
-<span class=x>        $this-&gt;addElements();</span>
-<span class=x>        $this-&gt;addInputFilter();</span>
-<span class=x>    }</span>
+class UploadForm extends Form
+{
+    public function __construct($name = null, $options = [])
+    {
+        parent::__construct($name, $options);
+        $this-&gt;addElements();
+        $this-&gt;addInputFilter();
+    }
 
-<span class=x>    public function addElements()</span>
-<span class=x>    {</span>
-<span class=x>        // File Input</span>
-<span class=x>        $file = new Element\File(&#39;image-file&#39;);</span>
-<span class=x>        $file-&gt;setLabel(&#39;Avatar Image Upload&#39;)</span>
-<span class=x>        $file-&gt;setAttribute(&#39;id&#39;, &#39;image-file&#39;);</span>
+    public function addElements()
+    {
+        // File Input
+        $file = new Element\File('image-file');
+        $file-&gt;setLabel('Avatar Image Upload')
+        $file-&gt;setAttribute('id', 'image-file');
 
-<span class=x>        $this-&gt;add($file);</span>
-<span class=x>    }</span>
+        $this-&gt;add($file);
+    }
 
-<span class=x>    public function addInputFilter()</span>
-<span class=x>    {</span>
-<span class=x>        $inputFilter = new InputFilter\InputFilter();</span>
+    public function addInputFilter()
+    {
+        $inputFilter = new InputFilter\InputFilter();
 
-<span class=x>        // File Input</span>
-<span class=x>        $fileInput = new InputFilter\FileInput(&#39;image-file&#39;);</span>
-<span class=x>        $fileInput-&gt;setRequired(true);</span>
-<span class=x>        $fileInput-&gt;getFilterChain()-&gt;attachByName(</span>
-<span class=x>            &#39;filerenameupload&#39;,</span>
-<span class=x>            [</span>
-<span class=x>                &#39;target&#39;    =&gt; &#39;./data/tmpuploads/avatar.png&#39;,</span>
-<span class=x>                &#39;randomize&#39; =&gt; true,</span>
-<span class=x>            ]</span>
-<span class=x>        );</span>
-<span class=x>        $inputFilter-&gt;add($fileInput);</span>
+        // File Input
+        $fileInput = new InputFilter\FileInput('image-file');
+        $fileInput-&gt;setRequired(true);
+        $fileInput-&gt;getFilterChain()-&gt;attachByName(
+            'filerenameupload',
+            [
+                'target'    =&gt; './data/tmpuploads/avatar.png',
+                'randomize' =&gt; true,
+            ]
+        );
+        $inputFilter-&gt;add($fileInput);
 
-<span class=x>        $this-&gt;setInputFilter($inputFilter);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        $this-&gt;setInputFilter($inputFilter);
+    }
+}</code></pre>
 <p>The <code>filerenameupload</code> options above would cause an uploaded file to be
 renamed and moved to: <code>./data/tmpuploads/avatar_4b3403665fea6.png</code>.</p>
 <p>See the <a href="http://docs.laminas.dev/laminas-filter/file/#renameupload">RenameUpload filter</a>
@@ -1004,40 +1001,39 @@ invocation.</p>
 </blockquote>
 <h3>Call the fileprg plugin</h3>
 <p>Next, we need to update our controller action to use the <code>fileprg</code> plugin:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function uploadFormAction()</span>
-<span class=x>{</span>
-<span class=x>    $form     = new UploadForm(&#39;upload-form&#39;);</span>
-<span class=x>    $tempFile = null;</span>
+<pre class=codehilite><code class=language-php>public function uploadFormAction()
+{
+    $form     = new UploadForm('upload-form');
+    $tempFile = null;
 
-<span class=x>    $prg = $this-&gt;fileprg($form);</span>
+    $prg = $this-&gt;fileprg($form);
 
-<span class=x>    if ($prg instanceof \Laminas\Http\PhpEnvironment\Response) {</span>
-<span class=x>        return $prg; // Return PRG redirect response</span>
-<span class=x>    }</span>
+    if ($prg instanceof \Laminas\Http\PhpEnvironment\Response) {
+        return $prg; // Return PRG redirect response
+    }
 
-<span class=x>    if (is_array($prg)) {</span>
-<span class=x>        if ($form-&gt;isValid()) {</span>
-<span class=x>            $data = $form-&gt;getData();</span>
+    if (is_array($prg)) {
+        if ($form-&gt;isValid()) {
+            $data = $form-&gt;getData();
 
-<span class=x>            // Form is valid, save the form!</span>
-<span class=x>            return $this-&gt;redirect()-&gt;toRoute(&#39;upload-form/success&#39;);</span>
-<span class=x>        }</span>
+            // Form is valid, save the form!
+            return $this-&gt;redirect()-&gt;toRoute('upload-form/success');
+        }
 
-<span class=x>        // Form not valid, but file uploads might be valid...</span>
-<span class=x>        // Get the temporary file information to show the user in the view</span>
-<span class=x>        $fileErrors = $form-&gt;get(&#39;image-file&#39;)-&gt;getMessages();</span>
+        // Form not valid, but file uploads might be valid...
+        // Get the temporary file information to show the user in the view
+        $fileErrors = $form-&gt;get('image-file')-&gt;getMessages();
 
-<span class=x>        if (empty($fileErrors)) {</span>
-<span class=x>            $tempFile = $form-&gt;get(&#39;image-file&#39;)-&gt;getValue();</span>
-<span class=x>        }</span>
-<span class=x>    }</span>
+        if (empty($fileErrors)) {
+            $tempFile = $form-&gt;get('image-file')-&gt;getValue();
+        }
+    }
 
-<span class=x>    return [</span>
-<span class=x>        &#39;form&#39;     =&gt; $form,</span>
-<span class=x>        &#39;tempFile&#39; =&gt; $tempFile,</span>
-<span class=x>    ];</span>
-<span class=x>}</span>
-</pre></div></p>
+    return [
+        'form'     =&gt; $form,
+        'tempFile' =&gt; $tempFile,
+    ];
+}</code></pre>
 <p>Behind the scenes, the <code>FilePRG</code> plugin will:</p>
 <ul>
 <li>Run the Form's filters, namely the <code>RenameUpload</code> filter, to move the files
@@ -1064,62 +1060,61 @@ uploads</a>, but the file input will safely remain
 a single file upload for those browsers that do not support the feature.</p>
 <p>To enable multiple file uploads in laminas-form, set the file element's
 <code>multiple</code> attribute to true:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\InputFilter;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\InputFilter;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>class UploadForm extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function __construct($name = null, $options = [])</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct($name, $options);</span>
-<span class=x>        $this-&gt;addElements();</span>
-<span class=x>        $this-&gt;addInputFilter();</span>
-<span class=x>    }</span>
+class UploadForm extends Form
+{
+    public function __construct($name = null, $options = [])
+    {
+        parent::__construct($name, $options);
+        $this-&gt;addElements();
+        $this-&gt;addInputFilter();
+    }
 
-<span class=x>    public function addElements()</span>
-<span class=x>    {</span>
-<span class=x>        // File Input</span>
-<span class=x>        $file = new Element\File(&#39;image-file&#39;);</span>
-<span class=x>        $file-&gt;setLabel(&#39;Avatar Image Upload&#39;);</span>
-<span class=x>        $file-&gt;setAttribute(&#39;id&#39;, &#39;image-file&#39;);</span>
-<span class=x>        $file-&gt;setAttribute(&#39;multiple&#39;, true);  // Marking as multiple</span>
+    public function addElements()
+    {
+        // File Input
+        $file = new Element\File('image-file');
+        $file-&gt;setLabel('Avatar Image Upload');
+        $file-&gt;setAttribute('id', 'image-file');
+        $file-&gt;setAttribute('multiple', true);  // Marking as multiple
 
-<span class=x>        $this-&gt;add($file);</span>
-<span class=x>    }</span>
+        $this-&gt;add($file);
+    }
 
-<span class=x>    public function addInputFilter()</span>
-<span class=x>    {</span>
-<span class=x>        $inputFilter = new InputFilter\InputFilter();</span>
+    public function addInputFilter()
+    {
+        $inputFilter = new InputFilter\InputFilter();
 
-<span class=x>        // File Input</span>
-<span class=x>        $fileInput = new InputFilter\FileInput(&#39;image-file&#39;);</span>
-<span class=x>        $fileInput-&gt;setRequired(true);</span>
+        // File Input
+        $fileInput = new InputFilter\FileInput('image-file');
+        $fileInput-&gt;setRequired(true);
 
-<span class=x>        // Define validators and filters as if only one file was being uploaded.</span>
-<span class=x>        // All files will be run through the same validators and filters</span>
-<span class=x>        // automatically.</span>
-<span class=x>        $fileInput-&gt;getValidatorChain()</span>
-<span class=x>            -&gt;attachByName(&#39;filesize&#39;,      [&#39;max&#39; =&gt; 204800])</span>
-<span class=x>            -&gt;attachByName(&#39;filemimetype&#39;,  [&#39;mimeType&#39; =&gt; &#39;image/png,image/x-png&#39;])</span>
-<span class=x>            -&gt;attachByName(&#39;fileimagesize&#39;, [&#39;maxWidth&#39; =&gt; 100, &#39;maxHeight&#39; =&gt; 100]);</span>
+        // Define validators and filters as if only one file was being uploaded.
+        // All files will be run through the same validators and filters
+        // automatically.
+        $fileInput-&gt;getValidatorChain()
+            -&gt;attachByName('filesize',      ['max' =&gt; 204800])
+            -&gt;attachByName('filemimetype',  ['mimeType' =&gt; 'image/png,image/x-png'])
+            -&gt;attachByName('fileimagesize', ['maxWidth' =&gt; 100, 'maxHeight' =&gt; 100]);
 
-<span class=x>        // All files will be renamed, e.g.:</span>
-<span class=x>        //   ./data/tmpuploads/avatar_4b3403665fea6.png,</span>
-<span class=x>        //   ./data/tmpuploads/avatar_5c45147660fb7.png</span>
-<span class=x>        $fileInput-&gt;getFilterChain()-&gt;attachByName(</span>
-<span class=x>            &#39;filerenameupload&#39;,</span>
-<span class=x>            [</span>
-<span class=x>                &#39;target&#39;    =&gt; &#39;./data/tmpuploads/avatar.png&#39;,</span>
-<span class=x>                &#39;randomize&#39; =&gt; true,</span>
-<span class=x>            ]</span>
-<span class=x>        );</span>
-<span class=x>        $inputFilter-&gt;add($fileInput);</span>
+        // All files will be renamed, e.g.:
+        //   ./data/tmpuploads/avatar_4b3403665fea6.png,
+        //   ./data/tmpuploads/avatar_5c45147660fb7.png
+        $fileInput-&gt;getFilterChain()-&gt;attachByName(
+            'filerenameupload',
+            [
+                'target'    =&gt; './data/tmpuploads/avatar.png',
+                'randomize' =&gt; true,
+            ]
+        );
+        $inputFilter-&gt;add($fileInput);
 
-<span class=x>        $this-&gt;setInputFilter($inputFilter);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        $this-&gt;setInputFilter($inputFilter);
+    }
+}</code></pre>
 <p>You do not need to do anything special with the validators and filters to
 support multiple file uploads. All of the files that are uploaded will have the
 same validators and filters run against them automatically (from logic within
@@ -1136,47 +1131,44 @@ of a file upload in progress. To use this feature, you need to choose one of the
 (APC, uploadprogress, or Session) and ensure that your server setup has the
 appropriate extension or feature enabled.</p>
 <p>Verify your <code>php.ini</code> <code>session.upload</code> settings before you begin:</p>
-<p> <div class=codehilite><pre><span></span><span class=na>file_uploads</span> <span class=o>=</span> <span class=s>On</span>
-<span class=na>post_max_size</span> <span class=o>=</span> <span class=s>50M</span>
-<span class=na>upload_max_filesize</span> <span class=o>=</span> <span class=s>50M</span>
-<span class=na>session.upload_progress.enabled</span> <span class=o>=</span> <span class=s>On</span>
-<span class=na>session.upload_progress.freq</span> <span class=o>=</span>  <span class=s>&quot;1%&quot;</span>
-<span class=na>session.upload_progress.min_freq</span> <span class=o>=</span> <span class=s>&quot;1&quot;</span>
-<span class=c1>; Also make certain &#39;upload_tmp_dir&#39; is writable</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-ini>file_uploads = On
+post_max_size = 50M
+upload_max_filesize = 50M
+session.upload_progress.enabled = On
+session.upload_progress.freq =  &quot;1%&quot;
+session.upload_progress.min_freq = &quot;1&quot;
+; Also make certain 'upload_tmp_dir' is writable</code></pre>
 <p>When uploading a file with a form POST, you must also include the progress
 identifier in a hidden input. The <a href="../helper/upload-progress-helpers/">file upload progress view helpers</a>
 provides a convenient way to add the hidden input based on your handler type.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>&lt;!-- File: upload-form.phtml --&gt;</span>
-<span class=cp>&lt;?php</span>
-    <span class=nv>$fileElement</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;image-file&#39;</span><span class=p>);</span>
-    <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formFileSessionProgress</span><span class=p>();</span> <span class=c1>// Must come before the file input!</span>
-<span class=cp>?&gt;</span><span class=x></span>
+<pre class=codehilite><code class=language-php>&lt;!-- File: upload-form.phtml --&gt;
+&lt;?php
+    $fileElement = $form-&gt;get('image-file');
+    $form-&gt;prepare();
+    echo $this-&gt;form()-&gt;openTag($form);
+    echo $this-&gt;formFileSessionProgress(); // Must come before the file input!
+?&gt;
 
-<span class=x>    &lt;div class=&quot;form-element&quot;&gt;</span>
-<span class=x>        </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formLabel</span><span class=p>(</span><span class=nv>$fileElement</span><span class=p>)</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>        </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formFile</span><span class=p>(</span><span class=nv>$fileElement</span><span class=p>)</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>        </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$fileElement</span><span class=p>)</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>    &lt;/div&gt;</span>
+    &lt;div class=&quot;form-element&quot;&gt;
+        &lt;?= $this-&gt;formLabel($fileElement) ?&gt;
+        &lt;?= $this-&gt;formFile($fileElement) ?&gt;
+        &lt;?= $this-&gt;formElementErrors($fileElement) ?&gt;
+    &lt;/div&gt;
 
-<span class=x>    &lt;button&gt;Submit&lt;/button&gt;</span>
+    &lt;button&gt;Submit&lt;/button&gt;
 
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>()</span> <span class=cp>?&gt;</span><span class=x></span>
-</pre></div></p>
+&lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
 <p>When rendered, the HTML should look similar to:</p>
-<p> <div class=codehilite><pre><span></span><span class=p>&lt;</span><span class=nt>form</span> <span class=na>name</span><span class=o>=</span><span class=s>&quot;upload-form&quot;</span> <span class=na>id</span><span class=o>=</span><span class=s>&quot;upload-form&quot;</span> <span class=na>method</span><span class=o>=</span><span class=s>&quot;post&quot;</span> <span class=na>enctype</span><span class=o>=</span><span class=s>&quot;multipart/form-data&quot;</span><span class=p>&gt;</span>
-    <span class=p>&lt;</span><span class=nt>input</span> <span class=na>type</span><span class=o>=</span><span class=s>&quot;hidden&quot;</span> <span class=na>id</span><span class=o>=</span><span class=s>&quot;progress_key&quot;</span> <span class=na>name</span><span class=o>=</span><span class=s>&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span> <span class=na>value</span><span class=o>=</span><span class=s>&quot;12345abcde&quot;</span><span class=p>&gt;</span>
+<pre class=codehilite><code class=language-html>&lt;form name=&quot;upload-form&quot; id=&quot;upload-form&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;input type=&quot;hidden&quot; id=&quot;progress_key&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;12345abcde&quot;&gt;
 
-    <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&quot;form-element&quot;</span><span class=p>&gt;</span>
-        <span class=p>&lt;</span><span class=nt>label</span> <span class=na>for</span><span class=o>=</span><span class=s>&quot;image-file&quot;</span><span class=p>&gt;</span>Avatar Image Upload<span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
-        <span class=p>&lt;</span><span class=nt>input</span> <span class=na>type</span><span class=o>=</span><span class=s>&quot;file&quot;</span> <span class=na>name</span><span class=o>=</span><span class=s>&quot;image-file&quot;</span> <span class=na>id</span><span class=o>=</span><span class=s>&quot;image-file&quot;</span><span class=p>&gt;</span>
-    <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+    &lt;div class=&quot;form-element&quot;&gt;
+        &lt;label for=&quot;image-file&quot;&gt;Avatar Image Upload&lt;/label&gt;
+        &lt;input type=&quot;file&quot; name=&quot;image-file&quot; id=&quot;image-file&quot;&gt;
+    &lt;/div&gt;
 
-    <span class=p>&lt;</span><span class=nt>button</span><span class=p>&gt;</span>Submit<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
-<span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
-</pre></div></p>
+    &lt;button&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
 <p>There are a few different methods for getting progress information to the
 browser (long vs. short polling). Here we will use short polling since it is
 simpler and less taxing on server resources, though keep in mind it is not as
@@ -1185,22 +1177,21 @@ responsive as long polling.</p>
 server for upload progress.</p>
 <p>The following is an example controller action which provides the progress
 information:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function uploadProgressAction()</span>
-<span class=x>{</span>
-<span class=x>    $id = $this-&gt;params()-&gt;fromQuery(&#39;id&#39;, null);</span>
-<span class=x>    $progress = new \Laminas\ProgressBar\Upload\SessionProgress();</span>
-<span class=x>    return new \Laminas\View\Model\JsonModel($progress-&gt;getProgress($id));</span>
-<span class=x>}</span>
+<pre class=codehilite><code class=language-php>public function uploadProgressAction()
+{
+    $id = $this-&gt;params()-&gt;fromQuery('id', null);
+    $progress = new \Laminas\ProgressBar\Upload\SessionProgress();
+    return new \Laminas\View\Model\JsonModel($progress-&gt;getProgress($id));
+}
 
-<span class=x>// Returns JSON</span>
-<span class=x>//{</span>
-<span class=x>//    &quot;total&quot;    : 204800,</span>
-<span class=x>//    &quot;current&quot;  : 10240,</span>
-<span class=x>//    &quot;rate&quot;     : 1024,</span>
-<span class=x>//    &quot;message&quot;  : &quot;10kB / 200kB&quot;,</span>
-<span class=x>//    &quot;done&quot;     : false</span>
-<span class=x>//}</span>
-</pre></div></p>
+// Returns JSON
+//{
+//    &quot;total&quot;    : 204800,
+//    &quot;current&quot;  : 10240,
+//    &quot;rate&quot;     : 1024,
+//    &quot;message&quot;  : &quot;10kB / 200kB&quot;,
+//    &quot;done&quot;     : false
+//}</code></pre>
 <blockquote>
 <h3>Performance overhead</h3>
 <p>This is <em>not</em> the most efficient way of providing upload progress, since each
@@ -1215,155 +1206,153 @@ the example code relatively short, we are using the <a href="https://github.com/
 to do the AJAX form POST. If your project uses a different JavaScript framework
 (or none at all), this will hopefully at least illustrate the necessary
 high-level logic that would need to be performed.</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span> <span class=c1>// File: upload-form.phtml</span>
-      <span class=c1>// ...after the form...</span>
-<span class=cp>?&gt;</span><span class=x></span>
+<pre class=codehilite><code class=language-php>&lt;?php // File: upload-form.phtml
+      // ...after the form...
+?&gt;
 
-<span class=x>&lt;!-- Twitter Bootstrap progress bar styles:</span>
-<span class=x>     http://twitter.github.com/bootstrap/components.html#progress --&gt;</span>
-<span class=x>&lt;div id=&quot;progress&quot; class=&quot;help-block&quot;&gt;</span>
-<span class=x>    &lt;div class=&quot;progress progress-info progress-striped&quot;&gt;</span>
-<span class=x>        &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;</span>
-<span class=x>    &lt;/div&gt;</span>
-<span class=x>    &lt;p&gt;&lt;/p&gt;</span>
-<span class=x>&lt;/div&gt;</span>
+&lt;!-- Twitter Bootstrap progress bar styles:
+     http://twitter.github.com/bootstrap/components.html#progress --&gt;
+&lt;div id=&quot;progress&quot; class=&quot;help-block&quot;&gt;
+    &lt;div class=&quot;progress progress-info progress-striped&quot;&gt;
+        &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;
 
-<span class=x>&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;&gt;&lt;/script&gt;</span>
-<span class=x>&lt;script src=&quot;/js/jquery.form.js&quot;&gt;&lt;/script&gt;</span>
-<span class=x>&lt;script&gt;</span>
-<span class=x>var progressInterval;</span>
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/js/jquery.form.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+var progressInterval;
 
-<span class=x>function getProgress() {</span>
-<span class=x>    // Poll our controller action with the progress id</span>
-<span class=x>    var url = &#39;/upload-form/upload-progress?id=&#39; + $(&#39;#progress_key&#39;).val();</span>
-<span class=x>    $.getJSON(url, function(data) {</span>
-<span class=x>        if (data.status &amp;&amp; !data.status.done) {</span>
-<span class=x>            var value = Math.floor((data.status.current / data.status.total) * 100);</span>
-<span class=x>            showProgress(value, &#39;Uploading...&#39;);</span>
-<span class=x>        } else {</span>
-<span class=x>            showProgress(100, &#39;Complete!&#39;);</span>
-<span class=x>            clearInterval(progressInterval);</span>
-<span class=x>        }</span>
-<span class=x>    });</span>
-<span class=x>}</span>
+function getProgress() {
+    // Poll our controller action with the progress id
+    var url = '/upload-form/upload-progress?id=' + $('#progress_key').val();
+    $.getJSON(url, function(data) {
+        if (data.status &amp;&amp; !data.status.done) {
+            var value = Math.floor((data.status.current / data.status.total) * 100);
+            showProgress(value, 'Uploading...');
+        } else {
+            showProgress(100, 'Complete!');
+            clearInterval(progressInterval);
+        }
+    });
+}
 
-<span class=x>function startProgress() {</span>
-<span class=x>    showProgress(0, &#39;Starting upload...&#39;);</span>
-<span class=x>    progressInterval = setInterval(getProgress, 900);</span>
-<span class=x>}</span>
+function startProgress() {
+    showProgress(0, 'Starting upload...');
+    progressInterval = setInterval(getProgress, 900);
+}
 
-<span class=x>function showProgress(amount, message) {</span>
-<span class=x>    $(&#39;#progress&#39;).show();</span>
-<span class=x>    $(&#39;#progress .bar&#39;).width(amount + &#39;%&#39;);</span>
-<span class=x>    $(&#39;#progress &gt; p&#39;).html(message);</span>
-<span class=x>    if (amount &lt; 100) {</span>
-<span class=x>        $(&#39;#progress .progress&#39;)</span>
-<span class=x>            .addClass(&#39;progress-info active&#39;)</span>
-<span class=x>            .removeClass(&#39;progress-success&#39;);</span>
-<span class=x>    } else {</span>
-<span class=x>        $(&#39;#progress .progress&#39;)</span>
-<span class=x>            .removeClass(&#39;progress-info active&#39;)</span>
-<span class=x>            .addClass(&#39;progress-success&#39;);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
+function showProgress(amount, message) {
+    $('#progress').show();
+    $('#progress .bar').width(amount + '%');
+    $('#progress &gt; p').html(message);
+    if (amount &lt; 100) {
+        $('#progress .progress')
+            .addClass('progress-info active')
+            .removeClass('progress-success');
+    } else {
+        $('#progress .progress')
+            .removeClass('progress-info active')
+            .addClass('progress-success');
+    }
+}
 
-<span class=x>$(function() {</span>
-<span class=x>    // Register a &#39;submit&#39; event listener on the form to perform the AJAX POST</span>
-<span class=x>    $(&#39;#upload-form&#39;).on(&#39;submit&#39;, function(e) {</span>
-<span class=x>        e.preventDefault();</span>
+$(function() {
+    // Register a 'submit' event listener on the form to perform the AJAX POST
+    $('#upload-form').on('submit', function(e) {
+        e.preventDefault();
 
-<span class=x>        if ($(&#39;#image-file&#39;).val() == &#39;&#39;) {</span>
-<span class=x>            // No files selected, abort</span>
-<span class=x>            return;</span>
-<span class=x>        }</span>
+        if ($('#image-file').val() == '') {
+            // No files selected, abort
+            return;
+        }
 
-<span class=x>        // Perform the submit</span>
-<span class=x>        //$.fn.ajaxSubmit.debug = true;</span>
-<span class=x>        $(this).ajaxSubmit({</span>
-<span class=x>            beforeSubmit: function(arr, $form, options) {</span>
-<span class=x>                // Notify backend that submit is via ajax</span>
-<span class=x>                arr.push({ name: &quot;isAjax&quot;, value: &quot;1&quot; });</span>
-<span class=x>            },</span>
-<span class=x>            success: function (response, statusText, xhr, $form) {</span>
-<span class=x>                clearInterval(progressInterval);</span>
-<span class=x>                showProgress(100, &#39;Complete!&#39;);</span>
+        // Perform the submit
+        //$.fn.ajaxSubmit.debug = true;
+        $(this).ajaxSubmit({
+            beforeSubmit: function(arr, $form, options) {
+                // Notify backend that submit is via ajax
+                arr.push({ name: &quot;isAjax&quot;, value: &quot;1&quot; });
+            },
+            success: function (response, statusText, xhr, $form) {
+                clearInterval(progressInterval);
+                showProgress(100, 'Complete!');
 
-<span class=x>                // TODO: You&#39;ll need to do some custom logic here to handle a successful</span>
-<span class=x>                // form post, and when the form is invalid with validation errors.</span>
-<span class=x>                if (response.status) {</span>
-<span class=x>                    // TODO: Do something with a successful form post, like redirect</span>
-<span class=x>                    // window.location.replace(response.redirect);</span>
-<span class=x>                } else {</span>
-<span class=x>                    // Clear the file input, otherwise the same file gets re-uploaded</span>
-<span class=x>                    // http://stackoverflow.com/a/1043969</span>
-<span class=x>                    var fileInput = $(&#39;#image-file&#39;);</span>
-<span class=x>                    fileInput.replaceWith( fileInput.val(&#39;&#39;).clone( true ) );</span>
+                // TODO: You'll need to do some custom logic here to handle a successful
+                // form post, and when the form is invalid with validation errors.
+                if (response.status) {
+                    // TODO: Do something with a successful form post, like redirect
+                    // window.location.replace(response.redirect);
+                } else {
+                    // Clear the file input, otherwise the same file gets re-uploaded
+                    // http://stackoverflow.com/a/1043969
+                    var fileInput = $('#image-file');
+                    fileInput.replaceWith( fileInput.val('').clone( true ) );
 
-<span class=x>                    // TODO: Do something with these errors</span>
-<span class=x>                    // showErrors(response.formErrors);</span>
-<span class=x>                }</span>
-<span class=x>            },</span>
-<span class=x>            error: function(a, b, c) {</span>
-<span class=x>                // NOTE: This callback is *not* called when the form is invalid.</span>
-<span class=x>                // It is called when the browser is unable to initiate or complete the ajax submit.</span>
-<span class=x>                // You will need to handle validation errors in the &#39;success&#39; callback.</span>
-<span class=x>                console.log(a, b, c);</span>
-<span class=x>            }</span>
-<span class=x>        });</span>
-<span class=x>        // Start the progress polling</span>
-<span class=x>        startProgress();</span>
-<span class=x>    });</span>
-<span class=x>});</span>
-<span class=x>&lt;/script&gt;</span>
-</pre></div></p>
+                    // TODO: Do something with these errors
+                    // showErrors(response.formErrors);
+                }
+            },
+            error: function(a, b, c) {
+                // NOTE: This callback is *not* called when the form is invalid.
+                // It is called when the browser is unable to initiate or complete the ajax submit.
+                // You will need to handle validation errors in the 'success' callback.
+                console.log(a, b, c);
+            }
+        });
+        // Start the progress polling
+        startProgress();
+    });
+});
+&lt;/script&gt;</code></pre>
 <p>And finally, our controller action can be modified to return form status and
 validation messages in JSON format if we see the 'isAjax' post parameter (which
 was set in the JavaScript just before submit):</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function uploadFormAction()</span>
-<span class=x>{</span>
-<span class=x>    $form = new UploadForm(&#39;upload-form&#39;);</span>
+<pre class=codehilite><code class=language-php>public function uploadFormAction()
+{
+    $form = new UploadForm('upload-form');
 
-<span class=x>    $request = $this-&gt;getRequest();</span>
+    $request = $this-&gt;getRequest();
 
-<span class=x>    if (! $request-&gt;isPost()) {</span>
-<span class=x>        return [&#39;form&#39; =&gt; $form];</span>
-<span class=x>    }</span>
+    if (! $request-&gt;isPost()) {
+        return ['form' =&gt; $form];
+    }
 
-<span class=x>    // Make certain to merge the files info!</span>
-<span class=x>    $post = array_merge_recursive(</span>
-<span class=x>        $request-&gt;getPost()-&gt;toArray(),</span>
-<span class=x>        $request-&gt;getFiles()-&gt;toArray()</span>
-<span class=x>    );</span>
+    // Make certain to merge the files info!
+    $post = array_merge_recursive(
+        $request-&gt;getPost()-&gt;toArray(),
+        $request-&gt;getFiles()-&gt;toArray()
+    );
 
-<span class=x>    $form-&gt;setData($post);</span>
-<span class=x>    if ($form-&gt;isValid()) {</span>
-<span class=x>        $data = $form-&gt;getData();</span>
+    $form-&gt;setData($post);
+    if ($form-&gt;isValid()) {
+        $data = $form-&gt;getData();
 
-<span class=x>        // Form is valid, save the form!</span>
-<span class=x>        if (! empty($post[&#39;isAjax&#39;])) {</span>
-<span class=x>            return new JsonModel(array(</span>
-<span class=x>                &#39;status&#39;   =&gt; true,</span>
-<span class=x>                &#39;redirect&#39; =&gt; $this-&gt;url()-&gt;fromRoute(&#39;upload-form/success&#39;),</span>
-<span class=x>                &#39;formData&#39; =&gt; $data,</span>
-<span class=x>            ));</span>
-<span class=x>        }</span>
+        // Form is valid, save the form!
+        if (! empty($post['isAjax'])) {
+            return new JsonModel(array(
+                'status'   =&gt; true,
+                'redirect' =&gt; $this-&gt;url()-&gt;fromRoute('upload-form/success'),
+                'formData' =&gt; $data,
+            ));
+        }
 
-<span class=x>        // Fallback for non-JS clients</span>
-<span class=x>        return $this-&gt;redirect()-&gt;toRoute(&#39;upload-form/success&#39;);</span>
-<span class=x>    }</span>
+        // Fallback for non-JS clients
+        return $this-&gt;redirect()-&gt;toRoute('upload-form/success');
+    }
 
-<span class=x>    if (! empty($post[&#39;isAjax&#39;])) {</span>
-<span class=x>        // Send back failure information via JSON</span>
-<span class=x>        return new JsonModel([</span>
-<span class=x>            &#39;status&#39;     =&gt; false,</span>
-<span class=x>            &#39;formErrors&#39; =&gt; $form-&gt;getMessages(),</span>
-<span class=x>            &#39;formData&#39;   =&gt; $form-&gt;getData(),</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
+    if (! empty($post['isAjax'])) {
+        // Send back failure information via JSON
+        return new JsonModel([
+            'status'     =&gt; false,
+            'formErrors' =&gt; $form-&gt;getMessages(),
+            'formData'   =&gt; $form-&gt;getData(),
+        ]);
+    }
 
-<span class=x>    return array(&#39;form&#39; =&gt; $form);</span>
-<span class=x>}</span>
-</pre></div></p>
+    return array('form' =&gt; $form);
+}</code></pre>
 <h2 id="additional-info">Additional Info</h2>
 <p>Related documentation:</p>
 <ul>
@@ -1987,9 +1976,10 @@ was set in the JavaScript just before submit):</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -2026,7 +2016,7 @@ was set in the JavaScript just before submit):</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -2035,8 +2025,8 @@ was set in the JavaScript just before submit):</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

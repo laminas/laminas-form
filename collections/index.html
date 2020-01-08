@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -727,178 +731,177 @@ dynamically in the user interface &mdash; a great example is adding tasks to a
 task list.</p>
 <p>This document is intended to demonstrate these features. To do so, we first need
 to define some domain objects that we'll be using.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Entity;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Entity;
 
-<span class=x>class Product</span>
-<span class=x>{</span>
-<span class=x>    /**</span>
-<span class=x>     * @var string</span>
-<span class=x>     */</span>
-<span class=x>    protected $name;</span>
+class Product
+{
+    /**
+     * @var string
+     */
+    protected $name;
 
-<span class=x>    /**</span>
-<span class=x>     * @var int</span>
-<span class=x>     */</span>
-<span class=x>    protected $price;</span>
+    /**
+     * @var int
+     */
+    protected $price;
 
-<span class=x>    /**</span>
-<span class=x>     * @var Brand</span>
-<span class=x>     */</span>
-<span class=x>    protected $brand;</span>
+    /**
+     * @var Brand
+     */
+    protected $brand;
 
-<span class=x>    /**</span>
-<span class=x>     * @var array</span>
-<span class=x>     */</span>
-<span class=x>    protected $categories;</span>
+    /**
+     * @var array
+     */
+    protected $categories;
 
-<span class=x>    /**</span>
-<span class=x>     * @param string $name</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setName($name)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;name = $name;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * @param string $name
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this-&gt;name = $name;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return string</span>
-<span class=x>     */</span>
-<span class=x>    public function getName()</span>
-<span class=x>    {</span>
-<span class=x>        return $this-&gt;name;</span>
-<span class=x>    }</span>
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this-&gt;name;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @param int $price</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setPrice($price)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;price = $price;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * @param int $price
+     * @return self
+     */
+    public function setPrice($price)
+    {
+        $this-&gt;price = $price;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return int</span>
-<span class=x>     */</span>
-<span class=x>    public function getPrice()</span>
-<span class=x>    {</span>
-<span class=x>        return $this-&gt;price;</span>
-<span class=x>    }</span>
+    /**
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this-&gt;price;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @param Brand $brand</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setBrand(Brand $brand)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;brand = $brand;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * @param Brand $brand
+     * @return self
+     */
+    public function setBrand(Brand $brand)
+    {
+        $this-&gt;brand = $brand;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return Brand</span>
-<span class=x>     */</span>
-<span class=x>    public function getBrand()</span>
-<span class=x>    {</span>
-<span class=x>        return $this-&gt;brand;</span>
-<span class=x>    }</span>
+    /**
+     * @return Brand
+     */
+    public function getBrand()
+    {
+        return $this-&gt;brand;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @param Category[] $categories</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setCategories(array $categories)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;categories = $categories;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * @param Category[] $categories
+     * @return self
+     */
+    public function setCategories(array $categories)
+    {
+        $this-&gt;categories = $categories;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return Category[]</span>
-<span class=x>     */</span>
-<span class=x>    public function getCategories()</span>
-<span class=x>    {</span>
-<span class=x>        return $this-&gt;categories;</span>
-<span class=x>    }</span>
-<span class=x>}</span>
+    /**
+     * @return Category[]
+     */
+    public function getCategories()
+    {
+        return $this-&gt;categories;
+    }
+}
 
-<span class=x>class Brand</span>
-<span class=x>{</span>
-<span class=x>    /**</span>
-<span class=x>     * @var string</span>
-<span class=x>     */</span>
-<span class=x>    protected $name;</span>
+class Brand
+{
+    /**
+     * @var string
+     */
+    protected $name;
 
-<span class=x>    /**</span>
-<span class=x>     * @var string</span>
-<span class=x>     */</span>
-<span class=x>    protected $url;</span>
+    /**
+     * @var string
+     */
+    protected $url;
 
-<span class=x>    /**</span>
-<span class=x>     * @param string $name</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setName($name)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;name = $name;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * @param string $name
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this-&gt;name = $name;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return string</span>
-<span class=x>     */</span>
-<span class=x>    public function getName()</span>
-<span class=x>    {</span>
-<span class=x>        return $this-&gt;name;</span>
-<span class=x>    }</span>
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this-&gt;name;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @param string $url</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setUrl($url)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;url = $url;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * @param string $url
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        $this-&gt;url = $url;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return string</span>
-<span class=x>     */</span>
-<span class=x>    public function getUrl()</span>
-<span class=x>    {</span>
-<span class=x>        return $this-&gt;url;</span>
-<span class=x>    }</span>
-<span class=x>}</span>
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this-&gt;url;
+    }
+}
 
-<span class=x>class Category</span>
-<span class=x>{</span>
-<span class=x>    /**</span>
-<span class=x>     * @var string</span>
-<span class=x>     */</span>
-<span class=x>    protected $name;</span>
+class Category
+{
+    /**
+     * @var string
+     */
+    protected $name;
 
-<span class=x>    /**</span>
-<span class=x>     * @param string $name</span>
-<span class=x>     * @return self</span>
-<span class=x>     */</span>
-<span class=x>    public function setName($name)</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;name = $name;</span>
-<span class=x>        return $this;</span>
-<span class=x>    }</span>
+    /**
+     * @param string $name
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this-&gt;name = $name;
+        return $this;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return string</span>
-<span class=x>     */</span>
-<span class=x>    public function getName()</span>
-<span class=x>    {</span>
-<span class=x>        return $this-&gt;name;</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this-&gt;name;
+    }
+}</code></pre>
 <p>A <code>Product</code> has two scalar properties, name and price, a
 1:1 relationship (one <code>Product</code> has one <code>Brand</code>), and a 1:N relationship (one
 <code>Product</code> has many <code>Category</code> instances).</p>
@@ -906,58 +909,57 @@ to define some domain objects that we'll be using.</p>
 <p>The first step is to create three fieldsets. Each fieldset will contain all the
 fields and relationships for a specific entity.</p>
 <p>Here is the <code>Brand</code> fieldset:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Application\Entity\Brand;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Fieldset;</span>
-<span class=x>use Laminas\InputFilter\InputFilterProviderInterface;</span>
-<span class=x>use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;</span>
+use Application\Entity\Brand;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;
 
-<span class=x>class BrandFieldset extends Fieldset implements InputFilterProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    public function __construct()</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct(&#39;brand&#39;);</span>
+class BrandFieldset extends Fieldset implements InputFilterProviderInterface
+{
+    public function __construct()
+    {
+        parent::__construct('brand');
 
-<span class=x>        $this-&gt;setHydrator(new ClassMethodsHydrator(false));</span>
-<span class=x>        $this-&gt;setObject(new Brand());</span>
+        $this-&gt;setHydrator(new ClassMethodsHydrator(false));
+        $this-&gt;setObject(new Brand());
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;name&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Name of the brand&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; &#39;required&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'name' =&gt; 'name',
+            'options' =&gt; [
+                'label' =&gt; 'Name of the brand',
+            ],
+            'attributes' =&gt; [
+                'required' =&gt; 'required',
+            ],
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;url&#39;,</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Url::class,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Website of the brand&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; &#39;required&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
+        $this-&gt;add([
+            'name' =&gt; 'url',
+            'type' =&gt; Element\Url::class,
+            'options' =&gt; [
+                'label' =&gt; 'Website of the brand',
+            ],
+            'attributes' =&gt; [
+                'required' =&gt; 'required',
+            ],
+        ]);
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return array</span>
-<span class=x>     */</span>
-<span class=x>    public function getInputFilterSpecification()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;name&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; true,</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    /**
+     * @return array
+     */
+    public function getInputFilterSpecification()
+    {
+        return [
+            'name' =&gt; [
+                'required' =&gt; true,
+            ],
+        ];
+    }
+}</code></pre>
 <p>The fieldset calls the method <code>setHydrator()</code>, giving it a <code>ClassMethods</code>
 hydrator, and the <code>setObject()</code> method, giving it an empty <code>Brand</code> instance.</p>
 <p>When we validate incoming data, the form will automatically iterate through all
@@ -973,134 +975,132 @@ remaining input ("name"), indicating that this input is required. Note that
 add the "required" attribute to the form markup (and therefore has semantic
 meaning only).</p>
 <p>Here is the <code>Category</code> fieldset:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Application\Entity\Category;</span>
-<span class=x>use Laminas\Form\Fieldset;</span>
-<span class=x>use Laminas\InputFilter\InputFilterProviderInterface;</span>
-<span class=x>use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;</span>
+use Application\Entity\Category;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;
 
-<span class=x>class CategoryFieldset extends Fieldset implements InputFilterProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    public function __construct()</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct(&#39;category&#39;);</span>
+class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
+{
+    public function __construct()
+    {
+        parent::__construct('category');
 
-<span class=x>        $this-&gt;setHydrator(new ClassMethodsHydrator(false));</span>
-<span class=x>        $this-&gt;setObject(new Category());</span>
+        $this-&gt;setHydrator(new ClassMethodsHydrator(false));
+        $this-&gt;setObject(new Category());
 
-<span class=x>        $this-&gt;setLabel(&#39;Category&#39;);</span>
+        $this-&gt;setLabel('Category');
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;name&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Name of the category&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; &#39;required&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
+        $this-&gt;add([
+            'name' =&gt; 'name',
+            'options' =&gt; [
+                'label' =&gt; 'Name of the category',
+            ],
+            'attributes' =&gt; [
+                'required' =&gt; 'required',
+            ],
+        ]);
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * @return array</span>
-<span class=x>     */</span>
-<span class=x>    public function getInputFilterSpecification()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;name&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; true,</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    /**
+     * @return array
+     */
+    public function getInputFilterSpecification()
+    {
+        return [
+            'name' =&gt; [
+                'required' =&gt; true,
+            ],
+        ];
+    }
+}</code></pre>
 <p>Nothing new here.</p>
 <p>Finally, the <code>Product</code> fieldset:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Application\Entity\Product;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Fieldset;</span>
-<span class=x>use Laminas\InputFilter\InputFilterProviderInterface;</span>
-<span class=x>use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;</span>
+use Application\Entity\Product;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;
 
-<span class=x>class ProductFieldset extends Fieldset implements InputFilterProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    public function __construct()</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct(&#39;product&#39;);</span>
+class ProductFieldset extends Fieldset implements InputFilterProviderInterface
+{
+    public function __construct()
+    {
+        parent::__construct('product');
 
-<span class=x>        $this-&gt;setHydrator(new ClassMethodsHydrator(false));</span>
-<span class=x>        $this-&gt;setObject(new Product());</span>
+        $this-&gt;setHydrator(new ClassMethodsHydrator(false));
+        $this-&gt;setObject(new Product());
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;name&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Name of the product&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; &#39;required&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'name' =&gt; 'name',
+            'options' =&gt; [
+                'label' =&gt; 'Name of the product',
+            ],
+            'attributes' =&gt; [
+                'required' =&gt; 'required',
+            ],
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;price&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Price of the product&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; &#39;required&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'name' =&gt; 'price',
+            'options' =&gt; [
+                'label' =&gt; 'Price of the product',
+            ],
+            'attributes' =&gt; [
+                'required' =&gt; 'required',
+            ],
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; BrandFieldset::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;brand&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Brand of the product&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'type' =&gt; BrandFieldset::class,
+            'name' =&gt; 'brand',
+            'options' =&gt; [
+                'label' =&gt; 'Brand of the product',
+            ],
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Collection::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;categories&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Please choose categories for this product&#39;,</span>
-<span class=x>                &#39;count&#39; =&gt; 2,</span>
-<span class=x>                &#39;should_create_template&#39; =&gt; true,</span>
-<span class=x>                &#39;allow_add&#39; =&gt; true,</span>
-<span class=x>                &#39;target_element&#39; =&gt; [</span>
-<span class=x>                    &#39;type&#39; =&gt; CategoryFieldset::class,</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
+        $this-&gt;add([
+            'type' =&gt; Element\Collection::class,
+            'name' =&gt; 'categories',
+            'options' =&gt; [
+                'label' =&gt; 'Please choose categories for this product',
+                'count' =&gt; 2,
+                'should_create_template' =&gt; true,
+                'allow_add' =&gt; true,
+                'target_element' =&gt; [
+                    'type' =&gt; CategoryFieldset::class,
+                ],
+            ],
+        ]);
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * Should return an array specification compatible with</span>
-<span class=x>     * {@link Laminas\InputFilter\Factory::createInputFilter()}.</span>
-<span class=x>     *</span>
-<span class=x>     * @return array</span>
-<span class=x>     */</span>
-<span class=x>    public function getInputFilterSpecification()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;name&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; true,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;price&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; true,</span>
-<span class=x>                &#39;validators&#39; =&gt; [</span>
-<span class=x>                    [</span>
-<span class=x>                        &#39;name&#39; =&gt; &#39;Float&#39;,</span>
-<span class=x>                    ],</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    /**
+     * Should return an array specification compatible with
+     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
+     *
+     * @return array
+     */
+    public function getInputFilterSpecification()
+    {
+        return [
+            'name' =&gt; [
+                'required' =&gt; true,
+            ],
+            'price' =&gt; [
+                'required' =&gt; true,
+                'validators' =&gt; [
+                    [
+                        'name' =&gt; 'Float',
+                    ],
+                ],
+            ],
+        ];
+    }
+}</code></pre>
 <p>We have a lot of new things here!</p>
 <p>First, notice how the brand element is added: we specify it to be of type
 <code>Application\Form\BrandFieldset</code>. This is how you handle a 1:1
@@ -1130,45 +1130,44 @@ the name of the property in the <code>Product</code> entity.</p>
 <h2 id="the-form-element">The Form Element</h2>
 <p>So far, so good. We now have our fieldsets in place. But those are fieldsets,
 not forms. And only <code>Form</code> instances can be validated. So here is the form:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
-<span class=x>use Laminas\InputFilter\InputFilter;</span>
-<span class=x>use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;</span>
+use Laminas\Form\Element;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;
 
-<span class=x>class CreateProduct extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function __construct()</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct(&#39;create_product&#39;);</span>
+class CreateProduct extends Form
+{
+    public function __construct()
+    {
+        parent::__construct('create_product');
 
-<span class=x>        $this-&gt;setAttribute(&#39;method&#39;, &#39;post&#39;)</span>
-<span class=x>        $this-&gt;setHydrator(new ClassMethodsHydrator(false));</span>
-<span class=x>        $this-&gt;setInputFilter(new InputFilter());</span>
+        $this-&gt;setAttribute('method', 'post')
+        $this-&gt;setHydrator(new ClassMethodsHydrator(false));
+        $this-&gt;setInputFilter(new InputFilter());
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; ProductFieldset::class,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;use_as_base_fieldset&#39; =&gt; true,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'type' =&gt; ProductFieldset::class,
+            'options' =&gt; [
+                'use_as_base_fieldset' =&gt; true,
+            ],
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Csrf::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;csrf&#39;,</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'type' =&gt; Element\Csrf::class,
+            'name' =&gt; 'csrf',
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;submit&#39;,</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;type&#39; =&gt; &#39;submit&#39;,</span>
-<span class=x>                &#39;value&#39; =&gt; &#39;Send&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        $this-&gt;add([
+            'name' =&gt; 'submit',
+            'attributes' =&gt; [
+                'type' =&gt; 'submit',
+                'value' =&gt; 'Send',
+            ],
+        ]);
+    }
+}</code></pre>
 <p><code>CreateProduct</code> only defines a <code>Product</code> fieldset, as well as some other useful
 fields (<code>CSRF</code> for security, and a <code>Submit</code> button).</p>
 <p>Notice the <code>use_as_base_fieldset</code> option. This option is here to say to the
@@ -1180,29 +1179,28 @@ once, and the concrete <code>Form</code> instance will only compose those fields
 longer have to add the "username" input to every form that deals with users!</p>
 <h2 id="integrating-with-laminas-mvc">Integrating with laminas-mvc</h2>
 <p>Now, let's create a laminas-mvc controller action:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>/**</span>
-<span class=x>  * @return array</span>
-<span class=x>  */</span>
-<span class=x> public function indexAction()</span>
-<span class=x> {</span>
-<span class=x>     $form = new CreateProduct();</span>
-<span class=x>     $product = new Product();</span>
-<span class=x>     $form-&gt;bind($product);</span>
-<span class=x>     $request = $this-&gt;getRequest();</span>
+<pre class=codehilite><code class=language-php>/**
+  * @return array
+  */
+ public function indexAction()
+ {
+     $form = new CreateProduct();
+     $product = new Product();
+     $form-&gt;bind($product);
+     $request = $this-&gt;getRequest();
 
-<span class=x>     if ($request-&gt;isPost()) {</span>
-<span class=x>         $form-&gt;setData($request-&gt;getPost());</span>
+     if ($request-&gt;isPost()) {
+         $form-&gt;setData($request-&gt;getPost());
 
-<span class=x>         if ($form-&gt;isValid()) {</span>
-<span class=x>            var_dump($product);</span>
-<span class=x>         }</span>
-<span class=x>     }</span>
+         if ($form-&gt;isValid()) {
+            var_dump($product);
+         }
+     }
 
-<span class=x>     return [</span>
-<span class=x>         &#39;form&#39; =&gt; $form,</span>
-<span class=x>     ];</span>
-<span class=x> }</span>
-</pre></div></p>
+     return [
+         'form' =&gt; $form,
+     ];
+ }</code></pre>
 <p>All the controller does is:</p>
 <ul>
 <li>Create a form instance.</li>
@@ -1211,32 +1209,31 @@ longer have to add the "username" input to every form that deals with users!</p>
 </ul>
 <h2 id="integration-with-laminas-view">Integration with laminas-view</h2>
 <p>And finally, the view:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;home&#39;</span><span class=p>));</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
+<pre class=codehilite><code class=language-php>&lt;?php
+$form-&gt;setAttribute('action', $this-&gt;url('home'));
+$form-&gt;prepare();
+echo $this-&gt;form()-&gt;openTag($form);
 
-<span class=nv>$product</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;product&#39;</span><span class=p>);</span>
+$product = $form-&gt;get('product');
 
-<span class=c1>// The name and price can be rendered as regular elements:</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>));</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;price&#39;</span><span class=p>));</span>
+// The name and price can be rendered as regular elements:
+echo $this-&gt;formRow($product-&gt;get('name'));
+echo $this-&gt;formRow($product-&gt;get('price'));
 
-<span class=c1>// Categories are rendered as a collection:</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formCollection</span><span class=p>(</span><span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;categories&#39;</span><span class=p>));</span>
+// Categories are rendered as a collection:
+echo $this-&gt;formCollection($product-&gt;get('categories'));
 
-<span class=nv>$brand</span> <span class=o>=</span> <span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;brand&#39;</span><span class=p>);</span>
+$brand = $product-&gt;get('brand');
 
-<span class=c1>// Since the brand is a 1:1 relationship, its elements are rendered normally:</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$brand</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>));</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$brand</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;url&#39;</span><span class=p>));</span>
+// Since the brand is a 1:1 relationship, its elements are rendered normally:
+echo $this-&gt;formRow($brand-&gt;get('name'));
+echo $this-&gt;formRow($brand-&gt;get('url'));
 
-<span class=c1>// And finally, we render the CSRF and submit elements:</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formHidden</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;csrf&#39;</span><span class=p>));</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;submit&#39;</span><span class=p>));</span>
+// And finally, we render the CSRF and submit elements:
+echo $this-&gt;formHidden($form-&gt;get('csrf'));
+echo $this-&gt;formElement($form-&gt;get('submit'));
 
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
-</pre></div></p>
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
 <p>A few new things here :</p>
 <ul>
 <li>the <code>prepare()</code> method. You <em>must</em> call it prior to rendering anything in the
@@ -1278,23 +1275,21 @@ generated) must be changed to a valid value. Currently, we have 2 elements
 (<code>categories[0]</code> and <code>categories[1]</code>, so <code>__index__</code> must be changed to 2.</p>
 <p>If you want, this placeholder (<code>__index__</code> is the default) can be changed using
 the <code>template_placeholder</code> option key:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$this-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Collection::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;categories&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;Please choose categories for this product&#39;,</span>
-<span class=x>        &#39;count&#39; =&gt; 2,</span>
-<span class=x>        &#39;should_create_template&#39; =&gt; true,</span>
-<span class=x>        &#39;template_placeholder&#39; =&gt; &#39;__placeholder__&#39;,</span>
-<span class=x>        &#39;target_element&#39; =&gt; [</span>
-<span class=x>            &#39;type&#39; =&gt; CategoryFieldset::class,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$this-&gt;add([
+    'type' =&gt; Element\Collection::class,
+    'name' =&gt; 'categories',
+    'options' =&gt; [
+        'label' =&gt; 'Please choose categories for this product',
+        'count' =&gt; 2,
+        'should_create_template' =&gt; true,
+        'template_placeholder' =&gt; '__placeholder__',
+        'target_element' =&gt; [
+            'type' =&gt; CategoryFieldset::class,
+        ],
+    ],
+]);</code></pre>
 <p>First, let's add a small button "Add new category" anywhere in the form:</p>
-<p> <div class=codehilite><pre><span></span><span class=p>&lt;</span><span class=nt>button</span> <span class=na>onclick</span><span class=o>=</span><span class=s>&quot;return add_category()&quot;</span><span class=p>&gt;</span>Add a new category<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-html>&lt;button onclick=&quot;return add_category()&quot;&gt;Add a new category&lt;/button&gt;</code></pre>
 <p>The <code>add_category</code> function will need to do the following:</p>
 <ol>
 <li>First, count the number of elements we already have.</li>
@@ -1303,16 +1298,15 @@ the <code>template_placeholder</code> option key:</p>
 <li>Add the element to the DOM.</li>
 </ol>
 <p>The following is a potential implementation:</p>
-<p> <div class=codehilite><pre><span></span><span class=kd>function</span> <span class=nx>add_category</span><span class=p>()</span> <span class=p>{</span>
-    <span class=kd>var</span> <span class=nx>currentCount</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;form &gt; fieldset &gt; fieldset&#39;</span><span class=p>).</span><span class=nx>length</span><span class=p>;</span>
-    <span class=kd>var</span> <span class=nx>template</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;form &gt; fieldset &gt; span&#39;</span><span class=p>).</span><span class=nx>data</span><span class=p>(</span><span class=s1>&#39;template&#39;</span><span class=p>);</span>
-    <span class=nx>template</span> <span class=o>=</span> <span class=nx>template</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/__index__/g</span><span class=p>,</span> <span class=nx>currentCount</span><span class=p>);</span>
+<pre class=codehilite><code class=language-javascript>function add_category() {
+    var currentCount = $('form &gt; fieldset &gt; fieldset').length;
+    var template = $('form &gt; fieldset &gt; span').data('template');
+    template = template.replace(/__index__/g, currentCount);
 
-    <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;form &gt; fieldset&#39;</span><span class=p>).</span><span class=nx>append</span><span class=p>(</span><span class=nx>template</span><span class=p>);</span>
+    $('form &gt; fieldset').append(template);
 
-    <span class=k>return</span> <span class=kc>false</span><span class=p>;</span>
-<span class=p>}</span>
-</pre></div></p>
+    return false;
+}</code></pre>
 <p>(Note: the above example assumes <code>$()</code> is defined, and equivalent to jQuery's
 <code>$()</code> function, Dojo's <code>dojo.query</code>, etc.)</p>
 <p>One small remark about <code>template.replace</code>: the example uses <code>currentCount</code> and
@@ -1326,22 +1320,21 @@ option <code>allow_add</code> to <code>false</code>. This way, even if new eleme
 won't be validated and hence, not added to the entity. Also, if we don't want
 elements to be added, we don't need the data template, either.</p>
 <p>Here's how you both disable adding dynamic elements, and disable the template:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$this-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Collection::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;categories&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;Please choose categories for this product&#39;,</span>
-<span class=x>        &#39;count&#39; =&gt; 2,</span>
-<span class=x>        // Do not allow adding:</span>
-<span class=x>        &#39;allow_add&#39; =&gt; false,</span>
-<span class=x>        // Do not display the index template:</span>
-<span class=x>        &#39;should_create_template&#39; =&gt; false,</span>
-<span class=x>        &#39;target_element&#39; =&gt; [</span>
-<span class=x>            &#39;type&#39; =&gt; CategoryFieldset::class,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$this-&gt;add([
+    'type' =&gt; Element\Collection::class,
+    'name' =&gt; 'categories',
+    'options' =&gt; [
+        'label' =&gt; 'Please choose categories for this product',
+        'count' =&gt; 2,
+        // Do not allow adding:
+        'allow_add' =&gt; false,
+        // Do not display the index template:
+        'should_create_template' =&gt; false,
+        'target_element' =&gt; [
+            'type' =&gt; CategoryFieldset::class,
+        ],
+    ],
+]);</code></pre>
 <p>There are some limitations to this capability:</p>
 <ul>
 <li>Although you can add new elements and remove them, you <em>CANNOT</em> remove more
@@ -1359,27 +1352,26 @@ elements to be added, we don't need the data template, either.</p>
 <p>As an example, although the <code>Brand</code> entity has a <code>url</code> property, we don't want
 the user to specify it in the creation form (but may wish to later in the "Edit
 Product" form, for instance). Let's update the view to remove the <code>url</code> input:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;home&#39;</span><span class=p>));</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
+<pre class=codehilite><code class=language-php>&lt;?php
+$form-&gt;setAttribute('action', $this-&gt;url('home'));
+$form-&gt;prepare();
 
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
+echo $this-&gt;form()-&gt;openTag($form);
 
-<span class=nv>$product</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;product&#39;</span><span class=p>);</span>
+$product = $form-&gt;get('product');
 
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>));</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;price&#39;</span><span class=p>));</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formCollection</span><span class=p>(</span><span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;categories&#39;</span><span class=p>));</span>
+echo $this-&gt;formRow($product-&gt;get('name'));
+echo $this-&gt;formRow($product-&gt;get('price'));
+echo $this-&gt;formCollection($product-&gt;get('categories'));
 
-<span class=nv>$brand</span> <span class=o>=</span> <span class=nv>$product</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;brand&#39;</span><span class=p>);</span>
+$brand = $product-&gt;get('brand');
 
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$brand</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>));</span>
+echo $this-&gt;formRow($brand-&gt;get('name'));
 
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formHidden</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;csrf&#39;</span><span class=p>));</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;submit&#39;</span><span class=p>));</span>
+echo $this-&gt;formHidden($form-&gt;get('csrf'));
+echo $this-&gt;formElement($form-&gt;get('submit'));
 
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
-</pre></div></p>
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
 <p>This is what we get:</p>
 <p><img alt="Collection validation group" src="../images/collections.validation-groups.png" class="img-responsive"/></p>
 <p>The <code>url</code> input has disappeared, but even if we fill every input, the form won't
@@ -1392,59 +1384,58 @@ require a lot of duplicate code.</p>
 object (hence, in our case, in the <code>CreateProduct</code> form) by giving an array of
 all the elements we want to validate. Our <code>CreateProduct</code> class now looks like
 this:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Application\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Application\Form;
 
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
-<span class=x>use Laminas\InputFilter\InputFilter;</span>
-<span class=x>use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;</span>
+use Laminas\Form\Element;
+use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilter;
+use Laminas\Hydrator\ClassMethods as ClassMethodsHydrator;
 
-<span class=x>class CreateProduct extends Form</span>
-<span class=x>{</span>
-<span class=x>    public function __construct()</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct(&#39;create_product&#39;);</span>
+class CreateProduct extends Form
+{
+    public function __construct()
+    {
+        parent::__construct('create_product');
 
-<span class=x>        $this-&gt;setAttribute(&#39;method&#39;, &#39;post&#39;);</span>
-<span class=x>        $this-&gt;setHydrator(new ClassMethodsHydrator());</span>
-<span class=x>        $this-&gt;setInputFilter(new InputFilter());</span>
+        $this-&gt;setAttribute('method', 'post');
+        $this-&gt;setHydrator(new ClassMethodsHydrator());
+        $this-&gt;setInputFilter(new InputFilter());
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; ProductFieldset::class,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;use_as_base_fieldset&#39; =&gt; true,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'type' =&gt; ProductFieldset::class,
+            'options' =&gt; [
+                'use_as_base_fieldset' =&gt; true,
+            ],
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Csrf::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;csrf&#39;,</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'type' =&gt; Element\Csrf::class,
+            'name' =&gt; 'csrf',
+        ]);
 
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;submit&#39;,</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;type&#39; =&gt; &#39;submit&#39;,</span>
-<span class=x>                &#39;value&#39; =&gt; &#39;Send&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        $this-&gt;add([
+            'name' =&gt; 'submit',
+            'attributes' =&gt; [
+                'type' =&gt; 'submit',
+                'value' =&gt; 'Send',
+            ],
+        ]);
 
-<span class=x>        $this-&gt;setValidationGroup([</span>
-<span class=x>            &#39;csrf&#39;,</span>
-<span class=x>            &#39;product&#39; =&gt; [</span>
-<span class=x>                &#39;name&#39;,</span>
-<span class=x>                &#39;price&#39;,</span>
-<span class=x>                &#39;brand&#39; =&gt; [</span>
-<span class=x>                    &#39;name&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>                &#39;categories&#39; =&gt; [</span>
-<span class=x>                    &#39;name&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        $this-&gt;setValidationGroup([
+            'csrf',
+            'product' =&gt; [
+                'name',
+                'price',
+                'brand' =&gt; [
+                    'name',
+                ],
+                'categories' =&gt; [
+                    'name',
+                ],
+            ],
+        ]);
+    }
+}</code></pre>
 <p>Don't forget to add the <code>CSRF</code> element, as we want it to be validated too (but
 notice that the example omits the <code>submit</code> element, as we don't care about its
 value). You can also recursively select the elements if desired.</p>
@@ -2082,9 +2073,10 @@ when performing <code>bindValues()</code> operations.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -2121,7 +2113,7 @@ when performing <code>bindValues()</code> operations.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -2130,8 +2122,8 @@ when performing <code>bindValues()</code> operations.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

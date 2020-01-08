@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -710,54 +714,53 @@
 <p>The <code>FormElementErrors</code> view helper is used to render the validation error
 messages of an element.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Form;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\InputFilter\InputFilter;</span>
-<span class=x>use Laminas\InputFilter\Input;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Form;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputFilter;
+use Laminas\InputFilter\Input;
 
-<span class=x>// Create a form</span>
-<span class=x>$form    = new Form();</span>
-<span class=x>$element = new Element\Text(&#39;my-text&#39;);</span>
-<span class=x>$form-&gt;add($element);</span>
+// Create a form
+$form    = new Form();
+$element = new Element\Text('my-text');
+$form-&gt;add($element);
 
-<span class=x>// Create a input</span>
-<span class=x>$input = new Input(&#39;my-text&#39;);</span>
-<span class=x>$input-&gt;setRequired(true);</span>
+// Create a input
+$input = new Input('my-text');
+$input-&gt;setRequired(true);
 
-<span class=x>$inputFilter = new InputFilter();</span>
-<span class=x>$inputFilter-&gt;add($input);</span>
-<span class=x>$form-&gt;setInputFilter($inputFilter);</span>
+$inputFilter = new InputFilter();
+$inputFilter-&gt;add($input);
+$form-&gt;setInputFilter($inputFilter);
 
-<span class=x>// Force a failure</span>
-<span class=x>$form-&gt;setData(array()); // Empty data</span>
-<span class=x>$form-&gt;isValid();        // Not valid</span>
+// Force a failure
+$form-&gt;setData(array()); // Empty data
+$form-&gt;isValid();        // Not valid
 
-<span class=x>// Within your view...</span>
+// Within your view...
 
-<span class=x>/**</span>
-<span class=x> * Example #1: Default options</span>
-<span class=x> */</span>
-<span class=x>echo $this-&gt;formElementErrors($element);</span>
-<span class=x>// Result: &lt;ul&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;</span>
+/**
+ * Example #1: Default options
+ */
+echo $this-&gt;formElementErrors($element);
+// Result: &lt;ul&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #2: Add attributes to open format</span>
-<span class=x> */</span>
-<span class=x>echo $this-&gt;formElementErrors($element, [&#39;class&#39; =&gt; &#39;help-inline&#39;]);</span>
-<span class=x>// Result:</span>
-<span class=x>// &lt;ul class=&quot;help-inline&quot;&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;</span>
+/**
+ * Example #2: Add attributes to open format
+ */
+echo $this-&gt;formElementErrors($element, ['class' =&gt; 'help-inline']);
+// Result:
+// &lt;ul class=&quot;help-inline&quot;&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #3: Custom format</span>
-<span class=x> */</span>
-<span class=x>$helper = $this-&gt;formElementErrors();</span>
-<span class=x>$helper-&gt;setMessageOpenFormat(&#39;&lt;div class=&quot;help-inline&quot;&gt;&#39;);</span>
-<span class=x>$helper-&gt;setMessageSeparatorString(&#39;&lt;/div&gt;&lt;div class=&quot;help-inline&quot;&gt;&#39;);</span>
-<span class=x>$helper-&gt;setMessageCloseString(&#39;&lt;/div&gt;&#39;);</span>
+/**
+ * Example #3: Custom format
+ */
+$helper = $this-&gt;formElementErrors();
+$helper-&gt;setMessageOpenFormat('&lt;div class=&quot;help-inline&quot;&gt;');
+$helper-&gt;setMessageSeparatorString('&lt;/div&gt;&lt;div class=&quot;help-inline&quot;&gt;');
+$helper-&gt;setMessageCloseString('&lt;/div&gt;');
 
-<span class=x>echo $helper-&gt;render($element);</span>
-<span class=x>// Result: &lt;div class=&quot;help-inline&quot;&gt;Value is required and can&amp;#039;t be empty&lt;/div&gt;</span>
-</pre></div></p>
+echo $helper-&gt;render($element);
+// Result: &lt;div class=&quot;help-inline&quot;&gt;Value is required and can&amp;#039;t be empty&lt;/div&gt;</code></pre>
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the
 <a href="../abstract-helper/#public-methods">AbstractHelper</a>:</p>
@@ -1417,9 +1420,10 @@ messages of an element.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1456,7 +1460,7 @@ messages of an element.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1465,8 +1469,8 @@ messages of an element.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

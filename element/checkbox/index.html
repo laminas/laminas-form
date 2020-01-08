@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -714,57 +718,54 @@ to validate on the server if the checkbox contains either the checked value or
 the unchecked value.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>checkbox</code>.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$checkbox = new Element\Checkbox(&#39;checkbox&#39;);</span>
-<span class=x>$checkbox-&gt;setLabel(&#39;A checkbox&#39;);</span>
-<span class=x>$checkbox-&gt;setUseHiddenElement(true);</span>
-<span class=x>$checkbox-&gt;setCheckedValue(&#39;good&#39;);</span>
-<span class=x>$checkbox-&gt;setUncheckedValue(&#39;bad&#39;);</span>
+$checkbox = new Element\Checkbox('checkbox');
+$checkbox-&gt;setLabel('A checkbox');
+$checkbox-&gt;setUseHiddenElement(true);
+$checkbox-&gt;setCheckedValue('good');
+$checkbox-&gt;setUncheckedValue('bad');
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add($checkbox);</span>
-</pre></div></p>
+$form = new Form('my-form');
+$form-&gt;add($checkbox);</code></pre>
 <p>Using array notation:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Checkbox::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;checkbox&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;A checkbox&#39;,</span>
-<span class=x>        &#39;use_hidden_element&#39; =&gt; true,</span>
-<span class=x>        &#39;checked_value&#39; =&gt; &#39;good&#39;,</span>
-<span class=x>        &#39;unchecked_value&#39; =&gt; &#39;bad&#39;,</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+$form = new Form('my-form');
+$form-&gt;add([
+    'type' =&gt; Element\Checkbox::class,
+    'name' =&gt; 'checkbox',
+    'options' =&gt; [
+        'label' =&gt; 'A checkbox',
+        'use_hidden_element' =&gt; true,
+        'checked_value' =&gt; 'good',
+        'unchecked_value' =&gt; 'bad',
+    ],
+]);</code></pre>
 <p>When creating a checkbox element, setting an attribute of <code>checked</code> will result
 in the checkbox always being checked, regardless of any data object which might
 subsequently be bound to the form. The correct way to set the default value of a
 checkbox is to set the <code>value</code> attribute as for any other element. To have a
 checkbox checked by default, make the <code>value</code> equal to the <code>checked_value</code> eg:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Checkbox::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;checkbox&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;A checkbox&#39;,</span>
-<span class=x>        &#39;use_hidden_element&#39; =&gt; true,</span>
-<span class=x>        &#39;checked_value&#39; =&gt; &#39;yes&#39;,</span>
-<span class=x>        &#39;unchecked_value&#39; =&gt; &#39;no&#39;,</span>
-<span class=x>    ],</span>
-<span class=x>    &#39;attributes&#39; =&gt; [</span>
-<span class=x>         &#39;value&#39; =&gt; &#39;yes&#39;,</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+$form = new Form('my-form');
+$form-&gt;add([
+    'type' =&gt; Element\Checkbox::class,
+    'name' =&gt; 'checkbox',
+    'options' =&gt; [
+        'label' =&gt; 'A checkbox',
+        'use_hidden_element' =&gt; true,
+        'checked_value' =&gt; 'yes',
+        'unchecked_value' =&gt; 'no',
+    ],
+    'attributes' =&gt; [
+         'value' =&gt; 'yes',
+    ],
+]);</code></pre>
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Checkbox</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also
@@ -1425,9 +1426,10 @@ available.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1464,7 +1466,7 @@ available.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1473,8 +1475,8 @@ available.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

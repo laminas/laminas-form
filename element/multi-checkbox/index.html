@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -719,38 +723,36 @@ from the multiple checkboxes.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>checkbox</code> for every
 checkboxes.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$multiCheckbox = new Element\MultiCheckbox(&#39;multi-checkbox&#39;);</span>
-<span class=x>$multiCheckbox-&gt;setLabel(&#39;What do you like ?&#39;);</span>
-<span class=x>$multiCheckbox-&gt;setValueOptions([</span>
-<span class=x>        &#39;0&#39; =&gt; &#39;Apple&#39;,</span>
-<span class=x>        &#39;1&#39; =&gt; &#39;Orange&#39;,</span>
-<span class=x>        &#39;2&#39; =&gt; &#39;Lemon&#39;</span>
-<span class=x>]);</span>
+$multiCheckbox = new Element\MultiCheckbox('multi-checkbox');
+$multiCheckbox-&gt;setLabel('What do you like ?');
+$multiCheckbox-&gt;setValueOptions([
+        '0' =&gt; 'Apple',
+        '1' =&gt; 'Orange',
+        '2' =&gt; 'Lemon'
+]);
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add($multiCheckbox);</span>
-</pre></div></p>
+$form = new Form('my-form');
+$form-&gt;add($multiCheckbox);</code></pre>
 <p>Using array notation:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\MultiCheckbox::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;multi-checkbox&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;What do you like ?&#39;,</span>
-<span class=x>        &#39;value_options&#39; =&gt; [</span>
-<span class=x>            &#39;0&#39; =&gt; &#39;Apple&#39;,</span>
-<span class=x>            &#39;1&#39; =&gt; &#39;Orange&#39;,</span>
-<span class=x>            &#39;2&#39; =&gt; &#39;Lemon&#39;,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+$form = new Form('my-form');
+$form-&gt;add([
+    'type' =&gt; Element\MultiCheckbox::class,
+    'name' =&gt; 'multi-checkbox',
+    'options' =&gt; [
+        'label' =&gt; 'What do you like ?',
+        'value_options' =&gt; [
+            '0' =&gt; 'Apple',
+            '1' =&gt; 'Orange',
+            '2' =&gt; 'Lemon',
+        ],
+    ],
+]);</code></pre>
 <h2 id="advanced-usage">Advanced Usage</h2>
 <p>In order to set attributes or customize the option elements, an array can be
 used instead of a string. The following keys are supported:</p>
@@ -764,39 +766,38 @@ used instead of a string. The following keys are supported:</p>
 <li><code>label_attributes</code>: Array of HTML attributes that will be set on the label.
   Merged with the attributes set on the element's label.</li>
 </ul>
-<p> <div class=codehilite><pre><span></span><span class=x>$form = new Form(&#39;my-form&#39;);</span>
-<span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\MultiCheckbox::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;multi-checkbox&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;What do you like ?&#39;,</span>
-<span class=x>        &#39;value_options&#39; =&gt; [</span>
-<span class=x>            [</span>
-<span class=x>                &#39;value&#39; =&gt; &#39;0&#39;,</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Apple&#39;,</span>
-<span class=x>                &#39;selected&#39; =&gt; false,</span>
-<span class=x>                &#39;disabled&#39; =&gt; false,</span>
-<span class=x>                &#39;attributes&#39; =&gt; [</span>
-<span class=x>                    &#39;id&#39; =&gt; &#39;apple_option&#39;,</span>
-<span class=x>                    &#39;data-fruit&#39; =&gt; &#39;apple&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>                &#39;label_attributes&#39; =&gt; [</span>
-<span class=x>                    &#39;id&#39; =&gt; &#39;apple_label&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>            [</span>
-<span class=x>                &#39;value&#39; =&gt; &#39;1&#39;,</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Orange&#39;,</span>
-<span class=x>                &#39;selected&#39; =&gt; true,</span>
-<span class=x>            ],</span>
-<span class=x>            [</span>
-<span class=x>                &#39;value&#39; =&gt; &#39;2&#39;,</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Lemon&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$form = new Form('my-form');
+$form-&gt;add([
+    'type' =&gt; Element\MultiCheckbox::class,
+    'name' =&gt; 'multi-checkbox',
+    'options' =&gt; [
+        'label' =&gt; 'What do you like ?',
+        'value_options' =&gt; [
+            [
+                'value' =&gt; '0',
+                'label' =&gt; 'Apple',
+                'selected' =&gt; false,
+                'disabled' =&gt; false,
+                'attributes' =&gt; [
+                    'id' =&gt; 'apple_option',
+                    'data-fruit' =&gt; 'apple',
+                ],
+                'label_attributes' =&gt; [
+                    'id' =&gt; 'apple_label',
+                ],
+            ],
+            [
+                'value' =&gt; '1',
+                'label' =&gt; 'Orange',
+                'selected' =&gt; true,
+            ],
+            [
+                'value' =&gt; '2',
+                'label' =&gt; 'Lemon',
+            ],
+        ],
+    ],
+]);</code></pre>
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>MultiCheckbox</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also
@@ -1433,9 +1434,10 @@ available.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1472,7 +1474,7 @@ available.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1481,8 +1483,8 @@ available.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

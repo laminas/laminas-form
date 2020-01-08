@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -715,49 +719,47 @@ order to validate <a href="http://www.whatwg.org/specs/web-apps/current-work/mul
 on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>email</code>.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
+$form = new Form('my-form');
 
-<span class=x>// Single email address:</span>
-<span class=x>$email = new Element\Email(&#39;email&#39;);</span>
-<span class=x>$email-&gt;setLabel(&#39;Email Address&#39;)</span>
-<span class=x>$form-&gt;add($email);</span>
+// Single email address:
+$email = new Element\Email('email');
+$email-&gt;setLabel('Email Address')
+$form-&gt;add($email);
 
-<span class=x>// Comma separated list of emails:</span>
-<span class=x>$emails = new Element\Email(&#39;emails&#39;);</span>
-<span class=x>$emails-&gt;setLabel(&#39;Email Addresses&#39;);</span>
-<span class=x>$emails-&gt;setAttribute(&#39;multiple&#39;, true);</span>
-<span class=x>$form-&gt;add($emails);</span>
-</pre></div></p>
+// Comma separated list of emails:
+$emails = new Element\Email('emails');
+$emails-&gt;setLabel('Email Addresses');
+$emails-&gt;setAttribute('multiple', true);
+$form-&gt;add($emails);</code></pre>
 <p>Using array notation:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>$form = new Form(&#39;my-form&#39;);</span>
+$form = new Form('my-form');
 
-<span class=x>// Single email address:</span>
-<span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Email::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;email&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;Email Address&#39;,</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
+// Single email address:
+$form-&gt;add([
+    'type' =&gt; Element\Email::class,
+    'name' =&gt; 'email',
+    'options' =&gt; [
+        'label' =&gt; 'Email Address',
+    ],
+]);
 
-<span class=x>// Comma separated list of emails:</span>
-<span class=x>$form-&gt;add([</span>
-<span class=x>    &#39;type&#39; =&gt; Element\Email::class,</span>
-<span class=x>    &#39;name&#39; =&gt; &#39;emails&#39;,</span>
-<span class=x>    &#39;options&#39; =&gt; [</span>
-<span class=x>        &#39;label&#39; =&gt; &#39;Email Addresses&#39;,</span>
-<span class=x>    ],</span>
-<span class=x>    &#39;attributes&#39; =&gt; [</span>
-<span class=x>        &#39;multiple&#39; =&gt; true,</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+// Comma separated list of emails:
+$form-&gt;add([
+    'type' =&gt; Element\Email::class,
+    'name' =&gt; 'emails',
+    'options' =&gt; [
+        'label' =&gt; 'Email Addresses',
+    ],
+    'attributes' =&gt; [
+        'multiple' =&gt; true,
+    ],
+]);</code></pre>
 <blockquote>
 <h3>Set multiple attribute before calling prepare</h3>
 <p>Note: the <code>multiple</code> attribute should be set prior to calling
@@ -1414,9 +1416,10 @@ attribute:</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1453,7 +1456,7 @@ attribute:</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1462,8 +1465,8 @@ attribute:</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

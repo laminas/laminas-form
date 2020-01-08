@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -708,44 +712,43 @@ helpers depending on the type of the <code>Laminas\Form\Element</code> provided.
 if the provided element had a type of "text", the <code>FormElement</code> helper will
 retrieve and use the <code>FormText</code> helper to render the element.</p>
 <h2 id="basic-usage">Basic usage:</h2>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Form;</span>
-<span class=x>use Laminas\Form\Element;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Form;
+use Laminas\Form\Element;
 
-<span class=x>// Within your view...</span>
+// Within your view...
 
-<span class=x>/**</span>
-<span class=x> * Example #1: Render different types of form elements</span>
-<span class=x> */</span>
-<span class=x>$textElement     = new Element\Text(&#39;my-text&#39;);</span>
-<span class=x>$checkboxElement = new Element\Checkbox(&#39;my-checkbox&#39;);</span>
+/**
+ * Example #1: Render different types of form elements
+ */
+$textElement     = new Element\Text('my-text');
+$checkboxElement = new Element\Checkbox('my-checkbox');
 
-<span class=x>echo $this-&gt;formElement($textElement);</span>
-<span class=x>// Result: &lt;input type=&quot;text&quot; name=&quot;my-text&quot; value=&quot;&quot;&gt;</span>
+echo $this-&gt;formElement($textElement);
+// Result: &lt;input type=&quot;text&quot; name=&quot;my-text&quot; value=&quot;&quot;&gt;
 
-<span class=x>echo $this-&gt;formElement($checkboxElement);</span>
-<span class=x>// Result:</span>
-<span class=x>// &lt;input type=&quot;hidden&quot; name=&quot;my-checkbox&quot; value=&quot;0&quot;&gt;</span>
-<span class=x>// &lt;input type=&quot;checkbox&quot; name=&quot;my-checkbox&quot; value=&quot;1&quot;&gt;</span>
+echo $this-&gt;formElement($checkboxElement);
+// Result:
+// &lt;input type=&quot;hidden&quot; name=&quot;my-checkbox&quot; value=&quot;0&quot;&gt;
+// &lt;input type=&quot;checkbox&quot; name=&quot;my-checkbox&quot; value=&quot;1&quot;&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #2: Loop through form elements and render them</span>
-<span class=x> */</span>
-<span class=x>$form = new Form();</span>
-<span class=x>// ...add elements and input filter to form...</span>
-<span class=x>$form-&gt;prepare();</span>
+/**
+ * Example #2: Loop through form elements and render them
+ */
+$form = new Form();
+// ...add elements and input filter to form...
+$form-&gt;prepare();
 
-<span class=x>// Render the opening tag</span>
-<span class=x>echo $this-&gt;form()-&gt;openTag($form);</span>
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
 
-<span class=x>// ...loop through and render the form elements...</span>
-<span class=x>foreach ($form as $element) {</span>
-<span class=x>    echo $this-&gt;formElement($element);</span>
-<span class=x>    echo $this-&gt;formElementErrors($element);</span>
-<span class=x>}</span>
+// ...loop through and render the form elements...
+foreach ($form as $element) {
+    echo $this-&gt;formElement($element);
+    echo $this-&gt;formElementErrors($element);
+}
 
-<span class=x>// Render the closing tag</span>
-<span class=x>echo $this-&gt;form()-&gt;closeTag();</span>
-</pre></div></p>
+// Render the closing tag
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
 
 
 
@@ -1352,9 +1355,10 @@ retrieve and use the <code>FormText</code> helper to render the element.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1391,7 +1395,7 @@ retrieve and use the <code>FormText</code> helper to render the element.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1400,8 +1404,8 @@ retrieve and use the <code>FormText</code> helper to render the element.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

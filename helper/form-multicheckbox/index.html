@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -708,35 +712,34 @@ type="checkbox"&gt;</code> HTML form inputs. It is meant to work with the
 <a href="../../element/multi-checkbox/">MultiCheckbox element</a>, which provides a default
 input specification for validating checkbox groups.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
 
-<span class=x>$element = new Element\MultiCheckbox(&#39;my-multicheckbox&#39;);</span>
-<span class=x>$element-&gt;setValueOptions([</span>
-<span class=x>   &#39;0&#39; =&gt; &#39;Apple&#39;,</span>
-<span class=x>   &#39;1&#39; =&gt; &#39;Orange&#39;,</span>
-<span class=x>   &#39;2&#39; =&gt; &#39;Lemon&#39;,</span>
-<span class=x>]);</span>
+$element = new Element\MultiCheckbox('my-multicheckbox');
+$element-&gt;setValueOptions([
+   '0' =&gt; 'Apple',
+   '1' =&gt; 'Orange',
+   '2' =&gt; 'Lemon',
+]);
 
-<span class=x>// Within your view...</span>
+// Within your view...
 
-<span class=x>/**</span>
-<span class=x> * Example #1: using the default label placement</span>
-<span class=x> */</span>
-<span class=x>echo $this-&gt;formMultiCheckbox($element);</span>
-<span class=x>// Result:</span>
-<span class=x>// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;0&quot;&gt;Apple&lt;/label&gt;</span>
-<span class=x>// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;1&quot;&gt;Orange&lt;/label&gt;</span>
-<span class=x>// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;2&quot;&gt;Lemon&lt;/label&gt;</span>
+/**
+ * Example #1: using the default label placement
+ */
+echo $this-&gt;formMultiCheckbox($element);
+// Result:
+// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;0&quot;&gt;Apple&lt;/label&gt;
+// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;1&quot;&gt;Orange&lt;/label&gt;
+// &lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;2&quot;&gt;Lemon&lt;/label&gt;
 
-<span class=x>/**</span>
-<span class=x> * Example #2: using the prepend label placement</span>
-<span class=x> */</span>
-<span class=x>echo $this-&gt;formMultiCheckbox($element, &#39;prepend&#39;);</span>
-<span class=x>// Result:</span>
-<span class=x>// &lt;label&gt;Apple&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;0&quot;&gt;&lt;/label&gt;</span>
-<span class=x>// &lt;label&gt;Orange&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;1&quot;&gt;&lt;/label&gt;</span>
-<span class=x>// &lt;label&gt;Lemon&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;2&quot;&gt;&lt;/label&gt;</span>
-</pre></div></p>
+/**
+ * Example #2: using the prepend label placement
+ */
+echo $this-&gt;formMultiCheckbox($element, 'prepend');
+// Result:
+// &lt;label&gt;Apple&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;0&quot;&gt;&lt;/label&gt;
+// &lt;label&gt;Orange&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;1&quot;&gt;&lt;/label&gt;
+// &lt;label&gt;Lemon&lt;input type=&quot;checkbox&quot; name=&quot;my-multicheckbox[]&quot; value=&quot;2&quot;&gt;&lt;/label&gt;</code></pre>
 
 
 
@@ -1343,9 +1346,10 @@ input specification for validating checkbox groups.</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1382,7 +1386,7 @@ input specification for validating checkbox groups.</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1391,8 +1395,8 @@ input specification for validating checkbox groups.</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

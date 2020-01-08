@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -784,15 +788,14 @@ allows setting a translator and text domain.</p>
 </table></div>
 <h2 id="translation">Translation</h2>
 <p>Attaching a translator and setting a text domain (using the formLabel view helper as an example):</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// Setting a translator</span>
-<span class=x>$this-&gt;formLabel()-&gt;setTranslator($translator);</span>
+<pre class=codehilite><code class=language-php>// Setting a translator
+$this-&gt;formLabel()-&gt;setTranslator($translator);
 
-<span class=x>// Setting a text domain</span>
-<span class=x>$this-&gt;formLabel()-&gt;setTranslatorTextDomain(&#39;my-text-domain&#39;);</span>
+// Setting a text domain
+$this-&gt;formLabel()-&gt;setTranslatorTextDomain('my-text-domain');
 
-<span class=x>// Setting both</span>
-<span class=x>$this-&gt;formLabel()-&gt;setTranslator($translator, &#39;my-text-domain&#39;);</span>
-</pre></div></p>
+// Setting both
+$this-&gt;formLabel()-&gt;setTranslator($translator, 'my-text-domain');</code></pre>
 <blockquote>
 <h3>Enabling translation</h3>
 <p>If you have a translator in your application container under either the key,
@@ -803,19 +806,17 @@ automatically attach the translator to the view helpers.</p>
 <p>The specific view helpers are responsible to determine what exactly should be translated
 (e. g. the Label in the FormLabel view helper or the "title" HTML attribute).</p>
 <p>If you want to have certain HTML attribute values translated you can mark them as "translatable":</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// mark one attribute as translatable</span>
-<span class=x>$this-&gt;formLabel()-&gt;addTranslatableAttribute(&#39;data-translate-me&#39;);</span>
+<pre class=codehilite><code class=language-php>// mark one attribute as translatable
+$this-&gt;formLabel()-&gt;addTranslatableAttribute('data-translate-me');
 
-<span class=x>// mark an prefix as translatable</span>
-<span class=x>$this-&gt;formLabel()-&gt;addTranslatableAttributePrefix(&#39;data-translatable-&#39;);</span>
-</pre></div></p>
+// mark an prefix as translatable
+$this-&gt;formLabel()-&gt;addTranslatableAttributePrefix('data-translatable-');</code></pre>
 <p>Or you can mark them as translatable for all view helpers (e. g. the title attribute):</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// mark one attribute as translatable</span>
-<span class=x>\Laminas\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttribute(&#39;title&#39;);</span>
+<pre class=codehilite><code class=language-php>// mark one attribute as translatable
+\Laminas\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttribute('title');
 
-<span class=x>// mark an prefix as translatable</span>
-<span class=x>\Laminas\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttributePrefix(&#39;data-translatable-&#39;);</span>
-</pre></div></p>
+// mark an prefix as translatable
+\Laminas\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttributePrefix('data-translatable-');</code></pre>
 <h2 id="allowing-framework-specific-attributes">Allowing framework-specific attributes</h2>
 <p>Many JavaScript frameworks use custom attributes and/or attribute prefixes with
 elements, to facilitate various bindings and event listeners. Examples include
@@ -825,12 +826,10 @@ elements, to facilitate various bindings and event listeners. Examples include
 you wish to allow additional attributes, you will need to notify the helper of
 them.</p>
 <p>The first mechanism is to add a specific attribute:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$helper-&gt;addValidAttribute(&#39;some-attribute&#39;);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$helper-&gt;addValidAttribute('some-attribute');</code></pre>
 <p>If you wish to allow a set of attributes with a common prefix, use the
 following:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$helper-&gt;addValidAttributePrefix(&#39;ng-&#39;);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$helper-&gt;addValidAttributePrefix('ng-');</code></pre>
 
 
 
@@ -1437,9 +1436,10 @@ following:</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -1476,7 +1476,7 @@ following:</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -1485,8 +1485,8 @@ following:</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -736,95 +740,93 @@ populated from the validated values.</p>
 <h2 id="programmatic-form-creation">Programmatic Form Creation</h2>
 <p>The following example demonstrates element, fieldset, and form creation, and how
 they are wired together.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Captcha;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Fieldset;</span>
-<span class=x>use Laminas\Form\Form;</span>
-<span class=x>use Laminas\InputFilter\Input;</span>
-<span class=x>use Laminas\InputFilter\InputFilter;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Captcha;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Input;
+use Laminas\InputFilter\InputFilter;
 
-<span class=x>// Create a text element to capture the user name:</span>
-<span class=x>$name = new Element(&#39;name&#39;);</span>
-<span class=x>$name-&gt;setLabel(&#39;Your name&#39;);</span>
-<span class=x>$name-&gt;setAttributes([</span>
-<span class=x>    &#39;type&#39; =&gt; &#39;text&#39;,</span>
-<span class=x>]);</span>
+// Create a text element to capture the user name:
+$name = new Element('name');
+$name-&gt;setLabel('Your name');
+$name-&gt;setAttributes([
+    'type' =&gt; 'text',
+]);
 
-<span class=x>// Create a text element to capture the user email address:</span>
-<span class=x>$email = new Element\Email(&#39;email&#39;);</span>
-<span class=x>$email-&gt;setLabel(&#39;Your email address&#39;);</span>
+// Create a text element to capture the user email address:
+$email = new Element\Email('email');
+$email-&gt;setLabel('Your email address');
 
-<span class=x>// Create a text element to capture the message subject:</span>
-<span class=x>$subject = new Element(&#39;subject&#39;);</span>
-<span class=x>$subject-&gt;setLabel(&#39;Subject&#39;);</span>
-<span class=x>$subject-&gt;setAttributes([</span>
-<span class=x>    &#39;type&#39; =&gt; &#39;text&#39;,</span>
-<span class=x>]);</span>
+// Create a text element to capture the message subject:
+$subject = new Element('subject');
+$subject-&gt;setLabel('Subject');
+$subject-&gt;setAttributes([
+    'type' =&gt; 'text',
+]);
 
-<span class=x>// Create a textarea element to capture a message:</span>
-<span class=x>$message = new Element\Textarea(&#39;message&#39;);</span>
-<span class=x>$message-&gt;setLabel(&#39;Message&#39;);</span>
+// Create a textarea element to capture a message:
+$message = new Element\Textarea('message');
+$message-&gt;setLabel('Message');
 
-<span class=x>// Create a CAPTCHA:</span>
-<span class=x>$captcha = new Element\Captcha(&#39;captcha&#39;);</span>
-<span class=x>$captcha-&gt;setCaptcha(new Captcha\Dumb());</span>
-<span class=x>$captcha-&gt;setLabel(&#39;Please verify you are human&#39;);</span>
+// Create a CAPTCHA:
+$captcha = new Element\Captcha('captcha');
+$captcha-&gt;setCaptcha(new Captcha\Dumb());
+$captcha-&gt;setLabel('Please verify you are human');
 
-<span class=x>// Create a CSRF token:</span>
-<span class=x>$csrf = new Element\Csrf(&#39;security&#39;);</span>
+// Create a CSRF token:
+$csrf = new Element\Csrf('security');
 
-<span class=x>// Create a submit button:</span>
-<span class=x>$send = new Element(&#39;send&#39;);</span>
-<span class=x>$send-&gt;setValue(&#39;Submit&#39;);</span>
-<span class=x>$send-&gt;setAttributes([</span>
-<span class=x>    &#39;type&#39; =&gt; &#39;submit&#39;,</span>
-<span class=x>]);</span>
+// Create a submit button:
+$send = new Element('send');
+$send-&gt;setValue('Submit');
+$send-&gt;setAttributes([
+    'type' =&gt; 'submit',
+]);
 
-<span class=x>// Create the form and add all elements:</span>
-<span class=x>$form = new Form(&#39;contact&#39;);</span>
-<span class=x>$form-&gt;add($name);</span>
-<span class=x>$form-&gt;add($email);</span>
-<span class=x>$form-&gt;add($subject);</span>
-<span class=x>$form-&gt;add($message);</span>
-<span class=x>$form-&gt;add($captcha);</span>
-<span class=x>$form-&gt;add($csrf);</span>
-<span class=x>$form-&gt;add($send);</span>
+// Create the form and add all elements:
+$form = new Form('contact');
+$form-&gt;add($name);
+$form-&gt;add($email);
+$form-&gt;add($subject);
+$form-&gt;add($message);
+$form-&gt;add($captcha);
+$form-&gt;add($csrf);
+$form-&gt;add($send);
 
-<span class=x>// Create an input for the &quot;name&quot; element:</span>
-<span class=x>$nameInput = new Input(&#39;name&#39;);</span>
+// Create an input for the &quot;name&quot; element:
+$nameInput = new Input('name');
 
-<span class=x>/* ... configure the input, and create and configure all others ... */</span>
+/* ... configure the input, and create and configure all others ... */
 
-<span class=x>// Create the input filter:</span>
-<span class=x>$inputFilter = new InputFilter();</span>
+// Create the input filter:
+$inputFilter = new InputFilter();
 
-<span class=x>// Attach inputs:</span>
-<span class=x>$inputFilter-&gt;add($nameInput);</span>
-<span class=x>/* ... */</span>
+// Attach inputs:
+$inputFilter-&gt;add($nameInput);
+/* ... */
 
-<span class=x>// Attach the input filter to the form:</span>
-<span class=x>$form-&gt;setInputFilter($inputFilter);</span>
-</pre></div></p>
+// Attach the input filter to the form:
+$form-&gt;setInputFilter($inputFilter);</code></pre>
 <p>As a demonstration of fieldsets, let's alter the above slightly. We'll create
 two fieldsets, one for the sender information, and another for the message
 details.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// Create the fieldset for sender details:</span>
-<span class=x>$sender = new Fieldset(&#39;sender&#39;);</span>
-<span class=x>$sender-&gt;add($name);</span>
-<span class=x>$sender-&gt;add($email);</span>
+<pre class=codehilite><code class=language-php>// Create the fieldset for sender details:
+$sender = new Fieldset('sender');
+$sender-&gt;add($name);
+$sender-&gt;add($email);
 
-<span class=x>// Create the fieldset for message details:</span>
-<span class=x>$details = new Fieldset(&#39;details&#39;);</span>
-<span class=x>$details-&gt;add($subject);</span>
-<span class=x>$details-&gt;add($message);</span>
+// Create the fieldset for message details:
+$details = new Fieldset('details');
+$details-&gt;add($subject);
+$details-&gt;add($message);
 
-<span class=x>$form = new Form(&#39;contact&#39;);</span>
-<span class=x>$form-&gt;add($sender);</span>
-<span class=x>$form-&gt;add($details);</span>
-<span class=x>$form-&gt;add($captcha);</span>
-<span class=x>$form-&gt;add($csrf);</span>
-<span class=x>$form-&gt;add($send);</span>
-</pre></div></p>
+$form = new Form('contact');
+$form-&gt;add($sender);
+$form-&gt;add($details);
+$form-&gt;add($captcha);
+$form-&gt;add($csrf);
+$form-&gt;add($send);</code></pre>
 <p>This manual approach gives maximum flexibility over form creation; however, it
 comes at the expense of verbosity. In the next section, we'll look at another
 approach.</p>
@@ -832,197 +834,195 @@ approach.</p>
 <p>You can create the entire form and input filter at once using the <code>Factory</code>.
 This is particularly nice if you want to store your forms as pure configuration;
 you can then pass the configuration to the factory and be done.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Factory;</span>
-<span class=x>use Laminas\Hydrator\ArraySerializable;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Factory;
+use Laminas\Hydrator\ArraySerializable;
 
-<span class=x>$factory = new Factory();</span>
-<span class=x>$form    = $factory-&gt;createForm([</span>
-<span class=x>    &#39;hydrator&#39; =&gt; ArraySerializable::class,</span>
-<span class=x>    &#39;elements&#39; =&gt; [</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;name&#39;,</span>
-<span class=x>                &#39;options&#39; =&gt; [</span>
-<span class=x>                    &#39;label&#39; =&gt; &#39;Your name&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>                &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;type&#39; =&gt; Element\Email::class,</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;email&#39;,</span>
-<span class=x>                &#39;options&#39; =&gt; [</span>
-<span class=x>                    &#39;label&#39; =&gt; &#39;Your email address&#39;,</span>
-<span class=x>                ]</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;subject&#39;,</span>
-<span class=x>                &#39;options&#39; =&gt; [</span>
-<span class=x>                    &#39;label&#39; =&gt; &#39;Subject&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>                &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;type&#39; =&gt; Element\Textarea::class,</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;message&#39;,</span>
-<span class=x>                &#39;options&#39; =&gt; [</span>
-<span class=x>                    &#39;label&#39; =&gt; &#39;Message&#39;,</span>
-<span class=x>                ]</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;type&#39; =&gt; Element\Captcha::class,</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;captcha&#39;,</span>
-<span class=x>                &#39;options&#39; =&gt; [</span>
-<span class=x>                    &#39;label&#39; =&gt; &#39;Please verify you are human.&#39;,</span>
-<span class=x>                    &#39;captcha&#39; =&gt; [</span>
-<span class=x>                        &#39;class&#39; =&gt; &#39;Dumb&#39;,</span>
-<span class=x>                    ],</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;type&#39; =&gt; Element\Csrf::class,</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;security&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;send&#39;,</span>
-<span class=x>                &#39;type&#39;  =&gt; &#39;Submit&#39;,</span>
-<span class=x>                &#39;attributes&#39; =&gt; [</span>
-<span class=x>                    &#39;value&#39; =&gt; &#39;Submit&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
+$factory = new Factory();
+$form    = $factory-&gt;createForm([
+    'hydrator' =&gt; ArraySerializable::class,
+    'elements' =&gt; [
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'name',
+                'options' =&gt; [
+                    'label' =&gt; 'Your name',
+                ],
+                'type'  =&gt; 'Text',
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Email::class,
+                'name' =&gt; 'email',
+                'options' =&gt; [
+                    'label' =&gt; 'Your email address',
+                ]
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'subject',
+                'options' =&gt; [
+                    'label' =&gt; 'Subject',
+                ],
+                'type'  =&gt; 'Text',
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Textarea::class,
+                'name' =&gt; 'message',
+                'options' =&gt; [
+                    'label' =&gt; 'Message',
+                ]
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Captcha::class,
+                'name' =&gt; 'captcha',
+                'options' =&gt; [
+                    'label' =&gt; 'Please verify you are human.',
+                    'captcha' =&gt; [
+                        'class' =&gt; 'Dumb',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Csrf::class,
+                'name' =&gt; 'security',
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'send',
+                'type'  =&gt; 'Submit',
+                'attributes' =&gt; [
+                    'value' =&gt; 'Submit',
+                ],
+            ],
+        ],
+    ],
 
-<span class=x>    /* If we had fieldsets, they&#39;d go here; fieldsets contain</span>
-<span class=x>     * &quot;elements&quot; and &quot;fieldsets&quot; keys, and potentially a &quot;type&quot;</span>
-<span class=x>     * key indicating the specific FieldsetInterface</span>
-<span class=x>     * implementation to use.</span>
-<span class=x>    &#39;fieldsets&#39; =&gt; [</span>
-<span class=x>    ],</span>
-<span class=x>     */</span>
+    /* If we had fieldsets, they'd go here; fieldsets contain
+     * &quot;elements&quot; and &quot;fieldsets&quot; keys, and potentially a &quot;type&quot;
+     * key indicating the specific FieldsetInterface
+     * implementation to use.
+    'fieldsets' =&gt; [
+    ],
+     */
 
-<span class=x>    // Configuration to pass on to</span>
-<span class=x>    // Laminas\InputFilter\Factory::createInputFilter()</span>
-<span class=x>    &#39;input_filter&#39; =&gt; [</span>
-<span class=x>        /* ... */</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+    // Configuration to pass on to
+    // Laminas\InputFilter\Factory::createInputFilter()
+    'input_filter' =&gt; [
+        /* ... */
+    ],
+]);</code></pre>
 <p>If we wanted to use fieldsets, as we demonstrated in the previous example, we
 could do the following:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Factory;</span>
-<span class=x>use Laminas\Hydrator\ArraySerializable;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+use Laminas\Form\Factory;
+use Laminas\Hydrator\ArraySerializable;
 
-<span class=x>$factory = new Factory();</span>
-<span class=x>$form    = $factory-&gt;createForm([</span>
-<span class=x>    &#39;hydrator&#39;  =&gt; ArraySerializable::class,</span>
+$factory = new Factory();
+$form    = $factory-&gt;createForm([
+    'hydrator'  =&gt; ArraySerializable::class,
 
-<span class=x>    // Top-level fieldsets to define:</span>
-<span class=x>    &#39;fieldsets&#39; =&gt; [</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;sender&#39;,</span>
-<span class=x>                &#39;elements&#39; =&gt; [</span>
-<span class=x>                    [</span>
-<span class=x>                        &#39;spec&#39; =&gt; [</span>
-<span class=x>                            &#39;name&#39; =&gt; &#39;name&#39;,</span>
-<span class=x>                            &#39;options&#39; =&gt; [</span>
-<span class=x>                                &#39;label&#39; =&gt; &#39;Your name&#39;,</span>
-<span class=x>                            ],</span>
-<span class=x>                            &#39;type&#39; =&gt; &#39;Text&#39;</span>
-<span class=x>                        ],</span>
-<span class=x>                    ],</span>
-<span class=x>                    [</span>
-<span class=x>                        &#39;spec&#39; =&gt; [</span>
-<span class=x>                            &#39;type&#39; =&gt; Element\Email::class,</span>
-<span class=x>                            &#39;name&#39; =&gt; &#39;email&#39;,</span>
-<span class=x>                            &#39;options&#39; =&gt; [</span>
-<span class=x>                                &#39;label&#39; =&gt; &#39;Your email address&#39;,</span>
-<span class=x>                            ],</span>
-<span class=x>                        ],</span>
-<span class=x>                    ],</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;details&#39;,</span>
-<span class=x>                &#39;elements&#39; =&gt; [</span>
-<span class=x>                    [</span>
-<span class=x>                        &#39;spec&#39; =&gt; [</span>
-<span class=x>                            &#39;name&#39; =&gt; &#39;subject&#39;,</span>
-<span class=x>                            &#39;options&#39; =&gt; [</span>
-<span class=x>                                &#39;label&#39; =&gt; &#39;Subject&#39;,</span>
-<span class=x>                            ],</span>
-<span class=x>                            &#39;type&#39; =&gt; &#39;Text&#39;,</span>
-<span class=x>                        ],</span>
-<span class=x>                    ],</span>
-<span class=x>                    [</span>
-<span class=x>                        &#39;spec&#39; =&gt; [</span>
-<span class=x>                            &#39;name&#39; =&gt; &#39;message&#39;,</span>
-<span class=x>                            &#39;type&#39; =&gt; Element\Textarea::class,</span>
-<span class=x>                            &#39;options&#39; =&gt; [</span>
-<span class=x>                                &#39;label&#39; =&gt; &#39;Message&#39;,</span>
-<span class=x>                            ],</span>
-<span class=x>                        ],</span>
-<span class=x>                    ],</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
+    // Top-level fieldsets to define:
+    'fieldsets' =&gt; [
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'sender',
+                'elements' =&gt; [
+                    [
+                        'spec' =&gt; [
+                            'name' =&gt; 'name',
+                            'options' =&gt; [
+                                'label' =&gt; 'Your name',
+                            ],
+                            'type' =&gt; 'Text'
+                        ],
+                    ],
+                    [
+                        'spec' =&gt; [
+                            'type' =&gt; Element\Email::class,
+                            'name' =&gt; 'email',
+                            'options' =&gt; [
+                                'label' =&gt; 'Your email address',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'spec' =&gt; [
+                'name' =&gt; 'details',
+                'elements' =&gt; [
+                    [
+                        'spec' =&gt; [
+                            'name' =&gt; 'subject',
+                            'options' =&gt; [
+                                'label' =&gt; 'Subject',
+                            ],
+                            'type' =&gt; 'Text',
+                        ],
+                    ],
+                    [
+                        'spec' =&gt; [
+                            'name' =&gt; 'message',
+                            'type' =&gt; Element\Textarea::class,
+                            'options' =&gt; [
+                                'label' =&gt; 'Message',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
 
-<span class=x>    // You can specify an &quot;elements&quot; key explicitly:</span>
-<span class=x>    &#39;elements&#39; =&gt; [</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>                &#39;type&#39; =&gt; Element\Captcha::class,</span>
-<span class=x>                &#39;name&#39; =&gt; &#39;captcha&#39;,</span>
-<span class=x>                &#39;options&#39; =&gt; [</span>
-<span class=x>                    &#39;label&#39; =&gt; &#39;Please verify you are human.&#39;,</span>
-<span class=x>                    &#39;captcha&#39; =&gt; [</span>
-<span class=x>                        &#39;class&#39; =&gt; &#39;Dumb&#39;,</span>
-<span class=x>                    ],</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;spec&#39; =&gt; [</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Csrf::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;security&#39;,</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
+    // You can specify an &quot;elements&quot; key explicitly:
+    'elements' =&gt; [
+        [
+            'spec' =&gt; [
+                'type' =&gt; Element\Captcha::class,
+                'name' =&gt; 'captcha',
+                'options' =&gt; [
+                    'label' =&gt; 'Please verify you are human.',
+                    'captcha' =&gt; [
+                        'class' =&gt; 'Dumb',
+                    ],
+                ],
+            ],
+        ],
+        [
+            'spec' =&gt; [
+            'type' =&gt; Element\Csrf::class,
+            'name' =&gt; 'security',
+        ],
+    ],
 
-<span class=x>    // But entries without string keys are also considered elements:</span>
-<span class=x>    [</span>
-<span class=x>        &#39;spec&#39; =&gt; [</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;send&#39;,</span>
-<span class=x>            &#39;type&#39;  =&gt; &#39;Submit&#39;,</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;value&#39; =&gt; &#39;Submit&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
+    // But entries without string keys are also considered elements:
+    [
+        'spec' =&gt; [
+            'name' =&gt; 'send',
+            'type'  =&gt; 'Submit',
+            'attributes' =&gt; [
+                'value' =&gt; 'Submit',
+            ],
+        ],
+    ],
 
-<span class=x>    // Configuration to pass on to</span>
-<span class=x>    // Laminas\InputFilter\Factory::createInputFilter()</span>
-<span class=x>    &#39;input_filter&#39; =&gt; [</span>
-<span class=x>        /* ... */</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
-</pre></div></p>
+    // Configuration to pass on to
+    // Laminas\InputFilter\Factory::createInputFilter()
+    'input_filter' =&gt; [
+        /* ... */
+    ],
+]);</code></pre>
 <p>Note that the chief difference is nesting; otherwise, the information is
 basically the same.</p>
 <p>The chief benefits to using the <code>Factory</code> are allowing you to store definitions
@@ -1032,74 +1032,73 @@ in configuration, and usage of significant whitespace.</p>
 extend it, and define your form internally. This has the benefit of allowing a
 mixture of programmatic and factory-backed creation, as well as defining a form
 for re-use in your application.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Contact;</span>
+<pre class=codehilite><code class=language-php>namespace Contact;
 
-<span class=x>use Laminas\Captcha\AdapterInterface as CaptchaAdapter;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\Form\Form;</span>
+use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
+use Laminas\Form\Element;
+use Laminas\Form\Form;
 
-<span class=x>class ContactForm extends Form</span>
-<span class=x>{</span>
-<span class=x>    protected $captcha;</span>
+class ContactForm extends Form
+{
+    protected $captcha;
 
-<span class=x>    public function __construct(CaptchaAdapter $captcha)</span>
-<span class=x>    {</span>
-<span class=x>        parent::__construct();</span>
+    public function __construct(CaptchaAdapter $captcha)
+    {
+        parent::__construct();
 
-<span class=x>        $this-&gt;captcha = $captcha;</span>
+        $this-&gt;captcha = $captcha;
 
-<span class=x>        // add() can take an Element/Fieldset instance, or a specification, from</span>
-<span class=x>        // which the appropriate object will be built.</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;name&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Your name&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
-<span class=x>        ]);</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Email::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;email&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Your email address&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;subject&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Subject&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;type&#39;  =&gt; &#39;Text&#39;,</span>
-<span class=x>        ]);</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Textarea::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;message&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Message&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;type&#39; =&gt; Element\Captcha::class,</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;captcha&#39;,</span>
-<span class=x>            &#39;options&#39; =&gt; [</span>
-<span class=x>                &#39;label&#39; =&gt; &#39;Please verify you are human.&#39;,</span>
-<span class=x>                &#39;captcha&#39; =&gt; $this-&gt;captcha,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
-<span class=x>        $this-&gt;add(new Element\Csrf(&#39;security&#39;));</span>
-<span class=x>        $this-&gt;add([</span>
-<span class=x>            &#39;name&#39; =&gt; &#39;send&#39;,</span>
-<span class=x>            &#39;type&#39;  =&gt; &#39;Submit&#39;,</span>
-<span class=x>            &#39;attributes&#39; =&gt; [</span>
-<span class=x>                &#39;value&#39; =&gt; &#39;Submit&#39;,</span>
-<span class=x>            ],</span>
-<span class=x>        ]);</span>
+        // add() can take an Element/Fieldset instance, or a specification, from
+        // which the appropriate object will be built.
+        $this-&gt;add([
+            'name' =&gt; 'name',
+            'options' =&gt; [
+                'label' =&gt; 'Your name',
+            ],
+            'type'  =&gt; 'Text',
+        ]);
+        $this-&gt;add([
+            'type' =&gt; Element\Email::class,
+            'name' =&gt; 'email',
+            'options' =&gt; [
+                'label' =&gt; 'Your email address',
+            ],
+        ]);
+        $this-&gt;add([
+            'name' =&gt; 'subject',
+            'options' =&gt; [
+                'label' =&gt; 'Subject',
+            ],
+            'type'  =&gt; 'Text',
+        ]);
+        $this-&gt;add([
+            'type' =&gt; Element\Textarea::class,
+            'name' =&gt; 'message',
+            'options' =&gt; [
+                'label' =&gt; 'Message',
+            ],
+        ]);
+        $this-&gt;add([
+            'type' =&gt; Element\Captcha::class,
+            'name' =&gt; 'captcha',
+            'options' =&gt; [
+                'label' =&gt; 'Please verify you are human.',
+                'captcha' =&gt; $this-&gt;captcha,
+            ],
+        ]);
+        $this-&gt;add(new Element\Csrf('security'));
+        $this-&gt;add([
+            'name' =&gt; 'send',
+            'type'  =&gt; 'Submit',
+            'attributes' =&gt; [
+                'value' =&gt; 'Submit',
+            ],
+        ]);
 
-<span class=x>        // We could also define the input filter here, or</span>
-<span class=x>        // lazy-create it in the getInputFilter() method.</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        // We could also define the input filter here, or
+        // lazy-create it in the getInputFilter() method.
+    }
+}</code></pre>
 <p>In the above example, elements are added in the constructor. This is done to
 allow altering and/or configuring either the form or input filter factory
 instances, which could then have bearing on how elements, inputs, etc. are
@@ -1109,25 +1108,24 @@ us to configure it elsewhere in our application and inject it into the form.</p>
 <p>Validating forms requires three steps. First, the form must have an input filter
 attached. Second, you must inject the data to validate into the form. Third, you
 validate the form. If invalid, you can retrieve the error messages, if any.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// assuming $captcha is an instance of some Laminas\Captcha\AdapterInterface:</span>
-<span class=x>$form = new Contact\ContactForm($captcha);</span>
+<pre class=codehilite><code class=language-php>// assuming $captcha is an instance of some Laminas\Captcha\AdapterInterface:
+$form = new Contact\ContactForm($captcha);
 
-<span class=x>// If the form doesn&#39;t define an input filter by default, inject one.</span>
-<span class=x>$form-&gt;setInputFilter(new Contact\ContactFilter());</span>
+// If the form doesn't define an input filter by default, inject one.
+$form-&gt;setInputFilter(new Contact\ContactFilter());
 
-<span class=x>// Get the data. In an MVC application, you might try:</span>
-<span class=x>$data = $request-&gt;getPost();  // for POST data</span>
-<span class=x>$data = $request-&gt;getQuery(); // for GET (or query string) data</span>
+// Get the data. In an MVC application, you might try:
+$data = $request-&gt;getPost();  // for POST data
+$data = $request-&gt;getQuery(); // for GET (or query string) data
 
-<span class=x>$form-&gt;setData($data);</span>
+$form-&gt;setData($data);
 
-<span class=x>// Validate the form</span>
-<span class=x>if ($form-&gt;isValid()) {</span>
-<span class=x>    $validatedData = $form-&gt;getData();</span>
-<span class=x>} else {</span>
-<span class=x>    $messages = $form-&gt;getMessages();</span>
-<span class=x>}</span>
-</pre></div></p>
+// Validate the form
+if ($form-&gt;isValid()) {
+    $validatedData = $form-&gt;getData();
+} else {
+    $messages = $form-&gt;getMessages();
+}</code></pre>
 <blockquote>
 <h3>Always populate select elements with options</h3>
 <p>Always ensure that options for a select element are populated <em>prior</em> to
@@ -1136,16 +1134,15 @@ a <code>NotInArray</code> error message.</p>
 <p>If you are populating the options from a database or other data source, make
 sure this is done prior to validation. Alternately, you may disable the
 <code>InArray</code> validator programmatically prior to validation:</p>
-<pre class=codehilite><code class=language-php>
+<pre class="codehilite"><code class="language-php">
 $element-&gt;setDisableInArrayValidator(true);
 </code></pre>
 </blockquote>
 <p>You can get the raw data if you want, by accessing the composed input filter.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$filter = $form-&gt;getInputFilter();</span>
+<pre class=codehilite><code class=language-php>$filter = $form-&gt;getInputFilter();
 
-<span class=x>$rawValues    = $filter-&gt;getRawValues();</span>
-<span class=x>$nameRawValue = $filter-&gt;getRawValue(&#39;name&#39;);</span>
-</pre></div></p>
+$rawValues    = $filter-&gt;getRawValues();
+$nameRawValue = $filter-&gt;getRawValue('name');</code></pre>
 <h2 id="hinting-to-the-input-filter">Hinting to the Input Filter</h2>
 <p>Often, you'll create elements that you expect to behave in the same way on each
 usage, and for which you'll want specific filters or validation as well. Since
@@ -1165,112 +1162,110 @@ data to be used by the input filter factory to create an input. Every HTML5
 (<code>email</code>, <code>url</code>, <code>color</code>, etc.) element has a built-in element that uses this
 logic. For instance, here is how the <code>Laminas\Form\Element\Color</code> element is
 defined:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Laminas\Form\Element;</span>
+<pre class=codehilite><code class=language-php>namespace Laminas\Form\Element;
 
-<span class=x>use Laminas\Filter;</span>
-<span class=x>use Laminas\Form\Element;</span>
-<span class=x>use Laminas\InputFilter\InputProviderInterface;</span>
-<span class=x>use Laminas\Validator\Regex as RegexValidator;</span>
-<span class=x>use Laminas\Validator\ValidatorInterface;</span>
+use Laminas\Filter;
+use Laminas\Form\Element;
+use Laminas\InputFilter\InputProviderInterface;
+use Laminas\Validator\Regex as RegexValidator;
+use Laminas\Validator\ValidatorInterface;
 
-<span class=x>class Color extends Element implements InputProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    /**</span>
-<span class=x>     * Seed attributes</span>
-<span class=x>     *</span>
-<span class=x>     * @var array</span>
-<span class=x>     */</span>
-<span class=x>    protected $attributes = [</span>
-<span class=x>        &#39;type&#39; =&gt; &#39;color&#39;,</span>
-<span class=x>    ];</span>
+class Color extends Element implements InputProviderInterface
+{
+    /**
+     * Seed attributes
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'type' =&gt; 'color',
+    ];
 
-<span class=x>    /**</span>
-<span class=x>     * @var ValidatorInterface</span>
-<span class=x>     */</span>
-<span class=x>    protected $validator;</span>
+    /**
+     * @var ValidatorInterface
+     */
+    protected $validator;
 
-<span class=x>    /**</span>
-<span class=x>     * Get validator</span>
-<span class=x>     *</span>
-<span class=x>     * @return ValidatorInterface</span>
-<span class=x>     */</span>
-<span class=x>    protected function getValidator()</span>
-<span class=x>    {</span>
-<span class=x>        if (null === $this-&gt;validator) {</span>
-<span class=x>            $this-&gt;validator = new RegexValidator(&#39;/^#[0-9a-fA-F]{6}$/&#39;);</span>
-<span class=x>        }</span>
-<span class=x>        return $this-&gt;validator;</span>
-<span class=x>    }</span>
+    /**
+     * Get validator
+     *
+     * @return ValidatorInterface
+     */
+    protected function getValidator()
+    {
+        if (null === $this-&gt;validator) {
+            $this-&gt;validator = new RegexValidator('/^#[0-9a-fA-F]{6}$/');
+        }
+        return $this-&gt;validator;
+    }
 
-<span class=x>    /**</span>
-<span class=x>     * Provide default input rules for this element</span>
-<span class=x>     *</span>
-<span class=x>     * Attaches an email validator.</span>
-<span class=x>     *</span>
-<span class=x>     * @return array</span>
-<span class=x>     */</span>
-<span class=x>    public function getInputSpecification()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;name&#39; =&gt; $this-&gt;getName(),</span>
-<span class=x>            &#39;required&#39; =&gt; true,</span>
-<span class=x>            &#39;filters&#39; =&gt; [</span>
-<span class=x>                [&#39;name&#39; =&gt; Filter\StringTrim::class],</span>
-<span class=x>                [&#39;name&#39; =&gt; Filter\StringToLower::class],</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;validators&#39; =&gt; [</span>
-<span class=x>                $this-&gt;getValidator(),</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+    /**
+     * Provide default input rules for this element
+     *
+     * Attaches an email validator.
+     *
+     * @return array
+     */
+    public function getInputSpecification()
+    {
+        return [
+            'name' =&gt; $this-&gt;getName(),
+            'required' =&gt; true,
+            'filters' =&gt; [
+                ['name' =&gt; Filter\StringTrim::class],
+                ['name' =&gt; Filter\StringToLower::class],
+            ],
+            'validators' =&gt; [
+                $this-&gt;getValidator(),
+            ],
+        ];
+    }
+}</code></pre>
 <p>The above hints to the input filter to create and attach an input named after
 the element, marking it as required, giving it <code>StringTrim</code> and <code>StringToLower</code>
 filters, and defining a <code>Regex</code> validator. Note that you can either rely on the
 input filter to create filters and validators, or directly instantiate them.</p>
 <p>For fieldsets, you do very similarly; the difference is that
 <code>getInputFilterSpecification()</code> must return configuration for an input filter.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace Contact\Form;</span>
+<pre class=codehilite><code class=language-php>namespace Contact\Form;
 
-<span class=x>use Laminas\Filter;</span>
-<span class=x>use Laminas\Form\Fieldset;</span>
-<span class=x>use Laminas\InputFilter\InputFilterProviderInterface;</span>
-<span class=x>use Laminas\Validator;</span>
+use Laminas\Filter;
+use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Validator;
 
-<span class=x>class SenderFieldset extends Fieldset implements InputFilterProviderInterface</span>
-<span class=x>{</span>
-<span class=x>    public function getInputFilterSpecification()</span>
-<span class=x>    {</span>
-<span class=x>        return [</span>
-<span class=x>            &#39;name&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; true,</span>
-<span class=x>                &#39;filters&#39;  =&gt; [</span>
-<span class=x>                    [&#39;name&#39; =&gt; Filter\StringTrim::class],</span>
-<span class=x>                ],</span>
-<span class=x>                &#39;validators&#39; =&gt; [</span>
-<span class=x>                    [</span>
-<span class=x>                        &#39;name&#39; =&gt; Validator\StringLength::class,</span>
-<span class=x>                        &#39;options&#39; =&gt; [</span>
-<span class=x>                            &#39;min&#39; =&gt; 3,</span>
-<span class=x>                            &#39;max&#39; =&gt; 256</span>
-<span class=x>                        ],</span>
-<span class=x>                    ],</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>            &#39;email&#39; =&gt; [</span>
-<span class=x>                &#39;required&#39; =&gt; true,</span>
-<span class=x>                &#39;filters&#39;  =&gt; [</span>
-<span class=x>                    [&#39;name&#39; =&gt; Filter\StringTrim::class],</span>
-<span class=x>                ],</span>
-<span class=x>                &#39;validators&#39; =&gt; [</span>
-<span class=x>                    new Validator\EmailAddress(),</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ];</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+class SenderFieldset extends Fieldset implements InputFilterProviderInterface
+{
+    public function getInputFilterSpecification()
+    {
+        return [
+            'name' =&gt; [
+                'required' =&gt; true,
+                'filters'  =&gt; [
+                    ['name' =&gt; Filter\StringTrim::class],
+                ],
+                'validators' =&gt; [
+                    [
+                        'name' =&gt; Validator\StringLength::class,
+                        'options' =&gt; [
+                            'min' =&gt; 3,
+                            'max' =&gt; 256
+                        ],
+                    ],
+                ],
+            ],
+            'email' =&gt; [
+                'required' =&gt; true,
+                'filters'  =&gt; [
+                    ['name' =&gt; Filter\StringTrim::class],
+                ],
+                'validators' =&gt; [
+                    new Validator\EmailAddress(),
+                ],
+            ],
+        ];
+    }
+}</code></pre>
 <p>Specifications are a great way to make forms, fieldsets, and elements re-usable
 trivially in your applications. In fact, the <code>Captcha</code> and <code>Csrf</code> elements
 define specifications in order to ensure they can work without additional user
@@ -1306,51 +1301,48 @@ Let's see that in action.</p>
   input filter it composes will be used instead of the one composed on the form.</li>
 </ul>
 <p>This is easier to understand with an example.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$contact = new ArrayObject;</span>
-<span class=x>$contact[&#39;subject&#39;] = &#39;[Contact Form] &#39;;</span>
-<span class=x>$contact[&#39;message&#39;] = &#39;Type your message here&#39;;</span>
+<pre class=codehilite><code class=language-php>$contact = new ArrayObject;
+$contact['subject'] = '[Contact Form] ';
+$contact['message'] = 'Type your message here';
 
-<span class=x>$form = new Contact\ContactForm;</span>
+$form = new Contact\ContactForm;
 
-<span class=x>$form-&gt;bind($contact); // form now has default values for</span>
-<span class=x>                       // &#39;subject&#39; and &#39;message&#39;</span>
+$form-&gt;bind($contact); // form now has default values for
+                       // 'subject' and 'message'
 
-<span class=x>$data = [</span>
-<span class=x>    &#39;name&#39;    =&gt; &#39;John Doe&#39;,</span>
-<span class=x>    &#39;email&#39;   =&gt; &#39;j.doe@example.tld&#39;,</span>
-<span class=x>    &#39;subject&#39; =&gt; &#39;[Contact Form] \&#39;sup?&#39;,</span>
-<span class=x>];</span>
-<span class=x>$form-&gt;setData($data);</span>
+$data = [
+    'name'    =&gt; 'John Doe',
+    'email'   =&gt; 'j.doe@example.tld',
+    'subject' =&gt; '[Contact Form] \'sup?',
+];
+$form-&gt;setData($data);
 
-<span class=x>if ($form-&gt;isValid()) {</span>
-<span class=x>    // $contact now has the following structure:</span>
-<span class=x>    // [</span>
-<span class=x>    //     &#39;name&#39;    =&gt; &#39;John Doe&#39;,</span>
-<span class=x>    //     &#39;email&#39;   =&gt; &#39;j.doe@example.tld&#39;,</span>
-<span class=x>    //     &#39;subject&#39; =&gt; &#39;[Contact Form] \&#39;sup?&#39;,</span>
-<span class=x>    //     &#39;message&#39; =&gt; &#39;Type your message here&#39;,</span>
-<span class=x>    // ]</span>
-<span class=x>    // But is an ArrayObject instance!</span>
-<span class=x>}</span>
-</pre></div></p>
+if ($form-&gt;isValid()) {
+    // $contact now has the following structure:
+    // [
+    //     'name'    =&gt; 'John Doe',
+    //     'email'   =&gt; 'j.doe@example.tld',
+    //     'subject' =&gt; '[Contact Form] \'sup?',
+    //     'message' =&gt; 'Type your message here',
+    // ]
+    // But is an ArrayObject instance!
+}</code></pre>
 <p>When an object is bound to the form, calling <code>getData()</code> will return that object
 by default. If you want to return an associative array instead, you can pass the
 <code>FormInterface::VALUES_AS_ARRAY</code> flag to the method.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\FormInterface;</span>
-<span class=x>$data = $form-&gt;getData(FormInterface::VALUES_AS_ARRAY);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>use Laminas\Form\FormInterface;
+$data = $form-&gt;getData(FormInterface::VALUES_AS_ARRAY);</code></pre>
 <p>Laminas ships several standard <a href="https://docs.laminas.dev/laminas-hydrator/">hydrators</a>;
 you can create custom hydrators by implementing <code>Laminas\Hydrator\HydratorInterface</code>,
 which looks like this:</p>
-<p> <div class=codehilite><pre><span></span><span class=nx>namespace</span> <span class=nx>Laminas</span><span class=err>\</span><span class=nx>Hydrator</span><span class=p>;</span>
+<pre class=codehilite><code class=language-sourceCode>namespace Laminas\Hydrator;
 
-<span class=kr>interface</span> <span class=nx>HydratorInterface</span>
-<span class=p>{</span>
-    <span class=cm>/** @return array */</span>
-    <span class=kr>public</span> <span class=kd>function</span> <span class=nx>extract</span><span class=p>(</span><span class=nx>$object</span><span class=p>);</span>
-    <span class=kr>public</span> <span class=kd>function</span> <span class=nx>hydrate</span><span class=p>(</span><span class=nx>array</span> <span class=nx>$data</span><span class=p>,</span> <span class=nx>$object</span><span class=p>);</span>
-<span class=p>}</span>
-</pre></div></p>
+interface HydratorInterface
+{
+    /** @return array */
+    public function extract($object);
+    public function hydrate(array $data, $object);
+}</code></pre>
 <h2 id="rendering">Rendering</h2>
 <p>As noted previously, forms are meant to bridge the domain model and view layer.
 We've discussed the domain model binding, but what about the view?</p>
@@ -1364,64 +1356,63 @@ nested in fieldsets and collections generate names in array notation (e.g.,
 <code>scoped[array][notation]</code>).</p>
 <p>The base view helpers used everywhere are <code>Form</code>, <code>FormElement</code>, <code>FormLabel</code>,
 and <code>FormElementErrors</code>. Let's use them to display the contact form.</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
-<span class=c1>// within a view script</span>
-<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
+<pre class=codehilite><code class=language-php>&lt;?php
+// within a view script
+$form = $this-&gt;form;
+$form-&gt;prepare();
 
-<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
-<span class=c1>// Set the method attribute for the form</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
 
-<span class=c1>// Get the form label plugin</span>
-<span class=nv>$formLabel</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>plugin</span><span class=p>(</span><span class=s1>&#39;formLabel&#39;</span><span class=p>);</span>
+// Get the form label plugin
+$formLabel = $this-&gt;plugin('formLabel');
 
-<span class=c1>// Render the opening tag</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=cp>&lt;?php</span>
-    <span class=nv>$name</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$name</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formInput</span><span class=p>(</span><span class=nv>$name</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$name</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
-<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
+?&gt;
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $name = $form-&gt;get('name');
+    echo $formLabel-&gt;openTag() . $name-&gt;getOption('label');
+    echo $this-&gt;formInput($name);
+    echo $this-&gt;formElementErrors($name);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
 
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=cp>&lt;?php</span>
-    <span class=nv>$subject</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;subject&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$subject</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formInput</span><span class=p>(</span><span class=nv>$subject</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$subject</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
-<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $subject = $form-&gt;get('subject');
+    echo $formLabel-&gt;openTag() . $subject-&gt;getOption('label');
+    echo $this-&gt;formInput($subject);
+    echo $this-&gt;formElementErrors($subject);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
 
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=cp>&lt;?php</span>
-    <span class=nv>$message</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$message</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formTextarea</span><span class=p>(</span><span class=nv>$message</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$message</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
-<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $message = $form-&gt;get('message');
+    echo $formLabel-&gt;openTag() . $message-&gt;getOption('label');
+    echo $this-&gt;formTextarea($message);
+    echo $this-&gt;formElementErrors($message);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
 
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=cp>&lt;?php</span>
-    <span class=nv>$captcha</span> <span class=o>=</span> <span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;captcha&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>()</span> <span class=o>.</span> <span class=nv>$captcha</span><span class=o>-&gt;</span><span class=na>getOption</span><span class=p>(</span><span class=s1>&#39;label&#39;</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formCaptcha</span><span class=p>(</span><span class=nv>$captcha</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElementErrors</span><span class=p>(</span><span class=nv>$captcha</span><span class=p>);</span>
-    <span class=k>echo</span> <span class=nv>$formLabel</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
-<span class=cp>?&gt;</span><span class=x>&lt;/div&gt;</span>
+&lt;div class=&quot;form_element&quot;&gt;
+&lt;?php
+    $captcha = $form-&gt;get('captcha');
+    echo $formLabel-&gt;openTag() . $captcha-&gt;getOption('label');
+    echo $this-&gt;formCaptcha($captcha);
+    echo $this-&gt;formElementErrors($captcha);
+    echo $formLabel-&gt;closeTag();
+?&gt;&lt;/div&gt;
 
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;security&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;send&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+&lt;?= $this-&gt;formElement($form-&gt;get('security')) ?&gt;
+&lt;?= $this-&gt;formElement($form-&gt;get('send')) ?&gt;
 
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>()</span> <span class=cp>?&gt;</span><span class=x></span>
-</pre></div></p>
+&lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
 <p>There are a few things to note about this. First, to prevent confusion in IDEs
 and editors when syntax highlighting, we use helpers to both open and close the
 form and label tags. Second, there's a lot of repetition happening here; we
@@ -1444,86 +1435,82 @@ following collections).</p>
 <p>The <code>FormRow</code> view helper automatically renders a label (if present), the
 element itself using the <code>FormElement</code> helper, as well as any errors that could
 arise. Here is the previous form, rewritten to take advantage of this helper:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
-<span class=c1>// within a view script</span>
-<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
+<pre class=codehilite><code class=language-php>&lt;?php
+// within a view script
+$form = $this-&gt;form;
+$form-&gt;prepare();
 
-<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
-<span class=c1>// Set the method attribute for the form</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
 
-<span class=c1>// Render the opening tag</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;/div&gt;</span>
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
+?&gt;
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('name')) ?&gt;
+&lt;/div&gt;
 
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;subject&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;/div&gt;</span>
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('subject')) ?&gt;
+&lt;/div&gt;
 
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;/div&gt;</span>
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('message')) ?&gt;
+&lt;/div&gt;
 
-<span class=x>&lt;div class=&quot;form_element&quot;&gt;</span>
-<span class=x>    </span><span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;captcha&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=x>&lt;/div&gt;</span>
+&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('captcha')) ?&gt;
+&lt;/div&gt;
 
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;security&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formElement</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;send&#39;</span><span class=p>))</span> <span class=cp>?&gt;</span><span class=x></span>
+&lt;?= $this-&gt;formElement($form-&gt;get('security')) ?&gt;
+&lt;?= $this-&gt;formElement($form-&gt;get('send')) ?&gt;
 
-<span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>()</span> <span class=cp>?&gt;</span><span class=x></span>
-</pre></div></p>
+&lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
 <p>Note that <code>FormRow</code> helper automatically prepends the label. If you want it to
 be rendered after the element itself, you can pass an optional parameter to the
 <code>FormRow</code> view helper :</p>
-<p> <div class=codehilite><pre><span></span><span class=nt>&lt;div</span> <span class=na>class=</span><span class=s>&quot;form_element&quot;</span><span class=nt>&gt;</span>
-    <span class=cp>&lt;?</span><span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formRow</span><span class=p>(</span><span class=nv>$form</span><span class=o>-&gt;</span><span class=na>get</span><span class=p>(</span><span class=s1>&#39;name&#39;</span><span class=p>),</span> <span class=s1>&#39;append&#39;</span><span class=p>)</span> <span class=cp>?&gt;</span>
-<span class=nt>&lt;/div&gt;</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-sourceCode>&lt;div class=&quot;form_element&quot;&gt;
+    &lt;?= $this-&gt;formRow($form-&gt;get('name'), 'append') ?&gt;
+&lt;/div&gt;</code></pre>
 <p>As noted previously, the <code>FormCollection</code> view helper will iterate any
 collection &mdash; including <code>Laminas\Form\Element\Collection</code>, fieldsets, and
 forms &mdash; emitting each element discovered using <code>FormRow</code>. <code>FormCollection</code>
 <em>does not render fieldset or form tags</em>; you will be responsible for emitting
 those yourself.</p>
 <p>The above examples can now be rewritten again:</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
-<span class=c1>// within a view script</span>
-<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>();</span>
+<pre class=codehilite><code class=language-php>&lt;?php
+// within a view script
+$form = $this-&gt;form;
+$form-&gt;prepare();
 
-<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
-<span class=c1>// Set the method attribute for the form</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
 
-<span class=c1>// Render the opening tag</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>openTag</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>formCollection</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>()</span><span class=o>-&gt;</span><span class=na>closeTag</span><span class=p>();</span>
-</pre></div></p>
+// Render the opening tag
+echo $this-&gt;form()-&gt;openTag($form);
+echo $this-&gt;formCollection($form);
+echo $this-&gt;form()-&gt;closeTag();</code></pre>
 <p>Finally, the <code>Form</code> view helper can optionally accept a <code>Laminas\Form\Form</code>
 instance; if provided, it will prepare the form, iterate it, and render all
 elements using either <code>FormRow</code> (for non-collection elements) or
 <code>FormCollection</code> (for collections and fieldsets):</p>
-<p> <div class=codehilite><pre><span></span><span class=cp>&lt;?php</span>
-<span class=c1>// within a view script</span>
-<span class=nv>$form</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>;</span>
+<pre class=codehilite><code class=language-php>&lt;?php
+// within a view script
+$form = $this-&gt;form;
 
-<span class=c1>// Assuming the &quot;contact/process&quot; route exists...</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;action&#39;</span><span class=p>,</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>url</span><span class=p>(</span><span class=s1>&#39;contact/process&#39;</span><span class=p>));</span>
+// Assuming the &quot;contact/process&quot; route exists...
+$form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
-<span class=c1>// Set the method attribute for the form</span>
-<span class=nv>$form</span><span class=o>-&gt;</span><span class=na>setAttribute</span><span class=p>(</span><span class=s1>&#39;method&#39;</span><span class=p>,</span> <span class=s1>&#39;post&#39;</span><span class=p>);</span>
+// Set the method attribute for the form
+$form-&gt;setAttribute('method', 'post');
 
-<span class=k>echo</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>form</span><span class=p>(</span><span class=nv>$form</span><span class=p>);</span>
-</pre></div></p>
+echo $this-&gt;form($form);</code></pre>
 <p>One important point to note about the last two examples: while they greatly
 simplifies emitting the form, you also lose most customization opportunities.
 The above, for example, will not include the <code>&lt;div class="form_element"&gt;&lt;/div&gt;</code>
@@ -1549,32 +1536,29 @@ let's say we're re-using our contact form over a web service; in this case, the
 be validated.</p>
 <p>laminas-form provides a proxy method to the underlying <code>InputFilter</code>'s
 <code>setValidationGroup()</code> method, allowing us to perform this operation.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$form-&gt;setValidationGroup(&#39;name&#39;, &#39;email&#39;, &#39;subject&#39;, &#39;message&#39;);</span>
-<span class=x>$form-&gt;setData($data);</span>
-<span class=x>if ($form-&gt;isValid()) {</span>
-<span class=x>    // Contains only the &quot;name&quot;, &quot;email&quot;, &quot;subject&quot;, and &quot;message&quot; values</span>
-<span class=x>    $data = $form-&gt;getData();</span>
-<span class=x>}</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>$form-&gt;setValidationGroup('name', 'email', 'subject', 'message');
+$form-&gt;setData($data);
+if ($form-&gt;isValid()) {
+    // Contains only the &quot;name&quot;, &quot;email&quot;, &quot;subject&quot;, and &quot;message&quot; values
+    $data = $form-&gt;getData();
+}</code></pre>
 <p>If you later want to reset the form to validate all elements, pass the
 <code>FormInterface::VALIDATE_ALL</code> flag to the <code>setValidationGroup()</code> method:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\FormInterface;</span>
-<span class=x>$form-&gt;setValidationGroup(FormInterface::VALIDATE_ALL);</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>use Laminas\Form\FormInterface;
+$form-&gt;setValidationGroup(FormInterface::VALIDATE_ALL);</code></pre>
 <p>When your form contains nested fieldsets, you can use an array notation to
 validate only a subset of the fieldsets :</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$form-&gt;setValidationGroup([&#39;profile&#39; =&gt; [</span>
-<span class=x>    &#39;firstname&#39;,</span>
-<span class=x>    &#39;lastname&#39;,</span>
-<span class=x>] ]);</span>
+<pre class=codehilite><code class=language-php>$form-&gt;setValidationGroup(['profile' =&gt; [
+    'firstname',
+    'lastname',
+] ]);
 
-<span class=x>$form-&gt;setData($data);</span>
-<span class=x>if ($form-&gt;isValid()) {</span>
-<span class=x>    // Contains only the &quot;firstname&quot; and &quot;lastname&quot; values from the</span>
-<span class=x>    // &quot;profile&quot; fieldset</span>
-<span class=x>    $data = $form-&gt;getData();</span>
-<span class=x>}</span>
-</pre></div></p>
+$form-&gt;setData($data);
+if ($form-&gt;isValid()) {
+    // Contains only the &quot;firstname&quot; and &quot;lastname&quot; values from the
+    // &quot;profile&quot; fieldset
+    $data = $form-&gt;getData();
+}</code></pre>
 <h2 id="using-annotations">Using Annotations</h2>
 <p>Creating a complete form solution can often be tedious: you'll create a domain
 model object, an input filter for validating it, a form object for providing a
@@ -1647,41 +1631,40 @@ what you import.</p>
 <h3>doctrine/common dependency</h3>
 <p>Form annotations require <code>doctrine\common</code>, which contains an annotation
 parsing engine. Install it using composer:</p>
-<pre class=codehilite><code class=language-bash>
+<pre class="codehilite"><code class="language-bash">
 $ composer require doctrine/common
 </code></pre>
 </blockquote>
 <p>Here's an example:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Annotation;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Annotation;
 
-<span class=x>/**</span>
-<span class=x> * @Annotation\Name(&quot;user&quot;)</span>
-<span class=x> * @Annotation\Hydrator(&quot;Laminas\Hydrator\ObjectProperty&quot;)</span>
-<span class=x> */</span>
-<span class=x>class User</span>
-<span class=x>{</span>
-<span class=x>    /**</span>
-<span class=x>     * @Annotation\Exclude()</span>
-<span class=x>     */</span>
-<span class=x>    public $id;</span>
+/**
+ * @Annotation\Name(&quot;user&quot;)
+ * @Annotation\Hydrator(&quot;Laminas\Hydrator\ObjectProperty&quot;)
+ */
+class User
+{
+    /**
+     * @Annotation\Exclude()
+     */
+    public $id;
 
-<span class=x>    /**</span>
-<span class=x>     * @Annotation\Filter({&quot;name&quot;:&quot;StringTrim&quot;})</span>
-<span class=x>     * @Annotation\Validator({&quot;name&quot;:&quot;StringLength&quot;, &quot;options&quot;:{&quot;min&quot;:1, &quot;max&quot;:25}})</span>
-<span class=x>     * @Annotation\Validator({&quot;name&quot;:&quot;Regex&quot;,</span>
-<span class=x>&quot;options&quot;:{&quot;pattern&quot;:&quot;/^[a-zA-Z][a-zA-Z0-9_-]{0,24}$/&quot;}})</span>
-<span class=x>     * @Annotation\Attributes({&quot;type&quot;:&quot;text&quot;})</span>
-<span class=x>     * @Annotation\Options({&quot;label&quot;:&quot;Username:&quot;})</span>
-<span class=x>     */</span>
-<span class=x>    public $username;</span>
+    /**
+     * @Annotation\Filter({&quot;name&quot;:&quot;StringTrim&quot;})
+     * @Annotation\Validator({&quot;name&quot;:&quot;StringLength&quot;, &quot;options&quot;:{&quot;min&quot;:1, &quot;max&quot;:25}})
+     * @Annotation\Validator({&quot;name&quot;:&quot;Regex&quot;,
+&quot;options&quot;:{&quot;pattern&quot;:&quot;/^[a-zA-Z][a-zA-Z0-9_-]{0,24}$/&quot;}})
+     * @Annotation\Attributes({&quot;type&quot;:&quot;text&quot;})
+     * @Annotation\Options({&quot;label&quot;:&quot;Username:&quot;})
+     */
+    public $username;
 
-<span class=x>    /**</span>
-<span class=x>     * @Annotation\Type(&quot;Laminas\Form\Element\Email&quot;)</span>
-<span class=x>     * @Annotation\Options({&quot;label&quot;:&quot;Your email address:&quot;})</span>
-<span class=x>     */</span>
-<span class=x>    public $email;</span>
-<span class=x>}</span>
-</pre></div></p>
+    /**
+     * @Annotation\Type(&quot;Laminas\Form\Element\Email&quot;)
+     * @Annotation\Options({&quot;label&quot;:&quot;Your email address:&quot;})
+     */
+    public $email;
+}</code></pre>
 <p>The above will hint to the annotation builder to create a form with name "user",
 which uses the hydrator <code>Laminas\Hydrator\ObjectProperty</code>. That form will
 have two elements, "username" and "email". The "username" element will have an
@@ -1692,11 +1675,10 @@ form element itself will have an attribute "type" with value "text" (a text
 element), and a label "Username:". The "email" element will be of type
 <code>Laminas\Form\Element\Email</code>, and have the label "Your email address:".</p>
 <p>To use the above, we need <code>Laminas\Form\Annotation\AnnotationBuilder</code>:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Form\Annotation\AnnotationBuilder;</span>
+<pre class=codehilite><code class=language-php>use Laminas\Form\Annotation\AnnotationBuilder;
 
-<span class=x>$builder = new AnnotationBuilder();</span>
-<span class=x>$form    = $builder-&gt;createForm(User::class);</span>
-</pre></div></p>
+$builder = new AnnotationBuilder();
+$form    = $builder-&gt;createForm(User::class);</code></pre>
 <p>At this point, you have a form with the appropriate hydrator attached, an input
 filter with the appropriate inputs, and all elements.</p>
 <blockquote>
@@ -2312,9 +2294,10 @@ such as these that you can then attach to the form you build via annotations.</p
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -2351,7 +2334,7 @@ such as these that you can then attach to the form you build via annotations.</p
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-form//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-form/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -2360,8 +2343,8 @@ such as these that you can then attach to the form you build via annotations.</p
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-form//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>
