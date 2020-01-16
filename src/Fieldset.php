@@ -391,7 +391,7 @@ class Fieldset extends Element implements FieldsetInterface
         }
 
         foreach ($this->iterator as $name => $elementOrFieldset) {
-            $valueExists = array_key_exists($name, $data);
+            $valueExists = isset($data[$name]);
 
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 if ($valueExists && (is_array($data[$name]) || $data[$name] instanceof Traversable)) {
