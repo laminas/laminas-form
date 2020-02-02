@@ -104,7 +104,7 @@ class Element implements
     /**
      * Get value for name
      *
-     * @return string|int
+     * @return mixed
      */
     public function getName()
     {
@@ -195,28 +195,27 @@ class Element implements
      */
     public function setAttribute($key, $value)
     {
-        // Do not include the value in the list of attributes
-        if ($key === 'value') {
+        if ($key == 'value') {
+            // Do not include the value in the list of attributes
             $this->setValue($value);
-            return $this;
+        } else {
+            $this->attributes[$key] = $value;
         }
-        $this->attributes[$key] = $value;
         return $this;
     }
 
     /**
      * Retrieve a single element attribute
      *
-     * @param  $key
-     * @return mixed|null
+     * @param string $key
+     * @return mixed
      */
     public function getAttribute($key)
     {
-        if (! isset($this->attributes[$key])) {
-            return;
+        if ($key == 'value') {
+            return $this->value;
         }
-
-        return $this->attributes[$key];
+        return isset($this->attributes[$key]) ? $this->attributes[$key] : null;
     }
 
     /**
@@ -327,7 +326,7 @@ class Element implements
     /**
      * Set the label used for this element
      *
-     * @param $label
+     * @param  string $label
      * @return $this
      */
     public function setLabel($label)
@@ -447,16 +446,12 @@ class Element implements
     /**
      * Retrieve a single label option
      *
-     * @param  $key
-     * @return mixed|null
+     * @param  string $key
+     * @return mixed
      */
     public function getLabelOption($key)
     {
-        if (! isset($this->labelOptions[$key])) {
-            return null;
-        }
-
-        return $this->labelOptions[$key];
+        return isset($this->labelOptions[$key]) ? $this->labelOptions[$key] : null;
     }
 
     /**
