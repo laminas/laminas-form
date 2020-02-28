@@ -12,14 +12,15 @@
     <title>Quick Start - laminas-form - Laminas Docs</title>
 
     <link rel="stylesheet" href="https://docs.laminas.dev/css/styles.css">
+    
 </head>
-<body id="page-top" class="components">
+<body id="page-top" class="components" data-spy="scroll" data-target=".toc" data-offset="20">
 
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         
-        <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
+        <a class="logo-link navbar-brand" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
             <img src="https://docs.laminas.dev/img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
@@ -615,7 +616,7 @@
         <div class="row">
 
             
-            <div class="col-6 offset-md-2">
+            <div class="col-8">
                 <h1 class="header__title">
                     Components
 
@@ -645,7 +646,7 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-md-2 col-sm-12">
+            <div class="col-md-9 col-sm-12 content" role="main">
                 
                 
                     
@@ -658,43 +659,43 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#programmatic-form-creation" class="toc__link">Programmatic Form Creation</a>
+                        <a href="#programmatic-form-creation" class="toc__link nav-link">Programmatic Form Creation</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#creation-via-factory" class="toc__link">Creation via Factory</a>
+                        <a href="#creation-via-factory" class="toc__link nav-link">Creation via Factory</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#factory-backed-form-extension" class="toc__link">Factory-backed Form Extension</a>
+                        <a href="#factory-backed-form-extension" class="toc__link nav-link">Factory-backed Form Extension</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#validating-forms" class="toc__link">Validating Forms</a>
+                        <a href="#validating-forms" class="toc__link nav-link">Validating Forms</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#hinting-to-the-input-filter" class="toc__link">Hinting to the Input Filter</a>
+                        <a href="#hinting-to-the-input-filter" class="toc__link nav-link">Hinting to the Input Filter</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#binding-an-object" class="toc__link">Binding an object</a>
+                        <a href="#binding-an-object" class="toc__link nav-link">Binding an object</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#rendering" class="toc__link">Rendering</a>
+                        <a href="#rendering" class="toc__link nav-link">Rendering</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#taking-advantage-of-html5-input-attributes" class="toc__link">Taking advantage of HTML5 input attributes</a>
+                        <a href="#taking-advantage-of-html5-input-attributes" class="toc__link nav-link">Taking advantage of HTML5 input attributes</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#validation-groups" class="toc__link">Validation Groups</a>
+                        <a href="#validation-groups" class="toc__link nav-link">Validation Groups</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#using-annotations" class="toc__link">Using Annotations</a>
+                        <a href="#using-annotations" class="toc__link nav-link">Using Annotations</a>
                     </li>
                 
             </ul>
@@ -702,8 +703,7 @@
     
 
                 
-            </div>
-            <div class="col-md-7 col-sm-12 content" role="main" data-spy="scroll" data-target=".toc">
+
                 
                     <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -2295,7 +2295,7 @@ such as these that you can then attach to the form you build via annotations.</p
         </div>
 
         <div class="row">
-            <div class="col-md-10 offset-md-2">
+            <div class="col-md-12">
                 <h5>Laminas</h5>
                 <ul>
                     <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
@@ -2307,7 +2307,7 @@ such as these that you can then attach to the form you build via annotations.</p
         </div>
 
         <div class="row">
-            <div class="col-md-10 offset-md-2"> 
+            <div class="col-md-12">
                 <div class="row">
 
                     
@@ -2365,7 +2365,9 @@ such as these that you can then attach to the form you build via annotations.</p
             siteName = 'laminas-form';
     </script>
     <script src="https://docs.laminas.dev/js/scripts.js"></script>
+    
         <script src="../search/main.js"></script>
+    
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
