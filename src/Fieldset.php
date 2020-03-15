@@ -412,10 +412,30 @@ class Fieldset extends Element implements FieldsetInterface
                 }
             }
 
-            if ($valueExists) {
+            if ($valueExists
+                || (is_array($data) && array_key_exists($name, $data))
+                || ($data instanceof Traversable && $this->propertyExists($data, $name))
+            ) {
                 $elementOrFieldset->setValue($data[$name]);
             }
         }
+    }
+
+    /**
+     * Compatibility function to work with any Traversable.
+     *
+     * @see https://bugs.php.net/bug.php?id=79384
+     *
+     * @param string $name
+     * @return bool
+     */
+    private function propertyExists(Traversable $object, $name)
+    {
+        if (property_exists($object, $name)) {
+            return true;
+        }
+
+        return array_key_exists($name, iterator_to_array($object));
     }
 
     /**

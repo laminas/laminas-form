@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
@@ -17,6 +18,9 @@ use PHPUnit\Framework\TestCase;
 
 class FieldsetTest extends TestCase
 {
+    /** @var Fieldset */
+    private $fieldset;
+
     public function setUp()
     {
         $this->fieldset = new Fieldset();
@@ -606,5 +610,29 @@ class FieldsetTest extends TestCase
         $fieldset->setMessages($messages);
 
         $this->assertEquals($messages, $fieldset->getMessages());
+    }
+
+    public function testSetNullValueWhenArrayProvided()
+    {
+        $subValue = 'sub-element-value';
+        $subElement = new Element('subElement');
+        $this->fieldset->add($subElement);
+        $this->fieldset->populateValues(['subElement' => $subValue]);
+        $this->assertSame($subValue, $subElement->getValue());
+
+        $this->fieldset->populateValues(['subElement' => null]);
+        $this->assertNull($subElement->getValue());
+    }
+
+    public function testSetNullValueWhenTraversableProvided()
+    {
+        $subValue = 'sub-element-value';
+        $subElement = new Element('subElement');
+        $this->fieldset->add($subElement);
+        $this->fieldset->populateValues(new ArrayObject(['subElement' => $subValue]));
+        $this->assertSame($subValue, $subElement->getValue());
+
+        $this->fieldset->populateValues(new ArrayObject(['subElement' => null]));
+        $this->assertNull($subElement->getValue());
     }
 }
