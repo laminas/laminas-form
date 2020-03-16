@@ -382,16 +382,20 @@ class Fieldset extends Element implements FieldsetInterface
      */
     public function populateValues($data)
     {
-        if (! is_array($data) && ! $data instanceof Traversable) {
+        if ($data instanceof Traversable) {
+            $data = iterator_to_array($data);
+        }
+
+        if (! is_array($data)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable set of data; received "%s"',
                 __METHOD__,
-                (is_object($data) ? get_class($data) : gettype($data))
+                is_object($data) ? get_class($data) : gettype($data)
             ));
         }
 
         foreach ($this->iterator as $name => $elementOrFieldset) {
-            $valueExists = isset($data[$name]);
+            $valueExists = array_key_exists($name, $data);
 
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 if ($valueExists && (is_array($data[$name]) || $data[$name] instanceof Traversable)) {
@@ -412,30 +416,10 @@ class Fieldset extends Element implements FieldsetInterface
                 }
             }
 
-            if ($valueExists
-                || (is_array($data) && array_key_exists($name, $data))
-                || ($data instanceof Traversable && $this->propertyExists($data, $name))
-            ) {
+            if ($valueExists) {
                 $elementOrFieldset->setValue($data[$name]);
             }
         }
-    }
-
-    /**
-     * Compatibility function to work with any Traversable.
-     *
-     * @see https://bugs.php.net/bug.php?id=79384
-     *
-     * @param string $name
-     * @return bool
-     */
-    private function propertyExists(Traversable $object, $name)
-    {
-        if (property_exists($object, $name)) {
-            return true;
-        }
-
-        return array_key_exists($name, iterator_to_array($object));
     }
 
     /**

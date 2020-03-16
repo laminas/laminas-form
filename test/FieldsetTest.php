@@ -8,7 +8,6 @@
 
 namespace LaminasTest\Form;
 
-use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
@@ -629,10 +628,10 @@ class FieldsetTest extends TestCase
         $subValue = 'sub-element-value';
         $subElement = new Element('subElement');
         $this->fieldset->add($subElement);
-        $this->fieldset->populateValues(new ArrayObject(['subElement' => $subValue]));
+        $this->fieldset->populateValues(new TestAsset\CustomTraversable(['subElement' => $subValue]));
         $this->assertSame($subValue, $subElement->getValue());
 
-        $this->fieldset->populateValues(new ArrayObject(['subElement' => null]));
+        $this->fieldset->populateValues(new TestAsset\CustomTraversable(['subElement' => null]));
         $this->assertNull($subElement->getValue());
     }
 }
