@@ -209,11 +209,11 @@ class Factory
             $element->setName($name);
         }
 
-        if (is_array($options) || $options instanceof Traversable || $options instanceof ArrayAccess) {
+        if (is_array($options) || $options instanceof Traversable) {
             $element->setOptions($options);
         }
 
-        if (is_array($attributes) || $attributes instanceof Traversable || $attributes instanceof ArrayAccess) {
+        if (is_array($attributes) || $attributes instanceof Traversable) {
             $element->setAttributes($attributes);
         }
 
