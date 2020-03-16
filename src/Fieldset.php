@@ -13,6 +13,7 @@ use Laminas\Form\Element\Collection;
 use Laminas\Hydrator;
 use Laminas\Hydrator\HydratorAwareInterface;
 use Laminas\Hydrator\HydratorInterface;
+use Laminas\Stdlib\ArrayUtils;
 use Laminas\Stdlib\PriorityList;
 use Traversable;
 
@@ -383,10 +384,8 @@ class Fieldset extends Element implements FieldsetInterface
     public function populateValues($data)
     {
         if ($data instanceof Traversable) {
-            $data = iterator_to_array($data);
-        }
-
-        if (! is_array($data)) {
+            $data = ArrayUtils::iteratorToArray($data);
+        } elseif (! is_array($data)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable set of data; received "%s"',
                 __METHOD__,
