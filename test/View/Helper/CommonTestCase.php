@@ -28,7 +28,7 @@ abstract class CommonTestCase extends TestCase
      */
     public $renderer;
 
-    public function setUp()
+    protected function setUp()
     {
         Doctype::unsetDoctypeRegistry();
 

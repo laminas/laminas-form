@@ -15,7 +15,7 @@ use LaminasTest\Form\View\Helper\CommonTestCase;
 
 class DumbTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper  = new DumbCaptchaHelper();
         $this->captcha = new DumbCaptcha();

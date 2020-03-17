@@ -16,7 +16,7 @@ use LaminasTest\Form\TestAsset\CityFieldset;
 
 class FormTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormHelper();
         parent::setUp();

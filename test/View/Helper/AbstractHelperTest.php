@@ -20,7 +20,7 @@ use Laminas\I18n\Translator\Translator;
  */
 class AbstractHelperTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = $this->getMockForAbstractClass('Laminas\Form\View\Helper\AbstractHelper');
         parent::setUp();

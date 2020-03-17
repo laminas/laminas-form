@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormRadio as FormRadioHelper;
 
 class FormRadioTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormRadioHelper();
         parent::setUp();

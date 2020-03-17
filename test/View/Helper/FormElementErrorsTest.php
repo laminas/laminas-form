@@ -20,14 +20,14 @@ class FormElementErrorsTest extends CommonTestCase
      */
     protected $defaultTranslator;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->defaultTranslator = AbstractValidator::getDefaultTranslator();
         $this->helper = new FormElementErrorsHelper();
         parent::setUp();
     }
 
-    public function tearDown()
+    protected function tearDown()
     {
         AbstractValidator::setDefaultTranslator($this->defaultTranslator);
     }

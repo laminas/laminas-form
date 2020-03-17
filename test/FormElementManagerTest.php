@@ -28,7 +28,7 @@ class FormElementManagerTest extends TestCase
      */
     protected $manager;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->manager = new FormElementManager(new ServiceManager());
     }

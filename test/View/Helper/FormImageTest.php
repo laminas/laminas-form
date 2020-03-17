@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormImage as FormImageHelper;
 
 class FormImageTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormImageHelper();
         parent::setUp();

@@ -48,7 +48,7 @@ class FormTest extends TestCase
      */
     private $objectPropertyHydratorClass;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->arraySerializableHydratorClass = class_exists(ArraySerializableHydrator::class)
             ? ArraySerializableHydrator::class

@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormUrl as FormUrlHelper;
 
 class FormUrlTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormUrlHelper();
         parent::setUp();

@@ -21,7 +21,7 @@ class FormElementTest extends TestCase
     public $helper;
     public $renderer;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormElementHelper();
 

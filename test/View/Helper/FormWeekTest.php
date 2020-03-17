@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormWeek as FormWeekHelper;
 
 class FormWeekTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormWeekHelper();
         parent::setUp();
