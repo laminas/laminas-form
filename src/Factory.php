@@ -156,7 +156,7 @@ class Factory
      * Create a fieldset
      *
      * @param  array $spec
-     * @return ElementInterface
+     * @return FieldsetInterface
      */
     public function createFieldset($spec)
     {
@@ -171,7 +171,7 @@ class Factory
      * Create a form
      *
      * @param  array $spec
-     * @return ElementInterface
+     * @return FormInterface
      */
     public function createForm($spec)
     {
