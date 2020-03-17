@@ -19,10 +19,10 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\BaseInputFilter;
+use Laminas\InputFilter\CollectionInputFilter;
 use Laminas\InputFilter\Factory as InputFilterFactory;
 use Laminas\InputFilter\InputFilter;
-use LaminasTest\Form\TestAsset\Entity;
-use LaminasTest\Form\TestAsset\HydratorAwareModel;
+use Laminas\InputFilter\InputFilterInterface;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -607,14 +607,14 @@ class FormTest extends TestCase
         ];
         $this->populateForm();
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Collection',
+            'type' => Element\Collection::class,
             'name' => 'categories',
             'options' => [
                 'count' => 0,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
-                ]
-            ]
+                    'type' => TestAsset\CategoryFieldset::class,
+                ],
+            ],
         ]);
         $this->form->setHydrator(new $this->objectPropertyHydratorClass());
         $this->form->bind($model);
@@ -643,14 +643,14 @@ class FormTest extends TestCase
         ];
         $this->populateForm();
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Collection',
+            'type' => Element\Collection::class,
             'name' => 'categories',
             'options' => [
                 'count' => 0,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
-                ]
-            ]
+                    'type' => TestAsset\CategoryFieldset::class,
+                ],
+            ],
         ]);
         $this->form->setHydrator(new $this->objectPropertyHydratorClass());
         $this->form->bind($model);
@@ -755,7 +755,7 @@ class FormTest extends TestCase
     public function testUsesBoundObjectHydratorToPopulateForm()
     {
         $this->populateForm();
-        $object = new HydratorAwareModel();
+        $object = new TestAsset\HydratorAwareModel();
         $object->setFoo('fooValue');
         $object->setBar('barValue');
 
@@ -978,8 +978,8 @@ class FormTest extends TestCase
         $this->assertSame($filter, $test);
         $this->assertTrue($filter->has('set'));
         $input = $filter->get('set');
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $input);
-        $this->assertEquals(2, count($input));
+        $this->assertInstanceOf(InputFilterInterface::class, $input);
+        $this->assertCount(2, $input);
         $this->assertTrue($input->has('foo'));
         $this->assertTrue($input->has('bar'));
     }
@@ -1096,7 +1096,7 @@ class FormTest extends TestCase
         ]);
 
         $this->form->add([
-            'type' => 'LaminasTest\Form\TestAsset\BasicFieldset'
+            'type' => TestAsset\BasicFieldset::class,
         ]);
 
         $this->form->prepare();
@@ -1235,14 +1235,14 @@ class FormTest extends TestCase
 
         $objectFoo = $fieldsetFoo->getObject();
         $this->assertInstanceOf(
-            'LaminasTest\Form\TestAsset\Entity\Orphan',
+            TestAsset\Entity\Orphan::class,
             $objectFoo,
             'FormCollection with orphans does not bind objects from fieldsets'
         );
 
         $objectBar = $fieldsetBar->getObject();
         $this->assertInstanceOf(
-            'LaminasTest\Form\TestAsset\Entity\Orphan',
+            TestAsset\Entity\Orphan::class,
             $objectBar,
             'FormCollection with orphans does not bind objects from fieldsets'
         );
@@ -1262,7 +1262,7 @@ class FormTest extends TestCase
 
     public function testAssertElementsNamesAreNotWrappedAroundFormNameByDefault()
     {
-        $form = new \LaminasTest\Form\TestAsset\FormCollection();
+        $form = new TestAsset\FormCollection();
         $form->prepare();
 
         $this->assertEquals('colors[0]', $form->get('colors')->get('0')->getName());
@@ -1271,7 +1271,7 @@ class FormTest extends TestCase
 
     public function testAssertElementsNamesCanBeWrappedAroundFormName()
     {
-        $form = new \LaminasTest\Form\TestAsset\FormCollection();
+        $form = new TestAsset\FormCollection();
         $form->setWrapElements(true);
         $form->setName('foo');
         $form->prepare();
@@ -1307,14 +1307,14 @@ class FormTest extends TestCase
         ];
         $this->populateForm();
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Collection',
+            'type' => Element\Collection::class,
             'name' => 'categories',
             'options' => [
                 'count' => 0,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
-                ]
-            ]
+                    'type' => TestAsset\CategoryFieldset::class,
+                ],
+            ],
         ]);
         $this->form->setValidationGroup([
             'foo',
@@ -1332,22 +1332,22 @@ class FormTest extends TestCase
 
         $this->populateForm();
         $this->form->get('foobar')->add([
-            'type' => 'Laminas\Form\Element\Collection',
+            'type' => Element\Collection::class,
             'name' => 'categories',
             'options' => [
                 'count' => 0,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
-                ]
-            ]
+                    'type' => TestAsset\CategoryFieldset::class,
+                ],
+            ],
         ]);
 
         $this->form->setValidationGroup([
             'foobar' => [
                 'categories' => [
-                    'name'
-                ]
-            ]
+                    'name',
+                ],
+            ],
         ]);
 
         $this->form->setData($emptyData);
@@ -1402,14 +1402,14 @@ class FormTest extends TestCase
         $inputFilterFactory = new InputFilterFactory();
         $inputFilter = $inputFilterFactory->createInputFilter([
             'items' => [
-                'type'         => 'Laminas\InputFilter\CollectionInputFilter',
+                'type'         => CollectionInputFilter::class,
                 'input_filter' => new InputFilter(),
             ],
         ]);
 
         $this->form->setInputFilter($inputFilter);
 
-        $this->assertInstanceOf('Laminas\InputFilter\CollectionInputFilter', $this->form->getInputFilter()->get('items'));
+        $this->assertInstanceOf(CollectionInputFilter::class, $this->form->getInputFilter()->get('items'));
         $this->assertCount(1, $this->form->getInputFilter()->get('items')->getInputFilter()->getInputs());
     }
 
@@ -1425,15 +1425,15 @@ class FormTest extends TestCase
         ];
         $this->populateForm();
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Collection',
+            'type' => Element\Collection::class,
             'name' => 'categories',
             'options' => [
                 'count' => 1,
                 'allow_add' => true,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
-                ]
-            ]
+                    'type' => TestAsset\CategoryFieldset::class,
+                ],
+            ],
         ]);
         $this->form->setValidationGroup([
             'foo',
@@ -1464,7 +1464,7 @@ class FormTest extends TestCase
 
         $this->form->bind($model);
 
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $this->form->getInputFilter()->get('foobar'));
+        $this->assertInstanceOf(InputFilterInterface::class, $this->form->getInputFilter()->get('foobar'));
     }
 
     public function testExtractDataHydratorStrategy()
@@ -1557,12 +1557,12 @@ class FormTest extends TestCase
     public function testResetPasswordValueIfFormIsNotValid()
     {
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Password',
+            'type' => Element\Password::class,
             'name' => 'password'
         ]);
 
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Email',
+            'type' => Element\Email::class,
             'name' => 'email'
         ]);
 
@@ -1585,7 +1585,7 @@ class FormTest extends TestCase
         ]);
 
         // Add a hydrator that ignores if values does not exist in the
-        $fieldset->setObject(new Entity\SimplePublicProperty());
+        $fieldset->setObject(new TestAsset\Entity\SimplePublicProperty());
         $fieldset->setHydrator(new $this->objectPropertyHydratorClass());
 
         $this->form->add($fieldset);
@@ -1594,11 +1594,11 @@ class FormTest extends TestCase
 
         // Add some inputs that do not belong to the base fieldset
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Submit',
+            'type' => Element\Submit::class,
             'name' => 'submit'
         ]);
 
-        $object = new Entity\SimplePublicProperty();
+        $object = new TestAsset\Entity\SimplePublicProperty();
         $this->form->bind($object);
 
         $this->form->setData([
@@ -1660,15 +1660,15 @@ class FormTest extends TestCase
         $fieldset = new TestAsset\ProductCategoriesFieldset();
         $fieldset->setUseAsBaseFieldset(true);
 
-        $product = new Entity\Product();
+        $product = new TestAsset\Entity\Product();
         $product->setName('Foobar');
         $product->setPrice(100);
 
-        $c1 = new Entity\Category();
+        $c1 = new TestAsset\Entity\Category();
         $c1->setId(1);
         $c1->setName('First Category');
 
-        $c2 = new Entity\Category();
+        $c2 = new TestAsset\Entity\Category();
         $c2->setId(2);
         $c2->setName('Second Category');
 
@@ -1750,7 +1750,7 @@ class FormTest extends TestCase
         $this->form->setPreferFormInputFilter(true);
         $this->form->add([
             'name' => 'importance',
-            'type'  => 'Laminas\Form\Element\Select',
+            'type'  => Element\Select::class,
             'options' => [
                 'label' => 'Importance',
                 'empty_option' => '',
@@ -1786,14 +1786,14 @@ class FormTest extends TestCase
                 [
                     'spec' => [
                         'name' => 'element',
-                        'type' => 'Laminas\Form\Element\Checkbox',
+                        'type' => Element\Checkbox::class,
                         'options' => [
                             'use_hidden_element' => true,
                             'checked_value' => '1',
-                            'unchecked_value' => '0'
-                        ]
-                    ]
-                ]
+                            'unchecked_value' => '0',
+                        ],
+                    ],
+                ],
             ],
             'input_filter' => [
                 'element' => [
@@ -1898,40 +1898,40 @@ class FormTest extends TestCase
                 [
                     'spec' => [
                         'name' => 'name',
-                        'type' => 'Laminas\Form\Element\Text',
+                        'type' => Element\Text::class,
                     ],
                     'spec' => [
                         'name' => 'groups',
-                        'type' => 'Laminas\Form\Element\Collection',
+                        'type' => Element\Collection::class,
                         'options' => [
                             'target_element' => [
-                                'type' => 'Laminas\Form\Fieldset',
+                                'type' => Fieldset::class,
                                 'name' => 'group',
                                 'elements' => [
                                     [
                                         'spec' => [
-                                            'type' => 'Laminas\Form\Element\Text',
+                                            'type' => Element\Text::class,
                                             'name' => 'group_class',
                                         ],
                                     ],
                                     [
                                         'spec' => [
-                                            'type' => 'Laminas\Form\Element\Collection',
+                                            'type' => Element\Collection::class,
                                             'name' => 'items',
                                             'options' => [
                                                 'target_element' => [
-                                                    'type' => 'Laminas\Form\Fieldset',
+                                                    'type' => Fieldset::class,
                                                     'name' => 'item',
                                                     'elements' => [
                                                         [
                                                             'spec' => [
-                                                                'type' => 'Laminas\Form\Element\Text',
+                                                                'type' => Element\Text::class,
                                                                 'name' => 'id',
                                                             ],
                                                         ],
                                                         [
                                                             'spec' => [
-                                                                'type' => 'Laminas\Form\Element\Text',
+                                                                'type' => Element\Text::class,
                                                                 'name' => 'type',
                                                             ],
                                                         ],
@@ -1947,7 +1947,7 @@ class FormTest extends TestCase
                 ]
             ],
             'input_filter' => [
-                'type' => 'Laminas\InputFilter\InputFilter',
+                'type' => InputFilter::class,
                 'name' => [
                     'filters' => [
                         ['name' => 'StringTrim'],
@@ -1963,16 +1963,16 @@ class FormTest extends TestCase
                     ],
                 ],
                 'groups' => [
-                    'type' => 'Laminas\InputFilter\CollectionInputFilter',
+                    'type' => CollectionInputFilter::class,
                     'input_filter' => [
-                        'type' => 'Laminas\InputFilter\InputFilter',
+                        'type' => InputFilter::class,
                         'group_class' => [
                             'required' => false,
                         ],
                         'items' => [
-                            'type' => 'Laminas\InputFilter\CollectionInputFilter',
+                            'type' => CollectionInputFilter::class,
                             'input_filter' => [
-                                'type' => 'Laminas\InputFilter\InputFilter',
+                                'type' => InputFilter::class,
                                 'id' => [
                                     'required' => false,
                                 ],
@@ -2034,14 +2034,14 @@ class FormTest extends TestCase
     public function testFormWithCollectionsAndNestedFieldsetsWithInputFilterProviderInterface()
     {
         $this->form->add([
-            'type' => 'Laminas\Form\Element\Collection',
+            'type' => Element\Collection::class,
             'name' => 'nested_fieldset_with_input_filter_provider',
             'options' => [
                 'label' => 'InputFilterProviderFieldset',
                 'count' => 1,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\InputFilterProviderFieldset'
-                ]
+                    'type' => TestAsset\InputFilterProviderFieldset::class,
+                ],
             ],
         ]);
 
@@ -2058,7 +2058,7 @@ class FormTest extends TestCase
     {
         $this->form->add([
             'name' => 'importance',
-            'type'  => 'Laminas\Form\Element\Select',
+            'type'  => Element\Select::class,
             'options' => [
                 'label' => 'Importance',
                 'empty_option' => '',
@@ -2107,7 +2107,7 @@ class FormTest extends TestCase
     ) {
         $this->form->add([
             'name' => 'multipleSelect',
-            'type'  => 'Laminas\Form\Element\Select',
+            'type'  => Element\Select::class,
             'attributes' => ['multiple' => 'multiple'],
             'options' => [
                 'label' => 'Importance',
@@ -2115,7 +2115,7 @@ class FormTest extends TestCase
                 'unselected_value' => $unselectedValue,
                 'value_options' => [
                     'foo' => 'Foo',
-                    'bar' => 'Bar'
+                    'bar' => 'Bar',
                 ],
             ],
         ]);
@@ -2333,7 +2333,7 @@ class FormTest extends TestCase
         $this->form->setBaseFieldset($fieldset);
         $this->form->setHydrator(new $this->objectPropertyHydratorClass());
 
-        $object = new Entity\SimplePublicProperty();
+        $object = new TestAsset\Entity\SimplePublicProperty();
         $object->foo = ['item 1', 'item 2'];
 
         $this->form->bind($object);
@@ -2361,14 +2361,14 @@ class FormTest extends TestCase
             'allow_add' => false,
             'allow_remove' => false,
             'target_element' => [
-                'type' => 'LaminasTest\Form\TestAsset\PhoneFieldset'
-            ]
+                'type' => TestAsset\PhoneFieldset::class,
+            ],
         ]);
 
         $form = new Form();
         $object = new \ArrayObject();
-        $phone1 = new \LaminasTest\Form\TestAsset\Entity\Phone();
-        $phone2 = new \LaminasTest\Form\TestAsset\Entity\Phone();
+        $phone1 = new TestAsset\Entity\Phone();
+        $phone2 = new TestAsset\Entity\Phone();
         $phone1->setNumber('unmodified');
         $phone2->setNumber('unmodified');
         $collection->setObject([$phone1, $phone2]);
