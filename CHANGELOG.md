@@ -44,7 +44,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#55](https://github.com/laminas/laminas-form/pull/55) fixes PHP 7.4 compatibility.
+
+- [#55](https://github.com/laminas/laminas-form/pull/55) fixes accepting Traversable object in `Fieldset::populateValues`.
 
 ## 2.14.3 - 2019-10-04
 
