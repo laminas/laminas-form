@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormCheckbox as FormCheckboxHelper;
 
 class FormCheckboxTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormCheckboxHelper();
         parent::setUp();

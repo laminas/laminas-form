@@ -15,7 +15,7 @@ use LaminasTest\Form\View\Helper\CommonTestCase;
 
 class ReCaptchaTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         if (! getenv('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT to test PDF render');

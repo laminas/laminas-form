@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormTel as FormTelHelper;
 
 class FormTelTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormTelHelper();
         parent::setUp();

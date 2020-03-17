@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormMonth as FormMonthHelper;
 
 class FormMonthTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormMonthHelper();
         parent::setUp();

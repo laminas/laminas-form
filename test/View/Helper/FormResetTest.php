@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormReset as FormResetHelper;
 
 class FormResetTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormResetHelper();
         parent::setUp();

@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormLabel as FormLabelHelper;
 
 class FormLabelTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormLabelHelper();
         parent::setUp();

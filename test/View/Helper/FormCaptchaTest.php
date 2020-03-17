@@ -18,7 +18,7 @@ class FormCaptchaTest extends CommonTestCase
     protected $testDir    = null;
     protected $tmpDir     = null;
 
-    public function setUp()
+    protected function setUp()
     {
         if (! class_exists(Captcha\Dumb::class)) {
             $this->markTestSkipped(
@@ -37,7 +37,7 @@ class FormCaptchaTest extends CommonTestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown()
     {
         // remove captcha images
         if (null !== $this->testDir) {

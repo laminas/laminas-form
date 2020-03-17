@@ -14,7 +14,7 @@ use Laminas\Form\View\Helper\FormMultiCheckbox as FormMultiCheckboxHelper;
 
 class FormMultiCheckboxTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormMultiCheckboxHelper();
         parent::setUp();

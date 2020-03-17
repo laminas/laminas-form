@@ -23,7 +23,7 @@ class FormCollectionTest extends TestCase
     public $form;
     public $renderer;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormCollectionHelper();
 

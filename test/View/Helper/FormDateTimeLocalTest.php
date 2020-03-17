@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormDateTimeLocal as FormDateTimeLocalHelper;
 
 class FormDateTimeLocalTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormDateTimeLocalHelper();
         parent::setUp();

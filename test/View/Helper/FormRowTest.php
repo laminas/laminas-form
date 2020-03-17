@@ -28,7 +28,7 @@ class FormRowTest extends TestCase
      */
     protected $renderer;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormRowHelper();
 
@@ -494,7 +494,7 @@ class FormRowTest extends TestCase
     }
 
     /**
-     * @covers Laminas\Form\View\Helper\FormRow::render
+     * @covers \Laminas\Form\View\Helper\FormRow::render
      */
     public function testCanSetLabelPositionViaRender()
     {
@@ -528,7 +528,7 @@ class FormRowTest extends TestCase
     }
 
     /**
-     * @covers Laminas\Form\View\Helper\FormRow::__invoke
+     * @covers \Laminas\Form\View\Helper\FormRow::__invoke
      */
     public function testCanSetLabelPositionViaInvoke()
     {
@@ -550,7 +550,7 @@ class FormRowTest extends TestCase
     }
 
     /**
-     * @covers Laminas\Form\View\Helper\FormRow::__invoke
+     * @covers \Laminas\Form\View\Helper\FormRow::__invoke
      */
     public function testSetLabelPositionViaInvokeIsNotCached()
     {

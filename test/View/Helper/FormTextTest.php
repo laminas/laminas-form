@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormText as FormTextHelper;
 
 class FormTextTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormTextHelper();
         parent::setUp();

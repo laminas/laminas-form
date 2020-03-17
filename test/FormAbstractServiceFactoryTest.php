@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 
 class FormAbstractServiceFactoryTest extends TestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->objectPropertyHydratorClass = class_exists(ObjectPropertyHydrator::class)
             ? ObjectPropertyHydrator::class

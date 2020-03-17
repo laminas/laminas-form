@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormSubmit as FormSubmitHelper;
 
 class FormSubmitTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormSubmitHelper();
         parent::setUp();

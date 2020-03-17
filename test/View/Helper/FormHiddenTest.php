@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormHidden as FormHiddenHelper;
 
 class FormHiddenTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormHiddenHelper();
         parent::setUp();

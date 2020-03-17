@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormPassword as FormPasswordHelper;
 
 class FormPasswordTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormPasswordHelper();
         parent::setUp();

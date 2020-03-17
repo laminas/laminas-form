@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormColor as FormColorHelper;
 
 class FormColorTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormColorHelper();
         parent::setUp();

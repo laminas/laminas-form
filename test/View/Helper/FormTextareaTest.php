@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormTextarea as FormTextareaHelper;
 
 class FormTextareaTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormTextareaHelper();
         parent::setUp();

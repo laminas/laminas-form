@@ -16,7 +16,7 @@ class FormFileTest extends CommonTestCase
     /**
      * @return void
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormFileHelper();
         parent::setUp();

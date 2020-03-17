@@ -19,7 +19,7 @@ class ImageTest extends CommonTestCase
     protected $tmpDir;
     protected $testDir;
 
-    public function setUp()
+    protected function setUp()
     {
         if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
@@ -59,7 +59,7 @@ class ImageTest extends CommonTestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown()
     {
         // remove captcha images
         if (! isset($this->testDir)) {

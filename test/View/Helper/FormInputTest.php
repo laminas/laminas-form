@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormInput as FormInputHelper;
 
 class FormInputTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormInputHelper();
         parent::setUp();
