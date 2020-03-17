@@ -52,8 +52,8 @@ class Captcha extends Element implements InputProviderInterface
             $captcha = LaminasCaptcha\Factory::factory($captcha);
         } elseif (! $captcha instanceof LaminasCaptcha\AdapterInterface) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects either a Laminas\Captcha\AdapterInterface or specification to pass to Laminas\Captcha\Factory; '
-                . 'received "%s"',
+                '%s expects either a Laminas\Captcha\AdapterInterface or specification'
+                . ' to pass to Laminas\Captcha\Factory; received "%s"',
                 __METHOD__,
                 (is_object($captcha) ? get_class($captcha) : gettype($captcha))
             ));
