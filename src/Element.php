@@ -56,8 +56,8 @@ class Element implements
     protected $value;
 
     /**
-     * @param  null|int|string  $name    Optional name for the element
-     * @param  array            $options Optional options for the element
+     * @param  null|int|string   $name    Optional name for the element
+     * @param  array|Traversable $options Optional options for the element
      * @throws Exception\InvalidArgumentException
      */
     public function __construct($name = null, $options = [])

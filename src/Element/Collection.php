@@ -110,32 +110,32 @@ class Collection extends Fieldset
     {
         parent::setOptions($options);
 
-        if (isset($options['target_element'])) {
-            $this->setTargetElement($options['target_element']);
+        if (isset($this->options['target_element'])) {
+            $this->setTargetElement($this->options['target_element']);
         }
 
-        if (isset($options['count'])) {
-            $this->setCount($options['count']);
+        if (isset($this->options['count'])) {
+            $this->setCount($this->options['count']);
         }
 
-        if (isset($options['allow_add'])) {
-            $this->setAllowAdd($options['allow_add']);
+        if (isset($this->options['allow_add'])) {
+            $this->setAllowAdd($this->options['allow_add']);
         }
 
-        if (isset($options['allow_remove'])) {
-            $this->setAllowRemove($options['allow_remove']);
+        if (isset($this->options['allow_remove'])) {
+            $this->setAllowRemove($this->options['allow_remove']);
         }
 
-        if (isset($options['should_create_template'])) {
-            $this->setShouldCreateTemplate($options['should_create_template']);
+        if (isset($this->options['should_create_template'])) {
+            $this->setShouldCreateTemplate($this->options['should_create_template']);
         }
 
-        if (isset($options['template_placeholder'])) {
-            $this->setTemplatePlaceholder($options['template_placeholder']);
+        if (isset($this->options['template_placeholder'])) {
+            $this->setTemplatePlaceholder($this->options['template_placeholder']);
         }
 
-        if (isset($options['create_new_objects'])) {
-            $this->setCreateNewObjects($options['create_new_objects']);
+        if (isset($this->options['create_new_objects'])) {
+            $this->setCreateNewObjects($this->options['create_new_objects']);
         }
 
         return $this;

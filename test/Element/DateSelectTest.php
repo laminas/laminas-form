@@ -10,6 +10,7 @@ namespace LaminasTest\Form\Element;
 
 use DateTime;
 use Laminas\Form\Element\DateSelect as DateSelectElement;
+use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
 class DateSelectTest extends TestCase
@@ -80,6 +81,27 @@ class DateSelectTest extends TestCase
         $sut = new DateSelectElement('dateSelect', ['day_attributes' => ['class' => 'test']]);
         $dayAttributes = $sut->getDayAttributes();
         $this->assertEquals('test', $dayAttributes['class']);
+    }
+
+    public function testConstructAcceptsTraversableOptions()
+    {
+        $options = new CustomTraversable([
+            'day_attributes' => ['class' => 'test'],
+        ]);
+        $sut = new DateSelectElement('dateSelect', $options);
+
+        $this->assertSame('test', $sut->getDayAttributes()['class']);
+    }
+
+    public function testSetOptionsAcceptsTraversableObject()
+    {
+        $options = new CustomTraversable([
+            'day_attributes' => ['class' => 'test'],
+        ]);
+        $sut = new DateSelectElement();
+        $sut->setOptions($options);
+
+        $this->assertSame('test', $sut->getDayAttributes()['class']);
     }
 
     /**

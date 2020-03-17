@@ -137,12 +137,12 @@ class Select extends Element implements InputProviderInterface
             $this->setDisableInArrayValidator($this->options['disable_inarray_validator']);
         }
 
-        if (isset($options['use_hidden_element'])) {
-            $this->setUseHiddenElement($options['use_hidden_element']);
+        if (isset($this->options['use_hidden_element'])) {
+            $this->setUseHiddenElement($this->options['use_hidden_element']);
         }
 
-        if (isset($options['unselected_value'])) {
-            $this->setUnselectedValue($options['unselected_value']);
+        if (isset($this->options['unselected_value'])) {
+            $this->setUnselectedValue($this->options['unselected_value']);
         }
 
         return $this;

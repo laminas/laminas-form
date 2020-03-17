@@ -23,6 +23,7 @@ use Laminas\InputFilter\ArrayInput;
 use LaminasTest\Form\TestAsset\AddressFieldset;
 use LaminasTest\Form\TestAsset\ArrayModel;
 use LaminasTest\Form\TestAsset\CustomCollection;
+use LaminasTest\Form\TestAsset\CustomTraversable;
 use LaminasTest\Form\TestAsset\Entity\Address;
 use LaminasTest\Form\TestAsset\Entity\Phone;
 use LaminasTest\Form\TestAsset\Entity\Product;
@@ -315,6 +316,28 @@ class CollectionTest extends TestCase
             'should_create_template' => true,
             'template_placeholder' => 'foo',
         ]);
+
+        $this->assertInstanceOf('Laminas\Form\Element', $collection->getOption('target_element'));
+        $this->assertEquals(2, $collection->getOption('count'));
+        $this->assertEquals(true, $collection->getOption('allow_add'));
+        $this->assertEquals(false, $collection->getOption('allow_remove'));
+        $this->assertEquals(true, $collection->getOption('should_create_template'));
+        $this->assertEquals('foo', $collection->getOption('template_placeholder'));
+    }
+
+    public function testSetOptionsTraversable()
+    {
+        $collection = $this->form->get('colors');
+        $element = new Element('foo');
+        $collection->setOptions(new CustomTraversable([
+            'target_element' => $element,
+            'count' => 2,
+            'allow_add' => true,
+            'allow_remove' => false,
+            'should_create_template' => true,
+            'template_placeholder' => 'foo',
+        ]));
+
         $this->assertInstanceOf('Laminas\Form\Element', $collection->getOption('target_element'));
         $this->assertEquals(2, $collection->getOption('count'));
         $this->assertEquals(true, $collection->getOption('allow_add'));

@@ -95,12 +95,12 @@ class Fieldset extends Element implements FieldsetInterface
     {
         parent::setOptions($options);
 
-        if (isset($options['use_as_base_fieldset'])) {
-            $this->setUseAsBaseFieldset($options['use_as_base_fieldset']);
+        if (isset($this->options['use_as_base_fieldset'])) {
+            $this->setUseAsBaseFieldset($this->options['use_as_base_fieldset']);
         }
 
-        if (isset($options['allowed_object_binding_class'])) {
-            $this->setAllowedObjectBindingClass($options['allowed_object_binding_class']);
+        if (isset($this->options['allowed_object_binding_class'])) {
+            $this->setAllowedObjectBindingClass($this->options['allowed_object_binding_class']);
         }
 
         return $this;
