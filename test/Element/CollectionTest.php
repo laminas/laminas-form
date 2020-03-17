@@ -1458,4 +1458,45 @@ class CollectionTest extends TestCase
             $form->getData()
         );
     }
+
+    public function testPopulateValuesTraversable()
+    {
+        $data = new CustomTraversable(['blue', 'green']);
+
+        $collection = $this->form->get('colors');
+        $collection->setAllowRemove(false);
+        $collection->populateValues($data);
+
+        $this->assertCount(2, $collection->getElements());
+    }
+
+    public function testSetObjectTraversable()
+    {
+        $collection = $this->form->get('fieldsets');
+
+        // this test is using a hydrator set on the target element of the collection
+        $targetElement = $collection->getTargetElement();
+        $targetElement->setHydrator(
+            class_exists(ArraySerializableHydrator::class)
+                ? new ArraySerializableHydrator()
+                : new ArraySerializable()
+        );
+        $obj1 = new ArrayModel();
+        $targetElement->setObject($obj1);
+
+        $obj2 = new ArrayModel();
+        $obj2->exchangeArray(['foo' => 'foo_value_1', 'bar' => 'bar_value_1', 'foobar' => 'foobar_value_1']);
+        $obj3 = new ArrayModel();
+        $obj3->exchangeArray(['foo' => 'foo_value_2', 'bar' => 'bar_value_2', 'foobar' => 'foobar_value_2']);
+
+        $collection->setObject(new CustomTraversable([$obj2, $obj3]));
+
+        $expected = [
+            ['foo' => 'foo_value_1', 'bar' => 'bar_value_1', 'foobar' => 'foobar_value_1'],
+            ['foo' => 'foo_value_2', 'bar' => 'bar_value_2', 'foobar' => 'foobar_value_2'],
+        ];
+
+        $this->assertSame($expected, $collection->extract());
+        $this->assertSame([$obj2, $obj3], $collection->getObject());
+    }
 }

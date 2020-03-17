@@ -8,7 +8,6 @@
 
 namespace Laminas\Form\Element;
 
-use Laminas\Form\Element;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\Fieldset;
@@ -162,11 +161,13 @@ class Collection extends Fieldset
      */
     public function setObject($object)
     {
-        if (! is_array($object) && ! $object instanceof Traversable) {
+        if ($object instanceof Traversable) {
+            $object = iterator_to_array($object);
+        } elseif (! is_array($object)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable object argument; received "%s"',
                 __METHOD__,
-                (is_object($object) ? get_class($object) : gettype($object))
+                is_object($object) ? get_class($object) : gettype($object)
             ));
         }
 
@@ -186,11 +187,13 @@ class Collection extends Fieldset
      */
     public function populateValues($data)
     {
-        if (! is_array($data) && ! $data instanceof Traversable) {
+        if ($data instanceof Traversable) {
+            $data = ArrayUtils::iteratorToArray($data);
+        } elseif (! is_array($data)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable set of data; received "%s"',
                 __METHOD__,
-                (is_object($data) ? get_class($data) : gettype($data))
+                is_object($data) ? get_class($data) : gettype($data)
             ));
         }
 
