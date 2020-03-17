@@ -39,9 +39,7 @@ final class ElementFactory implements FactoryInterface
 
         if ($creationOptions instanceof Traversable) {
             $creationOptions = iterator_to_array($creationOptions);
-        }
-
-        if (! is_array($creationOptions)) {
+        } elseif (! is_array($creationOptions)) {
             throw new InvalidServiceException(sprintf(
                 '%s cannot use non-array, non-traversable, non-null creation options; received %s',
                 __CLASS__,

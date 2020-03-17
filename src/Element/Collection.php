@@ -509,9 +509,7 @@ class Collection extends Fieldset
     {
         if ($this->object instanceof Traversable) {
             $this->object = ArrayUtils::iteratorToArray($this->object, false);
-        }
-
-        if (! is_array($this->object)) {
+        } elseif (! is_array($this->object)) {
             return [];
         }
 
