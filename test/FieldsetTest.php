@@ -20,7 +20,7 @@ class FieldsetTest extends TestCase
     /** @var Fieldset */
     private $fieldset;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->fieldset = new Fieldset();
     }

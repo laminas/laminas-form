@@ -13,7 +13,7 @@ use LaminasTest\Form\View\Helper\CommonTestCase;
 
 class FormFileSessionProgressTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormFileSessionProgress();
         parent::setUp();

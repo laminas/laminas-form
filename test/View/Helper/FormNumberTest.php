@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormNumber as FormNumberHelper;
 
 class FormNumberTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormNumberHelper();
         parent::setUp();

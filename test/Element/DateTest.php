@@ -28,7 +28,7 @@ class DateTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->originaltimezone = date_default_timezone_get();
     }
@@ -36,7 +36,7 @@ class DateTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    public function tearDown()
+    protected function tearDown()
     {
         date_default_timezone_set($this->originaltimezone);
     }

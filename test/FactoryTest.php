@@ -32,7 +32,7 @@ class FactoryTest extends TestCase
      */
     protected $services;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->services = new ServiceManager();
         $elementManager = new FormElementManager($this->services);

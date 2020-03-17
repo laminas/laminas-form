@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormEmail as FormEmailHelper;
 
 class FormEmailTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormEmailHelper();
         parent::setUp();

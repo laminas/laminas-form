@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
 class FormMonthSelectTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');

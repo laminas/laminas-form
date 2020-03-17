@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 
 class FormDateTimeSelectTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');

@@ -15,7 +15,7 @@ use LaminasTest\Form\TestAsset\Identifier;
 
 class FormSelectTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormSelectHelper();
         parent::setUp();

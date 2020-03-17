@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormRange as FormRangeHelper;
 
 class FormRangeTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormRangeHelper();
         parent::setUp();

@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormSearch as FormSearchHelper;
 
 class FormSearchTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormSearchHelper();
         parent::setUp();

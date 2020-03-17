@@ -35,7 +35,7 @@ class CollectionTest extends TestCase
     protected $form;
     protected $productFieldset;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->form = new \LaminasTest\Form\TestAsset\FormCollection();
         $this->productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();

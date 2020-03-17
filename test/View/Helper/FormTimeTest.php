@@ -13,7 +13,7 @@ use Laminas\Form\View\Helper\FormTime as FormTimeHelper;
 
 class FormTimeTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormTimeHelper();
         parent::setUp();

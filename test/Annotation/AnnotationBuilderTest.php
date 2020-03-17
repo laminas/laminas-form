@@ -24,7 +24,7 @@ class AnnotationBuilderTest extends TestCase
     /** @var string */
     private $objectPropertyHydratorClass;
 
-    public function setUp()
+    protected function setUp()
     {
         if (! getenv('TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT to test annotation parsing');

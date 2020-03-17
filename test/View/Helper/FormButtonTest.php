@@ -14,7 +14,7 @@ use Laminas\Form\View\Helper\FormButton as FormButtonHelper;
 
 class FormButtonTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper = new FormButtonHelper();
         parent::setUp();

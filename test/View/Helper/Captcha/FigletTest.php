@@ -15,7 +15,7 @@ use LaminasTest\Form\View\Helper\CommonTestCase;
 
 class FigletTest extends CommonTestCase
 {
-    public function setUp()
+    protected function setUp()
     {
         $this->helper  = new FigletCaptchaHelper();
         $this->captcha = new FigletCaptcha();
