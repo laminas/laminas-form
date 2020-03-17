@@ -188,9 +188,8 @@ class Factory
      * Specification can contain any of the following:
      * - type: the Element class to use; defaults to \Laminas\Form\Element
      * - name: what name to provide the element, if any
-     * - options: an array, Traversable, or ArrayAccess object of element options
-     * - attributes: an array, Traversable, or ArrayAccess object of element
-     *   attributes to assign
+     * - options: an array or Traversable object of element options
+     * - attributes: an array or Traversable object of element attributes to assign
      *
      * @param  ElementInterface              $element
      * @param  array|Traversable|ArrayAccess $spec
