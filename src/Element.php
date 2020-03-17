@@ -41,7 +41,7 @@ class Element implements
     protected $labelOptions = [];
 
     /**
-     * @var array Validation error messages
+     * @var array|Traversable Validation error messages
      */
     protected $messages = [];
 
