@@ -65,10 +65,6 @@ class FormElementErrors extends AbstractHelper
     public function render(ElementInterface $element, array $attributes = [])
     {
         $messages = $element->getMessages();
-        if (empty($messages)) {
-            return '';
-        }
-
         if ($messages instanceof Traversable) {
             $messages = iterator_to_array($messages);
         } elseif (! is_array($messages)) {
@@ -79,9 +75,13 @@ class FormElementErrors extends AbstractHelper
             ));
         }
 
+        if (! $messages) {
+            return '';
+        }
+
         // Flatten message array
         $messages = $this->flattenMessages($messages);
-        if (empty($messages)) {
+        if (! $messages) {
             return '';
         }
 
