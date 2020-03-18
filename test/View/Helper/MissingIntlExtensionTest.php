@@ -13,6 +13,8 @@ use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 use PHPUnit\Framework\TestCase;
 
+use function extension_loaded;
+
 class MissingIntlExtensionTest extends TestCase
 {
     protected function setUp()

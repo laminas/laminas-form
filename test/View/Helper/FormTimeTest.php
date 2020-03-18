@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormTime as FormTimeHelper;
 
+use function sprintf;
+
 class FormTimeTest extends CommonTestCase
 {
     protected function setUp()

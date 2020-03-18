@@ -20,7 +20,7 @@ class InputFilterProviderWithFieldset extends Form implements InputFilterProvide
         $this->add([
             'name' => 'foo',
             'options' => [
-                'label' => 'Foo'
+                'label' => 'Foo',
             ],
         ]);
 
@@ -32,7 +32,7 @@ class InputFilterProviderWithFieldset extends Form implements InputFilterProvide
         return [
             'foo' => [
                 'required' => true,
-            ]
+            ],
         ];
     }
 }

@@ -29,7 +29,7 @@ class FileTest extends TestCase
     {
         $file = new FileElement('foo');
         $formMock = $this->createMock('Laminas\Form\Form');
-        $formMock->expects($this->exactly(1))
+        $formMock->expects($this->once())
             ->method('setAttribute')
             ->with(
                 $this->stringContains('enctype'),

@@ -8,9 +8,11 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use ArrayObject;
 use Laminas\Form\Element;
-use Laminas\Form\Form;
 use Laminas\Form\View\Helper\FormButton as FormButtonHelper;
+
+use function sprintf;
 
 class FormButtonTest extends CommonTestCase
 {
@@ -63,7 +65,7 @@ class FormButtonTest extends CommonTestCase
 
     public function testOpenTagWithWrongElementRaisesException()
     {
-        $element = new \arrayObject();
+        $element = new ArrayObject();
         $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('ArrayObject');
         $this->helper->openTag($element);
@@ -270,9 +272,9 @@ class FormButtonTest extends CommonTestCase
         $element->setLabel('The value for foo:');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -286,14 +288,14 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
 
-        $markup = $this->helper->__invoke($element, "translate me");
+        $markup = $this->helper->__invoke($element, 'translate me');
         $this->assertContains('>translated content<', $markup);
     }
 

@@ -9,13 +9,15 @@
 namespace Laminas\Form\Element;
 
 use DateInterval;
-use DateTimezone;
+use DateTimeZone;
 use Laminas\Form\Element\DateTime as DateTimeElement;
 use Laminas\Validator\DateStep as DateStepValidator;
+use Laminas\Validator\ValidatorInterface;
+
+use function date;
 
 class Date extends DateTimeElement
 {
-
     const DATETIME_FORMAT = 'Y-m-d';
 
     /**
@@ -38,21 +40,19 @@ class Date extends DateTimeElement
     /**
      * Retrieves a DateStep Validator configured for a Date Input type
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getStepValidator()
     {
         $format    = $this->getFormat();
-        $stepValue = (isset($this->attributes['step']))
-                     ? $this->attributes['step'] : 1; // Days
+        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Days
 
-        $baseValue = (isset($this->attributes['min']))
-                     ? $this->attributes['min'] : date($format, 0);
+        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : date($format, 0);
 
         return new DateStepValidator([
             'format'    => $format,
             'baseValue' => $baseValue,
-            'timezone'  => new DateTimezone('UTC'),
+            'timezone'  => new DateTimeZone('UTC'),
             'step'      => new DateInterval("P{$stepValue}D"),
         ]);
     }

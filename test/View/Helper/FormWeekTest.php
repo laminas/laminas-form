@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormWeek as FormWeekHelper;
 
+use function sprintf;
+
 class FormWeekTest extends CommonTestCase
 {
     protected function setUp()

@@ -4,6 +4,11 @@ namespace LaminasTest\Form\TestAsset;
 
 use Iterator;
 
+use function current;
+use function key;
+use function next;
+use function reset;
+
 class CustomTraversable implements Iterator
 {
     /** @var array */

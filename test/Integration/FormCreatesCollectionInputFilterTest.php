@@ -13,6 +13,9 @@ use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\Validator;
 use PHPUnit\Framework\TestCase;
 
+use function sprintf;
+use function var_export;
+
 class FormCreatesCollectionInputFilterTest extends TestCase
 {
     public static function assertValidatorFound($class, array $validators, $message = null)
@@ -44,18 +47,20 @@ class FormCreatesCollectionInputFilterTest extends TestCase
                         [
                             'spec' => [
                                 'name' => 'date',
-                                'type' => 'date'
+                                'type' => 'date',
                             ],
                         ],
                     ],
-                    'options' => ['input_filter_spec' => [
-                        'date' => [
-                            'required' => false,
-                            'validators' => [
-                                ['name' => 'StringLength'],
+                    'options' => [
+                        'input_filter_spec' => [
+                            'date' => [
+                                'required' => false,
+                                'validators' => [
+                                    ['name' => 'StringLength'],
+                                ],
                             ],
                         ],
-                    ]],
+                    ],
                 ],
             ],
         ]);

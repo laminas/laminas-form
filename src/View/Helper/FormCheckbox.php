@@ -12,6 +12,8 @@ use Laminas\Form\Element\Checkbox as CheckboxElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function sprintf;
+
 class FormCheckbox extends FormInput
 {
     /**

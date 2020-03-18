@@ -12,7 +12,6 @@ use Laminas\Form\Annotation;
 
 class EntityWithInputFilterInput
 {
-
     /**
      * @Annotation\Input("LaminasTest\Form\TestAsset\Annotation\InputFilterInput")
      */

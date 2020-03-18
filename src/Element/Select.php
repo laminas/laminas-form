@@ -14,7 +14,11 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
+use Laminas\Validator\ValidatorInterface;
 use Traversable;
+
+use function array_key_exists;
+use function is_array;
 
 class Select extends Element implements InputProviderInterface
 {
@@ -28,7 +32,7 @@ class Select extends Element implements InputProviderInterface
     ];
 
     /**
-     * @var \Laminas\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     protected $validator;
 
@@ -69,7 +73,7 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * @param  array $options
-     * @return Select
+     * @return $this
      */
     public function setValueOptions(array $options)
     {
@@ -95,7 +99,7 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * @param string $key
-     * @return self
+     * @return $this
      */
     public function unsetValueOption($key)
     {
@@ -170,7 +174,7 @@ class Select extends Element implements InputProviderInterface
      * Set the flag to allow for disabling the automatic addition of an InArray validator.
      *
      * @param bool $disableOption
-     * @return Select
+     * @return $this
      */
     public function setDisableInArrayValidator($disableOption)
     {
@@ -192,7 +196,7 @@ class Select extends Element implements InputProviderInterface
      * Set the string for an empty option (can be empty string). If set to null, no option will be added
      *
      * @param  string|null $emptyOption
-     * @return Select
+     * @return $this
      */
     public function setEmptyOption($emptyOption)
     {
@@ -213,14 +217,14 @@ class Select extends Element implements InputProviderInterface
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getValidator()
     {
         if (null === $this->validator && ! $this->disableInArrayValidator()) {
             $validator = new InArrayValidator([
                 'haystack' => $this->getValueOptionsValues(),
-                'strict'   => false
+                'strict'   => false,
             ]);
 
             if ($this->isMultiple()) {
@@ -239,7 +243,7 @@ class Select extends Element implements InputProviderInterface
      * Do we render hidden element?
      *
      * @param  bool $useHiddenElement
-     * @return Select
+     * @return $this
      */
     public function setUseHiddenElement($useHiddenElement)
     {
@@ -261,7 +265,7 @@ class Select extends Element implements InputProviderInterface
      * Set the value if the select is not selected
      *
      * @param string $unselectedValue
-     * @return Select
+     * @return $this
      */
     public function setUnselectedValue($unselectedValue)
     {
@@ -296,17 +300,19 @@ class Select extends Element implements InputProviderInterface
 
             $spec['allow_empty'] = true;
             $spec['continue_if_empty'] = true;
-            $spec['filters'] = [[
-                'name'    => 'Callback',
-                'options' => [
-                    'callback' => function ($value) use ($unselectedValue) {
-                        if ($value === $unselectedValue) {
-                            $value = [];
-                        }
-                        return $value;
-                    }
-                ]
-            ]];
+            $spec['filters'] = [
+                [
+                    'name'    => 'Callback',
+                    'options' => [
+                        'callback' => static function ($value) use ($unselectedValue) {
+                            if ($value === $unselectedValue) {
+                                $value = [];
+                            }
+                            return $value;
+                        },
+                    ],
+                ],
+            ];
         }
 
         if ($validator = $this->getValidator()) {

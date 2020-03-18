@@ -20,6 +20,14 @@ use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\ConfigInterface;
 use Laminas\Stdlib\InitializableInterface;
 
+use function array_push;
+use function array_search;
+use function array_unshift;
+use function get_class;
+use function gettype;
+use function is_object;
+use function sprintf;
+
 /**
  * laminas-servicemanager v2-compatible plugin manager implementation for form elements.
  *
@@ -185,7 +193,6 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
         Element\Week::class           => ElementFactory::class,
 
         // v2 normalized variants
-
         'laminasformelementbutton'         => ElementFactory::class,
         'laminasformelementcaptcha'        => ElementFactory::class,
         'laminasformelementcheckbox'       => ElementFactory::class,
@@ -309,7 +316,7 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
      * @param string $name
      * @param string $invokableClass
      * @param null|bool $shared Ignored.
-     * @return self
+     * @return $this
      */
     public function setInvokableClass($name, $invokableClass, $shared = null)
     {
@@ -337,7 +344,7 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
                 '%s can only create instances of %s; %s is invalid',
                 get_class($this),
                 $this->instanceOf,
-                (is_object($plugin) ? get_class($plugin) : gettype($plugin))
+                is_object($plugin) ? get_class($plugin) : gettype($plugin)
             ));
         }
     }

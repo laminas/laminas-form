@@ -8,6 +8,11 @@
 
 namespace Laminas\Form\Annotation;
 
+use function sprintf;
+use function trigger_error;
+
+use const E_USER_DEPRECATED;
+
 /**
  * Stub class for backwards compatibility.
  *

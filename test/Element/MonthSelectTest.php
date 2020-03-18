@@ -12,6 +12,8 @@ use DateTime;
 use Laminas\Form\Element\MonthSelect as MonthSelectElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class MonthSelectTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
@@ -23,7 +25,7 @@ class MonthSelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Regex'
+            'Laminas\Validator\Regex',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);

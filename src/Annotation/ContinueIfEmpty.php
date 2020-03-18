@@ -10,6 +10,8 @@ namespace Laminas\Form\Annotation;
 
 use Laminas\Filter\Boolean as BooleanFilter;
 
+use function is_bool;
+
 /**
  * ContinueIfEmpty annotation
  *
@@ -33,7 +35,7 @@ class ContinueIfEmpty
      */
     public function __construct(array $data)
     {
-        $continueIfEmpty = (isset($data['value']))
+        $continueIfEmpty = isset($data['value'])
             ? $data['value']
             : false;
 

@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormTextarea as FormTextareaHelper;
 
+use function sprintf;
+
 class FormTextareaTest extends CommonTestCase
 {
     protected function setUp()
@@ -275,7 +277,7 @@ class FormTextareaTest extends CommonTestCase
             $this->assertNotContains(
                 $expect,
                 $markup,
-                sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup)
+                sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
             );
         }
     }

@@ -16,6 +16,8 @@ use Laminas\Form\Factory;
 use LaminasTest\Form\TestAsset;
 use PHPUnit\Framework\TestCase;
 
+use function array_shift;
+
 class CaptchaTest extends TestCase
 {
     public function testCaptchaIsUndefinedByDefault()
@@ -71,9 +73,9 @@ class CaptchaTest extends TestCase
             'name'       => 'foo',
             'options'    => [
                 'captcha' => [
-                    'class'   => 'dumb'
-                ]
-            ]
+                    'class'   => 'dumb',
+                ],
+            ],
         ]);
         $this->assertInstanceOf('Laminas\Form\Element\Captcha', $element);
         $captcha = $element->getCaptcha();

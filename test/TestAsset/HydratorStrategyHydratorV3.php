@@ -10,6 +10,8 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Hydrator\Strategy\DefaultStrategy;
 
+use function is_array;
+
 /**
  * This class targets laminas-hydrator v3, and will be aliased to
  * HydratorStrategy when that versions is detected.

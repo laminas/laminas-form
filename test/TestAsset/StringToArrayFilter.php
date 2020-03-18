@@ -10,6 +10,9 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Filter\AbstractFilter;
 
+use function explode;
+use function is_array;
+
 class StringToArrayFilter extends AbstractFilter
 {
     public function filter($value)

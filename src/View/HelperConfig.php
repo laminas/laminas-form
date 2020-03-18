@@ -12,6 +12,8 @@ use Laminas\Form\ConfigProvider;
 use Laminas\ServiceManager\ConfigInterface;
 use Laminas\ServiceManager\ServiceManager;
 
+use function method_exists;
+
 /**
  * Service manager configuration for form view helpers
  *

@@ -16,6 +16,9 @@ use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
+use function is_array;
+use function sprintf;
+
 class AnnotationBuilderFactory implements FactoryInterface
 {
     /**

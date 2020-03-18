@@ -16,6 +16,17 @@ use Laminas\View\Helper\Doctype;
 use Laminas\View\Helper\EscapeHtml;
 use Laminas\View\Helper\EscapeHtmlAttr;
 
+use function implode;
+use function in_array;
+use function is_bool;
+use function mb_strpos;
+use function method_exists;
+use function preg_match;
+use function sprintf;
+use function strlen;
+use function strtolower;
+use function substr;
+
 /**
  * Base functionality for all form view helpers
  */
@@ -180,14 +191,13 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @var array
      */
-    protected $validTagAttributes = [
-    ];
+    protected $validTagAttributes = [];
 
     /**
      * Set value for doctype
      *
      * @param  string $doctype
-     * @return AbstractHelper
+     * @return $this
      */
     public function setDoctype($doctype)
     {
@@ -209,7 +219,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Set value for character encoding
      *
      * @param  string $encoding
-     * @return AbstractHelper
+     * @return $this
      */
     public function setEncoding($encoding)
     {
@@ -425,10 +435,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
         }
 
         $value = (bool) $value;
-        return ($value
+        return $value
             ? $this->booleanAttributes[$attribute]['on']
-            : $this->booleanAttributes[$attribute]['off']
-        );
+            : $this->booleanAttributes[$attribute]['off'];
     }
 
     /**
@@ -469,7 +478,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds an HTML attribute to the list of valid attributes
      *
      * @param string $attribute
-     * @return AbstractHelper
+     * @return $this
      * @throws InvalidArgumentException for attribute names that are invalid
      *     per the HTML specifications.
      */
@@ -487,7 +496,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds a prefix to the list of valid attribute prefixes
      *
      * @param string $prefix
-     * @return AbstractHelper
+     * @return $this
      * @throws InvalidArgumentException for attribute prefixes that are invalid
      *     per the HTML specifications for attribute names.
      */
@@ -506,7 +515,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $attribute
      *
-     * @return AbstractHelper
+     * @return $this
      */
     public function addTranslatableAttribute($attribute)
     {
@@ -530,7 +539,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $prefix
      *
-     * @return AbstractHelper
+     * @return $this
      */
     public function addTranslatableAttributePrefix($prefix)
     {

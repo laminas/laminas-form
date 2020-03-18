@@ -10,6 +10,11 @@ namespace Laminas\Form\FormElementManager;
 
 use Laminas\Form\Exception;
 
+use function class_exists;
+use function get_class;
+use function is_string;
+use function sprintf;
+
 /**
  * Trait providing common logic between FormElementManager implementations.
  *

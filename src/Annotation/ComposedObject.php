@@ -8,6 +8,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use function is_array;
+
 /**
  * ComposedObject annotation
  *

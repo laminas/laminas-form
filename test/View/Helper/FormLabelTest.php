@@ -8,8 +8,11 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormLabel as FormLabelHelper;
+
+use function sprintf;
 
 class FormLabelTest extends CommonTestCase
 {
@@ -27,7 +30,7 @@ class FormLabelTest extends CommonTestCase
 
     public function testOpenTagWithWrongElementRaisesException()
     {
-        $element = new \arrayObject();
+        $element = new ArrayObject();
         $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('ArrayObject');
         $this->helper->openTag($element);
@@ -162,9 +165,9 @@ class FormLabelTest extends CommonTestCase
         $element->setLabel('The value for foo:');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                        ->method('translate')
-                       ->will($this->returnValue('translated content'));
+                       ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

@@ -8,9 +8,12 @@
 
 namespace LaminasTest\Form\Element;
 
+use DateInterval;
 use Laminas\Form\Element\Time as TimeElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+
+use function get_class;
 
 class TimeTest extends TestCase
 {
@@ -50,7 +53,7 @@ class TimeTest extends TestCase
                     $this->assertEquals('00:01:00', $validator->getMax());
                     break;
                 case 'Laminas\Validator\DateStep':
-                    $dateInterval = new \DateInterval('PT60S');
+                    $dateInterval = new DateInterval('PT60S');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:
@@ -62,13 +65,11 @@ class TimeTest extends TestCase
     public function testFailsWithInvalidMinSpecification()
     {
         $element = new TimeElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'min'       => '00:00',
             'step'      => '1',
-            ]
-        );
+        ]);
 
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
@@ -77,13 +78,11 @@ class TimeTest extends TestCase
     public function testFailsWithInvalidMaxSpecification()
     {
         $element = new TimeElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'max'       => '00:00',
             'step'      => '1',
-            ]
-        );
+        ]);
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
     }

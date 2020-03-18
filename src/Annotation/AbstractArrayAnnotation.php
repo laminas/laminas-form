@@ -10,6 +10,11 @@ namespace Laminas\Form\Annotation;
 
 use Laminas\Form\Exception;
 
+use function get_class;
+use function gettype;
+use function is_array;
+use function sprintf;
+
 abstract class AbstractArrayAnnotation
 {
     /**

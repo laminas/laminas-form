@@ -10,13 +10,14 @@ namespace LaminasTest\Form\Integration;
 
 use Laminas\Form\Element;
 use Laminas\Form\Form;
-use Laminas\Form\FormElementManager;
 use Laminas\Form\FormElementManagerFactory;
 use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\InitializerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+
+use function method_exists;
 
 class ServiceManagerTest extends TestCase
 {

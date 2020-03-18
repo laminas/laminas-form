@@ -41,7 +41,7 @@ class InputFilterProviderFieldset extends Fieldset implements InputFilterProvide
      * - input_filter_spec: specification to be returned by getInputFilterSpecification
      *
      * @param  array|Traversable $options
-     * @return Element|ElementInterface
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions($options)

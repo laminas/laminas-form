@@ -19,6 +19,8 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
 
+use function class_exists;
+
 class FormAbstractServiceFactoryTest extends TestCase
 {
     protected function setUp()
@@ -132,7 +134,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                         'name' => 'email',
                         'options' => [
                             'label' => 'Your email address',
-                        ]
+                        ],
                     ],
                 ],
             ],
@@ -171,7 +173,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                         'name' => 'email',
                         'options' => [
                             'label' => 'Your email address',
-                        ]
+                        ],
                     ],
                 ],
             ],

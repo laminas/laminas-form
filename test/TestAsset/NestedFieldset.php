@@ -10,8 +10,9 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
+use Laminas\InputFilter\InputFilterProviderInterface;
 
-class NestedFieldset extends Fieldset implements \Laminas\InputFilter\InputFilterProviderInterface
+class NestedFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {
@@ -33,8 +34,8 @@ class NestedFieldset extends Fieldset implements \Laminas\InputFilter\InputFilte
     {
         return [
             'anotherField' => [
-                'required' => true
-            ]
+                'required' => true,
+            ],
         ];
     }
 }

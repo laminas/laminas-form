@@ -18,6 +18,13 @@ use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
+use function array_pop;
+use function array_shift;
+use function count;
+use function get_class;
+use function method_exists;
+use function strtoupper;
+
 /**
  * @group      Laminas_Form
  */
@@ -88,7 +95,7 @@ class FormElementManagerTest extends TestCase
         $args = [
             'name' => 'foo',
             'options' => [
-                'label' => 'bar'
+                'label' => 'bar',
             ],
         ];
         $element = $this->manager->get('element', $args);
@@ -99,7 +106,7 @@ class FormElementManagerTest extends TestCase
     public function testOptionsCreationOptions()
     {
         $args = [
-            'label' => 'bar'
+            'label' => 'bar',
         ];
         $element = $this->manager->get('element', $args);
         $this->assertEquals('element', $element->getName(), 'Invokable CNAME');
@@ -110,7 +117,7 @@ class FormElementManagerTest extends TestCase
     {
         $args = [
             'options' => [
-                'label' => 'bar'
+                'label' => 'bar',
             ],
         ];
         $element = $this->manager->get('element', $args);
@@ -232,7 +239,7 @@ class FormElementManagerTest extends TestCase
         );
         $this->assertEquals('constructedelement', $instance->getName());
         $this->assertEquals([
-            'constructedKey' => 'constructedKey'
+            'constructedKey' => 'constructedKey',
         ], $instance->getOptions());
     }
 

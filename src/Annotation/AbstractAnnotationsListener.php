@@ -9,6 +9,7 @@
 namespace Laminas\Form\Annotation;
 
 use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\EventInterface;
 use ReflectionClass;
 
 /**
@@ -26,14 +27,14 @@ abstract class AbstractAnnotationsListener extends AbstractListenerAggregate
     /**
      * Attempt to discover a name set via annotation
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return false|string
      */
     public function handleNameAnnotation($e)
     {
         $annotations = $e->getParam('annotations');
 
-        if (! $annotations->hasAnnotation('Laminas\Form\Annotation\Name')) {
+        if (! $annotations->hasAnnotation(Name::class)) {
             return false;
         }
 
@@ -50,7 +51,7 @@ abstract class AbstractAnnotationsListener extends AbstractListenerAggregate
     /**
      * Discover the fallback name via reflection
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return string
      */
     public function discoverFallbackName($e)

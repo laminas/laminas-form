@@ -21,8 +21,8 @@ class Category
     protected $name;
 
     /**
-     * @param string $name
-     * @return Category
+     * @param  string $name
+     * @return $this
      */
     public function setName($name)
     {
@@ -39,8 +39,8 @@ class Category
     }
 
     /**
-     * @param int $id
-     * @return Product
+     * @param  int $id
+     * @return $this
      */
     public function setId($id)
     {

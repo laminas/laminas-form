@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Number as NumberElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class NumberTest extends TestCase
 {
     public function testProvidesInputSpecificationWithDefaultAttributes()

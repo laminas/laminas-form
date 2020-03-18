@@ -16,6 +16,16 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 use LaminasTest\Form\TestAsset;
 use PHPUnit\Framework\TestCase;
 
+use function class_exists;
+use function count;
+use function getenv;
+use function restore_error_handler;
+use function set_error_handler;
+use function version_compare;
+
+use const E_USER_DEPRECATED;
+use const PHP_VERSION;
+
 class AnnotationBuilderTest extends TestCase
 {
     /** @var string */
@@ -67,13 +77,13 @@ class AnnotationBuilderTest extends TestCase
 
         $username = $filter->get('username');
         $this->assertTrue($username->isRequired());
-        $this->assertEquals(1, count($username->getFilterChain()));
-        $this->assertEquals(2, count($username->getValidatorChain()));
+        $this->assertCount(1, $username->getFilterChain());
+        $this->assertCount(2, $username->getValidatorChain());
 
         $password = $filter->get('password');
         $this->assertTrue($password->isRequired());
-        $this->assertEquals(1, count($password->getFilterChain()));
-        $this->assertEquals(1, count($password->getValidatorChain()));
+        $this->assertCount(1, $password->getFilterChain());
+        $this->assertCount(1, $password->getValidatorChain());
     }
 
     public function testCanCreateFormWithClassAnnotations()

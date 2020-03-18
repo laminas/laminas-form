@@ -14,6 +14,18 @@ use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Traversable;
 
+use function array_pop;
+use function class_exists;
+use function explode;
+use function get_class;
+use function gettype;
+use function is_array;
+use function is_object;
+use function is_string;
+use function iterator_to_array;
+use function sprintf;
+use function strtolower;
+
 /**
  * Factory for instantiating form elements
  */

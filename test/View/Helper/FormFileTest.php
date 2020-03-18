@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormFile as FormFileHelper;
 
+use function sprintf;
+
 class FormFileTest extends CommonTestCase
 {
     /**

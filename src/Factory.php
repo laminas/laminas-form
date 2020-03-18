@@ -16,6 +16,18 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
 
+use function class_exists;
+use function get_class;
+use function gettype;
+use function is_array;
+use function is_object;
+use function is_string;
+use function method_exists;
+use function sprintf;
+use function trigger_error;
+
+use const E_USER_DEPRECATED;
+
 class Factory
 {
     /**
@@ -48,7 +60,7 @@ class Factory
      * Set input filter factory to use when creating forms
      *
      * @param  InputFilterFactory $inputFilterFactory
-     * @return Factory
+     * @return $this
      */
     public function setInputFilterFactory(InputFilterFactory $inputFilterFactory)
     {
@@ -75,7 +87,7 @@ class Factory
      * Set the form element manager
      *
      * @param  FormElementManager $formElementManager
-     * @return Factory
+     * @return $this
      */
     public function setFormElementManager(FormElementManager $formElementManager)
     {
@@ -193,8 +205,8 @@ class Factory
      *
      * @param  ElementInterface              $element
      * @param  array|Traversable|ArrayAccess $spec
-     * @throws Exception\DomainException
      * @return ElementInterface
+     * @throws Exception\DomainException
      */
     public function configureElement(ElementInterface $element, $spec)
     {
@@ -235,8 +247,8 @@ class Factory
      *
      * @param  FieldsetInterface             $fieldset
      * @param  array|Traversable|ArrayAccess $spec
-     * @throws Exception\DomainException
      * @return FieldsetInterface
+     * @throws Exception\DomainException
      */
     public function configureFieldset(FieldsetInterface $fieldset, $spec)
     {
@@ -259,7 +271,7 @@ class Factory
             $this->prepareAndInjectFieldsets($spec['fieldsets'], $fieldset, __METHOD__);
         }
 
-        $factory = (isset($spec['factory']) ? $spec['factory'] : $this);
+        $factory = isset($spec['factory']) ? $spec['factory'] : $this;
         $this->prepareAndInjectFactory($factory, $fieldset, __METHOD__);
 
         return $fieldset;
@@ -320,7 +332,7 @@ class Factory
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array, or object implementing Traversable or ArrayAccess; received "%s"',
                 $method,
-                (is_object($spec) ? get_class($spec) : gettype($spec))
+                is_object($spec) ? get_class($spec) : gettype($spec)
             ));
         }
 
@@ -348,7 +360,7 @@ class Factory
             $spec  = isset($elementSpecification['spec']) ? $elementSpecification['spec'] : [];
 
             if (! isset($spec['type'])) {
-                $spec['type'] = 'Laminas\Form\Element';
+                $spec['type'] = Element::class;
             }
 
             $element = $this->create($spec);
@@ -383,9 +395,9 @@ class Factory
      * Takes a string indicating a class name, instantiates the class
      * by that name, and injects the class instance as the bound object.
      *
-     * @param  string           $objectName
+     * @param  string            $objectName
      * @param  FieldsetInterface $fieldset
-     * @param  string           $method
+     * @param  string            $method
      * @throws Exception\DomainException
      * @return void
      */
@@ -395,7 +407,7 @@ class Factory
             throw new Exception\DomainException(sprintf(
                 '%s expects string class name; received "%s"',
                 $method,
-                (is_object($objectName) ? get_class($objectName) : gettype($objectName))
+                is_object($objectName) ? get_class($objectName) : gettype($objectName)
             ));
         }
 
@@ -437,7 +449,7 @@ class Factory
                     $method
                 ));
             }
-            $hydratorOptions = (isset($hydratorOrName['options'])) ? $hydratorOrName['options'] : [];
+            $hydratorOptions = isset($hydratorOrName['options']) ? $hydratorOrName['options'] : [];
             $hydratorOrName = $hydratorOrName['type'];
         } else {
             $hydratorOptions = [];

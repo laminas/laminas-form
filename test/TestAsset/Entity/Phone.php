@@ -17,7 +17,7 @@ class Phone
 
     /**
      * @param string $number
-     * @return self
+     * @return $this
      */
     public function setNumber($number)
     {

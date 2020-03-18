@@ -8,8 +8,12 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use IntlDateFormatter;
 use Laminas\Form\Element\DateTimeSelect;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
+
+use function extension_loaded;
+use function substr;
 
 class FormDateTimeSelectTest extends CommonTestCase
 {
@@ -87,7 +91,7 @@ class FormDateTimeSelectTest extends CommonTestCase
         $element->setShouldCreateEmptyOption(true);
         $element->setShouldRenderDelimiters(true);
         $element->setShouldShowSeconds(true);
-        $markup = $this->helper->__invoke($element, \IntlDateFormatter::LONG, \IntlDateFormatter::LONG, 'pt_BR');
+        $markup = $this->helper->__invoke($element, IntlDateFormatter::LONG, IntlDateFormatter::LONG, 'pt_BR');
 
         // pattern === "d 'de' MMMM 'de' y HH'h'mm'min'ss's'"
         $this->assertStringMatchesFormat('%a de %a de %a %ah%amin%as%a', $markup);
