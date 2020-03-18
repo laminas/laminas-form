@@ -31,9 +31,9 @@ class OrphansForm extends Form
                     'should_create_template' => true,
                     'allow_add' => true,
                     'target_element' => [
-                        'type' => '\LaminasTest\Form\TestAsset\OrphansFieldset'
+                        'type' => '\LaminasTest\Form\TestAsset\OrphansFieldset',
                     ],
-                ]
+                ],
             ]
         );
 
@@ -42,8 +42,8 @@ class OrphansForm extends Form
                 'name' => 'submit',
                 'attributes' => [
                     'type' => 'submit',
-                    'value' => 'Send'
-                ]
+                    'value' => 'Send',
+                ],
             ]
         );
 

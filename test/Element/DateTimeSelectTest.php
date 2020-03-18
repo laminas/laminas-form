@@ -13,6 +13,8 @@ use Laminas\Form\Element\DateTimeSelect as DateTimeSelectElement;
 use Laminas\InputFilter\Factory as InputFilterFactory;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class DateTimeSelectTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
@@ -24,7 +26,7 @@ class DateTimeSelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Date'
+            'Laminas\Validator\Date',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -52,7 +54,7 @@ class DateTimeSelectTest extends TestCase
                 'month' => '02',
                 'day' => '07',
                 'hour' => '03',
-                'minute' => '14'
+                'minute' => '14',
             ],
         ]);
         $this->assertTrue($inputFilter->isValid());
@@ -109,7 +111,7 @@ class DateTimeSelectTest extends TestCase
             'month' => '09',
             'day' => '24',
             'hour' => '03',
-            'minute' => '04'
+            'minute' => '04',
         ]);
 
         $this->assertEquals('2012', $element->getYearElement()->getValue());

@@ -12,6 +12,9 @@ use Laminas\Form\Element;
 use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
 use Laminas\Form\View\Helper\FormMultiCheckbox as FormMultiCheckboxHelper;
 
+use function sprintf;
+use function substr_count;
+
 class FormMultiCheckboxTest extends CommonTestCase
 {
     protected function setUp()
@@ -237,9 +240,9 @@ class FormMultiCheckboxTest extends CommonTestCase
         $markup = $this->helper->render($element);
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
-        ->method('translate')
-        ->will($this->returnValue('translated content'));
+        $mockTranslator->expects($this->once())
+                       ->method('translate')
+                       ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -304,11 +307,11 @@ class FormMultiCheckboxTest extends CommonTestCase
     {
         $element = new MultiCheckboxElement('foo');
         $element->setValueOptions([
-                                       [
-                                           'label' => 'label1',
-                                           'value' => 'value1',
-                                       ],
-                                  ]);
+            [
+                'label' => 'label1',
+                'value' => 'value1',
+            ],
+        ]);
         $this->helper->__invoke($element, 'append');
 
         $this->assertSame('append', $this->helper->getLabelPosition());

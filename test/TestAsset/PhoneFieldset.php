@@ -15,6 +15,8 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Phone;
 
+use function class_exists;
+
 class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
@@ -24,8 +26,8 @@ class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
         $this
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
+                    ? new ClassMethodsHydrator()
+                    : new ClassMethods()
             )
              ->setObject(new Phone());
 
@@ -43,7 +45,7 @@ class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
         return [
             'number' => [
                 'required' => true,
-            ]
+            ],
         ];
     }
 }

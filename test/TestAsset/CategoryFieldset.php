@@ -14,6 +14,8 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Category;
 
+use function class_exists;
+
 class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
@@ -22,19 +24,19 @@ class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
         $this
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
+                    ? new ClassMethodsHydrator()
+                    : new ClassMethods()
             )
             ->setObject(new Category());
 
         $this->add([
             'name' => 'name',
             'options' => [
-                'label' => 'Name of the category'
+                'label' => 'Name of the category',
             ],
             'attributes' => [
-                'required' => 'required'
-            ]
+                'required' => 'required',
+            ],
         ]);
     }
 
@@ -49,7 +51,7 @@ class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
         return [
             'name' => [
                 'required' => true,
-            ]
+            ],
         ];
     }
 }

@@ -13,14 +13,28 @@ use Laminas\Code\Annotation\AnnotationCollection;
 use Laminas\Code\Annotation\AnnotationManager;
 use Laminas\Code\Annotation\Parser;
 use Laminas\Code\Reflection\ClassReflection;
+use Laminas\Code\Reflection\PropertyReflection;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerAwareInterface;
 use Laminas\EventManager\EventManagerInterface;
+use Laminas\Form\Element;
 use Laminas\Form\Exception;
 use Laminas\Form\Factory;
+use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormFactoryAwareInterface;
+use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
+use Reflector;
+
+use function class_exists;
+use function get_class;
+use function is_array;
+use function is_object;
+use function is_string;
+use function is_subclass_of;
+use function sprintf;
+use function var_export;
 
 /**
  * Parses the properties of a class for annotations in order to create a form
@@ -75,7 +89,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         'Required',
         'Type',
         'ValidationGroup',
-        'Validator'
+        'Validator',
     ];
 
     /**
@@ -87,7 +101,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Set form factory to use when building form from annotations
      *
      * @param  Factory $formFactory
-     * @return AnnotationBuilder
+     * @return $this
      */
     public function setFormFactory(Factory $formFactory)
     {
@@ -99,7 +113,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Set annotation manager to use when building form from annotations
      *
      * @param  AnnotationManager $annotationManager
-     * @return AnnotationBuilder
+     * @return $this
      */
     public function setAnnotationManager(AnnotationManager $annotationManager)
     {
@@ -117,7 +131,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Set event manager instance
      *
      * @param  EventManagerInterface $events
-     * @return AnnotationBuilder
+     * @return $this
      */
     public function setEventManager(EventManagerInterface $events)
     {
@@ -236,7 +250,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Create a form from an object.
      *
      * @param  string|object $entity
-     * @return \Laminas\Form\Form
+     * @return FormInterface
      */
     public function createForm($entity)
     {
@@ -289,7 +303,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Configure an element from annotations
      *
      * @param  AnnotationCollection $annotations
-     * @param  \Laminas\Code\Reflection\PropertyReflection $reflection
+     * @param  PropertyReflection $reflection
      * @param  ArrayObject $formSpec
      * @param  ArrayObject $filterSpec
      * @return void
@@ -310,7 +324,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         $elementSpec = new ArrayObject([
             'flags' => [],
             'spec'  => [
-                'name' => $name
+                'name' => $name,
             ],
         ]);
         $inputSpec = new ArrayObject([
@@ -341,13 +355,13 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         }
 
         $elementSpec = $params['elementSpec'];
-        $type        = (isset($elementSpec['spec']['type']))
+        $type        = isset($elementSpec['spec']['type'])
             ? $elementSpec['spec']['type']
-            : 'Laminas\Form\Element';
+            : Element::class;
 
         // Compose as a fieldset or an element, based on specification type.
         // If preserve defined order is true, all elements are composed as elements to keep their ordering
-        if (! $this->preserveDefinedOrder() && is_subclass_of($type, 'Laminas\Form\FieldsetInterface')) {
+        if (! $this->preserveDefinedOrder() && is_subclass_of($type, FieldsetInterface::class)) {
             if (! isset($formSpec['fieldsets'])) {
                 $formSpec['fieldsets'] = [];
             }
@@ -382,7 +396,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Discover the name of the given form or element
      *
      * @param  AnnotationCollection $annotations
-     * @param  \Reflector $reflection
+     * @param  Reflector $reflection
      * @return string
      */
     protected function discoverName($annotations, $reflection)
@@ -395,12 +409,15 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
             'reflection'  => $reflection,
         ]);
 
+        // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
-            function ($r) {
-                return (is_string($r) && ! empty($r));
+            static function ($r) {
+                return is_string($r) && ! empty($r);
             },
             $event
         );
+        // @codingStandardsIgnoreEnd
+
         return $results->last();
     }
 
@@ -417,17 +434,20 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         $event->setTarget($this);
         $event->setParams(['annotations' => $annotations]);
 
+        // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
-            function ($r) {
-                return (true === $r);
+            static function ($r) {
+                return true === $r;
             },
             $event
         );
+        // @codingStandardsIgnoreEnd
+
         return (bool) $results->last();
     }
 
     /**
-     * @return \Laminas\Code\Annotation\Parser\DoctrineAnnotationParser
+     * @return Parser\DoctrineAnnotationParser
      */
     public function getAnnotationParser()
     {

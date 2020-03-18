@@ -14,6 +14,9 @@ use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
+use function is_array;
+use function method_exists;
+
 class FormElementManagerFactory implements FactoryInterface
 {
     /**

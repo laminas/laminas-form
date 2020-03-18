@@ -13,6 +13,8 @@ use Laminas\InputFilter\InputFilter as RealInputFilter;
 use Laminas\InputFilter\InputFilterAwareInterface;
 use Laminas\InputFilter\InputFilterInterface;
 
+use function get_object_vars;
+
 class HydratorStrategyEntityA implements InputFilterAwareInterface
 {
     public $entities; // public to make testing easier!

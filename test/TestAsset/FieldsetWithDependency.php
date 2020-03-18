@@ -8,7 +8,6 @@
 
 namespace LaminasTest\Form\TestAsset;
 
-use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 
 class FieldsetWithDependency extends Fieldset

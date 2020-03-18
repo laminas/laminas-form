@@ -13,6 +13,15 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
+use function array_key_exists;
+use function array_merge;
+use function implode;
+use function in_array;
+use function is_scalar;
+use function method_exists;
+use function sprintf;
+use function strtolower;
+
 class FormMultiCheckbox extends FormInput
 {
     const LABEL_APPEND  = 'append';
@@ -171,15 +180,15 @@ class FormMultiCheckbox extends FormInput
             $label           = '';
             $inputAttributes = $attributes;
             $labelAttributes = $globalLabelAttributes;
-            $selected        = (isset($inputAttributes['selected'])
+            $selected        = isset($inputAttributes['selected'])
                 && $inputAttributes['type'] != 'radio'
-                && $inputAttributes['selected']);
-            $disabled        = (isset($inputAttributes['disabled']) && $inputAttributes['disabled']);
+                && $inputAttributes['selected'];
+            $disabled        = isset($inputAttributes['disabled']) && $inputAttributes['disabled'];
 
             if (is_scalar($optionSpec)) {
                 $optionSpec = [
                     'label' => $optionSpec,
-                    'value' => $key
+                    'value' => $key,
                 ];
             }
 
@@ -196,7 +205,7 @@ class FormMultiCheckbox extends FormInput
                 $disabled = $optionSpec['disabled'];
             }
             if (isset($optionSpec['label_attributes'])) {
-                $labelAttributes = (isset($labelAttributes))
+                $labelAttributes = isset($labelAttributes)
                     ? array_merge($labelAttributes, $optionSpec['label_attributes'])
                     : $optionSpec['label_attributes'];
             }
@@ -278,7 +287,7 @@ class FormMultiCheckbox extends FormInput
      * Sets the attributes applied to option label.
      *
      * @param  array|null $attributes
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setLabelAttributes($attributes)
     {
@@ -301,7 +310,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @param  mixed $labelPosition
      * @throws Exception\InvalidArgumentException
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setLabelPosition($labelPosition)
     {
@@ -334,7 +343,7 @@ class FormMultiCheckbox extends FormInput
      * Set separator string for checkbox elements
      *
      * @param  string $separator
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setSeparator($separator)
     {
@@ -357,7 +366,7 @@ class FormMultiCheckbox extends FormInput
      * for the unset value.
      *
      * @param  bool $useHiddenElement
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setUseHiddenElement($useHiddenElement)
     {
@@ -380,7 +389,7 @@ class FormMultiCheckbox extends FormInput
      * Sets the unchecked value used when "UseHiddenElement" is turned on.
      *
      * @param  bool $value
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setUncheckedValue($value)
     {

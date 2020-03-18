@@ -8,9 +8,12 @@
 
 namespace LaminasTest\Form\Element;
 
+use DateInterval;
 use Laminas\Form\Element\DateTimeLocal as DateTimeLocalElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+
+use function get_class;
 
 class DateTimeLocalTest extends TestCase
 {
@@ -47,7 +50,7 @@ class DateTimeLocalTest extends TestCase
                     $this->assertEquals('2001-01-01T00:00', $validator->getMax());
                     break;
                 case 'Laminas\Validator\DateStep':
-                    $dateInterval = new \DateInterval('PT1M');
+                    $dateInterval = new DateInterval('PT1M');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:
@@ -59,13 +62,11 @@ class DateTimeLocalTest extends TestCase
     public function testFailsWithInvalidMinSpecification()
     {
         $element = new DateTimeLocalElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'min'       => '2001-01-01T00:00Z',
             'step'      => '1',
-            ]
-        );
+        ]);
 
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
@@ -74,13 +75,11 @@ class DateTimeLocalTest extends TestCase
     public function testFailsWithInvalidMaxSpecification()
     {
         $element = new DateTimeLocalElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'max'       => '2001-01-01T00:00Z',
             'step'      => '1',
-            ]
-        );
+        ]);
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
     }

@@ -8,8 +8,12 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use IntlDateFormatter;
 use Laminas\Form\Element\MonthSelect;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
+
+use function count;
+use function extension_loaded;
 
 class FormMonthSelectTest extends CommonTestCase
 {
@@ -68,7 +72,7 @@ class FormMonthSelectTest extends CommonTestCase
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
         $element->setShouldRenderDelimiters(true);
-        $markup = $this->helper->__invoke($element, \IntlDateFormatter::LONG, 'pt_BR');
+        $markup = $this->helper->__invoke($element, IntlDateFormatter::LONG, 'pt_BR');
 
         // pattern === "MMMM 'de' y"
         $this->assertStringMatchesFormat('%a de %a', $markup);
@@ -92,7 +96,7 @@ class FormMonthSelectTest extends CommonTestCase
     {
         $element = new MonthSelect('foo');
         $this->helper->render($element);
-        $this->assertEquals(12, count($element->getMonthElement()->getValueOptions()));
+        $this->assertCount(12, $element->getMonthElement()->getValueOptions());
     }
 
     /**
@@ -103,12 +107,12 @@ class FormMonthSelectTest extends CommonTestCase
         $element = new MonthSelect('foo');
         $this->helper->render($element);
         $elements = $element->getElements();
-        $this->assertEquals(2, count($elements));
+        $this->assertCount(2, $elements);
 
         foreach ($elements as $subElement) {
             $this->assertInstanceOf('Laminas\Form\Element\Select', $subElement);
         }
 
-        $this->assertEquals(12, count($elements[0]->getValueOptions()));
+        $this->assertCount(12, $elements[0]->getValueOptions());
     }
 }

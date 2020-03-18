@@ -11,6 +11,7 @@ namespace Laminas\Form\Element;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\InArray as InArrayValidator;
+use Laminas\Validator\ValidatorInterface;
 use Traversable;
 
 class Checkbox extends Element implements InputProviderInterface
@@ -21,11 +22,11 @@ class Checkbox extends Element implements InputProviderInterface
      * @var array
      */
     protected $attributes = [
-        'type' => 'checkbox'
+        'type' => 'checkbox',
     ];
 
     /**
-     * @var \Laminas\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     protected $validator;
 
@@ -51,7 +52,7 @@ class Checkbox extends Element implements InputProviderInterface
      * - checked_value: value for checkbox when checked
      *
      * @param  array|Traversable $options
-     * @return Checkbox
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -76,7 +77,7 @@ class Checkbox extends Element implements InputProviderInterface
      * Do we render hidden element?
      *
      * @param  bool $useHiddenElement
-     * @return Checkbox
+     * @return $this
      */
     public function setUseHiddenElement($useHiddenElement)
     {
@@ -98,7 +99,7 @@ class Checkbox extends Element implements InputProviderInterface
      * Set the value to use when checkbox is unchecked
      *
      * @param $uncheckedValue
-     * @return Checkbox
+     * @return $this
      */
     public function setUncheckedValue($uncheckedValue)
     {
@@ -120,7 +121,7 @@ class Checkbox extends Element implements InputProviderInterface
      * Set the value to use when checkbox is checked
      *
      * @param $checkedValue
-     * @return Checkbox
+     * @return $this
      */
     public function setCheckedValue($checkedValue)
     {
@@ -141,14 +142,14 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getValidator()
     {
         if (null === $this->validator) {
             $this->validator = new InArrayValidator([
                 'haystack' => [$this->checkedValue, $this->uncheckedValue],
-                'strict'   => false
+                'strict'   => false,
             ]);
         }
         return $this->validator;
@@ -191,7 +192,7 @@ class Checkbox extends Element implements InputProviderInterface
      * Checks or unchecks the checkbox.
      *
      * @param bool $value The flag to set.
-     * @return Checkbox
+     * @return $this
      */
     public function setChecked($value)
     {
@@ -202,8 +203,8 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Checks or unchecks the checkbox.
      *
-     * @param mixed $value A boolean flag or string that is checked against the "checked value".
-     * @return Element
+     * @param  mixed $value A boolean flag or string that is checked against the "checked value".
+     * @return $this
      */
     public function setValue($value)
     {

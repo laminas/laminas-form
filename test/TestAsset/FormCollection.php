@@ -24,8 +24,8 @@ class FormCollection extends Form
             'name' => 'colors',
             'options' => [
                 'count' => 2,
-                'target_element' => $element
-            ]
+                'target_element' => $element,
+            ],
         ]);
 
         $fieldset = new BasicFieldset();
@@ -34,8 +34,8 @@ class FormCollection extends Form
             'name' => 'fieldsets',
             'options' => [
                 'count' => 2,
-                'target_element' => $fieldset
-            ]
+                'target_element' => $fieldset,
+            ],
         ]);
     }
 }

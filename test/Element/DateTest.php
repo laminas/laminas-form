@@ -8,10 +8,16 @@
 
 namespace LaminasTest\Form\Element;
 
+use DateInterval;
 use DateTime;
 use Laminas\Form\Element\Date as DateElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+
+use function date;
+use function date_default_timezone_get;
+use function date_default_timezone_set;
+use function get_class;
 
 /**
  * @covers \Laminas\Form\Element\Date
@@ -58,7 +64,7 @@ class DateTest extends TestCase
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case 'Laminas\Validator\DateStep':
-                    $dateInterval = new \DateInterval('P1D');
+                    $dateInterval = new DateInterval('P1D');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     $this->assertEquals(date('Y-m-d', 0), $validator->getBaseValue());
                     break;
@@ -101,7 +107,7 @@ class DateTest extends TestCase
                     $this->assertEquals('2001-01-01', $validator->getMax());
                     break;
                 case 'Laminas\Validator\DateStep':
-                    $dateInterval = new \DateInterval('P1D');
+                    $dateInterval = new DateInterval('P1D');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     $this->assertEquals('2000-01-01', $validator->getBaseValue());
                     break;
@@ -124,8 +130,8 @@ class DateTest extends TestCase
     {
         $element = new DateElement('foo');
         $element->setAttributes([
-            'min'       => '01-01-2012',
-            'max'       => '31-12-2012',
+            'min' => '01-01-2012',
+            'max' => '31-12-2012',
         ]);
         $element->setFormat('d-m-Y');
 
@@ -162,13 +168,11 @@ class DateTest extends TestCase
     public function testFailsWithInvalidMinSpecification()
     {
         $element = new DateElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'min'       => '2000-01-01T00',
             'step'      => '1',
-            ]
-        );
+        ]);
 
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
@@ -177,13 +181,11 @@ class DateTest extends TestCase
     public function testFailsWithInvalidMaxSpecification()
     {
         $element = new DateElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'max'       => '2001-01-01T00',
             'step'      => '1',
-            ]
-        );
+        ]);
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
     }

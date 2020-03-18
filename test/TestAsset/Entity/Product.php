@@ -8,6 +8,8 @@
 
 namespace LaminasTest\Form\TestAsset\Entity;
 
+use function get_object_vars;
+
 class Product
 {
     /**
@@ -32,7 +34,7 @@ class Product
 
     /**
      * @param array $categories
-     * @return Product
+     * @return $this
      */
     public function setCategories(array $categories)
     {
@@ -50,7 +52,7 @@ class Product
 
     /**
      * @param string $name
-     * @return Product
+     * @return $this
      */
     public function setName($name)
     {
@@ -68,7 +70,7 @@ class Product
 
     /**
      * @param int $price
-     * @return Product
+     * @return $this
      */
     public function setPrice($price)
     {

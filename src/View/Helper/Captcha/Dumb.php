@@ -12,6 +12,9 @@ use Laminas\Captcha\Dumb as CaptchaAdapter;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function sprintf;
+use function strrev;
+
 class Dumb extends AbstractWord
 {
     /**

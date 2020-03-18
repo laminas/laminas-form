@@ -8,12 +8,18 @@
 
 namespace Laminas\Form\Element;
 
+use ArrayAccess;
 use DateTime as PhpDateTime;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
+use Traversable;
+
+use function array_merge;
+use function is_string;
+use function sprintf;
 
 class DateSelect extends MonthSelect
 {
@@ -41,8 +47,8 @@ class DateSelect extends MonthSelect
      * Accepted options for DateSelect (plus the ones from MonthSelect) :
      * - day_attributes: HTML attributes to be rendered with the day element
      *
-     * @param array|\Traversable $options
-     * @return self
+     * @param array|Traversable $options
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -77,7 +83,7 @@ class DateSelect extends MonthSelect
      * Set the day attributes
      *
      * @param  array $dayAttributes
-     * @return self
+     * @return $this
      */
     public function setDayAttributes(array $dayAttributes)
     {
@@ -96,9 +102,9 @@ class DateSelect extends MonthSelect
     }
 
     /**
-     * @param  string|array|\ArrayAccess|PhpDateTime $value
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @return self Provides a fluent interface
+     * @param  string|array|ArrayAccess|PhpDateTime $value
+     * @return $this Provides a fluent interface
+     * @throws InvalidArgumentException
      */
     public function setValue($value)
     {
@@ -178,11 +184,11 @@ class DateSelect extends MonthSelect
             'name' => $this->getName(),
             'required' => false,
             'filters' => [
-                ['name' => 'DateSelect']
+                ['name' => 'DateSelect'],
             ],
             'validators' => [
                 $this->getValidator(),
-            ]
+            ],
         ];
     }
 

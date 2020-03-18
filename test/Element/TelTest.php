@@ -14,6 +14,9 @@ use Laminas\Form\Element\Tel;
 use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
 
+use function array_diff;
+use function array_map;
+
 class TelTest extends TestCase
 {
     public function testType()

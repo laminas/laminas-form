@@ -8,6 +8,8 @@
 
 namespace Laminas\Form;
 
+use Laminas\ModuleManager\ModuleManager;
+
 class Module
 {
     /**
@@ -27,7 +29,7 @@ class Module
     /**
      * Register a specification for the FormElementManager with the ServiceListener.
      *
-     * @param \Laminas\ModuleManager\ModuleManager $moduleManager
+     * @param ModuleManager $moduleManager
      * @return void
      */
     public function init($moduleManager)

@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Email as EmailElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class EmailTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesDefaultValidators()
@@ -22,7 +24,7 @@ class EmailTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedValidators = [
-            'Laminas\Validator\Regex'
+            'Laminas\Validator\Regex',
         ];
         foreach ($inputSpec['validators'] as $i => $validator) {
             $class = get_class($validator);

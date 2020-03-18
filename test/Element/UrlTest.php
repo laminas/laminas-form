@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Url as UrlElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class UrlTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
@@ -18,7 +20,7 @@ class UrlTest extends TestCase
         $element = new UrlElement();
         $element->setAttributes([
             'allowAbsolute' => true,
-            'allowRelative' => false
+            'allowRelative' => false,
         ]);
 
         $inputSpec = $element->getInputSpecification();
@@ -26,7 +28,7 @@ class UrlTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Uri'
+            'Laminas\Validator\Uri',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);

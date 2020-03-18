@@ -38,7 +38,7 @@ class FormSubmit extends FormInput
      * @var array
      */
     protected $translatableAttributes = [
-        'value' => true
+        'value' => true,
     ];
 
     /**

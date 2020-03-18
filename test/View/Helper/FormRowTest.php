@@ -13,8 +13,13 @@ use Laminas\Form\Element\Captcha;
 use Laminas\Form\View\Helper\FormRow as FormRowHelper;
 use Laminas\Form\View\HelperConfig;
 use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\Validator\Date;
 use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit\Framework\TestCase;
+
+use function count;
+use function explode;
+use function get_class;
 
 class FormRowTest extends TestCase
 {
@@ -78,7 +83,7 @@ class FormRowTest extends TestCase
         $fooElement->setOptions([
             'label'         => 'The value for foo:',
             'label_options' => [
-                'label_position' => 'prepend'
+                'label_position' => 'prepend',
             ],
         ]);
 
@@ -105,7 +110,7 @@ class FormRowTest extends TestCase
         $element->setLabelAttributes(['class' => 'bar']);
         $this->helper->setLabelPosition('append');
         $markup = $this->helper->render($element);
-        $this->assertContains("<label class=\"bar\">", $markup);
+        $this->assertContains('<label class="bar">', $markup);
     }
 
     public function testCanCreateMarkupWithoutLabel()
@@ -137,11 +142,10 @@ class FormRowTest extends TestCase
         $element->setAttribute('options', $options);
         $element->setLabel('This is a multi-checkbox');
         $markup = $this->helper->render($element);
-        $this->assertContains("<fieldset>", $markup);
-        $this->assertContains("<legend>", $markup);
-        $this->assertContains("<label>", $markup);
+        $this->assertContains('<fieldset>', $markup);
+        $this->assertContains('<legend>', $markup);
+        $this->assertContains('<label>', $markup);
     }
-
 
     public function testRenderAttributeId()
     {
@@ -186,7 +190,7 @@ class FormRowTest extends TestCase
     {
         $element  = new Element('foo');
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
 
         $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
@@ -197,7 +201,7 @@ class FormRowTest extends TestCase
     {
         $element  = new Element('foo');
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
         $element->setAttribute('class', 'foo bar');
 
@@ -219,9 +223,9 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->any())
+        $mockTranslator
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -259,9 +263,9 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
 
         $mockTranslator = $this->createMock(TranslatorInterface::class);
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -279,9 +283,9 @@ class FormRowTest extends TestCase
         $element->setAttribute('id', 'foo');
 
         $mockTranslator = $this->createMock(TranslatorInterface::class);
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -349,13 +353,13 @@ class FormRowTest extends TestCase
     public function testShowErrorInMultiCheckbox()
     {
         $element = new Element\MultiCheckbox('hobby');
-        $element->setLabel("Hobby");
+        $element->setLabel('Hobby');
         $element->setValueOptions([
             '0' => 'working',
-            '1' => 'coding'
+            '1' => 'coding',
         ]);
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
 
         $markup = $this->helper->__invoke($element);
@@ -365,13 +369,13 @@ class FormRowTest extends TestCase
     public function testShowErrorInRadio()
     {
         $element = new Element\Radio('direction');
-        $element->setLabel("Direction");
+        $element->setLabel('Direction');
         $element->setValueOptions([
             '0' => 'programming',
-            '1' => 'design'
+            '1' => 'design',
         ]);
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
 
         $markup = $this->helper->__invoke($element);
@@ -380,18 +384,18 @@ class FormRowTest extends TestCase
 
     public function testErrorShowTwice()
     {
-        $element = new  Element\Date('birth');
+        $element = new Element\Date('birth');
         $element->setFormat('Y-m-d');
         $element->setValue('2010.13');
 
-        $validator = new \Laminas\Validator\Date();
+        $validator = new Date();
         $validator->isValid($element->getValue());
         $element->setMessages($validator->getMessages());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertEquals(
+        $this->assertCount(
             2,
-            count(explode("<ul><li>The input does not appear to be a valid date</li></ul>", $markup))
+            explode('<ul><li>The input does not appear to be a valid date</li></ul>', $markup)
         );
     }
 
@@ -574,8 +578,8 @@ class FormRowTest extends TestCase
     {
         $element = new Element('foo', [
             'label_options' => [
-                'always_wrap' => true
-            ]
+                'always_wrap' => true,
+            ],
         ]);
         $element->setAttribute('id', 'bar');
         $element->setLabel('baz');
@@ -600,7 +604,7 @@ class FormRowTest extends TestCase
             . '<\/fieldset>$#',
             $this->helper->render(new Captcha('captcha', [
                 'captcha' => ['class' => 'dumb'],
-                'label' => 'baz'
+                'label' => 'baz',
             ]))
         );
     }

@@ -14,6 +14,8 @@ use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Validator;
 
+use function class_exists;
+
 class CustomForm extends Form
 {
     public function __construct()
@@ -24,8 +26,8 @@ class CustomForm extends Form
             ->setAttribute('method', 'post')
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
+                    ? new ClassMethodsHydrator()
+                    : new ClassMethods()
             );
 
         $field1 = new Element('name', ['label' => 'Name']);
@@ -39,15 +41,14 @@ class CustomForm extends Form
         $this->add([
             'name' => 'csrf',
             'type' => 'Laminas\Form\Element\Csrf',
-            'attributes' => [
-            ],
+            'attributes' => [],
         ]);
 
         $this->add([
             'name' => 'submit',
             'attributes' => [
-                'type' => 'submit'
-            ]
+                'type' => 'submit',
+            ],
         ]);
     }
 

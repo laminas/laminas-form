@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormMonth as FormMonthHelper;
 
+use function sprintf;
+
 class FormMonthTest extends CommonTestCase
 {
     protected function setUp()

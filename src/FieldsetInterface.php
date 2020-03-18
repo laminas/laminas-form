@@ -11,6 +11,7 @@ namespace Laminas\Form;
 use Countable;
 use IteratorAggregate;
 use Laminas\Hydrator\HydratorInterface;
+use Traversable;
 
 interface FieldsetInterface extends
     Countable,
@@ -25,12 +26,12 @@ interface FieldsetInterface extends
      * $flags could contain metadata such as the alias under which to register
      * the element or fieldset, order in which to prioritize it, etc.
      *
-     * @param  array|\Traversable|ElementInterface $elementOrFieldset Typically, only allow objects implementing
-     *                                                                ElementInterface; however, keeping it flexible
-     *                                                                to allow a factory-based form
-     *                                                                implementation as well
+     * @param  array|Traversable|ElementInterface $elementOrFieldset Typically, only allow objects implementing
+     *                                                               ElementInterface; however, keeping it flexible
+     *                                                               to allow a factory-based form
+     *                                                               implementation as well
      * @param  array $flags
-     * @return FieldsetInterface
+     * @return $this
      */
     public function add($elementOrFieldset, array $flags = []);
 
@@ -54,16 +55,16 @@ interface FieldsetInterface extends
      * Remove a named element or fieldset
      *
      * @param  string $elementOrFieldset
-     * @return FieldsetInterface
+     * @return $this
      */
     public function remove($elementOrFieldset);
 
     /**
      * Set/change the priority of an element or fieldset
      *
-     * @param string $elementOrFieldset
-     * @param int $priority
-     * @return FieldsetInterface
+     * @param  string $elementOrFieldset
+     * @param  int    $priority
+     * @return $this
      */
     public function setPriority($elementOrFieldset, $priority);
 
@@ -72,7 +73,7 @@ interface FieldsetInterface extends
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|\Traversable
+     * @return array|Traversable
      */
     public function getElements();
 
@@ -81,14 +82,14 @@ interface FieldsetInterface extends
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|\Traversable
+     * @return array|Traversable
      */
     public function getFieldsets();
 
     /**
      * Recursively populate value attributes of elements
      *
-     * @param  array|\Traversable $data
+     * @param  array|Traversable $data
      * @return void
      */
     public function populateValues($data);
@@ -97,7 +98,7 @@ interface FieldsetInterface extends
      * Set the object used by the hydrator
      *
      * @param  $object
-     * @return FieldsetInterface
+     * @return $this
      */
     public function setObject($object);
 
@@ -120,7 +121,7 @@ interface FieldsetInterface extends
      * Set the hydrator to use when binding an object to the element
      *
      * @param  HydratorInterface $hydrator
-     * @return FieldsetInterface
+     * @return $this
      */
     public function setHydrator(HydratorInterface $hydrator);
 

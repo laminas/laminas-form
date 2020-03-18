@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormText as FormTextHelper;
 
+use function sprintf;
+
 class FormTextTest extends CommonTestCase
 {
     protected function setUp()

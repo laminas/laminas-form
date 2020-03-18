@@ -14,6 +14,14 @@ use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\View\Helper\Captcha\Image as ImageCaptchaHelper;
 use LaminasTest\Form\View\Helper\CommonTestCase;
 
+use function class_exists;
+use function extension_loaded;
+use function function_exists;
+use function is_dir;
+use function mkdir;
+use function sys_get_temp_dir;
+use function unlink;
+
 class ImageTest extends CommonTestCase
 {
     protected $tmpDir;
@@ -25,11 +33,11 @@ class ImageTest extends CommonTestCase
             $this->markTestSkipped('The GD extension is not available.');
             return;
         }
-        if (! function_exists("imagepng")) {
-            $this->markTestSkipped("Image CAPTCHA requires PNG support");
+        if (! function_exists('imagepng')) {
+            $this->markTestSkipped('Image CAPTCHA requires PNG support');
         }
-        if (! function_exists("imageftbbox")) {
-            $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
+        if (! function_exists('imageftbbox')) {
+            $this->markTestSkipped('Image CAPTCHA requires FT fonts support');
         }
 
         if (! class_exists(ImageCaptcha::class)) {
@@ -43,7 +51,6 @@ class ImageTest extends CommonTestCase
         if (! is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
-
 
         $this->helper  = new ImageCaptchaHelper();
         $this->captcha = new ImageCaptcha([

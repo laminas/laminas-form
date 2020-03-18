@@ -11,6 +11,9 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function sprintf;
+use function strtolower;
+
 class FormInput extends AbstractHelper
 {
     /**

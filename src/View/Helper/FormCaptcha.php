@@ -12,6 +12,9 @@ use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function method_exists;
+use function sprintf;
+
 class FormCaptcha extends AbstractHelper
 {
     /**

@@ -26,7 +26,7 @@ class Cat implements InputFilterAwareInterface
 
     /**
      * @param string $name
-     * @return Cat
+     * @return $this
      */
     public function setName($name)
     {
@@ -46,7 +46,7 @@ class Cat implements InputFilterAwareInterface
      * Set input filter
      *
      * @param  InputFilterInterface $inputFilter
-     * @return Cat
+     * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {

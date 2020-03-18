@@ -12,6 +12,8 @@ use Laminas\Form\Form;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 
+use function class_exists;
+
 class CreateAddressForm extends Form
 {
     public function __construct()
@@ -22,8 +24,8 @@ class CreateAddressForm extends Form
             ->setAttribute('method', 'post')
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator(false)
-                : new ClassMethods(false)
+                    ? new ClassMethodsHydrator(false)
+                    : new ClassMethods(false)
             )
             ->setInputFilter(new InputFilter());
 

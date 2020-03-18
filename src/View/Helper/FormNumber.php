@@ -31,7 +31,7 @@ class FormNumber extends FormInput
         'readonly'       => true,
         'required'       => true,
         'type'           => true,
-        'value'          => true
+        'value'          => true,
     ];
 
     /**
