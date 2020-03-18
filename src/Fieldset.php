@@ -504,13 +504,11 @@ class Fieldset extends Element implements FieldsetInterface
         if (is_object($object) && $this->allowedObjectBindingClass()) {
             $objectClass = ltrim($this->allowedObjectBindingClass(), '\\');
             $reflection = new ClassReflection($object);
-            $validBindingClass = (
-                $reflection->getName() == $objectClass
-                || $reflection->isSubclassOf($this->allowedObjectBindingClass())
-            );
+            $validBindingClass = $reflection->getName() == $objectClass
+                || $reflection->isSubclassOf($this->allowedObjectBindingClass());
         }
 
-        return ($validBindingClass || $this->object && $object instanceof $this->object);
+        return $validBindingClass || ($this->object && $object instanceof $this->object);
     }
 
     /**
@@ -543,8 +541,8 @@ class Fieldset extends Element implements FieldsetInterface
             } else {
                 $this->setHydrator(
                     class_exists(Hydrator\ArraySerializableHydrator::class)
-                    ? new Hydrator\ArraySerializableHydrator()
-                    : new Hydrator\ArraySerializable()
+                        ? new Hydrator\ArraySerializableHydrator()
+                        : new Hydrator\ArraySerializable()
                 );
             }
         }

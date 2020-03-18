@@ -23,8 +23,8 @@ class OrphansFieldset extends Fieldset implements InputFilterProviderInterface
         $this
             ->setHydrator(
                 class_exists(ArraySerializableHydrator::class)
-                ? new ArraySerializableHydrator()
-                : new ArraySerializable()
+                    ? new ArraySerializableHydrator()
+                    : new ArraySerializable()
             )
             ->setObject(new Orphan());
 

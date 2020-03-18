@@ -425,10 +425,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
         }
 
         $value = (bool) $value;
-        return ($value
+        return $value
             ? $this->booleanAttributes[$attribute]['on']
-            : $this->booleanAttributes[$attribute]['off']
-        );
+            : $this->booleanAttributes[$attribute]['off'];
     }
 
     /**

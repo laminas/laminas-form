@@ -123,13 +123,11 @@ class DateTimeTest extends TestCase
     public function testFailsWithInvalidMinSpecification()
     {
         $element = new DateTimeElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'min'       => '2000-01-01T00',
             'step'      => '1',
-            ]
-        );
+        ]);
 
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
@@ -138,13 +136,11 @@ class DateTimeTest extends TestCase
     public function testFailsWithInvalidMaxSpecification()
     {
         $element = new DateTimeElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'max'       => '2001-01-01T00',
             'step'      => '1',
-            ]
-        );
+        ]);
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
     }

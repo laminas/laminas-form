@@ -124,8 +124,8 @@ class DateTest extends TestCase
     {
         $element = new DateElement('foo');
         $element->setAttributes([
-            'min'       => '01-01-2012',
-            'max'       => '31-12-2012',
+            'min' => '01-01-2012',
+            'max' => '31-12-2012',
         ]);
         $element->setFormat('d-m-Y');
 
@@ -162,13 +162,11 @@ class DateTest extends TestCase
     public function testFailsWithInvalidMinSpecification()
     {
         $element = new DateElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'min'       => '2000-01-01T00',
             'step'      => '1',
-            ]
-        );
+        ]);
 
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
@@ -177,13 +175,11 @@ class DateTest extends TestCase
     public function testFailsWithInvalidMaxSpecification()
     {
         $element = new DateElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'max'       => '2001-01-01T00',
             'step'      => '1',
-            ]
-        );
+        ]);
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
     }

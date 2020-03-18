@@ -39,11 +39,9 @@ class Time extends DateTime
     protected function getStepValidator()
     {
         $format    = $this->getFormat();
-        $stepValue = (isset($this->attributes['step']))
-                     ? $this->attributes['step'] : 60; // Seconds
+        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 60; // Seconds
 
-        $baseValue = (isset($this->attributes['min']))
-                     ? $this->attributes['min'] : date($format, 0);
+        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : date($format, 0);
 
         return new DateStepValidator([
             'format'    => $format,

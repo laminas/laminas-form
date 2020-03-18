@@ -24,8 +24,8 @@ class CustomForm extends Form
             ->setAttribute('method', 'post')
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
+                    ? new ClassMethodsHydrator()
+                    : new ClassMethods()
             );
 
         $field1 = new Element('name', ['label' => 'Name']);

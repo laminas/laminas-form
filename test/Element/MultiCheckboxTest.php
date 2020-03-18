@@ -124,9 +124,9 @@ class MultiCheckboxTest extends TestCase
     {
         $element = new MultiCheckboxElement();
         $element->setOptions([
-                                  'value_options' => ['bar' => 'baz'],
-                                  'options' => ['foo' => 'bar'],
-                             ]);
+            'value_options' => ['bar' => 'baz'],
+            'options' => ['foo' => 'bar'],
+        ]);
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
     }

@@ -442,8 +442,8 @@ class FieldsetTest extends TestCase
     public function testSetOptions()
     {
         $this->fieldset->setOptions([
-                                   'foo' => 'bar',
-                              ]);
+            'foo' => 'bar',
+        ]);
         $option = $this->fieldset->getOption('foo');
 
         $this->assertEquals('bar', $option);
@@ -452,8 +452,8 @@ class FieldsetTest extends TestCase
     public function testSetOptionsUseAsBaseFieldset()
     {
         $this->fieldset->setOptions([
-                                   'use_as_base_fieldset' => 'bar',
-                              ]);
+            'use_as_base_fieldset' => 'bar',
+        ]);
         $option = $this->fieldset->getOption('use_as_base_fieldset');
 
         $this->assertEquals('bar', $option);
@@ -462,8 +462,8 @@ class FieldsetTest extends TestCase
     public function testSetOptionAllowedObjectBindingClass()
     {
         $this->fieldset->setOptions([
-                                         'allowed_object_binding_class' => 'bar',
-                                    ]);
+            'allowed_object_binding_class' => 'bar',
+        ]);
         $option = $this->fieldset->getOption('allowed_object_binding_class');
 
         $this->assertEquals('bar', $option);
@@ -500,8 +500,8 @@ class FieldsetTest extends TestCase
         $form->setObject($object);
         $form->setHydrator(
             class_exists(Hydrator\ObjectPropertyHydrator::class)
-            ? new Hydrator\ObjectPropertyHydrator()
-            : new Hydrator\ObjectProperty()
+                ? new Hydrator\ObjectPropertyHydrator()
+                : new Hydrator\ObjectProperty()
         );
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
@@ -529,8 +529,8 @@ class FieldsetTest extends TestCase
         $form->setObject($object);
         $form->setHydrator(
             class_exists(Hydrator\ObjectPropertyHydrator::class)
-            ? new Hydrator\ObjectPropertyHydrator()
-            : new Hydrator\ObjectProperty()
+                ? new Hydrator\ObjectPropertyHydrator()
+                : new Hydrator\ObjectProperty()
         );
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
@@ -572,8 +572,8 @@ class FieldsetTest extends TestCase
         $form->add(new Element('foo'));
         $form->setHydrator(
             class_exists(Hydrator\ObjectPropertyHydrator::class)
-            ? new Hydrator\ObjectPropertyHydrator()
-            : new Hydrator\ObjectProperty()
+                ? new Hydrator\ObjectPropertyHydrator()
+                : new Hydrator\ObjectProperty()
         );
 
         $object      = new \stdClass();

@@ -21,8 +21,8 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         $this
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator(false)
-                : new ClassMethods(false)
+                    ? new ClassMethodsHydrator(false)
+                    : new ClassMethods(false)
             )
             ->setObject(new Entity\Address());
 
@@ -38,10 +38,10 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         $phones = new \Laminas\Form\Element\Collection('phones');
         $phones->setLabel('Phone numbers')
                ->setOptions([
-                    'count'          => 2,
-                    'allow_add'      => true,
-                    'allow_remove'   => true,
-                    'target_element' => new PhoneFieldset(),
+                   'count'          => 2,
+                   'allow_add'      => true,
+                   'allow_remove'   => true,
+                   'target_element' => new PhoneFieldset(),
                ]);
         $this->add($phones);
     }

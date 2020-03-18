@@ -50,11 +50,9 @@ class Month extends DateTime
      */
     protected function getStepValidator()
     {
-        $stepValue = (isset($this->attributes['step']))
-                     ? $this->attributes['step'] : 1; // Months
+        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Months
 
-        $baseValue = (isset($this->attributes['min']))
-                     ? $this->attributes['min'] : '1970-01';
+        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : '1970-01';
 
         return new DateStepValidator([
             'format'    => "Y-m",

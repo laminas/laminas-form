@@ -381,8 +381,8 @@ class CollectionTest extends TestCase
         $form = new \Laminas\Form\Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
@@ -403,18 +403,16 @@ class CollectionTest extends TestCase
 
         $form->bind($product);
 
-        $form->setData(
-            ["product" =>
-                [
-                    "name" => "franz",
-                    "price" => 13,
-                    "categories" => [
-                        ["name" => "sepp"],
-                        ["name" => "herbert"],
-                    ],
+        $form->setData([
+            "product" => [
+                "name" => "franz",
+                "price" => 13,
+                "categories" => [
+                    ["name" => "sepp"],
+                    ["name" => "herbert"],
                 ],
-            ]
-        );
+            ],
+        ]);
 
         $objectAfterExtractHash = spl_object_hash(
             $this->productFieldset->get("categories")->getTargetElement()->getObject()
@@ -433,8 +431,8 @@ class CollectionTest extends TestCase
         $form = new \Laminas\Form\Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
@@ -451,18 +449,16 @@ class CollectionTest extends TestCase
 
         $form->bind($product);
 
-        $form->setData(
-            ["product" =>
-                [
-                    "name" => "franz",
-                    "price" => 13,
-                    "categories" => [
-                        ["name" => "sepp"],
-                        ["name" => "herbert"],
-                    ],
+        $form->setData([
+            "product" => [
+                "name" => "franz",
+                "price" => 13,
+                "categories" => [
+                    ["name" => "sepp"],
+                    ["name" => "herbert"],
                 ],
-            ]
-        );
+            ],
+        ]);
         $form->isValid();
 
         $categories = $product->getCategories();
@@ -486,8 +482,8 @@ class CollectionTest extends TestCase
         $form = new \Laminas\Form\Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $form->add($this->productFieldset);
 
@@ -503,18 +499,16 @@ class CollectionTest extends TestCase
 
         $form->bind($product);
 
-        $form->setData(
-            ["product" =>
-                [
-                    "name" => "franz",
-                    "price" => 13,
-                    "categories" => [
-                        ["name" => "sepp"],
-                        ["name" => "herbert"],
-                    ],
+        $form->setData([
+            "product" => [
+                "name" => "franz",
+                "price" => 13,
+                "categories" => [
+                    ["name" => "sepp"],
+                    ["name" => "herbert"],
                 ],
-            ]
-        );
+            ],
+        ]);
         $form->isValid();
 
         $categories = $product->getCategories();
@@ -531,8 +525,8 @@ class CollectionTest extends TestCase
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
 
         $phone = new \LaminasTest\Form\TestAsset\PhoneFieldset();
@@ -574,16 +568,16 @@ class CollectionTest extends TestCase
         $addressesFieldset = new AddressFieldset();
         $addressesFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $addressesFieldset->remove('city');
 
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'addresses',
@@ -626,14 +620,14 @@ class CollectionTest extends TestCase
         $form = new \Laminas\Form\Form();
         $this->productFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $form->add($this->productFieldset);
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
 
         $product = new Product();
@@ -766,8 +760,8 @@ class CollectionTest extends TestCase
         $targetElement
             ->setHydrator(
                 class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
+                    ? new ObjectPropertyHydrator()
+                    : new ObjectProperty()
             )
             ->setObject($obj1);
 
@@ -788,24 +782,24 @@ class CollectionTest extends TestCase
         $productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
         $productFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
 
         $mainFieldset = new Fieldset();
         $mainFieldset->setObject(new stdClass);
         $mainFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $mainFieldset->add($productFieldset);
 
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'collection',
@@ -930,8 +924,8 @@ class CollectionTest extends TestCase
         // this test is using a hydrator set on the collection
         $collection->setHydrator(
             class_exists(ArraySerializableHydrator::class)
-            ? new ArraySerializableHydrator()
-            : new ArraySerializable()
+                ? new ArraySerializableHydrator()
+                : new ArraySerializable()
         );
 
         $this->prepareForExtractWithCustomTraversable($collection);
@@ -952,8 +946,8 @@ class CollectionTest extends TestCase
         $targetElement = $collection->getTargetElement();
         $targetElement->setHydrator(
             class_exists(ArraySerializableHydrator::class)
-            ? new ArraySerializableHydrator()
-            : new ArraySerializable()
+                ? new ArraySerializableHydrator()
+                : new ArraySerializable()
         );
         $obj1 = new ArrayModel();
         $targetElement->setObject($obj1);
@@ -1040,16 +1034,16 @@ class CollectionTest extends TestCase
         $productFieldset = new ProductFieldset();
         $productFieldset->setHydrator(
             class_exists(ArraySerializableHydrator::class)
-            ? new ArraySerializableHydrator()
-            : new ArraySerializable()
+                ? new ArraySerializableHydrator()
+                : new ArraySerializable()
         );
         $productFieldset->setObject(new Product());
 
         $nestedFieldset = new Fieldset('nested');
         $nestedFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $nestedFieldset->setObject(new stdClass());
         $nestedFieldset->add([
@@ -1065,8 +1059,8 @@ class CollectionTest extends TestCase
         $mainFieldset->setUseAsBaseFieldset(true);
         $mainFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $mainFieldset->setObject(new stdClass());
         $mainFieldset->add([
@@ -1081,8 +1075,8 @@ class CollectionTest extends TestCase
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add($mainFieldset);
 
@@ -1131,15 +1125,15 @@ class CollectionTest extends TestCase
         $addressesFieldeset = new \LaminasTest\Form\TestAsset\AddressFieldset();
         $addressesFieldeset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
 
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'addresses',
@@ -1311,16 +1305,16 @@ class CollectionTest extends TestCase
         $mainFieldset->setObject(new \ArrayObject());
         $mainFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
 
         $form = new Form();
         $form->setObject(new \stdClass());
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'collection',

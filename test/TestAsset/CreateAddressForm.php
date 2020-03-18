@@ -22,8 +22,8 @@ class CreateAddressForm extends Form
             ->setAttribute('method', 'post')
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator(false)
-                : new ClassMethods(false)
+                    ? new ClassMethodsHydrator(false)
+                    : new ClassMethods(false)
             )
             ->setInputFilter(new InputFilter());
 

@@ -59,13 +59,11 @@ class DateTimeLocalTest extends TestCase
     public function testFailsWithInvalidMinSpecification()
     {
         $element = new DateTimeLocalElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'min'       => '2001-01-01T00:00Z',
             'step'      => '1',
-            ]
-        );
+        ]);
 
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
@@ -74,13 +72,11 @@ class DateTimeLocalTest extends TestCase
     public function testFailsWithInvalidMaxSpecification()
     {
         $element = new DateTimeLocalElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'max'       => '2001-01-01T00:00Z',
             'step'      => '1',
-            ]
-        );
+        ]);
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
     }

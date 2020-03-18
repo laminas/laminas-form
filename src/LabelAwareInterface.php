@@ -57,7 +57,7 @@ interface LabelAwareInterface
      */
     public function getLabelOptions();
 
-     /**
+    /**
      * Set a single label optionn
      *
      * @param  string $key

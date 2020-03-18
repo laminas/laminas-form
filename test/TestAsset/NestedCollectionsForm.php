@@ -21,8 +21,8 @@ class NestedCollectionsForm extends Form
             'name' => 'testFieldset',
             'type' => 'Laminas\Form\Fieldset',
             'options' => [
-                 'use_as_base_fieldset' => true,
-             ],
+                'use_as_base_fieldset' => true,
+            ],
             'elements' => [
                 [
                     'spec' => [

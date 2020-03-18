@@ -21,8 +21,8 @@ class CityFieldset extends Fieldset implements InputFilterProviderInterface
         $this
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator(false)
-                : new ClassMethods(false)
+                    ? new ClassMethodsHydrator(false)
+                    : new ClassMethods(false)
             )
             ->setObject(new Entity\City());
 

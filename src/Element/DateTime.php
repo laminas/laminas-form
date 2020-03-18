@@ -184,11 +184,9 @@ class DateTime extends Element implements InputProviderInterface
     protected function getStepValidator()
     {
         $format    = $this->getFormat();
-        $stepValue = (isset($this->attributes['step']))
-                   ? $this->attributes['step'] : 1; // Minutes
+        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Minutes
 
-        $baseValue = (isset($this->attributes['min']))
-                   ? $this->attributes['min'] : date($format, 0);
+        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : date($format, 0);
 
         return new DateStepValidator([
             'format'    => $format,

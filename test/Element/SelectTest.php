@@ -40,11 +40,15 @@ class SelectTest extends TestCase
     {
         $element = new SelectElement();
         $element->setValueOptions([
-          ['label' => 'group 1', 'options' => [
-            'Option 1' => 'Label 1',
-            'Option 2' => 'Label 2',
-            'Option 3' => 'Label 2',
-          ],],]);
+            [
+                'label' => 'group 1',
+                'options' => [
+                    'Option 1' => 'Label 1',
+                    'Option 2' => 'Label 2',
+                    'Option 3' => 'Label 2',
+                ],
+            ],
+        ]);
 
         $inputSpec = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
@@ -57,11 +61,15 @@ class SelectTest extends TestCase
     {
         $element = new SelectElement();
         $element->setValueOptions([
-          ['label' => 'group 1', 'options' => [
-            ['value' => 'Option 1', 'label' => 'Label 1'],
-            ['value' => 'Option 2', 'label' => 'Label 2'],
-            ['value' => 'Option 3', 'label' => 'Label 3'],
-          ],],]);
+            [
+                'label' => 'group 1',
+                'options' => [
+                    ['value' => 'Option 1', 'label' => 'Label 1'],
+                    ['value' => 'Option 2', 'label' => 'Label 2'],
+                    ['value' => 'Option 3', 'label' => 'Label 3'],
+                ],
+            ],
+        ]);
 
         $inputSpec = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];

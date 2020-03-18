@@ -304,11 +304,11 @@ class FormMultiCheckboxTest extends CommonTestCase
     {
         $element = new MultiCheckboxElement('foo');
         $element->setValueOptions([
-                                       [
-                                           'label' => 'label1',
-                                           'value' => 'value1',
-                                       ],
-                                  ]);
+            [
+                'label' => 'label1',
+                'value' => 'value1',
+            ],
+        ]);
         $this->helper->__invoke($element, 'append');
 
         $this->assertSame('append', $this->helper->getLabelPosition());

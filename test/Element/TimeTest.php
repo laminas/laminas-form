@@ -62,13 +62,11 @@ class TimeTest extends TestCase
     public function testFailsWithInvalidMinSpecification()
     {
         $element = new TimeElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'min'       => '00:00',
             'step'      => '1',
-            ]
-        );
+        ]);
 
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
@@ -77,13 +75,11 @@ class TimeTest extends TestCase
     public function testFailsWithInvalidMaxSpecification()
     {
         $element = new TimeElement('foo');
-        $element->setAttributes(
-            [
+        $element->setAttributes([
             'inclusive' => true,
             'max'       => '00:00',
             'step'      => '1',
-            ]
-        );
+        ]);
         $this->expectException(InvalidArgumentException::class);
         $element->getInputSpecification();
     }
