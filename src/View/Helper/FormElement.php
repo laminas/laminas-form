@@ -8,6 +8,7 @@
 
 namespace Laminas\Form\View\Helper;
 
+use Laminas\Form\Element;
 use Laminas\Form\ElementInterface;
 use Laminas\View\Helper\AbstractHelper as BaseAbstractHelper;
 
@@ -21,13 +22,13 @@ class FormElement extends BaseAbstractHelper
      * @var array
      */
     protected $classMap = [
-        'Laminas\Form\Element\Button'         => 'formbutton',
-        'Laminas\Form\Element\Captcha'        => 'formcaptcha',
-        'Laminas\Form\Element\Csrf'           => 'formhidden',
-        'Laminas\Form\Element\Collection'     => 'formcollection',
-        'Laminas\Form\Element\DateTimeSelect' => 'formdatetimeselect',
-        'Laminas\Form\Element\DateSelect'     => 'formdateselect',
-        'Laminas\Form\Element\MonthSelect'    => 'formmonthselect',
+        Element\Button::class         => 'formbutton',
+        Element\Captcha::class        => 'formcaptcha',
+        Element\Csrf::class           => 'formhidden',
+        Element\Collection::class     => 'formcollection',
+        Element\DateTimeSelect::class => 'formdatetimeselect',
+        Element\DateSelect::class     => 'formdateselect',
+        Element\MonthSelect::class    => 'formmonthselect',
     ];
 
     /**

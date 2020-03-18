@@ -137,7 +137,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Laminas\Filter\StringTrim'],
+                ['name' => \Laminas\Filter\StringTrim::class],
             ],
             'validators' => [
                 $this->getCsrfValidator(),

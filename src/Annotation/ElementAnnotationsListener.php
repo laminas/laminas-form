@@ -9,6 +9,10 @@
 namespace Laminas\Form\Annotation;
 
 use Laminas\EventManager\EventManagerInterface;
+use Laminas\Form\Element\Collection;
+use Laminas\Form\Fieldset;
+use Laminas\Form\InputFilterProviderFieldset;
+use Laminas\InputFilter\InputFilter;
 use Laminas\Stdlib\ArrayObject;
 
 /**
@@ -133,16 +137,16 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
                 //use input filter provider fieldset so we can compose the input filter into the fieldset
                 //it is assumed that if someone uses a custom fieldset, they will take care of the input
                 //filtering themselves or consume the input_filter_spec option.
-                $specification['type'] = 'Laminas\Form\InputFilterProviderFieldset';
+                $specification['type'] = InputFilterProviderFieldset::class;
             }
 
             $inputFilter = $specification['input_filter'];
             if (! isset($inputFilter['type'])) {
-                $inputFilter['type'] = 'Laminas\InputFilter\InputFilter';
+                $inputFilter['type'] = InputFilter::class;
             }
             unset($specification['input_filter']);
 
-            $elementSpec['spec']['type'] = 'Laminas\Form\Element\Collection';
+            $elementSpec['spec']['type'] = Collection::class;
             $elementSpec['spec']['name'] = $name;
             $elementSpec['spec']['options'] = new ArrayObject($this->mergeOptions($elementSpec, $annotation));
             $elementSpec['spec']['options']['target_element'] = $specification;
@@ -155,14 +159,14 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             // Compose input filter into parent input filter
             $inputFilter = $specification['input_filter'];
             if (! isset($inputFilter['type'])) {
-                $inputFilter['type'] = 'Laminas\InputFilter\InputFilter';
+                $inputFilter['type'] = InputFilter::class;
             }
             $e->setParam('inputSpec', $inputFilter);
             unset($specification['input_filter']);
 
             // Compose specification as a fieldset into parent form/fieldset
             if (! isset($specification['type'])) {
-                $specification['type'] = 'Laminas\Form\Fieldset';
+                $specification['type'] = Fieldset::class;
             }
 
             if (isset($elementSpec['spec']['options'])) {
@@ -224,7 +228,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     public function handleExcludeAnnotation($e)
     {
         $annotations = $e->getParam('annotations');
-        if ($annotations->hasAnnotation('Laminas\Form\Annotation\Exclude')) {
+        if ($annotations->hasAnnotation(Exclude::class)) {
             return true;
         }
         return false;

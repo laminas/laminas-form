@@ -45,7 +45,7 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
     public function getInputSpecification()
     {
         return [
-            'type'     => 'Laminas\InputFilter\FileInput',
+            'type'     => \Laminas\InputFilter\FileInput::class,
             'name'     => $this->getName(),
             'required' => false,
         ];

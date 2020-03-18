@@ -17,8 +17,10 @@ use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerAwareInterface;
 use Laminas\EventManager\EventManagerInterface;
+use Laminas\Form\Element;
 use Laminas\Form\Exception;
 use Laminas\Form\Factory;
+use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormFactoryAwareInterface;
 use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
@@ -344,11 +346,11 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         $elementSpec = $params['elementSpec'];
         $type        = isset($elementSpec['spec']['type'])
             ? $elementSpec['spec']['type']
-            : 'Laminas\Form\Element';
+            : Element::class;
 
         // Compose as a fieldset or an element, based on specification type.
         // If preserve defined order is true, all elements are composed as elements to keep their ordering
-        if (! $this->preserveDefinedOrder() && is_subclass_of($type, 'Laminas\Form\FieldsetInterface')) {
+        if (! $this->preserveDefinedOrder() && is_subclass_of($type, FieldsetInterface::class)) {
             if (! isset($formSpec['fieldsets'])) {
                 $formSpec['fieldsets'] = [];
             }

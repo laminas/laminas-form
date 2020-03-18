@@ -208,7 +208,7 @@ class DateTime extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Laminas\Filter\StringTrim'],
+                ['name' => \Laminas\Filter\StringTrim::class],
             ],
             'validators' => $this->getValidators(),
         ];
