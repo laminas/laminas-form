@@ -26,6 +26,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - [#55](https://github.com/laminas/laminas-form/pull/55) fixes accepting Traversable object in `Fieldset::populateValues`.
 
+- [#60](https://github.com/laminas/laminas-form/pull/60) fixes accepting Traversable object in `Element\Collection::populateValues` and `Element\Collection::populateValues`.
+
+- [#60](https://github.com/laminas/laminas-form/pull/60) fixes accepting Traversable object in `setOptions` of numerous form element classes.
+
 ## 2.14.3 - 2019-10-04
 
 ### Added
