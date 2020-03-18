@@ -879,7 +879,7 @@ class CollectionTest extends TestCase
                 $this->assertInstanceOf('LaminasTest\Form\TestAsset\CategoryFieldset', $_category);
                 $this->assertInstanceOf('LaminasTest\Form\TestAsset\Entity\Category', $_category->getObject());
             }
-        };
+        }
 
         // test for correct extract and populate form values
         // test for collection -> fieldset -> field value
@@ -1116,7 +1116,7 @@ class CollectionTest extends TestCase
                     }
                 }
             }
-        };
+        }
     }
 
     public function testNestedCollections()
@@ -1223,7 +1223,7 @@ class CollectionTest extends TestCase
         foreach ($form->get('names') as $field) {
             $this->assertEquals($names[$i], $field->getValue());
             $i++;
-        };
+        }
     }
 
     public function testSettingSomeDataButNoneForCollectionReturnsSpecifiedNumberOfElementsAfterPrepare()
