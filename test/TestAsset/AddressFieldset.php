@@ -38,7 +38,7 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add($street);
         $this->add($city);
 
-        $phones = new Element('phones');
+        $phones = new Element\Collection('phones');
         $phones->setLabel('Phone numbers')
                ->setOptions([
                    'count'          => 2,
