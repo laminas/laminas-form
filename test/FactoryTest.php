@@ -19,6 +19,9 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 
+use function class_exists;
+use function count;
+
 class FactoryTest extends TestCase
 {
     /**

@@ -15,6 +15,17 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Locale;
 
+use function extension_loaded;
+use function is_numeric;
+use function method_exists;
+use function preg_split;
+use function sprintf;
+use function str_replace;
+use function stripos;
+
+use const PREG_SPLIT_DELIM_CAPTURE;
+use const PREG_SPLIT_NO_EMPTY;
+
 class FormMonthSelect extends AbstractHelper
 {
     /**

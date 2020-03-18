@@ -15,6 +15,9 @@ use Laminas\Hydrator;
 use Laminas\InputFilter\InputFilter;
 use PHPUnit\Framework\TestCase;
 
+use function class_exists;
+use function count;
+
 class FieldsetTest extends TestCase
 {
     /** @var Fieldset */

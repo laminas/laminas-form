@@ -12,6 +12,13 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
+use function array_merge;
+use function get_class;
+use function gettype;
+use function is_array;
+use function is_object;
+use function sprintf;
+
 class FormLabel extends AbstractHelper
 {
     const APPEND  = 'append';

@@ -17,6 +17,16 @@ use Laminas\Stdlib\ArrayUtils;
 use Laminas\Stdlib\PriorityList;
 use Traversable;
 
+use function array_key_exists;
+use function class_exists;
+use function get_class;
+use function gettype;
+use function in_array;
+use function is_array;
+use function is_object;
+use function ltrim;
+use function sprintf;
+
 class Fieldset extends Element implements FieldsetInterface
 {
     /**

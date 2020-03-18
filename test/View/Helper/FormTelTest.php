@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormTel as FormTelHelper;
 
+use function sprintf;
+
 class FormTelTest extends CommonTestCase
 {
     protected function setUp()

@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormUrl as FormUrlHelper;
 
+use function sprintf;
+
 class FormUrlTest extends CommonTestCase
 {
     protected function setUp()

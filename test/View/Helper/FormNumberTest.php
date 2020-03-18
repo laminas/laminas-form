@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormNumber as FormNumberHelper;
 
+use function sprintf;
+
 class FormNumberTest extends CommonTestCase
 {
     protected function setUp()

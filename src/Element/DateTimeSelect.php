@@ -16,6 +16,9 @@ use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 use Traversable;
 
+use function is_string;
+use function sprintf;
+
 class DateTimeSelect extends DateSelect
 {
     /**

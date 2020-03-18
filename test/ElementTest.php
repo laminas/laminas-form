@@ -11,6 +11,8 @@ namespace LaminasTest\Form;
 use Laminas\Form\Element;
 use PHPUnit\Framework\TestCase;
 
+use function array_merge;
+
 class ElementTest extends TestCase
 {
     public function testAttributesAreEmptyByDefault()

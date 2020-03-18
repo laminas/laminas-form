@@ -25,6 +25,15 @@ use Laminas\Form\FormFactoryAwareInterface;
 use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
 
+use function class_exists;
+use function get_class;
+use function is_array;
+use function is_object;
+use function is_string;
+use function is_subclass_of;
+use function sprintf;
+use function var_export;
+
 /**
  * Parses the properties of a class for annotations in order to create a form
  * and input filter definition.

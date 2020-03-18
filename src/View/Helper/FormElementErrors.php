@@ -12,6 +12,16 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Traversable;
 
+use function array_merge;
+use function array_walk_recursive;
+use function get_class;
+use function gettype;
+use function implode;
+use function is_array;
+use function is_object;
+use function iterator_to_array;
+use function sprintf;
+
 class FormElementErrors extends AbstractHelper
 {
     /**@+

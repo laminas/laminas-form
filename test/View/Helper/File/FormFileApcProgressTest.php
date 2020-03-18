@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper\File;
 use Laminas\Form\View\Helper\File\FormFileApcProgress;
 use LaminasTest\Form\View\Helper\CommonTestCase;
 
+use function ini_get;
+
 class FormFileApcProgressTest extends CommonTestCase
 {
     protected function setUp()

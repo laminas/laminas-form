@@ -13,6 +13,8 @@ use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\View\Helper\Captcha\Dumb as DumbCaptchaHelper;
 use LaminasTest\Form\View\Helper\CommonTestCase;
 
+use function strrev;
+
 class DumbTest extends CommonTestCase
 {
     protected function setUp()

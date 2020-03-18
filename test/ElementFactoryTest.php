@@ -16,6 +16,10 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasTest\Form\TestAsset\ArgumentRecorder;
 use PHPUnit\Framework\TestCase;
 
+use function uniqid;
+
+use const PHP_INT_MAX;
+
 class ElementFactoryTest extends TestCase
 {
     public function validCreationOptions()

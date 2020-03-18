@@ -11,6 +11,8 @@ namespace Laminas\Form\Element;
 use DateInterval;
 use Laminas\Validator\DateStep as DateStepValidator;
 
+use function date;
+
 class Time extends DateTime
 {
     const DATETIME_FORMAT = 'H:i:s';

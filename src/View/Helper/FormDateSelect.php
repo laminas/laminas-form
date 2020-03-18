@@ -15,6 +15,9 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
+use function is_numeric;
+use function sprintf;
+
 class FormDateSelect extends FormMonthSelectHelper
 {
     /**

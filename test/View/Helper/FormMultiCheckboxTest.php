@@ -12,6 +12,9 @@ use Laminas\Form\Element;
 use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
 use Laminas\Form\View\Helper\FormMultiCheckbox as FormMultiCheckboxHelper;
 
+use function sprintf;
+use function substr_count;
+
 class FormMultiCheckboxTest extends CommonTestCase
 {
     protected function setUp()

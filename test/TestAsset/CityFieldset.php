@@ -13,6 +13,8 @@ use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
+use function class_exists;
+
 class CityFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()

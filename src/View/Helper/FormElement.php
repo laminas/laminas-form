@@ -12,6 +12,8 @@ use Laminas\Form\Element;
 use Laminas\Form\ElementInterface;
 use Laminas\View\Helper\AbstractHelper as BaseAbstractHelper;
 
+use function method_exists;
+
 class FormElement extends BaseAbstractHelper
 {
     const DEFAULT_HELPER = 'forminput';

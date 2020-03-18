@@ -15,6 +15,12 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
+use function in_array;
+use function is_null;
+use function method_exists;
+use function sprintf;
+use function strtolower;
+
 class FormRow extends AbstractHelper
 {
     const LABEL_APPEND  = 'append';

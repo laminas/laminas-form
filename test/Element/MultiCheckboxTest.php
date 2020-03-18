@@ -11,6 +11,9 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
 use PHPUnit\Framework\TestCase;
 
+use function count;
+use function get_class;
+
 class MultiCheckboxTest extends TestCase
 {
     public function useHiddenAttributeDataProvider()

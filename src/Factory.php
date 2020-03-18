@@ -16,6 +16,18 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
 
+use function class_exists;
+use function get_class;
+use function gettype;
+use function is_array;
+use function is_object;
+use function is_string;
+use function method_exists;
+use function sprintf;
+use function trigger_error;
+
+use const E_USER_DEPRECATED;
+
 class Factory
 {
     /**

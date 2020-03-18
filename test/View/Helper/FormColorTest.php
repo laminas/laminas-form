@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormColor as FormColorHelper;
 
+use function sprintf;
+
 class FormColorTest extends CommonTestCase
 {
     protected function setUp()

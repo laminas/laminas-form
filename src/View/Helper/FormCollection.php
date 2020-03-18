@@ -16,6 +16,9 @@ use Laminas\Form\LabelAwareInterface;
 use Laminas\View\Helper\HelperInterface;
 use RuntimeException;
 
+use function method_exists;
+use function sprintf;
+
 class FormCollection extends AbstractHelper
 {
     /**

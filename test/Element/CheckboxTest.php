@@ -12,6 +12,8 @@ use Laminas\Form\Element\Checkbox as CheckboxElement;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class CheckboxTest extends TestCase
 {
     public function testProvidesValidDefaultValues()

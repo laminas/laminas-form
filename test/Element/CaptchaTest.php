@@ -16,6 +16,8 @@ use Laminas\Form\Factory;
 use LaminasTest\Form\TestAsset;
 use PHPUnit\Framework\TestCase;
 
+use function array_shift;
+
 class CaptchaTest extends TestCase
 {
     public function testCaptchaIsUndefinedByDefault()

@@ -13,6 +13,8 @@ use Laminas\Form\Element\DateSelect as DateSelectElement;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class DateSelectTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

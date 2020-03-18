@@ -12,6 +12,8 @@ use Laminas\Form\Element\Time as TimeElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class TimeTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

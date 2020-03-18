@@ -19,6 +19,8 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
 
+use function class_exists;
+
 class FormAbstractServiceFactoryTest extends TestCase
 {
     protected function setUp()

@@ -16,6 +16,16 @@ use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
 
+use function count;
+use function get_class;
+use function gettype;
+use function is_array;
+use function is_object;
+use function is_string;
+use function iterator_to_array;
+use function max;
+use function sprintf;
+
 class Collection extends Fieldset
 {
     /**

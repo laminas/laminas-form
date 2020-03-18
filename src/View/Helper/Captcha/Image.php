@@ -12,6 +12,8 @@ use Laminas\Captcha\Image as CaptchaAdapter;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function sprintf;
+
 class Image extends AbstractWord
 {
     /**

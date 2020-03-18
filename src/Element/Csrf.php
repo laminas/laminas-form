@@ -14,6 +14,8 @@ use Laminas\Form\FormInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Csrf as CsrfValidator;
 
+use function array_merge;
+
 class Csrf extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
     /**

@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormDateTime as FormDateTimeHelper;
 
+use function sprintf;
+
 class FormDateTimeTest extends CommonTestCase
 {
     protected function setUp()

@@ -13,6 +13,13 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\View\Helper\FormInput;
 
+use function array_key_exists;
+use function in_array;
+use function is_array;
+use function method_exists;
+use function sprintf;
+use function strtolower;
+
 abstract class AbstractWord extends FormInput
 {
     const CAPTCHA_APPEND  = 'append';

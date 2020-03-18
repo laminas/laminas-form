@@ -19,6 +19,8 @@ use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 use stdClass;
 
+use function get_class;
+
 class AnnotationBuilderFactoryTest extends TestCase
 {
     public function testFactoryReturnsAnnotationBuilder()

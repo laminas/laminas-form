@@ -13,6 +13,16 @@ use Laminas\Captcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\View\Helper\FormCaptcha as FormCaptchaHelper;
 
+use function class_exists;
+use function extension_loaded;
+use function function_exists;
+use function getenv;
+use function is_dir;
+use function mkdir;
+use function str_replace;
+use function sys_get_temp_dir;
+use function unlink;
+
 class FormCaptchaTest extends CommonTestCase
 {
     protected $testDir    = null;

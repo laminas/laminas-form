@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormReset as FormResetHelper;
 
+use function sprintf;
+
 class FormResetTest extends CommonTestCase
 {
     protected function setUp()

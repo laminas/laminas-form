@@ -20,6 +20,18 @@ use Laminas\InputFilter\ReplaceableInputInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
 
+use function array_key_exists;
+use function array_keys;
+use function array_shift;
+use function func_get_args;
+use function func_num_args;
+use function get_class;
+use function gettype;
+use function in_array;
+use function is_array;
+use function is_object;
+use function sprintf;
+
 class Form extends Fieldset implements FormInterface
 {
     /**

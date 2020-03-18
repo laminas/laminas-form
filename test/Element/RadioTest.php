@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Radio as RadioElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class RadioTest extends TestCase
 {
     public function useHiddenAttributeDataProvider()

@@ -8,6 +8,8 @@
 
 namespace LaminasTest\Form\TestAsset\Entity;
 
+use function get_object_vars;
+
 class Product
 {
     /**

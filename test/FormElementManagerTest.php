@@ -18,6 +18,13 @@ use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
+use function array_pop;
+use function array_shift;
+use function count;
+use function get_class;
+use function method_exists;
+use function strtoupper;
+
 /**
  * @group      Laminas_Form
  */

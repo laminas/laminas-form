@@ -12,6 +12,8 @@ use Laminas\Captcha\Figlet as CaptchaAdapter;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function sprintf;
+
 class Figlet extends AbstractWord
 {
     /**

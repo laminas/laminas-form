@@ -26,6 +26,13 @@ use Laminas\InputFilter\InputFilterInterface;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
+use function class_exists;
+use function count;
+use function extension_loaded;
+use function print_r;
+use function spl_object_hash;
+use function var_export;
+
 class FormTest extends TestCase
 {
     /**

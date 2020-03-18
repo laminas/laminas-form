@@ -13,6 +13,8 @@ use DateTimeZone;
 use Laminas\Form\Element\DateTime as DateTimeElement;
 use Laminas\Validator\DateStep as DateStepValidator;
 
+use function date;
+
 class Date extends DateTimeElement
 {
     const DATETIME_FORMAT = 'Y-m-d';

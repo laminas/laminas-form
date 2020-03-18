@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormPassword as FormPasswordHelper;
 
+use function sprintf;
+
 class FormPasswordTest extends CommonTestCase
 {
     protected function setUp()

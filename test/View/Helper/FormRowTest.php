@@ -16,6 +16,10 @@ use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit\Framework\TestCase;
 
+use function count;
+use function explode;
+use function get_class;
+
 class FormRowTest extends TestCase
 {
     /**

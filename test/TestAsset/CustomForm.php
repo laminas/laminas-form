@@ -14,6 +14,8 @@ use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Validator;
 
+use function class_exists;
+
 class CustomForm extends Form
 {
     public function __construct()

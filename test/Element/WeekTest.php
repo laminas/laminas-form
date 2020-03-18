@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Week as WeekElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class WeekTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

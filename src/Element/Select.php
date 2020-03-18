@@ -16,6 +16,9 @@ use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
 use Traversable;
 
+use function array_key_exists;
+use function is_array;
+
 class Select extends Element implements InputProviderInterface
 {
     /**

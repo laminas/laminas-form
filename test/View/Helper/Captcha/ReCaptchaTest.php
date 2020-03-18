@@ -13,6 +13,9 @@ use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\View\Helper\Captcha\ReCaptcha as ReCaptchaHelper;
 use LaminasTest\Form\View\Helper\CommonTestCase;
 
+use function class_exists;
+use function getenv;
+
 class ReCaptchaTest extends CommonTestCase
 {
     protected function setUp()

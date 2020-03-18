@@ -12,6 +12,8 @@ use Laminas\Form\Element\Csrf as CsrfElement;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class CsrfTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

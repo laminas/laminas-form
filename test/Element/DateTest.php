@@ -13,6 +13,11 @@ use Laminas\Form\Element\Date as DateElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+use function date;
+use function date_default_timezone_get;
+use function date_default_timezone_set;
+use function get_class;
+
 /**
  * @covers \Laminas\Form\Element\Date
  */

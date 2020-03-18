@@ -17,6 +17,8 @@ use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
+use function method_exists;
+
 class ServiceManagerTest extends TestCase
 {
     public function testInitInitializerShouldBeCalledAfterAllOtherInitializers()

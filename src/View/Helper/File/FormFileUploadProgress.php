@@ -11,6 +11,9 @@ namespace Laminas\Form\View\Helper\File;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\View\Helper\FormInput;
 
+use function sprintf;
+use function uniqid;
+
 /**
  * A view helper to render the hidden input with a UploadProgress id
  * for file uploads progress tracking.

@@ -13,6 +13,15 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
+use function array_key_exists;
+use function array_merge;
+use function implode;
+use function in_array;
+use function is_scalar;
+use function method_exists;
+use function sprintf;
+use function strtolower;
+
 class FormMultiCheckbox extends FormInput
 {
     const LABEL_APPEND  = 'append';

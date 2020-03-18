@@ -12,6 +12,11 @@ use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormInterface;
 use Laminas\View\Helper\Doctype;
 
+use function array_key_exists;
+use function array_merge;
+use function method_exists;
+use function sprintf;
+
 /**
  * View helper for rendering Form objects
  */

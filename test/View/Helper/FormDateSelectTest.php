@@ -11,6 +11,9 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element\DateSelect;
 use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
 
+use function count;
+use function extension_loaded;
+
 class FormDateSelectTest extends CommonTestCase
 {
     protected function setUp()

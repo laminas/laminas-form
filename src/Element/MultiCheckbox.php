@@ -14,6 +14,8 @@ use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
 
+use function is_array;
+
 class MultiCheckbox extends Checkbox
 {
     /**

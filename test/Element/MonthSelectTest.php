@@ -12,6 +12,8 @@ use DateTime;
 use Laminas\Form\Element\MonthSelect as MonthSelectElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class MonthSelectTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

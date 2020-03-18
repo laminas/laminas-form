@@ -13,6 +13,9 @@ use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\Validator;
 use PHPUnit\Framework\TestCase;
 
+use function sprintf;
+use function var_export;
+
 class FormCreatesCollectionInputFilterTest extends TestCase
 {
     public static function assertValidatorFound($class, array $validators, $message = null)

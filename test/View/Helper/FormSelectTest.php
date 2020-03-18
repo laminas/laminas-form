@@ -13,6 +13,11 @@ use Laminas\Form\Element\Select as SelectElement;
 use Laminas\Form\View\Helper\FormSelect as FormSelectHelper;
 use LaminasTest\Form\TestAsset\Identifier;
 
+use function current;
+use function key;
+use function sprintf;
+use function substr_count;
+
 class FormSelectTest extends CommonTestCase
 {
     protected function setUp()

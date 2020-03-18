@@ -17,6 +17,9 @@ use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 use Traversable;
 
+use function date;
+use function sprintf;
+
 class MonthSelect extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
     /**

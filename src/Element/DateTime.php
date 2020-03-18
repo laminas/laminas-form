@@ -19,6 +19,9 @@ use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\GreaterThan as GreaterThanValidator;
 use Laminas\Validator\LessThan as LessThanValidator;
 
+use function date;
+use function sprintf;
+
 class DateTime extends Element implements InputProviderInterface
 {
     const DATETIME_FORMAT = 'Y-m-d\TH:iP';

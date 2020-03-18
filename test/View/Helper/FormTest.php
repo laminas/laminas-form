@@ -14,6 +14,8 @@ use Laminas\Form\View\Helper\Form as FormHelper;
 use Laminas\View\Helper\Doctype;
 use LaminasTest\Form\TestAsset\CityFieldset;
 
+use function sprintf;
+
 class FormTest extends CommonTestCase
 {
     protected function setUp()

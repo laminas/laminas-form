@@ -15,6 +15,10 @@ use Laminas\Form\FormInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 
+use function array_merge;
+use function is_string;
+use function sprintf;
+
 class DateSelect extends MonthSelect
 {
     /**

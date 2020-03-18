@@ -16,6 +16,9 @@ use Laminas\View\Helper\Doctype;
 use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+use function substr_count;
+
 class FormElementTest extends TestCase
 {
     public $helper;

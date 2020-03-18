@@ -16,6 +16,17 @@ use Laminas\View\Helper\Doctype;
 use Laminas\View\Helper\EscapeHtml;
 use Laminas\View\Helper\EscapeHtmlAttr;
 
+use function implode;
+use function in_array;
+use function is_bool;
+use function mb_strpos;
+use function method_exists;
+use function preg_match;
+use function sprintf;
+use function strlen;
+use function strtolower;
+use function substr;
+
 /**
  * Base functionality for all form view helpers
  */

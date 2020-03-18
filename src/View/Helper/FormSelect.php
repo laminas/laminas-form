@@ -14,6 +14,15 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Stdlib\ArrayUtils;
 
+use function array_key_exists;
+use function array_merge;
+use function compact;
+use function implode;
+use function is_array;
+use function is_scalar;
+use function method_exists;
+use function sprintf;
+
 class FormSelect extends AbstractHelper
 {
     /**

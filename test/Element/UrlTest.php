@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Url as UrlElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class UrlTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

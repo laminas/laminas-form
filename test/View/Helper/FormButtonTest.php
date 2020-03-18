@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormButton as FormButtonHelper;
 
+use function sprintf;
+
 class FormButtonTest extends CommonTestCase
 {
     protected function setUp()

@@ -20,6 +20,14 @@ use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\ConfigInterface;
 use Laminas\Stdlib\InitializableInterface;
 
+use function array_push;
+use function array_search;
+use function array_unshift;
+use function get_class;
+use function gettype;
+use function is_object;
+use function sprintf;
+
 /**
  * laminas-servicemanager v2-compatible plugin manager implementation for form elements.
  *

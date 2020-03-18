@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormTextarea as FormTextareaHelper;
 
+use function sprintf;
+
 class FormTextareaTest extends CommonTestCase
 {
     protected function setUp()

@@ -16,6 +16,16 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 use LaminasTest\Form\TestAsset;
 use PHPUnit\Framework\TestCase;
 
+use function class_exists;
+use function count;
+use function getenv;
+use function restore_error_handler;
+use function set_error_handler;
+use function version_compare;
+
+use const E_USER_DEPRECATED;
+use const PHP_VERSION;
+
 class AnnotationBuilderTest extends TestCase
 {
     /** @var string */

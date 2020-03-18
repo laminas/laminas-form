@@ -11,6 +11,9 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element\Radio as RadioElement;
 use Laminas\Form\View\Helper\FormRadio as FormRadioHelper;
 
+use function sprintf;
+use function substr_count;
+
 class FormRadioTest extends CommonTestCase
 {
     protected function setUp()

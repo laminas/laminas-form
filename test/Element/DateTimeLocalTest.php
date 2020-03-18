@@ -12,6 +12,8 @@ use Laminas\Form\Element\DateTimeLocal as DateTimeLocalElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class DateTimeLocalTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

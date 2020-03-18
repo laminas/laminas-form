@@ -11,6 +11,9 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element\MonthSelect;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
+use function count;
+use function extension_loaded;
+
 class FormMonthSelectTest extends CommonTestCase
 {
     protected function setUp()

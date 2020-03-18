@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormLabel as FormLabelHelper;
 
+use function sprintf;
+
 class FormLabelTest extends CommonTestCase
 {
     protected function setUp()

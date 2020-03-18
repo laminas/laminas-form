@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormInput as FormInputHelper;
 
+use function sprintf;
+
 class FormInputTest extends CommonTestCase
 {
     protected function setUp()

@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Color as ColorElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class ColorTest extends TestCase
 {
     public function colorData()

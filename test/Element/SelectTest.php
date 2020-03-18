@@ -12,6 +12,9 @@ use Laminas\Form\Element\Select as SelectElement;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
+use function count;
+use function get_class;
+
 class SelectTest extends TestCase
 {
     public function testProvidesInputSpecificationForSingleSelect()

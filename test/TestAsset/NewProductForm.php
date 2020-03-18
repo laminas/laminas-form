@@ -12,6 +12,8 @@ use Laminas\Form\Form;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 
+use function class_exists;
+
 class NewProductForm extends Form
 {
     public function __construct()

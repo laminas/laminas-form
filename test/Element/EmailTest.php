@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Email as EmailElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class EmailTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesDefaultValidators()

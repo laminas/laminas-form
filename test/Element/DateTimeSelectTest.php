@@ -13,6 +13,8 @@ use Laminas\Form\Element\DateTimeSelect as DateTimeSelectElement;
 use Laminas\InputFilter\Factory as InputFilterFactory;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class DateTimeSelectTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

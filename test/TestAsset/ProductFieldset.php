@@ -14,6 +14,8 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Product;
 
+use function class_exists;
+
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()

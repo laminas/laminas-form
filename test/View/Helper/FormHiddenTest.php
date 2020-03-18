@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormHidden as FormHiddenHelper;
 
+use function sprintf;
+
 class FormHiddenTest extends CommonTestCase
 {
     protected function setUp()

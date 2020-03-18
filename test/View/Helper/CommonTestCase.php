@@ -13,6 +13,9 @@ use Laminas\View\Helper\Doctype;
 use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit\Framework\TestCase;
 
+use function extension_loaded;
+use function get_class;
+
 /**
  * Abstract base test case for all form view helpers
  */

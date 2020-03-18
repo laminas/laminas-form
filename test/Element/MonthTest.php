@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Month as MonthElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class MonthTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()

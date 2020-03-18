@@ -31,6 +31,12 @@ use LaminasTest\Form\TestAsset\ProductFieldset;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
+use function class_exists;
+use function count;
+use function extension_loaded;
+use function iterator_count;
+use function spl_object_hash;
+
 class CollectionTest extends TestCase
 {
     protected $form;

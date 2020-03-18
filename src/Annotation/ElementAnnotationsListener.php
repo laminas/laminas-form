@@ -15,6 +15,9 @@ use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\InputFilter\InputFilter;
 use Laminas\Stdlib\ArrayObject;
 
+use function array_merge;
+use function is_array;
+
 /**
  * Default listeners for element annotations
  *

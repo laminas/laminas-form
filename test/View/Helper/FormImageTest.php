@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormImage as FormImageHelper;
 
+use function sprintf;
+
 class FormImageTest extends CommonTestCase
 {
     protected function setUp()
