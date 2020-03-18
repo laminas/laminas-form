@@ -10,6 +10,8 @@ namespace Laminas\Form\Annotation;
 
 use Laminas\Filter\Boolean as BooleanFilter;
 
+use function is_bool;
+
 /**
  * Required annotation
  *

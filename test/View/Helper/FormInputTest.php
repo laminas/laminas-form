@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormInput as FormInputHelper;
 
+use function sprintf;
+
 class FormInputTest extends CommonTestCase
 {
     protected function setUp()
@@ -437,7 +439,7 @@ class FormInputTest extends CommonTestCase
             $this->assertNotContains(
                 $expect,
                 $markup,
-                sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup)
+                sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
             );
         }
 
@@ -465,7 +467,7 @@ class FormInputTest extends CommonTestCase
             $this->assertNotContains(
                 $expect,
                 $markup,
-                sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup)
+                sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
             );
         }
     }
@@ -494,9 +496,9 @@ class FormInputTest extends CommonTestCase
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
 
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                 ->method('translate')
-                ->will($this->returnValue('translated string'));
+                ->willReturn('translated string');
 
         $this->helper->setTranslator($mockTranslator);
 
@@ -514,10 +516,10 @@ class FormInputTest extends CommonTestCase
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
 
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                 ->method('translate')
                 ->with($this->equalTo('test'))
-                ->will($this->returnValue('translated string'));
+                ->willReturn('translated string');
 
         $this->helper->setTranslator($mockTranslator);
 

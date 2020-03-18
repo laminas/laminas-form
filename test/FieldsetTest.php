@@ -8,12 +8,17 @@
 
 namespace LaminasTest\Form;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 use Laminas\Hydrator;
 use Laminas\InputFilter\InputFilter;
 use PHPUnit\Framework\TestCase;
+use stdClass;
+
+use function class_exists;
+use function count;
 
 class FieldsetTest extends TestCase
 {
@@ -95,14 +100,14 @@ class FieldsetTest extends TestCase
     public function testExtractOnAnEmptyTraversable()
     {
         $form = new TestAsset\FormCollection();
-        $form->populateValues(new \ArrayObject(['fieldsets' => new \ArrayObject()]));
+        $form->populateValues(new ArrayObject(['fieldsets' => new ArrayObject()]));
 
         $this->addToAssertionCount(1);
     }
 
     public function testTraversableAcceptedValueForFieldset()
     {
-        $subValue = new \ArrayObject(['field' => 'value']);
+        $subValue = new ArrayObject(['field' => 'value']);
         $subFieldset = new TestAsset\ValueStoringFieldset('subFieldset');
         $this->fieldset->add($subFieldset);
         $this->fieldset->populateValues(['subFieldset' => $subValue]);
@@ -117,19 +122,19 @@ class FieldsetTest extends TestCase
 
     public function testFieldsetIsEmptyByDefault()
     {
-        $this->assertEquals(0, count($this->fieldset));
+        $this->assertCount(0, $this->fieldset);
     }
 
     public function testCanAddElementsToFieldset()
     {
         $this->fieldset->add(new Element('foo'));
-        $this->assertEquals(1, count($this->fieldset));
+        $this->assertCount(1, $this->fieldset);
     }
 
     public function testCanSetCustomOptionFromConstructor()
     {
         $fieldset = new Fieldset('foo', [
-            'custom' => 'option'
+            'custom' => 'option',
         ]);
         $options = $fieldset->getOptions();
         $this->assertArrayHasKey('custom', $options);
@@ -181,7 +186,7 @@ class FieldsetTest extends TestCase
     {
         $fieldset = new Fieldset('foo');
         $this->fieldset->add($fieldset);
-        $this->assertEquals(1, count($this->fieldset));
+        $this->assertCount(1, $this->fieldset);
     }
 
     public function testCanRemoveElementsByName()
@@ -225,7 +230,7 @@ class FieldsetTest extends TestCase
     {
         $this->populateFieldset();
         $elements = $this->fieldset->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
         foreach (['foo', 'bar', 'baz'] as $name) {
             $this->assertTrue(isset($elements[$name]));
             $element = $this->fieldset->get($name);
@@ -237,7 +242,7 @@ class FieldsetTest extends TestCase
     {
         $this->populateFieldset();
         $fieldsets = $this->fieldset->getFieldsets();
-        $this->assertEquals(2, count($fieldsets));
+        $this->assertCount(2, $fieldsets);
         foreach (['foobar', 'barbaz'] as $name) {
             $this->assertTrue(isset($fieldsets[$name]));
             $fieldset = $this->fieldset->get($name);
@@ -306,7 +311,7 @@ class FieldsetTest extends TestCase
     public function testCountGivesCountOfAttachedElementsAndFieldsets()
     {
         $this->populateFieldset();
-        $this->assertEquals(5, count($this->fieldset));
+        $this->assertCount(5, $this->fieldset);
     }
 
     public function testCanIterateOverElementsAndFieldsetsInOrderAttached()
@@ -381,7 +386,7 @@ class FieldsetTest extends TestCase
     {
         $this->fieldset->add(new Element('foo'));
         $this->fieldset->add(new Element('bar'));
-        $this->fieldset->setObject(new \stdClass);
+        $this->fieldset->setObject(new stdClass);
 
         $fieldsetClone = clone $this->fieldset;
 
@@ -395,11 +400,11 @@ class FieldsetTest extends TestCase
         $form = new Form();
         $fieldset = new Fieldset('foobar');
         $form->add($fieldset);
-        $value = new \ArrayObject([
+        $value = new ArrayObject([
             'foobar' => 'abc',
         ]);
-        $value['foobar'] = new \ArrayObject([
-            'foo' => 'abc'
+        $value['foobar'] = new ArrayObject([
+            'foo' => 'abc',
         ]);
         $form->bind($value);
         $this->assertSame($fieldset, $form->get('foobar'));
@@ -407,7 +412,7 @@ class FieldsetTest extends TestCase
 
     public function testBindEmptyValue()
     {
-        $value = new \ArrayObject([
+        $value = new ArrayObject([
             'foo' => 'abc',
             'bar' => 'def',
         ]);
@@ -442,8 +447,8 @@ class FieldsetTest extends TestCase
     public function testSetOptions()
     {
         $this->fieldset->setOptions([
-                                   'foo' => 'bar'
-                              ]);
+            'foo' => 'bar',
+        ]);
         $option = $this->fieldset->getOption('foo');
 
         $this->assertEquals('bar', $option);
@@ -452,8 +457,8 @@ class FieldsetTest extends TestCase
     public function testSetOptionsUseAsBaseFieldset()
     {
         $this->fieldset->setOptions([
-                                   'use_as_base_fieldset' => 'bar'
-                              ]);
+            'use_as_base_fieldset' => 'bar',
+        ]);
         $option = $this->fieldset->getOption('use_as_base_fieldset');
 
         $this->assertEquals('bar', $option);
@@ -462,8 +467,8 @@ class FieldsetTest extends TestCase
     public function testSetOptionAllowedObjectBindingClass()
     {
         $this->fieldset->setOptions([
-                                         'allowed_object_binding_class' => 'bar'
-                                    ]);
+            'allowed_object_binding_class' => 'bar',
+        ]);
         $option = $this->fieldset->getOption('allowed_object_binding_class');
 
         $this->assertEquals('bar', $option);
@@ -485,7 +490,7 @@ class FieldsetTest extends TestCase
 
     public function testBindValuesSkipDisabled()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $object->disabled = 'notModified';
         $object->not_disabled = 'notModified';
 
@@ -500,8 +505,8 @@ class FieldsetTest extends TestCase
         $form->setObject($object);
         $form->setHydrator(
             class_exists(Hydrator\ObjectPropertyHydrator::class)
-            ? new Hydrator\ObjectPropertyHydrator()
-            : new Hydrator\ObjectProperty()
+                ? new Hydrator\ObjectPropertyHydrator()
+                : new Hydrator\ObjectProperty()
         );
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
@@ -514,7 +519,7 @@ class FieldsetTest extends TestCase
      */
     public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $object->disabled = 'notModified';
         $object->not_disabled = 'notModified';
 
@@ -529,8 +534,8 @@ class FieldsetTest extends TestCase
         $form->setObject($object);
         $form->setHydrator(
             class_exists(Hydrator\ObjectPropertyHydrator::class)
-            ? new Hydrator\ObjectPropertyHydrator()
-            : new Hydrator\ObjectProperty()
+                ? new Hydrator\ObjectPropertyHydrator()
+                : new Hydrator\ObjectProperty()
         );
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
@@ -546,7 +551,7 @@ class FieldsetTest extends TestCase
 
     public function testShouldValidateAllowObjectBindingByClassname()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $this->fieldset->setAllowedObjectBindingClass('stdClass');
         $allowed = $this->fieldset->allowObjectBinding($object);
 
@@ -555,7 +560,7 @@ class FieldsetTest extends TestCase
 
     public function testShouldValidateAllowObjectBindingByObject()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $this->fieldset->setObject($object);
         $allowed = $this->fieldset->allowObjectBinding($object);
 
@@ -572,16 +577,16 @@ class FieldsetTest extends TestCase
         $form->add(new Element('foo'));
         $form->setHydrator(
             class_exists(Hydrator\ObjectPropertyHydrator::class)
-            ? new Hydrator\ObjectPropertyHydrator()
-            : new Hydrator\ObjectProperty()
+                ? new Hydrator\ObjectPropertyHydrator()
+                : new Hydrator\ObjectProperty()
         );
 
-        $object      = new \stdClass();
+        $object      = new stdClass();
         $object->foo = 'Initial value';
         $form->bind($object);
 
         $form->setData([
-            'foo' => 'New value'
+            'foo' => 'New value',
         ]);
 
         $this->assertSame('New value', $form->get('foo')->getValue());

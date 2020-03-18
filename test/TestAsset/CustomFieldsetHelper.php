@@ -12,6 +12,9 @@ use Laminas\Form\FieldsetInterface;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
 
+use function method_exists;
+use function preg_replace;
+
 class CustomFieldsetHelper extends AbstractHelper
 {
     /**

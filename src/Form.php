@@ -8,6 +8,7 @@
 
 namespace Laminas\Form;
 
+use ArrayAccess;
 use Laminas\Form\Element\Collection;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\InputFilter\CollectionInputFilter;
@@ -19,6 +20,18 @@ use Laminas\InputFilter\InputProviderInterface;
 use Laminas\InputFilter\ReplaceableInputInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
+
+use function array_key_exists;
+use function array_keys;
+use function array_shift;
+use function func_get_args;
+use function func_num_args;
+use function get_class;
+use function gettype;
+use function in_array;
+use function is_array;
+use function is_object;
+use function sprintf;
 
 class Form extends Fieldset implements FormInterface
 {
@@ -133,7 +146,7 @@ class Form extends Fieldset implements FormInterface
      * - prefer_form_input_filter: is form input filter is preferred?
      *
      * @param  array|Traversable $options
-     * @return self
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions($options)
@@ -162,7 +175,7 @@ class Form extends Fieldset implements FormInterface
      *
      * @param  array|Traversable|ElementInterface $elementOrFieldset
      * @param  array                              $flags
-     * @return self
+     * @return $this
      */
     public function add($elementOrFieldset, array $flags = [])
     {
@@ -191,7 +204,7 @@ class Form extends Fieldset implements FormInterface
      * available, and prepares any elements and/or fieldsets that require
      * preparation.
      *
-     * @return self
+     * @return $this
      */
     public function prepare()
     {
@@ -223,7 +236,7 @@ class Form extends Fieldset implements FormInterface
      * name clashes if the same fieldset is used multiple times
      *
      * @param  FormInterface $form
-     * @return mixed|void
+     * @return void
      */
     public function prepareElement(FormInterface $form)
     {
@@ -246,8 +259,8 @@ class Form extends Fieldset implements FormInterface
      *
      * Typically, also passes data on to the composed input filter.
      *
-     * @param  array|\ArrayAccess|Traversable $data
-     * @return self
+     * @param  array|ArrayAccess|Traversable $data
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setData($data)
@@ -258,7 +271,7 @@ class Form extends Fieldset implements FormInterface
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable argument; received "%s"',
                 __METHOD__,
-                (is_object($data) ? get_class($data) : gettype($data))
+                is_object($data) ? get_class($data) : gettype($data)
             ));
         }
 
@@ -276,7 +289,7 @@ class Form extends Fieldset implements FormInterface
      *
      * @param  object $object
      * @param  int $flags
-     * @return self
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function bind($object, $flags = FormInterface::VALUES_NORMALIZED)
@@ -309,7 +322,7 @@ class Form extends Fieldset implements FormInterface
      * Set the hydrator to use when binding an object to the element
      *
      * @param  HydratorInterface $hydrator
-     * @return FieldsetInterface
+     * @return $this
      */
     public function setHydrator(HydratorInterface $hydrator)
     {
@@ -323,8 +336,8 @@ class Form extends Fieldset implements FormInterface
     /**
      * Bind values to the bound object
      *
-     * @param array $values
-     * @return mixed
+     * @param  array $values
+     * @return void
      */
     public function bindValues(array $values = [], array $validationGroup = null)
     {
@@ -376,8 +389,8 @@ class Form extends Fieldset implements FormInterface
     /**
      * Parse filtered values and return only posted fields for binding
      *
-     * @param array $values
-     * @param array $match
+     * @param  array $values
+     * @param  array $match
      * @return array
      */
     protected function prepareBindData(array $values, array $match)
@@ -401,7 +414,7 @@ class Form extends Fieldset implements FormInterface
      * Set flag indicating whether or not to bind values on successful validation
      *
      * @param  int $bindOnValidateFlag
-     * @return self
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setBindOnValidate($bindOnValidateFlag)
@@ -427,14 +440,14 @@ class Form extends Fieldset implements FormInterface
      */
     public function bindOnValidate()
     {
-        return (static::BIND_ON_VALIDATE === $this->bindOnValidate);
+        return static::BIND_ON_VALIDATE === $this->bindOnValidate;
     }
 
     /**
      * Set the base fieldset to use when hydrating
      *
      * @param  FieldsetInterface $baseFieldset
-     * @return self
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setBaseFieldset(FieldsetInterface $baseFieldset)
@@ -567,7 +580,7 @@ class Form extends Fieldset implements FormInterface
      * Typically, proxies to the composed input filter
      *
      * @throws Exception\InvalidArgumentException
-     * @return self
+     * @return $this
      */
     public function setValidationGroup()
     {
@@ -656,7 +669,7 @@ class Form extends Fieldset implements FormInterface
      * Set the input filter used by this form
      *
      * @param  InputFilterInterface $inputFilter
-     * @return self
+     * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
@@ -712,7 +725,7 @@ class Form extends Fieldset implements FormInterface
      * Set flag indicating whether or not to scan elements and fieldsets for defaults
      *
      * @param  bool $useInputFilterDefaults
-     * @return self
+     * @return $this
      */
     public function setUseInputFilterDefaults($useInputFilterDefaults)
     {
@@ -734,7 +747,7 @@ class Form extends Fieldset implements FormInterface
      * Set flag indicating whether or not to prefer the form input filter over element and fieldset defaults
      *
      * @param  bool $preferFormInputFilter
-     * @return self
+     * @return $this
      */
     public function setPreferFormInputFilter($preferFormInputFilter)
     {
@@ -917,7 +930,7 @@ class Form extends Fieldset implements FormInterface
      * Are the form elements/fieldsets names wrapped by the form name ?
      *
      * @param  bool $wrapElements
-     * @return self
+     * @return $this
      */
     public function setWrapElements($wrapElements)
     {

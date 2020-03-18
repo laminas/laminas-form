@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormRange as FormRangeHelper;
 
+use function sprintf;
+
 class FormRangeTest extends CommonTestCase
 {
     protected function setUp()

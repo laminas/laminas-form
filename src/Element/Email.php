@@ -8,6 +8,7 @@
 
 namespace Laminas\Form\Element;
 
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Explode as ExplodeValidator;
@@ -45,8 +46,7 @@ class Email extends Element implements InputProviderInterface
         if (null === $this->validator) {
             $emailValidator = $this->getEmailValidator();
 
-            $multiple = (isset($this->attributes['multiple']))
-                      ? $this->attributes['multiple'] : null;
+            $multiple = isset($this->attributes['multiple']) ? $this->attributes['multiple'] : null;
 
             if (true === $multiple || 'multiple' === $multiple) {
                 $this->validator = new ExplodeValidator([
@@ -64,7 +64,7 @@ class Email extends Element implements InputProviderInterface
      * Sets the primary validator to use for this element
      *
      * @param  ValidatorInterface $validator
-     * @return Email
+     * @return $this
      */
     public function setValidator(ValidatorInterface $validator)
     {
@@ -107,7 +107,7 @@ class Email extends Element implements InputProviderInterface
      * email addresses.
      *
      * @param  ValidatorInterface $validator
-     * @return Email
+     * @return $this
      */
     public function setEmailValidator(ValidatorInterface $validator)
     {
@@ -128,7 +128,7 @@ class Email extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => 'Laminas\Filter\StringTrim'],
+                ['name' => StringTrim::class],
             ],
             'validators' => [
                 $this->getValidator(),

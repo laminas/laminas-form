@@ -8,8 +8,12 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use IntlDateFormatter;
 use Laminas\Form\Element\DateSelect;
 use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
+
+use function count;
+use function extension_loaded;
 
 class FormDateSelectTest extends CommonTestCase
 {
@@ -68,7 +72,7 @@ class FormDateSelectTest extends CommonTestCase
         $element = new DateSelect('foo');
         $element->setShouldCreateEmptyOption(true);
         $element->setShouldRenderDelimiters(true);
-        $markup = $this->helper->__invoke($element, \IntlDateFormatter::LONG, 'pt_BR');
+        $markup = $this->helper->__invoke($element, IntlDateFormatter::LONG, 'pt_BR');
 
         // pattern === "d 'de' MMMM 'de' y"
         $this->assertStringMatchesFormat('%a de %a de %a', $markup);
@@ -92,7 +96,7 @@ class FormDateSelectTest extends CommonTestCase
     {
         $element = new DateSelect('foo');
         $this->helper->render($element);
-        $this->assertEquals(31, count($element->getDayElement()->getValueOptions()));
+        $this->assertCount(31, $element->getDayElement()->getValueOptions());
     }
 
     /**
@@ -103,12 +107,12 @@ class FormDateSelectTest extends CommonTestCase
         $element = new DateSelect('foo');
         $this->helper->render($element);
         $elements = $element->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
 
         foreach ($elements as $subElement) {
             $this->assertInstanceOf('Laminas\Form\Element\Select', $subElement);
         }
 
-        $this->assertEquals(31, count($elements[0]->getValueOptions()));
+        $this->assertCount(31, $elements[0]->getValueOptions());
     }
 }

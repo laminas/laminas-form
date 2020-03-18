@@ -12,6 +12,9 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\View\Helper\FormElement;
 
+use function method_exists;
+use function preg_replace;
+
 class CustomViewHelper extends AbstractHelper
 {
     /**

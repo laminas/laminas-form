@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormSearch as FormSearchHelper;
 
+use function sprintf;
+
 class FormSearchTest extends CommonTestCase
 {
     protected function setUp()

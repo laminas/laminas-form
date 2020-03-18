@@ -11,6 +11,8 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Color as ColorElement;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class ColorTest extends TestCase
 {
     public function colorData()
@@ -40,7 +42,7 @@ class ColorTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Regex'
+            'Laminas\Validator\Regex',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);

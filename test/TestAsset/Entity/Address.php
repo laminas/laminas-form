@@ -25,10 +25,9 @@ class Address
      */
     protected $phones = [];
 
-
     /**
      * @param $street
-     * @return self
+     * @return $this
      */
     public function setStreet($street)
     {
@@ -46,7 +45,7 @@ class Address
 
     /**
      * @param City $city
-     * @return self
+     * @return $this
      */
     public function setCity(City $city)
     {
@@ -64,7 +63,7 @@ class Address
 
     /**
      * @param array $phones
-     * @return self
+     * @return $this
      */
     public function setPhones(array $phones)
     {

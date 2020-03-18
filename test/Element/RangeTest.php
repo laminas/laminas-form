@@ -11,6 +11,9 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Range as RangeElement;
 use PHPUnit\Framework\TestCase;
 
+use function extension_loaded;
+use function get_class;
+
 class RangeTest extends TestCase
 {
     public function testProvidesInputSpecificationWithDefaultAttributes()

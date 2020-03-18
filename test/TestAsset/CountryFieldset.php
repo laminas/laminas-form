@@ -8,10 +8,13 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
+
+use function class_exists;
 
 class CountryFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -21,15 +24,15 @@ class CountryFieldset extends Fieldset implements InputFilterProviderInterface
         $this
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
+                    ? new ClassMethodsHydrator()
+                    : new ClassMethods()
             )
             ->setObject(new Entity\Country());
 
-        $name = new \Laminas\Form\Element('name', ['label' => 'Name of the country']);
+        $name = new Element('name', ['label' => 'Name of the country']);
         $name->setAttribute('type', 'text');
 
-        $continent = new \Laminas\Form\Element('continent', ['label' => 'Continent of the city']);
+        $continent = new Element('continent', ['label' => 'Continent of the city']);
         $continent->setAttribute('type', 'text');
 
         $this->add($name);
@@ -49,8 +52,8 @@ class CountryFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => true,
             ],
             'continent' => [
-                'required' => true
-            ]
+                'required' => true,
+            ],
         ];
     }
 }

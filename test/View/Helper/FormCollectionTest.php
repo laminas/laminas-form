@@ -16,6 +16,7 @@ use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 
 class FormCollectionTest extends TestCase
 {
@@ -186,9 +187,9 @@ class FormCollectionTest extends TestCase
         $this->helper->setShouldWrap(true);
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                        ->method('translate')
-                       ->will($this->returnValue('translated legend'));
+                       ->willReturn('translated legend');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -409,11 +410,11 @@ class FormCollectionTest extends TestCase
     {
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage(
-            'Invalid element helper set in FormCollection.' .
-            ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
+            'Invalid element helper set in FormCollection.'
+            . ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
         );
 
-        $method = new \ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
+        $method = new ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
         $method->setAccessible(true);
 
         $method->invokeArgs(new FormCollectionHelper(), []);

@@ -8,7 +8,6 @@
 
 namespace LaminasTest\Form;
 
-use Laminas\Filter;
 use Laminas\Form;
 use Laminas\Form\Factory as FormFactory;
 use Laminas\Form\FormElementManager;
@@ -17,8 +16,15 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorPluginManager;
 use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
+use Laminas\InputFilter\Factory;
 use Laminas\ServiceManager\ServiceManager;
+use Laminas\Validator\Digits;
+use Laminas\Validator\ValidatorChain;
+use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
+
+use function class_exists;
+use function count;
 
 class FactoryTest extends TestCase
 {
@@ -72,7 +78,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
         $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
-        $this->assertEquals(new \LaminasTest\Form\TestAsset\Model, $fieldset->getObject());
+        $this->assertEquals(new TestAsset\Model, $fieldset->getObject());
     }
 
     public function testCanCreateFieldsetsWithElements()
@@ -120,7 +126,7 @@ class FactoryTest extends TestCase
         ]);
         $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
         $elements = $fieldset->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
         $this->assertTrue($fieldset->has('bar'));
         $this->assertTrue($fieldset->has('baz'));
         $this->assertTrue($fieldset->has('bat'));
@@ -194,13 +200,13 @@ class FactoryTest extends TestCase
                                 ],
                             ],
                         ],
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
         $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $masterFieldset);
         $fieldsets = $masterFieldset->getFieldsets();
-        $this->assertEquals(1, count($fieldsets));
+        $this->assertCount(1, $fieldsets);
         $this->assertTrue($masterFieldset->has('bar'));
 
         $fieldset = $masterFieldset->get('bar');
@@ -241,7 +247,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $this->assertEquals('foo', $form->getName());
         $this->assertEquals('get', $form->getAttribute('method'));
-        $this->assertEquals(new \LaminasTest\Form\TestAsset\Model, $form->getObject());
+        $this->assertEquals(new TestAsset\Model, $form->getObject());
     }
 
     public function testCanCreateFormsWithNamedInputFilters()
@@ -295,7 +301,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $filter = $form->getInputFilter();
         $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $filter);
-        $this->assertEquals(2, count($filter));
+        $this->assertCount(2, $filter);
         foreach (['foo', 'bar'] as $name) {
             $input = $filter->get($name);
 
@@ -303,12 +309,12 @@ class FactoryTest extends TestCase
                 case 'foo':
                     $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
                     $this->assertFalse($input->isRequired());
-                    $this->assertEquals(2, count($input->getValidatorChain()));
+                    $this->assertCount(2, $input->getValidatorChain());
                     break;
                 case 'bar':
                     $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
                     $this->assertTrue($input->allowEmpty());
-                    $this->assertEquals(2, count($input->getFilterChain()));
+                    $this->assertCount(2, $input->getFilterChain());
                     break;
                 default:
                     $this->fail('Unexpected input named "' . $name . '" found in input filter');
@@ -393,7 +399,7 @@ class FactoryTest extends TestCase
 
         $form = $this->factory->createForm([
             'name' => 'foo',
-            'hydrator' => new $hydratorType()
+            'hydrator' => new $hydratorType(),
         ]);
 
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
@@ -428,7 +434,7 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFactoryFromConcreteClass()
     {
-        $factory = new \Laminas\Form\Factory();
+        $factory = new FormFactory();
         $form = $this->factory->createForm([
             'name'    => 'foo',
             'factory' => $factory,
@@ -441,13 +447,13 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByName()
     {
-        $validatorManager = new \Laminas\Validator\ValidatorPluginManager($this->services);
+        $validatorManager = new ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', 'Laminas\Validator\Digits');
 
-        $defaultValidatorChain = new \Laminas\Validator\ValidatorChain();
+        $defaultValidatorChain = new ValidatorChain();
         $defaultValidatorChain->setPluginManager($validatorManager);
 
-        $inputFilterFactory = new \Laminas\InputFilter\Factory();
+        $inputFilterFactory = new Factory();
         $inputFilterFactory->setDefaultValidatorChain($defaultValidatorChain);
 
         $factory = new FormFactory();
@@ -486,7 +492,7 @@ class FactoryTest extends TestCase
             $validatorInstance = $validator['instance'];
             $this->assertInstanceOf('Laminas\Validator\ValidatorInterface', $validatorInstance);
 
-            if ($validatorInstance instanceof \Laminas\Validator\Digits) {
+            if ($validatorInstance instanceof Digits) {
                 $found = true;
                 break;
             }
@@ -496,13 +502,13 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor()
     {
-        $validatorManager = new \Laminas\Validator\ValidatorPluginManager($this->services);
+        $validatorManager = new ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', 'Laminas\Validator\Digits');
 
-        $defaultValidatorChain = new \Laminas\Validator\ValidatorChain();
+        $defaultValidatorChain = new ValidatorChain();
         $defaultValidatorChain->setPluginManager($validatorManager);
 
-        $inputFilterFactory = new \Laminas\InputFilter\Factory();
+        $inputFilterFactory = new Factory();
         $inputFilterFactory->setDefaultValidatorChain($defaultValidatorChain);
 
         $factory = new FormFactory(null, $inputFilterFactory);
@@ -540,7 +546,7 @@ class FactoryTest extends TestCase
             $validatorInstance = $validator['instance'];
             $this->assertInstanceOf('Laminas\Validator\ValidatorInterface', $validatorInstance);
 
-            if ($validatorInstance instanceof \Laminas\Validator\Digits) {
+            if ($validatorInstance instanceof Digits) {
                 $found = true;
                 break;
             }
@@ -645,7 +651,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
 
         $elements = $form->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
         $this->assertTrue($form->has('bar'));
         $this->assertTrue($form->has('baz'));
         $this->assertTrue($form->has('bat'));
@@ -674,7 +680,7 @@ class FactoryTest extends TestCase
 
         // Test against nested fieldset
         $fieldsets = $form->getFieldsets();
-        $this->assertEquals(1, count($fieldsets));
+        $this->assertCount(1, $fieldsets);
         $this->assertTrue($form->has('foobar'));
 
         $fieldset = $form->get('foobar');
@@ -790,8 +796,8 @@ class FactoryTest extends TestCase
                     'flags' => [
                         'name' => 'bar',
                     ],
-                ]
-            ]
+                ],
+            ],
         ]);
 
         $this->assertInstanceOf($hydratorType, $fieldset->getHydrator());
@@ -839,7 +845,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
 
         $elements = $form->getElements();
-        $this->assertEquals(2, count($elements));
+        $this->assertCount(2, $elements);
         $this->assertTrue($form->has('bar'));
         $this->assertFalse($form->has('baz'));
         $this->assertTrue($form->has('bat'));

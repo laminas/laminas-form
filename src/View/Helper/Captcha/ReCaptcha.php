@@ -13,6 +13,8 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\View\Helper\FormInput;
 
+use function sprintf;
+
 class ReCaptcha extends FormInput
 {
     /**

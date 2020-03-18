@@ -12,6 +12,8 @@ use Laminas\Form\Form;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 
+use function class_exists;
+
 class NewProductForm extends Form
 {
     public function __construct()
@@ -22,8 +24,8 @@ class NewProductForm extends Form
             ->setAttribute('method', 'post')
             ->setHydrator(
                 class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
+                    ? new ClassMethodsHydrator()
+                    : new ClassMethods()
             )
             ->setInputFilter(new InputFilter());
 
@@ -34,8 +36,8 @@ class NewProductForm extends Form
         $this->add([
             'name' => 'submit',
             'attributes' => [
-                'type' => 'submit'
-            ]
+                'type' => 'submit',
+            ],
         ]);
     }
 }

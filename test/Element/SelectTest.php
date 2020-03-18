@@ -12,6 +12,9 @@ use Laminas\Form\Element\Select as SelectElement;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
+use function count;
+use function get_class;
+
 class SelectTest extends TestCase
 {
     public function testProvidesInputSpecificationForSingleSelect()
@@ -28,7 +31,7 @@ class SelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\InArray'
+            'Laminas\Validator\InArray',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -40,11 +43,15 @@ class SelectTest extends TestCase
     {
         $element = new SelectElement();
         $element->setValueOptions([
-          ['label' => 'group 1', 'options' => [
-            'Option 1' => 'Label 1',
-            'Option 2' => 'Label 2',
-            'Option 3' => 'Label 2',
-          ]]]);
+            [
+                'label' => 'group 1',
+                'options' => [
+                    'Option 1' => 'Label 1',
+                    'Option 2' => 'Label 2',
+                    'Option 3' => 'Label 2',
+                ],
+            ],
+        ]);
 
         $inputSpec = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
@@ -57,11 +64,15 @@ class SelectTest extends TestCase
     {
         $element = new SelectElement();
         $element->setValueOptions([
-          ['label' => 'group 1', 'options' => [
-            ['value' => 'Option 1', 'label' => 'Label 1'],
-            ['value' => 'Option 2', 'label' => 'Label 2'],
-            ['value' => 'Option 3', 'label' => 'Label 3'],
-          ]]]);
+            [
+                'label' => 'group 1',
+                'options' => [
+                    ['value' => 'Option 1', 'label' => 'Label 1'],
+                    ['value' => 'Option 2', 'label' => 'Label 2'],
+                    ['value' => 'Option 3', 'label' => 'Label 3'],
+                ],
+            ],
+        ]);
 
         $inputSpec = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
@@ -71,6 +82,7 @@ class SelectTest extends TestCase
         $this->assertTrue($inArrayValidator->isValid('Option 3'));
         $this->assertFalse($inArrayValidator->isValid('Option 5'));
     }
+
     public function testProvidesInputSpecificationForMultipleSelect()
     {
         $element = new SelectElement();
@@ -88,7 +100,7 @@ class SelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Explode'
+            'Laminas\Validator\Explode',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -111,14 +123,14 @@ class SelectTest extends TestCase
                 [
                     'foo' => 'My Foo Label',
                     'bar' => 'My Bar Label',
-                ]
+                ],
             ],
             [
                 ['foo', 'bar'],
                 [
                     0 => ['label' => 'My Foo Label', 'value' => 'foo'],
                     1 => ['label' => 'My Bar Label', 'value' => 'bar'],
-                ]
+                ],
             ],
         ];
     }
@@ -157,7 +169,6 @@ class SelectTest extends TestCase
         $haystack = $inArrayValidator->getHaystack();
         $this->assertCount(count($options), $haystack);
     }
-
 
     public function testOptionsHasArrayOnConstruct()
     {
@@ -256,7 +267,7 @@ class SelectTest extends TestCase
             'unselected_value' => 'empty',
             'value_options' => [
                 'foo' => 'Foo',
-                'bar' => 'Bar'
+                'bar' => 'Bar',
             ],
         ]);
         $element->setAttributes(['multiple' => 'multiple']);

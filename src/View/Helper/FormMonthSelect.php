@@ -15,6 +15,17 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Locale;
 
+use function extension_loaded;
+use function is_numeric;
+use function method_exists;
+use function preg_split;
+use function sprintf;
+use function str_replace;
+use function stripos;
+
+use const PREG_SPLIT_DELIM_CAPTURE;
+use const PREG_SPLIT_NO_EMPTY;
+
 class FormMonthSelect extends AbstractHelper
 {
     /**
@@ -89,10 +100,10 @@ class FormMonthSelect extends AbstractHelper
     /**
      * Render a month element that is composed of two selects
      *
-     * @param  \Laminas\Form\ElementInterface $element
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @throws \Laminas\Form\Exception\DomainException
+     * @param  ElementInterface $element
      * @return string
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      */
     public function render(ElementInterface $element)
     {
@@ -197,7 +208,7 @@ class FormMonthSelect extends AbstractHelper
      * Set date formatter
      *
      * @param  int $dateType
-     * @return FormDateSelect
+     * @return $this
      */
     public function setDateType($dateType)
     {
@@ -225,7 +236,7 @@ class FormMonthSelect extends AbstractHelper
      * Set locale
      *
      * @param  string $locale
-     * @return FormDateSelect
+     * @return $this
      */
     public function setLocale($locale)
     {

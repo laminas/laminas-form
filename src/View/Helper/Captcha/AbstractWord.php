@@ -13,6 +13,13 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\View\Helper\FormInput;
 
+use function array_key_exists;
+use function in_array;
+use function is_array;
+use function method_exists;
+use function sprintf;
+use function strtolower;
+
 abstract class AbstractWord extends FormInput
 {
     const CAPTCHA_APPEND  = 'append';
@@ -154,7 +161,7 @@ abstract class AbstractWord extends FormInput
      *
      * @param  mixed $captchaPosition
      * @throws Exception\InvalidArgumentException
-     * @return AbstractWord
+     * @return $this
      */
     public function setCaptchaPosition($captchaPosition)
     {
@@ -187,7 +194,7 @@ abstract class AbstractWord extends FormInput
      * Set separator string for captcha and inputs
      *
      * @param  string $separator
-     * @return AbstractWord
+     * @return $this
      */
     public function setSeparator($separator)
     {

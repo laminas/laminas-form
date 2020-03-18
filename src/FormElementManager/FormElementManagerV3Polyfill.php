@@ -19,6 +19,14 @@ use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\Stdlib\InitializableInterface;
 
+use function array_push;
+use function array_search;
+use function array_unshift;
+use function get_class;
+use function gettype;
+use function is_object;
+use function sprintf;
+
 /**
  * laminas-servicemanager v3-compatible plugin manager implementation for form elements.
  *
@@ -226,7 +234,6 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
         Element\Week::class           => ElementFactory::class,
 
         // v2 normalized variants
-
         'laminasformelementbutton'         => ElementFactory::class,
         'laminasformelementcaptcha'        => ElementFactory::class,
         'laminasformelementcheckbox'       => ElementFactory::class,
@@ -360,7 +367,7 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
                 '%s can only create instances of %s; %s is invalid',
                 get_class($this),
                 $this->instanceOf,
-                (is_object($plugin) ? get_class($plugin) : gettype($plugin))
+                is_object($plugin) ? get_class($plugin) : gettype($plugin)
             ));
         }
     }

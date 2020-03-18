@@ -11,6 +11,8 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function sprintf;
+
 class FormTextarea extends AbstractHelper
 {
     /**

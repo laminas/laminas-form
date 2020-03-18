@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Factory;
 use Laminas\Form\Fieldset;
@@ -21,10 +22,18 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\BaseInputFilter;
 use Laminas\InputFilter\CollectionInputFilter;
 use Laminas\InputFilter\Factory as InputFilterFactory;
+use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterInterface;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+
+use function class_exists;
+use function count;
+use function extension_loaded;
+use function print_r;
+use function spl_object_hash;
+use function var_export;
 
 class FormTest extends TestCase
 {
@@ -248,7 +257,6 @@ class FormTest extends TestCase
         $form->setData([]);
         $form->isValid();
 
-
         $this->assertTrue($form->hasValidated());
     }
 
@@ -310,16 +318,16 @@ class FormTest extends TestCase
         $form = new TestAsset\NewProductForm();
         $form->setData([
             'product' => [
-                'name' => 'Chair'
-            ]
+                'name' => 'Chair',
+            ],
         ]);
 
         $this->assertFalse($form->isValid());
 
         $form->setValidationGroup([
             'product' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
 
         $this->assertTrue($form->isValid());
@@ -565,7 +573,7 @@ class FormTest extends TestCase
         $this->form->isValid();
         $data = $this->form->getData();
         $this->assertInternalType('array', $data);
-        $this->assertEquals(1, count($data));
+        $this->assertCount(1, $data);
         $this->assertArrayHasKey('foo', $data);
         $this->assertEquals('abcde', $data['foo']);
     }
@@ -601,9 +609,9 @@ class FormTest extends TestCase
             'foo' => 'abcde',
             'categories' => [
                 [
-                    'name' => 'category'
-                ]
-            ]
+                    'name' => 'category',
+                ],
+            ],
         ];
         $this->populateForm();
         $this->form->add([
@@ -622,8 +630,8 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foo',
             'categories' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
         $this->form->isValid();
 
@@ -639,7 +647,7 @@ class FormTest extends TestCase
     {
         $model = new stdClass;
         $dataWithoutCollection = [
-            'foo' => 'abcde'
+            'foo' => 'abcde',
         ];
         $this->populateForm();
         $this->form->add([
@@ -922,13 +930,13 @@ class FormTest extends TestCase
     public function testFormAsFieldsetWillBindValuesToObject()
     {
         $parentForm        = new Form('parent');
-        $parentFormObject  = new \ArrayObject(['parentId' => null]);
+        $parentFormObject  = new ArrayObject(['parentId' => null]);
         $parentFormElement = new Element('parentId');
         $parentForm->setObject($parentFormObject);
         $parentForm->add($parentFormElement);
 
         $childForm        = new Form('child');
-        $childFormObject  = new \ArrayObject(['childId' => null]);
+        $childFormObject  = new ArrayObject(['childId' => null]);
         $childFormElement = new Element('childId');
         $childForm->setObject($childFormObject);
         $childForm->add($childFormElement);
@@ -938,8 +946,8 @@ class FormTest extends TestCase
         $data = [
             'parentId' => 'mpinkston was here',
             'child' => [
-                'childId' => 'testing 123'
-            ]
+                'childId' => 'testing 123',
+            ],
         ];
 
         $parentForm->setData($data);
@@ -960,9 +968,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
         $this->assertTrue($input->isRequired());
         $this->assertEquals('foo', $input->getName());
     }
@@ -1000,15 +1008,15 @@ class FormTest extends TestCase
         $test = $filter->get('set');
         $this->assertSame($fieldsetFilter, $test);
 
-        $this->assertEquals(1, count($fieldsetFilter));
+        $this->assertCount(1, $fieldsetFilter);
         $this->assertTrue($fieldsetFilter->has('foo'));
 
         $input = $fieldsetFilter->get('foo');
         $this->assertInstanceOf('Laminas\InputFilter\InputInterface', $input);
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
         $this->assertTrue($input->isRequired());
         $this->assertEquals('foo', $input->getName());
     }
@@ -1033,9 +1041,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(0, count($filters));
+        $this->assertCount(0, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(0, count($validators));
+        $this->assertCount(0, $validators);
         $this->assertFalse($input->isRequired());
         $this->assertEquals('foo', $input->getName());
     }
@@ -1055,7 +1063,7 @@ class FormTest extends TestCase
         $test = $this->form->getInputFilter();
         $this->assertSame($filter, $test);
         $this->assertSame($fieldsetFilter, $test->get('set'));
-        $this->assertEquals(0, count($fieldsetFilter));
+        $this->assertCount(0, $fieldsetFilter);
     }
 
     public function testCallingPrepareEnsuresInputFilterRetrievesDefaults()
@@ -1069,9 +1077,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
         $this->assertTrue($input->isRequired());
         $this->assertEquals('foo', $input->getName());
 
@@ -1081,9 +1089,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
     }
 
     public function testCanProperlyPrepareNestedFieldsets()
@@ -1091,8 +1099,8 @@ class FormTest extends TestCase
         $this->form->add([
             'name'       => 'foo',
             'attributes' => [
-                'type'         => 'text'
-            ]
+                'type'         => 'text',
+            ],
         ]);
 
         $this->form->add([
@@ -1141,10 +1149,10 @@ class FormTest extends TestCase
                     'zipCode' => '75008',
                     'country' => [
                         'name' => 'France',
-                        'continent' => 'Europe'
-                    ]
-                ]
-            ]
+                        'continent' => 'Europe',
+                    ],
+                ],
+            ],
         ];
 
         $form->setData($data);
@@ -1173,7 +1181,7 @@ class FormTest extends TestCase
     public function testCanCorrectlyPopulateDataToOneToManyEntites()
     {
         if (! extension_loaded('intl')) {
-            $this->markTestSkipped("The Intl extension is not loaded");
+            $this->markTestSkipped('The Intl extension is not loaded');
         }
         $product = $this->getOneToManyEntity();
         $emptyProduct = new TestAsset\Entity\Product();
@@ -1187,13 +1195,13 @@ class FormTest extends TestCase
                 'price' => 10,
                 'categories' => [
                     [
-                        'name' => 'Office'
+                        'name' => 'Office',
                     ],
                     [
-                        'name' => 'Armchair'
-                    ]
-                ]
-            ]
+                        'name' => 'Armchair',
+                    ],
+                ],
+            ],
         ];
 
         $form->setData($data);
@@ -1205,7 +1213,7 @@ class FormTest extends TestCase
     public function testCanCorrectlyPopulateOrphanedEntities()
     {
         if (! extension_loaded('intl')) {
-            $this->markTestSkipped("The Intl extension is not loaded");
+            $this->markTestSkipped('The Intl extension is not loaded');
         }
 
         $form = new TestAsset\OrphansForm();
@@ -1213,12 +1221,12 @@ class FormTest extends TestCase
         $data = [
             'test' => [
                 [
-                    'name' => 'Foo'
+                    'name' => 'Foo',
                 ],
                 [
-                    'name' => 'Bar'
+                    'name' => 'Bar',
                 ],
-            ]
+            ],
         ];
 
         $form->setData($data);
@@ -1303,7 +1311,7 @@ class FormTest extends TestCase
     public function testRemoveCollectionFromValidationGroupWhenZeroCountAndNoData()
     {
         $dataWithoutCollection = [
-            'foo' => 'bar'
+            'foo' => 'bar',
         ];
         $this->populateForm();
         $this->form->add([
@@ -1319,8 +1327,8 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foo',
             'categories' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
         $this->form->setData($dataWithoutCollection);
         $this->assertTrue($this->form->isValid());
@@ -1363,7 +1371,7 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foobar' => [
                 'foo',
-            ]
+            ],
         ]);
 
         $inputFilterFactory = new InputFilterFactory();
@@ -1383,7 +1391,7 @@ class FormTest extends TestCase
         $validSet = [
             'foobar' => [
                 'foo' => 'abcde',
-            ]
+            ],
         ];
         $this->form->setData($validSet);
         $this->assertTrue($this->form->isValid());
@@ -1438,8 +1446,8 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foo',
             'categories' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
         $this->form->setData($dataWithCollection);
         $this->assertTrue($this->form->isValid());
@@ -1481,7 +1489,7 @@ class FormTest extends TestCase
         $validSet = [
             'entities' => [
                 111,
-                333
+                333,
             ],
         ];
 
@@ -1550,7 +1558,7 @@ class FormTest extends TestCase
 
     public function testSetDataIsTraversable()
     {
-        $this->form->setData(new \ArrayObject(['foo' => 'bar']));
+        $this->form->setData(new ArrayObject(['foo' => 'bar']));
         $this->assertTrue($this->form->isValid());
     }
 
@@ -1558,17 +1566,17 @@ class FormTest extends TestCase
     {
         $this->form->add([
             'type' => Element\Password::class,
-            'name' => 'password'
+            'name' => 'password',
         ]);
 
         $this->form->add([
             'type' => Element\Email::class,
-            'name' => 'email'
+            'name' => 'email',
         ]);
 
         $this->form->setData([
             'password' => 'azerty',
-            'email'    => 'wrongEmail'
+            'email'    => 'wrongEmail',
         ]);
 
         $this->assertFalse($this->form->isValid());
@@ -1581,7 +1589,7 @@ class FormTest extends TestCase
     {
         $fieldset = new Fieldset('example');
         $fieldset->add([
-            'name' => 'foo'
+            'name' => 'foo',
         ]);
 
         // Add a hydrator that ignores if values does not exist in the
@@ -1595,7 +1603,7 @@ class FormTest extends TestCase
         // Add some inputs that do not belong to the base fieldset
         $this->form->add([
             'type' => Element\Submit::class,
-            'name' => 'submit'
+            'name' => 'submit',
         ]);
 
         $object = new TestAsset\Entity\SimplePublicProperty();
@@ -1604,8 +1612,8 @@ class FormTest extends TestCase
         $this->form->setData([
             'submit' => 'Confirm',
             'example' => [
-                'foo' => 'value example'
-            ]
+                'foo' => 'value example',
+            ],
         ]);
 
         $this->assertTrue($this->form->isValid());
@@ -1621,7 +1629,7 @@ class FormTest extends TestCase
         ];
 
         $filteredData = [
-            'foo' => [1, 2]
+            'foo' => [1, 2],
         ];
 
         $element = new TestAsset\ElementWithStringToArrayFilter('foo');
@@ -1656,7 +1664,7 @@ class FormTest extends TestCase
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $this->form->setInputFilter(new \Laminas\InputFilter\InputFilter());
+        $this->form->setInputFilter(new InputFilter());
         $fieldset = new TestAsset\ProductCategoriesFieldset();
         $fieldset->setUseAsBaseFieldset(true);
 
@@ -1756,13 +1764,13 @@ class FormTest extends TestCase
                 'empty_option' => '',
                 'value_options' => [
                     'normal' => 'Normal',
-                    'important' => 'Important'
+                    'important' => 'Important',
                 ],
             ],
         ]);
 
-        $inputFilter = new \Laminas\InputFilter\BaseInputFilter();
-        $factory     = new \Laminas\InputFilter\Factory();
+        $inputFilter = new BaseInputFilter();
+        $factory     = new InputFilterFactory();
         $inputFilter->add($factory->createInput([
             'name'     => 'importance',
             'required' => false,
@@ -1800,22 +1808,22 @@ class FormTest extends TestCase
                     'required' => false,
                     'filters' => [
                         [
-                            'name' => 'Boolean'
-                        ]
+                            'name' => 'Boolean',
+                        ],
                     ],
                     'validators' => [
                         [
                             'name' => 'InArray',
                             'options' => [
                                 'haystack' => [
-                                    "0",
-                                    "1"
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                    '0',
+                                    '1',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         $factory = new Factory();
@@ -1943,8 +1951,8 @@ class FormTest extends TestCase
                                 ],
                             ],
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ],
             'input_filter' => [
                 'type' => InputFilter::class,
@@ -2045,12 +2053,12 @@ class FormTest extends TestCase
             ],
         ]);
 
-        $this->assertTrue(
+        $this->assertInstanceOf(
+            Input::class,
             $this->form->getInputFilter()
                 ->get('nested_fieldset_with_input_filter_provider')
                 ->getInputFilter()
                 ->get('foo')
-            instanceof \Laminas\InputFilter\Input
         );
     }
 
@@ -2064,7 +2072,7 @@ class FormTest extends TestCase
                 'empty_option' => '',
                 'value_options' => [
                     'normal' => 'Normal',
-                    'important' => 'Important'
+                    'important' => 'Important',
                 ],
             ],
         ]);
@@ -2077,7 +2085,7 @@ class FormTest extends TestCase
         ]));
 
         $data = [
-            'importance' => 'unimporant'
+            'importance' => 'unimporant',
         ];
 
         $this->form->setInputFilter($inputFilter);
@@ -2138,42 +2146,42 @@ class FormTest extends TestCase
                 ['multipleSelect' => ['foo']],
                 ['multipleSelect' => ['foo']],
                 '',
-                true
+                true,
             ],
             [
                 true,
                 ['multipleSelect' => []],
                 ['multipleSelect' => ''],
                 '',
-                true
+                true,
             ],
             [
                 true,
                 ['multipleSelect' => []],
                 ['multipleSelect' => 'empty'],
                 'empty',
-                true
+                true,
             ],
             [
                 false,
                 ['multipleSelect' => ''],
                 ['multipleSelect' => ''],
                 'empty',
-                true
+                true,
             ],
             [
                 false,
                 ['multipleSelect' => ''],
                 ['multipleSelect' => ''],
                 '',
-                false
+                false,
             ],
             [
                 true,
                 ['multipleSelect' => []],
                 ['multipleSelect' => 'foo'],
                 'foo',
-                true
+                true,
             ],
         ];
     }
@@ -2183,16 +2191,14 @@ class FormTest extends TestCase
         $spec = [
             'name' => 'test',
             'options' => [
-                'use_input_filter_defaults' => false
-            ]
+                'use_input_filter_defaults' => false,
+            ],
         ];
 
         $factory = new Factory();
         $this->form = $factory->createForm($spec);
         $this->assertFalse($this->form->useInputFilterDefaults());
     }
-
-
 
     /**
      * Error test for https://github.com/zendframework/zf2/issues/6363 comment #1
@@ -2236,7 +2242,6 @@ class FormTest extends TestCase
 
         $this->assertEquals($data, $this->form->getData());
     }
-
 
     /**
      * Test for https://github.com/zendframework/zf2/issues/6363 comment #2
@@ -2324,8 +2329,8 @@ class FormTest extends TestCase
                 'label' => 'InputFilterProviderFieldset',
                 'count' => 1,
                 'target_element' => [
-                    'type' => 'text'
-                ]
+                    'type' => 'text',
+                ],
             ],
         ]);
 
@@ -2342,7 +2347,7 @@ class FormTest extends TestCase
             'submit' => 'Confirm',
             'example' => [
                 //'foo' => [] // $_POST doesn't have this if collection is empty
-            ]
+            ],
         ]);
 
         $this->assertTrue($this->form->isValid());
@@ -2354,7 +2359,6 @@ class FormTest extends TestCase
      */
     public function testCanBindNestedCollectionAfterPrepare()
     {
-
         $collection = new Element\Collection('numbers');
         $collection->setOptions([
             'count' => 2,
@@ -2366,7 +2370,7 @@ class FormTest extends TestCase
         ]);
 
         $form = new Form();
-        $object = new \ArrayObject();
+        $object = new ArrayObject();
         $phone1 = new TestAsset\Entity\Phone();
         $phone2 = new TestAsset\Entity\Phone();
         $phone1->setNumber('unmodified');

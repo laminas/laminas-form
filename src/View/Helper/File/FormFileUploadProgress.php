@@ -11,6 +11,9 @@ namespace Laminas\Form\View\Helper\File;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\View\Helper\FormInput;
 
+use function sprintf;
+use function uniqid;
+
 /**
  * A view helper to render the hidden input with a UploadProgress id
  * for file uploads progress tracking.
@@ -41,7 +44,7 @@ class FormFileUploadProgress extends FormInput
             'id'    => 'progress_key',
             'name'  => $this->getName(),
             'type'  => 'hidden',
-            'value' => $this->getValue()
+            'value' => $this->getValue(),
         ];
 
         return sprintf(

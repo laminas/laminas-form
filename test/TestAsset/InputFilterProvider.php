@@ -20,7 +20,7 @@ class InputFilterProvider extends Form implements InputFilterProviderInterface
         $this->add([
             'name' => 'foo',
             'options' => [
-                'label' => 'Foo'
+                'label' => 'Foo',
             ],
         ]);
     }
@@ -30,7 +30,7 @@ class InputFilterProvider extends Form implements InputFilterProviderInterface
         return [
             'foo' => [
                 'required' => true,
-            ]
+            ],
         ];
     }
 }

@@ -8,7 +8,6 @@
 
 namespace LaminasTest\Form\TestAsset;
 
-use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 
 class NestedCollectionsForm extends Form
@@ -21,8 +20,8 @@ class NestedCollectionsForm extends Form
             'name' => 'testFieldset',
             'type' => 'Laminas\Form\Fieldset',
             'options' => [
-                 'use_as_base_fieldset' => true,
-             ],
+                'use_as_base_fieldset' => true,
+            ],
             'elements' => [
                 [
                     'spec' => [
@@ -72,10 +71,10 @@ class NestedCollectionsForm extends Form
                 'groups' => [
                     'name',
                     'items' => [
-                        'itemId'
-                    ]
+                        'itemId',
+                    ],
                 ],
-            ]
+            ],
         ]);
     }
 }

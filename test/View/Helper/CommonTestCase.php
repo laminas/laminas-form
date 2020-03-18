@@ -8,10 +8,15 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\View\HelperConfig;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Renderer\PhpRenderer;
+use Laminas\View\Renderer\RendererInterface;
 use PHPUnit\Framework\TestCase;
+
+use function extension_loaded;
+use function get_class;
 
 /**
  * Abstract base test case for all form view helpers
@@ -19,12 +24,12 @@ use PHPUnit\Framework\TestCase;
 abstract class CommonTestCase extends TestCase
 {
     /**
-     * @var \Laminas\Form\View\Helper\AbstractHelper
+     * @var AbstractHelper
      */
     public $helper;
 
     /**
-     * @var \Laminas\View\Renderer\RendererInterface
+     * @var RendererInterface
      */
     public $renderer;
 

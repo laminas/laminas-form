@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormReset as FormResetHelper;
 
+use function sprintf;
+
 class FormResetTest extends CommonTestCase
 {
     protected function setUp()
@@ -159,9 +161,9 @@ class FormResetTest extends CommonTestCase
         $element->setValue('Reset Label');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                        ->method('translate')
-                       ->will($this->returnValue('translated content'));
+                       ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

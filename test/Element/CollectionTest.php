@@ -22,14 +22,25 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\ArrayInput;
 use LaminasTest\Form\TestAsset\AddressFieldset;
 use LaminasTest\Form\TestAsset\ArrayModel;
+use LaminasTest\Form\TestAsset\CategoryFieldset;
 use LaminasTest\Form\TestAsset\CustomCollection;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use LaminasTest\Form\TestAsset\Entity\Address;
+use LaminasTest\Form\TestAsset\Entity\Category;
+use LaminasTest\Form\TestAsset\Entity\Country;
 use LaminasTest\Form\TestAsset\Entity\Phone;
 use LaminasTest\Form\TestAsset\Entity\Product;
+use LaminasTest\Form\TestAsset\FormCollection;
+use LaminasTest\Form\TestAsset\PhoneFieldset;
 use LaminasTest\Form\TestAsset\ProductFieldset;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+
+use function class_exists;
+use function count;
+use function extension_loaded;
+use function iterator_count;
+use function spl_object_hash;
 
 class CollectionTest extends TestCase
 {
@@ -38,8 +49,8 @@ class CollectionTest extends TestCase
 
     protected function setUp()
     {
-        $this->form = new \LaminasTest\Form\TestAsset\FormCollection();
-        $this->productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
+        $this->form = new FormCollection();
+        $this->productFieldset = new ProductFieldset();
 
         parent::setUp();
     }
@@ -64,7 +75,7 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         $this->expectException('Laminas\Form\Exception\DomainException');
         $data[] = 'orange';
@@ -83,11 +94,11 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         $data[] = 'orange';
         $collection->populateValues($data);
-        $this->assertEquals(3, count($collection->getElements()));
+        $this->assertCount(3, $collection->getElements());
     }
 
     public function testCanRemoveElementsIfAllowRemoveIsTrue()
@@ -101,12 +112,12 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         unset($data[0]);
 
         $collection->populateValues($data);
-        $this->assertEquals(1, count($collection->getElements()));
+        $this->assertCount(1, $collection->getElements());
     }
 
     public function testCanReplaceElementsIfAllowAddAndAllowRemoveIsTrue()
@@ -120,13 +131,13 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         unset($data[0]);
         $data[] = 'orange';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
     }
 
     public function testCanValidateFormWithCollectionWithoutTemplate()
@@ -134,22 +145,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(true, $this->form->isValid());
@@ -160,22 +171,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '123465'
+                '123465',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(false, $this->form->isValid());
@@ -188,22 +199,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
                         'anotherField' => null,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(false, $this->form->isValid());
@@ -225,22 +236,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(true, $this->form->isValid());
@@ -255,22 +266,22 @@ class CollectionTest extends TestCase
 
         $this->form->setData([
             'colors' => [
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->form->isValid();
@@ -283,22 +294,22 @@ class CollectionTest extends TestCase
 
         $this->form->setData([
             'colors' => [
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(true, $this->form->isValid());
@@ -378,46 +389,44 @@ class CollectionTest extends TestCase
 
     public function testExtractFromObjectDoesntTouchOriginalObject()
     {
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
         $originalObjectHash = spl_object_hash(
-            $this->productFieldset->get("categories")->getTargetElement()->getObject()
+            $this->productFieldset->get('categories')->getTargetElement()->getObject()
         );
 
         $product = new Product();
-        $product->setName("foo");
+        $product->setName('foo');
         $product->setPrice(42);
-        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat1->setName("bar");
-        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat2->setName("bar2");
+        $cat1 = new Category();
+        $cat1->setName('bar');
+        $cat2 = new Category();
+        $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
 
         $form->bind($product);
 
-        $form->setData(
-            ["product" =>
-                [
-                    "name" => "franz",
-                    "price" => 13,
-                    "categories" => [
-                        ["name" => "sepp"],
-                        ["name" => "herbert"]
-                    ]
-                ]
-            ]
-        );
+        $form->setData([
+            'product' => [
+                'name' => 'franz',
+                'price' => 13,
+                'categories' => [
+                    ['name' => 'sepp'],
+                    ['name' => 'herbert'],
+                ],
+            ],
+        ]);
 
         $objectAfterExtractHash = spl_object_hash(
-            $this->productFieldset->get("categories")->getTargetElement()->getObject()
+            $this->productFieldset->get('categories')->getTargetElement()->getObject()
         );
 
         $this->assertSame($originalObjectHash, $objectAfterExtractHash);
@@ -430,39 +439,37 @@ class CollectionTest extends TestCase
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
         $product = new Product();
-        $product->setName("foo");
+        $product->setName('foo');
         $product->setPrice(42);
-        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat1->setName("bar");
-        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat2->setName("bar2");
+        $cat1 = new Category();
+        $cat1->setName('bar');
+        $cat2 = new Category();
+        $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
 
         $form->bind($product);
 
-        $form->setData(
-            ["product" =>
-                [
-                    "name" => "franz",
-                    "price" => 13,
-                    "categories" => [
-                        ["name" => "sepp"],
-                        ["name" => "herbert"]
-                    ]
-                ]
-            ]
-        );
+        $form->setData([
+            'product' => [
+                'name' => 'franz',
+                'price' => 13,
+                'categories' => [
+                    ['name' => 'sepp'],
+                    ['name' => 'herbert'],
+                ],
+            ],
+        ]);
         $form->isValid();
 
         $categories = $product->getCategories();
@@ -483,38 +490,36 @@ class CollectionTest extends TestCase
             'create_new_objects' => true,
         ]);
 
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $form->add($this->productFieldset);
 
         $product = new Product();
-        $product->setName("foo");
+        $product->setName('foo');
         $product->setPrice(42);
-        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat1->setName("bar");
-        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat2->setName("bar2");
+        $cat1 = new Category();
+        $cat1->setName('bar');
+        $cat2 = new Category();
+        $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
 
         $form->bind($product);
 
-        $form->setData(
-            ["product" =>
-                [
-                    "name" => "franz",
-                    "price" => 13,
-                    "categories" => [
-                        ["name" => "sepp"],
-                        ["name" => "herbert"]
-                    ]
-                ]
-            ]
-        );
+        $form->setData([
+            'product' => [
+                'name' => 'franz',
+                'price' => 13,
+                'categories' => [
+                    ['name' => 'sepp'],
+                    ['name' => 'herbert'],
+                ],
+            ],
+        ]);
         $form->isValid();
 
         $categories = $product->getCategories();
@@ -531,11 +536,11 @@ class CollectionTest extends TestCase
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
 
-        $phone = new \LaminasTest\Form\TestAsset\PhoneFieldset();
+        $phone = new PhoneFieldset();
 
         $form->add([
             'name' => 'phones',
@@ -543,7 +548,7 @@ class CollectionTest extends TestCase
             'options' => [
                 'target_element' => $phone,
                 'count' => 1,
-                'allow_add' => true
+                'allow_add' => true,
             ],
         ]);
 
@@ -551,7 +556,7 @@ class CollectionTest extends TestCase
             'phones' => [
                 ['number' => '1234567'],
                 ['number' => '1234568'],
-            ]
+            ],
         ];
 
         $phone = new Phone();
@@ -574,33 +579,35 @@ class CollectionTest extends TestCase
         $addressesFieldset = new AddressFieldset();
         $addressesFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $addressesFieldset->remove('city');
 
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'addresses',
             'type' => 'Collection',
             'options' => [
                 'target_element' => $addressesFieldset,
-                'count' => 1
+                'count' => 1,
             ],
         ]);
 
         $data = [
-            'addresses' =>
-                [[
+            'addresses' => [
+                [
                     'street' => 'street1',
-                    'phones' =>
-                        [['number' => '1234567']],
-                ]]
+                    'phones' => [
+                        ['number' => '1234567'],
+                    ],
+                ],
+            ],
         ];
 
         $phone  = new Phone();
@@ -623,27 +630,27 @@ class CollectionTest extends TestCase
 
     public function testDoNotCreateExtraFieldsetOnMultipleBind()
     {
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $this->productFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
         $form->add($this->productFieldset);
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
 
         $product = new Product();
         $categories = [
-            new \LaminasTest\Form\TestAsset\Entity\Category(),
-            new \LaminasTest\Form\TestAsset\Entity\Category(),
+            new Category(),
+            new Category(),
         ];
         $product->setCategories($categories);
 
-        $market = new \StdClass();
+        $market = new stdClass();
         $market->product = $product;
 
         // this will pass the test
@@ -696,9 +703,9 @@ class CollectionTest extends TestCase
         $mockHydrator = $this->createMock('Laminas\Hydrator\HydratorInterface');
         $mockHydrator->expects($this->exactly(2))
             ->method('extract')
-            ->will($this->returnCallback(function ($object) {
+            ->willReturnCallback(static function ($object) {
                 return ['value' => $object->field . '_foo'];
-            }));
+            });
 
         $collection->setHydrator($mockHydrator);
 
@@ -748,7 +755,7 @@ class CollectionTest extends TestCase
                 ['email' => 'test1@test1.com'],
                 ['email' => 'test2@test2.com'],
                 ['email' => 'test3@test3.com'],
-            ]
+            ],
         ];
 
         $myForm->setData($data);
@@ -766,8 +773,8 @@ class CollectionTest extends TestCase
         $targetElement
             ->setHydrator(
                 class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
+                    ? new ObjectPropertyHydrator()
+                    : new ObjectProperty()
             )
             ->setObject($obj1);
 
@@ -785,34 +792,34 @@ class CollectionTest extends TestCase
 
     public function testCollectionCanBindObjectAndPopulateAndExtractNestedFieldsets()
     {
-        $productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
+        $productFieldset = new ProductFieldset();
         $productFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
 
         $mainFieldset = new Fieldset();
         $mainFieldset->setObject(new stdClass);
         $mainFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $mainFieldset->add($productFieldset);
 
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'collection',
             'type' => 'Collection',
             'options' => [
                 'target_element' => $mainFieldset,
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 
@@ -826,29 +833,25 @@ class CollectionTest extends TestCase
         $shop1->product = new Product();
         $shop1->product->setPrice($prices[0]);
 
-        $category = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $category = new Category();
         $category->setName($categoryNames[0]);
         $shop1->product->setCategories([$category]);
 
-        $country = new  \LaminasTest\Form\TestAsset\Entity\Country();
+        $country = new Country();
         $country->setName($productCountries[0]);
         $shop1->product->setMadeInCountry($country);
-
-
 
         $shop2 = new stdClass();
         $shop2->product = new Product();
         $shop2->product->setPrice($prices[1]);
 
-        $category = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $category = new Category();
         $category->setName($categoryNames[1]);
         $shop2->product->setCategories([$category]);
 
-        $country = new  \LaminasTest\Form\TestAsset\Entity\Country();
+        $country = new Country();
         $country->setName($productCountries[1]);
         $shop2->product->setMadeInCountry($country);
-
-
 
         $market->collection = [$shop1, $shop2];
         $form->bind($market);
@@ -885,7 +888,7 @@ class CollectionTest extends TestCase
                 $this->assertInstanceOf('LaminasTest\Form\TestAsset\CategoryFieldset', $_category);
                 $this->assertInstanceOf('LaminasTest\Form\TestAsset\Entity\Category', $_category->getObject());
             }
-        };
+        }
 
         // test for correct extract and populate form values
         // test for collection -> fieldset -> field value
@@ -930,8 +933,8 @@ class CollectionTest extends TestCase
         // this test is using a hydrator set on the collection
         $collection->setHydrator(
             class_exists(ArraySerializableHydrator::class)
-            ? new ArraySerializableHydrator()
-            : new ArraySerializable()
+                ? new ArraySerializableHydrator()
+                : new ArraySerializable()
         );
 
         $this->prepareForExtractWithCustomTraversable($collection);
@@ -952,8 +955,8 @@ class CollectionTest extends TestCase
         $targetElement = $collection->getTargetElement();
         $targetElement->setHydrator(
             class_exists(ArraySerializableHydrator::class)
-            ? new ArraySerializableHydrator()
-            : new ArraySerializable()
+                ? new ArraySerializableHydrator()
+                : new ArraySerializable()
         );
         $obj1 = new ArrayModel();
         $targetElement->setObject($obj1);
@@ -991,7 +994,7 @@ class CollectionTest extends TestCase
         // Standalone Collection element
         $collection = new Collection('fieldsets', [
             'count' => 1,
-            'target_element' => new \LaminasTest\Form\TestAsset\CategoryFieldset(),
+            'target_element' => new CategoryFieldset(),
         ]);
 
         $form = new Form();
@@ -1000,8 +1003,8 @@ class CollectionTest extends TestCase
             'name' => 'collection',
             'options' => [
                 'count' => 1,
-                'target_element' => new \LaminasTest\Form\TestAsset\CategoryFieldset(),
-            ]
+                'target_element' => new CategoryFieldset(),
+            ],
         ]);
 
         // Collection element attached to a form
@@ -1010,14 +1013,14 @@ class CollectionTest extends TestCase
         $collection->populateValues($inputData);
         $formCollection->populateValues($inputData);
 
-        $this->assertEquals(count($collection->getFieldsets()), count($inputData));
-        $this->assertEquals(count($formCollection->getFieldsets()), count($inputData));
+        $this->assertCount(count($collection->getFieldsets()), $inputData);
+        $this->assertCount(count($formCollection->getFieldsets()), $inputData);
     }
 
     public function testCanRemoveAllElementsIfAllowRemoveIsTrue()
     {
         /**
-         * @var \Laminas\Form\Element\Collection $collection
+         * @var Collection $collection
          */
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(true);
@@ -1029,10 +1032,10 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         $collection->populateValues([]);
-        $this->assertEquals(0, count($collection->getElements()));
+        $this->assertCount(0, $collection->getElements());
     }
 
     public function testCanBindObjectMultipleNestedFieldsets()
@@ -1040,16 +1043,16 @@ class CollectionTest extends TestCase
         $productFieldset = new ProductFieldset();
         $productFieldset->setHydrator(
             class_exists(ArraySerializableHydrator::class)
-            ? new ArraySerializableHydrator()
-            : new ArraySerializable()
+                ? new ArraySerializableHydrator()
+                : new ArraySerializable()
         );
         $productFieldset->setObject(new Product());
 
         $nestedFieldset = new Fieldset('nested');
         $nestedFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $nestedFieldset->setObject(new stdClass());
         $nestedFieldset->add([
@@ -1065,8 +1068,8 @@ class CollectionTest extends TestCase
         $mainFieldset->setUseAsBaseFieldset(true);
         $mainFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $mainFieldset->setObject(new stdClass());
         $mainFieldset->add([
@@ -1081,8 +1084,8 @@ class CollectionTest extends TestCase
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add($mainFieldset);
 
@@ -1122,31 +1125,31 @@ class CollectionTest extends TestCase
                     }
                 }
             }
-        };
+        }
     }
 
     public function testNestedCollections()
     {
         // @see https://github.com/zendframework/zf2/issues/5640
-        $addressesFieldeset = new \LaminasTest\Form\TestAsset\AddressFieldset();
+        $addressesFieldeset = new AddressFieldset();
         $addressesFieldeset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
-            ? new ClassMethodsHydrator()
-            : new ClassMethods()
+                ? new ClassMethodsHydrator()
+                : new ClassMethods()
         );
 
         $form = new Form();
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'addresses',
             'type' => 'Collection',
             'options' => [
                 'target_element' => $addressesFieldeset,
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 
@@ -1220,7 +1223,7 @@ class CollectionTest extends TestCase
         $names = ['foo', 'bar', 'baz', 'bat'];
 
         $form->setData([
-            'names' => $names
+            'names' => $names,
         ]);
 
         $this->assertCount(count($names), $form->get('names'));
@@ -1229,7 +1232,7 @@ class CollectionTest extends TestCase
         foreach ($form->get('names') as $field) {
             $this->assertEquals($names[$i], $field->getValue());
             $i++;
-        };
+        }
     }
 
     public function testSettingSomeDataButNoneForCollectionReturnsSpecifiedNumberOfElementsAfterPrepare()
@@ -1241,7 +1244,7 @@ class CollectionTest extends TestCase
             'type' => 'Collection',
             'options' => [
                 'target_element' => new Element\Text(),
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 
@@ -1281,10 +1284,11 @@ class CollectionTest extends TestCase
             'name' => 'text',
             'type' => 'Laminas\Form\Element\Collection',
             'options' => [
-                'target_element' => $text, 'count' => 2,
+                'target_element' => $text,
+                'count' => 2,
             ],
         ]);
-        $object = new \ArrayObject(['text' => ['Foo', 'Bar']]);
+        $object = new ArrayObject(['text' => ['Foo', 'Bar']]);
         $form->bind($object);
         $this->assertTrue($form->isValid());
 
@@ -1308,31 +1312,31 @@ class CollectionTest extends TestCase
     {
         $mainFieldset = new Fieldset();
         $mainFieldset->add(new Element\Text('test'));
-        $mainFieldset->setObject(new \ArrayObject());
+        $mainFieldset->setObject(new ArrayObject());
         $mainFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
 
         $form = new Form();
-        $form->setObject(new \stdClass());
+        $form->setObject(new stdClass());
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
-            ? new ObjectPropertyHydrator()
-            : new ObjectProperty()
+                ? new ObjectPropertyHydrator()
+                : new ObjectProperty()
         );
         $form->add([
             'name' => 'collection',
             'type' => 'Collection',
             'options' => [
                 'target_element' => $mainFieldset,
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 
-        $model = new \stdClass();
-        $model->collection = [new \ArrayObject(['test' => 'bar']), new \stdClass()];
+        $model = new stdClass();
+        $model->collection = [new ArrayObject(['test' => 'bar']), new stdClass()];
 
         $form->bind($model);
         $this->assertTrue($form->isValid());
@@ -1354,7 +1358,7 @@ class CollectionTest extends TestCase
     public function testCanHydrateObject()
     {
         $form = $this->form;
-        $object = new \ArrayObject();
+        $object = new ArrayObject();
         $form->bind($object);
         $data = [
             'colors' => [
@@ -1370,7 +1374,7 @@ class CollectionTest extends TestCase
     public function testCanRemoveMultipleElements()
     {
         /**
-         * @var \Laminas\Form\Element\Collection $collection
+         * @var Collection $collection
          */
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(true);
@@ -1384,7 +1388,7 @@ class CollectionTest extends TestCase
         $collection->populateValues($data);
 
         $collection->populateValues(['colors' => ['0' => 'blue']]);
-        $this->assertEquals(1, count($collection->getElements()));
+        $this->assertCount(1, $collection->getElements());
     }
 
     public function testGetErrorMessagesForInvalidCollectionElements()
@@ -1405,7 +1409,6 @@ class CollectionTest extends TestCase
                 'required' => true,
             ]
         );
-
 
         $this->form->setData([]);
         $this->form->isValid();
@@ -1431,7 +1434,7 @@ class CollectionTest extends TestCase
         $form = new Form();
 
         $form->add([
-            'type' => \Laminas\Form\Element\Collection::class,
+            'type' => Collection::class,
             'name' => 'fieldsets',
             'options' => [
                 'count' => 2,

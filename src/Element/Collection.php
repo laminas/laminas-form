@@ -14,7 +14,18 @@ use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\Exception\InvalidArgumentException;
 use Traversable;
+
+use function count;
+use function get_class;
+use function gettype;
+use function is_array;
+use function is_object;
+use function is_string;
+use function iterator_to_array;
+use function max;
+use function sprintf;
 
 class Collection extends Fieldset
 {
@@ -103,7 +114,7 @@ class Collection extends Fieldset
      * - template_placeholder: placeholder used in the data template
      *
      * @param array|Traversable $options
-     * @return Collection
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -181,8 +192,8 @@ class Collection extends Fieldset
      * Populate values
      *
      * @param array|Traversable $data
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @throws \Laminas\Form\Exception\DomainException
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      * @return void
      */
     public function populateValues($data)
@@ -291,7 +302,7 @@ class Collection extends Fieldset
      * Set the initial count of target element
      *
      * @param $count
-     * @return Collection
+     * @return $this
      */
     public function setCount($count)
     {
@@ -313,8 +324,8 @@ class Collection extends Fieldset
      * Set the target element
      *
      * @param ElementInterface|array|Traversable $elementOrFieldset
-     * @return Collection
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
+     * @return $this
+     * @throws Exception\InvalidArgumentException
      */
     public function setTargetElement($elementOrFieldset)
     {
@@ -330,7 +341,7 @@ class Collection extends Fieldset
                 '%s requires that $elementOrFieldset be an object implementing %s; received "%s"',
                 __METHOD__,
                 __NAMESPACE__ . '\ElementInterface',
-                (is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset))
+                is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset)
             ));
         }
 
@@ -353,7 +364,7 @@ class Collection extends Fieldset
      * Get allow add
      *
      * @param bool $allowAdd
-     * @return Collection
+     * @return $this
      */
     public function setAllowAdd($allowAdd)
     {
@@ -373,7 +384,7 @@ class Collection extends Fieldset
 
     /**
      * @param bool $allowRemove
-     * @return Collection
+     * @return $this
      */
     public function setAllowRemove($allowRemove)
     {
@@ -394,7 +405,7 @@ class Collection extends Fieldset
      * to ease the creation of dynamic elements through JavaScript
      *
      * @param bool $shouldCreateTemplate
-     * @return Collection
+     * @return $this
      */
     public function setShouldCreateTemplate($shouldCreateTemplate)
     {
@@ -417,7 +428,7 @@ class Collection extends Fieldset
      * Set the placeholder used in the template generated to help create new elements in JavaScript
      *
      * @param string $templatePlaceholder
-     * @return Collection
+     * @return $this
      */
     public function setTemplatePlaceholder($templatePlaceholder)
     {
@@ -440,7 +451,7 @@ class Collection extends Fieldset
 
     /**
      * @param bool $createNewObjects
-     * @return Collection
+     * @return $this
      */
     public function setCreateNewObjects($createNewObjects)
     {
@@ -503,10 +514,10 @@ class Collection extends Fieldset
 
     /**
      * @return array
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @throws \Laminas\Stdlib\Exception\InvalidArgumentException
-     * @throws \Laminas\Form\Exception\DomainException
-     * @throws \Laminas\Form\Exception\InvalidElementException
+     * @throws Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
+     * @throws Exception\DomainException
+     * @throws Exception\InvalidElementException
      */
     public function extract()
     {
@@ -581,8 +592,8 @@ class Collection extends Fieldset
 
         if (! $this->allowAdd && $this->count() > $this->count) {
             throw new Exception\DomainException(sprintf(
-                'There are more elements than specified in the collection (%s). Either set the allow_add option ' .
-                'to true, or re-submit the form.',
+                'There are more elements than specified in the collection (%s). Either set the allow_add option '
+                . 'to true, or re-submit the form.',
                 get_class($this)
             ));
         }
@@ -598,7 +609,7 @@ class Collection extends Fieldset
     protected function createTemplateElement()
     {
         if (! $this->shouldCreateTemplate) {
-            return;
+            return null;
         }
 
         if ($this->templateElement) {

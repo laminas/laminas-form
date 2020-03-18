@@ -14,6 +14,8 @@ use Laminas\Hydrator\ArraySerializableHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Orphan;
 
+use function class_exists;
+
 class OrphansFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct($name = null, $options = [])
@@ -23,8 +25,8 @@ class OrphansFieldset extends Fieldset implements InputFilterProviderInterface
         $this
             ->setHydrator(
                 class_exists(ArraySerializableHydrator::class)
-                ? new ArraySerializableHydrator()
-                : new ArraySerializable()
+                    ? new ArraySerializableHydrator()
+                    : new ArraySerializable()
             )
             ->setObject(new Orphan());
 

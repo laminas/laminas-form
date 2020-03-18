@@ -12,10 +12,12 @@ use DateTime as PhpDateTime;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
-use Laminas\Stdlib\ArrayUtils;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 use Traversable;
+
+use function is_string;
+use function sprintf;
 
 class DateTimeSelect extends DateSelect
 {
@@ -73,7 +75,7 @@ class DateTimeSelect extends DateSelect
      * - should_show_seconds: if set to true, the seconds select is shown
      *
      * @param array|Traversable $options
-     * @return self
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -126,7 +128,7 @@ class DateTimeSelect extends DateSelect
      * Set the hour attributes
      *
      * @param  array $hourAttributes
-     * @return self
+     * @return $this
      */
     public function setHourAttributes(array $hourAttributes)
     {
@@ -148,7 +150,7 @@ class DateTimeSelect extends DateSelect
      * Set the minute attributes
      *
      * @param  array $minuteAttributes
-     * @return self
+     * @return $this
      */
     public function setMinuteAttributes(array $minuteAttributes)
     {
@@ -170,7 +172,7 @@ class DateTimeSelect extends DateSelect
      * Set the second attributes
      *
      * @param  array $secondAttributes
-     * @return self
+     * @return $this
      */
     public function setSecondAttributes(array $secondAttributes)
     {
@@ -193,7 +195,7 @@ class DateTimeSelect extends DateSelect
      * assumed to always be 00
      *
      * @param  bool $shouldShowSeconds
-     * @return self
+     * @return $this
      */
     public function setShouldShowSeconds($shouldShowSeconds)
     {
@@ -211,7 +213,7 @@ class DateTimeSelect extends DateSelect
 
     /**
      * @param mixed $value
-     * @return self
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setValue($value)
@@ -235,7 +237,7 @@ class DateTimeSelect extends DateSelect
                 'day'    => $value->format('d'),
                 'hour'   => $value->format('H'),
                 'minute' => $value->format('i'),
-                'second' => $value->format('s')
+                'second' => $value->format('s'),
             ];
         }
 
@@ -311,7 +313,7 @@ class DateTimeSelect extends DateSelect
             'name' => $this->getName(),
             'required' => false,
             'filters' => [
-                ['name' => 'DateTimeSelect']
+                ['name' => 'DateTimeSelect'],
             ],
             'validators' => [
                 $this->getValidator(),

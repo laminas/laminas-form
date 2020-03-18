@@ -16,6 +16,8 @@ use Laminas\Form\FormElementManagerFactory;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
 
+use function method_exists;
+
 class FormElementManagerFactoryTest extends TestCase
 {
     public function testFactoryReturnsPluginManager()

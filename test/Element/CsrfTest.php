@@ -12,6 +12,8 @@ use Laminas\Form\Element\Csrf as CsrfElement;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
+use function get_class;
+
 class CsrfTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
@@ -23,7 +25,7 @@ class CsrfTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Csrf'
+            'Laminas\Validator\Csrf',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);

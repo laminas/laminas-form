@@ -11,6 +11,8 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormSubmit as FormSubmitHelper;
 
+use function sprintf;
+
 class FormSubmitTest extends CommonTestCase
 {
     protected function setUp()
@@ -158,9 +160,9 @@ class FormSubmitTest extends CommonTestCase
         $element->setValue('Submit Label');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                        ->method('translate')
-                       ->will($this->returnValue('translated content'));
+                       ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

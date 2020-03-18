@@ -11,6 +11,8 @@ namespace LaminasTest\Form\TestAsset;
 use DomainException;
 use Laminas\Stdlib\ArraySerializableInterface;
 
+use function property_exists;
+
 class Model implements ArraySerializableInterface
 {
     protected $foo;
