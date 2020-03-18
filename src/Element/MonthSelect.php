@@ -13,7 +13,6 @@ use Laminas\Form\Element;
 use Laminas\Form\ElementPrepareAwareInterface;
 use Laminas\Form\FormInterface;
 use Laminas\InputFilter\InputProviderInterface;
-use Laminas\Stdlib\ArrayUtils;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 use Traversable;

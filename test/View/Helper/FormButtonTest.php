@@ -9,7 +9,6 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
-use Laminas\Form\Form;
 use Laminas\Form\View\Helper\FormButton as FormButtonHelper;
 
 class FormButtonTest extends CommonTestCase

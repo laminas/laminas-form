@@ -8,7 +8,6 @@
 
 namespace LaminasTest\Form;
 
-use Laminas\Filter;
 use Laminas\Form;
 use Laminas\Form\Factory as FormFactory;
 use Laminas\Form\FormElementManager;

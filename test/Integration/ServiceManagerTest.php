@@ -10,7 +10,6 @@ namespace LaminasTest\Form\Integration;
 
 use Laminas\Form\Element;
 use Laminas\Form\Form;
-use Laminas\Form\FormElementManager;
 use Laminas\Form\FormElementManagerFactory;
 use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\InitializerInterface;

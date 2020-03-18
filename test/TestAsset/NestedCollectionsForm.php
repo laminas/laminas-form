@@ -8,7 +8,6 @@
 
 namespace LaminasTest\Form\TestAsset;
 
-use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 
 class NestedCollectionsForm extends Form

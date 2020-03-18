@@ -12,7 +12,6 @@ use DateTime as PhpDateTime;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
-use Laminas\Stdlib\ArrayUtils;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 use Traversable;
