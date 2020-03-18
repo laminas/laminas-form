@@ -437,7 +437,7 @@ class FormInputTest extends CommonTestCase
             $this->assertNotContains(
                 $expect,
                 $markup,
-                sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup)
+                sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
             );
         }
 
@@ -465,7 +465,7 @@ class FormInputTest extends CommonTestCase
             $this->assertNotContains(
                 $expect,
                 $markup,
-                sprintf("Disabled value for %s should not be rendered; received %s", $attribute, $markup)
+                sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
             );
         }
     }

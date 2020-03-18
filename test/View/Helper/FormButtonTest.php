@@ -292,7 +292,7 @@ class FormButtonTest extends CommonTestCase
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
 
-        $markup = $this->helper->__invoke($element, "translate me");
+        $markup = $this->helper->__invoke($element, 'translate me');
         $this->assertContains('>translated content<', $markup);
     }
 

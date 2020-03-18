@@ -55,7 +55,7 @@ class Month extends DateTime
         $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : '1970-01';
 
         return new DateStepValidator([
-            'format'    => "Y-m",
+            'format'    => 'Y-m',
             'baseValue' => $baseValue,
             'step'      => new \DateInterval("P{$stepValue}M"),
         ]);

@@ -1173,7 +1173,7 @@ class FormTest extends TestCase
     public function testCanCorrectlyPopulateDataToOneToManyEntites()
     {
         if (! extension_loaded('intl')) {
-            $this->markTestSkipped("The Intl extension is not loaded");
+            $this->markTestSkipped('The Intl extension is not loaded');
         }
         $product = $this->getOneToManyEntity();
         $emptyProduct = new TestAsset\Entity\Product();
@@ -1205,7 +1205,7 @@ class FormTest extends TestCase
     public function testCanCorrectlyPopulateOrphanedEntities()
     {
         if (! extension_loaded('intl')) {
-            $this->markTestSkipped("The Intl extension is not loaded");
+            $this->markTestSkipped('The Intl extension is not loaded');
         }
 
         $form = new TestAsset\OrphansForm();
@@ -1808,8 +1808,8 @@ class FormTest extends TestCase
                             'name' => 'InArray',
                             'options' => [
                                 'haystack' => [
-                                    "0",
-                                    "1",
+                                    '0',
+                                    '1',
                                 ],
                             ],
                         ],

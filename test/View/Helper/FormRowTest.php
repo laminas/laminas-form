@@ -105,7 +105,7 @@ class FormRowTest extends TestCase
         $element->setLabelAttributes(['class' => 'bar']);
         $this->helper->setLabelPosition('append');
         $markup = $this->helper->render($element);
-        $this->assertContains("<label class=\"bar\">", $markup);
+        $this->assertContains('<label class="bar">', $markup);
     }
 
     public function testCanCreateMarkupWithoutLabel()
@@ -137,9 +137,9 @@ class FormRowTest extends TestCase
         $element->setAttribute('options', $options);
         $element->setLabel('This is a multi-checkbox');
         $markup = $this->helper->render($element);
-        $this->assertContains("<fieldset>", $markup);
-        $this->assertContains("<legend>", $markup);
-        $this->assertContains("<label>", $markup);
+        $this->assertContains('<fieldset>', $markup);
+        $this->assertContains('<legend>', $markup);
+        $this->assertContains('<label>', $markup);
     }
 
 
@@ -349,7 +349,7 @@ class FormRowTest extends TestCase
     public function testShowErrorInMultiCheckbox()
     {
         $element = new Element\MultiCheckbox('hobby');
-        $element->setLabel("Hobby");
+        $element->setLabel('Hobby');
         $element->setValueOptions([
             '0' => 'working',
             '1' => 'coding',
@@ -365,7 +365,7 @@ class FormRowTest extends TestCase
     public function testShowErrorInRadio()
     {
         $element = new Element\Radio('direction');
-        $element->setLabel("Direction");
+        $element->setLabel('Direction');
         $element->setValueOptions([
             '0' => 'programming',
             '1' => 'design',
@@ -391,7 +391,7 @@ class FormRowTest extends TestCase
         $markup = $this->helper->__invoke($element);
         $this->assertEquals(
             2,
-            count(explode("<ul><li>The input does not appear to be a valid date</li></ul>", $markup))
+            count(explode('<ul><li>The input does not appear to be a valid date</li></ul>', $markup))
         );
     }
 

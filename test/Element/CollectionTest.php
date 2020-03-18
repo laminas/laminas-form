@@ -388,34 +388,34 @@ class CollectionTest extends TestCase
         $form->add($this->productFieldset);
 
         $originalObjectHash = spl_object_hash(
-            $this->productFieldset->get("categories")->getTargetElement()->getObject()
+            $this->productFieldset->get('categories')->getTargetElement()->getObject()
         );
 
         $product = new Product();
-        $product->setName("foo");
+        $product->setName('foo');
         $product->setPrice(42);
         $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat1->setName("bar");
+        $cat1->setName('bar');
         $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat2->setName("bar2");
+        $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
 
         $form->bind($product);
 
         $form->setData([
-            "product" => [
-                "name" => "franz",
-                "price" => 13,
-                "categories" => [
-                    ["name" => "sepp"],
-                    ["name" => "herbert"],
+            'product' => [
+                'name' => 'franz',
+                'price' => 13,
+                'categories' => [
+                    ['name' => 'sepp'],
+                    ['name' => 'herbert'],
                 ],
             ],
         ]);
 
         $objectAfterExtractHash = spl_object_hash(
-            $this->productFieldset->get("categories")->getTargetElement()->getObject()
+            $this->productFieldset->get('categories')->getTargetElement()->getObject()
         );
 
         $this->assertSame($originalObjectHash, $objectAfterExtractHash);
@@ -438,24 +438,24 @@ class CollectionTest extends TestCase
         $form->add($this->productFieldset);
 
         $product = new Product();
-        $product->setName("foo");
+        $product->setName('foo');
         $product->setPrice(42);
         $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat1->setName("bar");
+        $cat1->setName('bar');
         $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat2->setName("bar2");
+        $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
 
         $form->bind($product);
 
         $form->setData([
-            "product" => [
-                "name" => "franz",
-                "price" => 13,
-                "categories" => [
-                    ["name" => "sepp"],
-                    ["name" => "herbert"],
+            'product' => [
+                'name' => 'franz',
+                'price' => 13,
+                'categories' => [
+                    ['name' => 'sepp'],
+                    ['name' => 'herbert'],
                 ],
             ],
         ]);
@@ -488,24 +488,24 @@ class CollectionTest extends TestCase
         $form->add($this->productFieldset);
 
         $product = new Product();
-        $product->setName("foo");
+        $product->setName('foo');
         $product->setPrice(42);
         $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat1->setName("bar");
+        $cat1->setName('bar');
         $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
-        $cat2->setName("bar2");
+        $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
 
         $form->bind($product);
 
         $form->setData([
-            "product" => [
-                "name" => "franz",
-                "price" => 13,
-                "categories" => [
-                    ["name" => "sepp"],
-                    ["name" => "herbert"],
+            'product' => [
+                'name' => 'franz',
+                'price' => 13,
+                'categories' => [
+                    ['name' => 'sepp'],
+                    ['name' => 'herbert'],
                 ],
             ],
         ]);

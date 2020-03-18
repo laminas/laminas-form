@@ -217,7 +217,7 @@ class Fieldset extends Element implements FieldsetInterface
     {
         if (! $this->has($elementOrFieldset)) {
             throw new Exception\InvalidElementException(sprintf(
-                "No element by the name of [%s] found in form",
+                'No element by the name of [%s] found in form',
                 $elementOrFieldset
             ));
         }

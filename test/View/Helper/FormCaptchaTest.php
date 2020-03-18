@@ -116,11 +116,11 @@ class FormCaptchaTest extends CommonTestCase
 
             return;
         }
-        if (! function_exists("imagepng")) {
-            $this->markTestSkipped("Image CAPTCHA requires PNG support");
+        if (! function_exists('imagepng')) {
+            $this->markTestSkipped('Image CAPTCHA requires PNG support');
         }
-        if (! function_exists("imageftbbox")) {
-            $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
+        if (! function_exists('imageftbbox')) {
+            $this->markTestSkipped('Image CAPTCHA requires FT fonts support');
         }
 
         $this->testDir = $this->getTmpDir() . '/Laminas_test_images';
