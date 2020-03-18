@@ -79,6 +79,7 @@ class SelectTest extends TestCase
         $this->assertTrue($inArrayValidator->isValid('Option 3'));
         $this->assertFalse($inArrayValidator->isValid('Option 5'));
     }
+
     public function testProvidesInputSpecificationForMultipleSelect()
     {
         $element = new SelectElement();
