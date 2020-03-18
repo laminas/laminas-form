@@ -837,7 +837,7 @@ class CollectionTest extends TestCase
         $category->setName($categoryNames[0]);
         $shop1->product->setCategories([$category]);
 
-        $country = new  Country();
+        $country = new Country();
         $country->setName($productCountries[0]);
         $shop1->product->setMadeInCountry($country);
 
@@ -849,7 +849,7 @@ class CollectionTest extends TestCase
         $category->setName($categoryNames[1]);
         $shop2->product->setCategories([$category]);
 
-        $country = new  Country();
+        $country = new Country();
         $country->setName($productCountries[1]);
         $shop2->product->setMadeInCountry($country);
 

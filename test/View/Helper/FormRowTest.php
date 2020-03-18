@@ -384,7 +384,7 @@ class FormRowTest extends TestCase
 
     public function testErrorShowTwice()
     {
-        $element = new  Element\Date('birth');
+        $element = new Element\Date('birth');
         $element->setFormat('Y-m-d');
         $element->setValue('2010.13');
 
