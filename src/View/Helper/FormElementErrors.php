@@ -218,7 +218,7 @@ class FormElementErrors extends AbstractHelper
     private function flattenMessagesWithoutTranslator(array $messages)
     {
         $messagesToPrint = [];
-        array_walk_recursive($messages, function ($item) use (&$messagesToPrint) {
+        array_walk_recursive($messages, static function ($item) use (&$messagesToPrint) {
             $messagesToPrint[] = $item;
         });
         return $messagesToPrint;
@@ -233,7 +233,7 @@ class FormElementErrors extends AbstractHelper
         $translator      = $this->getTranslator();
         $textDomain      = $this->getTranslatorTextDomain();
         $messagesToPrint = [];
-        $messageCallback = function ($item) use (&$messagesToPrint, $translator, $textDomain) {
+        $messageCallback = static function ($item) use (&$messagesToPrint, $translator, $textDomain) {
             $messagesToPrint[] = $translator->translate($item, $textDomain);
         };
         array_walk_recursive($messages, $messageCallback);

@@ -299,7 +299,7 @@ class Select extends Element implements InputProviderInterface
             $spec['filters'] = [[
                 'name'    => 'Callback',
                 'options' => [
-                    'callback' => function ($value) use ($unselectedValue) {
+                    'callback' => static function ($value) use ($unselectedValue) {
                         if ($value === $unselectedValue) {
                             $value = [];
                         }

@@ -397,7 +397,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         ]);
 
         $results = $this->getEventManager()->triggerEventUntil(
-            function ($r) {
+            static function ($r) {
                 return (is_string($r) && ! empty($r));
             },
             $event
@@ -419,7 +419,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         $event->setParams(['annotations' => $annotations]);
 
         $results = $this->getEventManager()->triggerEventUntil(
-            function ($r) {
+            static function ($r) {
                 return (true === $r);
             },
             $event
