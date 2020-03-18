@@ -48,14 +48,16 @@ class FormCreatesCollectionInputFilterTest extends TestCase
                             ],
                         ],
                     ],
-                    'options' => ['input_filter_spec' => [
-                        'date' => [
-                            'required' => false,
-                            'validators' => [
-                                ['name' => 'StringLength'],
+                    'options' => [
+                        'input_filter_spec' => [
+                            'date' => [
+                                'required' => false,
+                                'validators' => [
+                                    ['name' => 'StringLength'],
+                                ],
                             ],
                         ],
-                    ],],
+                    ],
                 ],
             ],
         ]);

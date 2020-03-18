@@ -226,7 +226,6 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
         Element\Week::class           => ElementFactory::class,
 
         // v2 normalized variants
-
         'laminasformelementbutton'         => ElementFactory::class,
         'laminasformelementcaptcha'        => ElementFactory::class,
         'laminasformelementcheckbox'       => ElementFactory::class,

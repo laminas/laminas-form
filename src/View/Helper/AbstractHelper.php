@@ -180,8 +180,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @var array
      */
-    protected $validTagAttributes = [
-    ];
+    protected $validTagAttributes = [];
 
     /**
      * Set value for doctype

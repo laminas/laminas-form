@@ -296,17 +296,19 @@ class Select extends Element implements InputProviderInterface
 
             $spec['allow_empty'] = true;
             $spec['continue_if_empty'] = true;
-            $spec['filters'] = [[
-                'name'    => 'Callback',
-                'options' => [
-                    'callback' => static function ($value) use ($unselectedValue) {
-                        if ($value === $unselectedValue) {
-                            $value = [];
-                        }
-                        return $value;
-                    },
+            $spec['filters'] = [
+                [
+                    'name'    => 'Callback',
+                    'options' => [
+                        'callback' => static function ($value) use ($unselectedValue) {
+                            if ($value === $unselectedValue) {
+                                $value = [];
+                            }
+                            return $value;
+                        },
+                    ],
                 ],
-            ],];
+            ];
         }
 
         if ($validator = $this->getValidator()) {

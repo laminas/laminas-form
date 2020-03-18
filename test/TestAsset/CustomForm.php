@@ -39,8 +39,7 @@ class CustomForm extends Form
         $this->add([
             'name' => 'csrf',
             'type' => 'Laminas\Form\Element\Csrf',
-            'attributes' => [
-            ],
+            'attributes' => [],
         ]);
 
         $this->add([

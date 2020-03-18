@@ -589,12 +589,14 @@ class CollectionTest extends TestCase
         ]);
 
         $data = [
-            'addresses' =>
-                [[
+            'addresses' => [
+                [
                     'street' => 'street1',
-                    'phones' =>
-                        [['number' => '1234567']],
-                ],],
+                    'phones' => [
+                        ['number' => '1234567'],
+                    ],
+                ],
+            ],
         ];
 
         $phone  = new Phone();
@@ -1271,7 +1273,8 @@ class CollectionTest extends TestCase
             'name' => 'text',
             'type' => 'Laminas\Form\Element\Collection',
             'options' => [
-                'target_element' => $text, 'count' => 2,
+                'target_element' => $text,
+                'count' => 2,
             ],
         ]);
         $object = new ArrayObject(['text' => ['Foo', 'Bar']]);
