@@ -223,9 +223,9 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->any())
+        $mockTranslator
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -263,9 +263,9 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
 
         $mockTranslator = $this->createMock(TranslatorInterface::class);
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -283,9 +283,9 @@ class FormRowTest extends TestCase
         $element->setAttribute('id', 'foo');
 
         $mockTranslator = $this->createMock(TranslatorInterface::class);
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -393,9 +393,9 @@ class FormRowTest extends TestCase
         $element->setMessages($validator->getMessages());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertEquals(
+        $this->assertCount(
             2,
-            count(explode('<ul><li>The input does not appear to be a valid date</li></ul>', $markup))
+            explode('<ul><li>The input does not appear to be a valid date</li></ul>', $markup)
         );
     }
 

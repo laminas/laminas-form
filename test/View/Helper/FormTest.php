@@ -100,8 +100,8 @@ class FormTest extends CommonTestCase
     {
         $form = $this->createMock('Laminas\\Form\\Form');
         $form->expects($this->once())->method('prepare');
-        $form->expects($this->any())->method('getAttributes')->will($this->returnValue([]));
-        $form->expects($this->any())->method('getIterator')->will($this->returnValue(new ArrayIterator([])));
+        $form->method('getAttributes')->willReturn([]);
+        $form->method('getIterator')->willReturn(new ArrayIterator([]));
 
         $markup = $this->helper->__invoke($form);
 

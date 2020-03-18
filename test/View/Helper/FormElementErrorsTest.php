@@ -66,13 +66,13 @@ class FormElementErrorsTest extends CommonTestCase
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
         $mockTranslator->expects($this->at(0))
             ->method('translate')
-            ->will($this->returnValue('Translated first error message'));
+            ->willReturn('Translated first error message');
         $mockTranslator->expects($this->at(1))
             ->method('translate')
-            ->will($this->returnValue('Translated second error message'));
+            ->willReturn('Translated second error message');
         $mockTranslator->expects($this->at(2))
             ->method('translate')
-            ->will($this->returnValue('Translated third error message'));
+            ->willReturn('Translated third error message');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

@@ -122,13 +122,13 @@ class FieldsetTest extends TestCase
 
     public function testFieldsetIsEmptyByDefault()
     {
-        $this->assertEquals(0, count($this->fieldset));
+        $this->assertCount(0, $this->fieldset);
     }
 
     public function testCanAddElementsToFieldset()
     {
         $this->fieldset->add(new Element('foo'));
-        $this->assertEquals(1, count($this->fieldset));
+        $this->assertCount(1, $this->fieldset);
     }
 
     public function testCanSetCustomOptionFromConstructor()
@@ -186,7 +186,7 @@ class FieldsetTest extends TestCase
     {
         $fieldset = new Fieldset('foo');
         $this->fieldset->add($fieldset);
-        $this->assertEquals(1, count($this->fieldset));
+        $this->assertCount(1, $this->fieldset);
     }
 
     public function testCanRemoveElementsByName()
@@ -230,7 +230,7 @@ class FieldsetTest extends TestCase
     {
         $this->populateFieldset();
         $elements = $this->fieldset->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
         foreach (['foo', 'bar', 'baz'] as $name) {
             $this->assertTrue(isset($elements[$name]));
             $element = $this->fieldset->get($name);
@@ -242,7 +242,7 @@ class FieldsetTest extends TestCase
     {
         $this->populateFieldset();
         $fieldsets = $this->fieldset->getFieldsets();
-        $this->assertEquals(2, count($fieldsets));
+        $this->assertCount(2, $fieldsets);
         foreach (['foobar', 'barbaz'] as $name) {
             $this->assertTrue(isset($fieldsets[$name]));
             $fieldset = $this->fieldset->get($name);
@@ -311,7 +311,7 @@ class FieldsetTest extends TestCase
     public function testCountGivesCountOfAttachedElementsAndFieldsets()
     {
         $this->populateFieldset();
-        $this->assertEquals(5, count($this->fieldset));
+        $this->assertCount(5, $this->fieldset);
     }
 
     public function testCanIterateOverElementsAndFieldsetsInOrderAttached()

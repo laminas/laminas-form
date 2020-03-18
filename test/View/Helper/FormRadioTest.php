@@ -223,9 +223,9 @@ class FormRadioTest extends CommonTestCase
         $markup = $this->helper->render($element);
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
-        ->method('translate')
-        ->will($this->returnValue('translated content'));
+        $mockTranslator->expects($this->once())
+            ->method('translate')
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

@@ -187,9 +187,9 @@ class FormCollectionTest extends TestCase
         $this->helper->setShouldWrap(true);
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                        ->method('translate')
-                       ->will($this->returnValue('translated legend'));
+                       ->willReturn('translated legend');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

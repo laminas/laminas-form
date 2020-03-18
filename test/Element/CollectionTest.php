@@ -75,7 +75,7 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         $this->expectException('Laminas\Form\Exception\DomainException');
         $data[] = 'orange';
@@ -94,11 +94,11 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         $data[] = 'orange';
         $collection->populateValues($data);
-        $this->assertEquals(3, count($collection->getElements()));
+        $this->assertCount(3, $collection->getElements());
     }
 
     public function testCanRemoveElementsIfAllowRemoveIsTrue()
@@ -112,12 +112,12 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         unset($data[0]);
 
         $collection->populateValues($data);
-        $this->assertEquals(1, count($collection->getElements()));
+        $this->assertCount(1, $collection->getElements());
     }
 
     public function testCanReplaceElementsIfAllowAddAndAllowRemoveIsTrue()
@@ -131,13 +131,13 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         unset($data[0]);
         $data[] = 'orange';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
     }
 
     public function testCanValidateFormWithCollectionWithoutTemplate()
@@ -703,9 +703,9 @@ class CollectionTest extends TestCase
         $mockHydrator = $this->createMock('Laminas\Hydrator\HydratorInterface');
         $mockHydrator->expects($this->exactly(2))
             ->method('extract')
-            ->will($this->returnCallback(function ($object) {
+            ->willReturnCallback(static function ($object) {
                 return ['value' => $object->field . '_foo'];
-            }));
+            });
 
         $collection->setHydrator($mockHydrator);
 
@@ -1013,8 +1013,8 @@ class CollectionTest extends TestCase
         $collection->populateValues($inputData);
         $formCollection->populateValues($inputData);
 
-        $this->assertEquals(count($collection->getFieldsets()), count($inputData));
-        $this->assertEquals(count($formCollection->getFieldsets()), count($inputData));
+        $this->assertCount(count($collection->getFieldsets()), $inputData);
+        $this->assertCount(count($formCollection->getFieldsets()), $inputData);
     }
 
     public function testCanRemoveAllElementsIfAllowRemoveIsTrue()
@@ -1032,10 +1032,10 @@ class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertEquals(2, count($collection->getElements()));
+        $this->assertCount(2, $collection->getElements());
 
         $collection->populateValues([]);
-        $this->assertEquals(0, count($collection->getElements()));
+        $this->assertCount(0, $collection->getElements());
     }
 
     public function testCanBindObjectMultipleNestedFieldsets()
@@ -1388,7 +1388,7 @@ class CollectionTest extends TestCase
         $collection->populateValues($data);
 
         $collection->populateValues(['colors' => ['0' => 'blue']]);
-        $this->assertEquals(1, count($collection->getElements()));
+        $this->assertCount(1, $collection->getElements());
     }
 
     public function testGetErrorMessagesForInvalidCollectionElements()

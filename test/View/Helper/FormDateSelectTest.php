@@ -96,7 +96,7 @@ class FormDateSelectTest extends CommonTestCase
     {
         $element = new DateSelect('foo');
         $this->helper->render($element);
-        $this->assertEquals(31, count($element->getDayElement()->getValueOptions()));
+        $this->assertCount(31, $element->getDayElement()->getValueOptions());
     }
 
     /**
@@ -107,12 +107,12 @@ class FormDateSelectTest extends CommonTestCase
         $element = new DateSelect('foo');
         $this->helper->render($element);
         $elements = $element->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
 
         foreach ($elements as $subElement) {
             $this->assertInstanceOf('Laminas\Form\Element\Select', $subElement);
         }
 
-        $this->assertEquals(31, count($elements[0]->getValueOptions()));
+        $this->assertCount(31, $elements[0]->getValueOptions());
     }
 }

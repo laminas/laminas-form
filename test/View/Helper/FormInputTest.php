@@ -496,9 +496,9 @@ class FormInputTest extends CommonTestCase
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
 
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                 ->method('translate')
-                ->will($this->returnValue('translated string'));
+                ->willReturn('translated string');
 
         $this->helper->setTranslator($mockTranslator);
 
@@ -516,10 +516,10 @@ class FormInputTest extends CommonTestCase
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
 
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
                 ->method('translate')
                 ->with($this->equalTo('test'))
-                ->will($this->returnValue('translated string'));
+                ->willReturn('translated string');
 
         $this->helper->setTranslator($mockTranslator);
 

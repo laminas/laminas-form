@@ -573,7 +573,7 @@ class FormTest extends TestCase
         $this->form->isValid();
         $data = $this->form->getData();
         $this->assertInternalType('array', $data);
-        $this->assertEquals(1, count($data));
+        $this->assertCount(1, $data);
         $this->assertArrayHasKey('foo', $data);
         $this->assertEquals('abcde', $data['foo']);
     }
@@ -968,9 +968,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
         $this->assertTrue($input->isRequired());
         $this->assertEquals('foo', $input->getName());
     }
@@ -1008,15 +1008,15 @@ class FormTest extends TestCase
         $test = $filter->get('set');
         $this->assertSame($fieldsetFilter, $test);
 
-        $this->assertEquals(1, count($fieldsetFilter));
+        $this->assertCount(1, $fieldsetFilter);
         $this->assertTrue($fieldsetFilter->has('foo'));
 
         $input = $fieldsetFilter->get('foo');
         $this->assertInstanceOf('Laminas\InputFilter\InputInterface', $input);
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
         $this->assertTrue($input->isRequired());
         $this->assertEquals('foo', $input->getName());
     }
@@ -1041,9 +1041,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(0, count($filters));
+        $this->assertCount(0, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(0, count($validators));
+        $this->assertCount(0, $validators);
         $this->assertFalse($input->isRequired());
         $this->assertEquals('foo', $input->getName());
     }
@@ -1063,7 +1063,7 @@ class FormTest extends TestCase
         $test = $this->form->getInputFilter();
         $this->assertSame($filter, $test);
         $this->assertSame($fieldsetFilter, $test->get('set'));
-        $this->assertEquals(0, count($fieldsetFilter));
+        $this->assertCount(0, $fieldsetFilter);
     }
 
     public function testCallingPrepareEnsuresInputFilterRetrievesDefaults()
@@ -1077,9 +1077,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
         $this->assertTrue($input->isRequired());
         $this->assertEquals('foo', $input->getName());
 
@@ -1089,9 +1089,9 @@ class FormTest extends TestCase
         $this->assertTrue($filter->has('foo'));
         $input = $filter->get('foo');
         $filters = $input->getFilterChain();
-        $this->assertEquals(1, count($filters));
+        $this->assertCount(1, $filters);
         $validators = $input->getValidatorChain();
-        $this->assertEquals(2, count($validators));
+        $this->assertCount(2, $validators);
     }
 
     public function testCanProperlyPrepareNestedFieldsets()
@@ -2053,12 +2053,12 @@ class FormTest extends TestCase
             ],
         ]);
 
-        $this->assertTrue(
+        $this->assertInstanceOf(
+            Input::class,
             $this->form->getInputFilter()
                 ->get('nested_fieldset_with_input_filter_provider')
                 ->getInputFilter()
                 ->get('foo')
-            instanceof Input
         );
     }
 

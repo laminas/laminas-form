@@ -77,13 +77,13 @@ class AnnotationBuilderTest extends TestCase
 
         $username = $filter->get('username');
         $this->assertTrue($username->isRequired());
-        $this->assertEquals(1, count($username->getFilterChain()));
-        $this->assertEquals(2, count($username->getValidatorChain()));
+        $this->assertCount(1, $username->getFilterChain());
+        $this->assertCount(2, $username->getValidatorChain());
 
         $password = $filter->get('password');
         $this->assertTrue($password->isRequired());
-        $this->assertEquals(1, count($password->getFilterChain()));
-        $this->assertEquals(1, count($password->getValidatorChain()));
+        $this->assertCount(1, $password->getFilterChain());
+        $this->assertCount(1, $password->getValidatorChain());
     }
 
     public function testCanCreateFormWithClassAnnotations()

@@ -244,9 +244,9 @@ class FormSelectTest extends CommonTestCase
         $markup = $this->helper->render($element);
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
-        ->method('translate')
-        ->will($this->returnValue('translated content'));
+        $mockTranslator->expects($this->once())
+            ->method('translate')
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -272,15 +272,15 @@ class FormSelectTest extends CommonTestCase
         $mockTranslator->expects($this->at(0))
                        ->method('translate')
                        ->with('translate me')
-                       ->will($this->returnValue('translated label'));
+                       ->willReturn('translated label');
         $mockTranslator->expects($this->at(1))
                        ->method('translate')
                        ->with('foo')
-                       ->will($this->returnValue('translated foo'));
+                       ->willReturn('translated foo');
         $mockTranslator->expects($this->at(2))
                        ->method('translate')
                        ->with('bar')
-                       ->will($this->returnValue('translated bar'));
+                       ->willReturn('translated bar');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

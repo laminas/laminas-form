@@ -272,9 +272,9 @@ class FormButtonTest extends CommonTestCase
         $element->setLabel('The value for foo:');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -288,9 +288,9 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
 
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->exactly(1))
+        $mockTranslator->expects($this->once())
             ->method('translate')
-            ->will($this->returnValue('translated content'));
+            ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());

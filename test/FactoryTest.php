@@ -126,7 +126,7 @@ class FactoryTest extends TestCase
         ]);
         $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
         $elements = $fieldset->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
         $this->assertTrue($fieldset->has('bar'));
         $this->assertTrue($fieldset->has('baz'));
         $this->assertTrue($fieldset->has('bat'));
@@ -206,7 +206,7 @@ class FactoryTest extends TestCase
         ]);
         $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $masterFieldset);
         $fieldsets = $masterFieldset->getFieldsets();
-        $this->assertEquals(1, count($fieldsets));
+        $this->assertCount(1, $fieldsets);
         $this->assertTrue($masterFieldset->has('bar'));
 
         $fieldset = $masterFieldset->get('bar');
@@ -301,7 +301,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $filter = $form->getInputFilter();
         $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $filter);
-        $this->assertEquals(2, count($filter));
+        $this->assertCount(2, $filter);
         foreach (['foo', 'bar'] as $name) {
             $input = $filter->get($name);
 
@@ -309,12 +309,12 @@ class FactoryTest extends TestCase
                 case 'foo':
                     $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
                     $this->assertFalse($input->isRequired());
-                    $this->assertEquals(2, count($input->getValidatorChain()));
+                    $this->assertCount(2, $input->getValidatorChain());
                     break;
                 case 'bar':
                     $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
                     $this->assertTrue($input->allowEmpty());
-                    $this->assertEquals(2, count($input->getFilterChain()));
+                    $this->assertCount(2, $input->getFilterChain());
                     break;
                 default:
                     $this->fail('Unexpected input named "' . $name . '" found in input filter');
@@ -651,7 +651,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
 
         $elements = $form->getElements();
-        $this->assertEquals(3, count($elements));
+        $this->assertCount(3, $elements);
         $this->assertTrue($form->has('bar'));
         $this->assertTrue($form->has('baz'));
         $this->assertTrue($form->has('bat'));
@@ -680,7 +680,7 @@ class FactoryTest extends TestCase
 
         // Test against nested fieldset
         $fieldsets = $form->getFieldsets();
-        $this->assertEquals(1, count($fieldsets));
+        $this->assertCount(1, $fieldsets);
         $this->assertTrue($form->has('foobar'));
 
         $fieldset = $form->get('foobar');
@@ -845,7 +845,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
 
         $elements = $form->getElements();
-        $this->assertEquals(2, count($elements));
+        $this->assertCount(2, $elements);
         $this->assertTrue($form->has('bar'));
         $this->assertFalse($form->has('baz'));
         $this->assertTrue($form->has('bat'));
