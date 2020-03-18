@@ -20,7 +20,6 @@ class Country
      */
     protected $continent;
 
-
     /**
      * @param string $name
      * @return $this

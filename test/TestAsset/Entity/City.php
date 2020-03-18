@@ -25,7 +25,6 @@ class City
      */
     protected $country;
 
-
     /**
      * @param Country $country
      * @return $this

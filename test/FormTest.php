@@ -248,7 +248,6 @@ class FormTest extends TestCase
         $form->setData([]);
         $form->isValid();
 
-
         $this->assertTrue($form->hasValidated());
     }
 
@@ -2192,8 +2191,6 @@ class FormTest extends TestCase
         $this->assertFalse($this->form->useInputFilterDefaults());
     }
 
-
-
     /**
      * Error test for https://github.com/zendframework/zf2/issues/6363 comment #1
      */
@@ -2236,7 +2233,6 @@ class FormTest extends TestCase
 
         $this->assertEquals($data, $this->form->getData());
     }
-
 
     /**
      * Test for https://github.com/zendframework/zf2/issues/6363 comment #2
@@ -2354,7 +2350,6 @@ class FormTest extends TestCase
      */
     public function testCanBindNestedCollectionAfterPrepare()
     {
-
         $collection = new Element\Collection('numbers');
         $collection->setOptions([
             'count' => 2,

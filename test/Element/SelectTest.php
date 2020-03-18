@@ -166,7 +166,6 @@ class SelectTest extends TestCase
         $this->assertCount(count($options), $haystack);
     }
 
-
     public function testOptionsHasArrayOnConstruct()
     {
         $element = new SelectElement();

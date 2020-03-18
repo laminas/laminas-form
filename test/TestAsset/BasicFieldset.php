@@ -25,7 +25,6 @@ class BasicFieldset extends Fieldset implements \Laminas\InputFilter\InputFilter
         $this->add($nestedFieldset);
     }
 
-
     /**
      * Should return an array specification compatible with
      * {@link Laminas\InputFilter\Factory::createInputFilter()}.

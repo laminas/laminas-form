@@ -25,7 +25,6 @@ class Address
      */
     protected $phones = [];
 
-
     /**
      * @param $street
      * @return $this

@@ -828,8 +828,6 @@ class CollectionTest extends TestCase
         $country->setName($productCountries[0]);
         $shop1->product->setMadeInCountry($country);
 
-
-
         $shop2 = new stdClass();
         $shop2->product = new Product();
         $shop2->product->setPrice($prices[1]);
@@ -841,8 +839,6 @@ class CollectionTest extends TestCase
         $country = new  \LaminasTest\Form\TestAsset\Entity\Country();
         $country->setName($productCountries[1]);
         $shop2->product->setMadeInCountry($country);
-
-
 
         $market->collection = [$shop1, $shop2];
         $form->bind($market);
@@ -1399,7 +1395,6 @@ class CollectionTest extends TestCase
                 'required' => true,
             ]
         );
-
 
         $this->form->setData([]);
         $this->form->isValid();

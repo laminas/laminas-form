@@ -14,7 +14,6 @@ use Laminas\Validator\ValidatorInterface;
 
 class Month extends DateTime
 {
-
     const DATETIME_FORMAT = 'Y-m';
 
     /**

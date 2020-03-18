@@ -110,7 +110,6 @@ class MultiCheckboxTest extends TestCase
         $this->assertCount(count($options), $haystack);
     }
 
-
     public function testAttributeType()
     {
         $element = new MultiCheckboxElement();

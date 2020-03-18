@@ -44,7 +44,6 @@ class ImageTest extends CommonTestCase
             @mkdir($this->testDir);
         }
 
-
         $this->helper  = new ImageCaptchaHelper();
         $this->captcha = new ImageCaptcha([
             'imgDir'       => $this->testDir,

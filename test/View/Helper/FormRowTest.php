@@ -142,7 +142,6 @@ class FormRowTest extends TestCase
         $this->assertContains('<label>', $markup);
     }
 
-
     public function testRenderAttributeId()
     {
         $element = new Element\Text('foo');

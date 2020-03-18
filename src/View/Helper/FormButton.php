@@ -95,7 +95,6 @@ class FormButton extends FormInput
             );
         }
 
-
         if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
             $escapeHtmlHelper = $this->getEscapeHtmlHelper();
             $buttonContent = $escapeHtmlHelper($buttonContent);
