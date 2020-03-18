@@ -194,9 +194,9 @@ class FactoryTest extends TestCase
                                 ],
                             ],
                         ],
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
         $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $masterFieldset);
         $fieldsets = $masterFieldset->getFieldsets();
@@ -393,7 +393,7 @@ class FactoryTest extends TestCase
 
         $form = $this->factory->createForm([
             'name' => 'foo',
-            'hydrator' => new $hydratorType()
+            'hydrator' => new $hydratorType(),
         ]);
 
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
@@ -790,8 +790,8 @@ class FactoryTest extends TestCase
                     'flags' => [
                         'name' => 'bar',
                     ],
-                ]
-            ]
+                ],
+            ],
         ]);
 
         $this->assertInstanceOf($hydratorType, $fieldset->getHydrator());

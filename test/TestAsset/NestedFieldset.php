@@ -33,8 +33,8 @@ class NestedFieldset extends Fieldset implements \Laminas\InputFilter\InputFilte
     {
         return [
             'anotherField' => [
-                'required' => true
-            ]
+                'required' => true,
+            ],
         ];
     }
 }

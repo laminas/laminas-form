@@ -106,7 +106,7 @@ class AnnotationBuilderFactoryTest extends TestCase
         $container->get('config')->willReturn([
             'form_annotation_builder' => [
                 'listeners' => [
-                    'test-listener'
+                    'test-listener',
                 ],
             ],
         ]);
@@ -131,7 +131,7 @@ class AnnotationBuilderFactoryTest extends TestCase
         $container->get('config')->willReturn([
             'form_annotation_builder' => [
                 'listeners' => [
-                    'test-listener'
+                    'test-listener',
                 ],
             ],
         ]);

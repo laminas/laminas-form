@@ -44,7 +44,7 @@ class FormCreatesCollectionInputFilterTest extends TestCase
                         [
                             'spec' => [
                                 'name' => 'date',
-                                'type' => 'date'
+                                'type' => 'date',
                             ],
                         ],
                     ],
@@ -55,7 +55,7 @@ class FormCreatesCollectionInputFilterTest extends TestCase
                                 ['name' => 'StringLength'],
                             ],
                         ],
-                    ]],
+                    ],],
                 ],
             ],
         ]);

@@ -72,10 +72,10 @@ class NestedCollectionsForm extends Form
                 'groups' => [
                     'name',
                     'items' => [
-                        'itemId'
-                    ]
+                        'itemId',
+                    ],
                 ],
-            ]
+            ],
         ]);
     }
 }

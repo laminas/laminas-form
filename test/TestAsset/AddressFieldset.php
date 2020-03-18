@@ -57,7 +57,7 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         return [
             'street' => [
                 'required' => true,
-            ]
+            ],
         ];
     }
 }

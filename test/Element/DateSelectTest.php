@@ -24,7 +24,7 @@ class DateSelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Date'
+            'Laminas\Validator\Date',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);

@@ -36,8 +36,8 @@ class BasicFieldset extends Fieldset implements \Laminas\InputFilter\InputFilter
     {
         return [
             'field' => [
-                'required' => true
-            ]
+                'required' => true,
+            ],
         ];
     }
 }

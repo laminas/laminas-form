@@ -41,7 +41,7 @@ class FormFileUploadProgress extends FormInput
             'id'    => 'progress_key',
             'name'  => $this->getName(),
             'type'  => 'hidden',
-            'value' => $this->getValue()
+            'value' => $this->getValue(),
         ];
 
         return sprintf(

@@ -46,12 +46,12 @@ class Range extends NumberElement
 
         $validators[] = new GreaterThanValidator([
             'min'       => (isset($this->attributes['min'])) ? $this->attributes['min'] : 0,
-            'inclusive' => $inclusive
+            'inclusive' => $inclusive,
         ]);
 
         $validators[] = new LessThanValidator([
             'max'       => (isset($this->attributes['max'])) ? $this->attributes['max'] : 100,
-            'inclusive' => $inclusive
+            'inclusive' => $inclusive,
         ]);
 
         if (! isset($this->attributes['step'])

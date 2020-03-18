@@ -53,8 +53,8 @@ class CityFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => true,
             ],
             'zipCode' => [
-                'required' => true
-            ]
+                'required' => true,
+            ],
         ];
     }
 }

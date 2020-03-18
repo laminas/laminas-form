@@ -46,8 +46,8 @@ class CustomForm extends Form
         $this->add([
             'name' => 'submit',
             'attributes' => [
-                'type' => 'submit'
-            ]
+                'type' => 'submit',
+            ],
         ]);
     }
 

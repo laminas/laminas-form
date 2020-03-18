@@ -18,7 +18,7 @@ class Radio extends MultiCheckbox
      * @var array
      */
     protected $attributes = [
-        'type' => 'radio'
+        'type' => 'radio',
     ];
 
     /**

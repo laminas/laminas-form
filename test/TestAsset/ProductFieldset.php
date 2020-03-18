@@ -30,21 +30,21 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add([
             'name' => 'name',
             'options' => [
-                'label' => 'Name of the product'
+                'label' => 'Name of the product',
             ],
             'attributes' => [
-                'required' => 'required'
-            ]
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
             'name' => 'price',
             'options' => [
-                'label' => 'Price of the product'
+                'label' => 'Price of the product',
             ],
             'attributes' => [
-                'required' => 'required'
-            ]
+                'required' => 'required',
+            ],
         ]);
 
         $this->add([
@@ -54,9 +54,9 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
                 'label' => 'Please choose categories for this product',
                 'count' => 2,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset'
-                ]
-            ]
+                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset',
+                ],
+            ],
         ]);
 
         $this->add([
@@ -68,7 +68,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
                 : ClassMethods::class,
             'options' => [
                 'label' => 'Please choose the country',
-            ]
+            ],
         ]);
     }
 
@@ -88,9 +88,9 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => true,
                 'validators' => [
                     [
-                        'name' => 'IsFloat'
-                    ]
-                ]
+                        'name' => 'IsFloat',
+                    ],
+                ],
             ],
             'made_in_country' => [
                 'required' => false,

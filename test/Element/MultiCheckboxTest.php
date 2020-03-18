@@ -39,7 +39,7 @@ class MultiCheckboxTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Explode'
+            'Laminas\Validator\Explode',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -63,14 +63,14 @@ class MultiCheckboxTest extends TestCase
                 [
                     'foo' => 'My Foo Label',
                     'bar' => 'My Bar Label',
-                ]
+                ],
             ],
             [
                 ['foo', 'bar'],
                 [
                     0 => ['label' => 'My Foo Label', 'value' => 'foo'],
                     1 => ['label' => 'My Bar Label', 'value' => 'bar'],
-                ]
+                ],
             ],
         ];
     }

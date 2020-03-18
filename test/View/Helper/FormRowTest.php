@@ -78,7 +78,7 @@ class FormRowTest extends TestCase
         $fooElement->setOptions([
             'label'         => 'The value for foo:',
             'label_options' => [
-                'label_position' => 'prepend'
+                'label_position' => 'prepend',
             ],
         ]);
 
@@ -186,7 +186,7 @@ class FormRowTest extends TestCase
     {
         $element  = new Element('foo');
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
 
         $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
@@ -197,7 +197,7 @@ class FormRowTest extends TestCase
     {
         $element  = new Element('foo');
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
         $element->setAttribute('class', 'foo bar');
 
@@ -352,10 +352,10 @@ class FormRowTest extends TestCase
         $element->setLabel("Hobby");
         $element->setValueOptions([
             '0' => 'working',
-            '1' => 'coding'
+            '1' => 'coding',
         ]);
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
 
         $markup = $this->helper->__invoke($element);
@@ -368,10 +368,10 @@ class FormRowTest extends TestCase
         $element->setLabel("Direction");
         $element->setValueOptions([
             '0' => 'programming',
-            '1' => 'design'
+            '1' => 'design',
         ]);
         $element->setMessages([
-            'Error message'
+            'Error message',
         ]);
 
         $markup = $this->helper->__invoke($element);
@@ -574,8 +574,8 @@ class FormRowTest extends TestCase
     {
         $element = new Element('foo', [
             'label_options' => [
-                'always_wrap' => true
-            ]
+                'always_wrap' => true,
+            ],
         ]);
         $element->setAttribute('id', 'bar');
         $element->setLabel('baz');
@@ -600,7 +600,7 @@ class FormRowTest extends TestCase
             . '<\/fieldset>$#',
             $this->helper->render(new Captcha('captcha', [
                 'captcha' => ['class' => 'dumb'],
-                'label' => 'baz'
+                'label' => 'baz',
             ]))
         );
     }

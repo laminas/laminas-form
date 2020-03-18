@@ -129,7 +129,7 @@ class FieldsetTest extends TestCase
     public function testCanSetCustomOptionFromConstructor()
     {
         $fieldset = new Fieldset('foo', [
-            'custom' => 'option'
+            'custom' => 'option',
         ]);
         $options = $fieldset->getOptions();
         $this->assertArrayHasKey('custom', $options);
@@ -399,7 +399,7 @@ class FieldsetTest extends TestCase
             'foobar' => 'abc',
         ]);
         $value['foobar'] = new \ArrayObject([
-            'foo' => 'abc'
+            'foo' => 'abc',
         ]);
         $form->bind($value);
         $this->assertSame($fieldset, $form->get('foobar'));
@@ -442,7 +442,7 @@ class FieldsetTest extends TestCase
     public function testSetOptions()
     {
         $this->fieldset->setOptions([
-                                   'foo' => 'bar'
+                                   'foo' => 'bar',
                               ]);
         $option = $this->fieldset->getOption('foo');
 
@@ -452,7 +452,7 @@ class FieldsetTest extends TestCase
     public function testSetOptionsUseAsBaseFieldset()
     {
         $this->fieldset->setOptions([
-                                   'use_as_base_fieldset' => 'bar'
+                                   'use_as_base_fieldset' => 'bar',
                               ]);
         $option = $this->fieldset->getOption('use_as_base_fieldset');
 
@@ -462,7 +462,7 @@ class FieldsetTest extends TestCase
     public function testSetOptionAllowedObjectBindingClass()
     {
         $this->fieldset->setOptions([
-                                         'allowed_object_binding_class' => 'bar'
+                                         'allowed_object_binding_class' => 'bar',
                                     ]);
         $option = $this->fieldset->getOption('allowed_object_binding_class');
 
@@ -581,7 +581,7 @@ class FieldsetTest extends TestCase
         $form->bind($object);
 
         $form->setData([
-            'foo' => 'New value'
+            'foo' => 'New value',
         ]);
 
         $this->assertSame('New value', $form->get('foo')->getValue());

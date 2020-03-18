@@ -39,7 +39,7 @@ class ElementTest extends TestCase
             'type'     => 'text',
             'class'    => 'text-element',
             'data-foo' => 'bar',
-            'x-autocompletetype' => 'email'
+            'x-autocompletetype' => 'email',
         ];
         $element->setAttributes($attributes);
         $this->assertEquals($attributes, $element->getAttributes());
@@ -126,7 +126,7 @@ class ElementTest extends TestCase
     public function testCanSetCustomOptionFromConstructor()
     {
         $element = new Element('foo', [
-            'custom' => 'option'
+            'custom' => 'option',
         ]);
         $options = $element->getOptions();
         $this->assertArrayHasKey('custom', $options);
@@ -137,7 +137,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
         $element->setOptions([
-            'custom' => 'option'
+            'custom' => 'option',
         ]);
 
         $options = $element->getOptions();
@@ -149,7 +149,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
         $element->setOptions([
-            'custom' => 'option'
+            'custom' => 'option',
         ]);
         $option = $element->getOption('custom');
         $this->assertEquals('option', $option);
@@ -160,7 +160,7 @@ class ElementTest extends TestCase
         $element = new Element('foo');
         $element->setOptions([
             'label' => 'foo',
-            'label_attributes' => ['bar' => 'baz']
+            'label_attributes' => ['bar' => 'baz'],
         ]);
         $option = $element->getOption('label_attributes');
         $this->assertEquals(['bar' => 'baz'], $option);
@@ -170,7 +170,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
         $element->setOptions([
-            'label_options' => ['moar' => 'foo']
+            'label_options' => ['moar' => 'foo'],
         ]);
 
         $labelOptions = $element->getLabelOptions();
@@ -233,7 +233,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
         $element->setOptions([
-            'label_options' => ['moar' => 'foo']
+            'label_options' => ['moar' => 'foo'],
         ]);
 
         $this->assertEquals('foo', $element->getLabelOption('moar'));
@@ -251,7 +251,7 @@ class ElementTest extends TestCase
         $element = new Element();
         $options = [
             'foo'     => 'bar',
-            'foo2'    => 'baz'
+            'foo2'    => 'baz',
         ];
         $element->setLabelOptions($options);
 
@@ -275,11 +275,11 @@ class ElementTest extends TestCase
         $element = new Element();
         $options = [
             'foo'     => 'bar',
-            'foo2'    => 'baz'
+            'foo2'    => 'baz',
         ];
         $optionsExtra = [
             'foo3'    => 'bar2',
-            'foo2'    => 'baz2'
+            'foo2'    => 'baz2',
         ];
         $element->setLabelOptions($options);
         $element->setLabelOptions($optionsExtra);
@@ -296,7 +296,7 @@ class ElementTest extends TestCase
         $element = new Element();
         $options = [
             'foo'     => 'bar',
-            'foo2'    => 'baz'
+            'foo2'    => 'baz',
         ];
         $element->setLabelOptions($options);
         $element->clearLabelOptions();
@@ -308,7 +308,7 @@ class ElementTest extends TestCase
         $element = new Element();
         $options = [
             'foo'     => 'bar',
-            'foo2'    => 'baz'
+            'foo2'    => 'baz',
         ];
         $element->setLabelOptions($options);
         $element->removeLabelOption('foo2');
@@ -321,7 +321,7 @@ class ElementTest extends TestCase
         $options = [
             'foo'     => 'bar',
             'foo2'    => 'baz',
-            'foo3'    => 'bar2'
+            'foo3'    => 'bar2',
         ];
         $element->setLabelOptions($options);
         $element->removeLabelOptions(['foo', 'foo2']);
@@ -337,7 +337,7 @@ class ElementTest extends TestCase
             'type'             => 'text',
             'aria-label'       => 'alb',
             'aria-describedby' => 'adb',
-            'aria-orientation' => 'vertical'
+            'aria-orientation' => 'vertical',
         ];
         $element->setAttributes($attributes);
         $this->assertTrue($element->hasAttribute('aria-describedby'));
@@ -352,7 +352,7 @@ class ElementTest extends TestCase
             'type'             => 'text',
             'aria-label'       => 'alb',
             'aria-describedby' => 'adb',
-            'aria-orientation' => 'vertical'
+            'aria-orientation' => 'vertical',
         ];
         $element->setAttributes($attributes);
         $element->removeAttributes(['aria-label', 'aria-describedby', 'aria-orientation']);

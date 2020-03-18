@@ -178,11 +178,11 @@ class DateSelect extends MonthSelect
             'name' => $this->getName(),
             'required' => false,
             'filters' => [
-                ['name' => 'DateSelect']
+                ['name' => 'DateSelect'],
             ],
             'validators' => [
                 $this->getValidator(),
-            ]
+            ],
         ];
     }
 

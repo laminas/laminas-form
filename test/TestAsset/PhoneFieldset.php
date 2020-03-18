@@ -43,7 +43,7 @@ class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
         return [
             'number' => [
                 'required' => true,
-            ]
+            ],
         ];
     }
 }

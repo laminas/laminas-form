@@ -281,7 +281,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         if ($value instanceof PhpDateTime) {
             $value = [
                 'year'  => $value->format('Y'),
-                'month' => $value->format('m')
+                'month' => $value->format('m'),
             ];
         }
 

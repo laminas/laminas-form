@@ -28,7 +28,7 @@ class SelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\InArray'
+            'Laminas\Validator\InArray',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -44,7 +44,7 @@ class SelectTest extends TestCase
             'Option 1' => 'Label 1',
             'Option 2' => 'Label 2',
             'Option 3' => 'Label 2',
-          ]]]);
+          ],],]);
 
         $inputSpec = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
@@ -61,7 +61,7 @@ class SelectTest extends TestCase
             ['value' => 'Option 1', 'label' => 'Label 1'],
             ['value' => 'Option 2', 'label' => 'Label 2'],
             ['value' => 'Option 3', 'label' => 'Label 3'],
-          ]]]);
+          ],],]);
 
         $inputSpec = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
@@ -88,7 +88,7 @@ class SelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Explode'
+            'Laminas\Validator\Explode',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -111,14 +111,14 @@ class SelectTest extends TestCase
                 [
                     'foo' => 'My Foo Label',
                     'bar' => 'My Bar Label',
-                ]
+                ],
             ],
             [
                 ['foo', 'bar'],
                 [
                     0 => ['label' => 'My Foo Label', 'value' => 'foo'],
                     1 => ['label' => 'My Bar Label', 'value' => 'bar'],
-                ]
+                ],
             ],
         ];
     }
@@ -256,7 +256,7 @@ class SelectTest extends TestCase
             'unselected_value' => 'empty',
             'value_options' => [
                 'foo' => 'Foo',
-                'bar' => 'Bar'
+                'bar' => 'Bar',
             ],
         ]);
         $element->setAttributes(['multiple' => 'multiple']);

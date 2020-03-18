@@ -134,22 +134,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(true, $this->form->isValid());
@@ -160,22 +160,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '123465'
+                '123465',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(false, $this->form->isValid());
@@ -188,22 +188,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
                         'anotherField' => null,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(false, $this->form->isValid());
@@ -225,22 +225,22 @@ class CollectionTest extends TestCase
         $this->form->setData([
             'colors' => [
                 '#ffffff',
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(true, $this->form->isValid());
@@ -255,22 +255,22 @@ class CollectionTest extends TestCase
 
         $this->form->setData([
             'colors' => [
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->form->isValid();
@@ -283,22 +283,22 @@ class CollectionTest extends TestCase
 
         $this->form->setData([
             'colors' => [
-                '#ffffff'
+                '#ffffff',
             ],
             'fieldsets' => [
                 [
                     'field' => 'oneValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
+                        'anotherField' => 'anotherValue',
+                    ],
                 ],
                 [
                     'field' => 'twoValue',
                     'nested_fieldset' => [
-                        'anotherField' => 'anotherValue'
-                    ]
-                ]
-            ]
+                        'anotherField' => 'anotherValue',
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertEquals(true, $this->form->isValid());
@@ -410,9 +410,9 @@ class CollectionTest extends TestCase
                     "price" => 13,
                     "categories" => [
                         ["name" => "sepp"],
-                        ["name" => "herbert"]
-                    ]
-                ]
+                        ["name" => "herbert"],
+                    ],
+                ],
             ]
         );
 
@@ -458,9 +458,9 @@ class CollectionTest extends TestCase
                     "price" => 13,
                     "categories" => [
                         ["name" => "sepp"],
-                        ["name" => "herbert"]
-                    ]
-                ]
+                        ["name" => "herbert"],
+                    ],
+                ],
             ]
         );
         $form->isValid();
@@ -510,9 +510,9 @@ class CollectionTest extends TestCase
                     "price" => 13,
                     "categories" => [
                         ["name" => "sepp"],
-                        ["name" => "herbert"]
-                    ]
-                ]
+                        ["name" => "herbert"],
+                    ],
+                ],
             ]
         );
         $form->isValid();
@@ -543,7 +543,7 @@ class CollectionTest extends TestCase
             'options' => [
                 'target_element' => $phone,
                 'count' => 1,
-                'allow_add' => true
+                'allow_add' => true,
             ],
         ]);
 
@@ -551,7 +551,7 @@ class CollectionTest extends TestCase
             'phones' => [
                 ['number' => '1234567'],
                 ['number' => '1234568'],
-            ]
+            ],
         ];
 
         $phone = new Phone();
@@ -590,7 +590,7 @@ class CollectionTest extends TestCase
             'type' => 'Collection',
             'options' => [
                 'target_element' => $addressesFieldset,
-                'count' => 1
+                'count' => 1,
             ],
         ]);
 
@@ -600,7 +600,7 @@ class CollectionTest extends TestCase
                     'street' => 'street1',
                     'phones' =>
                         [['number' => '1234567']],
-                ]]
+                ],],
         ];
 
         $phone  = new Phone();
@@ -748,7 +748,7 @@ class CollectionTest extends TestCase
                 ['email' => 'test1@test1.com'],
                 ['email' => 'test2@test2.com'],
                 ['email' => 'test3@test3.com'],
-            ]
+            ],
         ];
 
         $myForm->setData($data);
@@ -812,7 +812,7 @@ class CollectionTest extends TestCase
             'type' => 'Collection',
             'options' => [
                 'target_element' => $mainFieldset,
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 
@@ -1001,7 +1001,7 @@ class CollectionTest extends TestCase
             'options' => [
                 'count' => 1,
                 'target_element' => new \LaminasTest\Form\TestAsset\CategoryFieldset(),
-            ]
+            ],
         ]);
 
         // Collection element attached to a form
@@ -1146,7 +1146,7 @@ class CollectionTest extends TestCase
             'type' => 'Collection',
             'options' => [
                 'target_element' => $addressesFieldeset,
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 
@@ -1220,7 +1220,7 @@ class CollectionTest extends TestCase
         $names = ['foo', 'bar', 'baz', 'bat'];
 
         $form->setData([
-            'names' => $names
+            'names' => $names,
         ]);
 
         $this->assertCount(count($names), $form->get('names'));
@@ -1241,7 +1241,7 @@ class CollectionTest extends TestCase
             'type' => 'Collection',
             'options' => [
                 'target_element' => new Element\Text(),
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 
@@ -1327,7 +1327,7 @@ class CollectionTest extends TestCase
             'type' => 'Collection',
             'options' => [
                 'target_element' => $mainFieldset,
-                'count' => 2
+                'count' => 2,
             ],
         ]);
 

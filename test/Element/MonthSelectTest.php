@@ -23,7 +23,7 @@ class MonthSelectTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Regex'
+            'Laminas\Validator\Regex',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);

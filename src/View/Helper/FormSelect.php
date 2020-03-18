@@ -38,7 +38,7 @@ class FormSelect extends AbstractHelper
         'form'         => true,
         'multiple'     => true,
         'required'     => true,
-        'size'         => true
+        'size'         => true,
     ];
 
     /**
@@ -180,7 +180,7 @@ class FormSelect extends AbstractHelper
             if (is_scalar($optionSpec)) {
                 $optionSpec = [
                     'label' => $optionSpec,
-                    'value' => $key
+                    'value' => $key,
                 ];
             }
 

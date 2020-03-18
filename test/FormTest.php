@@ -310,16 +310,16 @@ class FormTest extends TestCase
         $form = new TestAsset\NewProductForm();
         $form->setData([
             'product' => [
-                'name' => 'Chair'
-            ]
+                'name' => 'Chair',
+            ],
         ]);
 
         $this->assertFalse($form->isValid());
 
         $form->setValidationGroup([
             'product' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
 
         $this->assertTrue($form->isValid());
@@ -601,9 +601,9 @@ class FormTest extends TestCase
             'foo' => 'abcde',
             'categories' => [
                 [
-                    'name' => 'category'
-                ]
-            ]
+                    'name' => 'category',
+                ],
+            ],
         ];
         $this->populateForm();
         $this->form->add([
@@ -622,8 +622,8 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foo',
             'categories' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
         $this->form->isValid();
 
@@ -639,7 +639,7 @@ class FormTest extends TestCase
     {
         $model = new stdClass;
         $dataWithoutCollection = [
-            'foo' => 'abcde'
+            'foo' => 'abcde',
         ];
         $this->populateForm();
         $this->form->add([
@@ -938,8 +938,8 @@ class FormTest extends TestCase
         $data = [
             'parentId' => 'mpinkston was here',
             'child' => [
-                'childId' => 'testing 123'
-            ]
+                'childId' => 'testing 123',
+            ],
         ];
 
         $parentForm->setData($data);
@@ -1091,8 +1091,8 @@ class FormTest extends TestCase
         $this->form->add([
             'name'       => 'foo',
             'attributes' => [
-                'type'         => 'text'
-            ]
+                'type'         => 'text',
+            ],
         ]);
 
         $this->form->add([
@@ -1141,10 +1141,10 @@ class FormTest extends TestCase
                     'zipCode' => '75008',
                     'country' => [
                         'name' => 'France',
-                        'continent' => 'Europe'
-                    ]
-                ]
-            ]
+                        'continent' => 'Europe',
+                    ],
+                ],
+            ],
         ];
 
         $form->setData($data);
@@ -1187,13 +1187,13 @@ class FormTest extends TestCase
                 'price' => 10,
                 'categories' => [
                     [
-                        'name' => 'Office'
+                        'name' => 'Office',
                     ],
                     [
-                        'name' => 'Armchair'
-                    ]
-                ]
-            ]
+                        'name' => 'Armchair',
+                    ],
+                ],
+            ],
         ];
 
         $form->setData($data);
@@ -1213,12 +1213,12 @@ class FormTest extends TestCase
         $data = [
             'test' => [
                 [
-                    'name' => 'Foo'
+                    'name' => 'Foo',
                 ],
                 [
-                    'name' => 'Bar'
+                    'name' => 'Bar',
                 ],
-            ]
+            ],
         ];
 
         $form->setData($data);
@@ -1303,7 +1303,7 @@ class FormTest extends TestCase
     public function testRemoveCollectionFromValidationGroupWhenZeroCountAndNoData()
     {
         $dataWithoutCollection = [
-            'foo' => 'bar'
+            'foo' => 'bar',
         ];
         $this->populateForm();
         $this->form->add([
@@ -1319,8 +1319,8 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foo',
             'categories' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
         $this->form->setData($dataWithoutCollection);
         $this->assertTrue($this->form->isValid());
@@ -1363,7 +1363,7 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foobar' => [
                 'foo',
-            ]
+            ],
         ]);
 
         $inputFilterFactory = new InputFilterFactory();
@@ -1383,7 +1383,7 @@ class FormTest extends TestCase
         $validSet = [
             'foobar' => [
                 'foo' => 'abcde',
-            ]
+            ],
         ];
         $this->form->setData($validSet);
         $this->assertTrue($this->form->isValid());
@@ -1438,8 +1438,8 @@ class FormTest extends TestCase
         $this->form->setValidationGroup([
             'foo',
             'categories' => [
-                'name'
-            ]
+                'name',
+            ],
         ]);
         $this->form->setData($dataWithCollection);
         $this->assertTrue($this->form->isValid());
@@ -1481,7 +1481,7 @@ class FormTest extends TestCase
         $validSet = [
             'entities' => [
                 111,
-                333
+                333,
             ],
         ];
 
@@ -1558,17 +1558,17 @@ class FormTest extends TestCase
     {
         $this->form->add([
             'type' => Element\Password::class,
-            'name' => 'password'
+            'name' => 'password',
         ]);
 
         $this->form->add([
             'type' => Element\Email::class,
-            'name' => 'email'
+            'name' => 'email',
         ]);
 
         $this->form->setData([
             'password' => 'azerty',
-            'email'    => 'wrongEmail'
+            'email'    => 'wrongEmail',
         ]);
 
         $this->assertFalse($this->form->isValid());
@@ -1581,7 +1581,7 @@ class FormTest extends TestCase
     {
         $fieldset = new Fieldset('example');
         $fieldset->add([
-            'name' => 'foo'
+            'name' => 'foo',
         ]);
 
         // Add a hydrator that ignores if values does not exist in the
@@ -1595,7 +1595,7 @@ class FormTest extends TestCase
         // Add some inputs that do not belong to the base fieldset
         $this->form->add([
             'type' => Element\Submit::class,
-            'name' => 'submit'
+            'name' => 'submit',
         ]);
 
         $object = new TestAsset\Entity\SimplePublicProperty();
@@ -1604,8 +1604,8 @@ class FormTest extends TestCase
         $this->form->setData([
             'submit' => 'Confirm',
             'example' => [
-                'foo' => 'value example'
-            ]
+                'foo' => 'value example',
+            ],
         ]);
 
         $this->assertTrue($this->form->isValid());
@@ -1621,7 +1621,7 @@ class FormTest extends TestCase
         ];
 
         $filteredData = [
-            'foo' => [1, 2]
+            'foo' => [1, 2],
         ];
 
         $element = new TestAsset\ElementWithStringToArrayFilter('foo');
@@ -1756,7 +1756,7 @@ class FormTest extends TestCase
                 'empty_option' => '',
                 'value_options' => [
                     'normal' => 'Normal',
-                    'important' => 'Important'
+                    'important' => 'Important',
                 ],
             ],
         ]);
@@ -1800,8 +1800,8 @@ class FormTest extends TestCase
                     'required' => false,
                     'filters' => [
                         [
-                            'name' => 'Boolean'
-                        ]
+                            'name' => 'Boolean',
+                        ],
                     ],
                     'validators' => [
                         [
@@ -1809,13 +1809,13 @@ class FormTest extends TestCase
                             'options' => [
                                 'haystack' => [
                                     "0",
-                                    "1"
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                    "1",
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
 
         $factory = new Factory();
@@ -1943,8 +1943,8 @@ class FormTest extends TestCase
                                 ],
                             ],
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ],
             'input_filter' => [
                 'type' => InputFilter::class,
@@ -2064,7 +2064,7 @@ class FormTest extends TestCase
                 'empty_option' => '',
                 'value_options' => [
                     'normal' => 'Normal',
-                    'important' => 'Important'
+                    'important' => 'Important',
                 ],
             ],
         ]);
@@ -2077,7 +2077,7 @@ class FormTest extends TestCase
         ]));
 
         $data = [
-            'importance' => 'unimporant'
+            'importance' => 'unimporant',
         ];
 
         $this->form->setInputFilter($inputFilter);
@@ -2138,42 +2138,42 @@ class FormTest extends TestCase
                 ['multipleSelect' => ['foo']],
                 ['multipleSelect' => ['foo']],
                 '',
-                true
+                true,
             ],
             [
                 true,
                 ['multipleSelect' => []],
                 ['multipleSelect' => ''],
                 '',
-                true
+                true,
             ],
             [
                 true,
                 ['multipleSelect' => []],
                 ['multipleSelect' => 'empty'],
                 'empty',
-                true
+                true,
             ],
             [
                 false,
                 ['multipleSelect' => ''],
                 ['multipleSelect' => ''],
                 'empty',
-                true
+                true,
             ],
             [
                 false,
                 ['multipleSelect' => ''],
                 ['multipleSelect' => ''],
                 '',
-                false
+                false,
             ],
             [
                 true,
                 ['multipleSelect' => []],
                 ['multipleSelect' => 'foo'],
                 'foo',
-                true
+                true,
             ],
         ];
     }
@@ -2183,8 +2183,8 @@ class FormTest extends TestCase
         $spec = [
             'name' => 'test',
             'options' => [
-                'use_input_filter_defaults' => false
-            ]
+                'use_input_filter_defaults' => false,
+            ],
         ];
 
         $factory = new Factory();
@@ -2324,8 +2324,8 @@ class FormTest extends TestCase
                 'label' => 'InputFilterProviderFieldset',
                 'count' => 1,
                 'target_element' => [
-                    'type' => 'text'
-                ]
+                    'type' => 'text',
+                ],
             ],
         ]);
 
@@ -2342,7 +2342,7 @@ class FormTest extends TestCase
             'submit' => 'Confirm',
             'example' => [
                 //'foo' => [] // $_POST doesn't have this if collection is empty
-            ]
+            ],
         ]);
 
         $this->assertTrue($this->form->isValid());

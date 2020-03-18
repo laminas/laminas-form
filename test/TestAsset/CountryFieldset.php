@@ -49,8 +49,8 @@ class CountryFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => true,
             ],
             'continent' => [
-                'required' => true
-            ]
+                'required' => true,
+            ],
         ];
     }
 }

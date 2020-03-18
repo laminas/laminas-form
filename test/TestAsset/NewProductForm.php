@@ -34,8 +34,8 @@ class NewProductForm extends Form
         $this->add([
             'name' => 'submit',
             'attributes' => [
-                'type' => 'submit'
-            ]
+                'type' => 'submit',
+            ],
         ]);
     }
 }

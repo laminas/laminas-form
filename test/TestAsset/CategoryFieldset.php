@@ -30,11 +30,11 @@ class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add([
             'name' => 'name',
             'options' => [
-                'label' => 'Name of the category'
+                'label' => 'Name of the category',
             ],
             'attributes' => [
-                'required' => 'required'
-            ]
+                'required' => 'required',
+            ],
         ]);
     }
 
@@ -49,7 +49,7 @@ class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
         return [
             'name' => [
                 'required' => true,
-            ]
+            ],
         ];
     }
 }

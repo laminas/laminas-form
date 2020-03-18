@@ -179,7 +179,7 @@ class FormMultiCheckbox extends FormInput
             if (is_scalar($optionSpec)) {
                 $optionSpec = [
                     'label' => $optionSpec,
-                    'value' => $key
+                    'value' => $key,
                 ];
             }
 

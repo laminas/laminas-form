@@ -71,9 +71,9 @@ class CaptchaTest extends TestCase
             'name'       => 'foo',
             'options'    => [
                 'captcha' => [
-                    'class'   => 'dumb'
-                ]
-            ]
+                    'class'   => 'dumb',
+                ],
+            ],
         ]);
         $this->assertInstanceOf('Laminas\Form\Element\Captcha', $element);
         $captcha = $element->getCaptcha();

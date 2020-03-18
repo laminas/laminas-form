@@ -129,7 +129,7 @@ class FormSelectTest extends CommonTestCase
             [
                 'label' => 'foo',
                 'value' => 'bar',
-            ]
+            ],
         ];
         $element->setValueOptions($options);
 
@@ -148,7 +148,7 @@ class FormSelectTest extends CommonTestCase
             [
                 'label' => 'foo',
                 'value' => 'bar',
-            ]
+            ],
         ];
         $element->setValueOptions($options);
 

@@ -88,7 +88,7 @@ class FormElementManagerTest extends TestCase
         $args = [
             'name' => 'foo',
             'options' => [
-                'label' => 'bar'
+                'label' => 'bar',
             ],
         ];
         $element = $this->manager->get('element', $args);
@@ -99,7 +99,7 @@ class FormElementManagerTest extends TestCase
     public function testOptionsCreationOptions()
     {
         $args = [
-            'label' => 'bar'
+            'label' => 'bar',
         ];
         $element = $this->manager->get('element', $args);
         $this->assertEquals('element', $element->getName(), 'Invokable CNAME');
@@ -110,7 +110,7 @@ class FormElementManagerTest extends TestCase
     {
         $args = [
             'options' => [
-                'label' => 'bar'
+                'label' => 'bar',
             ],
         ];
         $element = $this->manager->get('element', $args);
@@ -232,7 +232,7 @@ class FormElementManagerTest extends TestCase
         );
         $this->assertEquals('constructedelement', $instance->getName());
         $this->assertEquals([
-            'constructedKey' => 'constructedKey'
+            'constructedKey' => 'constructedKey',
         ], $instance->getOptions());
     }
 

@@ -132,7 +132,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                         'name' => 'email',
                         'options' => [
                             'label' => 'Your email address',
-                        ]
+                        ],
                     ],
                 ],
             ],
@@ -171,7 +171,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                         'name' => 'email',
                         'options' => [
                             'label' => 'Your email address',
-                        ]
+                        ],
                     ],
                 ],
             ],

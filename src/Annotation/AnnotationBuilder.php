@@ -76,7 +76,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         'Required',
         'Type',
         'ValidationGroup',
-        'Validator'
+        'Validator',
     ];
 
     /**
@@ -311,7 +311,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         $elementSpec = new ArrayObject([
             'flags' => [],
             'spec'  => [
-                'name' => $name
+                'name' => $name,
             ],
         ]);
         $inputSpec = new ArrayObject([

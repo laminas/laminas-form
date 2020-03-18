@@ -235,7 +235,7 @@ class DateTimeSelect extends DateSelect
                 'day'    => $value->format('d'),
                 'hour'   => $value->format('H'),
                 'minute' => $value->format('i'),
-                'second' => $value->format('s')
+                'second' => $value->format('s'),
             ];
         }
 
@@ -311,7 +311,7 @@ class DateTimeSelect extends DateSelect
             'name' => $this->getName(),
             'required' => false,
             'filters' => [
-                ['name' => 'DateTimeSelect']
+                ['name' => 'DateTimeSelect'],
             ],
             'validators' => [
                 $this->getValidator(),

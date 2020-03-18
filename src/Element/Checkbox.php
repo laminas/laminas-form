@@ -21,7 +21,7 @@ class Checkbox extends Element implements InputProviderInterface
      * @var array
      */
     protected $attributes = [
-        'type' => 'checkbox'
+        'type' => 'checkbox',
     ];
 
     /**
@@ -148,7 +148,7 @@ class Checkbox extends Element implements InputProviderInterface
         if (null === $this->validator) {
             $this->validator = new InArrayValidator([
                 'haystack' => [$this->checkedValue, $this->uncheckedValue],
-                'strict'   => false
+                'strict'   => false,
             ]);
         }
         return $this->validator;

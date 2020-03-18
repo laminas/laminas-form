@@ -18,7 +18,7 @@ class UrlTest extends TestCase
         $element = new UrlElement();
         $element->setAttributes([
             'allowAbsolute' => true,
-            'allowRelative' => false
+            'allowRelative' => false,
         ]);
 
         $inputSpec = $element->getInputSpecification();
@@ -26,7 +26,7 @@ class UrlTest extends TestCase
         $this->assertInternalType('array', $inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Uri'
+            'Laminas\Validator\Uri',
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
