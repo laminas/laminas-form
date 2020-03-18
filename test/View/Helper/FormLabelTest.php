@@ -27,7 +27,7 @@ class FormLabelTest extends CommonTestCase
 
     public function testOpenTagWithWrongElementRaisesException()
     {
-        $element = new \arrayObject();
+        $element = new \ArrayObject();
         $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('ArrayObject');
         $this->helper->openTag($element);

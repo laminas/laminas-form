@@ -1656,7 +1656,7 @@ class FormTest extends TestCase
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $this->form->setInputFilter(new \Laminas\InputFilter\InputFilter());
+        $this->form->setInputFilter(new InputFilter());
         $fieldset = new TestAsset\ProductCategoriesFieldset();
         $fieldset->setUseAsBaseFieldset(true);
 
@@ -1761,8 +1761,8 @@ class FormTest extends TestCase
             ],
         ]);
 
-        $inputFilter = new \Laminas\InputFilter\BaseInputFilter();
-        $factory     = new \Laminas\InputFilter\Factory();
+        $inputFilter = new BaseInputFilter();
+        $factory     = new InputFilterFactory();
         $inputFilter->add($factory->createInput([
             'name'     => 'importance',
             'required' => false,

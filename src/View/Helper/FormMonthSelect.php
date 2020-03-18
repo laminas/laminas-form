@@ -89,10 +89,10 @@ class FormMonthSelect extends AbstractHelper
     /**
      * Render a month element that is composed of two selects
      *
-     * @param  \Laminas\Form\ElementInterface $element
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @throws \Laminas\Form\Exception\DomainException
+     * @param  ElementInterface $element
      * @return string
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      */
     public function render(ElementInterface $element)
     {

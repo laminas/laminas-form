@@ -97,8 +97,8 @@ class DateSelect extends MonthSelect
 
     /**
      * @param  string|array|\ArrayAccess|PhpDateTime $value
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
      * @return $this Provides a fluent interface
+     * @throws InvalidArgumentException
      */
     public function setValue($value)
     {

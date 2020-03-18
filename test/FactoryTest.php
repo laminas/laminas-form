@@ -427,7 +427,7 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFactoryFromConcreteClass()
     {
-        $factory = new \Laminas\Form\Factory();
+        $factory = new FormFactory();
         $form = $this->factory->createForm([
             'name'    => 'foo',
             'factory' => $factory,

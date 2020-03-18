@@ -9,7 +9,7 @@
 namespace Laminas\Form\Element;
 
 use DateInterval;
-use DateTimezone;
+use DateTimeZone;
 use Laminas\Form\Element\DateTime as DateTimeElement;
 use Laminas\Validator\DateStep as DateStepValidator;
 
@@ -50,7 +50,7 @@ class Date extends DateTimeElement
         return new DateStepValidator([
             'format'    => $format,
             'baseValue' => $baseValue,
-            'timezone'  => new DateTimezone('UTC'),
+            'timezone'  => new DateTimeZone('UTC'),
             'step'      => new DateInterval("P{$stepValue}D"),
         ]);
     }

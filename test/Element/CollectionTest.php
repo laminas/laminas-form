@@ -39,7 +39,7 @@ class CollectionTest extends TestCase
     protected function setUp()
     {
         $this->form = new \LaminasTest\Form\TestAsset\FormCollection();
-        $this->productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
+        $this->productFieldset = new ProductFieldset();
 
         parent::setUp();
     }
@@ -378,7 +378,7 @@ class CollectionTest extends TestCase
 
     public function testExtractFromObjectDoesntTouchOriginalObject()
     {
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
                 ? new ClassMethodsHydrator()
@@ -428,7 +428,7 @@ class CollectionTest extends TestCase
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
                 ? new ClassMethodsHydrator()
@@ -479,7 +479,7 @@ class CollectionTest extends TestCase
             'create_new_objects' => true,
         ]);
 
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $form->setHydrator(
             class_exists(ClassMethodsHydrator::class)
                 ? new ClassMethodsHydrator()
@@ -617,7 +617,7 @@ class CollectionTest extends TestCase
 
     public function testDoNotCreateExtraFieldsetOnMultipleBind()
     {
-        $form = new \Laminas\Form\Form();
+        $form = new Form();
         $this->productFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
                 ? new ClassMethodsHydrator()
@@ -637,7 +637,7 @@ class CollectionTest extends TestCase
         ];
         $product->setCategories($categories);
 
-        $market = new \StdClass();
+        $market = new stdClass();
         $market->product = $product;
 
         // this will pass the test
@@ -779,7 +779,7 @@ class CollectionTest extends TestCase
 
     public function testCollectionCanBindObjectAndPopulateAndExtractNestedFieldsets()
     {
-        $productFieldset = new \LaminasTest\Form\TestAsset\ProductFieldset();
+        $productFieldset = new ProductFieldset();
         $productFieldset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
                 ? new ClassMethodsHydrator()
@@ -1011,7 +1011,7 @@ class CollectionTest extends TestCase
     public function testCanRemoveAllElementsIfAllowRemoveIsTrue()
     {
         /**
-         * @var \Laminas\Form\Element\Collection $collection
+         * @var Collection $collection
          */
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(true);
@@ -1122,7 +1122,7 @@ class CollectionTest extends TestCase
     public function testNestedCollections()
     {
         // @see https://github.com/zendframework/zf2/issues/5640
-        $addressesFieldeset = new \LaminasTest\Form\TestAsset\AddressFieldset();
+        $addressesFieldeset = new AddressFieldset();
         $addressesFieldeset->setHydrator(
             class_exists(ClassMethodsHydrator::class)
                 ? new ClassMethodsHydrator()
@@ -1278,7 +1278,7 @@ class CollectionTest extends TestCase
                 'target_element' => $text, 'count' => 2,
             ],
         ]);
-        $object = new \ArrayObject(['text' => ['Foo', 'Bar']]);
+        $object = new ArrayObject(['text' => ['Foo', 'Bar']]);
         $form->bind($object);
         $this->assertTrue($form->isValid());
 
@@ -1302,7 +1302,7 @@ class CollectionTest extends TestCase
     {
         $mainFieldset = new Fieldset();
         $mainFieldset->add(new Element\Text('test'));
-        $mainFieldset->setObject(new \ArrayObject());
+        $mainFieldset->setObject(new ArrayObject());
         $mainFieldset->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
                 ? new ObjectPropertyHydrator()
@@ -1310,7 +1310,7 @@ class CollectionTest extends TestCase
         );
 
         $form = new Form();
-        $form->setObject(new \stdClass());
+        $form->setObject(new stdClass());
         $form->setHydrator(
             class_exists(ObjectPropertyHydrator::class)
                 ? new ObjectPropertyHydrator()
@@ -1325,8 +1325,8 @@ class CollectionTest extends TestCase
             ],
         ]);
 
-        $model = new \stdClass();
-        $model->collection = [new \ArrayObject(['test' => 'bar']), new \stdClass()];
+        $model = new stdClass();
+        $model->collection = [new ArrayObject(['test' => 'bar']), new stdClass()];
 
         $form->bind($model);
         $this->assertTrue($form->isValid());
@@ -1348,7 +1348,7 @@ class CollectionTest extends TestCase
     public function testCanHydrateObject()
     {
         $form = $this->form;
-        $object = new \ArrayObject();
+        $object = new ArrayObject();
         $form->bind($object);
         $data = [
             'colors' => [
@@ -1364,7 +1364,7 @@ class CollectionTest extends TestCase
     public function testCanRemoveMultipleElements()
     {
         /**
-         * @var \Laminas\Form\Element\Collection $collection
+         * @var Collection $collection
          */
         $collection = $this->form->get('colors');
         $collection->setAllowRemove(true);
@@ -1425,7 +1425,7 @@ class CollectionTest extends TestCase
         $form = new Form();
 
         $form->add([
-            'type' => \Laminas\Form\Element\Collection::class,
+            'type' => Collection::class,
             'name' => 'fieldsets',
             'options' => [
                 'count' => 2,
