@@ -7,6 +7,7 @@
  */
 namespace LaminasTest\Form;
 
+use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -77,6 +78,22 @@ class LabelAwareTraitTest extends TestCase
         ];
 
         $object->setLabelOptions($labelOptions);
+
+        $retrievedLabelOptions = $object->getLabelOptions();
+
+        $this->assertEquals($retrievedLabelOptions, $labelOptions);
+    }
+
+    public function testSetLabelOptionsTraversable()
+    {
+        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+
+        $labelOptions = [
+            'foo' => 'bar',
+            'foo2' => 'bar2',
+        ];
+
+        $object->setLabelOptions(new CustomTraversable($labelOptions));
 
         $retrievedLabelOptions = $object->getLabelOptions();
 
