@@ -258,7 +258,7 @@ class Form extends Fieldset implements FormInterface
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable argument; received "%s"',
                 __METHOD__,
-                (is_object($data) ? get_class($data) : gettype($data))
+                is_object($data) ? get_class($data) : gettype($data)
             ));
         }
 
@@ -427,7 +427,7 @@ class Form extends Fieldset implements FormInterface
      */
     public function bindOnValidate()
     {
-        return (static::BIND_ON_VALIDATE === $this->bindOnValidate);
+        return static::BIND_ON_VALIDATE === $this->bindOnValidate;
     }
 
     /**

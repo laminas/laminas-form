@@ -342,7 +342,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         }
 
         $elementSpec = $params['elementSpec'];
-        $type        = (isset($elementSpec['spec']['type']))
+        $type        = isset($elementSpec['spec']['type'])
             ? $elementSpec['spec']['type']
             : 'Laminas\Form\Element';
 
@@ -398,7 +398,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
 
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
-                return (is_string($r) && ! empty($r));
+                return is_string($r) && ! empty($r);
             },
             $event
         );
@@ -420,7 +420,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
 
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
-                return (true === $r);
+                return true === $r;
             },
             $event
         );

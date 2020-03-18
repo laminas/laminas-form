@@ -330,7 +330,7 @@ class Collection extends Fieldset
                 '%s requires that $elementOrFieldset be an object implementing %s; received "%s"',
                 __METHOD__,
                 __NAMESPACE__ . '\ElementInterface',
-                (is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset))
+                is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset)
             ));
         }
 

@@ -259,7 +259,7 @@ class Factory
             $this->prepareAndInjectFieldsets($spec['fieldsets'], $fieldset, __METHOD__);
         }
 
-        $factory = (isset($spec['factory']) ? $spec['factory'] : $this);
+        $factory = isset($spec['factory']) ? $spec['factory'] : $this;
         $this->prepareAndInjectFactory($factory, $fieldset, __METHOD__);
 
         return $fieldset;
@@ -320,7 +320,7 @@ class Factory
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array, or object implementing Traversable or ArrayAccess; received "%s"',
                 $method,
-                (is_object($spec) ? get_class($spec) : gettype($spec))
+                is_object($spec) ? get_class($spec) : gettype($spec)
             ));
         }
 
@@ -395,7 +395,7 @@ class Factory
             throw new Exception\DomainException(sprintf(
                 '%s expects string class name; received "%s"',
                 $method,
-                (is_object($objectName) ? get_class($objectName) : gettype($objectName))
+                is_object($objectName) ? get_class($objectName) : gettype($objectName)
             ));
         }
 
@@ -437,7 +437,7 @@ class Factory
                     $method
                 ));
             }
-            $hydratorOptions = (isset($hydratorOrName['options'])) ? $hydratorOrName['options'] : [];
+            $hydratorOptions = isset($hydratorOrName['options']) ? $hydratorOrName['options'] : [];
             $hydratorOrName = $hydratorOrName['type'];
         } else {
             $hydratorOptions = [];

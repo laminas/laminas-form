@@ -249,7 +249,7 @@ class Element implements
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable argument; received "%s"',
                 __METHOD__,
-                (is_object($arrayOrTraversable) ? get_class($arrayOrTraversable) : gettype($arrayOrTraversable))
+                is_object($arrayOrTraversable) ? get_class($arrayOrTraversable) : gettype($arrayOrTraversable)
             ));
         }
         foreach ($arrayOrTraversable as $key => $value) {
@@ -378,7 +378,7 @@ class Element implements
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable argument; received "%s"',
                 __METHOD__,
-                (is_object($arrayOrTraversable) ? get_class($arrayOrTraversable) : gettype($arrayOrTraversable))
+                is_object($arrayOrTraversable) ? get_class($arrayOrTraversable) : gettype($arrayOrTraversable)
             ));
         }
         foreach ($arrayOrTraversable as $key => $value) {
@@ -487,7 +487,7 @@ class Element implements
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable object of validation error messages; received "%s"',
                 __METHOD__,
-                (is_object($messages) ? get_class($messages) : gettype($messages))
+                is_object($messages) ? get_class($messages) : gettype($messages)
             ));
         }
 

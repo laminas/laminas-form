@@ -181,7 +181,7 @@ class MultiCheckbox extends Checkbox
         $values = [];
         $options = $this->getValueOptions();
         foreach ($options as $key => $optionSpec) {
-            $value = (is_array($optionSpec)) ? $optionSpec['value'] : $key;
+            $value = is_array($optionSpec) ? $optionSpec['value'] : $key;
             $values[] = $value;
         }
         if ($this->useHiddenElement()) {

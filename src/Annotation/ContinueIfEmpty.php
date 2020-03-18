@@ -33,7 +33,7 @@ class ContinueIfEmpty
      */
     public function __construct(array $data)
     {
-        $continueIfEmpty = (isset($data['value']))
+        $continueIfEmpty = isset($data['value'])
             ? $data['value']
             : false;
 

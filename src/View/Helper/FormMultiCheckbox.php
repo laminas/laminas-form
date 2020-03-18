@@ -171,10 +171,10 @@ class FormMultiCheckbox extends FormInput
             $label           = '';
             $inputAttributes = $attributes;
             $labelAttributes = $globalLabelAttributes;
-            $selected        = (isset($inputAttributes['selected'])
+            $selected        = isset($inputAttributes['selected'])
                 && $inputAttributes['type'] != 'radio'
-                && $inputAttributes['selected']);
-            $disabled        = (isset($inputAttributes['disabled']) && $inputAttributes['disabled']);
+                && $inputAttributes['selected'];
+            $disabled        = isset($inputAttributes['disabled']) && $inputAttributes['disabled'];
 
             if (is_scalar($optionSpec)) {
                 $optionSpec = [
@@ -196,7 +196,7 @@ class FormMultiCheckbox extends FormInput
                 $disabled = $optionSpec['disabled'];
             }
             if (isset($optionSpec['label_attributes'])) {
-                $labelAttributes = (isset($labelAttributes))
+                $labelAttributes = isset($labelAttributes)
                     ? array_merge($labelAttributes, $optionSpec['label_attributes'])
                     : $optionSpec['label_attributes'];
             }

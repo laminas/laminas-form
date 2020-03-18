@@ -141,7 +141,7 @@ class FormRow extends AbstractHelper
 
         // Does this element have errors ?
         if ($element->getMessages() && $inputErrorClass) {
-            $classAttributes = ($element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '');
+            $classAttributes = $element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '';
             $classAttributes = $classAttributes . $inputErrorClass;
 
             $element->setAttribute('class', $classAttributes);

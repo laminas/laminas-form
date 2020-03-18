@@ -55,7 +55,7 @@ class Captcha extends Element implements InputProviderInterface
                 '%s expects either a Laminas\Captcha\AdapterInterface or specification'
                 . ' to pass to Laminas\Captcha\Factory; received "%s"',
                 __METHOD__,
-                (is_object($captcha) ? get_class($captcha) : gettype($captcha))
+                is_object($captcha) ? get_class($captcha) : gettype($captcha)
             ));
         }
         $this->captcha = $captcha;

@@ -67,9 +67,9 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
             return false;
         }
 
-        return (isset($config[$requestedName])
+        return isset($config[$requestedName])
             && is_array($config[$requestedName])
-            && ! empty($config[$requestedName]));
+            && ! empty($config[$requestedName]);
     }
 
     /**

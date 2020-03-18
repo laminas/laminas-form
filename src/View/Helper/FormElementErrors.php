@@ -71,7 +71,7 @@ class FormElementErrors extends AbstractHelper
             throw new Exception\DomainException(sprintf(
                 '%s expects that $element->getMessages() will return an array or Traversable; received "%s"',
                 __METHOD__,
-                (is_object($messages) ? get_class($messages) : gettype($messages))
+                is_object($messages) ? get_class($messages) : gettype($messages)
             ));
         }
 

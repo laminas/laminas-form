@@ -127,7 +127,7 @@ class FormButton extends FormInput
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Laminas\Form\ElementInterface instance; received "%s"',
                 __METHOD__,
-                (is_object($attributesOrElement) ? get_class($attributesOrElement) : gettype($attributesOrElement))
+                is_object($attributesOrElement) ? get_class($attributesOrElement) : gettype($attributesOrElement)
             ));
         }
 

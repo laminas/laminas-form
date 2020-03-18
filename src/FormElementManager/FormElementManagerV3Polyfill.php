@@ -360,7 +360,7 @@ class FormElementManagerV3Polyfill extends AbstractPluginManager
                 '%s can only create instances of %s; %s is invalid',
                 get_class($this),
                 $this->instanceOf,
-                (is_object($plugin) ? get_class($plugin) : gettype($plugin))
+                is_object($plugin) ? get_class($plugin) : gettype($plugin)
             ));
         }
     }

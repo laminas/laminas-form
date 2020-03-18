@@ -160,7 +160,7 @@ class Fieldset extends Element implements FieldsetInterface
                 '%s requires that $elementOrFieldset be an object implementing %s; received "%s"',
                 __METHOD__,
                 __NAMESPACE__ . '\ElementInterface',
-                (is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset))
+                is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset)
             ));
         }
 
@@ -297,7 +297,7 @@ class Fieldset extends Element implements FieldsetInterface
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable object of messages; received "%s"',
                 __METHOD__,
-                (is_object($messages) ? get_class($messages) : gettype($messages))
+                is_object($messages) ? get_class($messages) : gettype($messages)
             ));
         }
 
@@ -580,7 +580,7 @@ class Fieldset extends Element implements FieldsetInterface
             }
 
             if (! array_key_exists($name, $values)) {
-                if (! ($element instanceof Collection)) {
+                if (! $element instanceof Collection) {
                     continue;
                 }
 
