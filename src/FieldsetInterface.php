@@ -30,7 +30,7 @@ interface FieldsetInterface extends
      *                                                                to allow a factory-based form
      *                                                                implementation as well
      * @param  array $flags
-     * @return FieldsetInterface
+     * @return $this
      */
     public function add($elementOrFieldset, array $flags = []);
 
@@ -54,16 +54,16 @@ interface FieldsetInterface extends
      * Remove a named element or fieldset
      *
      * @param  string $elementOrFieldset
-     * @return FieldsetInterface
+     * @return $this
      */
     public function remove($elementOrFieldset);
 
     /**
      * Set/change the priority of an element or fieldset
      *
-     * @param string $elementOrFieldset
-     * @param int $priority
-     * @return FieldsetInterface
+     * @param  string $elementOrFieldset
+     * @param  int    $priority
+     * @return $this
      */
     public function setPriority($elementOrFieldset, $priority);
 
@@ -97,7 +97,7 @@ interface FieldsetInterface extends
      * Set the object used by the hydrator
      *
      * @param  $object
-     * @return FieldsetInterface
+     * @return $this
      */
     public function setObject($object);
 
@@ -120,7 +120,7 @@ interface FieldsetInterface extends
      * Set the hydrator to use when binding an object to the element
      *
      * @param  HydratorInterface $hydrator
-     * @return FieldsetInterface
+     * @return $this
      */
     public function setHydrator(HydratorInterface $hydrator);
 

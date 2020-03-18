@@ -103,7 +103,7 @@ class Collection extends Fieldset
      * - template_placeholder: placeholder used in the data template
      *
      * @param array|Traversable $options
-     * @return Collection
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -291,7 +291,7 @@ class Collection extends Fieldset
      * Set the initial count of target element
      *
      * @param $count
-     * @return Collection
+     * @return $this
      */
     public function setCount($count)
     {
@@ -313,7 +313,7 @@ class Collection extends Fieldset
      * Set the target element
      *
      * @param ElementInterface|array|Traversable $elementOrFieldset
-     * @return Collection
+     * @return $this
      * @throws \Laminas\Form\Exception\InvalidArgumentException
      */
     public function setTargetElement($elementOrFieldset)
@@ -353,7 +353,7 @@ class Collection extends Fieldset
      * Get allow add
      *
      * @param bool $allowAdd
-     * @return Collection
+     * @return $this
      */
     public function setAllowAdd($allowAdd)
     {
@@ -373,7 +373,7 @@ class Collection extends Fieldset
 
     /**
      * @param bool $allowRemove
-     * @return Collection
+     * @return $this
      */
     public function setAllowRemove($allowRemove)
     {
@@ -394,7 +394,7 @@ class Collection extends Fieldset
      * to ease the creation of dynamic elements through JavaScript
      *
      * @param bool $shouldCreateTemplate
-     * @return Collection
+     * @return $this
      */
     public function setShouldCreateTemplate($shouldCreateTemplate)
     {
@@ -417,7 +417,7 @@ class Collection extends Fieldset
      * Set the placeholder used in the template generated to help create new elements in JavaScript
      *
      * @param string $templatePlaceholder
-     * @return Collection
+     * @return $this
      */
     public function setTemplatePlaceholder($templatePlaceholder)
     {
@@ -440,7 +440,7 @@ class Collection extends Fieldset
 
     /**
      * @param bool $createNewObjects
-     * @return Collection
+     * @return $this
      */
     public function setCreateNewObjects($createNewObjects)
     {
@@ -598,7 +598,7 @@ class Collection extends Fieldset
     protected function createTemplateElement()
     {
         if (! $this->shouldCreateTemplate) {
-            return;
+            return null;
         }
 
         if ($this->templateElement) {

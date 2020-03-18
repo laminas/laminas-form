@@ -23,7 +23,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
     /**
      * @var string Top-level configuration key indicating forms configuration
      */
-    protected $configKey     = 'forms';
+    protected $configKey = 'forms';
 
     /**
      * @var Factory Form factory used to create forms
@@ -36,7 +36,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return ElementInterface
+     * @return FormInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
@@ -51,8 +51,8 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
     /**
      * Can we create the requested service? (v3)
      *
-     * @param ContainerInterface $container
-     * @param string $requestedName
+     * @param  ContainerInterface $container
+     * @param  string             $requestedName
      * @return bool
      */
     public function canCreate(ContainerInterface $container, $requestedName)
@@ -91,7 +91,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * @param  ServiceLocatorInterface $serviceLocator
      * @param  string $name Service name (as resolved by ServiceManager)
      * @param  string $requestedName Name by which service was requested
-     * @return Form
+     * @return FormInterface
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {

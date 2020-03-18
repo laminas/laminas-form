@@ -40,7 +40,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      * - csrf_options: an array used in the Csrf
      *
      * @param array|\Traversable $options
-     * @return Csrf
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -63,7 +63,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
 
     /**
      * @param  array $options
-     * @return Csrf
+     * @return $this
      */
     public function setCsrfValidatorOptions(array $options)
     {
@@ -87,8 +87,8 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
     }
 
     /**
-     * @param  \Laminas\Validator\Csrf $validator
-     * @return Csrf
+     * @param  CsrfValidator $validator
+     * @return $this
      */
     public function setCsrfValidator(CsrfValidator $validator)
     {

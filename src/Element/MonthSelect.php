@@ -97,7 +97,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      * - max_year: max year to use in the year select
      *
      * @param array|Traversable $options
-     * @return self
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -160,7 +160,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      * Set the month attributes
      *
      * @param  array $monthAttributes
-     * @return self
+     * @return $this
      */
     public function setMonthAttributes(array $monthAttributes)
     {
@@ -182,7 +182,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      * Set the year attributes
      *
      * @param  array $yearAttributes
-     * @return self
+     * @return $this
      */
     public function setYearAttributes(array $yearAttributes)
     {
@@ -202,7 +202,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * @param  int $minYear
-     * @return self
+     * @return $this
      */
     public function setMinYear($minYear)
     {
@@ -220,7 +220,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * @param  int $maxYear
-     * @return self
+     * @return $this
      */
     public function setMaxYear($maxYear)
     {
@@ -238,7 +238,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * @param  bool $createEmptyOption
-     * @return self
+     * @return $this
      */
     public function setShouldCreateEmptyOption($createEmptyOption)
     {
@@ -256,7 +256,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * @param  bool $renderDelimiters
-     * @return self
+     * @return $this
      */
     public function setShouldRenderDelimiters($renderDelimiters)
     {
@@ -274,7 +274,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * @param mixed $value
-     * @return self
+     * @return $this
      */
     public function setValue($value)
     {

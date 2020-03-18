@@ -17,7 +17,7 @@ interface ElementInterface
      * present to indicate that elements are generally named.
      *
      * @param  string $name
-     * @return ElementInterface
+     * @return $this
      */
     public function setName($name);
 
@@ -32,7 +32,7 @@ interface ElementInterface
      * Set options for an element
      *
      * @param  array|\Traversable $options
-     * @return ElementInterface
+     * @return $this
      */
     public function setOptions($options);
 
@@ -41,7 +41,7 @@ interface ElementInterface
      *
      * @param  string $key
      * @param  mixed $value
-     * @return self
+     * @return $this
      */
     public function setOption($key, $value);
 
@@ -65,7 +65,7 @@ interface ElementInterface
      *
      * @param  string $key
      * @param  mixed $value
-     * @return ElementInterface
+     * @return $this
      */
     public function setAttribute($key, $value);
 
@@ -91,7 +91,7 @@ interface ElementInterface
      * Implementation will decide if this will overwrite or merge.
      *
      * @param  array|\Traversable $arrayOrTraversable
-     * @return ElementInterface
+     * @return $this
      */
     public function setAttributes($arrayOrTraversable);
 
@@ -106,7 +106,7 @@ interface ElementInterface
      * Set the value of the element
      *
      * @param  mixed $value
-     * @return ElementInterface
+     * @return $this
      */
     public function setValue($value);
 
@@ -121,7 +121,7 @@ interface ElementInterface
      * Set the label (if any) used for this element
      *
      * @param  $label
-     * @return ElementInterface
+     * @return $this
      */
     public function setLabel($label);
 
@@ -136,7 +136,7 @@ interface ElementInterface
      * Set a list of messages to report when validation fails
      *
      * @param  array|\Traversable $messages
-     * @return ElementInterface
+     * @return $this
      */
     public function setMessages($messages);
 

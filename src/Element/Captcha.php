@@ -26,7 +26,7 @@ class Captcha extends Element implements InputProviderInterface
      * - captcha: a valid Laminas\Captcha\AdapterInterface
      *
      * @param array|Traversable $options
-     * @return Captcha
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -44,7 +44,7 @@ class Captcha extends Element implements InputProviderInterface
      *
      * @param  array|LaminasCaptcha\AdapterInterface $captcha
      * @throws Exception\InvalidArgumentException
-     * @return Captcha
+     * @return $this
      */
     public function setCaptcha($captcha)
     {

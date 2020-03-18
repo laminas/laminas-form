@@ -48,7 +48,7 @@ class Factory
      * Set input filter factory to use when creating forms
      *
      * @param  InputFilterFactory $inputFilterFactory
-     * @return Factory
+     * @return $this
      */
     public function setInputFilterFactory(InputFilterFactory $inputFilterFactory)
     {
@@ -75,7 +75,7 @@ class Factory
      * Set the form element manager
      *
      * @param  FormElementManager $formElementManager
-     * @return Factory
+     * @return $this
      */
     public function setFormElementManager(FormElementManager $formElementManager)
     {
@@ -193,8 +193,8 @@ class Factory
      *
      * @param  ElementInterface              $element
      * @param  array|Traversable|ArrayAccess $spec
-     * @throws Exception\DomainException
      * @return ElementInterface
+     * @throws Exception\DomainException
      */
     public function configureElement(ElementInterface $element, $spec)
     {
@@ -235,8 +235,8 @@ class Factory
      *
      * @param  FieldsetInterface             $fieldset
      * @param  array|Traversable|ArrayAccess $spec
-     * @throws Exception\DomainException
      * @return FieldsetInterface
+     * @throws Exception\DomainException
      */
     public function configureFieldset(FieldsetInterface $fieldset, $spec)
     {
@@ -383,9 +383,9 @@ class Factory
      * Takes a string indicating a class name, instantiates the class
      * by that name, and injects the class instance as the bound object.
      *
-     * @param  string           $objectName
+     * @param  string            $objectName
      * @param  FieldsetInterface $fieldset
-     * @param  string           $method
+     * @param  string            $method
      * @throws Exception\DomainException
      * @return void
      */

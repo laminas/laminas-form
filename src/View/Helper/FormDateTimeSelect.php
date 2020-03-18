@@ -149,7 +149,7 @@ class FormDateTimeSelect extends FormDateSelectHelper
 
     /**
      * @param  int $timeType
-     * @return FormDateTimeSelect
+     * @return $this
      */
     public function setTimeType($timeType)
     {

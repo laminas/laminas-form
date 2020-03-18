@@ -197,7 +197,7 @@ class FormMonthSelect extends AbstractHelper
      * Set date formatter
      *
      * @param  int $dateType
-     * @return FormDateSelect
+     * @return $this
      */
     public function setDateType($dateType)
     {
@@ -225,7 +225,7 @@ class FormMonthSelect extends AbstractHelper
      * Set locale
      *
      * @param  string $locale
-     * @return FormDateSelect
+     * @return $this
      */
     public function setLocale($locale)
     {

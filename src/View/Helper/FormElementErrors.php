@@ -104,7 +104,7 @@ class FormElementErrors extends AbstractHelper
      * Set the attributes that will go on the message open format
      *
      * @param  array $attributes key value pairs of attributes
-     * @return FormElementErrors
+     * @return $this
      */
     public function setAttributes(array $attributes)
     {
@@ -126,7 +126,7 @@ class FormElementErrors extends AbstractHelper
      * Set the string used to close message representation
      *
      * @param  string $messageCloseString
-     * @return FormElementErrors
+     * @return $this
      */
     public function setMessageCloseString($messageCloseString)
     {
@@ -148,7 +148,7 @@ class FormElementErrors extends AbstractHelper
      * Set the formatted string used to open message representation
      *
      * @param  string $messageOpenFormat
-     * @return FormElementErrors
+     * @return $this
      */
     public function setMessageOpenFormat($messageOpenFormat)
     {
@@ -170,7 +170,7 @@ class FormElementErrors extends AbstractHelper
      * Set the string used to separate messages
      *
      * @param  string $messageSeparatorString
-     * @return FormElementErrors
+     * @return $this
      */
     public function setMessageSeparatorString($messageSeparatorString)
     {
@@ -192,7 +192,7 @@ class FormElementErrors extends AbstractHelper
      * Set the flag detailing whether or not to translate error messages.
      *
      * @param bool $flag
-     * @return self
+     * @return $this
      */
     public function setTranslateMessages($flag)
     {

@@ -20,6 +20,7 @@ use Laminas\EventManager\EventManagerInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\Factory;
 use Laminas\Form\FormFactoryAwareInterface;
+use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
 
 /**
@@ -87,7 +88,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Set form factory to use when building form from annotations
      *
      * @param  Factory $formFactory
-     * @return AnnotationBuilder
+     * @return $this
      */
     public function setFormFactory(Factory $formFactory)
     {
@@ -99,7 +100,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Set annotation manager to use when building form from annotations
      *
      * @param  AnnotationManager $annotationManager
-     * @return AnnotationBuilder
+     * @return $this
      */
     public function setAnnotationManager(AnnotationManager $annotationManager)
     {
@@ -117,7 +118,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Set event manager instance
      *
      * @param  EventManagerInterface $events
-     * @return AnnotationBuilder
+     * @return $this
      */
     public function setEventManager(EventManagerInterface $events)
     {
@@ -236,7 +237,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Create a form from an object.
      *
      * @param  string|object $entity
-     * @return \Laminas\Form\Form
+     * @return FormInterface
      */
     public function createForm($entity)
     {

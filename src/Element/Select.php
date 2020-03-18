@@ -69,7 +69,7 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * @param  array $options
-     * @return Select
+     * @return $this
      */
     public function setValueOptions(array $options)
     {
@@ -95,7 +95,7 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * @param string $key
-     * @return self
+     * @return $this
      */
     public function unsetValueOption($key)
     {
@@ -170,7 +170,7 @@ class Select extends Element implements InputProviderInterface
      * Set the flag to allow for disabling the automatic addition of an InArray validator.
      *
      * @param bool $disableOption
-     * @return Select
+     * @return $this
      */
     public function setDisableInArrayValidator($disableOption)
     {
@@ -192,7 +192,7 @@ class Select extends Element implements InputProviderInterface
      * Set the string for an empty option (can be empty string). If set to null, no option will be added
      *
      * @param  string|null $emptyOption
-     * @return Select
+     * @return $this
      */
     public function setEmptyOption($emptyOption)
     {
@@ -239,7 +239,7 @@ class Select extends Element implements InputProviderInterface
      * Do we render hidden element?
      *
      * @param  bool $useHiddenElement
-     * @return Select
+     * @return $this
      */
     public function setUseHiddenElement($useHiddenElement)
     {
@@ -261,7 +261,7 @@ class Select extends Element implements InputProviderInterface
      * Set the value if the select is not selected
      *
      * @param string $unselectedValue
-     * @return Select
+     * @return $this
      */
     public function setUnselectedValue($unselectedValue)
     {

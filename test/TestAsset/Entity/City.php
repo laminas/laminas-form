@@ -28,7 +28,7 @@ class City
 
     /**
      * @param Country $country
-     * @return City
+     * @return $this
      */
     public function setCountry(Country $country)
     {
@@ -46,7 +46,7 @@ class City
 
     /**
      * @param string $name
-     * @return City
+     * @return $this
      */
     public function setName($name)
     {
@@ -64,7 +64,7 @@ class City
 
     /**
      * @param string $zipCode
-     * @return City
+     * @return $this
      */
     public function setZipCode($zipCode)
     {

@@ -23,7 +23,7 @@ class Country
 
     /**
      * @param string $name
-     * @return Country
+     * @return $this
      */
     public function setName($name)
     {
@@ -41,7 +41,7 @@ class Country
 
     /**
      * @param string $continent
-     * @return Country
+     * @return $this
      */
     public function setContinent($continent)
     {

@@ -123,7 +123,7 @@ class FormElement extends BaseAbstractHelper
      * Set default helper name
      *
      * @param string $name
-     * @return self
+     * @return $this
      */
     public function setDefaultHelper($name)
     {
@@ -137,7 +137,7 @@ class FormElement extends BaseAbstractHelper
      *
      * @param string $type
      * @param string $plugin
-     * @return self
+     * @return $this
      */
     public function addType($type, $plugin)
     {
@@ -151,7 +151,7 @@ class FormElement extends BaseAbstractHelper
      *
      * @param string $class
      * @param string $plugin
-     * @return self
+     * @return $this
      */
     public function addClass($class, $plugin)
     {

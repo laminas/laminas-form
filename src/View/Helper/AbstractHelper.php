@@ -187,7 +187,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Set value for doctype
      *
      * @param  string $doctype
-     * @return AbstractHelper
+     * @return $this
      */
     public function setDoctype($doctype)
     {
@@ -209,7 +209,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Set value for character encoding
      *
      * @param  string $encoding
-     * @return AbstractHelper
+     * @return $this
      */
     public function setEncoding($encoding)
     {
@@ -469,7 +469,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds an HTML attribute to the list of valid attributes
      *
      * @param string $attribute
-     * @return AbstractHelper
+     * @return $this
      * @throws InvalidArgumentException for attribute names that are invalid
      *     per the HTML specifications.
      */
@@ -487,7 +487,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds a prefix to the list of valid attribute prefixes
      *
      * @param string $prefix
-     * @return AbstractHelper
+     * @return $this
      * @throws InvalidArgumentException for attribute prefixes that are invalid
      *     per the HTML specifications for attribute names.
      */
@@ -506,7 +506,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $attribute
      *
-     * @return AbstractHelper
+     * @return $this
      */
     public function addTranslatableAttribute($attribute)
     {
@@ -530,7 +530,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $prefix
      *
-     * @return AbstractHelper
+     * @return $this
      */
     public function addTranslatableAttributePrefix($prefix)
     {

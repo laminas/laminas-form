@@ -25,7 +25,7 @@ interface FormInterface extends FieldsetInterface
      * Typically, also passes data on to the composed input filter.
      *
      * @param  array|\ArrayAccess $data
-     * @return FormInterface
+     * @return $this
      */
     public function setData($data);
 
@@ -52,7 +52,7 @@ interface FormInterface extends FieldsetInterface
      * Set input filter
      *
      * @param  InputFilterInterface $inputFilter
-     * @return FormInterface
+     * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter);
 
@@ -88,7 +88,7 @@ interface FormInterface extends FieldsetInterface
      *
      * Typically, proxies to the composed input filter
      *
-     * @return FormInterface
+     * @return $this
      */
     public function setValidationGroup();
 }

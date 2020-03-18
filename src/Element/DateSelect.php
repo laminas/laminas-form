@@ -42,7 +42,7 @@ class DateSelect extends MonthSelect
      * - day_attributes: HTML attributes to be rendered with the day element
      *
      * @param array|\Traversable $options
-     * @return self
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -77,7 +77,7 @@ class DateSelect extends MonthSelect
      * Set the day attributes
      *
      * @param  array $dayAttributes
-     * @return self
+     * @return $this
      */
     public function setDayAttributes(array $dayAttributes)
     {
@@ -98,7 +98,7 @@ class DateSelect extends MonthSelect
     /**
      * @param  string|array|\ArrayAccess|PhpDateTime $value
      * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @return self Provides a fluent interface
+     * @return $this Provides a fluent interface
      */
     public function setValue($value)
     {

@@ -14,7 +14,7 @@ interface LabelAwareInterface
      * Set the label (if any) used for this element
      *
      * @param  $label
-     * @return ElementInterface
+     * @return $this
      */
     public function setLabel($label);
 
@@ -28,8 +28,8 @@ interface LabelAwareInterface
     /**
      * Set the attributes to use with the label
      *
-     * @param array $labelAttributes
-     * @return self
+     * @param  array $labelAttributes
+     * @return $this
      */
     public function setLabelAttributes(array $labelAttributes);
 
@@ -46,7 +46,7 @@ interface LabelAwareInterface
      * Implementation will decide if this will overwrite or merge.
      *
      * @param  array|\Traversable $arrayOrTraversable
-     * @return self
+     * @return $this
      */
     public function setLabelOptions($arrayOrTraversable);
 
@@ -62,7 +62,7 @@ interface LabelAwareInterface
      *
      * @param  string $key
      * @param  mixed  $value
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function setLabelOption($key, $value);
 
@@ -77,8 +77,8 @@ interface LabelAwareInterface
     /**
      * Remove a single label option
      *
-     * @param string $key
-     * @return ElementInterface
+     * @param  string $key
+     * @return $this
      */
     public function removeLabelOption($key);
 
@@ -93,15 +93,15 @@ interface LabelAwareInterface
     /**
      * Remove many attributes at once
      *
-     * @param array $keys
-     * @return ElementInterface
+     * @param  array $keys
+     * @return $this
      */
     public function removeLabelOptions(array $keys);
 
     /**
      * Clear all label options
      *
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function clearLabelOptions();
 }

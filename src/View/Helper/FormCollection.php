@@ -192,7 +192,7 @@ class FormCollection extends AbstractHelper
      * If set to true, collections are automatically wrapped around a fieldset
      *
      * @param  bool $wrap
-     * @return FormCollection
+     * @return $this
      */
     public function setShouldWrap($wrap)
     {
@@ -214,7 +214,7 @@ class FormCollection extends AbstractHelper
      * Sets the name of the view helper that should be used to render sub elements.
      *
      * @param  string $defaultSubHelper The name of the view helper to set.
-     * @return FormCollection
+     * @return $this
      */
     public function setDefaultElementHelper($defaultSubHelper)
     {
@@ -236,7 +236,7 @@ class FormCollection extends AbstractHelper
      * Sets the element helper that should be used by this collection.
      *
      * @param  HelperInterface $elementHelper The element helper to use.
-     * @return FormCollection
+     * @return $this
      */
     public function setElementHelper(HelperInterface $elementHelper)
     {
@@ -272,7 +272,7 @@ class FormCollection extends AbstractHelper
      * Sets the fieldset helper that should be used by this collection.
      *
      * @param  HelperInterface $fieldsetHelper The fieldset helper to use.
-     * @return FormCollection
+     * @return $this
      */
     public function setFieldsetHelper(HelperInterface $fieldsetHelper)
     {
@@ -319,7 +319,7 @@ class FormCollection extends AbstractHelper
      *
      * @param string $wrapper
      *
-     * @return self
+     * @return $this
      */
     public function setWrapper($wrapper)
     {
@@ -336,7 +336,7 @@ class FormCollection extends AbstractHelper
      *
      * @param string $labelWrapper
      *
-     * @return self
+     * @return $this
      */
     public function setLabelWrapper($labelWrapper)
     {
@@ -375,7 +375,7 @@ class FormCollection extends AbstractHelper
      *
      * @param string $templateWrapper
      *
-     * @return self
+     * @return $this
      */
     public function setTemplateWrapper($templateWrapper)
     {

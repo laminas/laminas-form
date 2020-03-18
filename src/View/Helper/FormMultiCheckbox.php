@@ -278,7 +278,7 @@ class FormMultiCheckbox extends FormInput
      * Sets the attributes applied to option label.
      *
      * @param  array|null $attributes
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setLabelAttributes($attributes)
     {
@@ -301,7 +301,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @param  mixed $labelPosition
      * @throws Exception\InvalidArgumentException
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setLabelPosition($labelPosition)
     {
@@ -334,7 +334,7 @@ class FormMultiCheckbox extends FormInput
      * Set separator string for checkbox elements
      *
      * @param  string $separator
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setSeparator($separator)
     {
@@ -357,7 +357,7 @@ class FormMultiCheckbox extends FormInput
      * for the unset value.
      *
      * @param  bool $useHiddenElement
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setUseHiddenElement($useHiddenElement)
     {
@@ -380,7 +380,7 @@ class FormMultiCheckbox extends FormInput
      * Sets the unchecked value used when "UseHiddenElement" is turned on.
      *
      * @param  bool $value
-     * @return FormMultiCheckbox
+     * @return $this
      */
     public function setUncheckedValue($value)
     {

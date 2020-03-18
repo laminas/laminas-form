@@ -85,7 +85,7 @@ class Element implements
      * Set value for name
      *
      * @param  string $name
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function setName($name)
     {
@@ -110,7 +110,7 @@ class Element implements
      * - label_options: label specific options
      *
      * @param  array|Traversable $options
-     * @return Element|ElementInterface
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions($options)
@@ -154,12 +154,12 @@ class Element implements
      * Return the specified option
      *
      * @param string $option
-     * @return NULL|mixed
+     * @return null|mixed
      */
     public function getOption($option)
     {
         if (! isset($this->options[$option])) {
-            return;
+            return null;
         }
 
         return $this->options[$option];
@@ -170,7 +170,7 @@ class Element implements
      *
      * @param  string $key
      * @param  mixed $value
-     * @return self
+     * @return $this
      */
     public function setOption($key, $value)
     {
@@ -183,7 +183,7 @@ class Element implements
      *
      * @param  string $key
      * @param  mixed  $value
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function setAttribute($key, $value)
     {
@@ -214,8 +214,8 @@ class Element implements
     /**
      * Remove a single attribute
      *
-     * @param string $key
-     * @return ElementInterface
+     * @param  string $key
+     * @return $this
      */
     public function removeAttribute($key)
     {
@@ -240,7 +240,7 @@ class Element implements
      * Implementation will decide if this will overwrite or merge.
      *
      * @param  array|Traversable $arrayOrTraversable
-     * @return Element|ElementInterface
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setAttributes($arrayOrTraversable)
@@ -272,7 +272,7 @@ class Element implements
      * Remove many attributes at once
      *
      * @param array $keys
-     * @return ElementInterface
+     * @return $this
      */
     public function removeAttributes(array $keys)
     {
@@ -286,7 +286,7 @@ class Element implements
     /**
      * Clear all attributes
      *
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function clearAttributes()
     {
@@ -298,7 +298,7 @@ class Element implements
      * Set the element value
      *
      * @param  mixed $value
-     * @return Element
+     * @return $this
      */
     public function setValue($value)
     {
@@ -320,7 +320,7 @@ class Element implements
      * Set the label used for this element
      *
      * @param $label
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function setLabel($label)
     {
@@ -345,7 +345,7 @@ class Element implements
      * Set the attributes to use with the label
      *
      * @param array $labelAttributes
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function setLabelAttributes(array $labelAttributes)
     {
@@ -369,7 +369,7 @@ class Element implements
      * Implementation will decide if this will overwrite or merge.
      *
      * @param  array|Traversable $arrayOrTraversable
-     * @return Element|ElementInterface
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setLabelOptions($arrayOrTraversable)
@@ -400,7 +400,7 @@ class Element implements
     /**
      * Clear all label options
      *
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function clearLabelOptions()
     {
@@ -412,7 +412,7 @@ class Element implements
      * Remove many attributes at once
      *
      * @param array $keys
-     * @return ElementInterface
+     * @return $this
      */
     public function removeLabelOptions(array $keys)
     {
@@ -428,7 +428,7 @@ class Element implements
      *
      * @param  string $key
      * @param  mixed  $value
-     * @return Element|ElementInterface
+     * @return $this
      */
     public function setLabelOption($key, $value)
     {
@@ -445,7 +445,7 @@ class Element implements
     public function getLabelOption($key)
     {
         if (! isset($this->labelOptions[$key])) {
-            return;
+            return null;
         }
 
         return $this->labelOptions[$key];
@@ -455,7 +455,7 @@ class Element implements
      * Remove a single label option
      *
      * @param string $key
-     * @return ElementInterface
+     * @return $this
      */
     public function removeLabelOption($key)
     {
@@ -478,7 +478,7 @@ class Element implements
      * Set a list of messages to report when validation fails
      *
      * @param  array|Traversable $messages
-     * @return Element|ElementInterface
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setMessages($messages)

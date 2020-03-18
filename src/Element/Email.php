@@ -64,7 +64,7 @@ class Email extends Element implements InputProviderInterface
      * Sets the primary validator to use for this element
      *
      * @param  ValidatorInterface $validator
-     * @return Email
+     * @return $this
      */
     public function setValidator(ValidatorInterface $validator)
     {
@@ -107,7 +107,7 @@ class Email extends Element implements InputProviderInterface
      * email addresses.
      *
      * @param  ValidatorInterface $validator
-     * @return Email
+     * @return $this
      */
     public function setEmailValidator(ValidatorInterface $validator)
     {

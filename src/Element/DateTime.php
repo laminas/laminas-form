@@ -49,7 +49,7 @@ class DateTime extends Element implements InputProviderInterface
      * - format: A \DateTime compatible string
      *
      * @param array|\Traversable $options
-     * @return DateTime
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -89,7 +89,7 @@ class DateTime extends Element implements InputProviderInterface
      * Set value for format
      *
      * @param  string $format
-     * @return DateTime
+     * @return $this
      */
     public function setFormat($format)
     {

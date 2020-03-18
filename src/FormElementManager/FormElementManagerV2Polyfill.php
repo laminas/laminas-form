@@ -309,7 +309,7 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
      * @param string $name
      * @param string $invokableClass
      * @param null|bool $shared Ignored.
-     * @return self
+     * @return $this
      */
     public function setInvokableClass($name, $invokableClass, $shared = null)
     {

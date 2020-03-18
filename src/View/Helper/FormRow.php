@@ -252,7 +252,7 @@ class FormRow extends AbstractHelper
      * Set the class that is added to element that have errors
      *
      * @param  string $inputErrorClass
-     * @return FormRow
+     * @return $this
      */
     public function setInputErrorClass($inputErrorClass)
     {
@@ -274,7 +274,7 @@ class FormRow extends AbstractHelper
      * Set the attributes for the row label
      *
      * @param  array $labelAttributes
-     * @return FormRow
+     * @return $this
      */
     public function setLabelAttributes($labelAttributes)
     {
@@ -297,7 +297,7 @@ class FormRow extends AbstractHelper
      *
      * @param  string $labelPosition
      * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @return FormRow
+     * @return $this
      */
     public function setLabelPosition($labelPosition)
     {
@@ -330,7 +330,7 @@ class FormRow extends AbstractHelper
      * Set if the errors are rendered by this helper
      *
      * @param  bool $renderErrors
-     * @return FormRow
+     * @return $this
      */
     public function setRenderErrors($renderErrors)
     {
@@ -352,7 +352,7 @@ class FormRow extends AbstractHelper
      * Set a partial view script to use for rendering the row
      *
      * @param null|string $partial
-     * @return FormRow
+     * @return $this
      */
     public function setPartial($partial)
     {

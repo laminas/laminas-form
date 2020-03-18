@@ -73,7 +73,7 @@ class DateTimeSelect extends DateSelect
      * - should_show_seconds: if set to true, the seconds select is shown
      *
      * @param array|Traversable $options
-     * @return self
+     * @return $this
      */
     public function setOptions($options)
     {
@@ -126,7 +126,7 @@ class DateTimeSelect extends DateSelect
      * Set the hour attributes
      *
      * @param  array $hourAttributes
-     * @return self
+     * @return $this
      */
     public function setHourAttributes(array $hourAttributes)
     {
@@ -148,7 +148,7 @@ class DateTimeSelect extends DateSelect
      * Set the minute attributes
      *
      * @param  array $minuteAttributes
-     * @return self
+     * @return $this
      */
     public function setMinuteAttributes(array $minuteAttributes)
     {
@@ -170,7 +170,7 @@ class DateTimeSelect extends DateSelect
      * Set the second attributes
      *
      * @param  array $secondAttributes
-     * @return self
+     * @return $this
      */
     public function setSecondAttributes(array $secondAttributes)
     {
@@ -193,7 +193,7 @@ class DateTimeSelect extends DateSelect
      * assumed to always be 00
      *
      * @param  bool $shouldShowSeconds
-     * @return self
+     * @return $this
      */
     public function setShouldShowSeconds($shouldShowSeconds)
     {
@@ -211,7 +211,7 @@ class DateTimeSelect extends DateSelect
 
     /**
      * @param mixed $value
-     * @return self
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setValue($value)
