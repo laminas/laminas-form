@@ -9,6 +9,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Select as SelectElement;
+use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
 class SelectTest extends TestCase
@@ -179,14 +180,27 @@ class SelectTest extends TestCase
         $this->assertEquals($valueOptions, $element->getValueOptions());
     }
 
-    public function testSetOptionsOptions()
+    public function testSetOptionsArray()
     {
         $element = new SelectElement();
         $element->setOptions([
-                                  'value_options' => ['bar' => 'baz'],
-                                  'options' => ['foo' => 'bar'],
-                                  'empty_option' => ['baz' => 'foo'],
-                             ]);
+            'value_options' => ['bar' => 'baz'],
+            'options' => ['foo' => 'bar'],
+            'empty_option' => ['baz' => 'foo'],
+        ]);
+        $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
+        $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
+        $this->assertEquals(['baz' => 'foo'], $element->getOption('empty_option'));
+    }
+
+    public function testSetOptionsTraversable()
+    {
+        $element = new SelectElement();
+        $element->setOptions(new CustomTraversable([
+            'value_options' => ['bar' => 'baz'],
+            'options' => ['foo' => 'bar'],
+            'empty_option' => ['baz' => 'foo'],
+        ]));
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
         $this->assertEquals(['baz' => 'foo'], $element->getOption('empty_option'));

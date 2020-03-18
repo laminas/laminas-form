@@ -8,7 +8,6 @@
 
 namespace Laminas\Form\Element;
 
-use Laminas\Form\Element;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\Fieldset;
@@ -110,32 +109,32 @@ class Collection extends Fieldset
     {
         parent::setOptions($options);
 
-        if (isset($options['target_element'])) {
-            $this->setTargetElement($options['target_element']);
+        if (isset($this->options['target_element'])) {
+            $this->setTargetElement($this->options['target_element']);
         }
 
-        if (isset($options['count'])) {
-            $this->setCount($options['count']);
+        if (isset($this->options['count'])) {
+            $this->setCount($this->options['count']);
         }
 
-        if (isset($options['allow_add'])) {
-            $this->setAllowAdd($options['allow_add']);
+        if (isset($this->options['allow_add'])) {
+            $this->setAllowAdd($this->options['allow_add']);
         }
 
-        if (isset($options['allow_remove'])) {
-            $this->setAllowRemove($options['allow_remove']);
+        if (isset($this->options['allow_remove'])) {
+            $this->setAllowRemove($this->options['allow_remove']);
         }
 
-        if (isset($options['should_create_template'])) {
-            $this->setShouldCreateTemplate($options['should_create_template']);
+        if (isset($this->options['should_create_template'])) {
+            $this->setShouldCreateTemplate($this->options['should_create_template']);
         }
 
-        if (isset($options['template_placeholder'])) {
-            $this->setTemplatePlaceholder($options['template_placeholder']);
+        if (isset($this->options['template_placeholder'])) {
+            $this->setTemplatePlaceholder($this->options['template_placeholder']);
         }
 
-        if (isset($options['create_new_objects'])) {
-            $this->setCreateNewObjects($options['create_new_objects']);
+        if (isset($this->options['create_new_objects'])) {
+            $this->setCreateNewObjects($this->options['create_new_objects']);
         }
 
         return $this;
@@ -162,11 +161,13 @@ class Collection extends Fieldset
      */
     public function setObject($object)
     {
-        if (! is_array($object) && ! $object instanceof Traversable) {
+        if ($object instanceof Traversable) {
+            $object = iterator_to_array($object);
+        } elseif (! is_array($object)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable object argument; received "%s"',
                 __METHOD__,
-                (is_object($object) ? get_class($object) : gettype($object))
+                is_object($object) ? get_class($object) : gettype($object)
             ));
         }
 
@@ -186,11 +187,13 @@ class Collection extends Fieldset
      */
     public function populateValues($data)
     {
-        if (! is_array($data) && ! $data instanceof Traversable) {
+        if ($data instanceof Traversable) {
+            $data = ArrayUtils::iteratorToArray($data);
+        } elseif (! is_array($data)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable set of data; received "%s"',
                 __METHOD__,
-                (is_object($data) ? get_class($data) : gettype($data))
+                is_object($data) ? get_class($data) : gettype($data)
             ));
         }
 
@@ -509,9 +512,7 @@ class Collection extends Fieldset
     {
         if ($this->object instanceof Traversable) {
             $this->object = ArrayUtils::iteratorToArray($this->object, false);
-        }
-
-        if (! is_array($this->object)) {
+        } elseif (! is_array($this->object)) {
             return [];
         }
 

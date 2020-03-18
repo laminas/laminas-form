@@ -9,6 +9,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Checkbox as CheckboxElement;
+use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
 class CheckboxTest extends TestCase
@@ -114,10 +115,23 @@ class CheckboxTest extends TestCase
     {
         $element = new CheckboxElement();
         $element->setOptions([
-                                  'use_hidden_element' => true,
-                                  'unchecked_value' => 'foo',
-                                  'checked_value' => 'bar',
-                             ]);
+            'use_hidden_element' => true,
+            'unchecked_value' => 'foo',
+            'checked_value' => 'bar',
+        ]);
+        $this->assertEquals(true, $element->getOption('use_hidden_element'));
+        $this->assertEquals('foo', $element->getOption('unchecked_value'));
+        $this->assertEquals('bar', $element->getOption('checked_value'));
+    }
+
+    public function testSetOptionsTraversable()
+    {
+        $element = new CheckboxElement();
+        $element->setOptions(new CustomTraversable([
+            'use_hidden_element' => true,
+            'unchecked_value' => 'foo',
+            'checked_value' => 'bar',
+        ]));
         $this->assertEquals(true, $element->getOption('use_hidden_element'));
         $this->assertEquals('foo', $element->getOption('unchecked_value'));
         $this->assertEquals('bar', $element->getOption('checked_value'));

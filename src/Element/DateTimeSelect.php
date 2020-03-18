@@ -79,24 +79,20 @@ class DateTimeSelect extends DateSelect
     {
         parent::setOptions($options);
 
-        if ($options instanceof Traversable) {
-            $options = ArrayUtils::iteratorToArray($options);
+        if (isset($this->options['hour_attributes'])) {
+            $this->setHourAttributes($this->options['hour_attributes']);
         }
 
-        if (isset($options['hour_attributes'])) {
-            $this->setHourAttributes($options['hour_attributes']);
+        if (isset($this->options['minute_attributes'])) {
+            $this->setMinuteAttributes($this->options['minute_attributes']);
         }
 
-        if (isset($options['minute_attributes'])) {
-            $this->setMinuteAttributes($options['minute_attributes']);
+        if (isset($this->options['second_attributes'])) {
+            $this->setSecondAttributes($this->options['second_attributes']);
         }
 
-        if (isset($options['second_attributes'])) {
-            $this->setSecondAttributes($options['second_attributes']);
-        }
-
-        if (isset($options['should_show_seconds'])) {
-            $this->setShouldShowSeconds($options['should_show_seconds']);
+        if (isset($this->options['should_show_seconds'])) {
+            $this->setShouldShowSeconds($this->options['should_show_seconds']);
         }
 
         return $this;

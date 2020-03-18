@@ -103,32 +103,28 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     {
         parent::setOptions($options);
 
-        if ($options instanceof Traversable) {
-            $options = ArrayUtils::iteratorToArray($options);
+        if (isset($this->options['month_attributes'])) {
+            $this->setMonthAttributes($this->options['month_attributes']);
         }
 
-        if (isset($options['month_attributes'])) {
-            $this->setMonthAttributes($options['month_attributes']);
+        if (isset($this->options['year_attributes'])) {
+            $this->setYearAttributes($this->options['year_attributes']);
         }
 
-        if (isset($options['year_attributes'])) {
-            $this->setYearAttributes($options['year_attributes']);
+        if (isset($this->options['min_year'])) {
+            $this->setMinYear($this->options['min_year']);
         }
 
-        if (isset($options['min_year'])) {
-            $this->setMinYear($options['min_year']);
+        if (isset($this->options['max_year'])) {
+            $this->setMaxYear($this->options['max_year']);
         }
 
-        if (isset($options['max_year'])) {
-            $this->setMaxYear($options['max_year']);
+        if (isset($this->options['create_empty_option'])) {
+            $this->setShouldCreateEmptyOption($this->options['create_empty_option']);
         }
 
-        if (isset($options['create_empty_option'])) {
-            $this->setShouldCreateEmptyOption($options['create_empty_option']);
-        }
-
-        if (isset($options['render_delimiters'])) {
-            $this->setShouldRenderDelimiters($options['render_delimiters']);
+        if (isset($this->options['render_delimiters'])) {
+            $this->setShouldRenderDelimiters($this->options['render_delimiters']);
         }
 
         return $this;

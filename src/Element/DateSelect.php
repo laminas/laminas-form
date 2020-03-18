@@ -48,8 +48,8 @@ class DateSelect extends MonthSelect
     {
         parent::setOptions($options);
 
-        if (isset($options['day_attributes'])) {
-            $this->setDayAttributes($options['day_attributes']);
+        if (isset($this->options['day_attributes'])) {
+            $this->setDayAttributes($this->options['day_attributes']);
         }
 
         return $this;
