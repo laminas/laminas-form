@@ -407,12 +407,15 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
             'reflection'  => $reflection,
         ]);
 
+        // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
                 return is_string($r) && ! empty($r);
             },
             $event
         );
+        // @codingStandardsIgnoreEnd
+
         return $results->last();
     }
 
@@ -429,12 +432,15 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         $event->setTarget($this);
         $event->setParams(['annotations' => $annotations]);
 
+        // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
                 return true === $r;
             },
             $event
         );
+        // @codingStandardsIgnoreEnd
+
         return (bool) $results->last();
     }
 
