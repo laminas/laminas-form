@@ -254,8 +254,7 @@ class Form extends Fieldset implements FormInterface
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
-        }
-        if (! is_array($data)) {
+        } elseif (! is_array($data)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable argument; received "%s"',
                 __METHOD__,

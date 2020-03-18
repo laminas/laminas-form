@@ -9,6 +9,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Csrf as CsrfElement;
+use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
 class CsrfTest extends TestCase
@@ -60,8 +61,24 @@ class CsrfTest extends TestCase
         $element->setOptions([
             'csrf_options' => [
                 'timeout' => 777,
-                'salt' => 'MySalt']
-            ]);
+                'salt' => 'MySalt',
+            ],
+        ]);
+        $validator = $element->getCsrfValidator();
+        $this->assertEquals('foo', $validator->getName());
+        $this->assertEquals(777, $validator->getTimeOut());
+        $this->assertEquals('MySalt', $validator->getSalt());
+    }
+
+    public function testSetOptionsTraversable()
+    {
+        $element = new CsrfElement('foo');
+        $element->setOptions(new CustomTraversable([
+            'csrf_options' => [
+                'timeout' => 777,
+                'salt' => 'MySalt',
+            ],
+        ]));
         $validator = $element->getCsrfValidator();
         $this->assertEquals('foo', $validator->getName());
         $this->assertEquals(777, $validator->getTimeOut());

@@ -65,12 +65,9 @@ class FormElementErrors extends AbstractHelper
     public function render(ElementInterface $element, array $attributes = [])
     {
         $messages = $element->getMessages();
-        if (empty($messages)) {
-            return '';
-        }
-
-        $messages = $messages instanceof Traversable ? iterator_to_array($messages) : $messages;
-        if (! is_array($messages)) {
+        if ($messages instanceof Traversable) {
+            $messages = iterator_to_array($messages);
+        } elseif (! is_array($messages)) {
             throw new Exception\DomainException(sprintf(
                 '%s expects that $element->getMessages() will return an array or Traversable; received "%s"',
                 __METHOD__,
@@ -78,9 +75,13 @@ class FormElementErrors extends AbstractHelper
             ));
         }
 
+        if (! $messages) {
+            return '';
+        }
+
         // Flatten message array
         $messages = $this->flattenMessages($messages);
-        if (empty($messages)) {
+        if (! $messages) {
             return '';
         }
 
