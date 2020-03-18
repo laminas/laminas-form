@@ -409,8 +409,8 @@ class FormCollectionTest extends TestCase
     {
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage(
-            'Invalid element helper set in FormCollection.' .
-            ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
+            'Invalid element helper set in FormCollection.'
+            . ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
         );
 
         $method = new \ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
