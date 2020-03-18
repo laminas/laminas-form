@@ -8,6 +8,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use ArrayAccess;
+use Laminas\EventManager\EventInterface;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\Form\Element\Collection;
 use Laminas\Form\Fieldset;
@@ -73,7 +75,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the allow_empty flag on the input specification array.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleAllowEmptyAnnotation($e)
@@ -92,7 +94,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the attributes array of the element specification.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleAttributesAnnotation($e)
@@ -117,7 +119,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     /**
      * Allow creating fieldsets from composed entity properties
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleComposedObjectAnnotation($e)
@@ -189,7 +191,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the continue_if_empty flag on the input specification array.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleContinueIfEmptyAnnotation($e)
@@ -208,7 +210,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the error_message of the input specification.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleErrorMessageAnnotation($e)
@@ -225,7 +227,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     /**
      * Determine if the element has been marked to exclude from the definition
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return bool
      */
     public function handleExcludeAnnotation($e)
@@ -242,7 +244,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Adds a filter to the filter chain specification for the input.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleFilterAnnotation($e)
@@ -265,7 +267,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the element flags in the specification (used typically for setting
      * priority).
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleFlagsAnnotation($e)
@@ -284,7 +286,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the hydrator class to use in the fieldset specification.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleHydratorAnnotation($e)
@@ -304,7 +306,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the filter specification for the current element to the specified
      * input class name.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleInputAnnotation($e)
@@ -323,7 +325,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the object to bind to the form or fieldset
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleObjectAnnotation($e)
@@ -344,7 +346,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the element options in the specification.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleOptionsAnnotation($e)
@@ -363,7 +365,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the required flag on the input based on the annotation value.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleRequiredAnnotation($e)
@@ -392,7 +394,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the element class type to use in the element specification.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleTypeAnnotation($e)
@@ -411,7 +413,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Adds a validator to the validator chain of the input specification.
      *
-     * @param  \Laminas\EventManager\EventInterface $e
+     * @param  EventInterface $e
      * @return void
      */
     public function handleValidatorAnnotation($e)
@@ -429,7 +431,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     }
 
     /**
-     * @param array|\ArrayAccess     $elementSpec
+     * @param array|ArrayAccess      $elementSpec
      * @param ComposedObject|Options $annotation
      *
      * @return array

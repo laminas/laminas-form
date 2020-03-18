@@ -11,6 +11,7 @@ namespace Laminas\Form;
 use Countable;
 use IteratorAggregate;
 use Laminas\Hydrator\HydratorInterface;
+use Traversable;
 
 interface FieldsetInterface extends
     Countable,
@@ -25,10 +26,10 @@ interface FieldsetInterface extends
      * $flags could contain metadata such as the alias under which to register
      * the element or fieldset, order in which to prioritize it, etc.
      *
-     * @param  array|\Traversable|ElementInterface $elementOrFieldset Typically, only allow objects implementing
-     *                                                                ElementInterface; however, keeping it flexible
-     *                                                                to allow a factory-based form
-     *                                                                implementation as well
+     * @param  array|Traversable|ElementInterface $elementOrFieldset Typically, only allow objects implementing
+     *                                                               ElementInterface; however, keeping it flexible
+     *                                                               to allow a factory-based form
+     *                                                               implementation as well
      * @param  array $flags
      * @return $this
      */
@@ -72,7 +73,7 @@ interface FieldsetInterface extends
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|\Traversable
+     * @return array|Traversable
      */
     public function getElements();
 
@@ -81,14 +82,14 @@ interface FieldsetInterface extends
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|\Traversable
+     * @return array|Traversable
      */
     public function getFieldsets();
 
     /**
      * Recursively populate value attributes of elements
      *
-     * @param  array|\Traversable $data
+     * @param  array|Traversable $data
      * @return void
      */
     public function populateValues($data);

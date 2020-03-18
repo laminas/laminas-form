@@ -13,6 +13,7 @@ use Laminas\I18n\Validator\IsFloat as NumberValidator;
 use Laminas\Validator\GreaterThan as GreaterThanValidator;
 use Laminas\Validator\LessThan as LessThanValidator;
 use Laminas\Validator\Step as StepValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class Range extends NumberElement
 {
@@ -28,7 +29,7 @@ class Range extends NumberElement
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface[]
+     * @return ValidatorInterface[]
      */
     protected function getValidators()
     {

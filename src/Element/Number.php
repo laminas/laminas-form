@@ -8,12 +8,14 @@
 
 namespace Laminas\Form\Element;
 
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\GreaterThan as GreaterThanValidator;
 use Laminas\Validator\LessThan as LessThanValidator;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\Step as StepValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class Number extends Element implements InputProviderInterface
 {
@@ -34,7 +36,7 @@ class Number extends Element implements InputProviderInterface
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface[]
+     * @return ValidatorInterface[]
      */
     protected function getValidators()
     {
@@ -93,7 +95,7 @@ class Number extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => \Laminas\Filter\StringTrim::class],
+                ['name' => StringTrim::class],
             ],
             'validators' => $this->getValidators(),
         ];

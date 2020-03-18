@@ -10,6 +10,7 @@ namespace Laminas\Form\Element;
 
 use DateInterval;
 use Laminas\Validator\DateStep as DateStepValidator;
+use Laminas\Validator\ValidatorInterface;
 
 use function date;
 
@@ -35,7 +36,7 @@ class Time extends DateTime
     /**
      * Retrieves a DateStepValidator configured for a Date Input type
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getStepValidator()
     {

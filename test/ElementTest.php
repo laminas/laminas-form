@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use PHPUnit\Framework\TestCase;
 
@@ -198,7 +199,7 @@ class ElementTest extends TestCase
     public function testSetOptionsIsTraversable()
     {
         $element = new Element('foo');
-        $element->setOptions(new \ArrayObject(['foo' => 'bar']));
+        $element->setOptions(new ArrayObject(['foo' => 'bar']));
         $this->assertEquals('foo', $element->getName());
         $this->assertEquals(['foo' => 'bar'], $element->getOptions());
     }

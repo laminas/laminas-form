@@ -8,12 +8,14 @@
 
 namespace LaminasTest\Form;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 use Laminas\Hydrator;
 use Laminas\InputFilter\InputFilter;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 use function class_exists;
 use function count;
@@ -98,14 +100,14 @@ class FieldsetTest extends TestCase
     public function testExtractOnAnEmptyTraversable()
     {
         $form = new TestAsset\FormCollection();
-        $form->populateValues(new \ArrayObject(['fieldsets' => new \ArrayObject()]));
+        $form->populateValues(new ArrayObject(['fieldsets' => new ArrayObject()]));
 
         $this->addToAssertionCount(1);
     }
 
     public function testTraversableAcceptedValueForFieldset()
     {
-        $subValue = new \ArrayObject(['field' => 'value']);
+        $subValue = new ArrayObject(['field' => 'value']);
         $subFieldset = new TestAsset\ValueStoringFieldset('subFieldset');
         $this->fieldset->add($subFieldset);
         $this->fieldset->populateValues(['subFieldset' => $subValue]);
@@ -384,7 +386,7 @@ class FieldsetTest extends TestCase
     {
         $this->fieldset->add(new Element('foo'));
         $this->fieldset->add(new Element('bar'));
-        $this->fieldset->setObject(new \stdClass);
+        $this->fieldset->setObject(new stdClass);
 
         $fieldsetClone = clone $this->fieldset;
 
@@ -398,10 +400,10 @@ class FieldsetTest extends TestCase
         $form = new Form();
         $fieldset = new Fieldset('foobar');
         $form->add($fieldset);
-        $value = new \ArrayObject([
+        $value = new ArrayObject([
             'foobar' => 'abc',
         ]);
-        $value['foobar'] = new \ArrayObject([
+        $value['foobar'] = new ArrayObject([
             'foo' => 'abc',
         ]);
         $form->bind($value);
@@ -410,7 +412,7 @@ class FieldsetTest extends TestCase
 
     public function testBindEmptyValue()
     {
-        $value = new \ArrayObject([
+        $value = new ArrayObject([
             'foo' => 'abc',
             'bar' => 'def',
         ]);
@@ -488,7 +490,7 @@ class FieldsetTest extends TestCase
 
     public function testBindValuesSkipDisabled()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $object->disabled = 'notModified';
         $object->not_disabled = 'notModified';
 
@@ -517,7 +519,7 @@ class FieldsetTest extends TestCase
      */
     public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $object->disabled = 'notModified';
         $object->not_disabled = 'notModified';
 
@@ -549,7 +551,7 @@ class FieldsetTest extends TestCase
 
     public function testShouldValidateAllowObjectBindingByClassname()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $this->fieldset->setAllowedObjectBindingClass('stdClass');
         $allowed = $this->fieldset->allowObjectBinding($object);
 
@@ -558,7 +560,7 @@ class FieldsetTest extends TestCase
 
     public function testShouldValidateAllowObjectBindingByObject()
     {
-        $object = new \stdClass();
+        $object = new stdClass();
         $this->fieldset->setObject($object);
         $allowed = $this->fieldset->allowObjectBinding($object);
 
@@ -579,7 +581,7 @@ class FieldsetTest extends TestCase
                 : new Hydrator\ObjectProperty()
         );
 
-        $object      = new \stdClass();
+        $object      = new stdClass();
         $object->foo = 'Initial value';
         $form->bind($object);
 

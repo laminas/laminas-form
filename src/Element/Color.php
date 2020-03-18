@@ -8,9 +8,12 @@
 
 namespace Laminas\Form\Element;
 
+use Laminas\Filter\StringToLower;
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Regex as RegexValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class Color extends Element implements InputProviderInterface
 {
@@ -24,14 +27,14 @@ class Color extends Element implements InputProviderInterface
     ];
 
     /**
-     * @var \Laminas\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     protected $validator;
 
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getValidator()
     {
@@ -54,8 +57,8 @@ class Color extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => \Laminas\Filter\StringTrim::class],
-                ['name' => \Laminas\Filter\StringToLower::class],
+                ['name' => StringTrim::class],
+                ['name' => StringToLower::class],
             ],
             'validators' => [
                 $this->getValidator(),

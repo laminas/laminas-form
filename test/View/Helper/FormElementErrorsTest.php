@@ -12,11 +12,12 @@ use Laminas\Form\Element;
 use Laminas\Form\Form;
 use Laminas\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
 use Laminas\Validator\AbstractValidator;
+use Laminas\Validator\Translator\TranslatorInterface;
 
 class FormElementErrorsTest extends CommonTestCase
 {
     /**
-     * @var null|\Laminas\Validator\Translator\TranslatorInterface
+     * @var null|TranslatorInterface
      */
     protected $defaultTranslator;
 

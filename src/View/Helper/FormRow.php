@@ -121,7 +121,7 @@ class FormRow extends AbstractHelper
      *
      * @param  ElementInterface $element
      * @param  null|string      $labelPosition
-     * @throws \Laminas\Form\Exception\DomainException
+     * @throws Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element, $labelPosition = null)
@@ -302,7 +302,7 @@ class FormRow extends AbstractHelper
      * Set the label position
      *
      * @param  string $labelPosition
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
+     * @throws Exception\InvalidArgumentException
      * @return $this
      */
     public function setLabelPosition($labelPosition)

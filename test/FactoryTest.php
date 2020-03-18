@@ -16,7 +16,11 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorPluginManager;
 use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
+use Laminas\InputFilter\Factory;
 use Laminas\ServiceManager\ServiceManager;
+use Laminas\Validator\Digits;
+use Laminas\Validator\ValidatorChain;
+use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
 
 use function class_exists;
@@ -74,7 +78,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
         $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
-        $this->assertEquals(new \LaminasTest\Form\TestAsset\Model, $fieldset->getObject());
+        $this->assertEquals(new TestAsset\Model, $fieldset->getObject());
     }
 
     public function testCanCreateFieldsetsWithElements()
@@ -243,7 +247,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
         $this->assertEquals('foo', $form->getName());
         $this->assertEquals('get', $form->getAttribute('method'));
-        $this->assertEquals(new \LaminasTest\Form\TestAsset\Model, $form->getObject());
+        $this->assertEquals(new TestAsset\Model, $form->getObject());
     }
 
     public function testCanCreateFormsWithNamedInputFilters()
@@ -443,13 +447,13 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByName()
     {
-        $validatorManager = new \Laminas\Validator\ValidatorPluginManager($this->services);
+        $validatorManager = new ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', 'Laminas\Validator\Digits');
 
-        $defaultValidatorChain = new \Laminas\Validator\ValidatorChain();
+        $defaultValidatorChain = new ValidatorChain();
         $defaultValidatorChain->setPluginManager($validatorManager);
 
-        $inputFilterFactory = new \Laminas\InputFilter\Factory();
+        $inputFilterFactory = new Factory();
         $inputFilterFactory->setDefaultValidatorChain($defaultValidatorChain);
 
         $factory = new FormFactory();
@@ -488,7 +492,7 @@ class FactoryTest extends TestCase
             $validatorInstance = $validator['instance'];
             $this->assertInstanceOf('Laminas\Validator\ValidatorInterface', $validatorInstance);
 
-            if ($validatorInstance instanceof \Laminas\Validator\Digits) {
+            if ($validatorInstance instanceof Digits) {
                 $found = true;
                 break;
             }
@@ -498,13 +502,13 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor()
     {
-        $validatorManager = new \Laminas\Validator\ValidatorPluginManager($this->services);
+        $validatorManager = new ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', 'Laminas\Validator\Digits');
 
-        $defaultValidatorChain = new \Laminas\Validator\ValidatorChain();
+        $defaultValidatorChain = new ValidatorChain();
         $defaultValidatorChain->setPluginManager($validatorManager);
 
-        $inputFilterFactory = new \Laminas\InputFilter\Factory();
+        $inputFilterFactory = new Factory();
         $inputFilterFactory->setDefaultValidatorChain($defaultValidatorChain);
 
         $factory = new FormFactory(null, $inputFilterFactory);
@@ -542,7 +546,7 @@ class FactoryTest extends TestCase
             $validatorInstance = $validator['instance'];
             $this->assertInstanceOf('Laminas\Validator\ValidatorInterface', $validatorInstance);
 
-            if ($validatorInstance instanceof \Laminas\Validator\Digits) {
+            if ($validatorInstance instanceof Digits) {
                 $found = true;
                 break;
             }

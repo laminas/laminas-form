@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
@@ -28,7 +29,7 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
             )
             ->setObject(new Entity\Address());
 
-        $street = new \Laminas\Form\Element('street', ['label' => 'Street']);
+        $street = new Element('street', ['label' => 'Street']);
         $street->setAttribute('type', 'text');
 
         $city = new CityFieldset;
@@ -37,7 +38,7 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add($street);
         $this->add($city);
 
-        $phones = new \Laminas\Form\Element\Collection('phones');
+        $phones = new Element('phones');
         $phones->setLabel('Phone numbers')
                ->setOptions([
                    'count'          => 2,

@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use IntlDateFormatter;
 use Laminas\Form\Element\MonthSelect;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
@@ -71,7 +72,7 @@ class FormMonthSelectTest extends CommonTestCase
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
         $element->setShouldRenderDelimiters(true);
-        $markup = $this->helper->__invoke($element, \IntlDateFormatter::LONG, 'pt_BR');
+        $markup = $this->helper->__invoke($element, IntlDateFormatter::LONG, 'pt_BR');
 
         // pattern === "MMMM 'de' y"
         $this->assertStringMatchesFormat('%a de %a', $markup);

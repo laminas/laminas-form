@@ -11,6 +11,7 @@ namespace Laminas\Form\Element;
 use DateInterval;
 use DateTime as PhpDateTime;
 use DateTimeInterface;
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\InputFilter\InputProviderInterface;
@@ -18,6 +19,7 @@ use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\GreaterThan as GreaterThanValidator;
 use Laminas\Validator\LessThan as LessThanValidator;
+use Traversable;
 
 use function date;
 use function sprintf;
@@ -51,7 +53,7 @@ class DateTime extends Element implements InputProviderInterface
      * Accepted options for DateTime:
      * - format: A \DateTime compatible string
      *
-     * @param array|\Traversable $options
+     * @param array|Traversable $options
      * @return $this
      */
     public function setOptions($options)
@@ -211,7 +213,7 @@ class DateTime extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => \Laminas\Filter\StringTrim::class],
+                ['name' => StringTrim::class],
             ],
             'validators' => $this->getValidators(),
         ];

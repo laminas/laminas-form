@@ -14,6 +14,7 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
+use Laminas\Validator\ValidatorInterface;
 use Traversable;
 
 use function array_key_exists;
@@ -31,7 +32,7 @@ class Select extends Element implements InputProviderInterface
     ];
 
     /**
-     * @var \Laminas\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     protected $validator;
 
@@ -216,7 +217,7 @@ class Select extends Element implements InputProviderInterface
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getValidator()
     {

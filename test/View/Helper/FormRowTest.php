@@ -13,6 +13,7 @@ use Laminas\Form\Element\Captcha;
 use Laminas\Form\View\Helper\FormRow as FormRowHelper;
 use Laminas\Form\View\HelperConfig;
 use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\Validator\Date;
 use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit\Framework\TestCase;
 
@@ -387,7 +388,7 @@ class FormRowTest extends TestCase
         $element->setFormat('Y-m-d');
         $element->setValue('2010.13');
 
-        $validator = new \Laminas\Validator\Date();
+        $validator = new Date();
         $validator->isValid($element->getValue());
         $element->setMessages($validator->getMessages());
 

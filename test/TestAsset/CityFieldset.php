@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
@@ -28,10 +29,10 @@ class CityFieldset extends Fieldset implements InputFilterProviderInterface
             )
             ->setObject(new Entity\City());
 
-        $name = new \Laminas\Form\Element('name', ['label' => 'Name of the city']);
+        $name = new Element('name', ['label' => 'Name of the city']);
         $name->setAttribute('type', 'text');
 
-        $zipCode = new \Laminas\Form\Element('zipCode', ['label' => 'ZipCode of the city']);
+        $zipCode = new Element('zipCode', ['label' => 'ZipCode of the city']);
         $zipCode->setAttribute('type', 'text');
 
         $country = new CountryFieldset;

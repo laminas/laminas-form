@@ -8,7 +8,9 @@
 
 namespace Laminas\Form\Element;
 
+use DateInterval;
 use Laminas\Validator\DateStep as DateStepValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class DateTimeLocal extends DateTime
 {
@@ -33,7 +35,7 @@ class DateTimeLocal extends DateTime
     /**
      * Retrieves a DateStepValidator configured for a Date Input type
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getStepValidator()
     {
@@ -44,7 +46,7 @@ class DateTimeLocal extends DateTime
         return new DateStepValidator([
             'format'    => $this->format,
             'baseValue' => $baseValue,
-            'step'      => new \DateInterval("PT{$stepValue}M"),
+            'step'      => new DateInterval("PT{$stepValue}M"),
         ]);
     }
 }

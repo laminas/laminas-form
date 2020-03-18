@@ -8,9 +8,11 @@
 
 namespace Laminas\Form\Element;
 
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Uri as UriValidator;
+use Laminas\Validator\ValidatorInterface;
 
 class Url extends Element implements InputProviderInterface
 {
@@ -24,14 +26,14 @@ class Url extends Element implements InputProviderInterface
     ];
 
     /**
-     * @var \Laminas\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     protected $validator;
 
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     public function getValidator()
     {
@@ -57,7 +59,7 @@ class Url extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => \Laminas\Filter\StringTrim::class],
+                ['name' => StringTrim::class],
             ],
             'validators' => [
                 $this->getValidator(),

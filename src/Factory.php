@@ -360,7 +360,7 @@ class Factory
             $spec  = isset($elementSpecification['spec']) ? $elementSpecification['spec'] : [];
 
             if (! isset($spec['type'])) {
-                $spec['type'] = \Laminas\Form\Element::class;
+                $spec['type'] = Element::class;
             }
 
             $element = $this->create($spec);

@@ -16,6 +16,7 @@ use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 
 class FormCollectionTest extends TestCase
 {
@@ -413,7 +414,7 @@ class FormCollectionTest extends TestCase
             . ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
         );
 
-        $method = new \ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
+        $method = new ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
         $method->setAccessible(true);
 
         $method->invokeArgs(new FormCollectionHelper(), []);

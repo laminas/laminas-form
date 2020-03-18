@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\FormButton as FormButtonHelper;
 
@@ -64,7 +65,7 @@ class FormButtonTest extends CommonTestCase
 
     public function testOpenTagWithWrongElementRaisesException()
     {
-        $element = new \ArrayObject();
+        $element = new ArrayObject();
         $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('ArrayObject');
         $this->helper->openTag($element);

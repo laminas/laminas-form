@@ -83,8 +83,8 @@ class FormDateTimeSelect extends FormDateSelectHelper
      *
      * @param  ElementInterface $element
      * @return string
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @throws \Laminas\Form\Exception\DomainException
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      */
     public function render(ElementInterface $element)
     {

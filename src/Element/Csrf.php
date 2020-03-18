@@ -8,11 +8,13 @@
 
 namespace Laminas\Form\Element;
 
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\Form\ElementPrepareAwareInterface;
 use Laminas\Form\FormInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Csrf as CsrfValidator;
+use Traversable;
 
 use function array_merge;
 
@@ -41,7 +43,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      * Accepted options for Csrf:
      * - csrf_options: an array used in the Csrf
      *
-     * @param array|\Traversable $options
+     * @param array|Traversable $options
      * @return $this
      */
     public function setOptions($options)
@@ -139,7 +141,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => \Laminas\Filter\StringTrim::class],
+                ['name' => StringTrim::class],
             ],
             'validators' => [
                 $this->getCsrfValidator(),

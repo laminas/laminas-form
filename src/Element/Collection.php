@@ -14,6 +14,7 @@ use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\Exception\InvalidArgumentException;
 use Traversable;
 
 use function count;
@@ -191,8 +192,8 @@ class Collection extends Fieldset
      * Populate values
      *
      * @param array|Traversable $data
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @throws \Laminas\Form\Exception\DomainException
+     * @throws Exception\InvalidArgumentException
+     * @throws Exception\DomainException
      * @return void
      */
     public function populateValues($data)
@@ -324,7 +325,7 @@ class Collection extends Fieldset
      *
      * @param ElementInterface|array|Traversable $elementOrFieldset
      * @return $this
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
+     * @throws Exception\InvalidArgumentException
      */
     public function setTargetElement($elementOrFieldset)
     {
@@ -513,10 +514,10 @@ class Collection extends Fieldset
 
     /**
      * @return array
-     * @throws \Laminas\Form\Exception\InvalidArgumentException
-     * @throws \Laminas\Stdlib\Exception\InvalidArgumentException
-     * @throws \Laminas\Form\Exception\DomainException
-     * @throws \Laminas\Form\Exception\InvalidElementException
+     * @throws Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
+     * @throws Exception\DomainException
+     * @throws Exception\InvalidElementException
      */
     public function extract()
     {

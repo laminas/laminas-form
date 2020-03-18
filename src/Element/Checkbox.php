@@ -11,6 +11,7 @@ namespace Laminas\Form\Element;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\InArray as InArrayValidator;
+use Laminas\Validator\ValidatorInterface;
 use Traversable;
 
 class Checkbox extends Element implements InputProviderInterface
@@ -25,7 +26,7 @@ class Checkbox extends Element implements InputProviderInterface
     ];
 
     /**
-     * @var \Laminas\Validator\ValidatorInterface
+     * @var ValidatorInterface
      */
     protected $validator;
 
@@ -141,7 +142,7 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Get validator
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getValidator()
     {

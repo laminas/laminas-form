@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
@@ -28,10 +29,10 @@ class CountryFieldset extends Fieldset implements InputFilterProviderInterface
             )
             ->setObject(new Entity\Country());
 
-        $name = new \Laminas\Form\Element('name', ['label' => 'Name of the country']);
+        $name = new Element('name', ['label' => 'Name of the country']);
         $name->setAttribute('type', 'text');
 
-        $continent = new \Laminas\Form\Element('continent', ['label' => 'Continent of the city']);
+        $continent = new Element('continent', ['label' => 'Continent of the city']);
         $continent->setAttribute('type', 'text');
 
         $this->add($name);

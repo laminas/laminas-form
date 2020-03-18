@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\Element;
 
+use DateInterval;
 use Laminas\Form\Element\Month as MonthElement;
 use PHPUnit\Framework\TestCase;
 
@@ -48,7 +49,7 @@ class MonthTest extends TestCase
                     $this->assertEquals('2001-01', $validator->getMax());
                     break;
                 case 'Laminas\Validator\DateStep':
-                    $dateInterval = new \DateInterval('P1M');
+                    $dateInterval = new DateInterval('P1M');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:

@@ -22,11 +22,16 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\ArrayInput;
 use LaminasTest\Form\TestAsset\AddressFieldset;
 use LaminasTest\Form\TestAsset\ArrayModel;
+use LaminasTest\Form\TestAsset\CategoryFieldset;
 use LaminasTest\Form\TestAsset\CustomCollection;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use LaminasTest\Form\TestAsset\Entity\Address;
+use LaminasTest\Form\TestAsset\Entity\Category;
+use LaminasTest\Form\TestAsset\Entity\Country;
 use LaminasTest\Form\TestAsset\Entity\Phone;
 use LaminasTest\Form\TestAsset\Entity\Product;
+use LaminasTest\Form\TestAsset\FormCollection;
+use LaminasTest\Form\TestAsset\PhoneFieldset;
 use LaminasTest\Form\TestAsset\ProductFieldset;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -44,7 +49,7 @@ class CollectionTest extends TestCase
 
     protected function setUp()
     {
-        $this->form = new \LaminasTest\Form\TestAsset\FormCollection();
+        $this->form = new FormCollection();
         $this->productFieldset = new ProductFieldset();
 
         parent::setUp();
@@ -400,9 +405,9 @@ class CollectionTest extends TestCase
         $product = new Product();
         $product->setName('foo');
         $product->setPrice(42);
-        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $cat1 = new Category();
         $cat1->setName('bar');
-        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $cat2 = new Category();
         $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
@@ -446,9 +451,9 @@ class CollectionTest extends TestCase
         $product = new Product();
         $product->setName('foo');
         $product->setPrice(42);
-        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $cat1 = new Category();
         $cat1->setName('bar');
-        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $cat2 = new Category();
         $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
@@ -496,9 +501,9 @@ class CollectionTest extends TestCase
         $product = new Product();
         $product->setName('foo');
         $product->setPrice(42);
-        $cat1 = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $cat1 = new Category();
         $cat1->setName('bar');
-        $cat2 = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $cat2 = new Category();
         $cat2->setName('bar2');
 
         $product->setCategories([$cat1, $cat2]);
@@ -535,7 +540,7 @@ class CollectionTest extends TestCase
                 : new ObjectProperty()
         );
 
-        $phone = new \LaminasTest\Form\TestAsset\PhoneFieldset();
+        $phone = new PhoneFieldset();
 
         $form->add([
             'name' => 'phones',
@@ -640,8 +645,8 @@ class CollectionTest extends TestCase
 
         $product = new Product();
         $categories = [
-            new \LaminasTest\Form\TestAsset\Entity\Category(),
-            new \LaminasTest\Form\TestAsset\Entity\Category(),
+            new Category(),
+            new Category(),
         ];
         $product->setCategories($categories);
 
@@ -828,11 +833,11 @@ class CollectionTest extends TestCase
         $shop1->product = new Product();
         $shop1->product->setPrice($prices[0]);
 
-        $category = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $category = new Category();
         $category->setName($categoryNames[0]);
         $shop1->product->setCategories([$category]);
 
-        $country = new  \LaminasTest\Form\TestAsset\Entity\Country();
+        $country = new  Country();
         $country->setName($productCountries[0]);
         $shop1->product->setMadeInCountry($country);
 
@@ -840,11 +845,11 @@ class CollectionTest extends TestCase
         $shop2->product = new Product();
         $shop2->product->setPrice($prices[1]);
 
-        $category = new \LaminasTest\Form\TestAsset\Entity\Category();
+        $category = new Category();
         $category->setName($categoryNames[1]);
         $shop2->product->setCategories([$category]);
 
-        $country = new  \LaminasTest\Form\TestAsset\Entity\Country();
+        $country = new  Country();
         $country->setName($productCountries[1]);
         $shop2->product->setMadeInCountry($country);
 
@@ -989,7 +994,7 @@ class CollectionTest extends TestCase
         // Standalone Collection element
         $collection = new Collection('fieldsets', [
             'count' => 1,
-            'target_element' => new \LaminasTest\Form\TestAsset\CategoryFieldset(),
+            'target_element' => new CategoryFieldset(),
         ]);
 
         $form = new Form();
@@ -998,7 +1003,7 @@ class CollectionTest extends TestCase
             'name' => 'collection',
             'options' => [
                 'count' => 1,
-                'target_element' => new \LaminasTest\Form\TestAsset\CategoryFieldset(),
+                'target_element' => new CategoryFieldset(),
             ],
         ]);
 

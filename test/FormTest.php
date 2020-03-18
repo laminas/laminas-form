@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form;
 
+use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Factory;
 use Laminas\Form\Fieldset;
@@ -21,6 +22,7 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\BaseInputFilter;
 use Laminas\InputFilter\CollectionInputFilter;
 use Laminas\InputFilter\Factory as InputFilterFactory;
+use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterInterface;
 use PHPUnit\Framework\TestCase;
@@ -928,13 +930,13 @@ class FormTest extends TestCase
     public function testFormAsFieldsetWillBindValuesToObject()
     {
         $parentForm        = new Form('parent');
-        $parentFormObject  = new \ArrayObject(['parentId' => null]);
+        $parentFormObject  = new ArrayObject(['parentId' => null]);
         $parentFormElement = new Element('parentId');
         $parentForm->setObject($parentFormObject);
         $parentForm->add($parentFormElement);
 
         $childForm        = new Form('child');
-        $childFormObject  = new \ArrayObject(['childId' => null]);
+        $childFormObject  = new ArrayObject(['childId' => null]);
         $childFormElement = new Element('childId');
         $childForm->setObject($childFormObject);
         $childForm->add($childFormElement);
@@ -1556,7 +1558,7 @@ class FormTest extends TestCase
 
     public function testSetDataIsTraversable()
     {
-        $this->form->setData(new \ArrayObject(['foo' => 'bar']));
+        $this->form->setData(new ArrayObject(['foo' => 'bar']));
         $this->assertTrue($this->form->isValid());
     }
 
@@ -2056,7 +2058,7 @@ class FormTest extends TestCase
                 ->get('nested_fieldset_with_input_filter_provider')
                 ->getInputFilter()
                 ->get('foo')
-            instanceof \Laminas\InputFilter\Input
+            instanceof Input
         );
     }
 
@@ -2368,7 +2370,7 @@ class FormTest extends TestCase
         ]);
 
         $form = new Form();
-        $object = new \ArrayObject();
+        $object = new ArrayObject();
         $phone1 = new TestAsset\Entity\Phone();
         $phone2 = new TestAsset\Entity\Phone();
         $phone1->setNumber('unmodified');

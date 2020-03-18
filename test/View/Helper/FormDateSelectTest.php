@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use IntlDateFormatter;
 use Laminas\Form\Element\DateSelect;
 use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
 
@@ -71,7 +72,7 @@ class FormDateSelectTest extends CommonTestCase
         $element = new DateSelect('foo');
         $element->setShouldCreateEmptyOption(true);
         $element->setShouldRenderDelimiters(true);
-        $markup = $this->helper->__invoke($element, \IntlDateFormatter::LONG, 'pt_BR');
+        $markup = $this->helper->__invoke($element, IntlDateFormatter::LONG, 'pt_BR');
 
         // pattern === "d 'de' MMMM 'de' y"
         $this->assertStringMatchesFormat('%a de %a de %a', $markup);

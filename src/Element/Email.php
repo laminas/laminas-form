@@ -8,6 +8,7 @@
 
 namespace Laminas\Form\Element;
 
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Explode as ExplodeValidator;
@@ -127,7 +128,7 @@ class Email extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => \Laminas\Filter\StringTrim::class],
+                ['name' => StringTrim::class],
             ],
             'validators' => [
                 $this->getValidator(),

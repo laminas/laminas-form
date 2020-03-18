@@ -9,6 +9,7 @@
 namespace Laminas\Form\Element;
 
 use Laminas\Captcha as LaminasCaptcha;
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\Form\Exception;
 use Laminas\InputFilter\InputProviderInterface;
@@ -23,7 +24,7 @@ use function sprintf;
 class Captcha extends Element implements InputProviderInterface
 {
     /**
-     * @var \Laminas\Captcha\AdapterInterface
+     * @var LaminasCaptcha\AdapterInterface
      */
     protected $captcha;
 
@@ -92,7 +93,7 @@ class Captcha extends Element implements InputProviderInterface
             'name' => $this->getName(),
             'required' => true,
             'filters' => [
-                ['name' => \Laminas\Filter\StringTrim::class],
+                ['name' => StringTrim::class],
             ],
         ];
 

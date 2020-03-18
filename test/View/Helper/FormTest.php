@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use ArrayIterator;
 use Laminas\Form\Element\Submit;
 use Laminas\Form\Form;
 use Laminas\Form\View\Helper\Form as FormHelper;
@@ -100,7 +101,7 @@ class FormTest extends CommonTestCase
         $form = $this->createMock('Laminas\\Form\\Form');
         $form->expects($this->once())->method('prepare');
         $form->expects($this->any())->method('getAttributes')->will($this->returnValue([]));
-        $form->expects($this->any())->method('getIterator')->will($this->returnValue(new \ArrayIterator([])));
+        $form->expects($this->any())->method('getIterator')->will($this->returnValue(new ArrayIterator([])));
 
         $markup = $this->helper->__invoke($form);
 

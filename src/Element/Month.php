@@ -8,6 +8,7 @@
 
 namespace Laminas\Form\Element;
 
+use DateInterval;
 use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
@@ -56,7 +57,7 @@ class Month extends DateTime
         return new DateStepValidator([
             'format'    => 'Y-m',
             'baseValue' => $baseValue,
-            'step'      => new \DateInterval("P{$stepValue}M"),
+            'step'      => new DateInterval("P{$stepValue}M"),
         ]);
     }
 }

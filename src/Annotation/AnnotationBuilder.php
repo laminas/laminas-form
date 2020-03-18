@@ -13,6 +13,7 @@ use Laminas\Code\Annotation\AnnotationCollection;
 use Laminas\Code\Annotation\AnnotationManager;
 use Laminas\Code\Annotation\Parser;
 use Laminas\Code\Reflection\ClassReflection;
+use Laminas\Code\Reflection\PropertyReflection;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerAwareInterface;
@@ -24,6 +25,7 @@ use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormFactoryAwareInterface;
 use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
+use Reflector;
 
 use function class_exists;
 use function get_class;
@@ -301,7 +303,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Configure an element from annotations
      *
      * @param  AnnotationCollection $annotations
-     * @param  \Laminas\Code\Reflection\PropertyReflection $reflection
+     * @param  PropertyReflection $reflection
      * @param  ArrayObject $formSpec
      * @param  ArrayObject $filterSpec
      * @return void
@@ -394,7 +396,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Discover the name of the given form or element
      *
      * @param  AnnotationCollection $annotations
-     * @param  \Reflector $reflection
+     * @param  Reflector $reflection
      * @return string
      */
     protected function discoverName($annotations, $reflection)
@@ -445,7 +447,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
     }
 
     /**
-     * @return \Laminas\Code\Annotation\Parser\DoctrineAnnotationParser
+     * @return Parser\DoctrineAnnotationParser
      */
     public function getAnnotationParser()
     {

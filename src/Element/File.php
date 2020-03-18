@@ -11,6 +11,7 @@ namespace Laminas\Form\Element;
 use Laminas\Form\Element;
 use Laminas\Form\ElementPrepareAwareInterface;
 use Laminas\Form\FormInterface;
+use Laminas\InputFilter\FileInput;
 use Laminas\InputFilter\InputProviderInterface;
 
 class File extends Element implements InputProviderInterface, ElementPrepareAwareInterface
@@ -45,7 +46,7 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
     public function getInputSpecification()
     {
         return [
-            'type'     => \Laminas\InputFilter\FileInput::class,
+            'type'     => FileInput::class,
             'name'     => $this->getName(),
             'required' => false,
         ];

@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\Element;
 
+use DateInterval;
 use Laminas\Form\Element\DateTimeLocal as DateTimeLocalElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -49,7 +50,7 @@ class DateTimeLocalTest extends TestCase
                     $this->assertEquals('2001-01-01T00:00', $validator->getMax());
                     break;
                 case 'Laminas\Validator\DateStep':
-                    $dateInterval = new \DateInterval('PT1M');
+                    $dateInterval = new DateInterval('PT1M');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:

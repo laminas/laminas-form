@@ -13,6 +13,7 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
+use Traversable;
 
 use function is_array;
 
@@ -91,7 +92,7 @@ class MultiCheckbox extends Checkbox
      * - label_attributes: attributes to use when the label is rendered
      * - value_options: list of values and labels for the select options
      *
-     * @param  array|\Traversable $options
+     * @param  array|Traversable $options
      * @return MultiCheckbox|ElementInterface
      * @throws InvalidArgumentException
      */

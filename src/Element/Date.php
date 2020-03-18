@@ -12,6 +12,7 @@ use DateInterval;
 use DateTimeZone;
 use Laminas\Form\Element\DateTime as DateTimeElement;
 use Laminas\Validator\DateStep as DateStepValidator;
+use Laminas\Validator\ValidatorInterface;
 
 use function date;
 
@@ -39,7 +40,7 @@ class Date extends DateTimeElement
     /**
      * Retrieves a DateStep Validator configured for a Date Input type
      *
-     * @return \Laminas\Validator\ValidatorInterface
+     * @return ValidatorInterface
      */
     protected function getStepValidator()
     {

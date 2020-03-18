@@ -8,6 +8,7 @@
 
 namespace LaminasTest\Form\Element;
 
+use DateInterval;
 use Laminas\Form\Element\Week as WeekElement;
 use PHPUnit\Framework\TestCase;
 
@@ -48,7 +49,7 @@ class WeekTest extends TestCase
                     $this->assertEquals('1970-W03', $validator->getMax());
                     break;
                 case 'Laminas\Validator\DateStep':
-                    $dateInterval = new \DateInterval('P1W');
+                    $dateInterval = new DateInterval('P1W');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:
