@@ -104,7 +104,7 @@ class Element implements
     /**
      * Get value for name
      *
-     * @return mixed
+     * @return string|int
      */
     public function getName()
     {
@@ -195,12 +195,12 @@ class Element implements
      */
     public function setAttribute($key, $value)
     {
-        if ($key == 'value') {
+        if ($key === 'value') {
             // Do not include the value in the list of attributes
             $this->setValue($value);
-        } else {
-            $this->attributes[$key] = $value;
+            return $this;
         }
+        $this->attributes[$key] = $value;
         return $this;
     }
 
@@ -212,7 +212,7 @@ class Element implements
      */
     public function getAttribute($key)
     {
-        if ($key == 'value') {
+        if ($key === 'value') {
             return $this->value;
         }
         return isset($this->attributes[$key]) ? $this->attributes[$key] : null;
