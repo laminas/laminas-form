@@ -771,11 +771,10 @@ you always add the <code>Laminas\View\Renderer\PhpRenderer</code> as the first t
 the IDE can auto-suggest the default view helpers from <code>laminas-view</code>. Next,
 chain the <code>HelperTrait</code> from <code>laminas-form</code> with a pipe symbol (a.k.a. vertical
 bar) <code>|</code>:</p>
-<pre class="codehilite"><code class="language-php">
-/**
+<pre class="highlight"><code class="language-php">/**
  * @var Laminas\View\Renderer\PhpRenderer|Laminas\Form\View\HelperTrait $this
- */
-</code></pre>
+ */</code></pre>
+
 <p>You may chain as many <code>HelperTrait</code> traits as you like, depending on view
 helpers from which Laminas component you are using and would like to
 provide auto-completion for.</p>

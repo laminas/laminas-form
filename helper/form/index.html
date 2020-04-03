@@ -784,7 +784,7 @@ attributes.</p>
 opening and closing <code>&lt;form&gt;</code> tags, and manually use other helpers to render the
 individual elements and fieldsets.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>/**
+<pre class="highlight"><code class="language-php">/**
  * inside a view template
  *
  * @var \Laminas\View\Renderer\PhpRenderer $this
@@ -792,13 +792,15 @@ individual elements and fieldsets.</p>
  */
 
 echo $this-&gt;form($form);</code></pre>
+
 <p>might result in markup like the following:</p>
-<pre class=codehilite><code class=language-html>&lt;form action=&quot;&quot; method=&quot;POST&quot;&gt;
+<pre class="highlight"><code class="language-html">&lt;form action="" method="POST"&gt;
    &lt;label&gt;
       &lt;span&gt;Some Label&lt;/span&gt;
-      &lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;
+      &lt;input type="text" name="some_element" value=""&gt;
    &lt;/label&gt;
 &lt;/form&gt;</code></pre>
+
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the
 <a href="../abstract-helper/#public-methods">AbstractHelper</a>:</p>

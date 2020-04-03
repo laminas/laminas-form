@@ -770,16 +770,18 @@
 HTML form input. It is meant to work with the <a href="../../element/number/">Number element</a>,
 which provides a default input specification for validating numerical values.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Number('my-number');
 
 // Within your view...
 echo $this-&gt;formNumber($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;number&quot; name=&quot;my-number&quot; value=&quot;&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="number" name="my-number" value=""&gt;</code></pre>
+
 <p>Usage of <code>min</code>, <code>max</code> and <code>step</code> attributes:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Number('my-number');
 $element-&gt;setAttributes([
@@ -791,8 +793,9 @@ $element-&gt;setValue(12);
 
 // Within your view...
 echo $this-&gt;formNumber($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;number&quot; name=&quot;my-number&quot; min=&quot;5&quot; max=&quot;20&quot; step=&quot;0.5&quot; value=&quot;12&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="number" name="my-number" min="5" max="20" step="0.5" value="12"&gt;</code></pre>
 
 
 

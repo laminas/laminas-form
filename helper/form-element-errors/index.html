@@ -773,7 +773,7 @@
 <p>The <code>FormElementErrors</code> view helper is used to render the validation error
 messages of an element.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Form;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Form;
 use Laminas\Form\Element;
 use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\Input;
@@ -808,18 +808,19 @@ echo $this-&gt;formElementErrors($element);
  */
 echo $this-&gt;formElementErrors($element, ['class' =&gt; 'help-inline']);
 // Result:
-// &lt;ul class=&quot;help-inline&quot;&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;
+// &lt;ul class="help-inline"&gt;&lt;li&gt;Value is required and can&amp;#039;t be empty&lt;/li&gt;&lt;/ul&gt;
 
 /**
  * Example #3: Custom format
  */
 $helper = $this-&gt;formElementErrors();
-$helper-&gt;setMessageOpenFormat('&lt;div class=&quot;help-inline&quot;&gt;');
-$helper-&gt;setMessageSeparatorString('&lt;/div&gt;&lt;div class=&quot;help-inline&quot;&gt;');
+$helper-&gt;setMessageOpenFormat('&lt;div class="help-inline"&gt;');
+$helper-&gt;setMessageSeparatorString('&lt;/div&gt;&lt;div class="help-inline"&gt;');
 $helper-&gt;setMessageCloseString('&lt;/div&gt;');
 
 echo $helper-&gt;render($element);
-// Result: &lt;div class=&quot;help-inline&quot;&gt;Value is required and can&amp;#039;t be empty&lt;/div&gt;</code></pre>
+// Result: &lt;div class="help-inline"&gt;Value is required and can&amp;#039;t be empty&lt;/div&gt;</code></pre>
+
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the
 <a href="../abstract-helper/#public-methods">AbstractHelper</a>:</p>

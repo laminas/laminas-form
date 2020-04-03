@@ -768,7 +768,7 @@
     <h1 id="formimage">FormImage</h1>
 <p>The <code>FormImage</code> view helper can be used to render an <code>&lt;input type="image"&gt;</code> HTML form input. It is meant to work with the <a href="../../element/image/">Image element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Image('my-image');
 $element-&gt;setAttribute('src', '/img/my-pic.png');
@@ -776,7 +776,7 @@ $element-&gt;setAttribute('src', '/img/my-pic.png');
 // Within your view...
 
 echo $this-&gt;formImage($element);
-// Result: &lt;input type=&quot;image&quot; name=&quot;my-image&quot; src=&quot;/img/my-pic.png&quot;&gt;</code></pre>
+// Result: &lt;input type="image" name="my-image" src="/img/my-pic.png"&gt;</code></pre>
 
 
 

@@ -782,7 +782,7 @@ from the multiple checkboxes.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>checkbox</code> for every
 checkboxes.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $multiCheckbox = new Element\MultiCheckbox('multi-checkbox');
@@ -795,8 +795,9 @@ $multiCheckbox-&gt;setValueOptions([
 
 $form = new Form('my-form');
 $form-&gt;add($multiCheckbox);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -812,6 +813,7 @@ $form-&gt;add([
         ],
     ],
 ]);</code></pre>
+
 <h2 id="advanced-usage">Advanced Usage</h2>
 <p>In order to set attributes or customize the option elements, an array can be
 used instead of a string. The following keys are supported:</p>
@@ -825,7 +827,7 @@ used instead of a string. The following keys are supported:</p>
 <li><code>label_attributes</code>: Array of HTML attributes that will be set on the label.
   Merged with the attributes set on the element's label.</li>
 </ul>
-<pre class=codehilite><code class=language-php>$form = new Form('my-form');
+<pre class="highlight"><code class="language-php">$form = new Form('my-form');
 $form-&gt;add([
     'type' =&gt; Element\MultiCheckbox::class,
     'name' =&gt; 'multi-checkbox',
@@ -857,6 +859,7 @@ $form-&gt;add([
         ],
     ],
 ]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>MultiCheckbox</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also

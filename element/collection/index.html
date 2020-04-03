@@ -778,7 +778,7 @@ collections, please refer to the <a href="../../collections/">form Collections t
 <p><code>Laminas\Form\Element\Collection</code> is meant to be paired with the
 <code>Laminas\Form\View\Helper\FormCollection</code>.</p>
 <h2 id="basic-usage">Basic Usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $colors = new Element\Collection('collection');
@@ -789,8 +789,9 @@ $colors-&gt;setShouldCreateTemplate(true);
 
 $form = new Form('my-form');
 $form-&gt;add($colors);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -803,6 +804,7 @@ $form-&gt;add([
         'target_element' =&gt; new Element\Color()
     ],
 ]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Collection</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also

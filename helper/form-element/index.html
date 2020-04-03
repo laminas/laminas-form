@@ -771,7 +771,7 @@ helpers depending on the type of the <code>Laminas\Form\Element</code> provided.
 if the provided element had a type of "text", the <code>FormElement</code> helper will
 retrieve and use the <code>FormText</code> helper to render the element.</p>
 <h2 id="basic-usage">Basic usage:</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Form;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Form;
 use Laminas\Form\Element;
 
 // Within your view...
@@ -783,12 +783,12 @@ $textElement     = new Element\Text('my-text');
 $checkboxElement = new Element\Checkbox('my-checkbox');
 
 echo $this-&gt;formElement($textElement);
-// Result: &lt;input type=&quot;text&quot; name=&quot;my-text&quot; value=&quot;&quot;&gt;
+// Result: &lt;input type="text" name="my-text" value=""&gt;
 
 echo $this-&gt;formElement($checkboxElement);
 // Result:
-// &lt;input type=&quot;hidden&quot; name=&quot;my-checkbox&quot; value=&quot;0&quot;&gt;
-// &lt;input type=&quot;checkbox&quot; name=&quot;my-checkbox&quot; value=&quot;1&quot;&gt;
+// &lt;input type="hidden" name="my-checkbox" value="0"&gt;
+// &lt;input type="checkbox" name="my-checkbox" value="1"&gt;
 
 /**
  * Example #2: Loop through form elements and render them

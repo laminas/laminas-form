@@ -777,7 +777,7 @@ This element adds filters and validators to its input filter specification in
 order to validate a local datetime input value on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>datetime-local</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $dateTimeLocal = new Element\DateTimeLocal('appointment-date-time');
@@ -793,8 +793,9 @@ $dateTimeLocal-&gt;setOptions([
 
 $form = new Form('my-form');
 $form-&gt;add($dateTimeLocal);</code></pre>
+
 <p>Here is with the array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -811,6 +812,7 @@ $form-&gt;add([
         'step' =&gt; '1', // minutes; default step interval is 1 min
     ],
 ]);</code></pre>
+
 <blockquote>
 <h3>Set all attributes before calling prepare</h3>
 <p>The <code>min</code>, <code>max</code>, and <code>step</code> attributes should be set prior to calling

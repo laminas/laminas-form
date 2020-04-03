@@ -772,7 +772,7 @@ type="radio"&gt;</code> HTML form inputs. It is meant to work with the
 specification for validating a radio.</p>
 <p><code>FormRadio</code> extends from <a href="../form-multicheckbox/">FormMultiCheckbox</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Radio('likes_chocolate');
 $element-&gt;setValueOptions([
@@ -787,16 +787,16 @@ $element-&gt;setValueOptions([
  */
 echo $this-&gt;formRadio($element);
 // Result:
-// &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;likes_chocolate[]&quot; value=&quot;0&quot;&gt;No&lt;/label&gt;
-// &lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;likes_chocolate[]&quot; value=&quot;1&quot;&gt;Yes&lt;/label&gt;
+// &lt;label&gt;&lt;input type="radio" name="likes_chocolate[]" value="0"&gt;No&lt;/label&gt;
+// &lt;label&gt;&lt;input type="radio" name="likes_chocolate[]" value="1"&gt;Yes&lt;/label&gt;
 
 /**
  * Example #2: using the prepend label placement
  */
 echo $this-&gt;formRadio($element, 'prepend');
 // Result:
-// &lt;label&gt;No&lt;input type=&quot;radio&quot; name=&quot;likes_chocolate[]&quot; value=&quot;0&quot;&gt;&lt;/label&gt;
-// &lt;label&gt;Yes&lt;input type=&quot;radio&quot; name=&quot;likes_chocolate[]&quot; value=&quot;1&quot;&gt;&lt;/label&gt;</code></pre>
+// &lt;label&gt;No&lt;input type="radio" name="likes_chocolate[]" value="0"&gt;&lt;/label&gt;
+// &lt;label&gt;Yes&lt;input type="radio" name="likes_chocolate[]" value="1"&gt;&lt;/label&gt;</code></pre>
 
 
 

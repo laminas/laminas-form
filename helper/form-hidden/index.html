@@ -769,7 +769,7 @@
 <p>The <code>FormHidden</code> view helper can be used to render an <code>&lt;input type="hidden"&gt;</code>
 HTML form input. It is meant to work with the <a href="../../element/hidden/">Hidden element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Hidden('my-hidden');
 $element-&gt;setValue('foo');
@@ -777,7 +777,7 @@ $element-&gt;setValue('foo');
 // Within your view...
 
 echo $this-&gt;formHidden($element);
-// Result: &lt;input type=&quot;hidden&quot; name=&quot;my-hidden&quot; value=&quot;foo&quot;&gt;</code></pre>
+// Result: &lt;input type="hidden" name="my-hidden" value="foo"&gt;</code></pre>
 
 
 

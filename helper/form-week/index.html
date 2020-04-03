@@ -760,16 +760,18 @@ form input. It is meant to work with the <a href="../../element/week/">Week elem
 which provides a default input specification for validating HTML5 week values.</p>
 <p><code>FormWeek</code> extends from <a href="../form-date-time/">FormDateTime</a>.</p>
 <p>Basic usage:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Week('my-week');
 
 // Within your view...
 echo $this-&gt;formWeek($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;week&quot; name=&quot;my-week&quot; value=&quot;&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="week" name="my-week" value=""&gt;</code></pre>
+
 <p>Usage of <code>min</code>, <code>max</code> and <code>step</code> attributes:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Week('my-week');
 $element-&gt;setAttributes([
@@ -781,8 +783,9 @@ $element-&gt;setValue('2014-W10');
 
 // Within your view...
 echo $this-&gt;formWeek($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;week&quot; name=&quot;my-week&quot; min=&quot;2012-W01&quot; max=&quot;2020-W01&quot; step=&quot;2&quot; value=&quot;2014-W10&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="week" name="my-week" min="2012-W01" max="2020-W01" step="2" value="2014-W10"&gt;</code></pre>
 
 
 

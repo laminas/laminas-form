@@ -769,14 +769,15 @@
 <p>The <code>FormSubmit</code> view helper can be used to render an <code>&lt;input type="submit"&gt;</code>
 HTML form input. It is meant to work with the <a href="../../element/submit/">Submit element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Submit('my-submit');
 
 // Within your view...
 echo $this-&gt;formSubmit($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;submit&quot; name=&quot;my-submit&quot; value=&quot;&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="submit" name="my-submit" value=""&gt;</code></pre>
 
 
 

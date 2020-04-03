@@ -769,14 +769,15 @@
 <p>The <code>FormColor</code> view helper can be used to render a <code>&lt;input type="color"&gt;</code> HTML5
 form input. It is meant to work with the <a href="../../element/color/">color element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Color('my-color');
 
 // Within your view...
 echo $this-&gt;formColor($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;color&quot; name=&quot;my-color&quot; value=&quot;&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="color" name="my-color" value=""&gt;</code></pre>
 
 
 

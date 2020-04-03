@@ -847,7 +847,7 @@ allows setting a translator and text domain.</p>
 </table></div>
 <h2 id="translation">Translation</h2>
 <p>Attaching a translator and setting a text domain (using the formLabel view helper as an example):</p>
-<pre class=codehilite><code class=language-php>// Setting a translator
+<pre class="highlight"><code class="language-php">// Setting a translator
 $this-&gt;formLabel()-&gt;setTranslator($translator);
 
 // Setting a text domain
@@ -855,6 +855,7 @@ $this-&gt;formLabel()-&gt;setTranslatorTextDomain('my-text-domain');
 
 // Setting both
 $this-&gt;formLabel()-&gt;setTranslator($translator, 'my-text-domain');</code></pre>
+
 <blockquote>
 <h3>Enabling translation</h3>
 <p>If you have a translator in your application container under either the key,
@@ -864,18 +865,18 @@ automatically attach the translator to the view helpers.</p>
 <h3>What will be translated?</h3>
 <p>The specific view helpers are responsible to determine what exactly should be translated
 (e. g. the Label in the FormLabel view helper or the "title" HTML attribute).</p>
-<p>If you want to have certain HTML attribute values translated you can mark them as "translatable":</p>
-<pre class=codehilite><code class=language-php>// mark one attribute as translatable
+<p>If you want to have certain HTML attribute values translated you can mark them as "translatable":
+<pre class="highlight"><code class="language-php">// mark one attribute as translatable
 $this-&gt;formLabel()-&gt;addTranslatableAttribute('data-translate-me');
 
 // mark an prefix as translatable
-$this-&gt;formLabel()-&gt;addTranslatableAttributePrefix('data-translatable-');</code></pre>
-<p>Or you can mark them as translatable for all view helpers (e. g. the title attribute):</p>
-<pre class=codehilite><code class=language-php>// mark one attribute as translatable
+$this-&gt;formLabel()-&gt;addTranslatableAttributePrefix('data-translatable-');</code></pre></p>
+<p>Or you can mark them as translatable for all view helpers (e. g. the title attribute):
+<pre class="highlight"><code class="language-php">// mark one attribute as translatable
 \Laminas\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttribute('title');
 
 // mark an prefix as translatable
-\Laminas\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttributePrefix('data-translatable-');</code></pre>
+\Laminas\Form\View\Helper\AbstractHelper-&gt;addDefaultTranslatableAttributePrefix('data-translatable-');</code></pre></p>
 <h2 id="allowing-framework-specific-attributes">Allowing framework-specific attributes</h2>
 <p>Many JavaScript frameworks use custom attributes and/or attribute prefixes with
 elements, to facilitate various bindings and event listeners. Examples include
@@ -885,10 +886,11 @@ elements, to facilitate various bindings and event listeners. Examples include
 you wish to allow additional attributes, you will need to notify the helper of
 them.</p>
 <p>The first mechanism is to add a specific attribute:</p>
-<pre class=codehilite><code class=language-php>$helper-&gt;addValidAttribute('some-attribute');</code></pre>
+<pre class="highlight"><code class="language-php">$helper-&gt;addValidAttribute('some-attribute');</code></pre>
+
 <p>If you wish to allow a set of attributes with a common prefix, use the
 following:</p>
-<pre class=codehilite><code class=language-php>$helper-&gt;addValidAttributePrefix('ng-');</code></pre>
+<pre class="highlight"><code class="language-php">$helper-&gt;addValidAttributePrefix('ng-');</code></pre>
 
 
 

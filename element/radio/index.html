@@ -782,7 +782,7 @@ elements.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>radio</code> for every
 radio.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $radio = new Element\Radio('likes_chocolate');
@@ -794,8 +794,9 @@ $radio-&gt;setValueOptions([
 
 $form = new Form('my-form');
 $form-&gt;add($radio);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -810,6 +811,7 @@ $form-&gt;add([
         ],
     ],
 ]);</code></pre>
+
 <h2 id="advanced-usage">Advanced Usage</h2>
 <p>See <a href="../multi-checkbox/">MultiCheckbox for examples</a> of how to apply attributes
 and options to each radio button.</p>

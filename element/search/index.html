@@ -776,7 +776,7 @@
 <p><strong>Available since 2.9.0.</strong></p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>search</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $search = new Element\Search('search');
@@ -784,8 +784,9 @@ $search-&gt;setLabel('Search');
 
 $form = new Form('my-form');
 $form-&gt;add($search);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -796,6 +797,7 @@ $form-&gt;add([
         'label' =&gt; 'Search',
     ],
 ]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>This element defines no methods beyond those of the parent <code>Element</code> class.</p>
 

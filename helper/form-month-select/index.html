@@ -771,7 +771,7 @@ of months, another with a list of years. It works in conjection with the
 <a href="../../element/month-select/">MonthSelect</a> element, which provides the data for
 the selects, as well as validation around input provided by them.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $monthYear = new Element\MonthSelect('monthyear');
 $monthYear-&gt;setLabel('Select a month and a year');
@@ -781,8 +781,8 @@ $monthYear-&gt;setMinYear(1986);
 
 echo $this-&gt;formMonthSelect($monthYear);
 // Result:
-// &lt;select name=&quot;monthyear[month]&quot;&gt; ... &lt;/select&gt;
-// &lt;select name=&quot;monthyear[year]&quot;&gt; ... &lt;/select&gt;</code></pre>
+// &lt;select name="monthyear[month]"&gt; ... &lt;/select&gt;
+// &lt;select name="monthyear[year]"&gt; ... &lt;/select&gt;</code></pre>
 
 
 

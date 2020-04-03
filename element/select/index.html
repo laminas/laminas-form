@@ -778,7 +778,7 @@ element can be used as a multi-select element by adding the <code>multiple</code
 attribute to the element.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>select</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $select = new Element\Select('language');
@@ -792,8 +792,9 @@ $select-&gt;setValueOptions([
 
 $form = new Form('language');
 $form-&gt;add($select);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -810,9 +811,10 @@ $form-&gt;add([
         ],
     ],
 ]);</code></pre>
+
 <p>You can add an empty option (option with no value) using the <code>empty_option</code>
 option:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -830,8 +832,9 @@ $form-&gt;add([
         ],
     ],
 ]);</code></pre>
+
 <p>Option groups are also supported by adding an <code>options</code> key to the value options:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $select = new Element\Select('language');
@@ -855,9 +858,10 @@ $select-&gt;setValueOptions([
 
 $form = new Form('language');
 $form-&gt;add($select);</code></pre>
+
 <p>Attributes on the options are supported by providing the options as a
 specification array instead of key-value pairs:</p>
-<pre class=codehilite><code class=language-php>$select-&gt;setValueOptions([
+<pre class="highlight"><code class="language-php">$select-&gt;setValueOptions([
     [
         'value' =&gt; '0',
         'label' =&gt; 'French',
@@ -871,6 +875,7 @@ specification array instead of key-value pairs:</p>
         'disabled' =&gt; true,
     ],
 ]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Select</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also

@@ -777,7 +777,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 week input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>week</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $week = new Element\Week('week');
@@ -790,8 +790,9 @@ $week-&gt;setAttributes([
 
 $form = new Form('my-form');
 $form-&gt;add($week);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -807,6 +808,7 @@ $form-&gt;add([
         'step' =&gt; '1', // weeks; default step interval is 1 week
     ],
 ]);</code></pre>
+
 <blockquote>
 <h3>Set all attributes before calling prepare</h3>
 <p>The <code>min</code>, <code>max</code>, and <code>step</code> attributes should be set prior to calling

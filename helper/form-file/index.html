@@ -769,17 +769,18 @@
 <p>The <code>FormFile</code> view helper can be used to render an <code>&lt;input type="file"&gt;</code> form
 input. It is meant to work with the <a href="../../element/file/">File element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\File('my-file');
 
 // Within your view...
 
 echo $this-&gt;formFile($element);
-// Result: &lt;input type=&quot;file&quot; name=&quot;my-file&quot;&gt;</code></pre>
+// Result: &lt;input type="file" name="my-file"&gt;</code></pre>
+
 <p>For HTML5 multiple file uploads, the <code>multiple</code> attribute can be used. Browsers
 that do not support HTML5 will default to a single upload input.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\File('my-file');
 $element-&gt;setAttribute('multiple', true);
@@ -787,7 +788,7 @@ $element-&gt;setAttribute('multiple', true);
 // Within your view...
 
 echo $this-&gt;formFile($element);
-// Result: &lt;input type=&quot;file&quot; name=&quot;my-file&quot; multiple=&quot;multiple&quot;&gt;</code></pre>
+// Result: &lt;input type="file" name="my-file" multiple="multiple"&gt;</code></pre>
 
 
 

@@ -769,14 +769,15 @@
 <p>The <code>FormTextarea</code> view helper can be used to render a <code>&lt;textarea&gt;&lt;/textarea&gt;</code>
 HTML form input. It is meant to work with the <a href="../../element/textarea/">Textarea element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Textarea('my-textarea');
 
 // Within your view...
 echo $this-&gt;formTextarea($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;textarea name=&quot;my-textarea&quot;&gt;&lt;/textarea&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;textarea name="my-textarea"&gt;&lt;/textarea&gt;</code></pre>
 
 
 

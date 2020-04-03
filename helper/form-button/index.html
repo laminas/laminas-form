@@ -773,7 +773,7 @@
 <p>The <code>FormButton</code> view helper is used to render a <code>&lt;button&gt;</code> HTML element and its
 attributes.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Button('my-button');
 $element-&gt;setLabel('Reset');
@@ -784,16 +784,16 @@ $element-&gt;setLabel('Reset');
  * Example #1: Render entire button in one shot...
  */
 echo $this-&gt;formButton($element);
-// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;Reset&lt;/button&gt;
+// Result: &lt;button name="my-button" type="button"&gt;Reset&lt;/button&gt;
 
 /**
  * Example #2: Render button in 3 steps
  */
 // Render the opening tag
 echo $this-&gt;formButton()-&gt;openTag($element);
-// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;
+// Result: &lt;button name="my-button" type="button"&gt;
 
-echo '&lt;span class=&quot;inner&quot;&gt;' . $element-&gt;getLabel() . '&lt;/span&gt;';
+echo '&lt;span class="inner"&gt;' . $element-&gt;getLabel() . '&lt;/span&gt;';
 
 // Render the closing tag
 echo $this-&gt;formButton()-&gt;closeTag();
@@ -803,7 +803,8 @@ echo $this-&gt;formButton()-&gt;closeTag();
  * Example #3: Override the element label
  */
 echo $this-&gt;formButton()-&gt;render($element, 'My Content');
-// Result: &lt;button name=&quot;my-button&quot; type=&quot;button&quot;&gt;My Content&lt;/button&gt;</code></pre>
+// Result: &lt;button name="my-button" type="button"&gt;My Content&lt;/button&gt;</code></pre>
+
 <h2 id="public-methods">Public methods</h2>
 <p>The following public methods are in addition to those inherited from the
 <a href="../form-input/#public-methods">FormInput</a>:</p>

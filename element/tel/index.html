@@ -778,7 +778,7 @@ order to validate HTML5 tel input values on the server.</p>
 <p><strong>Available since 2.9.0.</strong></p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>tel</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $phone = new Element\Tel('phone');
@@ -786,8 +786,9 @@ $phone-&gt;setLabel('Phone');
 
 $form = new Form('my-form');
 $form-&gt;add($phone);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -798,6 +799,7 @@ $form-&gt;add([
         'label' =&gt; 'Phone',
     ],
 ]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Tel</code> element:</p>
 <div class="table-responsive"><table>

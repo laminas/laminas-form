@@ -770,24 +770,27 @@
 form input. It is meant to work with the <a href="../../element/url/">Url element</a>, which
 provides a default input specification with an URL validator.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Url('my-url');
 
 // Within your view...
 echo $this-&gt;formUrl($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;url&quot; name=&quot;my-url&quot; value=&quot;&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="url" name="my-url" value=""&gt;</code></pre>
+
 <p>Usage of custom regular expression pattern:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Url('my-url');
 $element-&gt;setAttribute('pattern', 'https?://.+');
 
 // Within your view...
 echo $this-&gt;formUrl($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;url&quot; name=&quot;my-url&quot; pattern=&quot;https?://.+&quot; value=&quot;&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="url" name="my-url" pattern="https?://.+" value=""&gt;</code></pre>
 
 
 

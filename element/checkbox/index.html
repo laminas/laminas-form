@@ -777,7 +777,7 @@ to validate on the server if the checkbox contains either the checked value or
 the unchecked value.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>checkbox</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $checkbox = new Element\Checkbox('checkbox');
@@ -788,8 +788,9 @@ $checkbox-&gt;setUncheckedValue('bad');
 
 $form = new Form('my-form');
 $form-&gt;add($checkbox);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -803,12 +804,13 @@ $form-&gt;add([
         'unchecked_value' =&gt; 'bad',
     ],
 ]);</code></pre>
+
 <p>When creating a checkbox element, setting an attribute of <code>checked</code> will result
 in the checkbox always being checked, regardless of any data object which might
 subsequently be bound to the form. The correct way to set the default value of a
 checkbox is to set the <code>value</code> attribute as for any other element. To have a
 checkbox checked by default, make the <code>value</code> equal to the <code>checked_value</code> eg:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -825,6 +827,7 @@ $form-&gt;add([
          'value' =&gt; 'yes',
     ],
 ]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Checkbox</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also

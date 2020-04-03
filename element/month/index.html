@@ -777,7 +777,7 @@ This element adds filters and validators to its input filter specification in
 order to validate HTML5 month input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>month</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $month = new Element\Month('month');
@@ -790,8 +790,9 @@ $month-&gt;setAttributes([
 
 $form = new Form('my-form');
 $form-&gt;add($month);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -807,6 +808,7 @@ $form-&gt;add([
         'step' =&gt; '1', // months; default step interval is 1 month
     ],
 ]);</code></pre>
+
 <blockquote>
 <h3>Set all attributes before calling prepare</h3>
 <p>The <code>min</code>, <code>max</code>, and <code>step</code> attributes should be set prior to calling

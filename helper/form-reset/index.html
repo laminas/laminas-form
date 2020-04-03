@@ -769,15 +769,16 @@
 <p>The <code>FormReset</code> view helper can be used to render an <code>&lt;input type="reset"&gt;</code> HTML
 form input.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element('my-reset');
 $element-&gt;setAttribute('value', 'Reset');
 
 // Within your view...
 echo $this-&gt;formReset($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;reset&quot; name=&quot;my-reset&quot; value=&quot;Reset&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="reset" name="my-reset" value="Reset"&gt;</code></pre>
 
 
 

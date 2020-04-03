@@ -777,7 +777,7 @@ view helpers based on the element encountered:</p>
 <li>Otherwise, it is passed to <a href="../form-row/">FormRow</a>.</li>
 </ul>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use My\ContactFieldset;
+<pre class="highlight"><code class="language-php">use My\ContactFieldset;
 use Laminas\Form\Element;
 
 $collection = new Element\Collection();
@@ -788,6 +788,7 @@ $collection-&gt;setTargetElement([ 'type' =&gt; ContactFieldset::class ]);
 
 // In a view script:
 echo $this-&gt;formCollection($collection);</code></pre>
+
 <p>The above, assuming the fieldset is created correctly, will generate one or more
 fieldsets with the name <code>contacts[]</code>, each containing the elements defined in
 <code>My\ContactFieldset</code>. The number of fieldsets created will be based on what data
@@ -795,7 +796,7 @@ was bound to the form.</p>
 <p>By default, the collection is wrapped into <code>&lt;fieldset&gt;</code> tag. You can override
 this behavior passing <code>false</code> as second parameter of the helper.</p>
 <p>You can also prevent fieldset addition using <code>setShouldWrap()</code> method.</p>
-<pre class=codehilite><code class=language-php>// In a view script
+<pre class="highlight"><code class="language-php">// In a view script
 // Both following lines are equivalent:
 echo $this-&gt;formCollection($collection, false);
 echo $this-&gt;formCollection($collection)-&gt;setShouldWrap(false);</code></pre>

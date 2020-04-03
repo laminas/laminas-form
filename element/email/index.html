@@ -778,7 +778,7 @@ order to validate <a href="http://www.whatwg.org/specs/web-apps/current-work/mul
 on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>email</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -793,8 +793,9 @@ $emails = new Element\Email('emails');
 $emails-&gt;setLabel('Email Addresses');
 $emails-&gt;setAttribute('multiple', true);
 $form-&gt;add($emails);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -819,6 +820,7 @@ $form-&gt;add([
         'multiple' =&gt; true,
     ],
 ]);</code></pre>
+
 <blockquote>
 <h3>Set multiple attribute before calling prepare</h3>
 <p>Note: the <code>multiple</code> attribute should be set prior to calling

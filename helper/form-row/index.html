@@ -777,7 +777,7 @@ usability features.</p>
 <p>Other options involve label positioning, escaping, toggling errors and using
 custom partial templates.</p>
 <h2 id="basic-usage">Basic Usage</h2>
-<pre class=codehilite><code class=language-php>/**
+<pre class="highlight"><code class="language-php">/**
  * inside view template
  *
  * @var \Laminas\View\Renderer\PhpRenderer $this
@@ -795,31 +795,32 @@ $element-&gt;setLabel('Some Label');
 
 // Render 'some_element' label, input, and errors if any:
 echo $this-&gt;formRow($element);
-// Result: &lt;label&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;&lt;/label&gt;
+// Result: &lt;label&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;input type="text" name="some_element" value=""&gt;&lt;/label&gt;
 
 // Altering label position:
 echo $this-&gt;formRow($element, 'append');
-// Result: &lt;label&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;/label&gt;
+// Result: &lt;label&gt;&lt;input type="text" name="some_element" value=""&gt;&lt;span&gt;Some Label&lt;/span&gt;&lt;/label&gt;
 
 // Setting the 'id' attribute will result in a separated label rather than a
 // wrapping one:
 $element-&gt;setAttribute('id', 'element_id');
 echo $this-&gt;formRow($element);
-// Result: &lt;label for=&quot;element_id&quot;&gt;Some Label&lt;/label&gt;&lt;input type=&quot;text&quot; name=&quot;some_element&quot; id=&quot;element_id&quot; value=&quot;&quot;&gt;
+// Result: &lt;label for="element_id"&gt;Some Label&lt;/label&gt;&lt;input type="text" name="some_element" id="element_id" value=""&gt;
 
 // Turn off escaping for HTML labels:
-$element-&gt;setLabel('&lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;');
+$element-&gt;setLabel('&lt;abbr title="Completely Automated Public Turing test to tell Computers and Humans Apart"&gt;CAPTCHA&lt;/abbr&gt;');
 $element-&gt;setLabelOptions(['disable_html_escape' =&gt; true]);
 // Result:
 // &lt;label&gt;
 //   &lt;span&gt;
-//       &lt;abbr title=&quot;Completely Automated Public Turing test to tell Computers and Humans Apart&quot;&gt;CAPTCHA&lt;/abbr&gt;
+//       &lt;abbr title="Completely Automated Public Turing test to tell Computers and Humans Apart"&gt;CAPTCHA&lt;/abbr&gt;
 //   &lt;/span&gt;
-//   &lt;input type=&quot;text&quot; name=&quot;some_element&quot; value=&quot;&quot;&gt;
+//   &lt;input type="text" name="some_element" value=""&gt;
 // &lt;/label&gt;
 
 // Render the closing tag
 echo $this-&gt;form()-&gt;closeTag();</code></pre>
+
 <blockquote>
 <h3>Escaping</h3>
 <p>Label content is escaped by default.</p>

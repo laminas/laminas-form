@@ -770,14 +770,15 @@
 type="password"&gt;</code> HTML form input. It is meant to work with the
 <a href="../../element/password/">Password element</a>.</p>
 <h2 id="basic-usage">Basic usage</h2>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 
 $element = new Element\Password('my-password');
 
 // Within your view...
 echo $this-&gt;formPassword($element);</code></pre>
+
 <p>Output:</p>
-<pre class=codehilite><code class=language-html>&lt;input type=&quot;password&quot; name=&quot;my-password&quot; value=&quot;&quot;&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;input type="password" name="my-password" value=""&gt;</code></pre>
 
 
 

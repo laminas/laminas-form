@@ -802,7 +802,7 @@ for form processing, but with some slight caveats that will be described below.<
 <h3>The Form and InputFilter</h3>
 <p>Here we define a <code>Laminas\Form\Element\File</code> input in a <code>Form</code> extension named
 <code>UploadForm</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 class UploadForm extends Form
@@ -823,6 +823,7 @@ class UploadForm extends Form
         $this-&gt;add($file);
     }
 }</code></pre>
+
 <p>The <code>File</code> element provides several automated features:</p>
 <ul>
 <li>The form's <code>enctype</code> will automatically be set to <code>multipart/form-data</code> when
@@ -836,14 +837,14 @@ class UploadForm extends Form
 <h3>The View Template</h3>
 <p>In the view template, we render the <code>&lt;form&gt;</code>, a file input (with label and
 errors), and a submit button.</p>
-<pre class=codehilite><code class=language-php>&lt;!-- File: upload-form.phtml --&gt;
+<pre class="highlight"><code class="language-php">&lt;!-- File: upload-form.phtml --&gt;
 &lt;?php
     $form-&gt;prepare(); // The correct enctype is set here
     $fileElement = $form-&gt;get('image-file');
     echo $this-&gt;form()-&gt;openTag($form);
 ?&gt;
 
-    &lt;div class=&quot;form-element&quot;&gt;
+    &lt;div class="form-element"&gt;
         &lt;?= $this-&gt;formLabel($fileElement) ?&gt;
         &lt;?= $this-&gt;formFile($fileElement) ?&gt;
         &lt;?= $this-&gt;formElementErrors($fileElement) ?&gt;
@@ -852,22 +853,24 @@ errors), and a submit button.</p>
     &lt;button&gt;Submit&lt;/button&gt;
 
 &lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
+
 <p>When rendered, the HTML should look similar to:</p>
-<pre class=codehilite><code class=language-html>&lt;form name=&quot;upload-form&quot; id=&quot;upload-form&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
-    &lt;div class=&quot;form-element&quot;&gt;
-        &lt;label for=&quot;image-file&quot;&gt;Avatar Image Upload&lt;/label&gt;
-        &lt;input type=&quot;file&quot; name=&quot;image-file&quot; id=&quot;image-file&quot;&gt;
+<pre class="highlight"><code class="language-html">&lt;form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data"&gt;
+    &lt;div class="form-element"&gt;
+        &lt;label for="image-file"&gt;Avatar Image Upload&lt;/label&gt;
+        &lt;input type="file" name="image-file" id="image-file"&gt;
     &lt;/div&gt;
 
     &lt;button&gt;Submit&lt;/button&gt;
 &lt;/form&gt;</code></pre>
+
 <h3>The Controller Action</h3>
 <p>When using laminas-mvc, the final step will be to instantiate the <code>UploadForm</code> and
 process any postbacks in a controller action.</p>
 <p>The form processing in the controller action will be similar to normal forms,
 <em>except</em> that you <strong>must</strong> merge the <code>$_FILES</code> information in the request with
 the other post data.</p>
-<pre class=codehilite><code class=language-php>public function uploadFormAction()
+<pre class="highlight"><code class="language-php">public function uploadFormAction()
 {
     $form = new UploadForm('upload-form');
 
@@ -890,51 +893,52 @@ the other post data.</p>
 
     return ['form' =&gt; $form];
 }</code></pre>
+
 <p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return:</p>
-<pre class=codehilite><code class=language-php>array(1) {
-    [&quot;image-file&quot;] =&gt; array(5) {
-        [&quot;name&quot;]     =&gt; string(11) &quot;myimage.png&quot;
-        [&quot;type&quot;]     =&gt; string(9)  &quot;image/png&quot;
-        [&quot;tmp_name&quot;] =&gt; string(22) &quot;/private/tmp/phpgRXd58&quot;
-        [&quot;error&quot;]    =&gt; int(0)
-        [&quot;size&quot;]     =&gt; int(14908679)
+<pre class="highlight"><code class="language-php">array(1) {
+    ["image-file"] =&gt; array(5) {
+        ["name"]     =&gt; string(11) "myimage.png"
+        ["type"]     =&gt; string(9)  "image/png"
+        ["tmp_name"] =&gt; string(22) "/private/tmp/phpgRXd58"
+        ["error"]    =&gt; int(0)
+        ["size"]     =&gt; int(14908679)
     }
 }</code></pre>
+
 <blockquote>
 <h3>Using nested array notation for uploads</h3>
 <p>It is suggested that you always use the <code>Laminas\Http\PhpEnvironment\Request</code>
 object to retrieve and merge the <code>$_FILES</code> information with the form, instead
 of using <code>$_FILES</code> directly,  due to how the file information is
 mapped in the <code>$_FILES</code> array:</p>
-<pre class="codehilite"><code class="language-php">
-// A $_FILES array with single input and multiple files:
+<pre class="highlight"><code class="language-php">// A $_FILES array with single input and multiple files:
 array(1) {
-    [&quot;image-file&quot;]=array(2) {
-        [&quot;name&quot;]=array(2) {
-            [0]=string(9)&quot;file0.txt&quot;
-            [1]=string(9)&quot;file1.txt&quot;
+    ["image-file"]=array(2) {
+        ["name"]=array(2) {
+            [0]=string(9)"file0.txt"
+            [1]=string(9)"file1.txt"
         }
-        [&quot;type&quot;]=array(2) {
-            [0]=string(10)&quot;text/plain&quot;
-            [1]=string(10)&quot;text/html&quot;
+        ["type"]=array(2) {
+            [0]=string(10)"text/plain"
+            [1]=string(10)"text/html"
         }
     }
 }
 
 // How Laminas\Http\PhpEnvironment\Request remaps the $_FILES array:
 array(1) {
-    [&quot;image-file&quot;]=array(2) {
+    ["image-file"]=array(2) {
         [0]=array(2) {
-            [&quot;name&quot;]=string(9)&quot;file0.txt&quot;
-            [&quot;type&quot;]=string(10)&quot;text/plain&quot;
+            ["name"]=string(9)"file0.txt"
+            ["type"]=string(10)"text/plain"
         },
         [1]=array(2) {
-            [&quot;name&quot;]=string(9)&quot;file1.txt&quot;
-            [&quot;type&quot;]=string(10)&quot;text/html&quot;
+            ["name"]=string(9)"file1.txt"
+            ["type"]=string(10)"text/html"
         }
     }
-}
-</code></pre>
+}</code></pre>
+
 <p><a href="https://docs.laminas.dev/laminas-inputfilter/file-input/"><code>Laminas\InputFilter\FileInput</code></a> expects the file data be in this
 re-mapped array format.</p>
 <p>Note: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7</a> also remaps the <code>$_FILES</code>
@@ -945,7 +949,7 @@ array in this way.</p>
 with <a href="https://www.php-fig.org/psr/psr-7/">PSR-7</a> request payload, the final step
 involves merging <code>$request-&gt;getParsedBody()</code> with
 <code>$request-&gt;getUploadedFiles()</code>.</p>
-<pre class=codehilite><code class=language-php>public function handle(ServerRequestInterface $request) : ResponseInterface
+<pre class="highlight"><code class="language-php">public function handle(ServerRequestInterface $request) : ResponseInterface
 {
     $form = new UploadForm('upload-form');
 
@@ -972,6 +976,7 @@ involves merging <code>$request-&gt;getParsedBody()</code> with
         ]);
     );
 }</code></pre>
+
 <p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return array including
 the file field name as a key, and a new instance of <code>UploadedFileInterface</code> as
 its value.</p>
@@ -1003,7 +1008,7 @@ changes.</p>
 <h3>RenameUpload filter</h3>
 <p>First, we need to add a <code>RenameUpload</code> filter to our form's file input, with
 details on where the valid files should be stored:</p>
-<pre class=codehilite><code class=language-php>use Laminas\InputFilter;
+<pre class="highlight"><code class="language-php">use Laminas\InputFilter;
 use Laminas\Form\Element;
 use Laminas\Form\Form;
 
@@ -1045,6 +1050,7 @@ class UploadForm extends Form
         $this-&gt;setInputFilter($inputFilter);
     }
 }</code></pre>
+
 <p>The <code>filerenameupload</code> options above would cause an uploaded file to be
 renamed and moved to: <code>./data/tmpuploads/avatar_4b3403665fea6.png</code>.</p>
 <p>See the <a href="http://docs.laminas.dev/laminas-filter/file/#renameupload">RenameUpload filter</a>
@@ -1060,7 +1066,7 @@ invocation.</p>
 </blockquote>
 <h3>Call the fileprg plugin</h3>
 <p>Next, we need to update our controller action to use the <code>fileprg</code> plugin:</p>
-<pre class=codehilite><code class=language-php>public function uploadFormAction()
+<pre class="highlight"><code class="language-php">public function uploadFormAction()
 {
     $form     = new UploadForm('upload-form');
     $tempFile = null;
@@ -1093,6 +1099,7 @@ invocation.</p>
         'tempFile' =&gt; $tempFile,
     ];
 }</code></pre>
+
 <p>Behind the scenes, the <code>FilePRG</code> plugin will:</p>
 <ul>
 <li>Run the Form's filters, namely the <code>RenameUpload</code> filter, to move the files
@@ -1119,7 +1126,7 @@ uploads</a>, but the file input will safely remain
 a single file upload for those browsers that do not support the feature.</p>
 <p>To enable multiple file uploads in laminas-form, set the file element's
 <code>multiple</code> attribute to true:</p>
-<pre class=codehilite><code class=language-php>use Laminas\InputFilter;
+<pre class="highlight"><code class="language-php">use Laminas\InputFilter;
 use Laminas\Form\Element;
 use Laminas\Form\Form;
 
@@ -1174,6 +1181,7 @@ class UploadForm extends Form
         $this-&gt;setInputFilter($inputFilter);
     }
 }</code></pre>
+
 <p>You do not need to do anything special with the validators and filters to
 support multiple file uploads. All of the files that are uploaded will have the
 same validators and filters run against them automatically (from logic within
@@ -1190,17 +1198,18 @@ of a file upload in progress. To use this feature, you need to choose one of the
 (APC, uploadprogress, or Session) and ensure that your server setup has the
 appropriate extension or feature enabled.</p>
 <p>Verify your <code>php.ini</code> <code>session.upload</code> settings before you begin:</p>
-<pre class=codehilite><code class=language-ini>file_uploads = On
+<pre class="highlight"><code class="language-ini">file_uploads = On
 post_max_size = 50M
 upload_max_filesize = 50M
 session.upload_progress.enabled = On
-session.upload_progress.freq =  &quot;1%&quot;
-session.upload_progress.min_freq = &quot;1&quot;
+session.upload_progress.freq =  "1%"
+session.upload_progress.min_freq = "1"
 ; Also make certain 'upload_tmp_dir' is writable</code></pre>
+
 <p>When uploading a file with a form POST, you must also include the progress
 identifier in a hidden input. The <a href="../helper/upload-progress-helpers/">file upload progress view helpers</a>
 provides a convenient way to add the hidden input based on your handler type.</p>
-<pre class=codehilite><code class=language-php>&lt;!-- File: upload-form.phtml --&gt;
+<pre class="highlight"><code class="language-php">&lt;!-- File: upload-form.phtml --&gt;
 &lt;?php
     $fileElement = $form-&gt;get('image-file');
     $form-&gt;prepare();
@@ -1208,7 +1217,7 @@ provides a convenient way to add the hidden input based on your handler type.</p
     echo $this-&gt;formFileSessionProgress(); // Must come before the file input!
 ?&gt;
 
-    &lt;div class=&quot;form-element&quot;&gt;
+    &lt;div class="form-element"&gt;
         &lt;?= $this-&gt;formLabel($fileElement) ?&gt;
         &lt;?= $this-&gt;formFile($fileElement) ?&gt;
         &lt;?= $this-&gt;formElementErrors($fileElement) ?&gt;
@@ -1217,17 +1226,19 @@ provides a convenient way to add the hidden input based on your handler type.</p
     &lt;button&gt;Submit&lt;/button&gt;
 
 &lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
-<p>When rendered, the HTML should look similar to:</p>
-<pre class=codehilite><code class=language-html>&lt;form name=&quot;upload-form&quot; id=&quot;upload-form&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
-    &lt;input type=&quot;hidden&quot; id=&quot;progress_key&quot; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot; value=&quot;12345abcde&quot;&gt;
 
-    &lt;div class=&quot;form-element&quot;&gt;
-        &lt;label for=&quot;image-file&quot;&gt;Avatar Image Upload&lt;/label&gt;
-        &lt;input type=&quot;file&quot; name=&quot;image-file&quot; id=&quot;image-file&quot;&gt;
+<p>When rendered, the HTML should look similar to:</p>
+<pre class="highlight"><code class="language-html">&lt;form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data"&gt;
+    &lt;input type="hidden" id="progress_key" name="PHP_SESSION_UPLOAD_PROGRESS" value="12345abcde"&gt;
+
+    &lt;div class="form-element"&gt;
+        &lt;label for="image-file"&gt;Avatar Image Upload&lt;/label&gt;
+        &lt;input type="file" name="image-file" id="image-file"&gt;
     &lt;/div&gt;
 
     &lt;button&gt;Submit&lt;/button&gt;
 &lt;/form&gt;</code></pre>
+
 <p>There are a few different methods for getting progress information to the
 browser (long vs. short polling). Here we will use short polling since it is
 simpler and less taxing on server resources, though keep in mind it is not as
@@ -1236,7 +1247,7 @@ responsive as long polling.</p>
 server for upload progress.</p>
 <p>The following is an example controller action which provides the progress
 information:</p>
-<pre class=codehilite><code class=language-php>public function uploadProgressAction()
+<pre class="highlight"><code class="language-php">public function uploadProgressAction()
 {
     $id = $this-&gt;params()-&gt;fromQuery('id', null);
     $progress = new \Laminas\ProgressBar\Upload\SessionProgress();
@@ -1245,12 +1256,13 @@ information:</p>
 
 // Returns JSON
 //{
-//    &quot;total&quot;    : 204800,
-//    &quot;current&quot;  : 10240,
-//    &quot;rate&quot;     : 1024,
-//    &quot;message&quot;  : &quot;10kB / 200kB&quot;,
-//    &quot;done&quot;     : false
+//    "total"    : 204800,
+//    "current"  : 10240,
+//    "rate"     : 1024,
+//    "message"  : "10kB / 200kB",
+//    "done"     : false
 //}</code></pre>
+
 <blockquote>
 <h3>Performance overhead</h3>
 <p>This is <em>not</em> the most efficient way of providing upload progress, since each
@@ -1265,21 +1277,21 @@ the example code relatively short, we are using the <a href="https://github.com/
 to do the AJAX form POST. If your project uses a different JavaScript framework
 (or none at all), this will hopefully at least illustrate the necessary
 high-level logic that would need to be performed.</p>
-<pre class=codehilite><code class=language-php>&lt;?php // File: upload-form.phtml
+<pre class="highlight"><code class="language-php">&lt;?php // File: upload-form.phtml
       // ...after the form...
 ?&gt;
 
 &lt;!-- Twitter Bootstrap progress bar styles:
      http://twitter.github.com/bootstrap/components.html#progress --&gt;
-&lt;div id=&quot;progress&quot; class=&quot;help-block&quot;&gt;
-    &lt;div class=&quot;progress progress-info progress-striped&quot;&gt;
-        &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt;
+&lt;div id="progress" class="help-block"&gt;
+    &lt;div class="progress progress-info progress-striped"&gt;
+        &lt;div class="bar"&gt;&lt;/div&gt;
     &lt;/div&gt;
     &lt;p&gt;&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;/js/jquery.form.js&quot;&gt;&lt;/script&gt;
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="/js/jquery.form.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 var progressInterval;
 
@@ -1332,7 +1344,7 @@ $(function() {
         $(this).ajaxSubmit({
             beforeSubmit: function(arr, $form, options) {
                 // Notify backend that submit is via ajax
-                arr.push({ name: &quot;isAjax&quot;, value: &quot;1&quot; });
+                arr.push({ name: "isAjax", value: "1" });
             },
             success: function (response, statusText, xhr, $form) {
                 clearInterval(progressInterval);
@@ -1365,10 +1377,11 @@ $(function() {
     });
 });
 &lt;/script&gt;</code></pre>
+
 <p>And finally, our controller action can be modified to return form status and
 validation messages in JSON format if we see the 'isAjax' post parameter (which
 was set in the JavaScript just before submit):</p>
-<pre class=codehilite><code class=language-php>public function uploadFormAction()
+<pre class="highlight"><code class="language-php">public function uploadFormAction()
 {
     $form = new UploadForm('upload-form');
 
@@ -1412,6 +1425,7 @@ was set in the JavaScript just before submit):</p>
 
     return array('form' =&gt; $form);
 }</code></pre>
+
 <h2 id="additional-info">Additional Info</h2>
 <p>Related documentation:</p>
 <ul>

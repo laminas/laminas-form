@@ -790,7 +790,7 @@ dynamically in the user interface &mdash; a great example is adding tasks to a
 task list.</p>
 <p>This document is intended to demonstrate these features. To do so, we first need
 to define some domain objects that we'll be using.</p>
-<pre class=codehilite><code class=language-php>namespace Application\Entity;
+<pre class="highlight"><code class="language-php">namespace Application\Entity;
 
 class Product
 {
@@ -961,6 +961,7 @@ class Category
         return $this-&gt;name;
     }
 }</code></pre>
+
 <p>A <code>Product</code> has two scalar properties, name and price, a
 1:1 relationship (one <code>Product</code> has one <code>Brand</code>), and a 1:N relationship (one
 <code>Product</code> has many <code>Category</code> instances).</p>
@@ -968,7 +969,7 @@ class Category
 <p>The first step is to create three fieldsets. Each fieldset will contain all the
 fields and relationships for a specific entity.</p>
 <p>Here is the <code>Brand</code> fieldset:</p>
-<pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre class="highlight"><code class="language-php">namespace Application\Form;
 
 use Application\Entity\Brand;
 use Laminas\Form\Element;
@@ -1019,6 +1020,7 @@ class BrandFieldset extends Fieldset implements InputFilterProviderInterface
         ];
     }
 }</code></pre>
+
 <p>The fieldset calls the method <code>setHydrator()</code>, giving it a <code>ClassMethods</code>
 hydrator, and the <code>setObject()</code> method, giving it an empty <code>Brand</code> instance.</p>
 <p>When we validate incoming data, the form will automatically iterate through all
@@ -1034,7 +1036,7 @@ remaining input ("name"), indicating that this input is required. Note that
 add the "required" attribute to the form markup (and therefore has semantic
 meaning only).</p>
 <p>Here is the <code>Category</code> fieldset:</p>
-<pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre class="highlight"><code class="language-php">namespace Application\Form;
 
 use Application\Entity\Category;
 use Laminas\Form\Fieldset;
@@ -1075,9 +1077,10 @@ class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
         ];
     }
 }</code></pre>
+
 <p>Nothing new here.</p>
 <p>Finally, the <code>Product</code> fieldset:</p>
-<pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre class="highlight"><code class="language-php">namespace Application\Form;
 
 use Application\Entity\Product;
 use Laminas\Form\Element;
@@ -1160,6 +1163,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
         ];
     }
 }</code></pre>
+
 <p>We have a lot of new things here!</p>
 <p>First, notice how the brand element is added: we specify it to be of type
 <code>Application\Form\BrandFieldset</code>. This is how you handle a 1:1
@@ -1189,7 +1193,7 @@ the name of the property in the <code>Product</code> entity.</p>
 <h2 id="the-form-element">The Form Element</h2>
 <p>So far, so good. We now have our fieldsets in place. But those are fieldsets,
 not forms. And only <code>Form</code> instances can be validated. So here is the form:</p>
-<pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre class="highlight"><code class="language-php">namespace Application\Form;
 
 use Laminas\Form\Element;
 use Laminas\Form\Form;
@@ -1227,6 +1231,7 @@ class CreateProduct extends Form
         ]);
     }
 }</code></pre>
+
 <p><code>CreateProduct</code> only defines a <code>Product</code> fieldset, as well as some other useful
 fields (<code>CSRF</code> for security, and a <code>Submit</code> button).</p>
 <p>Notice the <code>use_as_base_fieldset</code> option. This option is here to say to the
@@ -1238,7 +1243,7 @@ once, and the concrete <code>Form</code> instance will only compose those fields
 longer have to add the "username" input to every form that deals with users!</p>
 <h2 id="integrating-with-laminas-mvc">Integrating with laminas-mvc</h2>
 <p>Now, let's create a laminas-mvc controller action:</p>
-<pre class=codehilite><code class=language-php>/**
+<pre class="highlight"><code class="language-php">/**
   * @return array
   */
  public function indexAction()
@@ -1260,6 +1265,7 @@ longer have to add the "username" input to every form that deals with users!</p>
          'form' =&gt; $form,
      ];
  }</code></pre>
+
 <p>All the controller does is:</p>
 <ul>
 <li>Create a form instance.</li>
@@ -1268,7 +1274,7 @@ longer have to add the "username" input to every form that deals with users!</p>
 </ul>
 <h2 id="integration-with-laminas-view">Integration with laminas-view</h2>
 <p>And finally, the view:</p>
-<pre class=codehilite><code class=language-php>&lt;?php
+<pre class="highlight"><code class="language-php">&lt;?php
 $form-&gt;setAttribute('action', $this-&gt;url('home'));
 $form-&gt;prepare();
 echo $this-&gt;form()-&gt;openTag($form);
@@ -1293,6 +1299,7 @@ echo $this-&gt;formHidden($form-&gt;get('csrf'));
 echo $this-&gt;formElement($form-&gt;get('submit'));
 
 echo $this-&gt;form()-&gt;closeTag();</code></pre>
+
 <p>A few new things here :</p>
 <ul>
 <li>the <code>prepare()</code> method. You <em>must</em> call it prior to rendering anything in the
@@ -1334,7 +1341,7 @@ generated) must be changed to a valid value. Currently, we have 2 elements
 (<code>categories[0]</code> and <code>categories[1]</code>, so <code>__index__</code> must be changed to 2.</p>
 <p>If you want, this placeholder (<code>__index__</code> is the default) can be changed using
 the <code>template_placeholder</code> option key:</p>
-<pre class=codehilite><code class=language-php>$this-&gt;add([
+<pre class="highlight"><code class="language-php">$this-&gt;add([
     'type' =&gt; Element\Collection::class,
     'name' =&gt; 'categories',
     'options' =&gt; [
@@ -1347,8 +1354,10 @@ the <code>template_placeholder</code> option key:</p>
         ],
     ],
 ]);</code></pre>
+
 <p>First, let's add a small button "Add new category" anywhere in the form:</p>
-<pre class=codehilite><code class=language-html>&lt;button onclick=&quot;return add_category()&quot;&gt;Add a new category&lt;/button&gt;</code></pre>
+<pre class="highlight"><code class="language-html">&lt;button onclick="return add_category()"&gt;Add a new category&lt;/button&gt;</code></pre>
+
 <p>The <code>add_category</code> function will need to do the following:</p>
 <ol>
 <li>First, count the number of elements we already have.</li>
@@ -1357,7 +1366,7 @@ the <code>template_placeholder</code> option key:</p>
 <li>Add the element to the DOM.</li>
 </ol>
 <p>The following is a potential implementation:</p>
-<pre class=codehilite><code class=language-javascript>function add_category() {
+<pre class="highlight"><code class="language-javascript">function add_category() {
     var currentCount = $('form &gt; fieldset &gt; fieldset').length;
     var template = $('form &gt; fieldset &gt; span').data('template');
     template = template.replace(/__index__/g, currentCount);
@@ -1366,6 +1375,7 @@ the <code>template_placeholder</code> option key:</p>
 
     return false;
 }</code></pre>
+
 <p>(Note: the above example assumes <code>$()</code> is defined, and equivalent to jQuery's
 <code>$()</code> function, Dojo's <code>dojo.query</code>, etc.)</p>
 <p>One small remark about <code>template.replace</code>: the example uses <code>currentCount</code> and
@@ -1379,7 +1389,7 @@ option <code>allow_add</code> to <code>false</code>. This way, even if new eleme
 won't be validated and hence, not added to the entity. Also, if we don't want
 elements to be added, we don't need the data template, either.</p>
 <p>Here's how you both disable adding dynamic elements, and disable the template:</p>
-<pre class=codehilite><code class=language-php>$this-&gt;add([
+<pre class="highlight"><code class="language-php">$this-&gt;add([
     'type' =&gt; Element\Collection::class,
     'name' =&gt; 'categories',
     'options' =&gt; [
@@ -1394,6 +1404,7 @@ elements to be added, we don't need the data template, either.</p>
         ],
     ],
 ]);</code></pre>
+
 <p>There are some limitations to this capability:</p>
 <ul>
 <li>Although you can add new elements and remove them, you <em>CANNOT</em> remove more
@@ -1411,7 +1422,7 @@ elements to be added, we don't need the data template, either.</p>
 <p>As an example, although the <code>Brand</code> entity has a <code>url</code> property, we don't want
 the user to specify it in the creation form (but may wish to later in the "Edit
 Product" form, for instance). Let's update the view to remove the <code>url</code> input:</p>
-<pre class=codehilite><code class=language-php>&lt;?php
+<pre class="highlight"><code class="language-php">&lt;?php
 $form-&gt;setAttribute('action', $this-&gt;url('home'));
 $form-&gt;prepare();
 
@@ -1431,6 +1442,7 @@ echo $this-&gt;formHidden($form-&gt;get('csrf'));
 echo $this-&gt;formElement($form-&gt;get('submit'));
 
 echo $this-&gt;form()-&gt;closeTag();</code></pre>
+
 <p>This is what we get:</p>
 <p><img alt="Collection validation group" src="../images/collections.validation-groups.png" class="img-responsive"/></p>
 <p>The <code>url</code> input has disappeared, but even if we fill every input, the form won't
@@ -1443,7 +1455,7 @@ require a lot of duplicate code.</p>
 object (hence, in our case, in the <code>CreateProduct</code> form) by giving an array of
 all the elements we want to validate. Our <code>CreateProduct</code> class now looks like
 this:</p>
-<pre class=codehilite><code class=language-php>namespace Application\Form;
+<pre class="highlight"><code class="language-php">namespace Application\Form;
 
 use Laminas\Form\Element;
 use Laminas\Form\Form;
@@ -1495,6 +1507,7 @@ class CreateProduct extends Form
         ]);
     }
 }</code></pre>
+
 <p>Don't forget to add the <code>CSRF</code> element, as we want it to be validated too (but
 notice that the example omits the <code>submit</code> element, as we don't care about its
 value). You can also recursively select the elements if desired.</p>

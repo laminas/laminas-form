@@ -777,17 +777,18 @@ Protection is achieved by adding a hash element to a form and verifying it when
 the form is submitted.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>hidden</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $csrf = new Element\Csrf('csrf');
 
 $form = new Form('my-form');
 $form-&gt;add($csrf);</code></pre>
+
 <p>You can change the options of the CSRF validator using the
 <code>setCsrfValidatorOptions()</code> function, or by using the <code>csrf_options</code> key. Here
 is an example using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -800,6 +801,7 @@ $form-&gt;add([
         ],
     ],
 ]);</code></pre>
+
 <blockquote>
 <h3>Multiple CSRF elements must be uniquely named</h3>
 <p>If you are using more than one form on a page, and each contains its own CSRF

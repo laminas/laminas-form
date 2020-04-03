@@ -799,7 +799,7 @@ populated from the validated values.</p>
 <h2 id="programmatic-form-creation">Programmatic Form Creation</h2>
 <p>The following example demonstrates element, fieldset, and form creation, and how
 they are wired together.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Captcha;
+<pre class="highlight"><code class="language-php">use Laminas\Captcha;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
@@ -853,7 +853,7 @@ $form-&gt;add($captcha);
 $form-&gt;add($csrf);
 $form-&gt;add($send);
 
-// Create an input for the &quot;name&quot; element:
+// Create an input for the "name" element:
 $nameInput = new Input('name');
 
 /* ... configure the input, and create and configure all others ... */
@@ -867,10 +867,11 @@ $inputFilter-&gt;add($nameInput);
 
 // Attach the input filter to the form:
 $form-&gt;setInputFilter($inputFilter);</code></pre>
+
 <p>As a demonstration of fieldsets, let's alter the above slightly. We'll create
 two fieldsets, one for the sender information, and another for the message
 details.</p>
-<pre class=codehilite><code class=language-php>// Create the fieldset for sender details:
+<pre class="highlight"><code class="language-php">// Create the fieldset for sender details:
 $sender = new Fieldset('sender');
 $sender-&gt;add($name);
 $sender-&gt;add($email);
@@ -886,6 +887,7 @@ $form-&gt;add($details);
 $form-&gt;add($captcha);
 $form-&gt;add($csrf);
 $form-&gt;add($send);</code></pre>
+
 <p>This manual approach gives maximum flexibility over form creation; however, it
 comes at the expense of verbosity. In the next section, we'll look at another
 approach.</p>
@@ -893,7 +895,7 @@ approach.</p>
 <p>You can create the entire form and input filter at once using the <code>Factory</code>.
 This is particularly nice if you want to store your forms as pure configuration;
 you can then pass the configuration to the factory and be done.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Factory;
 use Laminas\Hydrator\ArraySerializable;
 
@@ -967,7 +969,7 @@ $form    = $factory-&gt;createForm([
     ],
 
     /* If we had fieldsets, they'd go here; fieldsets contain
-     * &quot;elements&quot; and &quot;fieldsets&quot; keys, and potentially a &quot;type&quot;
+     * "elements" and "fieldsets" keys, and potentially a "type"
      * key indicating the specific FieldsetInterface
      * implementation to use.
     'fieldsets' =&gt; [
@@ -980,9 +982,10 @@ $form    = $factory-&gt;createForm([
         /* ... */
     ],
 ]);</code></pre>
+
 <p>If we wanted to use fieldsets, as we demonstrated in the previous example, we
 could do the following:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Factory;
 use Laminas\Hydrator\ArraySerializable;
 
@@ -1044,7 +1047,7 @@ $form    = $factory-&gt;createForm([
         ],
     ],
 
-    // You can specify an &quot;elements&quot; key explicitly:
+    // You can specify an "elements" key explicitly:
     'elements' =&gt; [
         [
             'spec' =&gt; [
@@ -1082,6 +1085,7 @@ $form    = $factory-&gt;createForm([
         /* ... */
     ],
 ]);</code></pre>
+
 <p>Note that the chief difference is nesting; otherwise, the information is
 basically the same.</p>
 <p>The chief benefits to using the <code>Factory</code> are allowing you to store definitions
@@ -1091,7 +1095,7 @@ in configuration, and usage of significant whitespace.</p>
 extend it, and define your form internally. This has the benefit of allowing a
 mixture of programmatic and factory-backed creation, as well as defining a form
 for re-use in your application.</p>
-<pre class=codehilite><code class=language-php>namespace Contact;
+<pre class="highlight"><code class="language-php">namespace Contact;
 
 use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
 use Laminas\Form\Element;
@@ -1158,6 +1162,7 @@ class ContactForm extends Form
         // lazy-create it in the getInputFilter() method.
     }
 }</code></pre>
+
 <p>In the above example, elements are added in the constructor. This is done to
 allow altering and/or configuring either the form or input filter factory
 instances, which could then have bearing on how elements, inputs, etc. are
@@ -1167,7 +1172,7 @@ us to configure it elsewhere in our application and inject it into the form.</p>
 <p>Validating forms requires three steps. First, the form must have an input filter
 attached. Second, you must inject the data to validate into the form. Third, you
 validate the form. If invalid, you can retrieve the error messages, if any.</p>
-<pre class=codehilite><code class=language-php>// assuming $captcha is an instance of some Laminas\Captcha\AdapterInterface:
+<pre class="highlight"><code class="language-php">// assuming $captcha is an instance of some Laminas\Captcha\AdapterInterface:
 $form = new Contact\ContactForm($captcha);
 
 // If the form doesn't define an input filter by default, inject one.
@@ -1185,6 +1190,7 @@ if ($form-&gt;isValid()) {
 } else {
     $messages = $form-&gt;getMessages();
 }</code></pre>
+
 <blockquote>
 <h3>Always populate select elements with options</h3>
 <p>Always ensure that options for a select element are populated <em>prior</em> to
@@ -1193,15 +1199,15 @@ a <code>NotInArray</code> error message.</p>
 <p>If you are populating the options from a database or other data source, make
 sure this is done prior to validation. Alternately, you may disable the
 <code>InArray</code> validator programmatically prior to validation:</p>
-<pre class="codehilite"><code class="language-php">
-$element-&gt;setDisableInArrayValidator(true);
-</code></pre>
+<pre class="highlight"><code class="language-php">$element-&gt;setDisableInArrayValidator(true);</code></pre>
+
 </blockquote>
 <p>You can get the raw data if you want, by accessing the composed input filter.</p>
-<pre class=codehilite><code class=language-php>$filter = $form-&gt;getInputFilter();
+<pre class="highlight"><code class="language-php">$filter = $form-&gt;getInputFilter();
 
 $rawValues    = $filter-&gt;getRawValues();
 $nameRawValue = $filter-&gt;getRawValue('name');</code></pre>
+
 <h2 id="hinting-to-the-input-filter">Hinting to the Input Filter</h2>
 <p>Often, you'll create elements that you expect to behave in the same way on each
 usage, and for which you'll want specific filters or validation as well. Since
@@ -1221,7 +1227,7 @@ data to be used by the input filter factory to create an input. Every HTML5
 (<code>email</code>, <code>url</code>, <code>color</code>, etc.) element has a built-in element that uses this
 logic. For instance, here is how the <code>Laminas\Form\Element\Color</code> element is
 defined:</p>
-<pre class=codehilite><code class=language-php>namespace Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">namespace Laminas\Form\Element;
 
 use Laminas\Filter;
 use Laminas\Form\Element;
@@ -1280,13 +1286,14 @@ class Color extends Element implements InputProviderInterface
         ];
     }
 }</code></pre>
+
 <p>The above hints to the input filter to create and attach an input named after
 the element, marking it as required, giving it <code>StringTrim</code> and <code>StringToLower</code>
 filters, and defining a <code>Regex</code> validator. Note that you can either rely on the
 input filter to create filters and validators, or directly instantiate them.</p>
 <p>For fieldsets, you do very similarly; the difference is that
 <code>getInputFilterSpecification()</code> must return configuration for an input filter.</p>
-<pre class=codehilite><code class=language-php>namespace Contact\Form;
+<pre class="highlight"><code class="language-php">namespace Contact\Form;
 
 use Laminas\Filter;
 use Laminas\Form\Fieldset;
@@ -1325,6 +1332,7 @@ class SenderFieldset extends Fieldset implements InputFilterProviderInterface
         ];
     }
 }</code></pre>
+
 <p>Specifications are a great way to make forms, fieldsets, and elements re-usable
 trivially in your applications. In fact, the <code>Captcha</code> and <code>Csrf</code> elements
 define specifications in order to ensure they can work without additional user
@@ -1360,7 +1368,7 @@ Let's see that in action.</p>
   input filter it composes will be used instead of the one composed on the form.</li>
 </ul>
 <p>This is easier to understand with an example.</p>
-<pre class=codehilite><code class=language-php>$contact = new ArrayObject;
+<pre class="highlight"><code class="language-php">$contact = new ArrayObject;
 $contact['subject'] = '[Contact Form] ';
 $contact['message'] = 'Type your message here';
 
@@ -1386,15 +1394,17 @@ if ($form-&gt;isValid()) {
     // ]
     // But is an ArrayObject instance!
 }</code></pre>
+
 <p>When an object is bound to the form, calling <code>getData()</code> will return that object
 by default. If you want to return an associative array instead, you can pass the
 <code>FormInterface::VALUES_AS_ARRAY</code> flag to the method.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\FormInterface;
+<pre class="highlight"><code class="language-php">use Laminas\Form\FormInterface;
 $data = $form-&gt;getData(FormInterface::VALUES_AS_ARRAY);</code></pre>
+
 <p>Laminas ships several standard <a href="https://docs.laminas.dev/laminas-hydrator/">hydrators</a>;
 you can create custom hydrators by implementing <code>Laminas\Hydrator\HydratorInterface</code>,
 which looks like this:</p>
-<pre class=codehilite><code class=language-sourceCode>namespace Laminas\Hydrator;
+<pre class="highlight"><code class="language-sourceCode">namespace Laminas\Hydrator;
 
 interface HydratorInterface
 {
@@ -1402,6 +1412,7 @@ interface HydratorInterface
     public function extract($object);
     public function hydrate(array $data, $object);
 }</code></pre>
+
 <h2 id="rendering">Rendering</h2>
 <p>As noted previously, forms are meant to bridge the domain model and view layer.
 We've discussed the domain model binding, but what about the view?</p>
@@ -1415,12 +1426,12 @@ nested in fieldsets and collections generate names in array notation (e.g.,
 <code>scoped[array][notation]</code>).</p>
 <p>The base view helpers used everywhere are <code>Form</code>, <code>FormElement</code>, <code>FormLabel</code>,
 and <code>FormElementErrors</code>. Let's use them to display the contact form.</p>
-<pre class=codehilite><code class=language-php>&lt;?php
+<pre class="highlight"><code class="language-php">&lt;?php
 // within a view script
 $form = $this-&gt;form;
 $form-&gt;prepare();
 
-// Assuming the &quot;contact/process&quot; route exists...
+// Assuming the "contact/process" route exists...
 $form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
 // Set the method attribute for the form
@@ -1432,7 +1443,7 @@ $formLabel = $this-&gt;plugin('formLabel');
 // Render the opening tag
 echo $this-&gt;form()-&gt;openTag($form);
 ?&gt;
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
 &lt;?php
     $name = $form-&gt;get('name');
     echo $formLabel-&gt;openTag() . $name-&gt;getOption('label');
@@ -1441,7 +1452,7 @@ echo $this-&gt;form()-&gt;openTag($form);
     echo $formLabel-&gt;closeTag();
 ?&gt;&lt;/div&gt;
 
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
 &lt;?php
     $subject = $form-&gt;get('subject');
     echo $formLabel-&gt;openTag() . $subject-&gt;getOption('label');
@@ -1450,7 +1461,7 @@ echo $this-&gt;form()-&gt;openTag($form);
     echo $formLabel-&gt;closeTag();
 ?&gt;&lt;/div&gt;
 
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
 &lt;?php
     $message = $form-&gt;get('message');
     echo $formLabel-&gt;openTag() . $message-&gt;getOption('label');
@@ -1459,7 +1470,7 @@ echo $this-&gt;form()-&gt;openTag($form);
     echo $formLabel-&gt;closeTag();
 ?&gt;&lt;/div&gt;
 
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
 &lt;?php
     $captcha = $form-&gt;get('captcha');
     echo $formLabel-&gt;openTag() . $captcha-&gt;getOption('label');
@@ -1472,6 +1483,7 @@ echo $this-&gt;form()-&gt;openTag($form);
 &lt;?= $this-&gt;formElement($form-&gt;get('send')) ?&gt;
 
 &lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
+
 <p>There are a few things to note about this. First, to prevent confusion in IDEs
 and editors when syntax highlighting, we use helpers to both open and close the
 form and label tags. Second, there's a lot of repetition happening here; we
@@ -1494,12 +1506,12 @@ following collections).</p>
 <p>The <code>FormRow</code> view helper automatically renders a label (if present), the
 element itself using the <code>FormElement</code> helper, as well as any errors that could
 arise. Here is the previous form, rewritten to take advantage of this helper:</p>
-<pre class=codehilite><code class=language-php>&lt;?php
+<pre class="highlight"><code class="language-php">&lt;?php
 // within a view script
 $form = $this-&gt;form;
 $form-&gt;prepare();
 
-// Assuming the &quot;contact/process&quot; route exists...
+// Assuming the "contact/process" route exists...
 $form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
 // Set the method attribute for the form
@@ -1508,19 +1520,19 @@ $form-&gt;setAttribute('method', 'post');
 // Render the opening tag
 echo $this-&gt;form()-&gt;openTag($form);
 ?&gt;
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
     &lt;?= $this-&gt;formRow($form-&gt;get('name')) ?&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
     &lt;?= $this-&gt;formRow($form-&gt;get('subject')) ?&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
     &lt;?= $this-&gt;formRow($form-&gt;get('message')) ?&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;form_element&quot;&gt;
+&lt;div class="form_element"&gt;
     &lt;?= $this-&gt;formRow($form-&gt;get('captcha')) ?&gt;
 &lt;/div&gt;
 
@@ -1528,24 +1540,26 @@ echo $this-&gt;form()-&gt;openTag($form);
 &lt;?= $this-&gt;formElement($form-&gt;get('send')) ?&gt;
 
 &lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
+
 <p>Note that <code>FormRow</code> helper automatically prepends the label. If you want it to
 be rendered after the element itself, you can pass an optional parameter to the
 <code>FormRow</code> view helper :</p>
-<pre class=codehilite><code class=language-sourceCode>&lt;div class=&quot;form_element&quot;&gt;
+<pre class="highlight"><code class="language-sourceCode">&lt;div class="form_element"&gt;
     &lt;?= $this-&gt;formRow($form-&gt;get('name'), 'append') ?&gt;
 &lt;/div&gt;</code></pre>
+
 <p>As noted previously, the <code>FormCollection</code> view helper will iterate any
 collection &mdash; including <code>Laminas\Form\Element\Collection</code>, fieldsets, and
 forms &mdash; emitting each element discovered using <code>FormRow</code>. <code>FormCollection</code>
 <em>does not render fieldset or form tags</em>; you will be responsible for emitting
 those yourself.</p>
 <p>The above examples can now be rewritten again:</p>
-<pre class=codehilite><code class=language-php>&lt;?php
+<pre class="highlight"><code class="language-php">&lt;?php
 // within a view script
 $form = $this-&gt;form;
 $form-&gt;prepare();
 
-// Assuming the &quot;contact/process&quot; route exists...
+// Assuming the "contact/process" route exists...
 $form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
 // Set the method attribute for the form
@@ -1555,21 +1569,23 @@ $form-&gt;setAttribute('method', 'post');
 echo $this-&gt;form()-&gt;openTag($form);
 echo $this-&gt;formCollection($form);
 echo $this-&gt;form()-&gt;closeTag();</code></pre>
+
 <p>Finally, the <code>Form</code> view helper can optionally accept a <code>Laminas\Form\Form</code>
 instance; if provided, it will prepare the form, iterate it, and render all
 elements using either <code>FormRow</code> (for non-collection elements) or
 <code>FormCollection</code> (for collections and fieldsets):</p>
-<pre class=codehilite><code class=language-php>&lt;?php
+<pre class="highlight"><code class="language-php">&lt;?php
 // within a view script
 $form = $this-&gt;form;
 
-// Assuming the &quot;contact/process&quot; route exists...
+// Assuming the "contact/process" route exists...
 $form-&gt;setAttribute('action', $this-&gt;url('contact/process'));
 
 // Set the method attribute for the form
 $form-&gt;setAttribute('method', 'post');
 
 echo $this-&gt;form($form);</code></pre>
+
 <p>One important point to note about the last two examples: while they greatly
 simplifies emitting the form, you also lose most customization opportunities.
 The above, for example, will not include the <code>&lt;div class="form_element"&gt;&lt;/div&gt;</code>
@@ -1595,29 +1611,32 @@ let's say we're re-using our contact form over a web service; in this case, the
 be validated.</p>
 <p>laminas-form provides a proxy method to the underlying <code>InputFilter</code>'s
 <code>setValidationGroup()</code> method, allowing us to perform this operation.</p>
-<pre class=codehilite><code class=language-php>$form-&gt;setValidationGroup('name', 'email', 'subject', 'message');
+<pre class="highlight"><code class="language-php">$form-&gt;setValidationGroup('name', 'email', 'subject', 'message');
 $form-&gt;setData($data);
 if ($form-&gt;isValid()) {
-    // Contains only the &quot;name&quot;, &quot;email&quot;, &quot;subject&quot;, and &quot;message&quot; values
+    // Contains only the "name", "email", "subject", and "message" values
     $data = $form-&gt;getData();
 }</code></pre>
+
 <p>If you later want to reset the form to validate all elements, pass the
 <code>FormInterface::VALIDATE_ALL</code> flag to the <code>setValidationGroup()</code> method:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\FormInterface;
+<pre class="highlight"><code class="language-php">use Laminas\Form\FormInterface;
 $form-&gt;setValidationGroup(FormInterface::VALIDATE_ALL);</code></pre>
+
 <p>When your form contains nested fieldsets, you can use an array notation to
 validate only a subset of the fieldsets :</p>
-<pre class=codehilite><code class=language-php>$form-&gt;setValidationGroup(['profile' =&gt; [
+<pre class="highlight"><code class="language-php">$form-&gt;setValidationGroup(['profile' =&gt; [
     'firstname',
     'lastname',
 ] ]);
 
 $form-&gt;setData($data);
 if ($form-&gt;isValid()) {
-    // Contains only the &quot;firstname&quot; and &quot;lastname&quot; values from the
-    // &quot;profile&quot; fieldset
+    // Contains only the "firstname" and "lastname" values from the
+    // "profile" fieldset
     $data = $form-&gt;getData();
 }</code></pre>
+
 <h2 id="using-annotations">Using Annotations</h2>
 <p>Creating a complete form solution can often be tedious: you'll create a domain
 model object, an input filter for validating it, a form object for providing a
@@ -1690,16 +1709,15 @@ what you import.</p>
 <h3>doctrine/common dependency</h3>
 <p>Form annotations require <code>doctrine\common</code>, which contains an annotation
 parsing engine. Install it using composer:</p>
-<pre class="codehilite"><code class="language-bash">
-$ composer require doctrine/common
-</code></pre>
+<pre class="highlight"><code class="language-bash">$ composer require doctrine/common</code></pre>
+
 </blockquote>
 <p>Here's an example:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Annotation;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Annotation;
 
 /**
- * @Annotation\Name(&quot;user&quot;)
- * @Annotation\Hydrator(&quot;Laminas\Hydrator\ObjectProperty&quot;)
+ * @Annotation\Name("user")
+ * @Annotation\Hydrator("Laminas\Hydrator\ObjectProperty")
  */
 class User
 {
@@ -1709,21 +1727,22 @@ class User
     public $id;
 
     /**
-     * @Annotation\Filter({&quot;name&quot;:&quot;StringTrim&quot;})
-     * @Annotation\Validator({&quot;name&quot;:&quot;StringLength&quot;, &quot;options&quot;:{&quot;min&quot;:1, &quot;max&quot;:25}})
-     * @Annotation\Validator({&quot;name&quot;:&quot;Regex&quot;,
-&quot;options&quot;:{&quot;pattern&quot;:&quot;/^[a-zA-Z][a-zA-Z0-9_-]{0,24}$/&quot;}})
-     * @Annotation\Attributes({&quot;type&quot;:&quot;text&quot;})
-     * @Annotation\Options({&quot;label&quot;:&quot;Username:&quot;})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Validator({"name":"StringLength", "options":{"min":1, "max":25}})
+     * @Annotation\Validator({"name":"Regex",
+"options":{"pattern":"/^[a-zA-Z][a-zA-Z0-9_-]{0,24}$/"}})
+     * @Annotation\Attributes({"type":"text"})
+     * @Annotation\Options({"label":"Username:"})
      */
     public $username;
 
     /**
-     * @Annotation\Type(&quot;Laminas\Form\Element\Email&quot;)
-     * @Annotation\Options({&quot;label&quot;:&quot;Your email address:&quot;})
+     * @Annotation\Type("Laminas\Form\Element\Email")
+     * @Annotation\Options({"label":"Your email address:"})
      */
     public $email;
 }</code></pre>
+
 <p>The above will hint to the annotation builder to create a form with name "user",
 which uses the hydrator <code>Laminas\Hydrator\ObjectProperty</code>. That form will
 have two elements, "username" and "email". The "username" element will have an
@@ -1734,10 +1753,11 @@ form element itself will have an attribute "type" with value "text" (a text
 element), and a label "Username:". The "email" element will be of type
 <code>Laminas\Form\Element\Email</code>, and have the label "Your email address:".</p>
 <p>To use the above, we need <code>Laminas\Form\Annotation\AnnotationBuilder</code>:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Annotation\AnnotationBuilder;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Annotation\AnnotationBuilder;
 
 $builder = new AnnotationBuilder();
 $form    = $builder-&gt;createForm(User::class);</code></pre>
+
 <p>At this point, you have a form with the appropriate hydrator attached, an input
 filter with the appropriate inputs, and all elements.</p>
 <blockquote>

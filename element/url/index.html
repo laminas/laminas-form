@@ -777,7 +777,7 @@ This element adds filters and a <code>Laminas\Validator\Uri</code> validator to 
 filter specification for validating HTML5 URL input values on the server.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>This element automatically adds a <code>type</code> attribute of value <code>url</code>.</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $url = new Element\Url('webpage-url');
@@ -785,8 +785,9 @@ $url-&gt;setLabel('Webpage URL');
 
 $form = new Form('my-form');
 $form-&gt;add($url);</code></pre>
+
 <p>Using array notation:</p>
-<pre class=codehilite><code class=language-php>use Laminas\Form\Element;
+<pre class="highlight"><code class="language-php">use Laminas\Form\Element;
 use Laminas\Form\Form;
 
 $form = new Form('my-form');
@@ -797,6 +798,7 @@ $form-&gt;add([
         'label' =&gt; 'Webpage URL',
     ],
 ]);</code></pre>
+
 <h2 id="public-methods">Public Methods</h2>
 <p>The following methods are specific to the <code>Url</code> element; all other methods
 defined by the <a href="../element/#public-methods">parent <code>Element</code> class</a> are also
