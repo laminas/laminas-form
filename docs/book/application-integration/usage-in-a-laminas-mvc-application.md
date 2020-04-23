@@ -44,8 +44,8 @@ class AlbumForm extends Form implements InputFilterProviderInterface
         return [
             // Title
             [
-                'name'              => 'title',
-                'filters'           => [
+                'name'    => 'title',
+                'filters' => [
                     [
                         'name' => StripTags::class,
                     ],
@@ -53,7 +53,7 @@ class AlbumForm extends Form implements InputFilterProviderInterface
                         'name' => StringTrim::class,
                     ],
                 ],
-                'validators'        => [
+                'validators' => [
                     [
                         'name'    => StringLength::class,
                         'options' => [
