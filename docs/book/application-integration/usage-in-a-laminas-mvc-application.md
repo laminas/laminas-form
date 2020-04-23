@@ -16,25 +16,55 @@ Create a form as separate class, e.g. `module/Album/src/Form/AlbumForm.php`:
 ```php
 namespace Album\Form;
 
+use Laminas\Filter\StringTrim;
+use Laminas\Filter\StripTags;
 use Laminas\Form\Element\Text;
 use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilterProviderInterface;
+use Laminas\Validator\StringLength;
 
-class AlbumForm extends Form
+class AlbumForm extends Form implements InputFilterProviderInterface
 {
-    public function init()
+    public function init() : void
     {
         // Title
-        $this->add(
-            [
-                'name'    => 'title',
-                'type'    => Text:class,
-                'options' => [
-                    'label' => 'Title',
-                ],
-            ]
-        );
+        $this->add([
+            'name'    => 'title',
+            'type'    => Text:class,
+            'options' => [
+                'label' => 'Title',
+            ],
+        ]);
     
         // …
+    }
+
+    public function getInputFilterSpecification() : array
+    {
+        return [
+            // Title
+            [
+                'name'              => 'title',
+                'filters'           => [
+                    [
+                        'name' => StripTags::class,
+                    ],
+                    [
+                        'name' => StringTrim::class,
+                    ],
+                ],
+                'validators'        => [
+                    [
+                        'name'    => StringLength::class,
+                        'options' => [
+                            'min' => 1,
+                            'max' => 120,
+                        ],
+                    ],
+                ],
+            ],
+            // …
+        ];
     }
 }
 ```
@@ -58,7 +88,7 @@ class AlbumController extends AbstractActionController
     /** @var FormInterface */
     private $form;
     
-    public function __construct(FormInterface $form)
+    public function __construct(AlbumForm $form)
     {
         $this->form = $form;
     }
@@ -99,17 +129,13 @@ e.g. `src/Album/Controller/AlbumControllerFactory.php`:
 namespace Album\Controller;
 
 use Album\Form\AlbumForm;
-use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\PluginManagerInterface;
+use Psr\Container\ContainerInterface;
 
-class AlbumControllerFactory implements FactoryInterface
+class AlbumControllerFactory
 {
-    public function __invoke(
-        ContainerInterface $container,
-        $requestedName,
-        array $options = null
-    ) {
+    public function __invoke(ContainerInterface $container) : AlbumController
+    {
         /** @var PluginManagerInterface $formElementManager */
         $formElementManager = $container->get('FormElementManager');
         /** @var AlbumForm */ 
@@ -134,27 +160,22 @@ class AlbumControllerFactory implements FactoryInterface
 
 ## Register Form and Controller
 
-Extend the configuration of the module to register the form and controller in
-the application.  
+If no separate factory is required for the form, then the form element manager
+will instantiating the form class. Otherwise the form must be registered.
+
+To register the controller for the application, extend the configuration of the
+module.  
 Add the following lines to the module configuration file, e.g.
 `module/Album/config/module.config.php`:
 
-<pre class="language-php" data-line="8-9,12-17"><code>
+<pre class="language-php" data-line="6-7"><code>
 namespace Album;
-
-use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [
         'factories' => [
             // Add this line
             Controller\AlbumController::class => Controller\AlbumControllerFactory::class,
-        ],
-    ],
-    // Add the following array
-    'form_elements' => [
-        'factories => [
-            Form\AlbumForm::class => InvokableFactory::class,
         ],
     ],
     // …
