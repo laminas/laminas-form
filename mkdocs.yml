@@ -83,6 +83,8 @@ nav:
                 - formFileSessionProgress: helper/form-file-session-progress.md
                 - formFileUploadProgress: helper/form-file-upload-progress.md
         - Advanced: advanced.md
+    - "Application Integration":
+        - "Usage in a laminas-mvc application": application-integration/usage-in-a-laminas-mvc-application.md
 site_name: laminas-form
 site_description: "Validate and display simple and complex forms, casting forms to business objects and vice versa."
 repo_url: 'https://github.com/laminas/laminas-form'
