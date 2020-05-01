@@ -30,13 +30,13 @@ It is written in [Markdown format] and built using [MkDocs].
 We strongly encourage you to test your changes locally before contributing them.
 However, to do so, you need to do three things; these are:
 
-1. Have MkDocs installed
+1. Have MkDocs installed.
 2. Have the Laminas documentation theme available to the laminas-form directory.
 3. Update `mkdocs.yml` to build the docs using the documentation theme.
 
 To complete these steps, please follow the instructions below.
 
-1. [Install MkDocs]
+1. [Install MkDocs].
 2. Clone the [documentation-theme repository] locally.
     ```
     git clone git@github.com:laminas/documentation-theme.git documentation-theme
