@@ -854,7 +854,8 @@ class AlbumForm extends Form implements InputFilterProviderInterface
 
 <h2 id="using-form">Using Form</h2>
 <h3>Create Controller</h3>
-<p>Using the form in a controller, e.g.
+<p><a href="https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-controller">Create a controller class</a>
+and inject the form via the constructor, e.g.
 <code>module/Album/Controller/AlbumController.php</code>:</p>
 <pre class="highlight"><code class="language-php">namespace Album\Controller;
 
@@ -934,8 +935,8 @@ first.</p>
 <h2 id="register-form-and-controller">Register Form and Controller</h2>
 <p>If no separate factory is required for the form, then the form element manager
 will instantiating the form class. Otherwise the form must be registered.</p>
-<p>To register the controller for the application, extend the configuration of the
-module.<br />
+<p>To <a href="https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-route">register the controller</a>
+for the application, extend the configuration of the module.<br />
 Add the following lines to the module configuration file, e.g.
 <code>module/Album/config/module.config.php</code>:</p>
 <pre class="language-php" data-line="6-7"><code>
@@ -966,6 +967,9 @@ $this-&gt;headTitle('Add new album');
 &lt;h1&gt;Add new album&lt;/h1&gt;
 
 &lt;?= $this-&gt;form($form) ?&gt;</code></pre>
+
+<p>The <a href="../../helper/form/"><code>Form</code> view helper</a> is used to render all HTML for the
+form.</p>
 
 
 
