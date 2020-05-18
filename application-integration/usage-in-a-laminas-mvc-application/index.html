@@ -801,7 +801,9 @@ laminas-form element manager.</p>
 which builds an album inventory system.</p>
 <p>Before starting, make sure laminas-form is installed and configured.</p>
 <h2 id="create-form">Create Form</h2>
-<p>Create a form as separate class, e.g. <code>module/Album/src/Form/AlbumForm.php</code>:</p>
+<p><a href="../../quick-start/#factory-backed-form-extension">Create a form as separate class</a>
+using the <a href="../../advanced/#initialization"><code>init</code> method</a>, e.g.
+<code>module/Album/src/Form/AlbumForm.php</code>:</p>
 <pre class="highlight"><code class="language-php">namespace Album\Form;
 
 use Laminas\Filter\StringTrim;
@@ -927,9 +929,10 @@ class AlbumControllerFactory
 ensure to get the input filter manager injected. This allows usage of any
 input filter registered with the input filter managers which includes custom
 filters and validators.<br />
-Custom form elements can also be used in this way.</p>
-<p>Additionally the form element manager calls the <code>init</code> method <em>after</em>
-instantiating the form, ensuring all dependencies are fully injected
+<a href="../../advanced/#creating-custom-elements">Custom form elements</a>
+can also be used in this way.</p>
+<p>Additionally the <a href="../../advanced/#initialization">form element manager calls the <code>init</code> method</a>
+<em>after</em> instantiating the form, ensuring all dependencies are fully injected
 first.</p>
 </blockquote>
 <h2 id="register-form-and-controller">Register Form and Controller</h2>
