@@ -11,7 +11,9 @@ Before starting, make sure laminas-form is installed and configured.
 
 ## Create Form
 
-Create a form as separate class, e.g. `module/Album/src/Form/AlbumForm.php`:
+[Create a form as separate class](../quick-start.md#factory-backed-form-extension)
+using the [`init` method](../advanced.md#initialization), e.g.
+`module/Album/src/Form/AlbumForm.php`:
 
 ```php
 namespace Album\Form;
@@ -149,10 +151,11 @@ class AlbumControllerFactory
 > ensure to get the input filter manager injected. This allows usage of any
 > input filter registered with the input filter managers which includes custom
 > filters and validators.  
-> Custom form elements can also be used in this way.
+> [Custom form elements](../advanced.md#creating-custom-elements)
+> can also be used in this way.
 >
-> Additionally the form element manager calls the `init` method _after_
-> instantiating the form, ensuring all dependencies are fully injected
+> Additionally the [form element manager calls the `init` method](../advanced.md#initialization)
+> _after_ instantiating the form, ensuring all dependencies are fully injected
 > first.
 
 ## Register Form and Controller
