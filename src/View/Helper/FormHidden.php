@@ -23,6 +23,7 @@ class FormHidden extends FormInput
         'form'           => true,
         'type'           => true,
         'value'          => true,
+        'autocomplete'   => true,
     ];
 
     /**
