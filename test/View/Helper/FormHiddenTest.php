@@ -52,7 +52,7 @@ class FormHiddenTest extends CommonTestCase
             ['name', 'assertContains'],
             ['accept', 'assertNotContains'],
             ['alt', 'assertNotContains'],
-            ['autocomplete', 'assertNotContains'],
+            ['autocomplete', 'assertContains'],
             ['autofocus', 'assertNotContains'],
             ['checked', 'assertNotContains'],
             ['dirname', 'assertNotContains'],
