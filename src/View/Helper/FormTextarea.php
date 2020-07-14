@@ -28,6 +28,7 @@ class FormTextarea extends AbstractHelper
         'disabled'     => true,
         'form'         => true,
         'maxlength'    => true,
+        'minlength'    => true,
         'name'         => true,
         'placeholder'  => true,
         'readonly'     => true,
