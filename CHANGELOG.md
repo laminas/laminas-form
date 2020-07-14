@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#69](https://github.com/laminas/laminas-form/pull/69) adds support for the "minlength" attribute in the `FormTextarea` view helper.
 
 ### Changed
 
