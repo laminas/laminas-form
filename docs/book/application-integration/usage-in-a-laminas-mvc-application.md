@@ -32,9 +32,18 @@ class AlbumForm extends Form implements InputFilterProviderInterface
         // Title
         $this->add([
             'name'    => 'title',
-            'type'    => Text:class,
+            'type'    => Text::class,
             'options' => [
                 'label' => 'Title',
+            ],
+        ]);
+
+        // Category
+        $this->add([
+            'name'  => 'category',
+            'type'  => Select::class,
+            'options' => [
+                'label' => 'Category',
             ],
         ]);
     
@@ -99,6 +108,14 @@ class AlbumController extends AbstractActionController
             'action',
             $this->url()->fromRoute('album', ['action' => 'add'])
         );
+
+        // Set select element in controller
+        // Such as get options from database
+        $valueOptions = [
+            '1' => 'Popular',
+            '2' => 'Rap',
+        ];
+        $this->form->get('category')->setValueOptions($valueOptions);
 
         $variables = ['form' => $this->form];
         
