@@ -259,7 +259,7 @@ class FormCollection extends AbstractHelper
             return $this->elementHelper;
         }
 
-        if (method_exists($this->view, 'plugin')) {
+        if ($this->view !== null && method_exists($this->view, 'plugin')) {
             $this->elementHelper = $this->view->plugin($this->getDefaultElementHelper());
         }
 

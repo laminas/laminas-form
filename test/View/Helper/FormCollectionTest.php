@@ -413,14 +413,15 @@ class FormCollectionTest extends TestCase
 
     public function testForElementHelperNotInstanceOfHelperInterface()
     {
+        $method = new ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
+        $method->setAccessible(true);
+
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage(
             'Invalid element helper set in FormCollection.'
             . ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
         );
 
-        $method = new ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
-        $method->setAccessible(true);
 
         $method->invokeArgs(new FormCollectionHelper(), []);
     }

@@ -387,7 +387,7 @@ class FormRow extends AbstractHelper
             return $this->labelHelper;
         }
 
-        if (method_exists($this->view, 'plugin')) {
+        if ($this->view !== null && method_exists($this->view, 'plugin')) {
             $this->labelHelper = $this->view->plugin('form_label');
         }
 
@@ -416,7 +416,7 @@ class FormRow extends AbstractHelper
             return $this->elementHelper;
         }
 
-        if (method_exists($this->view, 'plugin')) {
+        if ($this->view !== null && method_exists($this->view, 'plugin')) {
             $this->elementHelper = $this->view->plugin('form_element');
         }
 
@@ -438,7 +438,7 @@ class FormRow extends AbstractHelper
             return $this->elementErrorsHelper;
         }
 
-        if (method_exists($this->view, 'plugin')) {
+        if ($this->view !== null && method_exists($this->view, 'plugin')) {
             $this->elementErrorsHelper = $this->view->plugin('form_element_errors');
         }
 
