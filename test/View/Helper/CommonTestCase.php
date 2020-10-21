@@ -33,7 +33,7 @@ abstract class CommonTestCase extends TestCase
      */
     public $renderer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         Doctype::unsetDoctypeRegistry();
 

@@ -34,7 +34,7 @@ class AnnotationBuilderTest extends TestCase
     /** @var string */
     private $objectPropertyHydratorClass;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (! getenv('TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT to test annotation parsing');
@@ -242,7 +242,7 @@ class AnnotationBuilderTest extends TestCase
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotation
      * @param string $childName
      *
-     * @group 7108
+     * @group laminas7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotation($childName)
     {
@@ -271,7 +271,7 @@ class AnnotationBuilderTest extends TestCase
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection
      * @param string $childName
      *
-     * @group 7108
+     * @group laminas7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($childName)
     {
@@ -424,7 +424,7 @@ class AnnotationBuilderTest extends TestCase
     }
 
     /**
-     * @group 6753
+     * @group laminas6753
      */
     public function testInputFilterAnnotationAllowsComposition()
     {

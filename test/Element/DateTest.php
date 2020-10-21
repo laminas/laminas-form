@@ -34,7 +34,7 @@ class DateTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->originaltimezone = date_default_timezone_get();
     }
@@ -42,7 +42,7 @@ class DateTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         date_default_timezone_set($this->originaltimezone);
     }
@@ -53,7 +53,7 @@ class DateTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\Validator\Date',
@@ -86,7 +86,7 @@ class DateTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\Validator\Date',
@@ -147,7 +147,7 @@ class DateTest extends TestCase
     }
 
     /**
-     * @group 6245
+     * @group laminas6245
      */
     public function testStepValidatorIgnoresDaylightSavings()
     {

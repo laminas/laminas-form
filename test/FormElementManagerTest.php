@@ -35,7 +35,7 @@ class FormElementManagerTest extends TestCase
      */
     protected $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->manager = new FormElementManager(new ServiceManager());
     }
@@ -47,7 +47,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 3735
+     * @group laminas3735
      */
     public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement()
     {
@@ -126,7 +126,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 6132
+     * @group laminas6132
      */
     public function testSharedFormElementsAreNotInitializedMultipleTimes()
     {
@@ -153,8 +153,8 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 58
-     * @group 64
+     * @group laminas58
+     * @group laminas64
      */
     public function testInjectFactoryInitializerShouldBeRegisteredFirst()
     {
@@ -179,8 +179,8 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 58
-     * @group 64
+     * @group laminas58
+     * @group laminas64
      */
     public function testCallElementInitInitializerShouldBeRegisteredLast()
     {
@@ -205,7 +205,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 62
+     * @group laminas62
      */
     public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory()
     {

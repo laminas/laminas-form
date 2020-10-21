@@ -13,22 +13,25 @@ use Laminas\Form\Form;
 use Laminas\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
 use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Translator\TranslatorInterface;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class FormElementErrorsTest extends CommonTestCase
 {
+    use ProphecyTrait;
+
     /**
      * @var null|TranslatorInterface
      */
     protected $defaultTranslator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->defaultTranslator = AbstractValidator::getDefaultTranslator();
         $this->helper = new FormElementErrorsHelper();
         parent::setUp();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         AbstractValidator::setDefaultTranslator($this->defaultTranslator);
     }
@@ -57,22 +60,21 @@ class FormElementErrorsTest extends CommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertRegexp('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
+        $this->assertMatchesRegularExpression('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
     public function testRendersErrorMessagesUsingUnorderedListTranslated()
     {
         $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
-        $mockTranslator->expects($this->at(0))
+        $mockTranslator->expects($this->exactly(3))
             ->method('translate')
-            ->willReturn('Translated first error message');
-        $mockTranslator->expects($this->at(1))
-            ->method('translate')
-            ->willReturn('Translated second error message');
-        $mockTranslator->expects($this->at(2))
-            ->method('translate')
-            ->willReturn('Translated third error message');
+            ->willReturnOnConsecutiveCalls(
+                'Translated first error message',
+                'Translated second error message',
+                'Translated third error message'
+            )
+        ;
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -85,7 +87,7 @@ class FormElementErrorsTest extends CommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertRegexp('#<ul>\s*<li>Translated first error message</li>\s*<li>Translated second error message</li>\s*<li>Translated third error message</li>\s*</ul>#s', $markup);
+        $this->assertMatchesRegularExpression('#<ul>\s*<li>Translated first error message</li>\s*<li>Translated second error message</li>\s*<li>Translated third error message</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -133,7 +135,7 @@ class FormElementErrorsTest extends CommonTestCase
 
         $markup = $this->helper->render($form->get('test_element'));
 
-        $this->assertRegexp('#^<ul>\s*<li>TRANSLATED#s', $markup);
+        $this->assertMatchesRegularExpression('#^<ul>\s*<li>TRANSLATED#s', $markup);
     }
 
     public function testCanSpecifyAttributesForOpeningTag()
@@ -143,7 +145,7 @@ class FormElementErrorsTest extends CommonTestCase
         $element->setMessages($messages);
 
         $markup = $this->helper->render($element, ['class' => 'error']);
-        $this->assertContains('ul class="error"', $markup);
+        $this->assertStringContainsString('ul class="error"', $markup);
     }
 
     public function testCanSpecifyAttributesForOpeningTagUsingInvoke()
@@ -154,7 +156,7 @@ class FormElementErrorsTest extends CommonTestCase
         $element->setMessages($messages);
 
         $markup = $helper($element, ['class' => 'error']);
-        $this->assertContains('ul class="error"', $markup);
+        $this->assertStringContainsString('ul class="error"', $markup);
     }
 
     public function testCanSpecifyAlternateMarkupStringsViaSetters()
@@ -170,7 +172,7 @@ class FormElementErrorsTest extends CommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertRegexp('#<div class="error">\s*<span>First error message</span>\s*<span>Second error message</span>\s*<span>Third error message</span>\s*</div>#s', $markup);
+        $this->assertMatchesRegularExpression('#<div class="error">\s*<span>First error message</span>\s*<span>Second error message</span>\s*<span>Third error message</span>\s*</div>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -182,7 +184,7 @@ class FormElementErrorsTest extends CommonTestCase
         $element->setAttributes(['class' => 'foo']);
 
         $markup = $this->helper->render($element, ['class' => 'error']);
-        $this->assertContains('ul class="error"', $markup);
+        $this->assertStringContainsString('ul class="error"', $markup);
     }
 
     public function testGetAttributes()
@@ -214,7 +216,7 @@ class FormElementErrorsTest extends CommonTestCase
 
         $markup = $this->helper->render($element, ['class' => 'error']);
         // @codingStandardsIgnoreStart
-        $this->assertRegexp('#<ul class="error">\s*<li>First validator message</li>\s*<li>Second validator first message</li>\s*<li>Second validator second message</li>\s*</ul>#s', $markup);
+        $this->assertMatchesRegularExpression('#<ul class="error">\s*<li>First validator message</li>\s*<li>Second validator first message</li>\s*<li>Second validator second message</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 

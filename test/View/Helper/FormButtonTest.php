@@ -16,7 +16,7 @@ use function sprintf;
 
 class FormButtonTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormButtonHelper();
         parent::setUp();
@@ -38,7 +38,7 @@ class FormButtonTest extends CommonTestCase
         $markup = $this->helper->openTag($attributes);
 
         foreach ($attributes as $key => $value) {
-            $this->assertContains(sprintf('%s="%s"', $key, $value), $markup);
+            $this->assertStringContainsString(sprintf('%s="%s"', $key, $value), $markup);
         }
     }
 
@@ -52,7 +52,7 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup = $this->helper->openTag($element);
-        $this->assertContains('name="foo"', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
     }
 
     public function testRaisesExceptionWhenNameIsNotPresentInElementWhenPassedToOpenTag()
@@ -75,8 +75,8 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->openTag($element);
-        $this->assertContains('<button ', $markup);
-        $this->assertContains('type="submit"', $markup);
+        $this->assertStringContainsString('<button ', $markup);
+        $this->assertStringContainsString('type="submit"', $markup);
     }
 
     public function testGeneratesButtonTagWithElementsTypeAttribute()
@@ -84,21 +84,21 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'button');
         $markup  = $this->helper->openTag($element);
-        $this->assertContains('<button ', $markup);
-        $this->assertContains('type="button"', $markup);
+        $this->assertStringContainsString('<button ', $markup);
+        $this->assertStringContainsString('type="button"', $markup);
     }
 
     public function inputTypes()
     {
         return [
-            ['submit', 'assertContains'],
-            ['button', 'assertContains'],
-            ['reset', 'assertContains'],
-            ['lunar', 'assertNotContains'],
-            ['name', 'assertNotContains'],
-            ['username', 'assertNotContains'],
-            ['text', 'assertNotContains'],
-            ['checkbox', 'assertNotContains'],
+            ['submit', 'assertStringContainsString'],
+            ['button', 'assertStringContainsString'],
+            ['reset', 'assertStringContainsString'],
+            ['lunar', 'assertStringNotContainsString'],
+            ['name', 'assertStringNotContainsString'],
+            ['username', 'assertStringNotContainsString'],
+            ['text', 'assertStringNotContainsString'],
+            ['checkbox', 'assertStringNotContainsString'],
         ];
     }
 
@@ -117,35 +117,35 @@ class FormButtonTest extends CommonTestCase
     public function validAttributes()
     {
         return [
-            ['name', 'assertContains'],
-            ['accept', 'assertNotContains'],
-            ['alt', 'assertNotContains'],
-            ['autocomplete', 'assertNotContains'],
-            ['autofocus', 'assertContains'],
-            ['checked', 'assertNotContains'],
-            ['dirname', 'assertNotContains'],
-            ['disabled', 'assertContains'],
-            ['form', 'assertContains'],
-            ['formaction', 'assertContains'],
-            ['formenctype', 'assertContains'],
-            ['formmethod', 'assertContains'],
-            ['formnovalidate', 'assertContains'],
-            ['formtarget', 'assertContains'],
-            ['height', 'assertNotContains'],
-            ['list', 'assertNotContains'],
-            ['max', 'assertNotContains'],
-            ['maxlength', 'assertNotContains'],
-            ['min', 'assertNotContains'],
-            ['multiple', 'assertNotContains'],
-            ['pattern', 'assertNotContains'],
-            ['placeholder', 'assertNotContains'],
-            ['readonly', 'assertNotContains'],
-            ['required', 'assertNotContains'],
-            ['size', 'assertNotContains'],
-            ['src', 'assertNotContains'],
-            ['step', 'assertNotContains'],
-            ['value', 'assertContains'],
-            ['width', 'assertNotContains'],
+            ['name', 'assertStringContainsString'],
+            ['accept', 'assertStringNotContainsString'],
+            ['alt', 'assertStringNotContainsString'],
+            ['autocomplete', 'assertStringNotContainsString'],
+            ['autofocus', 'assertStringContainsString'],
+            ['checked', 'assertStringNotContainsString'],
+            ['dirname', 'assertStringNotContainsString'],
+            ['disabled', 'assertStringContainsString'],
+            ['form', 'assertStringContainsString'],
+            ['formaction', 'assertStringContainsString'],
+            ['formenctype', 'assertStringContainsString'],
+            ['formmethod', 'assertStringContainsString'],
+            ['formnovalidate', 'assertStringContainsString'],
+            ['formtarget', 'assertStringContainsString'],
+            ['height', 'assertStringNotContainsString'],
+            ['list', 'assertStringNotContainsString'],
+            ['max', 'assertStringNotContainsString'],
+            ['maxlength', 'assertStringNotContainsString'],
+            ['min', 'assertStringNotContainsString'],
+            ['multiple', 'assertStringNotContainsString'],
+            ['pattern', 'assertStringNotContainsString'],
+            ['placeholder', 'assertStringNotContainsString'],
+            ['readonly', 'assertStringNotContainsString'],
+            ['required', 'assertStringNotContainsString'],
+            ['size', 'assertStringNotContainsString'],
+            ['src', 'assertStringNotContainsString'],
+            ['step', 'assertStringNotContainsString'],
+            ['value', 'assertStringContainsString'],
+            ['width', 'assertStringNotContainsString'],
         ];
     }
 
@@ -219,20 +219,20 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('{button_content}');
         $markup = $this->helper->render($element);
-        $this->assertContains('>{button_content}<', $markup);
-        $this->assertContains('name="foo"', $markup);
-        $this->assertContains('<button', $markup);
-        $this->assertContains('</button>', $markup);
+        $this->assertStringContainsString('>{button_content}<', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
+        $this->assertStringContainsString('<button', $markup);
+        $this->assertStringContainsString('</button>', $markup);
     }
 
     public function testPassingElementAndContentToRenderUsesContent()
     {
         $element = new Element('foo');
         $markup = $this->helper->render($element, '{button_content}');
-        $this->assertContains('>{button_content}<', $markup);
-        $this->assertContains('name="foo"', $markup);
-        $this->assertContains('<button', $markup);
-        $this->assertContains('</button>', $markup);
+        $this->assertStringContainsString('>{button_content}<', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
+        $this->assertStringContainsString('<button', $markup);
+        $this->assertStringContainsString('</button>', $markup);
     }
 
     public function testCallingFromViewHelperCanHandleOpenTagAndCloseTag()
@@ -248,9 +248,9 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element, '{button_content}');
-        $this->assertContains('<button', $markup);
-        $this->assertContains('name="foo"', $markup);
-        $this->assertContains('>{button_content}<', $markup);
+        $this->assertStringContainsString('<button', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
+        $this->assertStringContainsString('>{button_content}<', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()
@@ -263,7 +263,7 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element(0);
         $markup = $this->helper->__invoke($element, '{button_content}');
-        $this->assertContains('name="0"', $markup);
+        $this->assertStringContainsString('name="0"', $markup);
     }
 
     public function testCanTranslateContent()
@@ -280,7 +280,7 @@ class FormButtonTest extends CommonTestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
     }
 
     public function testCanTranslateButtonContentParameter()
@@ -296,7 +296,7 @@ class FormButtonTest extends CommonTestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element, 'translate me');
-        $this->assertContains('>translated content<', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
     }
 
     public function testTranslatorMethods()
@@ -318,7 +318,7 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('<strong>Click me</strong>');
         $markup = $this->helper->__invoke($element);
-        $this->assertRegexp('#<button([^>]*)>&lt;strong&gt;Click me&lt;/strong&gt;<\/button>#', $markup);
+        $this->assertMatchesRegularExpression('#<button([^>]*)>&lt;strong&gt;Click me&lt;/strong&gt;<\/button>#', $markup);
     }
 
     public function testCanDisableLabelHtmlEscape()
@@ -327,6 +327,6 @@ class FormButtonTest extends CommonTestCase
         $element->setLabel('<strong>Click me</strong>');
         $element->setLabelOptions(['disable_html_escape' => true]);
         $markup = $this->helper->__invoke($element);
-        $this->assertRegexp('#<button([^>]*)><strong>Click me</strong></button>#', $markup);
+        $this->assertMatchesRegularExpression('#<button([^>]*)><strong>Click me</strong></button>#', $markup);
     }
 }

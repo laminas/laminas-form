@@ -17,7 +17,7 @@ use function extension_loaded;
 
 class FormMonthSelectTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
@@ -39,9 +39,9 @@ class FormMonthSelectTest extends CommonTestCase
     {
         $element = new MonthSelect('foo');
         $markup  = $this->helper->render($element);
-        $this->assertNotContains('<select name="day"', $markup);
-        $this->assertContains('<select name="month"', $markup);
-        $this->assertContains('<select name="year"', $markup);
+        $this->assertStringNotContainsString('<select name="day"', $markup);
+        $this->assertStringContainsString('<select name="month"', $markup);
+        $this->assertStringContainsString('<select name="year"', $markup);
     }
 
     public function testCanGenerateSelectsWithEmptyOption()
@@ -49,10 +49,10 @@ class FormMonthSelectTest extends CommonTestCase
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
         $markup  = $this->helper->render($element);
-        $this->assertNotContains('<select name="day"', $markup);
-        $this->assertContains('<select name="month"', $markup);
-        $this->assertContains('<select name="year"', $markup);
-        $this->assertContains('<option value=""></option>', $markup);
+        $this->assertStringNotContainsString('<select name="day"', $markup);
+        $this->assertStringContainsString('<select name="month"', $markup);
+        $this->assertStringContainsString('<select name="year"', $markup);
+        $this->assertStringContainsString('<option value=""></option>', $markup);
     }
 
     public function testCanDisableDelimiters()
@@ -64,7 +64,7 @@ class FormMonthSelectTest extends CommonTestCase
 
         // If it contains two consecutive selects this means that no delimiters
         // are inserted
-        $this->assertContains('</select><select', $markup);
+        $this->assertStringContainsString('</select><select', $markup);
     }
 
     public function testCanRenderTextDelimiters()
@@ -82,9 +82,9 @@ class FormMonthSelectTest extends CommonTestCase
     {
         $element = new MonthSelect('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertNotContains('<select name="day"', $markup);
-        $this->assertContains('<select name="month"', $markup);
-        $this->assertContains('<select name="year"', $markup);
+        $this->assertStringNotContainsString('<select name="day"', $markup);
+        $this->assertStringContainsString('<select name="month"', $markup);
+        $this->assertStringContainsString('<select name="year"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()
@@ -100,7 +100,7 @@ class FormMonthSelectTest extends CommonTestCase
     }
 
     /**
-     * @group 6656
+     * @group laminas6656
      */
     public function testGetElements()
     {

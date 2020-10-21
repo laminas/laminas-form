@@ -90,13 +90,13 @@ class CaptchaTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
         $test = array_shift($inputSpec['validators']);
         $this->assertSame($captcha, $test);
     }
 
     /**
-     * @group 3446
+     * @group laminas3446
      */
     public function testAllowsPassingTraversableOptionsToConstructor()
     {

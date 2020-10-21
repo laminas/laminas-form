@@ -15,7 +15,7 @@ use function sprintf;
 
 class FormWeekTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormWeekHelper();
         parent::setUp();
@@ -33,8 +33,8 @@ class FormWeekTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="week"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="week"', $markup);
     }
 
     public function testGeneratesInputTagRegardlessOfElementType()
@@ -42,42 +42,42 @@ class FormWeekTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="week"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="week"', $markup);
     }
 
     public function validAttributes()
     {
         return [
-            ['name',           'assertContains'],
-            ['accept',         'assertNotContains'],
-            ['alt',            'assertNotContains'],
-            ['autocomplete',   'assertContains'],
-            ['autofocus',      'assertContains'],
-            ['checked',        'assertNotContains'],
-            ['dirname',        'assertNotContains'],
-            ['disabled',       'assertContains'],
-            ['form',           'assertContains'],
-            ['formaction',     'assertNotContains'],
-            ['formenctype',    'assertNotContains'],
-            ['formmethod',     'assertNotContains'],
-            ['formnovalidate', 'assertNotContains'],
-            ['formtarget',     'assertNotContains'],
-            ['height',         'assertNotContains'],
-            ['list',           'assertContains'],
-            ['max',            'assertContains'],
-            ['maxlength',      'assertNotContains'],
-            ['min',            'assertContains'],
-            ['multiple',       'assertNotContains'],
-            ['pattern',        'assertNotContains'],
-            ['placeholder',    'assertNotContains'],
-            ['readonly',       'assertContains'],
-            ['required',       'assertContains'],
-            ['size',           'assertNotContains'],
-            ['src',            'assertNotContains'],
-            ['step',           'assertContains'],
-            ['value',          'assertContains'],
-            ['width',          'assertNotContains'],
+            ['name',           'assertStringContainsString'],
+            ['accept',         'assertStringNotContainsString'],
+            ['alt',            'assertStringNotContainsString'],
+            ['autocomplete',   'assertStringContainsString'],
+            ['autofocus',      'assertStringContainsString'],
+            ['checked',        'assertStringNotContainsString'],
+            ['dirname',        'assertStringNotContainsString'],
+            ['disabled',       'assertStringContainsString'],
+            ['form',           'assertStringContainsString'],
+            ['formaction',     'assertStringNotContainsString'],
+            ['formenctype',    'assertStringNotContainsString'],
+            ['formmethod',     'assertStringNotContainsString'],
+            ['formnovalidate', 'assertStringNotContainsString'],
+            ['formtarget',     'assertStringNotContainsString'],
+            ['height',         'assertStringNotContainsString'],
+            ['list',           'assertStringContainsString'],
+            ['max',            'assertStringContainsString'],
+            ['maxlength',      'assertStringNotContainsString'],
+            ['min',            'assertStringContainsString'],
+            ['multiple',       'assertStringNotContainsString'],
+            ['pattern',        'assertStringNotContainsString'],
+            ['placeholder',    'assertStringNotContainsString'],
+            ['readonly',       'assertStringContainsString'],
+            ['required',       'assertStringContainsString'],
+            ['size',           'assertStringNotContainsString'],
+            ['src',            'assertStringNotContainsString'],
+            ['step',           'assertStringContainsString'],
+            ['value',          'assertStringContainsString'],
+            ['width',          'assertStringNotContainsString'],
         ];
     }
 
@@ -141,9 +141,9 @@ class FormWeekTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertContains('<input', $markup);
-        $this->assertContains('name="foo"', $markup);
-        $this->assertContains('type="week"', $markup);
+        $this->assertStringContainsString('<input', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
+        $this->assertStringContainsString('type="week"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()

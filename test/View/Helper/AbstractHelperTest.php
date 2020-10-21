@@ -20,14 +20,14 @@ use Laminas\I18n\Translator\Translator;
  */
 class AbstractHelperTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = $this->getMockForAbstractClass('Laminas\Form\View\Helper\AbstractHelper');
         parent::setUp();
     }
 
     /**
-     * @group 5991
+     * @group laminas5991
      */
     public function testWillEscapeValueAttributeValuesCorrectly()
     {

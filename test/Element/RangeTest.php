@@ -27,7 +27,7 @@ class RangeTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\I18n\Validator\IsFloat',
@@ -73,7 +73,7 @@ class RangeTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\I18n\Validator\IsFloat',

@@ -15,7 +15,7 @@ use function sprintf;
 
 class FormSearchTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormSearchHelper();
         parent::setUp();
@@ -33,8 +33,8 @@ class FormSearchTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="search"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="search"', $markup);
     }
 
     public function testGeneratesTextInputTagRegardlessOfElementType()
@@ -42,43 +42,43 @@ class FormSearchTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="search"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="search"', $markup);
     }
 
     public function validAttributes()
     {
         return [
-            'name'           => ['name', 'assertContains'],
-            'accept'         => ['accept', 'assertNotContains'],
-            'alt'            => ['alt', 'assertNotContains'],
-            'autocomplete'   => ['autocomplete', 'assertContains'],
-            'autofocus'      => ['autofocus', 'assertContains'],
-            'checked'        => ['checked', 'assertNotContains'],
-            'dirname'        => ['dirname', 'assertContains'],
-            'disabled'       => ['disabled', 'assertContains'],
-            'form'           => ['form', 'assertContains'],
-            'formaction'     => ['formaction', 'assertNotContains'],
-            'formenctype'    => ['formenctype', 'assertNotContains'],
-            'formmethod'     => ['formmethod', 'assertNotContains'],
-            'formnovalidate' => ['formnovalidate', 'assertNotContains'],
-            'formtarget'     => ['formtarget', 'assertNotContains'],
-            'height'         => ['height', 'assertNotContains'],
-            'list'           => ['list', 'assertContains'],
-            'max'            => ['max', 'assertNotContains'],
-            'maxlength'      => ['maxlength', 'assertContains'],
-            'min'            => ['min', 'assertNotContains'],
-            'minlength'      => ['minlength', 'assertContains'],
-            'multiple'       => ['multiple', 'assertNotContains'],
-            'pattern'        => ['pattern', 'assertContains'],
-            'placeholder'    => ['placeholder', 'assertContains'],
-            'readonly'       => ['readonly', 'assertContains'],
-            'required'       => ['required', 'assertContains'],
-            'size'           => ['size', 'assertContains'],
-            'src'            => ['src', 'assertNotContains'],
-            'step'           => ['step', 'assertNotContains'],
-            'value'          => ['value', 'assertContains'],
-            'width'          => ['width', 'assertNotContains'],
+            'name'           => ['name', 'assertStringContainsString'],
+            'accept'         => ['accept', 'assertStringNotContainsString'],
+            'alt'            => ['alt', 'assertStringNotContainsString'],
+            'autocomplete'   => ['autocomplete', 'assertStringContainsString'],
+            'autofocus'      => ['autofocus', 'assertStringContainsString'],
+            'checked'        => ['checked', 'assertStringNotContainsString'],
+            'dirname'        => ['dirname', 'assertStringContainsString'],
+            'disabled'       => ['disabled', 'assertStringContainsString'],
+            'form'           => ['form', 'assertStringContainsString'],
+            'formaction'     => ['formaction', 'assertStringNotContainsString'],
+            'formenctype'    => ['formenctype', 'assertStringNotContainsString'],
+            'formmethod'     => ['formmethod', 'assertStringNotContainsString'],
+            'formnovalidate' => ['formnovalidate', 'assertStringNotContainsString'],
+            'formtarget'     => ['formtarget', 'assertStringNotContainsString'],
+            'height'         => ['height', 'assertStringNotContainsString'],
+            'list'           => ['list', 'assertStringContainsString'],
+            'max'            => ['max', 'assertStringNotContainsString'],
+            'maxlength'      => ['maxlength', 'assertStringContainsString'],
+            'min'            => ['min', 'assertStringNotContainsString'],
+            'minlength'      => ['minlength', 'assertStringContainsString'],
+            'multiple'       => ['multiple', 'assertStringNotContainsString'],
+            'pattern'        => ['pattern', 'assertStringContainsString'],
+            'placeholder'    => ['placeholder', 'assertStringContainsString'],
+            'readonly'       => ['readonly', 'assertStringContainsString'],
+            'required'       => ['required', 'assertStringContainsString'],
+            'size'           => ['size', 'assertStringContainsString'],
+            'src'            => ['src', 'assertStringNotContainsString'],
+            'step'           => ['step', 'assertStringNotContainsString'],
+            'value'          => ['value', 'assertStringContainsString'],
+            'width'          => ['width', 'assertStringNotContainsString'],
         ];
     }
 
@@ -143,9 +143,9 @@ class FormSearchTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertContains('<input', $markup);
-        $this->assertContains('name="foo"', $markup);
-        $this->assertContains('type="search"', $markup);
+        $this->assertStringContainsString('<input', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
+        $this->assertStringContainsString('type="search"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()

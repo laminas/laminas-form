@@ -15,7 +15,7 @@ use function ini_get;
 
 class FormFileApcProgressTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormFileApcProgress();
         parent::setUp();
@@ -29,10 +29,10 @@ class FormFileApcProgressTest extends CommonTestCase
         }
 
         $markup = $this->helper->__invoke();
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="hidden"', $markup);
-        $this->assertContains('id="progress_key"', $markup);
-        $this->assertContains('name="' . $name . '"', $markup);
-        $this->assertContains('value="', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="hidden"', $markup);
+        $this->assertStringContainsString('id="progress_key"', $markup);
+        $this->assertStringContainsString('name="' . $name . '"', $markup);
+        $this->assertStringContainsString('value="', $markup);
     }
 }

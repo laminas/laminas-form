@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class InputFilterProviderFieldsetTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldset = new InputFilterProviderFieldset();
     }

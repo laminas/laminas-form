@@ -16,6 +16,7 @@ use Laminas\Form\Annotation\AnnotationBuilderFactory;
 use Laminas\Form\FormElementManager;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use ReflectionProperty;
 use stdClass;
 
@@ -23,6 +24,8 @@ use function get_class;
 
 class AnnotationBuilderFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testFactoryReturnsAnnotationBuilder()
     {
         $container = $this->prophesize(ContainerInterface::class);
@@ -88,7 +91,7 @@ class AnnotationBuilderFactoryTest extends TestCase
         $r = new ReflectionProperty($parser, 'allowedAnnotations');
         $r->setAccessible(true);
         $allowedAnnotations = $r->getValue($parser);
-        $this->assertContains(get_class($this), $allowedAnnotations);
+        $this->assertArrayHasKey(get_class($this), $allowedAnnotations);
     }
 
     public function testFactoryAllowsAttachingListenersFromConfiguration()

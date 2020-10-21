@@ -10,6 +10,7 @@ namespace LaminasTest\Form\Element;
 
 use DateTime;
 use Laminas\Form\Element\DateTimeSelect as DateTimeSelectElement;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\InputFilter\Factory as InputFilterFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +24,7 @@ class DateTimeSelectTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\Validator\Date',
@@ -94,12 +95,10 @@ class DateTimeSelectTest extends TestCase
         $this->assertEquals('2012-09-24 03:04:05', $element->getValue());
     }
 
-    /**
-     * @expectedException \Laminas\Form\Exception\InvalidArgumentException
-     */
     public function testThrowsOnInvalidValue()
     {
         $element  = new DateTimeSelectElement();
+        $this->expectException(InvalidArgumentException::class);
         $element->setValue('hello world');
     }
 

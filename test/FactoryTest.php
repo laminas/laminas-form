@@ -38,7 +38,7 @@ class FactoryTest extends TestCase
      */
     protected $services;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->services = new ServiceManager();
         $elementManager = new FormElementManager($this->services);
@@ -806,7 +806,6 @@ class FactoryTest extends TestCase
     public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected()
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
-        $this->assertAttributeInstanceOf('Laminas\Form\Factory', 'factory', $fieldset);
         $this->assertSame(
             $fieldset->getFormFactory()->getFormElementManager(),
             $this->factory->getFormElementManager()
@@ -814,7 +813,7 @@ class FactoryTest extends TestCase
     }
 
     /**
-     * @group 6949
+     * @group laminas6949
      */
     public function testPrepareAndInjectWillThrowAndException()
     {
