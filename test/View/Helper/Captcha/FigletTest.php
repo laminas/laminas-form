@@ -41,7 +41,10 @@ class FigletTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#',
+            $markup
+        );
         $this->assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#',
             $markup
@@ -52,7 +55,10 @@ class FigletTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#(name="' . $element->getName() . '\&\#x5B\;input\&\#x5D\;").*?(type="text")#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#(name="' . $element->getName() . '\&\#x5B\;input\&\#x5D\;").*?(type="text")#',
+            $markup
+        );
     }
 
     public function testRendersFigletPriorToInputByDefault()

@@ -183,7 +183,10 @@ class FormRowTest extends TestCase
         ]);
 
         $markup = $this->helper->setRenderErrors(false)->render($element);
-        $this->assertMatchesRegularExpression('/<input name="foo" class="input-error" type="text" [^\/>]*\/?>/', $markup);
+        $this->assertMatchesRegularExpression(
+            '/<input name="foo" class="input-error" type="text" [^\/>]*\/?>/',
+            $markup
+        );
     }
 
     public function testCanModifyDefaultErrorClass()
@@ -194,7 +197,10 @@ class FormRowTest extends TestCase
         ]);
 
         $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
-        $this->assertMatchesRegularExpression('/<input name="foo" class="custom-error-class" type="text" [^\/>]*\/?>/', $markup);
+        $this->assertMatchesRegularExpression(
+            '/<input name="foo" class="custom-error-class" type="text" [^\/>]*\/?>/',
+            $markup
+        );
     }
 
     public function testDoesNotOverrideClassesIfAlreadyPresentWhenThereAreErrors()

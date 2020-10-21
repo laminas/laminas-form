@@ -95,7 +95,10 @@ class FormCollectionTest extends TestCase
         $markup = $this->helper->render($collection);
         $this->assertStringContainsString('fieldsets&#x5B;0&#x5D;&#x5B;field&#x5D;', $markup);
         $this->assertStringContainsString('fieldsets&#x5B;1&#x5D;&#x5B;field&#x5D;', $markup);
-        $this->assertStringContainsString('fieldsets&#x5B;1&#x5D;&#x5B;nested_fieldset&#x5D;&#x5B;anotherField&#x5D;', $markup);
+        $this->assertStringContainsString(
+            'fieldsets&#x5B;1&#x5D;&#x5B;nested_fieldset&#x5D;&#x5B;anotherField&#x5D;',
+            $markup
+        );
     }
 
     public function testRenderWithCustomHelper()
@@ -408,7 +411,10 @@ class FormCollectionTest extends TestCase
         $collection->setLabel('<strong>Some label</strong>');
         $collection->setLabelOptions(['disable_html_escape' => true]);
         $markup = $this->helper->render($collection);
-        $this->assertMatchesRegularExpression('#<fieldset(.*?)><legend><strong>Some label</strong><\/legend>(.*?)<\/fieldset>#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#<fieldset(.*?)><legend><strong>Some label</strong><\/legend>(.*?)<\/fieldset>#',
+            $markup
+        );
     }
 
     public function testForElementHelperNotInstanceOfHelperInterface()

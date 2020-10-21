@@ -112,7 +112,7 @@ class DateSelect extends MonthSelect
             try {
                 $value = new PhpDateTime($value);
             } catch (Exception $e) {
-                throw new InvalidArgumentException('Value should be a parsable string or an instance of DateTime', 0, $e);
+                throw new InvalidArgumentException('Value should be a parsable string or an instance of DateTime');
             }
         }
 

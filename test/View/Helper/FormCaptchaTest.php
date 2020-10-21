@@ -97,7 +97,10 @@ class FormCaptchaTest extends CommonTestCase
         $element->setAttribute('id', 'foo');
         $markup = $this->helper->render($element);
         $this->assertStringContainsString($captcha->getLabel(), $markup);
-        $this->assertMatchesRegularExpression('#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
+            $markup
+        );
         $this->assertMatchesRegularExpression(
             '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
@@ -111,8 +114,14 @@ class FormCaptchaTest extends CommonTestCase
         $element->setCaptcha($captcha);
         $element->setAttribute('id', 'foo');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<pre>' . $captcha->getFiglet()->render($captcha->getWord()) . '</pre>', $markup);
-        $this->assertMatchesRegularExpression('#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#', $markup);
+        $this->assertStringContainsString(
+            '<pre>' . $captcha->getFiglet()->render($captcha->getWord()) . '</pre>',
+            $markup
+        );
+        $this->assertMatchesRegularExpression(
+            '#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
+            $markup
+        );
         $this->assertMatchesRegularExpression(
             '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
@@ -151,7 +160,10 @@ class FormCaptchaTest extends CommonTestCase
         $this->assertStringContainsString('<img ', $markup);
         $this->assertStringContainsString(str_replace('/', '&#x2F;', $captcha->getImgUrl()), $markup);
         $this->assertStringContainsString($captcha->getId(), $markup);
-        $this->assertMatchesRegularExpression('#<img[^>]*(id="' . $element->getAttribute('id') . '-image")[^>]*>#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#<img[^>]*(id="' . $element->getAttribute('id') . '-image")[^>]*>#',
+            $markup
+        );
         $this->assertMatchesRegularExpression(
             '#<input[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
             $markup
@@ -175,6 +187,9 @@ class FormCaptchaTest extends CommonTestCase
         $element = $this->getElement();
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('data-sitekey="' . getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY') . '"', $markup);
+        $this->assertStringContainsString(
+            'data-sitekey="' . getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY') . '"',
+            $markup
+        );
     }
 }

@@ -318,7 +318,10 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('<strong>Click me</strong>');
         $markup = $this->helper->__invoke($element);
-        $this->assertMatchesRegularExpression('#<button([^>]*)>&lt;strong&gt;Click me&lt;/strong&gt;<\/button>#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#<button([^>]*)>&lt;strong&gt;Click me&lt;/strong&gt;<\/button>#',
+            $markup
+        );
     }
 
     public function testCanDisableLabelHtmlEscape()
