@@ -109,8 +109,7 @@ class AnnotationBuilderTest extends TestCase
         $this->assertArrayHasKey('type', $attributes);
         $this->assertEquals('text', $attributes['type']);
 
-        $this->assertObjectHasAttribute('validationGroup', $form);
-        $this->assertAttributeEquals(['omit', 'keep'], 'validationGroup', $form);
+        $this->assertSame(['omit', 'keep'], $form->getValidationGroup());
     }
 
     public function testComplexEntityCreationWithPriorities()
