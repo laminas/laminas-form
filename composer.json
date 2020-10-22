@@ -35,7 +35,7 @@
         "doctrine/annotations": "^1.10.4",
         "laminas/laminas-cache": "^2.9.0",
         "laminas/laminas-captcha": "^2.9.0",
-        "laminas/laminas-code": "dev-php_80_support",
+        "laminas/laminas-code": "3.4.99",
         "laminas/laminas-coding-standard": "^1.0.0",
         "laminas/laminas-escaper": "^2.6.1",
         "laminas/laminas-eventmanager": "^3.3.0",
@@ -52,9 +52,17 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/Slamdunk/laminas-code"
+            "type": "package",
+            "package": {
+                "name": "laminas/laminas-code",
+                "version": "3.4.99",
+                "dist": {
+                    "url": "https://github.com/Slamdunk/laminas-code/archive/php_80_support.zip",
+                    "type": "zip"
+                }
+            }
         }
+
     ],
     "suggest": {
         "laminas/laminas-captcha": "^2.9, required for using CAPTCHA form elements",
