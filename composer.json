@@ -35,7 +35,7 @@
         "doctrine/annotations": "^1.10.4",
         "laminas/laminas-cache": "^2.9.0",
         "laminas/laminas-captcha": "^2.9.0",
-        "laminas/laminas-code": "^3.4.1",
+        "laminas/laminas-code": "dev-php_80_support",
         "laminas/laminas-coding-standard": "^1.0.0",
         "laminas/laminas-escaper": "^2.6.1",
         "laminas/laminas-eventmanager": "^3.3.0",
@@ -50,6 +50,12 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.4.2"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Slamdunk/laminas-code"
+        }
+    ],
     "suggest": {
         "laminas/laminas-captcha": "^2.9, required for using CAPTCHA form elements",
         "laminas/laminas-code": "^3.4.1, required to use laminas-form annotations support",
