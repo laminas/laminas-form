@@ -100,7 +100,7 @@ class FormMonthSelectTest extends CommonTestCase
     }
 
     /**
-     * @group laminas6656
+     * @group issue-6656
      */
     public function testGetElements()
     {

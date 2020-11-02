@@ -531,7 +531,7 @@ class FormInputTest extends CommonTestCase
     }
 
     /**
-     * @group laminas7166
+     * @group issue-7166
      */
     public function testPasswordValueShouldNotBeRendered()
     {

@@ -47,7 +47,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group laminas3735
+     * @group issue-3735
      */
     public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement()
     {
@@ -126,7 +126,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group laminas6132
+     * @group issue-6132
      */
     public function testSharedFormElementsAreNotInitializedMultipleTimes()
     {
@@ -153,8 +153,8 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group laminas58
-     * @group laminas64
+     * @group issue-58
+     * @group issue-64
      */
     public function testInjectFactoryInitializerShouldBeRegisteredFirst()
     {
@@ -179,8 +179,8 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group laminas58
-     * @group laminas64
+     * @group issue-58
+     * @group issue-64
      */
     public function testCallElementInitInitializerShouldBeRegisteredLast()
     {
@@ -205,7 +205,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group laminas62
+     * @group issue-62
      */
     public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory()
     {

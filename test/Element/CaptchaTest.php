@@ -96,7 +96,7 @@ class CaptchaTest extends TestCase
     }
 
     /**
-     * @group laminas3446
+     * @group issue-3446
      */
     public function testAllowsPassingTraversableOptionsToConstructor()
     {

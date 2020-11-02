@@ -94,7 +94,7 @@ class FormCheckboxTest extends CommonTestCase
     }
 
     /**
-     * @group laminas7286
+     * @group issue-7286
      */
     public function testDisabledOptionIssetOnHiddenElement()
     {

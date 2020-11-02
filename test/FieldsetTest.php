@@ -514,7 +514,7 @@ class FieldsetTest extends TestCase
     }
 
     /**
-     * @group laminas7109
+     * @group issue-7109
      */
     public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues()
     {
@@ -567,8 +567,8 @@ class FieldsetTest extends TestCase
     }
 
     /**
-     * @group laminas6585
-     * @group laminas6614
+     * @group issue-6585
+     * @group issue-6614
      */
     public function testBindValuesPreservesNewValueAfterValidation()
     {

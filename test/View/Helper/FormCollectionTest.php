@@ -131,7 +131,7 @@ class FormCollectionTest extends TestCase
     }
 
     /**
-     * @group laminas7167
+     * @group issue-7167
      */
     public function testShouldNotWrapAtSubInvokeHelper()
     {
@@ -142,7 +142,7 @@ class FormCollectionTest extends TestCase
     }
 
     /**
-     * @group laminas7167
+     * @group issue-7167
      */
     public function testShouldWrapAtRecursiveHelperCall()
     {

@@ -27,7 +27,7 @@ class AbstractHelperTest extends CommonTestCase
     }
 
     /**
-     * @group laminas5991
+     * @group issue-5991
      */
     public function testWillEscapeValueAttributeValuesCorrectly()
     {

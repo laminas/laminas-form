@@ -241,7 +241,7 @@ class AnnotationBuilderTest extends TestCase
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotation
      * @param string $childName
      *
-     * @group laminas7108
+     * @group issue-7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotation($childName)
     {
@@ -270,7 +270,7 @@ class AnnotationBuilderTest extends TestCase
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection
      * @param string $childName
      *
-     * @group laminas7108
+     * @group issue-7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($childName)
     {
@@ -423,7 +423,7 @@ class AnnotationBuilderTest extends TestCase
     }
 
     /**
-     * @group laminas6753
+     * @group issue-6753
      */
     public function testInputFilterAnnotationAllowsComposition()
     {

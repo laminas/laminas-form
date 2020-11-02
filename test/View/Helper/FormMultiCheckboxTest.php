@@ -414,8 +414,8 @@ class FormMultiCheckboxTest extends CommonTestCase
     }
 
     /**
-     * @group laminas6649
-     * @group laminas6655
+     * @group issue-6649
+     * @group issue-6655
      */
     public function testRenderWithoutValueOptions()
     {

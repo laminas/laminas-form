@@ -106,7 +106,7 @@ class DateSelectTest extends TestCase
     }
 
     /**
-     * @group laminas7114
+     * @group issue-7114
      */
     public function testValueSetterReturnsSameObjectType()
     {

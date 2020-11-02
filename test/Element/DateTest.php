@@ -147,7 +147,7 @@ class DateTest extends TestCase
     }
 
     /**
-     * @group laminas6245
+     * @group issue-6245
      */
     public function testStepValidatorIgnoresDaylightSavings()
     {

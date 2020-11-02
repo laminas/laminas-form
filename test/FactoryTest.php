@@ -813,7 +813,7 @@ class FactoryTest extends TestCase
     }
 
     /**
-     * @group laminas6949
+     * @group issue-6949
      */
     public function testPrepareAndInjectWillThrowAndException()
     {

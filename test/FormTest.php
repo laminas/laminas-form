@@ -1736,7 +1736,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group laminas4996
+     * @group issue-4996
      */
     public function testCanOverrideDefaultInputSettings()
     {
@@ -1750,7 +1750,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group laminas5007
+     * @group issue-5007
      */
     public function testComplexFormInputFilterMergesIntoExisting()
     {
@@ -1783,7 +1783,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group laminas5007
+     * @group issue-5007
      */
     public function testInputFilterOrderOfPrecedence1()
     {
@@ -1834,7 +1834,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group laminas5015
+     * @group issue-5015
      */
     public function testCanSetPreferFormInputFilterFlagViaSetOptions()
     {
@@ -1846,7 +1846,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group laminas5015
+     * @group issue-5015
      */
     public function testFactoryCanSetPreferFormInputFilterFlag()
     {
@@ -1863,7 +1863,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group laminas5028
+     * @group issue-5028
      */
     public function testPreferFormInputFilterFlagIsEnabledByDefault()
     {
@@ -1871,7 +1871,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group laminas5050
+     * @group issue-5050
      */
     public function testFileInputFilterNotOverwritten()
     {

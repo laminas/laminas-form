@@ -528,8 +528,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group laminas6585
-     * @group laminas6614
+     * @group issue-6585
+     * @group issue-6614
      */
     public function testAddingCollectionElementAfterBind()
     {
@@ -571,8 +571,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group laminas6585
-     * @group laminas6614
+     * @group issue-6585
+     * @group issue-6614
      */
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections()
     {
@@ -1273,8 +1273,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group laminas6263
-     * @group laminas6518
+     * @group issue-6263
+     * @group issue-6518
      */
     public function testCollectionProperlyHandlesAddingObjectsOfTypeElementInterface()
     {
@@ -1305,8 +1305,8 @@ class CollectionTest extends TestCase
     /**
      * Unit test to ensure behavior of extract() method is unaffected by refactor
      *
-     * @group laminas6263
-     * @group laminas6518
+     * @group issue-6263
+     * @group issue-6518
      */
     public function testCollectionShouldSilentlyIgnorePopulatingFieldsetWithDisallowedObject()
     {
@@ -1352,8 +1352,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group laminas6263
-     * @group laminas6298
+     * @group issue-6263
+     * @group issue-6298
      */
     public function testCanHydrateObject()
     {

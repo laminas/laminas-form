@@ -598,7 +598,7 @@ class FormRowTest extends TestCase
     }
 
     /**
-     * @group laminas7030
+     * @group issue-7030
      */
     public function testWrapFieldsetAroundCaptchaWithLabel()
     {
