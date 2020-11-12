@@ -6,18 +6,18 @@
  * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
 
-namespace Laminas\Form\FormElementManager;
+namespace Laminas\Form;
 
 use Interop\Container\ContainerInterface;
 use Laminas\Form\Element;
+use Laminas\Form\Exception;
 use Laminas\Form\ElementFactory;
 use Laminas\Form\ElementInterface;
-use Laminas\Form\Exception;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 use Laminas\Form\FormFactoryAwareInterface;
 use Laminas\ServiceManager\AbstractPluginManager;
-use Laminas\ServiceManager\ConfigInterface;
+use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\Stdlib\InitializableInterface;
 
 use function array_push;
@@ -29,14 +29,12 @@ use function is_object;
 use function sprintf;
 
 /**
- * laminas-servicemanager v2-compatible plugin manager implementation for form elements.
+ * laminas-servicemanager v3-compatible plugin manager implementation for form elements.
  *
  * Enforces that elements retrieved are instances of ElementInterface.
  */
-class FormElementManagerV2Polyfill extends AbstractPluginManager
+class FormElementManager extends AbstractPluginManager
 {
-    use FormElementManagerTrait;
-
     /**
      * Aliases for default set of helpers
      *
@@ -44,39 +42,81 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
      */
     protected $aliases = [
         'button'         => Element\Button::class,
+        'Button'         => Element\Button::class,
         'captcha'        => Element\Captcha::class,
+        'Captcha'        => Element\Captcha::class,
         'checkbox'       => Element\Checkbox::class,
+        'Checkbox'       => Element\Checkbox::class,
         'collection'     => Element\Collection::class,
+        'Collection'     => Element\Collection::class,
         'color'          => Element\Color::class,
+        'Color'          => Element\Color::class,
         'csrf'           => Element\Csrf::class,
+        'Csrf'           => Element\Csrf::class,
         'date'           => Element\Date::class,
+        'Date'           => Element\Date::class,
         'dateselect'     => Element\DateSelect::class,
+        'dateSelect'     => Element\DateSelect::class,
+        'DateSelect'     => Element\DateSelect::class,
         'datetime'       => Element\DateTime::class,
+        'dateTime'       => Element\DateTime::class,
+        'DateTime'       => Element\DateTime::class,
         'datetimelocal'  => Element\DateTimeLocal::class,
+        'dateTimeLocal'  => Element\DateTimeLocal::class,
+        'DateTimeLocal'  => Element\DateTimeLocal::class,
         'datetimeselect' => Element\DateTimeSelect::class,
+        'dateTimeSelect' => Element\DateTimeSelect::class,
+        'DateTimeSelect' => Element\DateTimeSelect::class,
         'element'        => Element::class,
+        'Element'        => Element::class,
         'email'          => Element\Email::class,
+        'Email'          => Element\Email::class,
         'fieldset'       => Fieldset::class,
+        'Fieldset'       => Fieldset::class,
         'file'           => Element\File::class,
+        'File'           => Element\File::class,
         'form'           => Form::class,
+        'Form'           => Form::class,
         'hidden'         => Element\Hidden::class,
+        'Hidden'         => Element\Hidden::class,
         'image'          => Element\Image::class,
+        'Image'          => Element\Image::class,
         'month'          => Element\Month::class,
+        'Month'          => Element\Month::class,
         'monthselect'    => Element\MonthSelect::class,
+        'monthSelect'    => Element\MonthSelect::class,
+        'MonthSelect'    => Element\MonthSelect::class,
         'multicheckbox'  => Element\MultiCheckbox::class,
+        'multiCheckbox'  => Element\MultiCheckbox::class,
+        'MultiCheckbox'  => Element\MultiCheckbox::class,
+        'multiCheckBox'  => Element\MultiCheckbox::class,
+        'MultiCheckBox'  => Element\MultiCheckbox::class,
         'number'         => Element\Number::class,
+        'Number'         => Element\Number::class,
         'password'       => Element\Password::class,
+        'Password'       => Element\Password::class,
         'radio'          => Element\Radio::class,
+        'Radio'          => Element\Radio::class,
         'range'          => Element\Range::class,
+        'Range'          => Element\Range::class,
         'search'         => Element\Search::class,
+        'Search'         => Element\Search::class,
         'select'         => Element\Select::class,
+        'Select'         => Element\Select::class,
         'submit'         => Element\Submit::class,
+        'Submit'         => Element\Submit::class,
         'tel'            => Element\Tel::class,
+        'Tel'            => Element\Tel::class,
         'text'           => Element\Text::class,
+        'Text'           => Element\Text::class,
         'textarea'       => Element\Textarea::class,
+        'Textarea'       => Element\Textarea::class,
         'time'           => Element\Time::class,
+        'Time'           => Element\Time::class,
         'url'            => Element\Url::class,
+        'Url'            => Element\Url::class,
         'week'           => Element\Week::class,
+        'Week'           => Element\Week::class,
 
         // Legacy Zend Framework aliases
         \Zend\Form\Element\Button::class => Element\Button::class,
@@ -250,35 +290,13 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
     protected $instanceOf = ElementInterface::class;
 
     /**
-     * Constructor
-     *
-     * Overrides parent constructor in order to add the initializer methods injectFactory()
-     * and callElementInit().
-     *
-     * @param null|ConfigInterface|ContainerInterface $configOrContainerInstance
-     * @param array $v3config If $configOrContainerInstance is a container, this
-     *     value will be passed to the parent constructor.
-     */
-    public function __construct($configInstanceOrParentLocator = null, array $v3config = [])
-    {
-        // Provide default initializers, ensuring correct order
-        array_unshift($this->initializers, [$this, 'injectFactory']);
-        array_push($this->initializers, [$this, 'callElementInit']);
-
-        parent::__construct($configInstanceOrParentLocator, $v3config);
-    }
-
-    /**
      * Inject the factory to any element that implements FormFactoryAwareInterface
      *
-     * @param mixed $instance Instance to inspect and potentially inject.
-     * @param ContainerInterface $container Container passed to initializer.
+     * @param ContainerInterface $container
+     * @param mixed $instance Instance to inspect and optionally inject.
      */
-    public function injectFactory($instance, ContainerInterface $container)
+    public function injectFactory(ContainerInterface $container, $instance)
     {
-        // Need to retrieve the parent container
-        $container = $container->getServiceLocator() ?: $container;
-
         if (! $instance instanceof FormFactoryAwareInterface) {
             return;
         }
@@ -295,10 +313,10 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
     /**
      * Call init() on any element that implements InitializableInterface
      *
-     * @param mixed $instance Instance to inspect and optionally initialize.
      * @param ContainerInterface $container
+     * @param mixed $instance Instance to inspect and optionally initialize.
      */
-    public function callElementInit($instance, ContainerInterface $container)
+    public function callElementInit(ContainerInterface $container, $instance)
     {
         if ($instance instanceof InitializableInterface) {
             $instance->init();
@@ -314,33 +332,37 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
      * - alias $name to $invokableClass
      *
      * @param string $name
-     * @param string $invokableClass
-     * @param null|bool $shared Ignored.
-     * @return $this
+     * @param null|string $class
+     * @return void
      */
-    public function setInvokableClass($name, $invokableClass, $shared = null)
+    public function setInvokableClass($name, $class = null)
     {
-        if (! $this->has($invokableClass)) {
-            $this->setFactory($invokableClass, ElementFactory::class);
+        $class = $class ?: $name;
+
+        if (! $this->has($class)) {
+            $this->setFactory($class, ElementFactory::class);
         }
 
-        if ($invokableClass !== $name) {
-            $this->setAlias($name, $invokableClass);
+        if ($class === $name) {
+            return;
         }
 
-        return $this;
+        $this->setAlias($name, $class);
     }
 
     /**
-     * Validate the plugin is of the expected type.
+     * Validate the plugin is of the expected type (v3).
      *
-     * @param mixed $plugin
-     * @throws Exception\InvalidElementException
+     * Validates against `$instanceOf`.
+     *
+     * @param  mixed $plugin
+     * @throws InvalidServiceException
+     * @return void
      */
-    public function validatePlugin($plugin)
+    public function validate($plugin)
     {
         if (! $plugin instanceof $this->instanceOf) {
-            throw new Exception\InvalidElementException(sprintf(
+            throw new InvalidServiceException(sprintf(
                 '%s can only create instances of %s; %s is invalid',
                 get_class($this),
                 $this->instanceOf,
@@ -350,14 +372,14 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
     }
 
     /**
-     * Overrides parent::addInitializer in order to ensure default initializers are in expected positions.
+     * Overrides parent::configure in order to ensure default initializers are in expected positions.
      *
      * Always pushes `injectFactory` to top of initializer stack, and
      * `callElementInit` to the bottom.
      *
      * {@inheritDoc}
      */
-    public function addInitializer($initializer, $topOfStack = true)
+    public function configure(array $config)
     {
         $firstInitializer = [$this, 'injectFactory'];
         $lastInitializer  = [$this, 'callElementInit'];
@@ -369,11 +391,69 @@ class FormElementManagerV2Polyfill extends AbstractPluginManager
             unset($this->initializers[$index]);
         }
 
-        parent::addInitializer($initializer, $topOfStack);
+        parent::configure($config);
 
         array_unshift($this->initializers, $firstInitializer);
         array_push($this->initializers, $lastInitializer);
 
         return $this;
+    }
+    /**
+     * Try to pull hydrator from the creation context, or instantiates it from its name
+     *
+     * @param  string $hydratorName
+     * @return mixed
+     * @throws Exception\DomainException
+     */
+    public function getHydratorFromName($hydratorName)
+    {
+        $services = $this->creationContext;
+
+        if ($services && $services->has('HydratorManager')) {
+            $hydrators = $services->get('HydratorManager');
+            if ($hydrators->has($hydratorName)) {
+                return $hydrators->get($hydratorName);
+            }
+        }
+
+        if ($services && $services->has($hydratorName)) {
+            return $services->get($hydratorName);
+        }
+
+        if (! class_exists($hydratorName)) {
+            throw new Exception\DomainException(sprintf(
+                'Expects string hydrator name to be a valid class name; received "%s"',
+                $hydratorName
+            ));
+        }
+
+        $hydrator = new $hydratorName;
+        return $hydrator;
+    }
+
+    /**
+     * Try to pull factory from the creation context, or instantiates it from its name
+     *
+     * @param  string $factoryName
+     * @return mixed
+     * @throws Exception\DomainException
+     */
+    public function getFactoryFromName($factoryName)
+    {
+        $services = $this->creationContext;
+
+        if ($services && $services->has($factoryName)) {
+            return $services->get($factoryName);
+        }
+
+        if (! class_exists($factoryName)) {
+            throw new Exception\DomainException(sprintf(
+                'Expects string factory name to be a valid class name; received "%s"',
+                $factoryName
+            ));
+        }
+
+        $factory = new $factoryName;
+        return $factory;
     }
 }

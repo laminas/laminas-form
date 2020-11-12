@@ -83,13 +83,6 @@ class FormElementManagerTest extends TestCase
         return InvalidElementException::class;
     }
 
-    public function testStringCreationOptions()
-    {
-        $args = 'foo';
-        $element = $this->manager->get('element', $args);
-        $this->assertEquals('foo', $element->getName(), 'The argument is string');
-    }
-
     public function testArrayCreationOptions()
     {
         $args = [
@@ -229,18 +222,6 @@ class FormElementManagerTest extends TestCase
             $this->assertArrayHasKey('laminastestformtestassetelementwithfilter', $factories);
             $this->assertEquals(ElementFactory::class, $factories['laminastestformtestassetelementwithfilter']);
         }
-    }
-
-    public function testAutoAddInvokableClass()
-    {
-        $instance = $this->manager->get(
-            TestAsset\ConstructedElement::class,
-            ['constructedKey' => 'constructedKey']
-        );
-        $this->assertEquals('constructedelement', $instance->getName());
-        $this->assertEquals([
-            'constructedKey' => 'constructedKey',
-        ], $instance->getOptions());
     }
 
     public function testAllAliasesShouldBeCanonicalized()

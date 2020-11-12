@@ -11,7 +11,7 @@ namespace Laminas\Form;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Config;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 use function is_array;
@@ -20,22 +20,13 @@ use function method_exists;
 class FormElementManagerFactory implements FactoryInterface
 {
     /**
-     * laminas-servicemanager v2 support for invocation options.
-     *
-     * @param array
-     */
-    protected $creationOptions;
-
-    /**
      * {@inheritDoc}
      *
      * @return AbstractPluginManager
      */
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
-        $pluginManager = $this->isV3Container()
-            ? new FormElementManager\FormElementManagerV3Polyfill($container, $options ?: [])
-            : new FormElementManager\FormElementManagerV2Polyfill($container, $options ?: []);
+        $pluginManager = new \Laminas\Form\FormElementManager($container, $options ?: []);
 
         // If this is in a laminas-mvc application, the ServiceListener will inject
         // merged configuration during bootstrap.
@@ -59,40 +50,5 @@ class FormElementManagerFactory implements FactoryInterface
         (new Config($config['form_elements']))->configureServiceManager($pluginManager);
 
         return $pluginManager;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return AbstractPluginManager
-     */
-    public function createService(ServiceLocatorInterface $container, $name = null, $requestedName = null)
-    {
-        return $this(
-            $container,
-            $requestedName ?: __NAMESPACE__ . '\FormElementManager',
-            $this->creationOptions
-        );
-    }
-
-    /**
-     * laminas-servicemanager v2 support for invocation options.
-     *
-     * @param array $options
-     * @return void
-     */
-    public function setCreationOptions(array $options)
-    {
-        $this->creationOptions = $options;
-    }
-
-    /**
-     * Are we running under laminas-servicemanager v3?
-     *
-     * @return bool
-     */
-    private function isV3Container()
-    {
-        return method_exists(AbstractPluginManager::class, 'configure');
     }
 }
