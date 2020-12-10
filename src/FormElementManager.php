@@ -277,13 +277,6 @@ class FormElementManager extends AbstractPluginManager
     protected $sharedByDefault = false;
 
     /**
-     * Don't share form elements by default (v2)
-     *
-     * @var bool
-     */
-    protected $shareByDefault = false;
-
-    /**
      * Interface all plugins managed by this class must implement.
      * @var string
      */
