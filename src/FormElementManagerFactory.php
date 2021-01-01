@@ -23,6 +23,8 @@ class FormElementManagerFactory implements FactoryInterface
      * laminas-servicemanager v2 support for invocation options.
      *
      * @param array
+     *
+     * @deprecated Call \Laminas\Form\FormElementManagerFactory::__invoke with 3rd parameter as options instead
      */
     protected $creationOptions;
 
@@ -78,6 +80,8 @@ class FormElementManagerFactory implements FactoryInterface
      *
      * @param array $options
      * @return void
+     *
+     * @deprecated Call \Laminas\Form\FormElementManagerFactory::__invoke with 3rd parameter as options instead
      */
     public function setCreationOptions(array $options)
     {
