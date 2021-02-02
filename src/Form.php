@@ -687,7 +687,7 @@ class Form extends Fieldset implements FormInterface
     /**
      * Retrieve input filter used by this form
      *
-     * @return null|InputFilterInterface
+     * @return InputFilterInterface
      */
     public function getInputFilter()
     {
