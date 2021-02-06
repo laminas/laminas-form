@@ -7,7 +7,7 @@ laminas-form element manager.
 The example is based on the [tutorial application](https://docs.laminas.dev/tutorials/getting-started/overview/)
 which builds an album inventory system.
 
-Before starting, make sure laminas-form is installed and configured.
+Before starting, make sure laminas-form is [installed and configured](../installation.md).
 
 ## Create Form
 
