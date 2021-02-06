@@ -3,6 +3,7 @@ site_dir: docs/html
 nav:
     - Home: index.md
     - Introduction: intro.md
+    - Installation: installation.md
     - "Quick Start": quick-start.md
     - Reference:
         - Elements:
@@ -90,3 +91,6 @@ site_description: "Validate and display simple and complex forms, casting forms 
 repo_url: 'https://github.com/laminas/laminas-form'
 extra:
     project: Components
+    installation:
+        config_provider_class: 'Laminas\Form\ConfigProvider'
+        module_class: 'Laminas\Form\Module'
