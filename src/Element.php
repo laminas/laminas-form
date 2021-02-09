@@ -62,6 +62,12 @@ class Element implements
      * @var mixed
      */
     protected $value;
+    
+    /**
+     * 
+     * @var boolean
+     */
+    protected $hasValue = false;
 
     /**
      * @param  null|int|string   $name    Optional name for the element
@@ -311,6 +317,8 @@ class Element implements
     public function setValue($value)
     {
         $this->value = $value;
+        $this->hasValue = true;
+        
         return $this;
     }
 
@@ -513,5 +521,14 @@ class Element implements
     public function getMessages()
     {
         return $this->messages;
+    }
+    
+    /**
+     * 
+     * @return boolean
+     */
+    public function hasValue()
+    {
+        return $this->hasValue;
     }
 }
