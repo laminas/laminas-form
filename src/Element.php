@@ -62,9 +62,8 @@ class Element implements
      * @var mixed
      */
     protected $value;
-    
+
     /**
-     * 
      * @var boolean
      */
     protected $hasValue = false;
@@ -318,7 +317,7 @@ class Element implements
     {
         $this->value = $value;
         $this->hasValue = true;
-        
+
         return $this;
     }
 
@@ -522,9 +521,8 @@ class Element implements
     {
         return $this->messages;
     }
-    
+
     /**
-     * 
      * @return boolean
      */
     public function hasValue()
