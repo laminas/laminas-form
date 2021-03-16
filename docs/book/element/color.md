@@ -29,11 +29,11 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Color::class,
-	'name' => 'color',
-	'options' => [
-		'label' => 'Background color',
-	],
+    'type' => Element\Color::class,
+    'name' => 'color',
+    'options' => [
+        'label' => 'Background color',
+    ],
 ]);
 ```
 

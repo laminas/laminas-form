@@ -34,16 +34,16 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Range::class,
-	'name' => 'range',
-	'options' => [
-		'label' => 'Minimum and Maximum Amount',
-	],
-	'attributes' => [
-		'min' => 0, // default minimum is 0
-		'max' => 100, // default maximum is 100
-		'step' => 1, // default interval is 1
-	],
+    'type' => Element\Range::class,
+    'name' => 'range',
+    'options' => [
+        'label' => 'Minimum and Maximum Amount',
+    ],
+    'attributes' => [
+        'min' => 0, // default minimum is 0
+        'max' => 100, // default maximum is 100
+        'step' => 1, // default interval is 1
+    ],
 ]);
 ```
 

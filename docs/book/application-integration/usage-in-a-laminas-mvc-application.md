@@ -168,7 +168,7 @@ for the application, extend the configuration of the module.
 Add the following lines to the module configuration file, e.g.
 `module/Album/config/module.config.php`:
 
-<pre class="language-php" data-line="6-7"><code>
+```php
 namespace Album;
 
 return [
@@ -180,7 +180,7 @@ return [
     ],
     // …
 ];
-</code></pre>
+```
 
 ## Create View Script
 

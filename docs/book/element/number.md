@@ -34,16 +34,16 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Number::class,
-	'name' => 'quantity',
-	'options' => [
-		'label' => 'Quantity',
-	],
-	'attributes' => [
-		'min' => '0',
-		'max' => '10',
-		'step' => '1', // default step interval is 1
-	],
+    'type' => Element\Number::class,
+    'name' => 'quantity',
+    'options' => [
+        'label' => 'Quantity',
+    ],
+    'attributes' => [
+        'min' => '0',
+        'max' => '10',
+        'step' => '1', // default step interval is 1
+    ],
 ]);
 ```
 

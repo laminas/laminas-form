@@ -55,6 +55,7 @@ The specific view helpers are responsible to determine what exactly should be tr
 (e. g. the Label in the FormLabel view helper or the "title" HTML attribute).
 
 If you want to have certain HTML attribute values translated you can mark them as "translatable":
+
 ```php
 // mark one attribute as translatable
 $this->formLabel()->addTranslatableAttribute('data-translate-me');
@@ -64,6 +65,7 @@ $this->formLabel()->addTranslatableAttributePrefix('data-translatable-');
 ```
 
 Or you can mark them as translatable for all view helpers (e. g. the title attribute):
+
 ```php
 // mark one attribute as translatable
 \Laminas\Form\View\Helper\AbstractHelper->addDefaultTranslatableAttribute('title');
