@@ -30,13 +30,13 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Csrf::class,
-	'name' => 'csrf',
-	'options' => [
-		'csrf_options' => [
-			'timeout' => 600,
-		],
-	],
+    'type' => Element\Csrf::class,
+    'name' => 'csrf',
+    'options' => [
+        'csrf_options' => [
+            'timeout' => 600,
+        ],
+    ],
 ]);
 ```
 
@@ -61,4 +61,4 @@ Method signature                                          | Description
 `setCsrfValidatorOptions(array $options) : void`          | Set the options that are used by the CSRF validator.
 `getCsrfValidatorOptions() : array`                       | Get the options that are used by the CSRF validator.
 `setCsrfValidator(Laminas\Validator\Csrf $validator) : void` | Override the default CSRF validator by setting another one.
-`getCsrfValidator() : Laminas\Validator\Csrf `               | Get the CSRF validator.
+`getCsrfValidator() : Laminas\Validator\Csrf`               | Get the CSRF validator.

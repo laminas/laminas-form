@@ -31,11 +31,11 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Tel::class,
-	'name' => 'phone',
-	'options' => [
-		'label' => 'Phone',
-	],
+    'type' => Element\Tel::class,
+    'name' => 'phone',
+    'options' => [
+        'label' => 'Phone',
+    ],
 ]);
 ```
 

@@ -29,11 +29,11 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Url::class,
-	'name' => 'webpage-url',
-	'options' => [
-		'label' => 'Webpage URL',
-	],
+    'type' => Element\Url::class,
+    'name' => 'webpage-url',
+    'options' => [
+        'label' => 'Webpage URL',
+    ],
 ]);
 ```
 

@@ -26,10 +26,10 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Hidden::class,
-	'name' => 'my-hidden',
-	'attributes' => [
-		'value' => 'foo',
-	],
+    'type' => Element\Hidden::class,
+    'name' => 'my-hidden',
+    'attributes' => [
+        'value' => 'foo',
+    ],
 ]);
 ```
