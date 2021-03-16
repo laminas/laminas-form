@@ -37,17 +37,17 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Date::class,
-	'name' => 'appointment-date',
-	'options' => [
-		'label' => 'Appointment Date',
-		'format' => 'Y-m-d',
-	],
-	'attributes' => [
-		'min' => '2012-01-01',
-		'max' => '2020-01-01',
-		'step' => '1', // days; default step interval is 1 day
-	],
+    'type' => Element\Date::class,
+    'name' => 'appointment-date',
+    'options' => [
+        'label' => 'Appointment Date',
+        'format' => 'Y-m-d',
+    ],
+    'attributes' => [
+        'min' => '2012-01-01',
+        'max' => '2020-01-01',
+        'step' => '1', // days; default step interval is 1 day
+    ],
 ]);
 ```
 

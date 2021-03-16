@@ -34,16 +34,16 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Week::class,
-	'name' => 'week',
-	'options' => [
-		'label' => 'Week',
-	],
-	'attributes' => [
-		'min' => '2012-W01',
-		'max' => '2020-W01',
-		'step' => '1', // weeks; default step interval is 1 week
-	],
+    'type' => Element\Week::class,
+    'name' => 'week',
+    'options' => [
+        'label' => 'Week',
+    ],
+    'attributes' => [
+        'min' => '2012-W01',
+        'max' => '2020-W01',
+        'step' => '1', // weeks; default step interval is 1 week
+    ],
 ]);
 ```
 

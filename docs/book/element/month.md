@@ -34,16 +34,16 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Month::class,
-	'name' => 'month',
-	'options' => [
-		'label' => 'Month',
-	],
-	'attributes' => [
-		'min' => '2012-12',
-		'max' => '2020-01',
-		'step' => '1', // months; default step interval is 1 month
-	],
+    'type' => Element\Month::class,
+    'name' => 'month',
+    'options' => [
+        'label' => 'Month',
+    ],
+    'attributes' => [
+        'min' => '2012-12',
+        'max' => '2020-01',
+        'step' => '1', // months; default step interval is 1 month
+    ],
 ]);
 ```
 

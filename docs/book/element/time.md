@@ -37,17 +37,17 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Time::class,
-	'name' => 'time',
-	'options'=> [
-		'label'  => 'Time',
-		'format' => 'H:i:s',
-	],
-	'attributes' => [
-		'min' => '00:00:00',
-		'max' => '23:59:59',
-		'step' => '60', // seconds; default step interval is 60 seconds
-	],
+    'type' => Element\Time::class,
+    'name' => 'time',
+    'options'=> [
+        'label'  => 'Time',
+        'format' => 'H:i:s',
+    ],
+    'attributes' => [
+        'min' => '00:00:00',
+        'max' => '23:59:59',
+        'step' => '60', // seconds; default step interval is 60 seconds
+    ],
 ]);
 ```
 
