@@ -39,23 +39,23 @@ $form = new Form('my-form');
 
 // Single email address:
 $form->add([
-	'type' => Element\Email::class,
-	'name' => 'email',
-	'options' => [
+    'type' => Element\Email::class,
+    'name' => 'email',
+    'options' => [
         'label' => 'Email Address',
-	],
+    ],
 ]);
 
 // Comma separated list of emails:
 $form->add([
-	'type' => Element\Email::class,
-	'name' => 'emails',
-	'options' => [
-		'label' => 'Email Addresses',
-	],
-	'attributes' => [
+    'type' => Element\Email::class,
+    'name' => 'emails',
+    'options' => [
+        'label' => 'Email Addresses',
+    ],
+    'attributes' => [
         'multiple' => true,
-	],
+    ],
 ]);
 ```
 

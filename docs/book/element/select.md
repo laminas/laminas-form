@@ -18,10 +18,10 @@ use Laminas\Form\Form;
 $select = new Element\Select('language');
 $select->setLabel('Which is your mother tongue?');
 $select->setValueOptions([
-	'0' => 'French',
-	'1' => 'English',
-	'2' => 'Japanese',
-	'3' => 'Chinese',
+    '0' => 'French',
+    '1' => 'English',
+    '2' => 'Japanese',
+    '3' => 'Chinese',
 ]);
 
 $form = new Form('language');
@@ -36,17 +36,17 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Select::class,
-	'name' => 'language',
-	'options' => [
-		'label' => 'Which is your mother tongue?',
-		'value_options' => [
-			'0' => 'French',
-			'1' => 'English',
-			'2' => 'Japanese',
-			'3' => 'Chinese',
-		],
-	],
+    'type' => Element\Select::class,
+    'name' => 'language',
+    'options' => [
+        'label' => 'Which is your mother tongue?',
+        'value_options' => [
+            '0' => 'French',
+            '1' => 'English',
+            '2' => 'Japanese',
+            '3' => 'Chinese',
+        ],
+    ],
 ]);
 ```
 
@@ -59,18 +59,18 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Select::class,
-	'name' => 'language',
-	'options' => [
-		'label' => 'Which is your mother tongue?',
+    'type' => Element\Select::class,
+    'name' => 'language',
+    'options' => [
+        'label' => 'Which is your mother tongue?',
         'empty_option' => 'Please choose your language',
-		'value_options' => [
-			'0' => 'French',
-			'1' => 'English',
-			'2' => 'Japanese',
-			'3' => 'Chinese',
-		],
-	],
+        'value_options' => [
+            '0' => 'French',
+            '1' => 'English',
+            '2' => 'Japanese',
+            '3' => 'Chinese',
+        ],
+    ],
 ]);
 ```
 

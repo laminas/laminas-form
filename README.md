@@ -1,7 +1,6 @@
 # laminas-form
 
-[![Build Status](https://travis-ci.com/laminas/laminas-form.svg?branch=master)](https://travis-ci.com/laminas/laminas-form)
-[![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-form/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-form?branch=master)
+[![Build Status](https://github.com/laminas/laminas-form/workflows/Continuous%20Integration/badge.svg)](https://github.com/laminas/laminas-form/actions?query=workflow%3A"Continuous+Integration")
 
 laminas-form is intended primarily as a bridge between your domain models and
 the View Layer. It composes a thin layer of objects representing form elements,

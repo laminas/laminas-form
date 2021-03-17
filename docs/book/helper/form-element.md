@@ -5,7 +5,7 @@ helpers depending on the type of the `Laminas\Form\Element` provided. For instan
 if the provided element had a type of "text", the `FormElement` helper will
 retrieve and use the `FormText` helper to render the element.
 
-## Basic usage:
+## Basic usage
 
 ```php
 use Laminas\Form\Form;

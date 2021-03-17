@@ -29,11 +29,11 @@ use Laminas\Form\Form;
 
 $form = new Form('my-form');
 $form->add([
-	'type' => Element\Search::class,
-	'name' => 'search',
-	'options' => [
-		'label' => 'Search',
-	],
+    'type' => Element\Search::class,
+    'name' => 'search',
+    'options' => [
+        'label' => 'Search',
+    ],
 ]);
 ```
 
