@@ -144,6 +144,20 @@
                     
                         
                             <li class="subnavigation__list-item ">
+                                <a href="../installation/" class="subnavigation__link">Installation</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
                                 <a href="../quick-start/" class="subnavigation__link">Quick Start</a>
                             </li>
                         
@@ -705,7 +719,7 @@
             </div>
 
             
-            <div class="col-4 text-sm-right">
+            <div class="col-4 text-right">
                 
                     
 
@@ -806,7 +820,7 @@
 reusable framework components provide a convenient and secure way for handling
 file uploads in your projects.</p>
 <blockquote>
-<h3>Limited to POST uploads</h3>
+<h3 id="limited-to-post-uploads">Limited to POST uploads</h3>
 <p>The file upload features described here are specifically for forms using the
 <code>POST</code> method.  laminas-form does not currently provide specific support for
 handling uploads via the <code>PUT</code> method, but it is possible with vanilla PHP.
@@ -822,7 +836,7 @@ for form processing, but with some slight caveats that will be described below.<
 <li>Create a <strong>view template</strong> with a <code>&lt;form&gt;</code> containing a file input.</li>
 <li>Process the form within a <strong>Controller action</strong> (laminas-mvc) or in a <strong>Request Handler</strong> (Mezzio).</li>
 </ul>
-<h3>The Form and InputFilter</h3>
+<h3 id="the-form-and-inputfilter">The Form and InputFilter</h3>
 <p>Here we define a <code>Laminas\Form\Element\File</code> input in a <code>Form</code> extension named
 <code>UploadForm</code>.</p>
 <pre class="highlight"><code class="language-php">use Laminas\Form\Element;
@@ -846,7 +860,6 @@ class UploadForm extends Form
         $this-&gt;add($file);
     }
 }</code></pre>
-
 <p>The <code>File</code> element provides several automated features:</p>
 <ul>
 <li>The form's <code>enctype</code> will automatically be set to <code>multipart/form-data</code> when
@@ -857,7 +870,7 @@ class UploadForm extends Form
   to securely validate that the file is actually an uploaded file, and to report
   any upload errors to the user.</li>
 </ul>
-<h3>The View Template</h3>
+<h3 id="the-view-template">The View Template</h3>
 <p>In the view template, we render the <code>&lt;form&gt;</code>, a file input (with label and
 errors), and a submit button.</p>
 <pre class="highlight"><code class="language-php">&lt;!-- File: upload-form.phtml --&gt;
@@ -876,7 +889,6 @@ errors), and a submit button.</p>
     &lt;button&gt;Submit&lt;/button&gt;
 
 &lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
-
 <p>When rendered, the HTML should look similar to:</p>
 <pre class="highlight"><code class="language-html">&lt;form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data"&gt;
     &lt;div class="form-element"&gt;
@@ -886,8 +898,7 @@ errors), and a submit button.</p>
 
     &lt;button&gt;Submit&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-
-<h3>The Controller Action</h3>
+<h3 id="the-controller-action">The Controller Action</h3>
 <p>When using laminas-mvc, the final step will be to instantiate the <code>UploadForm</code> and
 process any postbacks in a controller action.</p>
 <p>The form processing in the controller action will be similar to normal forms,
@@ -916,7 +927,6 @@ the other post data.</p>
 
     return ['form' =&gt; $form];
 }</code></pre>
-
 <p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return:</p>
 <pre class="highlight"><code class="language-php">array(1) {
     ["image-file"] =&gt; array(5) {
@@ -927,9 +937,8 @@ the other post data.</p>
         ["size"]     =&gt; int(14908679)
     }
 }</code></pre>
-
 <blockquote>
-<h3>Using nested array notation for uploads</h3>
+<h3 id="using-nested-array-notation-for-uploads">Using nested array notation for uploads</h3>
 <p>It is suggested that you always use the <code>Laminas\Http\PhpEnvironment\Request</code>
 object to retrieve and merge the <code>$_FILES</code> information with the form, instead
 of using <code>$_FILES</code> directly,  due to how the file information is
@@ -961,13 +970,12 @@ array(1) {
         }
     }
 }</code></pre>
-
 <p><a href="https://docs.laminas.dev/laminas-inputfilter/file-input/"><code>Laminas\InputFilter\FileInput</code></a> expects the file data be in this
 re-mapped array format.</p>
 <p>Note: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7</a> also remaps the <code>$_FILES</code>
 array in this way.</p>
 </blockquote>
-<h3>Mezzio Request Handler</h3>
+<h3 id="mezzio-request-handler">Mezzio Request Handler</h3>
 <p>If you are using a <a href="https://www.php-fig.org/psr/psr-15/">PSR-15</a> request handler
 with <a href="https://www.php-fig.org/psr/psr-7/">PSR-7</a> request payload, the final step
 involves merging <code>$request-&gt;getParsedBody()</code> with
@@ -999,12 +1007,11 @@ involves merging <code>$request-&gt;getParsedBody()</code> with
         ]);
     );
 }</code></pre>
-
 <p>Upon a successful file upload, <code>$form-&gt;getData()</code> would return array including
 the file field name as a key, and a new instance of <code>UploadedFileInterface</code> as
 its value.</p>
 <blockquote>
-<h3>Further operations on the uploaded file</h3>
+<h3 id="further-operations-on-the-uploaded-file">Further operations on the uploaded file</h3>
 <p>After running <code>isValid()</code> on the form instance, you should no longer trust the
 <code>UploadedFileInterface</code> instance stored in the PSR-7 <code>$request</code> to perform further
 operations on the uploaded file. The file may be moved by one of the filters
@@ -1028,7 +1035,7 @@ manage the file inputs and save off valid uploads until the entire form is
 valid.</p>
 <p>Changing our earlier example to use the <code>fileprg()</code> plugin will require two
 changes.</p>
-<h3>RenameUpload filter</h3>
+<h3 id="renameupload-filter">RenameUpload filter</h3>
 <p>First, we need to add a <code>RenameUpload</code> filter to our form's file input, with
 details on where the valid files should be stored:</p>
 <pre class="highlight"><code class="language-php">use Laminas\InputFilter;
@@ -1073,13 +1080,12 @@ class UploadForm extends Form
         $this-&gt;setInputFilter($inputFilter);
     }
 }</code></pre>
-
 <p>The <code>filerenameupload</code> options above would cause an uploaded file to be
 renamed and moved to: <code>./data/tmpuploads/avatar_4b3403665fea6.png</code>.</p>
 <p>See the <a href="http://docs.laminas.dev/laminas-filter/file/#renameupload">RenameUpload filter</a>
 documentation for more information on its supported options.</p>
 <blockquote>
-<h3>Further operations on the uploaded file</h3>
+<h3 id="further-operations-on-the-uploaded-file_1">Further operations on the uploaded file</h3>
 <p>If the file is coming in as a PSR-7 payload, the move operation will be
 performed on the passed <code>UploadedFileInterface</code> instance. Therefore, it will
 contain an expired stream and outdated target file name. After running this filter,
@@ -1087,7 +1093,7 @@ contain an expired stream and outdated target file name. After running this filt
 use the new instance of <code>UploadedFileInterface</code> returned from the filter
 invocation.</p>
 </blockquote>
-<h3>Call the fileprg plugin</h3>
+<h3 id="call-the-fileprg-plugin">Call the fileprg plugin</h3>
 <p>Next, we need to update our controller action to use the <code>fileprg</code> plugin:</p>
 <pre class="highlight"><code class="language-php">public function uploadFormAction()
 {
@@ -1122,7 +1128,6 @@ invocation.</p>
         'tempFile' =&gt; $tempFile,
     ];
 }</code></pre>
-
 <p>Behind the scenes, the <code>FilePRG</code> plugin will:</p>
 <ul>
 <li>Run the Form's filters, namely the <code>RenameUpload</code> filter, to move the files
@@ -1133,7 +1138,7 @@ invocation.</p>
   validation errors.</li>
 </ul>
 <blockquote>
-<h3>User notifications</h3>
+<h3 id="user-notifications">User notifications</h3>
 <p>In the case of a partially valid form, it is up to the developer whether to
 notify the user that files have been uploaded or not. For example, you may
 wish to hide the form input and/or display the file information. These things
@@ -1204,7 +1209,6 @@ class UploadForm extends Form
         $this-&gt;setInputFilter($inputFilter);
     }
 }</code></pre>
-
 <p>You do not need to do anything special with the validators and filters to
 support multiple file uploads. All of the files that are uploaded will have the
 same validators and filters run against them automatically (from logic within
@@ -1228,7 +1232,6 @@ session.upload_progress.enabled = On
 session.upload_progress.freq =  "1%"
 session.upload_progress.min_freq = "1"
 ; Also make certain 'upload_tmp_dir' is writable</code></pre>
-
 <p>When uploading a file with a form POST, you must also include the progress
 identifier in a hidden input. The <a href="../helper/upload-progress-helpers/">file upload progress view helpers</a>
 provides a convenient way to add the hidden input based on your handler type.</p>
@@ -1249,7 +1252,6 @@ provides a convenient way to add the hidden input based on your handler type.</p
     &lt;button&gt;Submit&lt;/button&gt;
 
 &lt;?= $this-&gt;form()-&gt;closeTag() ?&gt;</code></pre>
-
 <p>When rendered, the HTML should look similar to:</p>
 <pre class="highlight"><code class="language-html">&lt;form name="upload-form" id="upload-form" method="post" enctype="multipart/form-data"&gt;
     &lt;input type="hidden" id="progress_key" name="PHP_SESSION_UPLOAD_PROGRESS" value="12345abcde"&gt;
@@ -1261,7 +1263,6 @@ provides a convenient way to add the hidden input based on your handler type.</p
 
     &lt;button&gt;Submit&lt;/button&gt;
 &lt;/form&gt;</code></pre>
-
 <p>There are a few different methods for getting progress information to the
 browser (long vs. short polling). Here we will use short polling since it is
 simpler and less taxing on server resources, though keep in mind it is not as
@@ -1285,9 +1286,8 @@ information:</p>
 //    "message"  : "10kB / 200kB",
 //    "done"     : false
 //}</code></pre>
-
 <blockquote>
-<h3>Performance overhead</h3>
+<h3 id="performance-overhead">Performance overhead</h3>
 <p>This is <em>not</em> the most efficient way of providing upload progress, since each
 polling request must go through the Laminas bootstrap process. A better
 example would be to use a standalone php file in the public folder that
@@ -1400,7 +1400,6 @@ $(function() {
     });
 });
 &lt;/script&gt;</code></pre>
-
 <p>And finally, our controller action can be modified to return form status and
 validation messages in JSON format if we see the 'isAjax' post parameter (which
 was set in the JavaScript just before submit):</p>
@@ -1448,7 +1447,6 @@ was set in the JavaScript just before submit):</p>
 
     return array('form' =&gt; $form);
 }</code></pre>
-
 <h2 id="additional-info">Additional Info</h2>
 <p>Related documentation:</p>
 <ul>
@@ -1544,6 +1542,20 @@ was set in the JavaScript just before submit):</p>
                         
                             <li class="subnavigation__list-item ">
                                 <a href="../intro/" class="subnavigation__link">Introduction</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../installation/" class="subnavigation__link">Installation</a>
                             </li>
                         
                     
@@ -2083,6 +2095,7 @@ was set in the JavaScript just before submit):</p>
         </ul>
     </div>
 
+                    
                 
             </div>
         </div>
@@ -2155,7 +2168,7 @@ was set in the JavaScript just before submit):</p>
                         <p>
                             <!--Built with love by the Laminas team with the help of our
                             <a href="https://github.com/laminas/laminas-form/graphs/contributors">contributors</a>.<br>-->
-                            &copy; 2020 <a href="https://getlaminas.org/">Laminas Project</a> a Series of LF Projects, LLC.
+                            &copy; 2021 <a href="https://getlaminas.org/">Laminas Project</a> a Series of LF Projects, LLC.
                         </p>
                     </div>
                 </div>
