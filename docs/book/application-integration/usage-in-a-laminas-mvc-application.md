@@ -32,12 +32,12 @@ class AlbumForm extends Form implements InputFilterProviderInterface
         // Title
         $this->add([
             'name'    => 'title',
-            'type'    => Text:class,
+            'type'    => Text::class,
             'options' => [
                 'label' => 'Title',
             ],
         ]);
-    
+
         // …
     }
 
