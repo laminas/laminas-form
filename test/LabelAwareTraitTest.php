@@ -7,6 +7,7 @@
  */
 namespace LaminasTest\Form;
 
+use Laminas\Form\LabelAwareTrait;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
@@ -18,9 +19,11 @@ class LabelAwareTraitTest extends TestCase
 {
     public function testSetLabelAttributes()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
-        $this->assertAttributeEquals(null, 'labelAttributes', $object);
+        $this->assertNull($object->getLabelAttributes());
 
         $labelAttributes = [
             'test',
@@ -29,7 +32,7 @@ class LabelAwareTraitTest extends TestCase
 
         $object->setLabelAttributes($labelAttributes);
 
-        $this->assertAttributeEquals($labelAttributes, 'labelAttributes', $object);
+        $this->assertSame($labelAttributes, $object->getLabelAttributes());
     }
 
     public function testGetEmptyLabelAttributes()

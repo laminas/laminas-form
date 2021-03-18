@@ -15,7 +15,7 @@ use function sprintf;
 
 class FormSubmitTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormSubmitHelper();
         parent::setUp();
@@ -33,8 +33,8 @@ class FormSubmitTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="submit"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="submit"', $markup);
     }
 
     public function testGeneratesSubmitInputTagRegardlessOfElementType()
@@ -42,42 +42,42 @@ class FormSubmitTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="submit"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="submit"', $markup);
     }
 
     public function validAttributes()
     {
         return [
-            ['name', 'assertContains'],
-            ['accept', 'assertNotContains'],
-            ['alt', 'assertNotContains'],
-            ['autocomplete', 'assertNotContains'],
-            ['autofocus', 'assertContains'],
-            ['checked', 'assertNotContains'],
-            ['dirname', 'assertNotContains'],
-            ['disabled', 'assertContains'],
-            ['form', 'assertContains'],
-            ['formaction', 'assertContains'],
-            ['formenctype', 'assertContains'],
-            ['formmethod', 'assertContains'],
-            ['formnovalidate', 'assertContains'],
-            ['formtarget', 'assertContains'],
-            ['height', 'assertNotContains'],
-            ['list', 'assertNotContains'],
-            ['max', 'assertNotContains'],
-            ['maxlength', 'assertNotContains'],
-            ['min', 'assertNotContains'],
-            ['multiple', 'assertNotContains'],
-            ['pattern', 'assertNotContains'],
-            ['placeholder', 'assertNotContains'],
-            ['readonly', 'assertNotContains'],
-            ['required', 'assertNotContains'],
-            ['size', 'assertNotContains'],
-            ['src', 'assertNotContains'],
-            ['step', 'assertNotContains'],
-            ['value', 'assertContains'],
-            ['width', 'assertNotContains'],
+            ['name', 'assertStringContainsString'],
+            ['accept', 'assertStringNotContainsString'],
+            ['alt', 'assertStringNotContainsString'],
+            ['autocomplete', 'assertStringNotContainsString'],
+            ['autofocus', 'assertStringContainsString'],
+            ['checked', 'assertStringNotContainsString'],
+            ['dirname', 'assertStringNotContainsString'],
+            ['disabled', 'assertStringContainsString'],
+            ['form', 'assertStringContainsString'],
+            ['formaction', 'assertStringContainsString'],
+            ['formenctype', 'assertStringContainsString'],
+            ['formmethod', 'assertStringContainsString'],
+            ['formnovalidate', 'assertStringContainsString'],
+            ['formtarget', 'assertStringContainsString'],
+            ['height', 'assertStringNotContainsString'],
+            ['list', 'assertStringNotContainsString'],
+            ['max', 'assertStringNotContainsString'],
+            ['maxlength', 'assertStringNotContainsString'],
+            ['min', 'assertStringNotContainsString'],
+            ['multiple', 'assertStringNotContainsString'],
+            ['pattern', 'assertStringNotContainsString'],
+            ['placeholder', 'assertStringNotContainsString'],
+            ['readonly', 'assertStringNotContainsString'],
+            ['required', 'assertStringNotContainsString'],
+            ['size', 'assertStringNotContainsString'],
+            ['src', 'assertStringNotContainsString'],
+            ['step', 'assertStringNotContainsString'],
+            ['value', 'assertStringContainsString'],
+            ['width', 'assertStringNotContainsString'],
         ];
     }
 
@@ -141,9 +141,9 @@ class FormSubmitTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertContains('<input', $markup);
-        $this->assertContains('name="foo"', $markup);
-        $this->assertContains('type="submit"', $markup);
+        $this->assertStringContainsString('<input', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
+        $this->assertStringContainsString('type="submit"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()
@@ -168,6 +168,6 @@ class FormSubmitTest extends CommonTestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('value="translated&#x20;content"', $markup);
+        $this->assertStringContainsString('value="translated&#x20;content"', $markup);
     }
 }

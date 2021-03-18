@@ -15,7 +15,7 @@ use function sprintf;
 
 class FormInputTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormInputHelper();
         parent::setUp();
@@ -33,8 +33,8 @@ class FormInputTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="text"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="text"', $markup);
     }
 
     public function testGeneratesInputTagWithElementsTypeAttribute()
@@ -42,42 +42,42 @@ class FormInputTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="email"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="email"', $markup);
     }
 
     public function inputTypes()
     {
         return [
-            ['text', 'assertContains'],
-            ['button', 'assertContains'],
-            ['checkbox', 'assertContains'],
-            ['file', 'assertContains'],
-            ['hidden', 'assertContains'],
-            ['image', 'assertContains'],
-            ['password', 'assertContains'],
-            ['radio', 'assertContains'],
-            ['reset', 'assertContains'],
-            ['select', 'assertContains'],
-            ['submit', 'assertContains'],
-            ['color', 'assertContains'],
-            ['date', 'assertContains'],
-            ['datetime', 'assertContains'],
-            ['datetime-local', 'assertContains'],
-            ['email', 'assertContains'],
-            ['month', 'assertContains'],
-            ['number', 'assertContains'],
-            ['range', 'assertContains'],
-            ['search', 'assertContains'],
-            ['tel', 'assertContains'],
-            ['time', 'assertContains'],
-            ['url', 'assertContains'],
-            ['week', 'assertContains'],
-            ['lunar', 'assertNotContains'],
-            ['name', 'assertNotContains'],
-            ['username', 'assertNotContains'],
-            ['address', 'assertNotContains'],
-            ['homepage', 'assertNotContains'],
+            ['text', 'assertStringContainsString'],
+            ['button', 'assertStringContainsString'],
+            ['checkbox', 'assertStringContainsString'],
+            ['file', 'assertStringContainsString'],
+            ['hidden', 'assertStringContainsString'],
+            ['image', 'assertStringContainsString'],
+            ['password', 'assertStringContainsString'],
+            ['radio', 'assertStringContainsString'],
+            ['reset', 'assertStringContainsString'],
+            ['select', 'assertStringContainsString'],
+            ['submit', 'assertStringContainsString'],
+            ['color', 'assertStringContainsString'],
+            ['date', 'assertStringContainsString'],
+            ['datetime', 'assertStringContainsString'],
+            ['datetime-local', 'assertStringContainsString'],
+            ['email', 'assertStringContainsString'],
+            ['month', 'assertStringContainsString'],
+            ['number', 'assertStringContainsString'],
+            ['range', 'assertStringContainsString'],
+            ['search', 'assertStringContainsString'],
+            ['tel', 'assertStringContainsString'],
+            ['time', 'assertStringContainsString'],
+            ['url', 'assertStringContainsString'],
+            ['week', 'assertStringContainsString'],
+            ['lunar', 'assertStringNotContainsString'],
+            ['name', 'assertStringNotContainsString'],
+            ['username', 'assertStringNotContainsString'],
+            ['address', 'assertStringNotContainsString'],
+            ['homepage', 'assertStringNotContainsString'],
         ];
     }
 
@@ -99,118 +99,118 @@ class FormInputTest extends CommonTestCase
     public function validAttributes()
     {
         return [
-            ['accept', 'assertContains'],
-            ['accesskey', 'assertContains'],
-            ['alt', 'assertContains'],
-            ['autocomplete', 'assertContains'],
-            ['autofocus', 'assertContains'],
-            ['checked', 'assertContains'],
-            ['class', 'assertContains'],
-            ['contenteditable', 'assertContains'],
-            ['contextmenu', 'assertContains'],
-            ['dir', 'assertContains'],
-            ['dirname', 'assertContains'],
-            ['disabled', 'assertContains'],
-            ['draggable', 'assertContains'],
-            ['dropzone', 'assertContains'],
-            ['form', 'assertContains'],
-            ['formaction', 'assertContains'],
-            ['formenctype', 'assertContains'],
-            ['formmethod', 'assertContains'],
-            ['formnovalidate', 'assertContains'],
-            ['formtarget', 'assertContains'],
-            ['height', 'assertContains'],
-            ['hidden', 'assertContains'],
-            ['id', 'assertContains'],
-            ['lang', 'assertContains'],
-            ['list', 'assertContains'],
-            ['max', 'assertContains'],
-            ['maxlength', 'assertContains'],
-            ['min', 'assertContains'],
-            ['multiple', 'assertContains'],
-            ['name', 'assertContains'],
-            ['onabort', 'assertContains'],
-            ['onblur', 'assertContains'],
-            ['oncanplay', 'assertContains'],
-            ['oncanplaythrough', 'assertContains'],
-            ['onchange', 'assertContains'],
-            ['onclick', 'assertContains'],
-            ['oncontextmenu', 'assertContains'],
-            ['ondblclick', 'assertContains'],
-            ['ondrag', 'assertContains'],
-            ['ondragend', 'assertContains'],
-            ['ondragenter', 'assertContains'],
-            ['ondragleave', 'assertContains'],
-            ['ondragover', 'assertContains'],
-            ['ondragstart', 'assertContains'],
-            ['ondrop', 'assertContains'],
-            ['ondurationchange', 'assertContains'],
-            ['onemptied', 'assertContains'],
-            ['onended', 'assertContains'],
-            ['onerror', 'assertContains'],
-            ['onfocus', 'assertContains'],
-            ['oninput', 'assertContains'],
-            ['oninvalid', 'assertContains'],
-            ['onkeydown', 'assertContains'],
-            ['onkeypress', 'assertContains'],
-            ['onkeyup', 'assertContains'],
-            ['onload', 'assertContains'],
-            ['onloadeddata', 'assertContains'],
-            ['onloadedmetadata', 'assertContains'],
-            ['onloadstart', 'assertContains'],
-            ['onmousedown', 'assertContains'],
-            ['onmousemove', 'assertContains'],
-            ['onmouseout', 'assertContains'],
-            ['onmouseover', 'assertContains'],
-            ['onmouseup', 'assertContains'],
-            ['onmousewheel', 'assertContains'],
-            ['onpause', 'assertContains'],
-            ['onplay', 'assertContains'],
-            ['onplaying', 'assertContains'],
-            ['onprogress', 'assertContains'],
-            ['onratechange', 'assertContains'],
-            ['onreadystatechange', 'assertContains'],
-            ['onreset', 'assertContains'],
-            ['onscroll', 'assertContains'],
-            ['onseeked', 'assertContains'],
-            ['onseeking', 'assertContains'],
-            ['onselect', 'assertContains'],
-            ['onshow', 'assertContains'],
-            ['onstalled', 'assertContains'],
-            ['onsubmit', 'assertContains'],
-            ['onsuspend', 'assertContains'],
-            ['ontimeupdate', 'assertContains'],
-            ['onvolumechange', 'assertContains'],
-            ['onwaiting', 'assertContains'],
-            ['role', 'assertContains'],
+            ['accept', 'assertStringContainsString'],
+            ['accesskey', 'assertStringContainsString'],
+            ['alt', 'assertStringContainsString'],
+            ['autocomplete', 'assertStringContainsString'],
+            ['autofocus', 'assertStringContainsString'],
+            ['checked', 'assertStringContainsString'],
+            ['class', 'assertStringContainsString'],
+            ['contenteditable', 'assertStringContainsString'],
+            ['contextmenu', 'assertStringContainsString'],
+            ['dir', 'assertStringContainsString'],
+            ['dirname', 'assertStringContainsString'],
+            ['disabled', 'assertStringContainsString'],
+            ['draggable', 'assertStringContainsString'],
+            ['dropzone', 'assertStringContainsString'],
+            ['form', 'assertStringContainsString'],
+            ['formaction', 'assertStringContainsString'],
+            ['formenctype', 'assertStringContainsString'],
+            ['formmethod', 'assertStringContainsString'],
+            ['formnovalidate', 'assertStringContainsString'],
+            ['formtarget', 'assertStringContainsString'],
+            ['height', 'assertStringContainsString'],
+            ['hidden', 'assertStringContainsString'],
+            ['id', 'assertStringContainsString'],
+            ['lang', 'assertStringContainsString'],
+            ['list', 'assertStringContainsString'],
+            ['max', 'assertStringContainsString'],
+            ['maxlength', 'assertStringContainsString'],
+            ['min', 'assertStringContainsString'],
+            ['multiple', 'assertStringContainsString'],
+            ['name', 'assertStringContainsString'],
+            ['onabort', 'assertStringContainsString'],
+            ['onblur', 'assertStringContainsString'],
+            ['oncanplay', 'assertStringContainsString'],
+            ['oncanplaythrough', 'assertStringContainsString'],
+            ['onchange', 'assertStringContainsString'],
+            ['onclick', 'assertStringContainsString'],
+            ['oncontextmenu', 'assertStringContainsString'],
+            ['ondblclick', 'assertStringContainsString'],
+            ['ondrag', 'assertStringContainsString'],
+            ['ondragend', 'assertStringContainsString'],
+            ['ondragenter', 'assertStringContainsString'],
+            ['ondragleave', 'assertStringContainsString'],
+            ['ondragover', 'assertStringContainsString'],
+            ['ondragstart', 'assertStringContainsString'],
+            ['ondrop', 'assertStringContainsString'],
+            ['ondurationchange', 'assertStringContainsString'],
+            ['onemptied', 'assertStringContainsString'],
+            ['onended', 'assertStringContainsString'],
+            ['onerror', 'assertStringContainsString'],
+            ['onfocus', 'assertStringContainsString'],
+            ['oninput', 'assertStringContainsString'],
+            ['oninvalid', 'assertStringContainsString'],
+            ['onkeydown', 'assertStringContainsString'],
+            ['onkeypress', 'assertStringContainsString'],
+            ['onkeyup', 'assertStringContainsString'],
+            ['onload', 'assertStringContainsString'],
+            ['onloadeddata', 'assertStringContainsString'],
+            ['onloadedmetadata', 'assertStringContainsString'],
+            ['onloadstart', 'assertStringContainsString'],
+            ['onmousedown', 'assertStringContainsString'],
+            ['onmousemove', 'assertStringContainsString'],
+            ['onmouseout', 'assertStringContainsString'],
+            ['onmouseover', 'assertStringContainsString'],
+            ['onmouseup', 'assertStringContainsString'],
+            ['onmousewheel', 'assertStringContainsString'],
+            ['onpause', 'assertStringContainsString'],
+            ['onplay', 'assertStringContainsString'],
+            ['onplaying', 'assertStringContainsString'],
+            ['onprogress', 'assertStringContainsString'],
+            ['onratechange', 'assertStringContainsString'],
+            ['onreadystatechange', 'assertStringContainsString'],
+            ['onreset', 'assertStringContainsString'],
+            ['onscroll', 'assertStringContainsString'],
+            ['onseeked', 'assertStringContainsString'],
+            ['onseeking', 'assertStringContainsString'],
+            ['onselect', 'assertStringContainsString'],
+            ['onshow', 'assertStringContainsString'],
+            ['onstalled', 'assertStringContainsString'],
+            ['onsubmit', 'assertStringContainsString'],
+            ['onsuspend', 'assertStringContainsString'],
+            ['ontimeupdate', 'assertStringContainsString'],
+            ['onvolumechange', 'assertStringContainsString'],
+            ['onwaiting', 'assertStringContainsString'],
+            ['role', 'assertStringContainsString'],
         ];
     }
 
     public function validAttributes2()
     {
         return [
-            ['pattern', 'assertContains'],
-            ['placeholder', 'assertContains'],
-            ['readonly', 'assertContains'],
-            ['required', 'assertContains'],
-            ['size', 'assertContains'],
-            ['spellcheck', 'assertContains'],
-            ['src', 'assertContains'],
-            ['step', 'assertContains'],
-            ['style', 'assertContains'],
-            ['tabindex', 'assertContains'],
-            ['title', 'assertContains'],
-            ['value', 'assertContains'],
-            ['width', 'assertContains'],
-            ['xml:base', 'assertContains'],
-            ['xml:lang', 'assertContains'],
-            ['xml:space', 'assertContains'],
-            ['data-some-key', 'assertContains'],
-            ['option', 'assertNotContains'],
-            ['optgroup', 'assertNotContains'],
-            ['arbitrary', 'assertNotContains'],
-            ['meta', 'assertNotContains'],
-            ['role', 'assertContains'],
+            ['pattern', 'assertStringContainsString'],
+            ['placeholder', 'assertStringContainsString'],
+            ['readonly', 'assertStringContainsString'],
+            ['required', 'assertStringContainsString'],
+            ['size', 'assertStringContainsString'],
+            ['spellcheck', 'assertStringContainsString'],
+            ['src', 'assertStringContainsString'],
+            ['step', 'assertStringContainsString'],
+            ['style', 'assertStringContainsString'],
+            ['tabindex', 'assertStringContainsString'],
+            ['title', 'assertStringContainsString'],
+            ['value', 'assertStringContainsString'],
+            ['width', 'assertStringContainsString'],
+            ['xml:base', 'assertStringContainsString'],
+            ['xml:lang', 'assertStringContainsString'],
+            ['xml:space', 'assertStringContainsString'],
+            ['data-some-key', 'assertStringContainsString'],
+            ['option', 'assertStringNotContainsString'],
+            ['optgroup', 'assertStringNotContainsString'],
+            ['arbitrary', 'assertStringNotContainsString'],
+            ['meta', 'assertStringNotContainsString'],
+            ['role', 'assertStringContainsString'],
         ];
     }
 
@@ -365,7 +365,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
         $markup = $this->helper->render($element);
-        $this->assertNotContains('/>', $markup);
+        $this->assertStringNotContainsString('/>', $markup);
     }
 
     public function xhtmlDoctypes()
@@ -389,7 +389,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
         $markup = $this->helper->render($element);
-        $this->assertContains('/>', $markup);
+        $this->assertStringContainsString('/>', $markup);
     }
 
     /**
@@ -419,7 +419,7 @@ class FormInputTest extends CommonTestCase
         $element->setAttribute($attribute, true);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertContains(
+        $this->assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
@@ -430,13 +430,13 @@ class FormInputTest extends CommonTestCase
         $expect = sprintf('%s="%s"', $attribute, $off);
 
         if ($off !== '') {
-            $this->assertContains(
+            $this->assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
             );
         } else {
-            $this->assertNotContains(
+            $this->assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -447,7 +447,7 @@ class FormInputTest extends CommonTestCase
         $element->setAttribute($attribute, $on);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertContains(
+        $this->assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
@@ -458,13 +458,13 @@ class FormInputTest extends CommonTestCase
         $expect = sprintf('%s="%s"', $attribute, $off);
 
         if ($off !== '') {
-            $this->assertContains(
+            $this->assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
             );
         } else {
-            $this->assertNotContains(
+            $this->assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -476,8 +476,8 @@ class FormInputTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertContains('<input', $markup);
-        $this->assertContains('name="foo"', $markup);
+        $this->assertStringContainsString('<input', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()
@@ -506,7 +506,7 @@ class FormInputTest extends CommonTestCase
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertContains('placeholder="translated&#x20;string"', $markup);
+        $this->assertStringContainsString('placeholder="translated&#x20;string"', $markup);
     }
 
     public function testCanTranslateTitle()
@@ -527,11 +527,11 @@ class FormInputTest extends CommonTestCase
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertContains('title="translated&#x20;string"', $markup);
+        $this->assertStringContainsString('title="translated&#x20;string"', $markup);
     }
 
     /**
-     * @group 7166
+     * @group issue-7166
      */
     public function testPasswordValueShouldNotBeRendered()
     {
@@ -539,6 +539,6 @@ class FormInputTest extends CommonTestCase
         $element->setAttribute('type', 'password');
 
         $markup  = $this->helper->__invoke($element);
-        $this->assertContains('value=""', $markup);
+        $this->assertStringContainsString('value=""', $markup);
     }
 }

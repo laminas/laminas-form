@@ -17,7 +17,7 @@ use function substr_count;
 
 class FormMultiCheckboxTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormMultiCheckboxHelper();
         parent::setUp();
@@ -65,8 +65,8 @@ class FormMultiCheckboxTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
-            $this->assertContains(sprintf('>%s</label>', $label), $markup);
-            $this->assertContains(sprintf('value="%s"', $value), $markup);
+            $this->assertStringContainsString(sprintf('>%s</label>', $label), $markup);
+            $this->assertStringContainsString(sprintf('value="%s"', $value), $markup);
         }
     }
 
@@ -81,25 +81,25 @@ class FormMultiCheckboxTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<input'));
         $this->assertEquals(3, substr_count($markup, '<label'));
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             sprintf('>%s</label>', 'This is the first label'),
             $markup
         );
-        $this->assertContains(sprintf('value="%s"', 'value1'), $markup);
+        $this->assertStringContainsString(sprintf('value="%s"', 'value1'), $markup);
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             sprintf('>%s</label>', 'This is the second label (overridden)'),
             $markup
         );
-        $this->assertContains(sprintf('value="%s"', 'value2'), $markup);
+        $this->assertStringContainsString(sprintf('value="%s"', 'value2'), $markup);
         $this->assertEquals(1, substr_count($markup, 'class="label-class"'));
         $this->assertEquals(1, substr_count($markup, 'class="input-class"'));
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             sprintf('>%s</label>', 'This is the third label'),
             $markup
         );
-        $this->assertContains(sprintf('value="%s"', 'value3'), $markup);
+        $this->assertStringContainsString(sprintf('value="%s"', 'value3'), $markup);
     }
 
     public function testGenerateCheckBoxesAndHiddenElement()
@@ -118,8 +118,8 @@ class FormMultiCheckboxTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
-            $this->assertContains(sprintf('>%s</label>', $label), $markup);
-            $this->assertContains(sprintf('value="%s"', $value), $markup);
+            $this->assertStringContainsString(sprintf('>%s</label>', $label), $markup);
+            $this->assertStringContainsString(sprintf('value="%s"', $value), $markup);
         }
     }
 
@@ -129,9 +129,9 @@ class FormMultiCheckboxTest extends CommonTestCase
         $element->setAttribute('value', ['value1', 'value3']);
         $markup  = $this->helper->render($element);
 
-        $this->assertRegexp('#value="value1"\s+checked="checked"#', $markup);
-        $this->assertNotRegexp('#value="value2"\s+checked="checked"#', $markup);
-        $this->assertRegexp('#value="value3"\s+checked="checked"#', $markup);
+        $this->assertMatchesRegularExpression('#value="value1"\s+checked="checked"#', $markup);
+        $this->assertDoesNotMatchRegularExpression('#value="value2"\s+checked="checked"#', $markup);
+        $this->assertMatchesRegularExpression('#value="value3"\s+checked="checked"#', $markup);
     }
 
     public function testAllowsSpecifyingSeparator()
@@ -155,7 +155,7 @@ class FormMultiCheckboxTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
-            $this->assertContains(sprintf('<label>%s<', $label), $markup);
+            $this->assertStringContainsString(sprintf('<label>%s<', $label), $markup);
         }
     }
 
@@ -199,7 +199,7 @@ class FormMultiCheckboxTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertContains('foo&#x5B;&#x5D;', $markup);
+        $this->assertStringContainsString('foo&#x5B;&#x5D;', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()
@@ -224,7 +224,7 @@ class FormMultiCheckboxTest extends CommonTestCase
         ]);
 
         $markup = $this->helper->render($element);
-        $this->assertNotContains('type="hidden"', $markup);
+        $this->assertStringNotContainsString('type="hidden"', $markup);
         // Lack of error also indicates this test passes
     }
 
@@ -248,7 +248,7 @@ class FormMultiCheckboxTest extends CommonTestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
     }
 
     public function testTranslatorMethods()
@@ -298,9 +298,9 @@ class FormMultiCheckboxTest extends CommonTestCase
         $element->setValueOptions($options);
 
         $markup  = $this->helper->render($element);
-        $this->assertRegexp('#class="input-class" value="value2" checked="checked"#', $markup);
-        $this->assertNotRegexp('#class="input-class" value="value1" checked="checked"#', $markup);
-        $this->assertNotRegexp('#class="input-class" value="value3" checked="checked"#', $markup);
+        $this->assertMatchesRegularExpression('#class="input-class" value="value2" checked="checked"#', $markup);
+        $this->assertDoesNotMatchRegularExpression('#class="input-class" value="value1" checked="checked"#', $markup);
+        $this->assertDoesNotMatchRegularExpression('#class="input-class" value="value3" checked="checked"#', $markup);
     }
 
     public function testInvokeSetLabelPositionToAppend()
@@ -380,7 +380,7 @@ class FormMultiCheckboxTest extends CommonTestCase
             ],
         ]);
         $markup  = $this->helper->render($element);
-        $this->assertRegexp('#disabled="disabled" value="value1"#', $markup);
+        $this->assertMatchesRegularExpression('#disabled="disabled" value="value1"#', $markup);
     }
 
     public function testGetSelectedAttributeForGroupReturnTrue()
@@ -394,7 +394,7 @@ class FormMultiCheckboxTest extends CommonTestCase
             ],
         ]);
         $markup  = $this->helper->render($element);
-        $this->assertRegexp('#value="value1" checked="checked"#', $markup);
+        $this->assertMatchesRegularExpression('#value="value1" checked="checked"#', $markup);
     }
 
     public function testDisableEscapeHtmlHelper()
@@ -410,12 +410,12 @@ class FormMultiCheckboxTest extends CommonTestCase
             ],
         ]);
         $markup  = $this->helper->render($element);
-        $this->assertRegexp('#<span>label1</span>#', $markup);
+        $this->assertMatchesRegularExpression('#<span>label1</span>#', $markup);
     }
 
     /**
-     * @group 6649
-     * @group 6655
+     * @group issue-6649
+     * @group issue-6655
      */
     public function testRenderWithoutValueOptions()
     {

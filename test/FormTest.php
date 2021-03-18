@@ -10,6 +10,7 @@ namespace LaminasTest\Form;
 
 use ArrayObject;
 use Laminas\Form\Element;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\Factory;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
@@ -57,7 +58,7 @@ class FormTest extends TestCase
      */
     private $objectPropertyHydratorClass;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->arraySerializableHydratorClass = class_exists(ArraySerializableHydrator::class)
             ? ArraySerializableHydrator::class
@@ -203,11 +204,9 @@ class FormTest extends TestCase
         $this->assertSame($filter, $this->form->getInputFilter());
     }
 
-    /**
-     * @expectedException Laminas\Form\Exception\InvalidElementException
-     */
     public function testShouldThrowExceptionWhenGetInvalidElement()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->form->get('doesnt_exist');
     }
 
@@ -381,7 +380,7 @@ class FormTest extends TestCase
         $this->form->isValid();
 
         $data = $this->form->getData();
-        $this->assertInternalType('array', $data);
+        $this->assertIsArray($data);
     }
 
     /**
@@ -572,7 +571,7 @@ class FormTest extends TestCase
         $this->form->setData($validSet);
         $this->form->isValid();
         $data = $this->form->getData();
-        $this->assertInternalType('array', $data);
+        $this->assertIsArray($data);
         $this->assertCount(1, $data);
         $this->assertArrayHasKey('foo', $data);
         $this->assertEquals('abcde', $data['foo']);
@@ -1737,7 +1736,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group 4996
+     * @group issue-4996
      */
     public function testCanOverrideDefaultInputSettings()
     {
@@ -1751,7 +1750,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group 5007
+     * @group issue-5007
      */
     public function testComplexFormInputFilterMergesIntoExisting()
     {
@@ -1784,7 +1783,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group 5007
+     * @group issue-5007
      */
     public function testInputFilterOrderOfPrecedence1()
     {
@@ -1835,7 +1834,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group 5015
+     * @group issue-5015
      */
     public function testCanSetPreferFormInputFilterFlagViaSetOptions()
     {
@@ -1847,7 +1846,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group 5015
+     * @group issue-5015
      */
     public function testFactoryCanSetPreferFormInputFilterFlag()
     {
@@ -1864,7 +1863,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group 5028
+     * @group issue-5028
      */
     public function testPreferFormInputFilterFlagIsEnabledByDefault()
     {
@@ -1872,7 +1871,7 @@ class FormTest extends TestCase
     }
 
     /**
-     * @group 5050
+     * @group issue-5050
      */
     public function testFileInputFilterNotOverwritten()
     {

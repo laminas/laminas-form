@@ -35,7 +35,7 @@ class FormElementManagerTest extends TestCase
      */
     protected $manager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->manager = new FormElementManager(new ServiceManager());
     }
@@ -47,7 +47,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 3735
+     * @group issue-3735
      */
     public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement()
     {
@@ -81,13 +81,6 @@ class FormElementManagerTest extends TestCase
             return InvalidServiceException::class;
         }
         return InvalidElementException::class;
-    }
-
-    public function testStringCreationOptions()
-    {
-        $args = 'foo';
-        $element = $this->manager->get('element', $args);
-        $this->assertEquals('foo', $element->getName(), 'The argument is string');
     }
 
     public function testArrayCreationOptions()
@@ -126,7 +119,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 6132
+     * @group issue-6132
      */
     public function testSharedFormElementsAreNotInitializedMultipleTimes()
     {
@@ -153,8 +146,8 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 58
-     * @group 64
+     * @group issue-58
+     * @group issue-64
      */
     public function testInjectFactoryInitializerShouldBeRegisteredFirst()
     {
@@ -179,8 +172,8 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 58
-     * @group 64
+     * @group issue-58
+     * @group issue-64
      */
     public function testCallElementInitInitializerShouldBeRegisteredLast()
     {
@@ -205,7 +198,7 @@ class FormElementManagerTest extends TestCase
     }
 
     /**
-     * @group 62
+     * @group issue-62
      */
     public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory()
     {
@@ -229,18 +222,6 @@ class FormElementManagerTest extends TestCase
             $this->assertArrayHasKey('laminastestformtestassetelementwithfilter', $factories);
             $this->assertEquals(ElementFactory::class, $factories['laminastestformtestassetelementwithfilter']);
         }
-    }
-
-    public function testAutoAddInvokableClass()
-    {
-        $instance = $this->manager->get(
-            TestAsset\ConstructedElement::class,
-            ['constructedKey' => 'constructedKey']
-        );
-        $this->assertEquals('constructedelement', $instance->getName());
-        $this->assertEquals([
-            'constructedKey' => 'constructedKey',
-        ], $instance->getOptions());
     }
 
     public function testAllAliasesShouldBeCanonicalized()

@@ -23,7 +23,7 @@ use function class_exists;
 
 class FormAbstractServiceFactoryTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->objectPropertyHydratorClass = class_exists(ObjectPropertyHydrator::class)
             ? ObjectPropertyHydrator::class

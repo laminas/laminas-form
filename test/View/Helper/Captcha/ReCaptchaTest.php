@@ -18,7 +18,7 @@ use function getenv;
 
 class ReCaptchaTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         if (! getenv('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT to test PDF render');
@@ -57,8 +57,8 @@ class ReCaptchaTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertContains('type="hidden"', $markup);
-        $this->assertContains('value="g-recaptcha-response"', $markup);
+        $this->assertStringContainsString('type="hidden"', $markup);
+        $this->assertStringContainsString('value="g-recaptcha-response"', $markup);
     }
 
     public function testDoesNotRenderHiddenInputWhenNameIsRecaptchaDefault()
@@ -66,13 +66,13 @@ class ReCaptchaTest extends CommonTestCase
         $element = $this->getElement();
         $element->setName('g-recaptcha-response');
         $markup  = $this->helper->render($element);
-        $this->assertNotContains('type="hidden"', $markup);
+        $this->assertStringNotContainsString('type="hidden"', $markup);
     }
 
     public function testRendersReCaptchaMarkup()
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertContains($this->captcha->getService()->getHtml($element->getName()), $markup);
+        $this->assertStringContainsString($this->captcha->getService()->getHtml($element->getName()), $markup);
     }
 }

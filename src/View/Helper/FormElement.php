@@ -102,7 +102,7 @@ class FormElement extends BaseAbstractHelper
     public function render(ElementInterface $element)
     {
         $renderer = $this->getView();
-        if (! method_exists($renderer, 'plugin')) {
+        if ($renderer === null || ! method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
             return '';
         }

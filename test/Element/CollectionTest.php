@@ -47,7 +47,7 @@ class CollectionTest extends TestCase
     protected $form;
     protected $productFieldset;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->form = new FormCollection();
         $this->productFieldset = new ProductFieldset();
@@ -528,8 +528,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group 6585
-     * @group 6614
+     * @group issue-6585
+     * @group issue-6614
      */
     public function testAddingCollectionElementAfterBind()
     {
@@ -571,8 +571,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group 6585
-     * @group 6614
+     * @group issue-6585
+     * @group issue-6614
      */
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections()
     {
@@ -1273,8 +1273,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group laminas6263
-     * @group laminas6518
+     * @group issue-6263
+     * @group issue-6518
      */
     public function testCollectionProperlyHandlesAddingObjectsOfTypeElementInterface()
     {
@@ -1295,7 +1295,7 @@ class CollectionTest extends TestCase
         $result = $form->getData();
         $this->assertInstanceOf('ArrayAccess', $result);
         $this->assertArrayHasKey('text', $result);
-        $this->assertInternalType('array', $result['text']);
+        $this->assertIsArray($result['text']);
         $this->assertArrayHasKey(0, $result['text']);
         $this->assertEquals('Foo', $result['text'][0]);
         $this->assertArrayHasKey(1, $result['text']);
@@ -1305,8 +1305,8 @@ class CollectionTest extends TestCase
     /**
      * Unit test to ensure behavior of extract() method is unaffected by refactor
      *
-     * @group laminas6263
-     * @group laminas6518
+     * @group issue-6263
+     * @group issue-6518
      */
     public function testCollectionShouldSilentlyIgnorePopulatingFieldsetWithDisallowedObject()
     {
@@ -1344,7 +1344,7 @@ class CollectionTest extends TestCase
         $result = $form->getData();
         $this->assertInstanceOf('stdClass', $result);
         $this->assertObjectHasAttribute('collection', $result);
-        $this->assertInternalType('array', $result->collection);
+        $this->assertIsArray($result->collection);
         $this->assertCount(1, $result->collection);
         $this->assertInstanceOf('ArrayObject', $result->collection[0]);
         $this->assertArrayHasKey('test', $result->collection[0]);
@@ -1352,8 +1352,8 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @group 6263
-     * @group 6298
+     * @group issue-6263
+     * @group issue-6298
      */
     public function testCanHydrateObject()
     {
@@ -1367,7 +1367,7 @@ class CollectionTest extends TestCase
         ];
         $form->setData($data);
         $this->assertTrue($form->isValid());
-        $this->assertInternalType('array', $object['colors']);
+        $this->assertIsArray($object['colors']);
         $this->assertCount(1, $object['colors']);
     }
 

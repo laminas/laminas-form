@@ -20,11 +20,16 @@ use ReflectionMethod;
 
 class FormCollectionTest extends TestCase
 {
+    /**
+     * @var FormCollectionHelper
+     */
     public $helper;
-    public $form;
+    /**
+     * @var PhpRenderer
+     */
     public $renderer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormCollectionHelper();
 
@@ -58,8 +63,8 @@ class FormCollectionTest extends TestCase
         $collection->setShouldCreateTemplate(true);
 
         $markup = $this->helper->render($collection);
-        $this->assertContains('<span data-template', $markup);
-        $this->assertContains($collection->getTemplatePlaceholder(), $markup);
+        $this->assertStringContainsString('<span data-template', $markup);
+        $this->assertStringContainsString($collection->getTemplatePlaceholder(), $markup);
     }
 
     public function testDoesNotGenerateTemplateByDefault()
@@ -69,7 +74,7 @@ class FormCollectionTest extends TestCase
         $collection->setShouldCreateTemplate(false);
 
         $markup = $this->helper->render($collection);
-        $this->assertNotContains('<span data-template', $markup);
+        $this->assertStringNotContainsString('<span data-template', $markup);
     }
 
     public function testCorrectlyIndexElementsInCollection()
@@ -78,8 +83,8 @@ class FormCollectionTest extends TestCase
         $collection = $form->get('colors');
 
         $markup = $this->helper->render($collection);
-        $this->assertContains('name="colors&#x5B;0&#x5D;"', $markup);
-        $this->assertContains('name="colors&#x5B;1&#x5D;"', $markup);
+        $this->assertStringContainsString('name="colors&#x5B;0&#x5D;"', $markup);
+        $this->assertStringContainsString('name="colors&#x5B;1&#x5D;"', $markup);
     }
 
     public function testCorrectlyIndexNestedElementsInCollection()
@@ -88,9 +93,12 @@ class FormCollectionTest extends TestCase
         $collection = $form->get('fieldsets');
 
         $markup = $this->helper->render($collection);
-        $this->assertContains('fieldsets&#x5B;0&#x5D;&#x5B;field&#x5D;', $markup);
-        $this->assertContains('fieldsets&#x5B;1&#x5D;&#x5B;field&#x5D;', $markup);
-        $this->assertContains('fieldsets&#x5B;1&#x5D;&#x5B;nested_fieldset&#x5D;&#x5B;anotherField&#x5D;', $markup);
+        $this->assertStringContainsString('fieldsets&#x5B;0&#x5D;&#x5B;field&#x5D;', $markup);
+        $this->assertStringContainsString('fieldsets&#x5B;1&#x5D;&#x5B;field&#x5D;', $markup);
+        $this->assertStringContainsString(
+            'fieldsets&#x5B;1&#x5D;&#x5B;nested_fieldset&#x5D;&#x5B;anotherField&#x5D;',
+            $markup
+        );
     }
 
     public function testRenderWithCustomHelper()
@@ -105,8 +113,8 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->setElementHelper($elementHelper)->render($collection);
 
-        $this->assertContains('id="customcolors0"', $markup);
-        $this->assertContains('id="customcolors1"', $markup);
+        $this->assertStringContainsString('id="customcolors0"', $markup);
+        $this->assertStringContainsString('id="customcolors1"', $markup);
     }
 
     public function testRenderWithCustomFieldsetHelper()
@@ -118,27 +126,27 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->setFieldsetHelper($fieldsetHelper)->render($form);
 
-        $this->assertContains('id="customFieldsetcolors"', $markup);
-        $this->assertContains('id="customFieldsetfieldsets"', $markup);
+        $this->assertStringContainsString('id="customFieldsetcolors"', $markup);
+        $this->assertStringContainsString('id="customFieldsetfieldsets"', $markup);
     }
 
     /**
-     * @group 7167
+     * @group issue-7167
      */
     public function testShouldNotWrapAtSubInvokeHelper()
     {
-        $this->assertNotContains(
+        $this->assertStringNotContainsString(
             '<fieldset',
             $this->helper->__invoke($this->getForm(), false)
         );
     }
 
     /**
-     * @group 7167
+     * @group issue-7167
      */
     public function testShouldWrapAtRecursiveHelperCall()
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<fieldset',
             $this->helper->__invoke($this->getForm())
         );
@@ -175,8 +183,8 @@ class FormCollectionTest extends TestCase
         $collection->setShouldCreateTemplate(true);
 
         $markup = $this->helper->renderTemplate($collection);
-        $this->assertContains('<span data-template', $markup);
-        $this->assertContains($collection->getTemplatePlaceholder(), $markup);
+        $this->assertStringContainsString('<span data-template', $markup);
+        $this->assertStringContainsString($collection->getTemplatePlaceholder(), $markup);
     }
 
     public function testCanTranslateLegend()
@@ -196,7 +204,7 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertContains('>translated legend<', $markup);
+        $this->assertStringContainsString('>translated legend<', $markup);
     }
 
     public function testShouldWrapWithoutLabel()
@@ -207,7 +215,7 @@ class FormCollectionTest extends TestCase
         $this->helper->setShouldWrap(true);
 
         $markup = $this->helper->render($collection);
-        $this->assertContains('<fieldset>', $markup);
+        $this->assertStringContainsString('<fieldset>', $markup);
     }
 
     public function testRenderCollectionAttributes()
@@ -219,14 +227,14 @@ class FormCollectionTest extends TestCase
         $collection->setAttribute('id', 'some-identifier');
 
         $markup = $this->helper->render($collection);
-        $this->assertContains(' id="some-identifier"', $markup);
+        $this->assertStringContainsString(' id="some-identifier"', $markup);
     }
 
     public function testCanRenderFieldsetWithoutAttributes()
     {
         $form = $this->getForm();
         $html = $this->helper->render($form);
-        $this->assertContains('<fieldset>', $html);
+        $this->assertStringContainsString('<fieldset>', $html);
     }
 
     public function testCanRenderFieldsetWithAttributes()
@@ -237,17 +245,17 @@ class FormCollectionTest extends TestCase
             'class' => 'foo',
         ]);
         $html = $this->helper->render($form);
-        $this->assertRegexp('#<fieldset( [a-zA-Z]+\="[^"]+")+>#', $html);
-        $this->assertContains('id="foo-id"', $html);
-        $this->assertContains('class="foo"', $html);
+        $this->assertMatchesRegularExpression('#<fieldset( [a-zA-Z]+\="[^"]+")+>#', $html);
+        $this->assertStringContainsString('id="foo-id"', $html);
+        $this->assertStringContainsString('class="foo"', $html);
     }
 
     public function testCanRenderWithoutLegend()
     {
         $form = $this->getForm();
         $html = $this->helper->render($form);
-        $this->assertNotContains('<legend', $html);
-        $this->assertNotContains('</legend>', $html);
+        $this->assertStringNotContainsString('<legend', $html);
+        $this->assertStringNotContainsString('</legend>', $html);
     }
 
     public function testRendersLabelAsLegend()
@@ -255,8 +263,8 @@ class FormCollectionTest extends TestCase
         $form = $this->getForm();
         $form->setLabel('Foo');
         $html = $this->helper->render($form);
-        $this->assertRegExp('#<legend[^>]*>Foo#', $html);
-        $this->assertContains('</legend>', $html);
+        $this->assertMatchesRegularExpression('#<legend[^>]*>Foo#', $html);
+        $this->assertStringContainsString('</legend>', $html);
     }
 
     public function testCollectionIsWrappedByFieldsetWithoutLegend()
@@ -267,7 +275,7 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertNotContains('<legend>', $markup);
+        $this->assertStringNotContainsString('<legend>', $markup);
         $this->assertStringStartsWith('<fieldset>', $markup);
         $this->assertStringEndsWith('</fieldset>', $markup);
     }
@@ -281,7 +289,7 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertContains('<legend>foo</legend>', $markup);
+        $this->assertStringContainsString('<legend>foo</legend>', $markup);
         $this->assertStringStartsWith('<fieldset>', $markup);
         $this->assertStringEndsWith('</fieldset>', $markup);
     }
@@ -295,7 +303,7 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertNotContains('<legend>', $markup);
+        $this->assertStringNotContainsString('<legend>', $markup);
         $this->assertStringStartsWith('<div>', $markup);
         $this->assertStringEndsWith('</div>', $markup);
     }
@@ -310,7 +318,7 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertNotContains('<legend>', $markup);
+        $this->assertStringNotContainsString('<legend>', $markup);
         $this->assertStringStartsWith('<div><span', $markup);
         $this->assertStringEndsWith('</div>', $markup);
     }
@@ -325,7 +333,7 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertContains('<h1>foo</h1>', $markup);
+        $this->assertStringContainsString('<h1>foo</h1>', $markup);
         $this->assertStringStartsWith('<fieldset><h1>foo</h1>', $markup);
     }
 
@@ -338,8 +346,8 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertNotContains('<legend>', $markup);
-        $this->assertRegExp('/\<div class="foo">.*?<\/div>/', $markup);
+        $this->assertStringNotContainsString('<legend>', $markup);
+        $this->assertMatchesRegularExpression('/\<div class="foo">.*?<\/div>/', $markup);
     }
 
     public function testCollectionRendersTemplateWithoutWrapper()
@@ -352,8 +360,8 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertNotContains('<fieldset>', $markup);
-        $this->assertRegExp('/\<div class="foo">.*?<\/div>/', $markup);
+        $this->assertStringNotContainsString('<fieldset>', $markup);
+        $this->assertMatchesRegularExpression('/\<div class="foo">.*?<\/div>/', $markup);
     }
 
     public function testCollectionRendersFieldsetCorrectly()
@@ -367,20 +375,20 @@ class FormCollectionTest extends TestCase
 
         $markup = $this->helper->render($collection);
 
-        $this->assertNotContains('<fieldset>', $markup);
-        $this->assertRegExp('/\<div class="foo">.*?<\/div>/', $markup);
+        $this->assertStringNotContainsString('<fieldset>', $markup);
+        $this->assertMatchesRegularExpression('/\<div class="foo">.*?<\/div>/', $markup);
     }
 
     public function testGetterAndSetter()
     {
         $this->assertSame($this->helper, $this->helper->setWrapper('foo'));
-        $this->assertAttributeEquals('foo', 'wrapper', $this->helper);
+        $this->assertSame('foo', $this->helper->getWrapper());
         $this->assertEquals('foo', $this->helper->getWrapper());
         $this->assertSame($this->helper, $this->helper->setLabelWrapper('foo'));
-        $this->assertAttributeEquals('foo', 'labelWrapper', $this->helper);
+        $this->assertSame('foo', $this->helper->getLabelWrapper());
         $this->assertEquals('foo', $this->helper->getLabelWrapper());
         $this->assertSame($this->helper, $this->helper->setTemplateWrapper('foo'));
-        $this->assertAttributeEquals('foo', 'templateWrapper', $this->helper);
+        $this->assertSame('foo', $this->helper->getTemplateWrapper());
         $this->assertEquals('foo', $this->helper->getTemplateWrapper());
     }
 
@@ -390,7 +398,7 @@ class FormCollectionTest extends TestCase
         $collection = $form->get('colors');
         $collection->setLabel('<strong>Some label</strong>');
         $markup = $this->helper->render($collection);
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<fieldset(.*?)><legend>&lt;strong&gt;Some label&lt;/strong&gt;<\/legend>(.*?)<\/fieldset>#',
             $markup
         );
@@ -403,19 +411,23 @@ class FormCollectionTest extends TestCase
         $collection->setLabel('<strong>Some label</strong>');
         $collection->setLabelOptions(['disable_html_escape' => true]);
         $markup = $this->helper->render($collection);
-        $this->assertRegexp('#<fieldset(.*?)><legend><strong>Some label</strong><\/legend>(.*?)<\/fieldset>#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#<fieldset(.*?)><legend><strong>Some label</strong><\/legend>(.*?)<\/fieldset>#',
+            $markup
+        );
     }
 
     public function testForElementHelperNotInstanceOfHelperInterface()
     {
+        $method = new ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
+        $method->setAccessible(true);
+
         $this->expectException('RuntimeException');
         $this->expectExceptionMessage(
             'Invalid element helper set in FormCollection.'
             . ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
         );
 
-        $method = new ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
-        $method->setAccessible(true);
 
         $method->invokeArgs(new FormCollectionHelper(), []);
     }

@@ -9,6 +9,7 @@
 namespace LaminasTest\Form;
 
 use Laminas\Form\Factory;
+use Laminas\Form\FormFactoryAwareTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,14 +19,21 @@ class FormFactoryAwareTraitTest extends TestCase
 {
     public function testSetFormFactory()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\FormFactoryAwareTrait');
+        $object = new class {
+            use FormFactoryAwareTrait;
 
-        $this->assertAttributeEquals(null, 'factory', $object);
+            public function getFormFactory()
+            {
+                return $this->factory;
+            }
+        };
+
+        $this->assertNull($object->getFormFactory());
 
         $factory = new Factory;
 
         $object->setFormFactory($factory);
 
-        $this->assertAttributeEquals($factory, 'factory', $object);
+        $this->assertSame($factory, $object->getFormFactory());
     }
 }

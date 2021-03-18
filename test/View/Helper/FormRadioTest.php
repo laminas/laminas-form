@@ -16,7 +16,7 @@ use function substr_count;
 
 class FormRadioTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormRadioHelper();
         parent::setUp();
@@ -64,8 +64,8 @@ class FormRadioTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
-            $this->assertContains(sprintf('>%s</label>', $label), $markup);
-            $this->assertContains(sprintf('value="%s"', $value), $markup);
+            $this->assertStringContainsString(sprintf('>%s</label>', $label), $markup);
+            $this->assertStringContainsString(sprintf('value="%s"', $value), $markup);
         }
     }
 
@@ -80,25 +80,25 @@ class FormRadioTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<input'));
         $this->assertEquals(3, substr_count($markup, '<label'));
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             sprintf('>%s</label>', 'This is the first label'),
             $markup
         );
-        $this->assertContains(sprintf('value="%s"', 'value1'), $markup);
+        $this->assertStringContainsString(sprintf('value="%s"', 'value1'), $markup);
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             sprintf('>%s</label>', 'This is the second label (overridden)'),
             $markup
         );
-        $this->assertContains(sprintf('value="%s"', 'value2'), $markup);
+        $this->assertStringContainsString(sprintf('value="%s"', 'value2'), $markup);
         $this->assertEquals(1, substr_count($markup, 'class="label-class"'));
         $this->assertEquals(1, substr_count($markup, 'class="input-class"'));
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             sprintf('>%s</label>', 'This is the third label'),
             $markup
         );
-        $this->assertContains(sprintf('value="%s"', 'value3'), $markup);
+        $this->assertStringContainsString(sprintf('value="%s"', 'value3'), $markup);
     }
 
     public function testGenerateRadioOptionsAndHiddenElement()
@@ -117,8 +117,8 @@ class FormRadioTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
-            $this->assertContains(sprintf('>%s</label>', $label), $markup);
-            $this->assertContains(sprintf('value="%s"', $value), $markup);
+            $this->assertStringContainsString(sprintf('>%s</label>', $label), $markup);
+            $this->assertStringContainsString(sprintf('value="%s"', $value), $markup);
         }
     }
 
@@ -128,9 +128,9 @@ class FormRadioTest extends CommonTestCase
         $element->setAttribute('value', ['value1', 'value3']);
         $markup  = $this->helper->render($element);
 
-        $this->assertRegexp('#value="value1"\s+checked="checked"#', $markup);
-        $this->assertNotRegexp('#value="value2"\s+checked="checked"#', $markup);
-        $this->assertRegexp('#value="value3"\s+checked="checked"#', $markup);
+        $this->assertMatchesRegularExpression('#value="value1"\s+checked="checked"#', $markup);
+        $this->assertDoesNotMatchRegularExpression('#value="value2"\s+checked="checked"#', $markup);
+        $this->assertMatchesRegularExpression('#value="value3"\s+checked="checked"#', $markup);
     }
 
     public function testAllowsSpecifyingSeparator()
@@ -154,7 +154,7 @@ class FormRadioTest extends CommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
-            $this->assertContains(sprintf('<label>%s<', $label), $markup);
+            $this->assertStringContainsString(sprintf('<label>%s<', $label), $markup);
         }
     }
 
@@ -164,7 +164,7 @@ class FormRadioTest extends CommonTestCase
         $options = $element->getValueOptions();
         $markup  = $this->helper->render($element);
 
-        $this->assertNotContains('checked', $markup);
+        $this->assertStringNotContainsString('checked', $markup);
     }
 
     public function testAllowsSpecifyingLabelAttributes()
@@ -208,7 +208,7 @@ class FormRadioTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertNotContains('foo[]', $markup);
+        $this->assertStringNotContainsString('foo[]', $markup);
     }
 
     public function testCanTranslateContent()
@@ -231,7 +231,7 @@ class FormRadioTest extends CommonTestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
     }
 
     public function testTranslatorMethods()

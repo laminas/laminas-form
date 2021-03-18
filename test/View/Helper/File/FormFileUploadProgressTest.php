@@ -13,7 +13,7 @@ use LaminasTest\Form\View\Helper\CommonTestCase;
 
 class FormFileUploadProgressTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormFileUploadProgress();
         parent::setUp();
@@ -22,10 +22,10 @@ class FormFileUploadProgressTest extends CommonTestCase
     public function testReturnsNameIdAndValueAttributes()
     {
         $markup  = $this->helper->__invoke();
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="hidden"', $markup);
-        $this->assertContains('id="progress_key"', $markup);
-        $this->assertContains('name="UPLOAD_IDENTIFIER"', $markup);
-        $this->assertContains('value="', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="hidden"', $markup);
+        $this->assertStringContainsString('id="progress_key"', $markup);
+        $this->assertStringContainsString('name="UPLOAD_IDENTIFIER"', $markup);
+        $this->assertStringContainsString('value="', $markup);
     }
 }

@@ -24,7 +24,7 @@ class FormElementTest extends TestCase
     public $helper;
     public $renderer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormElementHelper();
 
@@ -87,8 +87,8 @@ class FormElementTest extends TestCase
         $element->setAttribute('src', 'http://zend.com/img.png');
         $markup  = $this->helper->render($element);
 
-        $this->assertContains('<input', $markup);
-        $this->assertContains('type="' . $type . '"', $markup);
+        $this->assertStringContainsString('<input', $markup);
+        $this->assertStringContainsString('type="' . $type . '"', $markup);
     }
 
     public function getMultiElements()
@@ -128,9 +128,9 @@ class FormElementTest extends TestCase
         $markup  = $this->helper->render($element);
 
         $this->assertEquals(3, substr_count($markup, '<' . $inputType), $markup);
-        $this->assertContains($additionalMarkup, $markup);
+        $this->assertStringContainsString($additionalMarkup, $markup);
         if ($type == 'select') {
-            $this->assertRegexp('#value="value2"[^>]*?(selected="selected")#', $markup);
+            $this->assertMatchesRegularExpression('#value="value2"[^>]*?(selected="selected")#', $markup);
         }
     }
 
@@ -141,7 +141,7 @@ class FormElementTest extends TestCase
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);
 
-        $this->assertContains($captcha->getLabel(), $markup);
+        $this->assertStringContainsString($captcha->getLabel(), $markup);
     }
 
     public function testRendersCsrfAsExpected()
@@ -163,8 +163,8 @@ class FormElementTest extends TestCase
 
         $markup    = $this->helper->render($element);
 
-        $this->assertRegexp('#<input[^>]*(type="hidden")#', $markup);
-        $this->assertRegexp('#<input[^>]*(value="' . $hash . '")#', $markup);
+        $this->assertMatchesRegularExpression('#<input[^>]*(type="hidden")#', $markup);
+        $this->assertMatchesRegularExpression('#<input[^>]*(value="' . $hash . '")#', $markup);
     }
 
     public function testRendersTextareaAsExpected()
@@ -174,8 +174,8 @@ class FormElementTest extends TestCase
         $element->setAttribute('value', 'Initial content');
         $markup  = $this->helper->render($element);
 
-        $this->assertContains('<textarea', $markup);
-        $this->assertContains('>Initial content<', $markup);
+        $this->assertStringContainsString('<textarea', $markup);
+        $this->assertStringContainsString('>Initial content<', $markup);
     }
 
     public function testRendersCollectionAsExpected()
@@ -184,7 +184,7 @@ class FormElementTest extends TestCase
         $element->setLabel('foo');
 
         $markup  = $this->helper->render($element);
-        $this->assertContains('<legend>foo</legend>', $markup);
+        $this->assertStringContainsString('<legend>foo</legend>', $markup);
     }
 
     public function testRendersButtonAsExpected()
@@ -193,8 +193,8 @@ class FormElementTest extends TestCase
         $element->setLabel('My Button');
         $markup  = $this->helper->render($element);
 
-        $this->assertContains('<button', $markup);
-        $this->assertContains('>My Button<', $markup);
+        $this->assertStringContainsString('<button', $markup);
+        $this->assertStringContainsString('>My Button<', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()

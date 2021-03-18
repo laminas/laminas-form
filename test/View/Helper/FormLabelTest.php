@@ -16,7 +16,7 @@ use function sprintf;
 
 class FormLabelTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormLabelHelper();
         parent::setUp();
@@ -45,7 +45,7 @@ class FormLabelTest extends CommonTestCase
         $markup = $this->helper->openTag($attributes);
 
         foreach ($attributes as $key => $value) {
-            $this->assertContains(sprintf('%s="%s"', $key, $value), $markup);
+            $this->assertStringContainsString(sprintf('%s="%s"', $key, $value), $markup);
         }
     }
 
@@ -59,7 +59,7 @@ class FormLabelTest extends CommonTestCase
     {
         $element = new Element('foo');
         $markup = $this->helper->openTag($element);
-        $this->assertContains('for="foo"', $markup);
+        $this->assertStringContainsString('for="foo"', $markup);
     }
 
     public function testPassingElementToOpenTagWillUseIdInForAttributeWhenPresent()
@@ -67,7 +67,7 @@ class FormLabelTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('id', 'bar');
         $markup = $this->helper->openTag($element);
-        $this->assertContains('for="bar"', $markup);
+        $this->assertStringContainsString('for="bar"', $markup);
     }
 
     public function testPassingElementToInvokeWillRaiseExceptionIfNoNameOrIdAttributePresent()
@@ -91,20 +91,20 @@ class FormLabelTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>The value for foo:<', $markup);
-        $this->assertContains('for="foo"', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('>The value for foo:<', $markup);
+        $this->assertStringContainsString('for="foo"', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testPassingElementAndContentToInvokeUsesContentForLabel()
     {
         $element = new Element('foo');
         $markup = $this->helper->__invoke($element, 'The value for foo:');
-        $this->assertContains('>The value for foo:<', $markup);
-        $this->assertContains('for="foo"', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('>The value for foo:<', $markup);
+        $this->assertStringContainsString('for="foo"', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testPassingElementAndContentAndFlagToInvokeUsesLabelAttribute()
@@ -112,11 +112,11 @@ class FormLabelTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
         $markup = $this->helper->__invoke($element, '<input type="text" id="foo" />', FormLabelHelper::PREPEND);
-        $this->assertContains('>The value for foo:<input', $markup);
-        $this->assertContains('for="foo"', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('></label>', $markup);
-        $this->assertContains('<input type="text" id="foo" />', $markup);
+        $this->assertStringContainsString('>The value for foo:<input', $markup);
+        $this->assertStringContainsString('for="foo"', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('></label>', $markup);
+        $this->assertStringContainsString('<input type="text" id="foo" />', $markup);
     }
 
     public function testCanAppendLabelContentUsingFlagToInvoke()
@@ -124,10 +124,10 @@ class FormLabelTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
         $markup = $this->helper->__invoke($element, '<input type="text" id="foo" />', FormLabelHelper::APPEND);
-        $this->assertContains('"foo" />The value for foo:</label>', $markup);
-        $this->assertContains('for="foo"', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('><input type="text" id="foo" />', $markup);
+        $this->assertStringContainsString('"foo" />The value for foo:</label>', $markup);
+        $this->assertStringContainsString('for="foo"', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('><input type="text" id="foo" />', $markup);
     }
 
     public function testsetLabelAttributes()
@@ -136,10 +136,10 @@ class FormLabelTest extends CommonTestCase
         $element->setLabel('The value for foo:');
         $element->setLabelAttributes(['id' => 'bar']);
         $markup = $this->helper->__invoke($element, '<input type="text" id="foo" />', FormLabelHelper::APPEND);
-        $this->assertContains('"foo" />The value for foo:</label>', $markup);
-        $this->assertContains('id="bar" for="foo"', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('><input type="text" id="foo" />', $markup);
+        $this->assertStringContainsString('"foo" />The value for foo:</label>', $markup);
+        $this->assertStringContainsString('id="bar" for="foo"', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('><input type="text" id="foo" />', $markup);
     }
 
     public function testPassingElementAndContextAndFlagToInvokeRaisesExceptionForMissingLabelAttribute()
@@ -173,7 +173,7 @@ class FormLabelTest extends CommonTestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
     }
 
     public function testTranslatorMethods()
@@ -195,7 +195,7 @@ class FormLabelTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value <a>for</a> foo:');
         $markup = $this->helper->__invoke($element);
-        $this->assertNotContains('<a>for</a>', $markup);
+        $this->assertStringNotContainsString('<a>for</a>', $markup);
     }
 
     public function testCanDisableLabelHtmlEscape()
@@ -204,7 +204,7 @@ class FormLabelTest extends CommonTestCase
         $element->setLabel('The value <a>for</a> foo:');
         $element->setLabelOptions(['disable_html_escape' => true]);
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('<a>for</a>', $markup);
+        $this->assertStringContainsString('<a>for</a>', $markup);
     }
 
     public function testAlwaysWrapIsDisabledByDefault()

@@ -17,10 +17,13 @@ use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
+use Prophecy\PhpUnit\ProphecyTrait;
 use function method_exists;
 
 class ServiceManagerTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testInitInitializerShouldBeCalledAfterAllOtherInitializers()
     {
         // Reproducing the behaviour of a full stack MVC + ModuleManager

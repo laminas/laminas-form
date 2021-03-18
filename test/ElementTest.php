@@ -10,6 +10,7 @@ namespace LaminasTest\Form;
 
 use ArrayObject;
 use Laminas\Form\Element;
+use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 use function array_merge;
@@ -264,12 +265,11 @@ class ElementTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testPassingWrongArgumentToSetLabelOptionsThrowsException()
     {
         $element = new Element();
+
+        $this->expectException(InvalidArgumentException::class);
         $element->setLabelOptions(null);
     }
 

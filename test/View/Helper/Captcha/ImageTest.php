@@ -27,7 +27,7 @@ class ImageTest extends CommonTestCase
     protected $tmpDir;
     protected $testDir;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
@@ -66,7 +66,7 @@ class ImageTest extends CommonTestCase
      *
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         // remove captcha images
         if (! isset($this->testDir)) {
@@ -115,8 +115,11 @@ class ImageTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertRegExp('#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#', $markup);
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
+            '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#',
+            $markup
+        );
+        $this->assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#',
             $markup
         );
@@ -126,14 +129,17 @@ class ImageTest extends CommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertRegExp('#(name="' . $element->getName() . '\&\#x5B\;input\&\#x5D\;").*?(type="text")#', $markup);
+        $this->assertMatchesRegularExpression(
+            '#(name="' . $element->getName() . '\&\#x5B\;input\&\#x5D\;").*?(type="text")#',
+            $markup
+        );
     }
 
     public function testRendersImageTagPriorToInputByDefault()
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertRegexp('#<img[^>]+><input#', $markup);
+        $this->assertMatchesRegularExpression('#<img[^>]+><input#', $markup);
     }
 
     public function testCanRenderImageTagFollowingInput()
@@ -141,6 +147,6 @@ class ImageTest extends CommonTestCase
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertRegexp('#<input[^>]+><img#', $markup);
+        $this->assertMatchesRegularExpression('#<input[^>]+><img#', $markup);
     }
 }

@@ -10,6 +10,7 @@ namespace LaminasTest\Form;
 
 use ArrayObject;
 use Laminas\Form\Element;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 use Laminas\Hydrator;
@@ -25,7 +26,7 @@ class FieldsetTest extends TestCase
     /** @var Fieldset */
     private $fieldset;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fieldset = new Fieldset();
     }
@@ -474,11 +475,9 @@ class FieldsetTest extends TestCase
         $this->assertEquals('bar', $option);
     }
 
-    /**
-     * @expectedException Laminas\Form\Exception\InvalidElementException
-     */
     public function testShouldThrowExceptionWhenGetInvalidElement()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->fieldset->get('doesnt_exist');
     }
 
@@ -515,7 +514,7 @@ class FieldsetTest extends TestCase
     }
 
     /**
-     * @group 7109
+     * @group issue-7109
      */
     public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues()
     {
@@ -568,8 +567,8 @@ class FieldsetTest extends TestCase
     }
 
     /**
-     * @group 6585
-     * @group 6614
+     * @group issue-6585
+     * @group issue-6614
      */
     public function testBindValuesPreservesNewValueAfterValidation()
     {

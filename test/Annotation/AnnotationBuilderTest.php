@@ -34,7 +34,7 @@ class AnnotationBuilderTest extends TestCase
     /** @var string */
     private $objectPropertyHydratorClass;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (! getenv('TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT to test annotation parsing');
@@ -109,8 +109,7 @@ class AnnotationBuilderTest extends TestCase
         $this->assertArrayHasKey('type', $attributes);
         $this->assertEquals('text', $attributes['type']);
 
-        $this->assertObjectHasAttribute('validationGroup', $form);
-        $this->assertAttributeEquals(['omit', 'keep'], 'validationGroup', $form);
+        $this->assertSame(['omit', 'keep'], $form->getValidationGroup());
     }
 
     public function testComplexEntityCreationWithPriorities()
@@ -242,7 +241,7 @@ class AnnotationBuilderTest extends TestCase
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotation
      * @param string $childName
      *
-     * @group 7108
+     * @group issue-7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotation($childName)
     {
@@ -271,7 +270,7 @@ class AnnotationBuilderTest extends TestCase
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection
      * @param string $childName
      *
-     * @group 7108
+     * @group issue-7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($childName)
     {
@@ -424,7 +423,7 @@ class AnnotationBuilderTest extends TestCase
     }
 
     /**
-     * @group 6753
+     * @group issue-6753
      */
     public function testInputFilterAnnotationAllowsComposition()
     {

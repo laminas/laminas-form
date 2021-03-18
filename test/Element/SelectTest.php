@@ -28,7 +28,7 @@ class SelectTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\Validator\InArray',
@@ -97,7 +97,7 @@ class SelectTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\Validator\Explode',
@@ -173,7 +173,7 @@ class SelectTest extends TestCase
     public function testOptionsHasArrayOnConstruct()
     {
         $element = new SelectElement();
-        $this->assertInternalType('array', $element->getValueOptions());
+        $this->assertIsArray($element->getValueOptions());
     }
 
     public function testDeprecateOptionsInAttributes()

@@ -21,6 +21,8 @@ use function sprintf;
  * Trait does not define properties, as the properties common between the
  * two versions are originally defined in their parent class, causing a
  * resolution conflict.
+ *
+ * @deprecated Unmaintained, use \Laminas\Form\FormElementManager instead
  */
 trait FormElementManagerTrait
 {

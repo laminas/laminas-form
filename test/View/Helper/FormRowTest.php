@@ -33,7 +33,7 @@ class FormRowTest extends TestCase
      */
     protected $renderer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormRowHelper();
 
@@ -50,9 +50,9 @@ class FormRowTest extends TestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
         $markup = $this->helper->render($element);
-        $this->assertContains('>The value for foo:<', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('>The value for foo:<', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testCanCreateLabelValueBeforeInput()
@@ -61,8 +61,8 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
         $this->helper->setLabelPosition('prepend');
         $markup = $this->helper->render($element);
-        $this->assertContains('<label><span>The value for foo:</span><', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('<label><span>The value for foo:</span><', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testCanCreateLabelValueAfterInput()
@@ -73,8 +73,8 @@ class FormRowTest extends TestCase
         ]);
         $this->helper->setLabelPosition('append');
         $markup = $this->helper->render($element);
-        $this->assertContains('<label><input', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('<label><input', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testCanOverrideLabelPosition()
@@ -95,12 +95,12 @@ class FormRowTest extends TestCase
         $this->helper->setLabelPosition('append');
 
         $fooMarkup = $this->helper->render($fooElement);
-        $this->assertContains('<label><span>The value for foo:</span><', $fooMarkup);
-        $this->assertContains('</label>', $fooMarkup);
+        $this->assertStringContainsString('<label><span>The value for foo:</span><', $fooMarkup);
+        $this->assertStringContainsString('</label>', $fooMarkup);
 
         $barMarkup = $this->helper->render($barElement);
-        $this->assertContains('<label><', $barMarkup);
-        $this->assertContains('<span>The value for bar:</span></label>', $barMarkup);
+        $this->assertStringContainsString('<label><', $barMarkup);
+        $this->assertStringContainsString('<span>The value for bar:</span></label>', $barMarkup);
     }
 
     public function testCanRenderRowLabelAttributes()
@@ -110,7 +110,7 @@ class FormRowTest extends TestCase
         $element->setLabelAttributes(['class' => 'bar']);
         $this->helper->setLabelPosition('append');
         $markup = $this->helper->render($element);
-        $this->assertContains('<label class="bar">', $markup);
+        $this->assertStringContainsString('<label class="bar">', $markup);
     }
 
     public function testCanCreateMarkupWithoutLabel()
@@ -118,7 +118,7 @@ class FormRowTest extends TestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'text');
         $markup = $this->helper->render($element);
-        $this->assertRegexp('/<input name="foo" type="text"[^\/>]*\/?>/', $markup);
+        $this->assertMatchesRegularExpression('/<input name="foo" type="text"[^\/>]*\/?>/', $markup);
     }
 
     public function testIgnoreLabelForHidden()
@@ -126,7 +126,7 @@ class FormRowTest extends TestCase
         $element = new Element\Hidden('foo');
         $element->setLabel('My label');
         $markup = $this->helper->render($element);
-        $this->assertRegexp('/<input type="hidden" name="foo" value=""[^\/>]*\/?>/', $markup);
+        $this->assertMatchesRegularExpression('/<input type="hidden" name="foo" value=""[^\/>]*\/?>/', $markup);
     }
 
     public function testCanHandleMultiCheckboxesCorrectly()
@@ -142,9 +142,9 @@ class FormRowTest extends TestCase
         $element->setAttribute('options', $options);
         $element->setLabel('This is a multi-checkbox');
         $markup = $this->helper->render($element);
-        $this->assertContains('<fieldset>', $markup);
-        $this->assertContains('<legend>', $markup);
-        $this->assertContains('<label>', $markup);
+        $this->assertStringContainsString('<fieldset>', $markup);
+        $this->assertStringContainsString('<legend>', $markup);
+        $this->assertStringContainsString('<label>', $markup);
     }
 
     public function testRenderAttributeId()
@@ -154,8 +154,8 @@ class FormRowTest extends TestCase
         $element->setAttribute('id', 'textId');
         $element->setLabel('This is a text');
         $markup = $this->helper->render($element);
-        $this->assertContains('<label for="textId">This is a text</label>', $markup);
-        $this->assertContains('<input type="text" name="foo" id="textId"', $markup);
+        $this->assertStringContainsString('<label for="textId">This is a text</label>', $markup);
+        $this->assertStringContainsString('<input type="text" name="foo" id="textId"', $markup);
     }
 
     public function testCanRenderErrors()
@@ -169,7 +169,7 @@ class FormRowTest extends TestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertRegexp('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
+        $this->assertMatchesRegularExpression('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -183,7 +183,10 @@ class FormRowTest extends TestCase
         ]);
 
         $markup = $this->helper->setRenderErrors(false)->render($element);
-        $this->assertRegexp('/<input name="foo" class="input-error" type="text" [^\/>]*\/?>/', $markup);
+        $this->assertMatchesRegularExpression(
+            '/<input name="foo" class="input-error" type="text" [^\/>]*\/?>/',
+            $markup
+        );
     }
 
     public function testCanModifyDefaultErrorClass()
@@ -194,7 +197,10 @@ class FormRowTest extends TestCase
         ]);
 
         $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
-        $this->assertRegexp('/<input name="foo" class="custom-error-class" type="text" [^\/>]*\/?>/', $markup);
+        $this->assertMatchesRegularExpression(
+            '/<input name="foo" class="custom-error-class" type="text" [^\/>]*\/?>/',
+            $markup
+        );
     }
 
     public function testDoesNotOverrideClassesIfAlreadyPresentWhenThereAreErrors()
@@ -206,7 +212,7 @@ class FormRowTest extends TestCase
         $element->setAttribute('class', 'foo bar');
 
         $markup = $this->helper->setInputErrorClass('custom-error-class')->render($element);
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '/<input name="foo" class="foo\&\#x20\;bar\&\#x20\;custom-error-class" type="text" [^\/>]*\/?>/',
             $markup
         );
@@ -231,16 +237,16 @@ class FormRowTest extends TestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('</label>', $markup);
 
         // Additional coverage when element's id is set
         $element->setAttribute('id', 'foo');
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testTranslatorMethods()
@@ -271,9 +277,9 @@ class FormRowTest extends TestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testLabelWillBeTranslatedOnceWithId()
@@ -291,9 +297,9 @@ class FormRowTest extends TestCase
         $this->assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('>translated content<', $markup);
-        $this->assertContains('<label', $markup);
-        $this->assertContains('</label>', $markup);
+        $this->assertStringContainsString('>translated content<', $markup);
+        $this->assertStringContainsString('<label', $markup);
+        $this->assertStringContainsString('</label>', $markup);
     }
 
     public function testSetLabelPositionInputNullRaisesException()
@@ -340,14 +346,14 @@ class FormRowTest extends TestCase
         $element->setLabel('The value for foo:');
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('<span', $markup);
-        $this->assertContains('</span>', $markup);
+        $this->assertStringContainsString('<span', $markup);
+        $this->assertStringContainsString('</span>', $markup);
 
         $element->setAttribute('id', 'foo');
 
         $markup = $this->helper->__invoke($element);
-        $this->assertNotContains('<span', $markup);
-        $this->assertNotContains('</span>', $markup);
+        $this->assertStringNotContainsString('<span', $markup);
+        $this->assertStringNotContainsString('</span>', $markup);
     }
 
     public function testShowErrorInMultiCheckbox()
@@ -363,7 +369,7 @@ class FormRowTest extends TestCase
         ]);
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('<ul><li>Error message</li></ul>', $markup);
+        $this->assertStringContainsString('<ul><li>Error message</li></ul>', $markup);
     }
 
     public function testShowErrorInRadio()
@@ -379,7 +385,7 @@ class FormRowTest extends TestCase
         ]);
 
         $markup = $this->helper->__invoke($element);
-        $this->assertContains('<ul><li>Error message</li></ul>', $markup);
+        $this->assertStringContainsString('<ul><li>Error message</li></ul>', $markup);
     }
 
     public function testErrorShowTwice()
@@ -430,7 +436,7 @@ class FormRowTest extends TestCase
 
         $this->helper->setLabelPosition('append');
         $markup = $this->helper->render($element);
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#',
             $markup
         );
@@ -444,8 +450,8 @@ class FormRowTest extends TestCase
 
         $this->renderer->resolver()->addPath(__DIR__ . '/_templates');
         $markup = $this->helper->__invoke($element, null, null, $partial);
-        $this->assertContains('fooname', $markup);
-        $this->assertContains('foolabel', $markup);
+        $this->assertStringContainsString('fooname', $markup);
+        $this->assertStringContainsString('foolabel', $markup);
 
         $this->assertSame($partial, $this->helper->getPartial());
     }
@@ -456,7 +462,7 @@ class FormRowTest extends TestCase
         $element->setLabel('foo');
 
         $markup = $this->helper->render($element);
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<button type="button" name="button" value=""\/?>foo</button>$#',
             $markup
         );
@@ -472,7 +478,7 @@ class FormRowTest extends TestCase
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertContains($escapeHelper->__invoke($label), $markup);
+        $this->assertStringContainsString($escapeHelper->__invoke($label), $markup);
     }
 
     public function testCanDisableLabelHtmlEscape()
@@ -484,7 +490,7 @@ class FormRowTest extends TestCase
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertContains($label, $markup);
+        $this->assertStringContainsString($label, $markup);
     }
 
     public function testCanSetLabelPositionBeforeInvoke()
@@ -507,13 +513,13 @@ class FormRowTest extends TestCase
         $element->setLabel('Baz');
 
         $markup = $this->helper->render($element, 'append');
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#',
             $markup
         );
 
         $markup = $this->helper->render($element, 'prepend');
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<label for="bar">Baz</label><input name="foo" id="bar" type="text" value=""\/?>$#',
             $markup
         );
@@ -541,13 +547,13 @@ class FormRowTest extends TestCase
         $element->setLabel('Baz');
 
         $markup = $this->helper->__invoke($element, 'append');
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<input name="foo" id="bar" type="text" value=""\/?><label for="bar">Baz</label>$#',
             $markup
         );
 
         $markup = $this->helper->__invoke($element, 'prepend');
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<label for="bar">Baz</label><input name="foo" id="bar" type="text" value=""\/?>$#',
             $markup
         );
@@ -585,18 +591,18 @@ class FormRowTest extends TestCase
         $element->setLabel('baz');
 
         $markup = $this->helper->render($element);
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<label><span>baz</span><input name="foo" id="bar" type="text" value=""\/?></label>$#',
             $markup
         );
     }
 
     /**
-     * @group 7030
+     * @group issue-7030
      */
     public function testWrapFieldsetAroundCaptchaWithLabel()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#^<fieldset><legend>baz<\/legend>'
             . 'Please type this word backwards <b>[a-z0-9]{8}<\/b>'
             . '<input name="captcha&\#x5B;id&\#x5D;" type="hidden" value="[a-z0-9]{32}"\/?>'

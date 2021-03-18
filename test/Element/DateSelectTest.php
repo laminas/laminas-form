@@ -10,6 +10,7 @@ namespace LaminasTest\Form\Element;
 
 use DateTime;
 use Laminas\Form\Element\DateSelect as DateSelectElement;
+use Laminas\Form\Exception\InvalidArgumentException;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +24,7 @@ class DateSelectTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             'Laminas\Validator\Date',
@@ -69,12 +70,10 @@ class DateSelectTest extends TestCase
         $this->assertEquals('2012-09-24', $element->getValue());
     }
 
-    /**
-     * @expectedException \Laminas\Form\Exception\InvalidArgumentException
-     */
     public function testThrowsOnInvalidValue()
     {
         $element  = new DateSelectElement();
+        $this->expectException(InvalidArgumentException::class);
         $element->setValue('hello world');
     }
 
@@ -107,7 +106,7 @@ class DateSelectTest extends TestCase
     }
 
     /**
-     * @group 7114
+     * @group issue-7114
      */
     public function testValueSetterReturnsSameObjectType()
     {

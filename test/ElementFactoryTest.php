@@ -15,6 +15,7 @@ use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasTest\Form\TestAsset\ArgumentRecorder;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 use function uniqid;
 
@@ -22,6 +23,8 @@ use const PHP_INT_MAX;
 
 class ElementFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function validCreationOptions()
     {
         yield 'ArrayObject' => [new ArrayObject(['key' => 'value']), ['key' => 'value']];

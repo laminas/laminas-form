@@ -15,7 +15,7 @@ use function sprintf;
 
 class FormImageTest extends CommonTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->helper = new FormImageHelper();
         parent::setUp();
@@ -43,9 +43,9 @@ class FormImageTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('src', 'foo.png');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="image"', $markup);
-        $this->assertContains('src="foo.png"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="image"', $markup);
+        $this->assertStringContainsString('src="foo.png"', $markup);
     }
 
     public function testGeneratesImageInputTagRegardlessOfElementType()
@@ -54,43 +54,43 @@ class FormImageTest extends CommonTestCase
         $element->setAttribute('src', 'foo.png');
         $element->setAttribute('type', 'email');
         $markup  = $this->helper->render($element);
-        $this->assertContains('<input ', $markup);
-        $this->assertContains('type="image"', $markup);
-        $this->assertContains('src="foo.png"', $markup);
+        $this->assertStringContainsString('<input ', $markup);
+        $this->assertStringContainsString('type="image"', $markup);
+        $this->assertStringContainsString('src="foo.png"', $markup);
     }
 
     public function validAttributes()
     {
         return [
-            ['name', 'assertContains'],
-            ['accept', 'assertNotContains'],
-            ['alt', 'assertContains'],
-            ['autocomplete', 'assertNotContains'],
-            ['autofocus', 'assertContains'],
-            ['checked', 'assertNotContains'],
-            ['dirname', 'assertNotContains'],
-            ['disabled', 'assertContains'],
-            ['form', 'assertContains'],
-            ['formaction', 'assertContains'],
-            ['formenctype', 'assertContains'],
-            ['formmethod', 'assertContains'],
-            ['formnovalidate', 'assertContains'],
-            ['formtarget', 'assertContains'],
-            ['height', 'assertContains'],
-            ['list', 'assertNotContains'],
-            ['max', 'assertNotContains'],
-            ['maxlength', 'assertNotContains'],
-            ['min', 'assertNotContains'],
-            ['multiple', 'assertNotContains'],
-            ['pattern', 'assertNotContains'],
-            ['placeholder', 'assertNotContains'],
-            ['readonly', 'assertNotContains'],
-            ['required', 'assertNotContains'],
-            ['size', 'assertNotContains'],
-            ['src', 'assertContains'],
-            ['step', 'assertNotContains'],
-            ['value', 'assertNotContains'],
-            ['width', 'assertContains'],
+            ['name', 'assertStringContainsString'],
+            ['accept', 'assertStringNotContainsString'],
+            ['alt', 'assertStringContainsString'],
+            ['autocomplete', 'assertStringNotContainsString'],
+            ['autofocus', 'assertStringContainsString'],
+            ['checked', 'assertStringNotContainsString'],
+            ['dirname', 'assertStringNotContainsString'],
+            ['disabled', 'assertStringContainsString'],
+            ['form', 'assertStringContainsString'],
+            ['formaction', 'assertStringContainsString'],
+            ['formenctype', 'assertStringContainsString'],
+            ['formmethod', 'assertStringContainsString'],
+            ['formnovalidate', 'assertStringContainsString'],
+            ['formtarget', 'assertStringContainsString'],
+            ['height', 'assertStringContainsString'],
+            ['list', 'assertStringNotContainsString'],
+            ['max', 'assertStringNotContainsString'],
+            ['maxlength', 'assertStringNotContainsString'],
+            ['min', 'assertStringNotContainsString'],
+            ['multiple', 'assertStringNotContainsString'],
+            ['pattern', 'assertStringNotContainsString'],
+            ['placeholder', 'assertStringNotContainsString'],
+            ['readonly', 'assertStringNotContainsString'],
+            ['required', 'assertStringNotContainsString'],
+            ['size', 'assertStringNotContainsString'],
+            ['src', 'assertStringContainsString'],
+            ['step', 'assertStringNotContainsString'],
+            ['value', 'assertStringNotContainsString'],
+            ['width', 'assertStringContainsString'],
         ];
     }
 
@@ -156,10 +156,10 @@ class FormImageTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('src', 'foo.png');
         $markup  = $this->helper->__invoke($element);
-        $this->assertContains('<input', $markup);
-        $this->assertContains('name="foo"', $markup);
-        $this->assertContains('type="image"', $markup);
-        $this->assertContains('src="foo.png"', $markup);
+        $this->assertStringContainsString('<input', $markup);
+        $this->assertStringContainsString('name="foo"', $markup);
+        $this->assertStringContainsString('type="image"', $markup);
+        $this->assertStringContainsString('src="foo.png"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper()

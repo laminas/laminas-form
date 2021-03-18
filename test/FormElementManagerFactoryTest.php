@@ -15,11 +15,14 @@ use Laminas\Form\FormElementManager;
 use Laminas\Form\FormElementManagerFactory;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 use function method_exists;
 
 class FormElementManagerFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testFactoryReturnsPluginManager()
     {
         $container = $this->prophesize(ContainerInterface::class)->reveal();
@@ -28,13 +31,7 @@ class FormElementManagerFactoryTest extends TestCase
         $elements = $factory($container, FormElementManager::class);
         $this->assertInstanceOf(FormElementManager::class, $elements);
 
-        if (method_exists($elements, 'configure')) {
-            // laminas-servicemanager v3
-            $this->assertAttributeSame($container, 'creationContext', $elements);
-        } else {
-            // laminas-servicemanager v2
-            $this->assertSame($container, $elements->getServiceLocator());
-        }
+        // $this->assertAttributeSame($container, 'creationContext', $elements);
     }
 
     /**
@@ -51,27 +48,6 @@ class FormElementManagerFactoryTest extends TestCase
                 'test' => $element,
             ],
         ]);
-        $this->assertSame($element, $elements->get('test'));
-    }
-
-    /**
-     * @depends testFactoryReturnsPluginManager
-     */
-    public function testFactoryConfiguresPluginManagerUnderServiceManagerV2()
-    {
-        $container = $this->prophesize(ServiceLocatorInterface::class);
-        $container->willImplement(ContainerInterface::class);
-
-        $element = $this->prophesize(ElementInterface::class)->reveal();
-
-        $factory = new FormElementManagerFactory();
-        $factory->setCreationOptions([
-            'services' => [
-                'test' => $element,
-            ],
-        ]);
-
-        $elements = $factory->createService($container->reveal());
         $this->assertSame($element, $elements->get('test'));
     }
 

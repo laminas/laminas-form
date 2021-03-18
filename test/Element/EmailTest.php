@@ -21,7 +21,7 @@ class EmailTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         $expectedValidators = [
             'Laminas\Validator\Regex',
@@ -51,7 +51,7 @@ class EmailTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertInternalType('array', $inputSpec['validators']);
+        $this->assertIsArray($inputSpec['validators']);
 
         foreach ($inputSpec['validators'] as $i => $validator) {
             $class = get_class($validator);
