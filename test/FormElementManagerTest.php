@@ -15,6 +15,7 @@ use Laminas\Form\Form;
 use Laminas\Form\FormElementManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\ServiceManager;
+use LaminasTest\Form\TestAsset\InvokableForm;
 use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
@@ -241,5 +242,17 @@ class FormElementManagerTest extends TestCase
         }
 
         $this->addToAssertionCount(1);
+    }
+
+    public function testOptionsAreSetInInvokableForm(): void
+    {
+        $options = ['foo' => 'bar'];
+
+        /** @var InvokableForm $form */
+        $form = $this->manager->get(InvokableForm::class, $options);
+
+        self::assertInstanceOf(InvokableForm::class, $form);
+        self::assertSame('invokableform', $form->getName());
+        self::assertSame('bar', $form->getOption('foo'));
     }
 }
