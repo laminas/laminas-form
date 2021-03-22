@@ -9,13 +9,7 @@
 namespace Laminas\Form;
 
 use Interop\Container\ContainerInterface;
-use Laminas\Form\Element;
 use Laminas\Form\Exception;
-use Laminas\Form\ElementFactory;
-use Laminas\Form\ElementInterface;
-use Laminas\Form\Fieldset;
-use Laminas\Form\Form;
-use Laminas\Form\FormFactoryAwareInterface;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\Stdlib\InitializableInterface;
@@ -23,9 +17,11 @@ use Laminas\Stdlib\InitializableInterface;
 use function array_push;
 use function array_search;
 use function array_unshift;
+use function class_exists;
 use function get_class;
 use function gettype;
 use function is_object;
+use function is_string;
 use function sprintf;
 
 /**
@@ -391,6 +387,40 @@ class FormElementManager extends AbstractPluginManager
 
         return $this;
     }
+
+    /**
+     * Retrieve a service from the manager by name
+     *
+     * Allows passing an array of options to use when creating the instance.
+     * createFromInvokable() will use these and pass them to the instance
+     * constructor if not null and a non-empty array.
+     *
+     * @param  string $name
+     * @param  string|array<string, mixed> $options
+     * @return mixed
+     */
+    public function get($name, $options = [])
+    {
+        if (is_string($options)) {
+            $options = ['name' => $options];
+        }
+
+        if (! $this->has($name)) {
+            if (! $this->autoAddInvokableClass || ! class_exists($name)) {
+                throw new Exception\InvalidElementException(
+                    sprintf(
+                        'A plugin by the name "%s" was not found in the plugin manager %s',
+                        $name,
+                        get_class($this)
+                    )
+                );
+            }
+
+            $this->setInvokableClass($name, $name);
+        }
+        return parent::get($name, $options);
+    }
+
     /**
      * Try to pull hydrator from the creation context, or instantiates it from its name
      *
