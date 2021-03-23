@@ -476,6 +476,24 @@ class Fieldset extends Element implements FieldsetInterface
     }
 
     /**
+     * Set the hydrator by name to use when binding an object to the element.
+     *
+     * The form element manager {@see FormElementManager} is used via the
+     * form factory {@see Factory} to fetch the hydrator.
+     *
+     * @throws Exception\DomainException If hydrator is not found in hydrator
+     *                                   manager or service manager.
+     */
+    public function setHydratorByName(string $hydratorName): void
+    {
+        $this->setHydrator(
+            $this->getFormFactory()
+                ->getFormElementManager()
+                ->getHydratorFromName($hydratorName)
+        );
+    }
+
+    /**
      * Get the hydrator used when binding an object to the fieldset
      *
      * If no hydrator is present and object implements HydratorAwareInterface,
