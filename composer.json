@@ -31,6 +31,9 @@
         "laminas/laminas-stdlib": "^3.3",
         "laminas/laminas-zendframework-bridge": "^1.1"
     },
+    "conflict": {
+        "laminas/laminas-code": "< 3.5.0"
+    },
     "require-dev": {
         "doctrine/annotations": "^1.10.4",
         "laminas/laminas-cache": "^2.9.0",
