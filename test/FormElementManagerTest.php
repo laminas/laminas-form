@@ -6,14 +6,18 @@ namespace LaminasTest\Form;
 
 use Laminas\Form\Element;
 use Laminas\Form\ElementFactory;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidElementException;
 use Laminas\Form\Factory;
 use Laminas\Form\Form;
 use Laminas\Form\FormElementManager;
+use Laminas\Hydrator\HydratorInterface;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
+use Laminas\ServiceManager\PluginManagerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\Form\TestAsset\InvokableForm;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 use ReflectionProperty;
 
 use function array_pop;
@@ -243,5 +247,97 @@ final class FormElementManagerTest extends TestCase
         self::assertInstanceOf(InvokableForm::class, $form);
         self::assertSame('invokableform', $form->getName());
         self::assertSame('bar', $form->getOption('foo'));
+    }
+
+    public function testGetHydratorByNameMethodShouldUseHydratorManagerIfExists(): void
+    {
+        $hydrator = $this->createMock(HydratorInterface::class);
+
+        // Hydrator manager
+        $hydratorManager = $this->createMock(PluginManagerInterface::class);
+        $hydratorManager->method('has')
+            ->with('NameOfHydrator')
+            ->willReturn(true);
+        $hydratorManager->method('get')
+            ->with('NameOfHydrator')
+            ->willReturn($hydrator);
+
+        // Service container
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('has')
+            ->with('HydratorManager')
+            ->willReturn(true);
+        $container->method('get')
+            ->with('HydratorManager')
+            ->willReturn($hydratorManager);
+
+        $formElementManager = new FormElementManager($container);
+
+        // Test
+        $this->assertSame(
+            $hydrator,
+            $formElementManager->getHydratorFromName('NameOfHydrator')
+        );
+    }
+
+    public function testGetHydratorByNameMethodShouldUseServiceManagerAsFallback(): void
+    {
+        $hydrator = $this->createMock(HydratorInterface::class);
+
+        // Service container
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('has')
+            ->willReturnMap(
+                [
+                    [
+                        'HydratorManager',
+                        false,
+                    ],
+                    [
+                        'NameOfHydrator',
+                        true,
+                    ],
+                ]
+            );
+        $container->method('get')
+            ->with('NameOfHydrator')
+            ->willReturn($hydrator);
+
+        $formElementManager = new FormElementManager($container);
+
+        // Test
+        $this->assertSame(
+            $hydrator,
+            $formElementManager->getHydratorFromName('NameOfHydrator')
+        );
+    }
+
+    public function testGetHydratorByNameMethodShouldThrowExceptionForInvalidName(): void
+    {
+        // Service container
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('has')
+            ->willReturnMap(
+                [
+                    [
+                        'HydratorManager',
+                        false,
+                    ],
+                    [
+                        'NameOfHydrator',
+                        false,
+                    ],
+                ]
+            );
+
+        $formElementManager = new FormElementManager($container);
+
+        // Test
+        $this->expectException(DomainException::class);
+        $this->expectExceptionMessage(
+            'Expects string hydrator name to be a valid class name; received "NameOfHydrator"'
+        );
+
+        $formElementManager->getHydratorFromName('NameOfHydrator');
     }
 }
