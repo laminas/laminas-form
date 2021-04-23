@@ -17,14 +17,10 @@
     "replace": {
         "zendframework/zend-form": "^2.14.3"
     },
-    "conflict": {
-        "laminas/laminas-code": "<3.5.0 || >=4.0.0"
-    },
     "require-dev": {
-        "doctrine/annotations": "^1.10.4",
+        "doctrine/annotations": "^1.11.0",
         "laminas/laminas-cache": "^2.9.0",
         "laminas/laminas-captcha": "^2.9.0",
-        "laminas/laminas-code": "^3.5.0",
         "laminas/laminas-coding-standard": "^1.0.0",
         "laminas/laminas-escaper": "^2.6.1",
         "laminas/laminas-eventmanager": "^3.3.0",
@@ -42,8 +38,8 @@
         "vimeo/psalm": "^4.7"
     },
     "suggest": {
+        "doctrine/annotations": "^1.11, required to use laminas-form annotations support",
         "laminas/laminas-captcha": "^2.9, required for using CAPTCHA form elements",
-        "laminas/laminas-code": "^3.5, required to use laminas-form annotations support",
         "laminas/laminas-eventmanager": "^3.3, reuired for laminas-form annotations support",
         "laminas/laminas-i18n": "^2.10, required when using laminas-form view helpers",
         "laminas/laminas-recaptcha": "^3.2, in order to use the ReCaptcha form element",
