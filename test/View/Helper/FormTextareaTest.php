@@ -129,6 +129,9 @@ class FormTextareaTest extends CommonTestCase
             ['arbitrary', 'assertStringNotContainsString'],
             ['meta', 'assertStringNotContainsString'],
             ['role', 'assertStringContainsString'],
+            ['itemprop', 'assertStringContainsString'],
+            ['itemscope', 'assertStringContainsString'],
+            ['itemtype', 'assertStringContainsString'],
         ];
     }
 
@@ -226,6 +229,9 @@ class FormTextareaTest extends CommonTestCase
             'arbitrary'          => 'value',
             'meta'               => 'value',
             'role'               => 'value',
+            'itemprop'           => 'value',
+            'itemscope'          => 'itemscope',
+            'itemtype'           => 'value',
         ]);
         return $element;
     }
@@ -248,6 +254,7 @@ class FormTextareaTest extends CommonTestCase
             ['disabled', 'disabled', ''],
             ['readonly', 'readonly', ''],
             ['required', 'required', ''],
+            ['itemscope', 'itemscope', ''],
         ];
     }
 
