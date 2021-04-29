@@ -1,10 +1,25 @@
-/.coveralls.yml export-ignore
-/.gitattributes export-ignore
-/.github/ export-ignore
-/.gitignore export-ignore
-/.markdownlint.json export-ignore
-/docs/ export-ignore
-/mkdocs.yml export-ignore
-/phpcs.xml export-ignore
-/phpunit.xml.dist export-ignore
-/test/ export-ignore
+# text files
+*.md                text eol=lf
+*.php               text eol=lf
+*.yml               text eol=lf
+*.xml               text eol=lf
+*.dist              text eol=lf
+*.neon              text eol=lf
+*.json              text eol=lf
+*.phtml             text eol=lf
+
+# binary files
+*.ttf              -text binary
+*.png              -text binary
+
+# files/folders to ignore
+/.coveralls.yml     export-ignore text eol=lf
+/.gitattributes     export-ignore text eol=lf
+/.github/           export-ignore
+/.gitignore         export-ignore text eol=lf
+/.markdownlint.json export-ignore text eol=lf
+/docs/              export-ignore
+/mkdocs.yml         export-ignore text eol=lf
+/phpcs.xml          export-ignore text eol=lf
+/phpunit.xml.dist   export-ignore text eol=lf
+/test/              export-ignore
