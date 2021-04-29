@@ -129,6 +129,7 @@ class FormTextareaTest extends CommonTestCase
             ['arbitrary', 'assertStringNotContainsString'],
             ['meta', 'assertStringNotContainsString'],
             ['role', 'assertStringContainsString'],
+            ['inputmode', 'assertStringContainsString'],
         ];
     }
 
@@ -226,6 +227,7 @@ class FormTextareaTest extends CommonTestCase
             'arbitrary'          => 'value',
             'meta'               => 'value',
             'role'               => 'value',
+            'inputmode'          => 'value',
         ]);
         return $element;
     }

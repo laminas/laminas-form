@@ -24,6 +24,7 @@ class FormText extends FormInput
         'dirname'        => true,
         'disabled'       => true,
         'form'           => true,
+        'inputmode'      => true,
         'list'           => true,
         'maxlength'      => true,
         'minlength'      => true,

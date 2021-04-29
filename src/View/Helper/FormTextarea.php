@@ -27,6 +27,7 @@ class FormTextarea extends AbstractHelper
         'dirname'      => true,
         'disabled'     => true,
         'form'         => true,
+        'inputmode'    => true,
         'maxlength'    => true,
         'minlength'    => true,
         'name'         => true,
