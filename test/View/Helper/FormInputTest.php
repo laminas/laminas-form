@@ -473,6 +473,90 @@ class FormInputTest extends CommonTestCase
         }
     }
 
+    /**
+     * @group Laminas-391
+     * @dataProvider booleanAttributeTypes
+     */
+    public function testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5($attribute, $on, $off)
+    {
+        $element = new Element('foo');
+        $this->renderer->doctype('HTML5');
+        $element->setAttribute($attribute, true);
+        $markup = $this->helper->render($element);
+        $expect = $attribute;
+        $this->assertStringContainsString(
+            $expect,
+            $markup,
+            sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
+        );
+
+        $expect = sprintf('%s="%s"', $attribute, $on);
+        $this->assertStringNotContainsString(
+            $expect,
+            $markup,
+            sprintf("Enabled value for %s should not be '%s'; received %s", $attribute, $on, $markup)
+        );
+
+        $element->setAttribute($attribute, false);
+        $markup = $this->helper->render($element);
+
+        if ($off !== '') {
+            $expect = sprintf('%s="%s"', $attribute, $off);
+
+            $this->assertStringContainsString(
+                $expect,
+                $markup,
+                sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
+            );
+        } else {
+            $expect = $attribute;
+
+            $this->assertStringNotContainsString(
+                $expect,
+                $markup,
+                sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
+            );
+        }
+
+        // Laminas-391 : Ability to use non-boolean values that match expected end-value
+        $element->setAttribute($attribute, $on);
+        $markup = $this->helper->render($element);
+        $expect = $attribute;
+        $this->assertStringContainsString(
+            $expect,
+            $markup,
+            sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
+        );
+
+        $expect = sprintf('%s="%s"', $attribute, $on);
+        $this->assertStringNotContainsString(
+            $expect,
+            $markup,
+            sprintf("Enabled value for %s should not be '%s'; received %s", $attribute, $on, $markup)
+        );
+
+        $element->setAttribute($attribute, $off);
+        $markup = $this->helper->render($element);
+
+        if ($off !== '') {
+            $expect = sprintf('%s="%s"', $attribute, $off);
+
+            $this->assertStringContainsString(
+                $expect,
+                $markup,
+                sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
+            );
+        } else {
+            $expect = $attribute;
+
+            $this->assertStringNotContainsString(
+                $expect,
+                $markup,
+                sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
+            );
+        }
+    }
+
     public function testInvokeProxiesToRender()
     {
         $element = new Element('foo');
