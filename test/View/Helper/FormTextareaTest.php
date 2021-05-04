@@ -132,6 +132,7 @@ class FormTextareaTest extends CommonTestCase
             ['itemprop', 'assertStringContainsString'],
             ['itemscope', 'assertStringContainsString'],
             ['itemtype', 'assertStringContainsString'],
+            ['inputmode', 'assertStringContainsString'],
         ];
     }
 
@@ -232,6 +233,7 @@ class FormTextareaTest extends CommonTestCase
             'itemprop'           => 'value',
             'itemscope'          => 'itemscope',
             'itemtype'           => 'value',
+            'inputmode'          => 'value',
         ]);
         return $element;
     }

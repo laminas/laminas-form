@@ -79,6 +79,7 @@ class FormTextTest extends CommonTestCase
             ['step', 'assertStringNotContainsString'],
             ['value', 'assertStringContainsString'],
             ['width', 'assertStringNotContainsString'],
+            ['inputmode', 'assertStringContainsString'],
         ];
     }
 
@@ -116,6 +117,7 @@ class FormTextTest extends CommonTestCase
             'src'                => 'value',
             'step'               => 'value',
             'width'              => 'value',
+            'inputmode'          => 'value',
         ]);
         $element->setValue('value');
         return $element;
