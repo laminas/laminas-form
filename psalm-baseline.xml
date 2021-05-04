@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005">
+<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
   <file src="src/Annotation/AbstractAnnotationsListener.php">
     <InvalidNullableReturnType occurrences="1">
       <code>false|string</code>
@@ -1092,9 +1092,6 @@
     <InvalidReturnStatement occurrences="1">
       <code>$element-&gt;getMessages()</code>
     </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>array|Traversable</code>
-    </InvalidReturnType>
     <LessSpecificReturnStatement occurrences="2">
       <code>$this</code>
       <code>$this</code>
@@ -3691,7 +3688,7 @@
       <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
       <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
     </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="33">
+    <MissingReturnType occurrences="35">
       <code>testAddingAttributesMerges</code>
       <code>testAttributesAreEmptyByDefault</code>
       <code>testCanAddAttributesSingly</code>
@@ -3712,6 +3709,8 @@
       <code>testCanSetCustomOptionFromMethod</code>
       <code>testCanSetSingleOptionForLabel</code>
       <code>testGetOption</code>
+      <code>testHasValueGettingSetInSetValueMethod</code>
+      <code>testHasValueIsFalseAtTheTimeOfCreation</code>
       <code>testLabelAttributesAreEmptyByDefault</code>
       <code>testLabelOptionsAccessors</code>
       <code>testLabelOptionsAreEmptyByDefault</code>
@@ -6230,7 +6229,7 @@
       <code>testRaisesExceptionIfElementHasNoCaptcha</code>
     </MissingReturnType>
     <MixedArgument occurrences="5">
-      <code>$captcha-&gt;getImgUrl()</code>
+      <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6250,18 +6249,26 @@
     <MixedInferredReturnType occurrences="1">
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="9">
+    <MixedMethodCall occurrences="14">
+      <code>getAttribute</code>
+      <code>getAttribute</code>
+      <code>getAttribute</code>
       <code>getAttribute</code>
       <code>getAttribute</code>
       <code>getAttribute</code>
       <code>getAttribute</code>
       <code>setAttribute</code>
       <code>setAttribute</code>
+      <code>setAttribute</code>
+      <code>setCaptcha</code>
       <code>setCaptcha</code>
       <code>setCaptcha</code>
       <code>setCaptcha</code>
     </MixedMethodCall>
-    <MixedOperand occurrences="4">
+    <MixedOperand occurrences="7">
+      <code>$element-&gt;getAttribute('id')</code>
+      <code>$element-&gt;getAttribute('id')</code>
+      <code>$element-&gt;getAttribute('id')</code>
       <code>$element-&gt;getAttribute('id')</code>
       <code>$element-&gt;getAttribute('id')</code>
       <code>$element-&gt;getAttribute('id')</code>
@@ -6280,7 +6287,8 @@
     <UndefinedDocblockClass occurrences="1">
       <code>Laminas_File_Transfer_Exception</code>
     </UndefinedDocblockClass>
-    <UndefinedMethod occurrences="4">
+    <UndefinedMethod occurrences="5">
+      <code>render</code>
       <code>render</code>
       <code>render</code>
       <code>render</code>
