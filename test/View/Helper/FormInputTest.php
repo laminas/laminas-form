@@ -183,6 +183,9 @@ class FormInputTest extends CommonTestCase
             ['onvolumechange', 'assertStringContainsString'],
             ['onwaiting', 'assertStringContainsString'],
             ['role', 'assertStringContainsString'],
+            ['itemprop', 'assertStringContainsString'],
+            ['itemscope', 'assertStringContainsString'],
+            ['itemtype', 'assertStringContainsString'],
         ];
     }
 
@@ -323,6 +326,9 @@ class FormInputTest extends CommonTestCase
             'arbitrary'          => 'value',
             'meta'               => 'value',
             'role'               => 'value',
+            'itemprop'           => 'value',
+            'itemscope'          => 'itemscope',
+            'itemtype'           => 'value',
         ]);
         $element->setValue('value');
         return $element;
@@ -406,6 +412,7 @@ class FormInputTest extends CommonTestCase
             ['readonly', 'readonly', ''],
             ['required', 'required', ''],
             ['checked', 'checked', ''],
+            ['itemscope', 'itemscope', ''],
         ];
     }
 
