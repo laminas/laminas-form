@@ -64,6 +64,11 @@ class Element implements
     protected $value;
 
     /**
+     * @var boolean
+     */
+    protected $hasValue = false;
+
+    /**
      * @param  null|int|string   $name    Optional name for the element
      * @param  array|Traversable $options Optional options for the element
      * @throws Exception\InvalidArgumentException
@@ -311,6 +316,8 @@ class Element implements
     public function setValue($value)
     {
         $this->value = $value;
+        $this->hasValue = true;
+
         return $this;
     }
 
@@ -513,5 +520,13 @@ class Element implements
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasValue()
+    {
+        return $this->hasValue;
     }
 }

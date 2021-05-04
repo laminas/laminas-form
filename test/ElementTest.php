@@ -363,4 +363,17 @@ class ElementTest extends TestCase
         $this->assertFalse($element->hasAttribute('aria-label'));
         $this->assertFalse($element->hasAttribute('aria-orientation'));
     }
+
+    public function testHasValueGettingSetInSetValueMethod()
+    {
+        $element = new Element();
+        $element->setValue('some value');
+        $this->assertTrue($element->hasValue());
+    }
+
+    public function testHasValueIsFalseAtTheTimeOfCreation()
+    {
+        $element = new Element();
+        $this->assertFalse($element->hasValue());
+    }
 }
