@@ -3,38 +3,17 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
-use Laminas\Form\View\HelperConfig;
-use Laminas\View\Helper\Doctype;
-use Laminas\View\Renderer\PhpRenderer;
 use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
-use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 
-class FormCollectionTest extends TestCase
+class FormCollectionTest extends CommonTestCase
 {
-    /**
-     * @var FormCollectionHelper
-     */
-    public $helper;
-    /**
-     * @var PhpRenderer
-     */
-    public $renderer;
-
     protected function setUp(): void
     {
         $this->helper = new FormCollectionHelper();
-
-        Doctype::unsetDoctypeRegistry();
-
-        $this->renderer = new PhpRenderer;
-        $helpers = $this->renderer->getHelperPluginManager();
-        $config  = new HelperConfig();
-        $config->configureServiceManager($helpers);
-
-        $this->helper->setView($this->renderer);
+        parent::setUp();
     }
 
     public function getForm()

@@ -5,38 +5,18 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Element\Captcha;
 use Laminas\Form\View\Helper\FormRow as FormRowHelper;
-use Laminas\Form\View\HelperConfig;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Validator\Date;
-use Laminas\View\Renderer\PhpRenderer;
-use PHPUnit\Framework\TestCase;
 
-use function count;
 use function explode;
 use function get_class;
 
-class FormRowTest extends TestCase
+class FormRowTest extends CommonTestCase
 {
-    /**
-     * @var FormRowHelper
-     */
-    protected $helper;
-
-    /**
-     * @var PhpRenderer
-     */
-    protected $renderer;
-
     protected function setUp(): void
     {
         $this->helper = new FormRowHelper();
-
-        $this->renderer = new PhpRenderer;
-        $helpers = $this->renderer->getHelperPluginManager();
-        $config  = new HelperConfig();
-        $config->configureServiceManager($helpers);
-
-        $this->helper->setView($this->renderer);
+        parent::setUp();
     }
 
     public function testCanGenerateLabel()

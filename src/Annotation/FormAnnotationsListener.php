@@ -37,7 +37,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
         $this->listeners[] = $events->attach('configureForm', [$this, 'handleFlagsAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureForm', [$this, 'handleHydratorAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureForm', [$this, 'handleInputFilterAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureForm', [$this, 'handleObjectAnnotation'], $priority);
+        $this->listeners[] = $events->attach('configureForm', [$this, 'handleInstanceAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureForm', [$this, 'handleOptionsAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureForm', [$this, 'handleTypeAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureForm', [$this, 'handleValidationGroupAnnotation'], $priority);
@@ -123,18 +123,16 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     }
 
     /**
-     * Handle the Object and Instance annotations
+     * Handle the Instance annotations
      *
      * Sets the object to bind to the form or fieldset
      *
      * @param  EventInterface $e
      * @return void
      */
-    public function handleObjectAnnotation($e)
+    public function handleInstanceAnnotation($e)
     {
         $annotation = $e->getParam('annotation');
-
-        // Only need to typehint on Instance, as Object extends it
         if (! $annotation instanceof Instance) {
             return;
         }

@@ -13,7 +13,10 @@ class EntityUsingInstancePropertyHydratorV3
     /**
      * @Annotation\Instance("LaminasTest\Form\TestAsset\Annotation\Entity")
      * @Annotation\Type("Laminas\Form\Fieldset")
-     * @Annotation\Hydrator({"type":"Laminas\Hydrator\ClassMethodsHydrator", "options": {"underscoreSeparatedKeys": false}})
+     * @Annotation\Hydrator({
+     *     "type":"Laminas\Hydrator\ClassMethodsHydrator",
+     *     "options": {"underscoreSeparatedKeys": false}
+     * })
      */
     public $object;
 }

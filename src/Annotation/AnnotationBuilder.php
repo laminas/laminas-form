@@ -339,7 +339,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
-                return is_string($r) && ! empty($r);
+            return is_string($r) && ! empty($r);
             },
             $event
         );
@@ -364,7 +364,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
-                return true === $r;
+            return true === $r;
             },
             $event
         );
