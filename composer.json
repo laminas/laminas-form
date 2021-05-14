@@ -17,6 +17,9 @@
     "replace": {
         "zendframework/zend-form": "^2.14.3"
     },
+    "conflict": {
+        "laminas/laminas-servicemanager": "<3.0.0"
+    },
     "require-dev": {
         "doctrine/annotations": "^1.11.0",
         "laminas/laminas-cache": "^2.9.0",

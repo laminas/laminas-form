@@ -3,13 +3,10 @@
 namespace LaminasTest\Form\TestAsset;
 
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class FieldsetWithDependencyFactory implements FactoryInterface
 {
-    private $creationOptions = [];
-
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
         $options = $options ?: [];
@@ -24,15 +21,5 @@ class FieldsetWithDependencyFactory implements FactoryInterface
         $form->setDependency(new InputFilter());
 
         return $form;
-    }
-
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, CustomCreatedForm::class, $this->creationOptions);
-    }
-
-    public function setCreationOptions(array $options)
-    {
-        $this->creationOptions = $options;
     }
 }

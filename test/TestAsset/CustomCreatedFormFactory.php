@@ -4,13 +4,10 @@ namespace LaminasTest\Form\TestAsset;
 
 use DateTime;
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class CustomCreatedFormFactory implements FactoryInterface
 {
-    private $creationOptions = [];
-
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
         $options = $options ?: [];
@@ -31,15 +28,5 @@ class CustomCreatedFormFactory implements FactoryInterface
 
         $form = new CustomCreatedForm($created, $name, $options);
         return $form;
-    }
-
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, CustomCreatedForm::class, $this->creationOptions);
-    }
-
-    public function setCreationOptions(array $options)
-    {
-        $this->creationOptions = $options;
     }
 }

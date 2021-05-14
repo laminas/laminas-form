@@ -7,8 +7,7 @@ use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\Form\Factory;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 use function is_array;
 use function sprintf;
@@ -39,19 +38,6 @@ class AnnotationBuilderFactory implements FactoryInterface
         $this->injectListeners($config, $eventManager, $container);
 
         return $annotationBuilder;
-    }
-
-    /**
-     * Create and return AnnotationBuilder instance
-     *
-     * For use with laminas-servicemanager v2; proxies to __invoke().
-     *
-     * @param ServiceLocatorInterface $container
-     * @return AnnotationBuilder
-     */
-    public function createService(ServiceLocatorInterface $container)
-    {
-        return $this($container, AnnotationBuilder::class);
     }
 
     /**
