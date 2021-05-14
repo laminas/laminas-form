@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Laminas\Form\Exception;
+
 /**
  * Hydrator annotation
  *
@@ -10,16 +12,40 @@ namespace Laminas\Form\Annotation;
  * hydrator to use.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Hydrator extends AbstractArrayOrStringAnnotation
+class Hydrator
 {
+    /**
+     * @var string|array
+     */
+    protected $hydrator;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param string|array $hydrator
+     */
+    public function __construct($hydrator)
+    {
+        if (! is_array($hydrator) && ! is_string($hydrator)) {
+            throw new Exception\DomainException(sprintf(
+                '%s expects the annotation to define an array or string; received "%s"',
+                get_class($this),
+                isset($data['value']) ? gettype($data['value']) : 'null'
+            ));
+        }
+
+        $this->hydrator = $hydrator;
+    }
+
     /**
      * Retrieve the hydrator class
      *
-     * @return null|string|array
+     * @return string|array
      */
     public function getHydrator()
     {
-        return $this->value;
+        return $this->hydrator;
     }
 }

@@ -12,16 +12,32 @@ namespace Laminas\Form\Annotation;
  * The value should be an associative array.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Flags extends AbstractArrayAnnotation
+class Flags
 {
+    /**
+     * @var array
+     */
+    protected $flags;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param array $flags
+     */
+    public function __construct(array $flags = [])
+    {
+        $this->flags = $flags;
+    }
+
     /**
      * Retrieve the flags
      *
-     * @return null|array
+     * @return array
      */
-    public function getFlags()
+    public function getFlags(): array
     {
-        return $this->value;
+        return $this->flags;
     }
 }

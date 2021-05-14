@@ -9,6 +9,7 @@ namespace Laminas\Form\Annotation;
  * element when creating the form specification.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
 class Exclude
 {

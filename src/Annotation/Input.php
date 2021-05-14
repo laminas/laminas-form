@@ -10,16 +10,32 @@ namespace Laminas\Form\Annotation;
  * input to use.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Input extends AbstractStringAnnotation
+class Input
 {
+    /**
+     * @var string
+     */
+    protected $input;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param string $input
+     */
+    public function __construct(string $input)
+    {
+        $this->input = $input;
+    }
+
     /**
      * Retrieve the input class
      *
-     * @return null|string
+     * @return string
      */
-    public function getInput()
+    public function getInput(): string
     {
-        return $this->value;
+        return $this->input;
     }
 }

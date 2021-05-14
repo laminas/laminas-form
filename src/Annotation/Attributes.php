@@ -9,16 +9,32 @@ namespace Laminas\Form\Annotation;
  * the related form object (element, fieldset, or form).
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Attributes extends AbstractArrayAnnotation
+class Attributes
 {
+    /**
+     * @var array
+     */
+    protected $attributes;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->attributes = $attributes;
+    }
+
     /**
      * Retrieve the attributes
      *
-     * @return null|array
+     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
-        return $this->value;
+        return $this->attributes;
     }
 }

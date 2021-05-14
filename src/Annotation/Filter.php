@@ -14,16 +14,32 @@ namespace Laminas\Form\Annotation;
  * to the filter chain in the order specified.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Filter extends AbstractArrayAnnotation
+class Filter
 {
+    /**
+     * @var array
+     */
+    protected $filter;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param array $filter
+     */
+    public function __construct(array $filter = [])
+    {
+        $this->filter = $filter;
+    }
+
     /**
      * Retrieve the filter specification
      *
-     * @return null|array
+     * @return array
      */
-    public function getFilter()
+    public function getFilter(): array
     {
-        return $this->value;
+        return $this->filter;
     }
 }

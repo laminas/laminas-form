@@ -9,18 +9,45 @@ namespace Laminas\Form\Annotation;
  * of a form or fieldset
  *
  * @Annotation
+ * @NamedArgumentConstructor
  * @copyright  Copyright (c) 2005-2015 Laminas (https://www.zend.com)
  * @license    https://getlaminas.org/license/new-bsd     New BSD License
  */
-class Instance extends AbstractStringAnnotation
+class Instance
 {
     /**
-     * Retrieve the object
-     *
-     * @return null|string
+     * @var string
      */
-    public function getObject()
+    protected $instance;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param string $instance
+     */
+    public function __construct(string $instance)
     {
-        return $this->value;
+        $this->instance = $instance;
+    }
+
+    /**
+     * Retrieve the instance
+     *
+     * @return string
+     */
+    public function getInstance(): string
+    {
+        return $this->instance;
+    }
+
+    /**
+     * Retrieve the instance
+     *
+     * @return string
+     * @deprecated 3.0.0 Use getInstance() instead
+     */
+    public function getObject(): string
+    {
+        return $this->getInstance();
     }
 }

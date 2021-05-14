@@ -16,16 +16,32 @@ namespace Laminas\Form\Annotation;
  * to the validator chain in the order specified.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Validator extends AbstractArrayAnnotation
+class Validator
 {
+    /**
+     * @var array
+     */
+    protected $validator;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param array $validator
+     */
+    public function __construct(array $validator = [])
+    {
+        $this->validator = $validator;
+    }
+
     /**
      * Retrieve the validator specification
      *
-     * @return null|array
+     * @return array
      */
-    public function getValidator()
+    public function getValidator(): array
     {
-        return $this->value;
+        return $this->validator;
     }
 }

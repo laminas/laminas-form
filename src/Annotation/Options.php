@@ -11,16 +11,32 @@ namespace Laminas\Form\Annotation;
  * The value should be an associative array.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Options extends AbstractArrayAnnotation
+class Options
 {
+    /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        $this->options = $options;
+    }
+
     /**
      * Retrieve the options
      *
-     * @return null|array
+     * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
-        return $this->value;
+        return $this->options;
     }
 }

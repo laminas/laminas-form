@@ -10,16 +10,32 @@ namespace Laminas\Form\Annotation;
  * representing a fully qualified classname.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Type extends AbstractStringAnnotation
+class Type
 {
+    /**
+     * @var string
+     */
+    protected $type;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param string $type
+     */
+    public function __construct(string $type)
+    {
+        $this->type = $type;
+    }
+
     /**
      * Retrieve the class type
      *
-     * @return null|string
+     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
-        return $this->value;
+        return $this->type;
     }
 }

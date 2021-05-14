@@ -9,16 +9,32 @@ namespace Laminas\Form\Annotation;
  * when building the form, element, or input. The value should be a string.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Name extends AbstractStringAnnotation
+class Name
 {
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param string $name
+     */
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
     /**
      * Retrieve the name
      *
-     * @return null|string
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
-        return $this->value;
+        return $this->name;
     }
 }

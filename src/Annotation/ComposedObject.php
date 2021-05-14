@@ -13,20 +13,54 @@ use function is_array;
  * to use.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class ComposedObject extends AbstractArrayOrStringAnnotation
+class ComposedObject
 {
+    /**
+     * @var string|null
+     */
+    protected $targetObject;
+
+    /**
+     * @var bool
+     */
+    protected $isCollection;
+
+    /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param array|string $targetObject
+     * @param bool $isCollection
+     * @param array $options
+     */
+    public function __construct($targetObject, bool $isCollection = false, array $options = [])
+    {
+        // support for legacy notation
+        if (is_array($targetObject)) {
+            $this->targetObject = $targetObject['target_object'] ?? null;
+            $this->isCollection = $targetObject['is_collection'] ?? false;
+            $this->options = $targetObject['options'] ?? [];
+        } else {
+            $this->targetObject = $targetObject;
+            $this->isCollection = $isCollection;
+            $this->options = $options;
+        }
+    }
+
     /**
      * Retrieve the composed object classname
      *
      * @return null|string
      */
-    public function getComposedObject()
+    public function getComposedObject(): ?string
     {
-        if (is_array($this->value)) {
-            return $this->value['target_object'];
-        }
-        return $this->value;
+        return $this->targetObject;
     }
 
     /**
@@ -34,9 +68,9 @@ class ComposedObject extends AbstractArrayOrStringAnnotation
      *
      * @return bool
      */
-    public function isCollection()
+    public function isCollection(): bool
     {
-        return is_array($this->value) && isset($this->value['is_collection']) && $this->value['is_collection'];
+        return $this->isCollection;
     }
 
     /**
@@ -44,8 +78,8 @@ class ComposedObject extends AbstractArrayOrStringAnnotation
      *
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
-        return is_array($this->value) && isset($this->value['options']) ? $this->value['options'] : [];
+        return $this->options;
     }
 }
