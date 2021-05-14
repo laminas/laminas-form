@@ -7,9 +7,9 @@ use Laminas\Form\Annotation;
 /**
  * @Annotation\Name("user")
  * @Annotation\Attributes({"legend":"Register"})
- * @Annotation\Hydrator({"type":"Laminas\Hydrator\ClassMethods", "options": {"underscoreSeparatedKeys": false}})
+ * @Annotation\Hydrator({"type":"Laminas\Hydrator\ClassMethodsHydrator", "options": {"underscoreSeparatedKeys": false}})
  */
-class EntityWithHydratorArrayHydratorV2
+class EntityWithHydratorArray
 {
     /**
      * @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}})
