@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+
 /**
  * Type annotation
  *
@@ -12,6 +14,7 @@ namespace Laminas\Form\Annotation;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute]
 class Type
 {
     /**

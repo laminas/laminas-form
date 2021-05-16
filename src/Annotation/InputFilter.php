@@ -2,6 +2,7 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
 use Laminas\Form\Exception;
 
 /**
@@ -14,6 +15,7 @@ use Laminas\Form\Exception;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute]
 class InputFilter
 {
     /**

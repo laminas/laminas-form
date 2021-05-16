@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+
 /**
  * Options annotation
  *
@@ -13,6 +15,7 @@ namespace Laminas\Form\Annotation;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute]
 class Options
 {
     /**

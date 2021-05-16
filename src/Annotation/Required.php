@@ -2,6 +2,7 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
 use Laminas\Filter\Boolean as BooleanFilter;
 
 use function is_bool;
@@ -17,6 +18,7 @@ use function is_bool;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute]
 class Required
 {
     /**

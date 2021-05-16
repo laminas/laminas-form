@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+
 /**
  * ErrorMessage annotation
  *
@@ -11,6 +13,7 @@ namespace Laminas\Form\Annotation;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute]
 class ErrorMessage
 {
     /**

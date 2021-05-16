@@ -9,6 +9,9 @@ use Laminas\Form\Annotation;
  * @Annotation\Attributes({"legend":"Register"})
  * @Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")
  */
+#[Annotation\Name("user")]
+#[Annotation\Attributes(["legend" => "Register"])]
+#[Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")]
 class ComplexEntity
 {
     /**
@@ -17,6 +20,10 @@ class ComplexEntity
      * @Annotation\Validator({"name":"NotEmpty"})
      * @Annotation\Validator({"name":"StringLength","options":{"min":3,"max":25}})
      */
+    #[Annotation\ErrorMessage("Invalid or missing username")]
+    #[Annotation\Filter(["name" => "StringTrim"])]
+    #[Annotation\Validator(["name" => "NotEmpty"])]
+    #[Annotation\Validator(["name" => "StringLength", "options" => ["min" => 3,"max" => 25]])]
     public $username;
 
     /**
@@ -24,6 +31,9 @@ class ComplexEntity
      * @Annotation\Filter({"name":"StringTrim"})
      * @Annotation\Validator({"name":"StringLength","options":{"min":3}})
      */
+    #[Annotation\Attributes(["type" => "password", "label" => "Enter your password"])]
+    #[Annotation\Filter(["name" => "StringTrim"])]
+    #[Annotation\Validator(["name" => "StringLength", "options" => ["min" => 3]])]
     public $password;
 
     /**
@@ -32,6 +42,10 @@ class ComplexEntity
      * @Annotation\Validator({"name":"EmailAddress","options":{"allow":15}})
      * @Annotation\Attributes({"type":"email","label":"What is the best email to reach you at?"})
      */
+    #[Annotation\Flags(["priority" => 100])]
+    #[Annotation\Filter(["name" => "StringTrim"])]
+    #[Annotation\Validator(["name" => "EmailAddress", "options" => ["allow" => 15]])]
+    #[Annotation\Attributes(["type" => "email", "label" => "What is the best email to reach you at?"])]
     public $email;
 
     /**
@@ -41,10 +55,16 @@ class ComplexEntity
      * @Annotation\Attributes({"type":"text","label":"Provide a URL for your avatar (optional):"})
      * @Annotation\Validator({"name":"LaminasTest\Form\TestAsset\Annotation\UrlValidator"})
      */
+    #[Annotation\Name("user_image")]
+    #[Annotation\AllowEmpty()]
+    #[Annotation\Required(false)]
+    #[Annotation\Attributes(["type" => "text", "label" => "Provide a URL for your avatar (optional):"])]
+    #[Annotation\Validator(["name" => "LaminasTest\Form\TestAsset\Annotation\UrlValidator"])]
     public $avatar;
 
     /**
      * @Annotation\Exclude()
      */
+    #[Annotation\Exclude]
     protected $someComposedObject;
 }

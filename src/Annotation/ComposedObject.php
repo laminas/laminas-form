@@ -2,6 +2,7 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
 use function is_array;
 
 /**
@@ -15,6 +16,7 @@ use function is_array;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute]
 class ComposedObject
 {
     /**

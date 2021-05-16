@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+
 /**
  * Flags annotation
  *
@@ -14,6 +16,7 @@ namespace Laminas\Form\Annotation;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute]
 class Flags
 {
     /**

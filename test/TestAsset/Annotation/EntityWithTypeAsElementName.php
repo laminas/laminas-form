@@ -11,5 +11,8 @@ class EntityWithTypeAsElementName
       * @Annotation\Filter({"name":"StringTrim"})
       * @Annotation\Name("type")
       */
+    #[Annotation\Required(true)]
+    #[Annotation\Filter(["name" => "StringTrim"])]
+    #[Annotation\Name("type")]
     public $type;
 }

@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+
 /**
  * Filter annotation
  *
@@ -16,6 +18,7 @@ namespace Laminas\Form\Annotation;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute(Attribute::IS_REPEATABLE)]
 class Filter
 {
     /**

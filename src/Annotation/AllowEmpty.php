@@ -2,6 +2,7 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
 use Laminas\Filter\Boolean as BooleanFilter;
 
 use function is_bool;
@@ -16,6 +17,7 @@ use function is_bool;
  * @NamedArgumentConstructor
  * @deprecated 2.4.8 Use `@Validator({"name":"NotEmpty"})` instead.
  */
+#[Attribute]
 class AllowEmpty
 {
     /**

@@ -9,10 +9,12 @@ class FieldsetOrderEntity
     /**
      * @Annotation\Type("Laminas\Form\Fieldset")
      */
+    #[Annotation\Type("Laminas\Form\Fieldset")]
     public $fieldset;
 
     /**
      * @Annotation\Type("Laminas\Form\Element")
      */
+    #[Annotation\Type("Laminas\Form\Element")]
     public $element;
 }

@@ -7,6 +7,7 @@ use Laminas\Form\Annotation;
 /**
  * @Annotation\Name("extended")
  */
+#[Annotation\Name("extended")]
 class ExtendedEntity extends Entity
 {
     /**
@@ -15,5 +16,9 @@ class ExtendedEntity extends Entity
       * @Annotation\Attributes({"type":"password","label":"Enter your email"})
       * @Annotation\Flags({"priority":-1})
       */
+    #[Annotation\Filter(["name" => "StringTrim"])]
+    #[Annotation\Validator(["name" => "EmailAddress"])]
+    #[Annotation\Attributes(["type" => "password", "label" => "Enter your email"])]
+    #[Annotation\Flags(["priority" => -1])]
     public $email;
 }

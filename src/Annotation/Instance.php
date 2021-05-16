@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+
 /**
  * Instance (formerly "object") annotation
  *
@@ -13,6 +15,7 @@ namespace Laminas\Form\Annotation;
  * @copyright  Copyright (c) 2005-2015 Laminas (https://www.zend.com)
  * @license    https://getlaminas.org/license/new-bsd     New BSD License
  */
+#[Attribute]
 class Instance
 {
     /**

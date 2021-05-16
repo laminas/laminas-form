@@ -2,6 +2,8 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+
 /**
  * Validator annotation
  *
@@ -18,6 +20,7 @@ namespace Laminas\Form\Annotation;
  * @Annotation
  * @NamedArgumentConstructor
  */
+#[Attribute(Attribute::IS_REPEATABLE)]
 class Validator
 {
     /**

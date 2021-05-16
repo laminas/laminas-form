@@ -9,5 +9,6 @@ class EntityWithInputFilterInput
     /**
      * @Annotation\Input("LaminasTest\Form\TestAsset\Annotation\InputFilterInput")
      */
+    #[Annotation\Input("LaminasTest\Form\TestAsset\Annotation\InputFilterInput")]
     public $input;
 }
