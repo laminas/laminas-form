@@ -13,20 +13,20 @@ class EntityUsingComposedObjectAndOptions
     /**
      * @Annotation\Name("child")
      * @Annotation\Options({"label": "My label"})
-     * @Annotation\ComposedObject({"target_object":"LaminasTest\Form\TestAsset\Annotation\Entity", "is_collection":"true"})
+     * @Annotation\ComposedObject(targetObject="LaminasTest\Form\TestAsset\Annotation\Entity", isCollection=true)
      */
     #[Annotation\Name("child")]
     #[Annotation\Options(["label" => "My label"])]
-    #[Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", is_collection: "true")]
+    #[Annotation\ComposedObject(targetObject: "LaminasTest\Form\TestAsset\Annotation\Entity", isCollection: true)]
     public $child;
 
     /**
      * @Annotation\Name("childTheSecond")
-     * @Annotation\ComposedObject({"target_object":"LaminasTest\Form\TestAsset\Annotation\Entity", "is_collection":"true"})
+     * @Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", isCollection=true)
      * @Annotation\Options({"label": "My label"})
      */
     #[Annotation\Name("childTheSecond")]
-    #[Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", is_collection: "true")]
+    #[Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", isCollection: true)]
     #[Annotation\Options(["label" => "My label"])]
     public $childTheSecond;
 

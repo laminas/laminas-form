@@ -34,7 +34,7 @@ class InputFilter
             throw new Exception\DomainException(sprintf(
                 '%s expects the annotation to define an array or string; received "%s"',
                 get_class($this),
-                isset($data['value']) ? gettype($data['value']) : 'null'
+                gettype($inputFilter)
             ));
         }
 

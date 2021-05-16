@@ -29,7 +29,7 @@ class Flags
      *
      * @param array $flags
      */
-    public function __construct(array $flags = [])
+    public function __construct(array $flags)
     {
         $this->flags = $flags;
     }

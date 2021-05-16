@@ -127,16 +127,21 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
     /**
      * Creates and returns a form specification for use with a factory
      *
-     * Parses the object provided, and processes annotations for the class and
-     * all properties. Information from annotations is then used to create
-     * specifications for a form, its elements, and its input filter.
-     *
      * @param  string|object $entity Either an instance or a valid class name for an entity
+     * @param  bool $useAttributes true if PHP8 attributes should be parsed instead of PHPDoc annotations
      * @throws Exception\InvalidArgumentException if $entity is not an object or class name
+     * @throws Exception\InvalidArgumentException if $useAttributes is true for PHP <= 8.0
      * @return ArrayObject
      */
-    public function getFormSpecification($entity)
+    public function getFormSpecification($entity, bool $useAttributes = false)
     {
+        if ($useAttributes && PHP_MAJOR_VERSION < 8) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'PHP 8.0 or newer is required when using PHP attributes. You are running PHP %s.',
+                PHP_VERSION
+            ));
+        }
+
         if (! is_object($entity)) {
             if ((is_string($entity) && (! class_exists($entity))) // non-existent class
                 || (! is_string($entity)) // not an object or string
@@ -149,7 +154,32 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
             }
         }
 
-        $this->entity      = $entity;
+        $this->entity = $entity;
+        list ($formSpec, $filterSpec) = $useAttributes
+            ? $this->getFormSpecificationFromAttributes($entity)
+            : $this->getFormSpecificationFromAnnotations($entity);
+
+        if (! isset($formSpec['input_filter'])) {
+            $formSpec['input_filter'] = $filterSpec;
+        } elseif (is_array($formSpec['input_filter'])) {
+            $formSpec['input_filter'] = ArrayUtils::merge($filterSpec->getArrayCopy(), $formSpec['input_filter']);
+        }
+
+        return $formSpec;
+    }
+
+    /**
+     * Creates and returns a form specification for use with a factory
+     *
+     * Parses the object provided, and processes annotations for the class and
+     * all properties. Information from annotations is then used to create
+     * specifications for a form, its elements, and its input filter.
+     *
+     * @param  string|object $entity Either an instance or a valid class name for an entity
+     * @return array
+     */
+    protected function getFormSpecificationFromAnnotations($entity)
+    {
         $formSpec          = new ArrayObject();
         $filterSpec        = new ArrayObject();
 
@@ -164,24 +194,52 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
             $this->configureElement($annotations, $property, $formSpec, $filterSpec);
         }
 
-        if (! isset($formSpec['input_filter'])) {
-            $formSpec['input_filter'] = $filterSpec;
-        } elseif (is_array($formSpec['input_filter'])) {
-            $formSpec['input_filter'] = ArrayUtils::merge($filterSpec->getArrayCopy(), $formSpec['input_filter']);
+        return [$formSpec, $filterSpec];
+    }
+
+    /**
+     * Creates and returns a form specification for use with a factory
+     *
+     * Parses the attributes of the entity class by using the PHP8 reflection API.
+     *
+     * @param  string|object $entity Either an instance or a valid class name for an entity
+     * @return array
+     */
+    public function getFormSpecificationFromAttributes($entity)
+    {
+        $formSpec          = new ArrayObject();
+        $filterSpec        = new ArrayObject();
+
+        $reflection = new ReflectionClass($entity);
+        $annotations = new AnnotationCollection();
+        foreach ($reflection->getAttributes() as $attribute) {
+            $annotations[] = $attribute->newInstance();
         }
 
-        return $formSpec;
+        $this->configureForm($annotations, $reflection, $formSpec, $filterSpec);
+
+        foreach ($reflection->getProperties() as $property) {
+            $annotations = new AnnotationCollection();
+            foreach ($property->getAttributes() as $attribute) {
+                $annotations[] = $attribute->newInstance();
+            }
+
+            $this->configureElement($annotations, $property, $formSpec, $filterSpec);
+        }
+
+        return [$formSpec, $filterSpec];
     }
 
     /**
      * Create a form from an object.
      *
      * @param  string|object $entity
+     * @param  bool $useAttributes true if PHP8 attributes should be parsed instead of PHPDoc annotations
      * @return FormInterface
      */
-    public function createForm($entity)
+    public function createForm($entity, bool $useAttributes = false)
     {
-        $formSpec    = ArrayUtils::iteratorToArray($this->getFormSpecification($entity));
+        $formSpec    = ArrayUtils::iteratorToArray($this->getFormSpecification($entity, $useAttributes));
         $formFactory = $this->getFormFactory();
         return $formFactory->createForm($formSpec);
     }

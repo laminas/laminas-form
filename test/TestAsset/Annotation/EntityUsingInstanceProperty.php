@@ -20,9 +20,7 @@ class EntityUsingInstanceProperty
      */
     #[Annotation\Instance("LaminasTest\Form\TestAsset\Annotation\Entity")]
     #[Annotation\Type("Laminas\Form\Fieldset")]
-    #[Annotation\Hydrator([
-        "type" => "Laminas\Hydrator\ClassMethodsHydrator",
-        "options" => ["underscoreSeparatedKeys" => false],
-    ])]
+    // @codingStandardsIgnoreLine
+    #[Annotation\Hydrator(["type" => "Laminas\Hydrator\ClassMethodsHydrator", "options" => ["underscoreSeparatedKeys" => false]])]
     public $object;
 }

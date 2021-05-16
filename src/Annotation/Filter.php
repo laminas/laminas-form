@@ -18,7 +18,7 @@ use Attribute;
  * @Annotation
  * @NamedArgumentConstructor
  */
-#[Attribute(Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::IS_REPEATABLE | ATTRIBUTE::TARGET_ALL)]
 class Filter
 {
     /**
@@ -31,7 +31,7 @@ class Filter
      *
      * @param array $filter
      */
-    public function __construct(array $filter = [])
+    public function __construct(array $filter)
     {
         $this->filter = $filter;
     }

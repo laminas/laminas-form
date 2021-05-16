@@ -3,6 +3,7 @@
 namespace Laminas\Form\Annotation;
 
 use Attribute;
+use const E_USER_DEPRECATED;
 use function is_array;
 
 /**
@@ -43,8 +44,13 @@ class ComposedObject
      */
     public function __construct($targetObject, bool $isCollection = false, array $options = [])
     {
-        // support for legacy notation
         if (is_array($targetObject)) {
+            // support for legacy notation with array as first parameter
+            trigger_error(sprintf(
+                'Passing a single array to the constructor of %s is deprecated, please use separate parameters.',
+                get_class($this)
+            ), E_USER_DEPRECATED);
+
             $this->targetObject = $targetObject['target_object'] ?? null;
             $this->isCollection = $targetObject['is_collection'] ?? false;
             $this->options = $targetObject['options'] ?? [];

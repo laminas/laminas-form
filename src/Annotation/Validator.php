@@ -20,7 +20,7 @@ use Attribute;
  * @Annotation
  * @NamedArgumentConstructor
  */
-#[Attribute(Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::IS_REPEATABLE | ATTRIBUTE::TARGET_ALL)]
 class Validator
 {
     /**
@@ -33,7 +33,7 @@ class Validator
      *
      * @param array $validator
      */
-    public function __construct(array $validator = [])
+    public function __construct(array $validator)
     {
         $this->validator = $validator;
     }

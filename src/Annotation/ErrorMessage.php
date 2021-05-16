@@ -24,7 +24,7 @@ class ErrorMessage
     /**
      * Receive and process the contents of an annotation
      *
-     * @param string|null $message
+     * @param string $message
      */
     public function __construct(string $message)
     {

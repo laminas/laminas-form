@@ -11,14 +11,7 @@ use LaminasTest\Form\TestAsset;
 use PHPUnit\Framework\TestCase;
 
 use function class_exists;
-use function count;
 use function getenv;
-use function restore_error_handler;
-use function set_error_handler;
-use function version_compare;
-
-use const E_USER_DEPRECATED;
-use const PHP_VERSION;
 
 class AnnotationBuilderTest extends TestCase
 {
@@ -43,11 +36,26 @@ class AnnotationBuilderTest extends TestCase
             : ObjectProperty::class;
     }
 
-    public function testCanCreateFormFromStandardEntity()
+    /**
+     * @return \Generator
+     */
+    public function useAttributesDataProvider()
+    {
+        if (PHP_MAJOR_VERSION >= 8) {
+            yield [true];
+        }
+
+        yield [false];
+    }
+
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testCanCreateFormFromStandardEntity($useAttributes)
     {
         $entity  = new TestAsset\Annotation\Entity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertTrue($form->has('username'));
         $this->assertTrue($form->has('password'));
@@ -80,11 +88,14 @@ class AnnotationBuilderTest extends TestCase
         $this->assertCount(1, $password->getValidatorChain());
     }
 
-    public function testCanCreateFormWithClassAnnotations()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testCanCreateFormWithClassAnnotations($useAttributes)
     {
         $entity  = new TestAsset\Annotation\ClassEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertTrue($form->has('keeper'));
         $this->assertFalse($form->has('keep'));
@@ -106,11 +117,14 @@ class AnnotationBuilderTest extends TestCase
         $this->assertSame(['omit', 'keep'], $form->getValidationGroup());
     }
 
-    public function testComplexEntityCreationWithPriorities()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testComplexEntityCreationWithPriorities($useAttributes)
     {
         $entity  = new TestAsset\Annotation\ComplexEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertEquals('user', $form->getName());
         $attributes = $form->getAttributes();
@@ -134,42 +148,54 @@ class AnnotationBuilderTest extends TestCase
         $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
     }
 
-    public function testFieldsetOrder()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testFieldsetOrder($useAttributes)
     {
         $entity  = new TestAsset\Annotation\FieldsetOrderEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $element = $form->get('element');
         $first  = $form->getIterator()->getIterator()->current();
         $this->assertSame($element, $first, 'Test is element ' . $first->getName());
     }
 
-    public function testFieldsetOrderWithPreserve()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testFieldsetOrderWithPreserve($useAttributes)
     {
         $entity  = new TestAsset\Annotation\FieldsetOrderEntity();
         $builder = new Annotation\AnnotationBuilder();
         $builder->setPreserveDefinedOrder(true);
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $fieldset = $form->get('fieldset');
         $first  = $form->getIterator()->getIterator()->current();
         $this->assertSame($fieldset, $first, 'Test is element ' . $first->getName());
     }
 
-    public function testCanRetrieveOnlyFormSpecification()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testCanRetrieveOnlyFormSpecification($useAttributes)
     {
         $entity  = new TestAsset\Annotation\ComplexEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $spec    = $builder->getFormSpecification($entity);
+        $spec    = $builder->getFormSpecification($entity, $useAttributes);
         $this->assertInstanceOf('ArrayObject', $spec);
     }
 
-    public function testAllowsExtensionOfEntities()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testAllowsExtensionOfEntities($useAttributes)
     {
         $entity  = new TestAsset\Annotation\ExtendedEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertTrue($form->has('username'));
         $this->assertTrue($form->has('password'));
@@ -184,22 +210,28 @@ class AnnotationBuilderTest extends TestCase
         $this->assertEquals($expected, $test);
     }
 
-    public function testAllowsSpecifyingFormAndElementTypes()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testAllowsSpecifyingFormAndElementTypes($useAttributes)
     {
         $entity  = new TestAsset\Annotation\TypedEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Form', $form);
         $element = $form->get('typed_element');
         $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Element', $element);
     }
 
-    public function testAllowsComposingChildEntities()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testAllowsComposingChildEntities($useAttributes)
     {
         $entity  = new TestAsset\Annotation\EntityComposingAnEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertTrue($form->has('composed'));
         $composed = $form->get('composed');
@@ -215,11 +247,14 @@ class AnnotationBuilderTest extends TestCase
         $this->assertTrue($composed->has('password'));
     }
 
-    public function testAllowsComposingMultipleChildEntities()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testAllowsComposingMultipleChildEntities($useAttributes)
     {
         $entity  = new TestAsset\Annotation\EntityComposingMultipleEntities();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertTrue($form->has('composed'));
         $composed = $form->get('composed');
@@ -237,11 +272,11 @@ class AnnotationBuilderTest extends TestCase
      *
      * @group issue-7108
      */
-    public function testOptionsAnnotationAndComposedObjectAnnotation($childName)
+    public function testOptionsAnnotationAndComposedObjectAnnotation($useAttributes, $childName)
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $child = $form->get($childName);
 
@@ -253,11 +288,17 @@ class AnnotationBuilderTest extends TestCase
     /**
      * Data provider
      *
-     * @return string[][]
+     * @return \Generator
      */
     public function provideOptionsAnnotationAndComposedObjectAnnotation()
     {
-        return [['child'], ['childTheSecond']];
+        if (PHP_MAJOR_VERSION >= 8) {
+            yield [true, 'child'];
+            yield [true, 'childTheSecond'];
+        }
+
+        yield [false, 'child'];
+        yield [false, 'childTheSecond'];
     }
 
     /**
@@ -266,11 +307,11 @@ class AnnotationBuilderTest extends TestCase
      *
      * @group issue-7108
      */
-    public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($childName)
+    public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($useAttributes, $childName)
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $child = $form->get($childName);
 
@@ -281,18 +322,27 @@ class AnnotationBuilderTest extends TestCase
     /**
      * Data provider
      *
-     * @return string[][]
+     * @return \Generator
      */
     public function provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection()
     {
-        return [['childTheThird'], ['childTheFourth']];
+        if (PHP_MAJOR_VERSION >= 8) {
+            yield [true, 'childTheThird'];
+            yield [true, 'childTheFourth'];
+        }
+
+        yield [false, 'childTheThird'];
+        yield [false, 'childTheFourth'];
     }
 
-    public function testCanHandleOptionsAnnotation()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testCanHandleOptionsAnnotation($useAttributes)
     {
         $entity  = new TestAsset\Annotation\EntityUsingOptions();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertTrue($form->useAsBaseFieldset());
 
@@ -305,65 +355,83 @@ class AnnotationBuilderTest extends TestCase
         $this->assertEquals(['class' => 'label'], $username->getLabelAttributes());
     }
 
-    public function testCanHandleHydratorArrayAnnotation()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testCanHandleHydratorArrayAnnotation($useAttributes)
     {
         $entity  = new TestAsset\Annotation\EntityWithHydratorArray();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $hydrator = $form->getHydrator();
         $this->assertInstanceOf($this->classMethodsHydratorClass, $hydrator);
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
-    public function testAllowTypeAsElementNameInInputFilter()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testAllowTypeAsElementNameInInputFilter($useAttributes)
     {
         $entity  = new TestAsset\Annotation\EntityWithTypeAsElementName();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $this->assertInstanceOf('Laminas\Form\Form', $form);
         $element = $form->get('type');
         $this->assertInstanceOf('Laminas\Form\Element', $element);
     }
 
-    public function testAllowEmptyInput()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testAllowEmptyInput($useAttributes)
     {
         $entity  = new TestAsset\Annotation\SampleEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('sampleinput');
         $this->assertTrue($sampleinput->allowEmpty());
     }
 
-    public function testContinueIfEmptyInput()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testContinueIfEmptyInput($useAttributes)
     {
         $entity  = new TestAsset\Annotation\SampleEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form    = $builder->createForm($entity);
+        $form    = $builder->createForm($entity, $useAttributes);
 
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('sampleinput');
         $this->assertTrue($sampleinput->continueIfEmpty());
     }
 
-    public function testInputNotRequiredByDefault()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testInputNotRequiredByDefault($useAttributes)
     {
         $entity = new TestAsset\Annotation\SampleEntity();
         $builder = new Annotation\AnnotationBuilder();
-        $form = $builder->createForm($entity);
+        $form = $builder->createForm($entity, $useAttributes);
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('anotherSampleInput');
         $this->assertFalse($sampleinput->isRequired());
     }
 
-    public function testInstanceElementAnnotation()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testInstanceElementAnnotation($useAttributes)
     {
         $entity = new TestAsset\Annotation\EntityUsingInstanceProperty();
         $builder = new Annotation\AnnotationBuilder();
-        $form = $builder->createForm($entity);
+        $form = $builder->createForm($entity, $useAttributes);
 
         $fieldset = $form->get('object');
         /* @var $fieldset Laminas\Form\Fieldset */
@@ -374,11 +442,14 @@ class AnnotationBuilderTest extends TestCase
         $this->assertFalse($fieldset->getHydrator()->getUnderscoreSeparatedKeys());
     }
 
-    public function testInputFilterInputAnnotation()
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testInputFilterInputAnnotation($useAttributes)
     {
         $entity = new TestAsset\Annotation\EntityWithInputFilterInput();
         $builder = new Annotation\AnnotationBuilder();
-        $form = $builder->createForm($entity);
+        $form = $builder->createForm($entity, $useAttributes);
         $inputFilter = $form->getInputFilter();
 
         $this->assertTrue($inputFilter->has('input'));
@@ -392,13 +463,14 @@ class AnnotationBuilderTest extends TestCase
     }
 
     /**
+     * @dataProvider useAttributesDataProvider
      * @group issue-6753
      */
-    public function testInputFilterAnnotationAllowsComposition()
+    public function testInputFilterAnnotationAllowsComposition($useAttributes)
     {
         $entity = new TestAsset\Annotation\EntityWithInputFilterAnnotation();
         $builder = new Annotation\AnnotationBuilder();
-        $form = $builder->createForm($entity);
+        $form = $builder->createForm($entity, $useAttributes);
         $inputFilter = $form->getInputFilter();
         $this->assertCount(2, $inputFilter->get('username')->getValidatorChain());
     }

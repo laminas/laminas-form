@@ -11,10 +11,8 @@ use Laminas\Form\Annotation;
  */
 #[Annotation\Name("user")]
 #[Annotation\Attributes(["legend" => "Register"])]
-#[Annotation\Hydrator([
-    "type" => "Laminas\Hydrator\ClassMethodsHydrator",
-    "options" => ["underscoreSeparatedKeys" => false],
-])]
+// @codingStandardsIgnoreLine
+#[Annotation\Hydrator(["type" => "Laminas\Hydrator\ClassMethodsHydrator", "options" => ["underscoreSeparatedKeys" => false]])]
 class EntityWithHydratorArray
 {
     /**

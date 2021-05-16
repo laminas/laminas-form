@@ -28,7 +28,7 @@ class Options
      *
      * @param array $options
      */
-    public function __construct(array $options = [])
+    public function __construct(array $options)
     {
         $this->options = $options;
     }
