@@ -19,35 +19,51 @@ use Laminas\Form\Exception;
 class Hydrator
 {
     /**
-     * @var string|array
+     * @var string
      */
-    protected $hydrator;
+    protected $type;
+
+    /**
+     * @var array
+     */
+    protected $options;
 
     /**
      * Receive and process the contents of an annotation
      *
-     * @param string|array $hydrator
+     * @param string|array $type
+     * @param array $options
      */
-    public function __construct($hydrator)
+    public function __construct($type, array $options = [])
     {
-        if (! is_array($hydrator) && ! is_string($hydrator)) {
-            throw new Exception\DomainException(sprintf(
-                '%s expects the annotation to define an array or string; received "%s"',
-                get_class($this),
-                gettype($hydrator)
-            ));
-        }
+        if (is_array($type)) {
+            // support for legacy notation with array as first parameter
+            trigger_error(sprintf(
+                'Passing a single array to the constructor of %s is deprecated since 3.0.0,'
+                . ' please use separate parameters.',
+                get_class($this)
+            ), E_USER_DEPRECATED);
 
-        $this->hydrator = $hydrator;
+            $this->type = $type['type'] ?? null;
+            $this->options = $type['options'] ?? $options;
+        } else {
+            $this->type = $type;
+            $this->options = $options;
+        }
     }
 
     /**
-     * Retrieve the hydrator class
+     * Retrieve the hydrator specification
      *
-     * @return string|array
+     * @return array
      */
-    public function getHydrator()
+    public function getHydratorSpecification(): array
     {
-        return $this->hydrator;
+        $inputSpec = ['type' => $this->type];
+        if (! empty($this->options)) {
+            $inputSpec['options'] = $this->options;
+        }
+
+        return $inputSpec;
     }
 }

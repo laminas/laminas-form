@@ -22,18 +22,45 @@ use Attribute;
 class Filter
 {
     /**
+     * @var string
+     */
+    protected $name;
+
+    /**
      * @var array
      */
-    protected $filter;
+    protected $options;
+
+    /**
+     * @var int|null
+     */
+    protected $priority;
 
     /**
      * Receive and process the contents of an annotation
      *
-     * @param array $filter
+     * @param string|array $name
+     * @param array $options
+     * @param int|null $priority
      */
-    public function __construct(array $filter)
+    public function __construct($name, array $options = [], int $priority = null)
     {
-        $this->filter = $filter;
+        if (is_array($name)) {
+            // support for legacy notation with array as first parameter
+            trigger_error(sprintf(
+                'Passing a single array to the constructor of %s is deprecated since 3.0.0,'
+                . ' please use separate parameters.',
+                get_class($this)
+            ), E_USER_DEPRECATED);
+
+            $this->name = $name['name'] ?? null;
+            $this->options = $name['options'] ?? $options;
+            $this->priority = $name['priority'] ?? $priority;
+        } else {
+            $this->name = $name;
+            $this->options = $options;
+            $this->priority = $priority;
+        }
     }
 
     /**
@@ -41,8 +68,16 @@ class Filter
      *
      * @return array
      */
-    public function getFilter(): array
+    public function getFilterSpecification(): array
     {
-        return $this->filter;
+        $inputSpec = ['name' => $this->name];
+        if (! empty($this->options)) {
+            $inputSpec['options'] = $this->options;
+        }
+        if (null !== $this->priority) {
+            $inputSpec['priority'] = $this->priority;
+        }
+
+        return $inputSpec;
     }
 }

@@ -51,6 +51,12 @@ class Instance
      */
     public function getObject(): string
     {
+        trigger_error(sprintf(
+            'Calling %s::%s is deprecated since 3.0.0, use getInstance() instead.',
+            get_class($this),
+            __METHOD__
+        ), E_USER_DEPRECATED);
+
         return $this->getInstance();
     }
 }

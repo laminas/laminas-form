@@ -17,7 +17,7 @@ class EntityUsingComposedObjectAndOptions
      */
     #[Annotation\Name("child")]
     #[Annotation\Options(["label" => "My label"])]
-    #[Annotation\ComposedObject(targetObject: "LaminasTest\Form\TestAsset\Annotation\Entity", isCollection: true)]
+    #[Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", isCollection: true)]
     public $child;
 
     /**

@@ -100,7 +100,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
         }
 
         $formSpec = $e->getParam('formSpec');
-        $formSpec['hydrator'] = $annotation->getHydrator();
+        $formSpec['hydrator'] = $annotation->getHydratorSpecification();
     }
 
     /**
@@ -135,7 +135,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
         }
 
         $formSpec = $e->getParam('formSpec');
-        $formSpec['object'] = $annotation->getObject();
+        $formSpec['object'] = $annotation->getInstance();
     }
 
     /**

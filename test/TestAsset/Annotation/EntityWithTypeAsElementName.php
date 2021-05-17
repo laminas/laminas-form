@@ -8,11 +8,11 @@ class EntityWithTypeAsElementName
 {
     /**
       * @Annotation\Required(true)
-      * @Annotation\Filter({"name":"StringTrim"})
+      * @Annotation\Filter("StringTrim")
       * @Annotation\Name("type")
       */
     #[Annotation\Required(true)]
-    #[Annotation\Filter(["name" => "StringTrim"])]
+    #[Annotation\Filter("StringTrim")]
     #[Annotation\Name("type")]
     public $type;
 }

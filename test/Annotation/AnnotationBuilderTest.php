@@ -474,4 +474,52 @@ class AnnotationBuilderTest extends TestCase
         $inputFilter = $form->getInputFilter();
         $this->assertCount(2, $inputFilter->get('username')->getValidatorChain());
     }
+
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testLegacyComposedObjectAnnotation($useAttributes)
+    {
+        $this->expectDeprecation();
+        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $entity  = new TestAsset\Annotation\LegacyComposedObjectAnnotation();
+        $builder = new Annotation\AnnotationBuilder();
+        $form    = $builder->createForm($entity, $useAttributes);
+    }
+
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testLegacyStyleFilterAnnotations($useAttributes)
+    {
+        $this->expectDeprecation();
+        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $entity = new TestAsset\Annotation\LegacyFilterAnnotation();
+        $builder = new Annotation\AnnotationBuilder();
+        $form = $builder->createForm($entity, $useAttributes);
+    }
+
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testLegacyStyleHydratorAnnotations($useAttributes)
+    {
+        $this->expectDeprecation();
+        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $entity = new TestAsset\Annotation\LegacyHydratorAnnotation();
+        $builder = new Annotation\AnnotationBuilder();
+        $form = $builder->createForm($entity, $useAttributes);
+    }
+
+    /**
+     * @dataProvider useAttributesDataProvider
+     */
+    public function testLegacyStyleValidatorAnnotations($useAttributes)
+    {
+        $this->expectDeprecation();
+        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $entity = new TestAsset\Annotation\LegacyValidatorAnnotation();
+        $builder = new Annotation\AnnotationBuilder();
+        $form = $builder->createForm($entity, $useAttributes);
+    }
 }

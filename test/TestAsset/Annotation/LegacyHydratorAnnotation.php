@@ -4,15 +4,14 @@ namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
 
+// @codingStandardsIgnoreStart
 /**
  * @Annotation\Name("user")
- * @Annotation\Attributes({"legend":"Register"})
- * @Annotation\Hydrator("Laminas\Hydrator\ClassMethodsHydrator", options={"underscoreSeparatedKeys": false})
+ * @Annotation\Hydrator({"type": "Laminas\Hydrator\ClassMethodsHydrator", "options":{"underscoreSeparatedKeys": false}})
  */
 #[Annotation\Name("user")]
-#[Annotation\Attributes(["legend" => "Register"])]
-#[Annotation\Hydrator("Laminas\Hydrator\ClassMethodsHydrator", options: ["underscoreSeparatedKeys" => false])]
-class EntityWithHydratorArray
+#[Annotation\Hydrator(["type" => "Laminas\Hydrator\ClassMethodsHydrator", "options" => ["underscoreSeparatedKeys" => false]])]
+class LegacyHydratorAnnotation
 {
     /**
      * @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}})
@@ -20,3 +19,4 @@ class EntityWithHydratorArray
     #[Annotation\Options(["label" => "Username:", "label_attributes" => ["class" => "label"]])]
     public $username;
 }
+// @codingStandardsIgnoreEnd

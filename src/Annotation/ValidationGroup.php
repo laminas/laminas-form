@@ -29,7 +29,7 @@ class ValidationGroup
      *
      * @param array $validationGroup
      */
-    public function __construct(array $validationGroup = [])
+    public function __construct(array $validationGroup)
     {
         $this->validationGroup = $validationGroup;
     }

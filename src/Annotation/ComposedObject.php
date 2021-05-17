@@ -47,13 +47,14 @@ class ComposedObject
         if (is_array($targetObject)) {
             // support for legacy notation with array as first parameter
             trigger_error(sprintf(
-                'Passing a single array to the constructor of %s is deprecated, please use separate parameters.',
+                'Passing a single array to the constructor of %s is deprecated since 3.0.0,'
+                    . ' please use separate parameters.',
                 get_class($this)
             ), E_USER_DEPRECATED);
 
             $this->targetObject = $targetObject['target_object'] ?? null;
-            $this->isCollection = $targetObject['is_collection'] ?? false;
-            $this->options = $targetObject['options'] ?? [];
+            $this->isCollection = $targetObject['is_collection'] ?? $isCollection;
+            $this->options = $targetObject['options'] ?? $options;
         } else {
             $this->targetObject = $targetObject;
             $this->isCollection = $isCollection;
