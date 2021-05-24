@@ -33,6 +33,15 @@
     </MixedAssignment>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
+    <DeprecatedMethod occurrences="3">
+      <code>getAnnotationManager</code>
+      <code>getAnnotationParser</code>
+      <code>setAnnotationManager</code>
+    </DeprecatedMethod>
+    <DeprecatedProperty occurrences="2">
+      <code>$this-&gt;annotationManager</code>
+      <code>$this-&gt;annotationParser</code>
+    </DeprecatedProperty>
     <DocblockTypeContradiction occurrences="3">
       <code>! is_string($entity)</code>
       <code>null === $this-&gt;annotationParser</code>
@@ -104,6 +113,9 @@
     <DeprecatedInterface occurrences="1">
       <code>AnnotationBuilderFactory</code>
     </DeprecatedInterface>
+    <DeprecatedMethod occurrences="1">
+      <code>getAnnotationParser</code>
+    </DeprecatedMethod>
     <MissingReturnType occurrences="1">
       <code>injectFactory</code>
     </MissingReturnType>
@@ -2448,6 +2460,9 @@
     </RedundantCondition>
   </file>
   <file src="test/Annotation/AnnotationBuilderFactoryTest.php">
+    <DeprecatedMethod occurrences="1">
+      <code>getAnnotationParser</code>
+    </DeprecatedMethod>
     <MissingReturnType occurrences="5">
       <code>testFactoryAllowsAttachingListenersFromConfiguration</code>
       <code>testFactoryAllowsInjectingAnnotationsFromConfiguration</code>
@@ -2463,15 +2478,13 @@
     </MixedAssignment>
   </file>
   <file src="test/Annotation/AnnotationBuilderTest.php">
-    <ArgumentTypeCoercion occurrences="24">
+    <ArgumentTypeCoercion occurrences="21">
       <code>$expectedInstance</code>
-      <code>$this-&gt;classMethodsHydratorClass</code>
       <code>$this-&gt;classMethodsHydratorClass</code>
       <code>$this-&gt;classMethodsHydratorClass</code>
       <code>$this-&gt;objectPropertyHydratorClass</code>
       <code>'ArrayObject'</code>
       <code>'LaminasTest\Form\TestAsset\Annotation\Element'</code>
-      <code>'LaminasTest\Form\TestAsset\Annotation\Entity'</code>
       <code>'LaminasTest\Form\TestAsset\Annotation\Entity'</code>
       <code>'LaminasTest\Form\TestAsset\Annotation\Form'</code>
       <code>'LaminasTest\Form\TestAsset\Annotation\InputFilter'</code>
@@ -2480,7 +2493,6 @@
       <code>'Laminas\Form\Element'</code>
       <code>'Laminas\Form\Element'</code>
       <code>'Laminas\Form\Element\Collection'</code>
-      <code>'Laminas\Form\Fieldset'</code>
       <code>'Laminas\Form\Fieldset'</code>
       <code>'Laminas\Form\FieldsetInterface'</code>
       <code>'Laminas\Form\FieldsetInterface'</code>
@@ -2496,12 +2508,7 @@
     <DeprecatedMethod occurrences="1">
       <code>allowEmpty</code>
     </DeprecatedMethod>
-    <InvalidArgument occurrences="1"/>
-    <MissingClosureParamType occurrences="2">
-      <code>$code</code>
-      <code>$message</code>
-    </MissingClosureParamType>
-    <MissingReturnType occurrences="22">
+    <MissingReturnType occurrences="21">
       <code>testAllowEmptyInput</code>
       <code>testAllowTypeAsElementNameInInputFilter</code>
       <code>testAllowsComposingChildEntities</code>
@@ -2521,7 +2528,6 @@
       <code>testInputFilterInputAnnotation</code>
       <code>testInputNotRequiredByDefault</code>
       <code>testInstanceElementAnnotation</code>
-      <code>testObjectElementAnnotation</code>
       <code>testOptionsAnnotationAndComposedObjectAnnotation</code>
       <code>testOptionsAnnotationAndComposedObjectAnnotationNoneCollection</code>
     </MissingReturnType>
@@ -2539,7 +2545,7 @@
       <code>$test</code>
       <code>$test[]</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="12">
+    <MixedMethodCall occurrences="11">
       <code>current</code>
       <code>current</code>
       <code>current</code>
@@ -2548,7 +2554,6 @@
       <code>getName</code>
       <code>getName</code>
       <code>getName</code>
-      <code>getUnderscoreSeparatedKeys</code>
       <code>getUnderscoreSeparatedKeys</code>
       <code>has</code>
       <code>has</code>
@@ -2580,7 +2585,7 @@
       <code>isRequired</code>
       <code>isRequired</code>
     </PossiblyUndefinedMethod>
-    <UndefinedInterfaceMethod occurrences="22">
+    <UndefinedInterfaceMethod occurrences="19">
       <code>$attributes</code>
       <code>$attributes</code>
       <code>$attributes</code>
@@ -2588,13 +2593,10 @@
       <code>current</code>
       <code>getHydrator</code>
       <code>getHydrator</code>
-      <code>getHydrator</code>
-      <code>getHydrator</code>
       <code>getIterator</code>
       <code>getIterator</code>
       <code>getIterator</code>
       <code>getLabelAttributes</code>
-      <code>getObject</code>
       <code>getObject</code>
       <code>getTargetElement</code>
       <code>getTargetElement</code>
@@ -2604,9 +2606,6 @@
       <code>has</code>
       <code>useAsBaseFieldset</code>
     </UndefinedInterfaceMethod>
-    <UnusedClosureParam occurrences="1">
-      <code>$message</code>
-    </UnusedClosureParam>
   </file>
   <file src="test/Element/CaptchaTest.php">
     <ArgumentTypeCoercion occurrences="6">
