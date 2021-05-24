@@ -359,31 +359,6 @@ class AnnotationBuilderTest extends TestCase
         $this->assertFalse($sampleinput->isRequired());
     }
 
-    public function testObjectElementAnnotation()
-    {
-        if (version_compare(PHP_VERSION, '7.0', '>=')) {
-            $this->markTestSkipped('Cannot test Object annotation in PHP 7; object is a reserved keyword');
-        }
-
-        $entity = new TestAsset\Annotation\EntityUsingObjectProperty();
-        $builder = new Annotation\AnnotationBuilder();
-
-        $phpunit = $this;
-        set_error_handler(function ($code, $message) use ($phpunit) {
-            $phpunit->assertEquals(E_USER_DEPRECATED, $code);
-        }, E_USER_DEPRECATED);
-        $form = $builder->createForm($entity);
-        restore_error_handler();
-
-        $fieldset = $form->get('object');
-        /* @var $fieldset Laminas\Form\Fieldset */
-
-        $this->assertInstanceOf('Laminas\Form\Fieldset', $fieldset);
-        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Entity', $fieldset->getObject());
-        $this->assertInstanceOf($this->classMethodsHydratorClass, $fieldset->getHydrator());
-        $this->assertFalse($fieldset->getHydrator()->getUnderscoreSeparatedKeys());
-    }
-
     public function testInstanceElementAnnotation()
     {
         $entity = new TestAsset\Annotation\EntityUsingInstanceProperty();

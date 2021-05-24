@@ -2,7 +2,7 @@
 
 namespace LaminasTest\Form\TestAsset\Annotation;
 
-use LaminasTest\Form\Annotation;
+use Laminas\Form\Annotation;
 
 class EntityWithTypeAsElementName
 {
