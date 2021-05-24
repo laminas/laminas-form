@@ -51,7 +51,9 @@
         "laminas/laminas-validator": "^2.13.4",
         "laminas/laminas-view": "^2.11.4",
         "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^9.4.2"
+        "phpunit/phpunit": "^9.4.2",
+        "psalm/plugin-phpunit": "^0.15.1",
+        "vimeo/psalm": "^4.7"
     },
     "suggest": {
         "laminas/laminas-captcha": "^2.9, required for using CAPTCHA form elements",
@@ -78,10 +80,12 @@
     "scripts": {
         "check": [
             "@cs-check",
+            "@static-analysis",
             "@test"
         ],
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
+        "static-analysis": "psalm --shepherd --stats",
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
