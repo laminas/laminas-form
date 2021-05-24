@@ -2,13 +2,13 @@
 
 namespace Laminas\Form;
 
-use Laminas\Code\Reflection\ClassReflection;
 use Laminas\Form\Element\Collection;
 use Laminas\Hydrator;
 use Laminas\Hydrator\HydratorAwareInterface;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Stdlib\PriorityList;
+use ReflectionClass;
 use Traversable;
 
 use function array_key_exists;
@@ -507,7 +507,7 @@ class Fieldset extends Element implements FieldsetInterface
         $validBindingClass = false;
         if (is_object($object) && $this->allowedObjectBindingClass()) {
             $objectClass = ltrim($this->allowedObjectBindingClass(), '\\');
-            $reflection = new ClassReflection($object);
+            $reflection = new ReflectionClass($object);
             $validBindingClass = $reflection->getName() == $objectClass
                 || $reflection->isSubclassOf($this->allowedObjectBindingClass());
         }

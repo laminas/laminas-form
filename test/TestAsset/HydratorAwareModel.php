@@ -2,30 +2,26 @@
 
 namespace LaminasTest\Form\TestAsset;
 
-use Laminas\Hydrator\ClassMethods;
+use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorAwareInterface;
 use Laminas\Hydrator\HydratorInterface;
 
-/**
- * This test asset targest laminas-hydrator v1 and v2, and will be aliased to
- * HydratorAwareModel when of those versions is installed.
- */
-class HydratorAwareModelHydratorV2 implements HydratorAwareInterface
+class HydratorAwareModel implements HydratorAwareInterface
 {
     protected $hydrator = null;
 
     protected $foo = null;
     protected $bar = null;
 
-    public function setHydrator(HydratorInterface $hydrator)
+    public function setHydrator(HydratorInterface $hydrator) : void
     {
         $this->hydrator = $hydrator;
     }
 
-    public function getHydrator()
+    public function getHydrator() : ?HydratorInterface
     {
         if (! $this->hydrator) {
-            $this->hydrator = new ClassMethods();
+            $this->hydrator = new ClassMethodsHydrator();
         }
         return $this->hydrator;
     }

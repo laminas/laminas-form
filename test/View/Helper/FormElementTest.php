@@ -3,11 +3,13 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Captcha;
+use Laminas\Form\ConfigProvider;
 use Laminas\Form\Element;
+use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\View\Helper\FormElement as FormElementHelper;
-use Laminas\Form\View\HelperConfig;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Renderer\PhpRenderer;
+use Laminas\View\Renderer\RendererInterface;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -15,19 +17,27 @@ use function substr_count;
 
 class FormElementTest extends TestCase
 {
+    /**
+     * @var AbstractHelper
+     */
     public $helper;
+
+    /**
+     * @var RendererInterface
+     */
     public $renderer;
 
     protected function setUp(): void
     {
-        $this->helper = new FormElementHelper();
-
         Doctype::unsetDoctypeRegistry();
 
+        $this->helper = new FormElementHelper();
         $this->renderer = new PhpRenderer;
-        $helpers = $this->renderer->getHelperPluginManager();
-        $config  = new HelperConfig();
-        $config->configureServiceManager($helpers);
+
+        $helperPluginManager = $this->renderer->getHelperPluginManager();
+        $viewHelperConfig = (new ConfigProvider())->getViewHelperConfig();
+        $helperPluginManager->configure($viewHelperConfig);
+        $this->renderer->setHelperPluginManager($helperPluginManager);
 
         $this->helper->setView($this->renderer);
     }

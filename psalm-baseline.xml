@@ -4,16 +4,14 @@
     <InvalidNullableReturnType occurrences="1">
       <code>false|string</code>
     </InvalidNullableReturnType>
-    <MixedAssignment occurrences="2">
-      <code>$annotations</code>
+    <MixedAssignment occurrences="1">
       <code>$reflection</code>
     </MixedAssignment>
     <MixedInferredReturnType occurrences="1">
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="2">
+    <MixedMethodCall occurrences="1">
       <code>getName</code>
-      <code>hasAnnotation</code>
     </MixedMethodCall>
     <MixedReturnStatement occurrences="1">
       <code>$reflection-&gt;getName()</code>
@@ -33,18 +31,11 @@
     </MixedAssignment>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
-    <DeprecatedMethod occurrences="3">
-      <code>getAnnotationManager</code>
-      <code>getAnnotationParser</code>
-      <code>setAnnotationManager</code>
+    <DeprecatedMethod occurrences="1">
+      <code>AnnotationRegistry::registerLoader('class_exists')</code>
     </DeprecatedMethod>
-    <DeprecatedProperty occurrences="2">
-      <code>$this-&gt;annotationManager</code>
-      <code>$this-&gt;annotationParser</code>
-    </DeprecatedProperty>
-    <DocblockTypeContradiction occurrences="3">
+    <DocblockTypeContradiction occurrences="2">
       <code>! is_string($entity)</code>
-      <code>null === $this-&gt;annotationParser</code>
       <code>null === $this-&gt;events</code>
     </DocblockTypeContradiction>
     <ImplementedReturnTypeMismatch occurrences="1">
@@ -60,13 +51,6 @@
       <code>$r</code>
       <code>$r</code>
     </MissingClosureParamType>
-    <MissingConstructor occurrences="5">
-      <code>$annotationManager</code>
-      <code>$annotationParser</code>
-      <code>$entity</code>
-      <code>$events</code>
-      <code>$formFactory</code>
-    </MissingConstructor>
     <MixedArgument occurrences="1">
       <code>$type</code>
     </MixedArgument>
@@ -74,19 +58,12 @@
       <code>$formSpec['elements'][]</code>
       <code>$formSpec['fieldsets'][]</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="5">
-      <code>$annotation</code>
-      <code>$annotation</code>
-      <code>$annotationName</code>
-      <code>$params['annotation']</code>
+    <MixedAssignment occurrences="1">
       <code>$type</code>
     </MixedAssignment>
     <MixedInferredReturnType occurrences="1">
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedOperand occurrences="1">
-      <code>$annotationName</code>
-    </MixedOperand>
     <MixedReturnStatement occurrences="1">
       <code>$results-&gt;last()</code>
     </MixedReturnStatement>
@@ -100,11 +77,15 @@
     <PossiblyNullArgument occurrences="1">
       <code>var_export($entity, 1)</code>
     </PossiblyNullArgument>
+    <PropertyNotSetInConstructor occurrences="3">
+      <code>$entity</code>
+      <code>$events</code>
+      <code>$formFactory</code>
+    </PropertyNotSetInConstructor>
     <RedundantCastGivenDocblockType occurrences="1">
       <code>(bool) $preserveDefinedOrder</code>
     </RedundantCastGivenDocblockType>
-    <RedundantConditionGivenDocblockType occurrences="3">
-      <code>$this-&gt;annotationManager</code>
+    <RedundantConditionGivenDocblockType occurrences="2">
       <code>$this-&gt;formFactory</code>
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
@@ -113,28 +94,23 @@
     <DeprecatedInterface occurrences="1">
       <code>AnnotationBuilderFactory</code>
     </DeprecatedInterface>
-    <DeprecatedMethod occurrences="1">
-      <code>getAnnotationParser</code>
-    </DeprecatedMethod>
     <MissingReturnType occurrences="1">
       <code>injectFactory</code>
     </MissingReturnType>
-    <MixedArgument occurrences="6">
+    <MixedArgument occurrences="5">
       <code>$config['preserve_defined_order']</code>
       <code>$container-&gt;get('FormElementManager')</code>
       <code>$eventManager</code>
-      <code>$fullyQualifiedClassName</code>
       <code>$inputFilters</code>
       <code>$listenerName</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="1">
       <code>$config['form_annotation_builder']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="7">
+    <MixedAssignment occurrences="6">
       <code>$config</code>
       <code>$config</code>
       <code>$eventManager</code>
-      <code>$fullyQualifiedClassName</code>
       <code>$inputFilters</code>
       <code>$listener</code>
       <code>$listenerName</code>
@@ -234,8 +210,7 @@
       <code>$specification['type']</code>
       <code>$specification['type']</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="27">
-      <code>$annotations</code>
+    <MixedAssignment occurrences="26">
       <code>$elementSpec</code>
       <code>$elementSpec</code>
       <code>$elementSpec</code>
@@ -263,10 +238,9 @@
       <code>$specification</code>
       <code>$specification['options']</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="3">
+    <MixedMethodCall occurrences="2">
       <code>getArrayCopy</code>
       <code>getFormSpecification</code>
-      <code>hasAnnotation</code>
     </MixedMethodCall>
     <NullableReturnStatement occurrences="1">
       <code>$annotation-&gt;getOptions()</code>
@@ -330,11 +304,6 @@
     <InvalidReturnType occurrences="1">
       <code>null|string</code>
     </InvalidReturnType>
-  </file>
-  <file src="src/Annotation/Object.php">
-    <ReservedWord occurrences="1">
-      <code>Object</code>
-    </ReservedWord>
   </file>
   <file src="src/Annotation/Required.php">
     <MixedArgument occurrences="1">
@@ -2442,40 +2411,13 @@
       <code>$attributes</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="src/View/HelperConfig.php">
-    <MixedArgument occurrences="4">
-      <code>$alias</code>
-      <code>$factory</code>
-      <code>$service</code>
-      <code>$target</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="4">
-      <code>$alias</code>
-      <code>$factory</code>
-      <code>$service</code>
-      <code>$target</code>
-    </MixedAssignment>
-    <RedundantCondition occurrences="1">
-      <code>method_exists($serviceManager, 'configure')</code>
-    </RedundantCondition>
-  </file>
   <file src="test/Annotation/AnnotationBuilderFactoryTest.php">
-    <DeprecatedMethod occurrences="1">
-      <code>getAnnotationParser</code>
-    </DeprecatedMethod>
-    <MissingReturnType occurrences="5">
+    <MissingReturnType occurrences="4">
       <code>testFactoryAllowsAttachingListenersFromConfiguration</code>
-      <code>testFactoryAllowsInjectingAnnotationsFromConfiguration</code>
       <code>testFactoryCanSetPreserveDefinedOrderFlagFromConfiguration</code>
       <code>testFactoryReturnsAnnotationBuilder</code>
       <code>testFactoryThrowsExceptionWhenAttachingInvalidListeners</code>
     </MissingReturnType>
-    <MixedArgument occurrences="1">
-      <code>$allowedAnnotations</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="1">
-      <code>$allowedAnnotations</code>
-    </MixedAssignment>
   </file>
   <file src="test/Annotation/AnnotationBuilderTest.php">
     <ArgumentTypeCoercion occurrences="21">
@@ -4855,16 +4797,7 @@
       <code>$omit</code>
     </MissingPropertyType>
   </file>
-  <file src="test/TestAsset/Annotation/ComplexEntityHydratorV2.php">
-    <MissingPropertyType occurrences="5">
-      <code>$avatar</code>
-      <code>$email</code>
-      <code>$password</code>
-      <code>$someComposedObject</code>
-      <code>$username</code>
-    </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/ComplexEntityHydratorV3.php">
+  <file src="test/TestAsset/Annotation/ComplexEntity.php">
     <MissingPropertyType occurrences="5">
       <code>$avatar</code>
       <code>$email</code>
@@ -4897,22 +4830,7 @@
       <code>$childTheThird</code>
     </MissingPropertyType>
   </file>
-  <file src="test/TestAsset/Annotation/EntityUsingInstancePropertyHydratorV2.php">
-    <MissingPropertyType occurrences="1">
-      <code>$object</code>
-    </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityUsingInstancePropertyHydratorV3.php">
-    <MissingPropertyType occurrences="1">
-      <code>$object</code>
-    </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityUsingObjectPropertyHydratorV2.php">
-    <MissingPropertyType occurrences="1">
-      <code>$object</code>
-    </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityUsingObjectPropertyHydratorV3.php">
+  <file src="test/TestAsset/Annotation/EntityUsingInstanceProperty.php">
     <MissingPropertyType occurrences="1">
       <code>$object</code>
     </MissingPropertyType>
@@ -4922,12 +4840,7 @@
       <code>$username</code>
     </MissingPropertyType>
   </file>
-  <file src="test/TestAsset/Annotation/EntityWithHydratorArrayHydratorV2.php">
-    <MissingPropertyType occurrences="1">
-      <code>$username</code>
-    </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityWithHydratorArrayHydratorV3.php">
+  <file src="test/TestAsset/Annotation/EntityWithHydratorArray.php">
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
@@ -5350,36 +5263,7 @@
       <code>FormCollection</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="test/TestAsset/HydratorAwareModelHydratorV2.php">
-    <DeprecatedClass occurrences="1">
-      <code>new ClassMethods()</code>
-    </DeprecatedClass>
-    <MethodSignatureMismatch occurrences="1">
-      <code>HydratorAwareModelHydratorV2</code>
-    </MethodSignatureMismatch>
-    <MissingParamType occurrences="2">
-      <code>$value</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="3">
-      <code>$bar</code>
-      <code>$foo</code>
-      <code>$hydrator</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="4">
-      <code>getBar</code>
-      <code>getFoo</code>
-      <code>setBar</code>
-      <code>setFoo</code>
-    </MissingReturnType>
-    <MixedInferredReturnType occurrences="1">
-      <code>getHydrator</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;hydrator</code>
-    </MixedReturnStatement>
-  </file>
-  <file src="test/TestAsset/HydratorAwareModelHydratorV3.php">
+  <file src="test/TestAsset/HydratorAwareModel.php">
     <MissingParamType occurrences="2">
       <code>$value</code>
       <code>$value</code>
@@ -5401,6 +5285,27 @@
     <MixedReturnStatement occurrences="1">
       <code>$this-&gt;hydrator</code>
     </MixedReturnStatement>
+  </file>
+  <file src="test/TestAsset/HydratorStrategy.php">
+    <MissingParamType occurrences="1">
+      <code>$field1</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="1">
+      <code>findEntity</code>
+    </MissingReturnType>
+    <MixedAssignment occurrences="7">
+      <code>$entity</code>
+      <code>$field1</code>
+      <code>$instance</code>
+      <code>$result</code>
+      <code>$result</code>
+      <code>$result[]</code>
+      <code>$result[]</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="2">
+      <code>getField1</code>
+      <code>getField1</code>
+    </MixedMethodCall>
   </file>
   <file src="test/TestAsset/HydratorStrategyEntityA.php">
     <InvalidReturnType occurrences="1">
@@ -5452,53 +5357,6 @@
       <code>setField1</code>
       <code>setField2</code>
     </MissingReturnType>
-  </file>
-  <file src="test/TestAsset/HydratorStrategyHydratorV2.php">
-    <MethodSignatureMismatch occurrences="3">
-      <code>HydratorStrategyHydratorV2</code>
-      <code>public function extract($value)</code>
-      <code>public function hydrate($value)</code>
-    </MethodSignatureMismatch>
-    <MissingParamType occurrences="1">
-      <code>$field1</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>findEntity</code>
-    </MissingReturnType>
-    <MixedAssignment occurrences="7">
-      <code>$entity</code>
-      <code>$field1</code>
-      <code>$instance</code>
-      <code>$result</code>
-      <code>$result</code>
-      <code>$result[]</code>
-      <code>$result[]</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getField1</code>
-      <code>getField1</code>
-    </MixedMethodCall>
-  </file>
-  <file src="test/TestAsset/HydratorStrategyHydratorV3.php">
-    <MissingParamType occurrences="1">
-      <code>$field1</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>findEntity</code>
-    </MissingReturnType>
-    <MixedAssignment occurrences="7">
-      <code>$entity</code>
-      <code>$field1</code>
-      <code>$instance</code>
-      <code>$result</code>
-      <code>$result</code>
-      <code>$result[]</code>
-      <code>$result[]</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getField1</code>
-      <code>getField1</code>
-    </MixedMethodCall>
   </file>
   <file src="test/TestAsset/Identifier.php">
     <MissingParamType occurrences="1">
@@ -6024,12 +5882,6 @@
     </UndefinedThisPropertyFetch>
   </file>
   <file src="test/View/Helper/CommonTestCase.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>$config-&gt;configureServiceManager($helpers)</code>
-    </ArgumentTypeCoercion>
-    <DeprecatedClass occurrences="1">
-      <code>new HelperConfig()</code>
-    </DeprecatedClass>
     <MissingReturnType occurrences="7">
       <code>testAssumesHtml4LooseDoctypeByDefault</code>
       <code>testCanGetDoctypeFromDoctypeHelper</code>
@@ -6369,9 +6221,6 @@
       <code>'Laminas\I18n\Translator\Translator'</code>
       <code>'RuntimeException'</code>
     </ArgumentTypeCoercion>
-    <DeprecatedClass occurrences="1">
-      <code>new HelperConfig()</code>
-    </DeprecatedClass>
     <InvalidArgument occurrences="1">
       <code>$mockTranslator</code>
     </InvalidArgument>
@@ -6411,36 +6260,37 @@
       <code>testShouldWrapReturnsDefaultTrue</code>
       <code>testShouldWrapWithoutLabel</code>
     </MissingReturnType>
-    <MixedArgument occurrences="27">
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
+    <MixedArgument occurrences="28">
       <code>$collection-&gt;getTemplatePlaceholder()</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$this-&gt;getForm()</code>
-      <code>$this-&gt;getForm()</code>
+      <code>$collection-&gt;getTemplatePlaceholder()</code>
+      <code>$html</code>
+      <code>$html</code>
+      <code>$html</code>
+      <code>$html</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm())</code>
+      <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm(), false)</code>
     </MixedArgument>
-    <MixedAssignment occurrences="43">
+    <MixedAssignment occurrences="67">
       <code>$collection</code>
       <code>$collection</code>
       <code>$collection</code>
@@ -6484,8 +6334,32 @@
       <code>$form</code>
       <code>$form</code>
       <code>$form</code>
+      <code>$html</code>
+      <code>$html</code>
+      <code>$html</code>
+      <code>$html</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="38">
+    <MixedMethodCall occurrences="42">
       <code>get</code>
       <code>get</code>
       <code>get</code>
@@ -6505,6 +6379,10 @@
       <code>get</code>
       <code>get</code>
       <code>get</code>
+      <code>getTemplatePlaceholder</code>
+      <code>getTemplatePlaceholder</code>
+      <code>render</code>
+      <code>render</code>
       <code>setAttribute</code>
       <code>setAttributes</code>
       <code>setLabel</code>
@@ -6525,17 +6403,67 @@
       <code>setShouldCreateTemplate</code>
       <code>setShouldCreateTemplate</code>
     </MixedMethodCall>
-    <PossiblyInvalidArgument occurrences="2">
-      <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm())</code>
-      <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm(), false)</code>
-    </PossiblyInvalidArgument>
-    <PossiblyInvalidCast occurrences="2">
-      <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm())</code>
-      <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm(), false)</code>
-    </PossiblyInvalidCast>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>getTemplatePlaceholder</code>
-    </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="59">
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>getDefaultElementHelper</code>
+      <code>getDefaultElementHelper</code>
+      <code>getLabelWrapper</code>
+      <code>getLabelWrapper</code>
+      <code>getTemplateWrapper</code>
+      <code>getTemplateWrapper</code>
+      <code>getWrapper</code>
+      <code>getWrapper</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>renderTemplate</code>
+      <code>setDefaultElementHelper</code>
+      <code>setElementHelper</code>
+      <code>setFieldsetHelper</code>
+      <code>setLabelWrapper</code>
+      <code>setLabelWrapper</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setShouldWrap</code>
+      <code>setTemplateWrapper</code>
+      <code>setTemplateWrapper</code>
+      <code>setTemplateWrapper</code>
+      <code>setTemplateWrapper</code>
+      <code>setWrapper</code>
+      <code>setWrapper</code>
+      <code>setWrapper</code>
+      <code>setWrapper</code>
+      <code>shouldWrap</code>
+      <code>shouldWrap</code>
+    </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormColorTest.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -6913,19 +6841,15 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormElementTest.php">
-    <DeprecatedClass occurrences="1">
-      <code>new HelperConfig()</code>
-    </DeprecatedClass>
+    <InvalidPropertyAssignmentValue occurrences="1">
+      <code>new FormElementHelper()</code>
+    </InvalidPropertyAssignmentValue>
     <MissingParamType occurrences="4">
       <code>$additionalMarkup</code>
       <code>$inputType</code>
       <code>$type</code>
       <code>$type</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="2">
-      <code>$helper</code>
-      <code>$renderer</code>
-    </MissingPropertyType>
     <MissingReturnType occurrences="10">
       <code>getInputElements</code>
       <code>getMultiElements</code>
@@ -6961,23 +6885,23 @@
       <code>$markup</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="9">
-      <code>__invoke</code>
+    <MixedMethodCall occurrences="1">
       <code>getHash</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
     </MixedMethodCall>
     <MixedOperand occurrences="3">
       <code>$hash</code>
       <code>$inputType</code>
       <code>$type</code>
     </MixedOperand>
-    <UndefinedMethod occurrences="1">
+    <UndefinedMethod occurrences="9">
+      <code>__invoke</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
       <code>setValueOptions</code>
     </UndefinedMethod>
     <UnusedVariable occurrences="1">
@@ -8041,9 +7965,6 @@
       <code>'Laminas\I18n\Translator\Translator'</code>
       <code>'Laminas\I18n\Translator\Translator'</code>
     </ArgumentTypeCoercion>
-    <DeprecatedClass occurrences="1">
-      <code>new HelperConfig()</code>
-    </DeprecatedClass>
     <DeprecatedMethod occurrences="2">
       <code>setMethods</code>
       <code>setMethods</code>
@@ -8097,79 +8018,162 @@
       <code>testWhenUsingIdAndLabelBecomesEmptyRemoveSpan</code>
       <code>testWrapFieldsetAroundCaptchaWithLabel</code>
     </MissingReturnType>
-    <MixedArgument occurrences="2">
+    <MixedArgument occurrences="36">
+      <code>$barMarkup</code>
       <code>$element-&gt;getValue()</code>
       <code>$escapeHelper-&gt;__invoke($label)</code>
+      <code>$fooMarkup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="1">
+    <MixedAssignment occurrences="38">
+      <code>$barMarkup</code>
       <code>$escapeHelper</code>
+      <code>$fooMarkup</code>
+      <code>$labelPosition</code>
+      <code>$labelPosition</code>
+      <code>$labelPositionBeforeRender</code>
+      <code>$labelPositionBeforeRender</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
+    <MixedMethodCall occurrences="6">
       <code>__invoke</code>
+      <code>addPath</code>
+      <code>get</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
     </MixedMethodCall>
-    <NullArgument occurrences="1">
-      <code>null</code>
-    </NullArgument>
-    <PossiblyInvalidArgument occurrences="25">
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-    </PossiblyInvalidArgument>
-    <PossiblyInvalidCast occurrences="25">
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-    </PossiblyInvalidCast>
-    <PossiblyInvalidMethodCall occurrences="1">
-      <code>addPath</code>
-    </PossiblyInvalidMethodCall>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>addPath</code>
+    <UndefinedInterfaceMethod occurrences="4">
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>getHelperPluginManager</code>
+      <code>resolver</code>
     </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="63">
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>getLabelAttributes</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getLabelPosition</code>
+      <code>getPartial</code>
+      <code>getRenderErrors</code>
+      <code>getRenderErrors</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>setInputErrorClass</code>
+      <code>setInputErrorClass</code>
+      <code>setLabelAttributes</code>
+      <code>setLabelPosition</code>
+      <code>setLabelPosition</code>
+      <code>setLabelPosition</code>
+      <code>setLabelPosition</code>
+      <code>setLabelPosition</code>
+      <code>setLabelPosition</code>
+      <code>setLabelPosition</code>
+      <code>setLabelPosition</code>
+      <code>setRenderErrors</code>
+      <code>setRenderErrors</code>
+    </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormSearchTest.php">
     <ArgumentTypeCoercion occurrences="1">

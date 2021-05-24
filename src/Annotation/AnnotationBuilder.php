@@ -3,11 +3,8 @@
 namespace Laminas\Form\Annotation;
 
 use ArrayObject;
-use Laminas\Code\Annotation\AnnotationCollection;
-use Laminas\Code\Annotation\AnnotationManager;
-use Laminas\Code\Annotation\Parser;
-use Laminas\Code\Reflection\ClassReflection;
-use Laminas\Code\Reflection\PropertyReflection;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManager;
 use Laminas\EventManager\EventManagerAwareInterface;
@@ -19,6 +16,8 @@ use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormFactoryAwareInterface;
 use Laminas\Form\FormInterface;
 use Laminas\Stdlib\ArrayUtils;
+use ReflectionClass;
+use ReflectionProperty;
 use Reflector;
 
 use function class_exists;
@@ -37,18 +36,6 @@ use function var_export;
 class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareInterface
 {
     /**
-     * @deprecated 2.17.0 The annotation parser will be replaced by doctrine/annotations in 3.0
-     * @var Parser\DoctrineAnnotationParser
-     */
-    protected $annotationParser;
-
-    /**
-     * @deprecated 2.17.0 The annotation manager will be replaced by doctrine/annotations in 3.0
-     * @var AnnotationManager
-     */
-    protected $annotationManager;
-
-    /**
      * @var EventManagerInterface
      */
     protected $events;
@@ -64,35 +51,18 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
     protected $entity;
 
     /**
-     * @deprecated 2.17.0 Version 3.0 will use doctrine/annotations which does not have a list of allowed annotations
-     * @var array Default annotations to register
-     */
-    protected $defaultAnnotations = [
-        'AllowEmpty',
-        'Attributes',
-        'ComposedObject',
-        'ContinueIfEmpty',
-        'ErrorMessage',
-        'Exclude',
-        'Filter',
-        'Flags',
-        'Hydrator',
-        'Input',
-        'InputFilter',
-        'Instance',
-        'Name',
-        'Object',
-        'Options',
-        'Required',
-        'Type',
-        'ValidationGroup',
-        'Validator',
-    ];
-
-    /**
      * @var bool
      */
     protected $preserveDefinedOrder = false;
+
+    /**
+     * Initialize the annotation registry
+     */
+    public function __construct()
+    {
+        // doctrine/annotations 1.x does not require autoloading by default
+        AnnotationRegistry::registerLoader('class_exists');
+    }
 
     /**
      * Set form factory to use when building form from annotations
@@ -103,25 +73,6 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
     public function setFormFactory(Factory $formFactory)
     {
         $this->formFactory = $formFactory;
-        return $this;
-    }
-
-    /**
-     * Set annotation manager to use when building form from annotations
-     *
-     * @param  AnnotationManager $annotationManager
-     * @deprecated 2.17.0 The annotation manager will be replaced by doctrine/annotations in 3.0
-     * @return $this
-     */
-    public function setAnnotationManager(AnnotationManager $annotationManager)
-    {
-        $parser = $this->getAnnotationParser();
-        foreach ($this->defaultAnnotations as $annotationName) {
-            $class = __NAMESPACE__ . '\\' . $annotationName;
-            $parser->registerAnnotation($class);
-        }
-        $annotationManager->attach($parser);
-        $this->annotationManager = $annotationManager;
         return $this;
     }
 
@@ -158,24 +109,6 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
 
         $this->formFactory = new Factory();
         return $this->formFactory;
-    }
-
-    /**
-     * Retrieve annotation manager
-     *
-     * If none is currently set, creates one with default annotations.
-     *
-     * @deprecated 2.17.0 The annotation manager will be replaced by doctrine/annotations in 3.0
-     * @return AnnotationManager
-     */
-    public function getAnnotationManager()
-    {
-        if ($this->annotationManager) {
-            return $this->annotationManager;
-        }
-
-        $this->setAnnotationManager(new AnnotationManager());
-        return $this->annotationManager;
     }
 
     /**
@@ -217,23 +150,18 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         }
 
         $this->entity      = $entity;
-        $annotationManager = $this->getAnnotationManager();
         $formSpec          = new ArrayObject();
         $filterSpec        = new ArrayObject();
 
-        $reflection  = new ClassReflection($entity);
-        $annotations = $reflection->getAnnotations($annotationManager);
+        $reflection = new ReflectionClass($entity);
+        $reader = new AnnotationReader();
 
-        if ($annotations instanceof AnnotationCollection) {
-            $this->configureForm($annotations, $reflection, $formSpec, $filterSpec);
-        }
+        $annotations = new AnnotationCollection($reader->getClassAnnotations($reflection));
+        $this->configureForm($annotations, $reflection, $formSpec, $filterSpec);
 
         foreach ($reflection->getProperties() as $property) {
-            $annotations = $property->getAnnotations($annotationManager);
-
-            if ($annotations instanceof AnnotationCollection) {
-                $this->configureElement($annotations, $property, $formSpec, $filterSpec);
-            }
+            $annotations = new AnnotationCollection($reader->getPropertyAnnotations($property));
+            $this->configureElement($annotations, $property, $formSpec, $filterSpec);
         }
 
         if (! isset($formSpec['input_filter'])) {
@@ -272,7 +200,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Configure the form specification from annotations
      *
      * @param  AnnotationCollection $annotations
-     * @param  ClassReflection $reflection
+     * @param  ReflectionClass $reflection
      * @param  ArrayObject $formSpec
      * @param  ArrayObject $filterSpec
      * @return void
@@ -302,7 +230,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Configure an element from annotations
      *
      * @param  AnnotationCollection $annotations
-     * @param  PropertyReflection $reflection
+     * @param  ReflectionProperty $reflection
      * @param  ArrayObject $formSpec
      * @param  ArrayObject $filterSpec
      * @return void
@@ -411,7 +339,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
-                return is_string($r) && ! empty($r);
+            return is_string($r) && ! empty($r);
             },
             $event
         );
@@ -436,26 +364,13 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
         // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
             static function ($r) {
-                return true === $r;
+            return true === $r;
             },
             $event
         );
         // @codingStandardsIgnoreEnd
 
         return (bool) $results->last();
-    }
-
-    /**
-     * @deprecated 2.17.0 The annotation parser will be replaced by doctrine/annotations in 3.0
-     * @return Parser\DoctrineAnnotationParser
-     */
-    public function getAnnotationParser()
-    {
-        if (null === $this->annotationParser) {
-            $this->annotationParser = new Parser\DoctrineAnnotationParser();
-        }
-
-        return $this->annotationParser;
     }
 
     /**

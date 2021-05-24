@@ -60,34 +60,6 @@ class AnnotationBuilderFactoryTest extends TestCase
         $this->assertTrue($builder->preserveDefinedOrder(), 'Preserve defined order was not set correctly');
     }
 
-    public function testFactoryAllowsInjectingAnnotationsFromConfiguration()
-    {
-        $container = $this->prophesize(ContainerInterface::class);
-        $events = $this->prophesize(EventManagerInterface::class);
-
-        $elements = $this->prophesize(FormElementManager::class);
-        $container->get('EventManager')->willReturn($events->reveal());
-        $container->get('FormElementManager')->willReturn($elements->reveal());
-        $container->has('InputFilterManager')->willReturn(false);
-        $container->has('config')->willReturn(true);
-        $container->get('config')->willReturn([
-            'form_annotation_builder' => [
-                'annotations' => [
-                    get_class($this),
-                ],
-            ],
-        ]);
-
-        $factory = new AnnotationBuilderFactory();
-        $builder = $factory($container->reveal(), AnnotationBuilder::class);
-
-        $parser = $builder->getAnnotationParser();
-        $r = new ReflectionProperty($parser, 'allowedAnnotations');
-        $r->setAccessible(true);
-        $allowedAnnotations = $r->getValue($parser);
-        $this->assertArrayHasKey(get_class($this), $allowedAnnotations);
-    }
-
     public function testFactoryAllowsAttachingListenersFromConfiguration()
     {
         $container = $this->prophesize(ContainerInterface::class);

@@ -2,8 +2,8 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Form\ConfigProvider;
 use Laminas\Form\View\Helper\AbstractHelper;
-use Laminas\Form\View\HelperConfig;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Renderer\PhpRenderer;
 use Laminas\View\Renderer\RendererInterface;
@@ -32,9 +32,10 @@ abstract class CommonTestCase extends TestCase
         Doctype::unsetDoctypeRegistry();
 
         $this->renderer = new PhpRenderer;
-        $helpers = $this->renderer->getHelperPluginManager();
-        $config  = new HelperConfig();
-        $this->renderer->setHelperPluginManager($config->configureServiceManager($helpers));
+        $helperPluginManager = $this->renderer->getHelperPluginManager();
+        $viewHelperConfig = (new ConfigProvider())->getViewHelperConfig();
+        $helperPluginManager->configure($viewHelperConfig);
+        $this->renderer->setHelperPluginManager($helperPluginManager);
 
         $this->helper->setView($this->renderer);
     }

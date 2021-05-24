@@ -36,7 +36,6 @@ class AnnotationBuilderFactory implements FactoryInterface
             $annotationBuilder->setPreserveDefinedOrder($config['preserve_defined_order']);
         }
 
-        $this->injectAnnotations($config, $annotationBuilder);
         $this->injectListeners($config, $eventManager, $container);
 
         return $annotationBuilder;
@@ -81,25 +80,6 @@ class AnnotationBuilderFactory implements FactoryInterface
             : [];
 
         return is_array($config) ? $config : [];
-    }
-
-    /**
-     * Inject annotations from configuration, if any.
-     *
-     * @param array $config
-     * @param AnnotationBuilder $builder
-     * @return void
-     */
-    private function injectAnnotations(array $config, AnnotationBuilder $builder)
-    {
-        if (! isset($config['annotations'])) {
-            return;
-        }
-
-        $parser = $builder->getAnnotationParser();
-        foreach ($config['annotations'] as $fullyQualifiedClassName) {
-            $parser->registerAnnotation($fullyQualifiedClassName);
-        }
     }
 
     /**

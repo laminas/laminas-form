@@ -7,9 +7,9 @@ use Laminas\Form\Annotation;
 /**
  * @Annotation\Name("user")
  * @Annotation\Attributes({"legend":"Register"})
- * @Annotation\Hydrator("Laminas\Hydrator\ObjectProperty")
+ * @Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")
  */
-class ComplexEntityHydratorV2
+class ComplexEntity
 {
     /**
      * @Annotation\ErrorMessage("Invalid or missing username")

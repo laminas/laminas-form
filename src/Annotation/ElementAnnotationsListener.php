@@ -52,7 +52,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
         $this->listeners[] = $events->attach('configureElement', [$this, 'handleFlagsAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureElement', [$this, 'handleHydratorAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureElement', [$this, 'handleInputAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleObjectAnnotation'], $priority);
+        $this->listeners[] = $events->attach('configureElement', [$this, 'handleInstanceAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureElement', [$this, 'handleOptionsAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureElement', [$this, 'handleRequiredAnnotation'], $priority);
         $this->listeners[] = $events->attach('configureElement', [$this, 'handleTypeAnnotation'], $priority);
@@ -227,6 +227,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     public function handleExcludeAnnotation($e)
     {
         $annotations = $e->getParam('annotations');
+        assert($annotations instanceof AnnotationCollection);
+
         if ($annotations->hasAnnotation(Exclude::class)) {
             return true;
         }
@@ -315,18 +317,13 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     }
 
     /**
-     * Handle the Object and Instance annotations
+     * Handle the Instance annotations
      *
      * Sets the object to bind to the form or fieldset
-     *
-     * @param  EventInterface $e
-     * @return void
      */
-    public function handleObjectAnnotation($e)
+    public function handleInstanceAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
-
-        // Only need to typehint on Instance, as Object extends it
         if (! $annotation instanceof Instance) {
             return;
         }

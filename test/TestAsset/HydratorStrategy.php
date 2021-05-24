@@ -6,11 +6,7 @@ use Laminas\Hydrator\Strategy\DefaultStrategy;
 
 use function is_array;
 
-/**
- * This class targets laminas-hydrator v3, and will be aliased to
- * HydratorStrategy when that versions is detected.
- */
-class HydratorStrategyHydratorV3 extends DefaultStrategy
+class HydratorStrategy extends DefaultStrategy
 {
     /**
      * A simulated storage device which is just an array with Car objects.
