@@ -395,22 +395,13 @@ namespace Application\Form;
 
 use Album\Model\AlbumTable;
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class AlbumFieldsetFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
         return new AlbumFieldset($container->get(AlbumTable::class));
-    }
-
-    public function createService(ServiceLocatorInterface $formManager)
-    {
-        return $this(
-            $formManager->getServiceLocator() ?: $formManager,
-            AlbumFieldset::class
-        );
     }
 }
 ```

@@ -5,23 +5,12 @@ namespace Laminas\Form;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Config;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 use function is_array;
-use function method_exists;
 
 class FormElementManagerFactory implements FactoryInterface
 {
-    /**
-     * laminas-servicemanager v2 support for invocation options.
-     *
-     * @param array
-     *
-     * @deprecated Call \Laminas\Form\FormElementManagerFactory::__invoke with 3rd parameter as options instead
-     */
-    protected $creationOptions;
-
     /**
      * {@inheritDoc}
      *
@@ -29,7 +18,7 @@ class FormElementManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $name, array $options = null)
     {
-        $pluginManager = new \Laminas\Form\FormElementManager($container, $options ?: []);
+        $pluginManager = new FormElementManager($container, $options ?: []);
 
         // If this is in a laminas-mvc application, the ServiceListener will inject
         // merged configuration during bootstrap.
@@ -53,32 +42,5 @@ class FormElementManagerFactory implements FactoryInterface
         (new Config($config['form_elements']))->configureServiceManager($pluginManager);
 
         return $pluginManager;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return AbstractPluginManager
-     */
-    public function createService(ServiceLocatorInterface $container, $name = null, $requestedName = null)
-    {
-        return $this(
-            $container,
-            $requestedName ?: __NAMESPACE__ . '\FormElementManager',
-            $this->creationOptions
-        );
-    }
-
-    /**
-     * laminas-servicemanager v2 support for invocation options.
-     *
-     * @param array $options
-     * @return void
-     *
-     * @deprecated Call \Laminas\Form\FormElementManagerFactory::__invoke with 3rd parameter as options instead
-     */
-    public function setCreationOptions(array $options)
-    {
-        $this->creationOptions = $options;
     }
 }

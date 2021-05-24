@@ -91,9 +91,6 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Annotation/AnnotationBuilderFactory.php">
-    <DeprecatedInterface occurrences="1">
-      <code>AnnotationBuilderFactory</code>
-    </DeprecatedInterface>
     <MissingReturnType occurrences="1">
       <code>injectFactory</code>
     </MissingReturnType>
@@ -115,9 +112,6 @@
       <code>$listener</code>
       <code>$listenerName</code>
     </MixedAssignment>
-    <ParamNameMismatch occurrences="1">
-      <code>$container</code>
-    </ParamNameMismatch>
   </file>
   <file src="src/Annotation/ComposedObject.php">
     <MixedInferredReturnType occurrences="2">
@@ -922,32 +916,13 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="src/ElementFactory.php">
-    <DeprecatedInterface occurrences="1">
-      <code>ElementFactory</code>
-    </DeprecatedInterface>
-    <DocblockTypeContradiction occurrences="1">
-      <code>is_array($creationOptions)</code>
-    </DocblockTypeContradiction>
     <InvalidStringClass occurrences="1">
       <code>new $requestedName($name, $options)</code>
     </InvalidStringClass>
-    <MissingPropertyType occurrences="1">
-      <code>$creationOptions</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="1">
-      <code>setCreationOptions</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="2">
-      <code>$this-&gt;creationOptions</code>
-      <code>$this-&gt;creationOptions</code>
-    </MixedArgument>
     <MixedAssignment occurrences="2">
       <code>$name</code>
       <code>$options</code>
     </MixedAssignment>
-    <PossiblyNullArgument occurrences="1">
-      <code>$canonicalName</code>
-    </PossiblyNullArgument>
   </file>
   <file src="src/ElementInterface.php">
     <MissingParamType occurrences="1">
@@ -1379,9 +1354,6 @@
       <code>$container</code>
       <code>$container</code>
     </ArgumentTypeCoercion>
-    <DeprecatedInterface occurrences="1">
-      <code>FormAbstractServiceFactory</code>
-    </DeprecatedInterface>
     <MissingConstructor occurrences="2">
       <code>$config</code>
       <code>$factory</code>
@@ -1469,27 +1441,12 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/FormElementManagerFactory.php">
-    <DeprecatedInterface occurrences="1">
-      <code>FormElementManagerFactory</code>
-    </DeprecatedInterface>
-    <DeprecatedProperty occurrences="1">
-      <code>$this-&gt;creationOptions</code>
-    </DeprecatedProperty>
-    <MissingParamType occurrences="3">
+    <MissingParamType occurrences="1">
       <code>$name</code>
-      <code>$name</code>
-      <code>$requestedName</code>
     </MissingParamType>
-    <MissingPropertyType occurrences="1">
-      <code>$creationOptions</code>
-    </MissingPropertyType>
-    <MixedArgument occurrences="2">
+    <MixedArgument occurrences="1">
       <code>$config['form_elements']</code>
-      <code>$this-&gt;creationOptions</code>
     </MixedArgument>
-    <ParamNameMismatch occurrences="1">
-      <code>$container</code>
-    </ParamNameMismatch>
   </file>
   <file src="src/FormFactoryAwareInterface.php">
     <MissingReturnType occurrences="1">
@@ -3617,20 +3574,14 @@
     </MixedMethodCall>
   </file>
   <file src="test/ElementFactoryTest.php">
-    <MissingParamType occurrences="1">
-      <code>$creationOptions</code>
-    </MissingParamType>
     <MissingPropertyType occurrences="1">
       <code>$result-&gt;args</code>
     </MissingPropertyType>
-    <MissingReturnType occurrences="4">
-      <code>invalidCreationOptions</code>
-      <code>testInvalidCreationOptionsException</code>
+    <MissingReturnType occurrences="2">
       <code>testValidCreationOptions</code>
       <code>validCreationOptions</code>
     </MissingReturnType>
-    <MixedArgument occurrences="2">
-      <code>$creationOptions</code>
+    <MixedArgument occurrences="1">
       <code>$creationOptions</code>
     </MixedArgument>
   </file>
@@ -4032,17 +3983,17 @@
       <code>$validators</code>
     </MixedAssignment>
     <MixedMethodCall occurrences="39">
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>canCreateServiceWithName</code>
-      <code>createServiceWithName</code>
-      <code>createServiceWithName</code>
+      <code>__invoke</code>
+      <code>__invoke</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
+      <code>canCreate</code>
       <code>get</code>
       <code>get</code>
       <code>get</code>
@@ -5014,26 +4965,13 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/CustomCreatedFormFactory.php">
-    <DeprecatedInterface occurrences="1">
-      <code>CustomCreatedFormFactory</code>
-    </DeprecatedInterface>
-    <MissingPropertyType occurrences="1">
-      <code>$creationOptions</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="1">
-      <code>setCreationOptions</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="2">
+    <MixedArgument occurrences="1">
       <code>$creationString</code>
-      <code>$this-&gt;creationOptions</code>
     </MixedArgument>
     <MixedAssignment occurrences="2">
       <code>$creationString</code>
       <code>$name</code>
     </MixedAssignment>
-    <ParamNameMismatch occurrences="1">
-      <code>$container</code>
-    </ParamNameMismatch>
   </file>
   <file src="test/TestAsset/CustomFieldsetHelper.php">
     <InvalidFunctionCall occurrences="1">
@@ -5198,24 +5136,9 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/FieldsetWithDependencyFactory.php">
-    <DeprecatedInterface occurrences="1">
-      <code>FieldsetWithDependencyFactory</code>
-    </DeprecatedInterface>
-    <MissingPropertyType occurrences="1">
-      <code>$creationOptions</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="1">
-      <code>setCreationOptions</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="1">
-      <code>$this-&gt;creationOptions</code>
-    </MixedArgument>
     <MixedAssignment occurrences="1">
       <code>$name</code>
     </MixedAssignment>
-    <ParamNameMismatch occurrences="1">
-      <code>$container</code>
-    </ParamNameMismatch>
   </file>
   <file src="test/TestAsset/FieldsetWithInputFilter.php">
     <PropertyNotSetInConstructor occurrences="3">

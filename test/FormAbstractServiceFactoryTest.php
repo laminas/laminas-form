@@ -44,31 +44,31 @@ class FormAbstractServiceFactoryTest extends TestCase
 
     public function testMissingConfigServiceIndicatesCannotCreateForm()
     {
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'foo', 'foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'foo'));
     }
 
     public function testMissingFormServicePrefixIndicatesCannotCreateForm()
     {
         $this->services->setService('config', []);
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'foo', 'foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'foo'));
     }
 
     public function testMissingFormManagerConfigIndicatesCannotCreateForm()
     {
         $this->services->setService('config', []);
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Form\Foo', 'Form\Foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testInvalidFormManagerConfigIndicatesCannotCreateForm()
     {
         $this->services->setService('config', ['forms' => 'string']);
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Form\Foo', 'Form\Foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testEmptyFormManagerConfigIndicatesCannotCreateForm()
     {
         $this->services->setService('config', ['forms' => []]);
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Form\Foo', 'Form\Foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testMissingFormConfigIndicatesCannotCreateForm()
@@ -78,7 +78,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                 'Bar' => [],
             ],
         ]);
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Form\Foo', 'Form\Foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testInvalidFormConfigIndicatesCannotCreateForm()
@@ -88,7 +88,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                 'Foo' => 'string',
             ],
         ]);
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Foo', 'Foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'Foo'));
     }
 
     public function testEmptyFormConfigIndicatesCannotCreateForm()
@@ -98,7 +98,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                 'Foo' => [],
             ],
         ]);
-        $this->assertFalse($this->forms->canCreateServiceWithName($this->services, 'Foo', 'Foo'));
+        $this->assertFalse($this->forms->canCreate($this->services, 'Foo'));
     }
 
     public function testPopulatedFormConfigIndicatesFormCanBeCreated()
@@ -111,7 +111,7 @@ class FormAbstractServiceFactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertTrue($this->forms->canCreateServiceWithName($this->services, 'Foo', 'Foo'));
+        $this->assertTrue($this->forms->canCreate($this->services, 'Foo'));
     }
 
     public function testFormCanBeCreatedViaInteractionOfAllManagers()
@@ -136,7 +136,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         ];
         $config = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('config', $config);
-        $form = $this->forms->createServiceWithName($this->services, 'Foo', 'Foo');
+        $form = $this->forms->__invoke($this->services, 'Foo');
         $this->assertInstanceOf('Laminas\Form\Form', $form);
 
         $hydrator = $form->getHydrator();
@@ -189,7 +189,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         ];
         $config = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('config', $config);
-        $form = $this->forms->createServiceWithName($this->services, 'Foo', 'Foo');
+        $form = $this->forms->__invoke($this->services, 'Foo');
         $this->assertInstanceOf('Laminas\Form\Form', $form);
 
         $hydrator = $form->getHydrator();

@@ -372,21 +372,4 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
 
         return (bool) $results->last();
     }
-
-    /**
-     * Checks if the object has this class as one of its parents
-     *
-     * @see https://bugs.php.net/bug.php?id=53727
-     * @see https://github.com/zendframework/zf2/pull/1807
-     *
-     * @deprecated since laminas 2.3 requires PHP >= 5.3.23
-     *
-     * @param string $className
-     * @param string $type
-     * @return bool
-     */
-    protected static function isSubclassOf($className, $type)
-    {
-        return is_subclass_of($className, $type);
-    }
 }

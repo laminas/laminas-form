@@ -4,7 +4,7 @@ namespace Laminas\Form;
 
 use Interop\Container\ContainerInterface;
 use Laminas\InputFilter\InputFilterInterface;
-use Laminas\ServiceManager\AbstractFactoryInterface;
+use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 use function is_array;
@@ -67,32 +67,6 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
         return isset($config[$requestedName])
             && is_array($config[$requestedName])
             && ! empty($config[$requestedName]);
-    }
-
-    /**
-     * Can we create the requested service? (v2)
-     *
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @param  string $name Service name (as resolved by ServiceManager)
-     * @param  string $requestedName Name by which service was requested
-     * @return bool
-     */
-    public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
-    {
-        return $this->canCreate($serviceLocator, $requestedName);
-    }
-
-    /**
-     * Create a form (v2)
-     *
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @param  string $name Service name (as resolved by ServiceManager)
-     * @param  string $requestedName Name by which service was requested
-     * @return FormInterface
-     */
-    public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
-    {
-        return $this($serviceLocator, $requestedName);
     }
 
     /**
