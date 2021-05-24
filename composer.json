@@ -63,10 +63,7 @@
     "autoload-dev": {
         "psr-4": {
             "LaminasTest\\Form\\": "test/"
-        },
-        "files": [
-            "test/_autoload.php"
-        ]
+        }
     },
     "scripts": {
         "check": [
