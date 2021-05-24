@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
+<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
   <file src="src/Annotation/AbstractAnnotationsListener.php">
     <InvalidNullableReturnType occurrences="1">
       <code>false|string</code>
@@ -81,6 +81,10 @@
     <MixedReturnStatement occurrences="1">
       <code>$results-&gt;last()</code>
     </MixedReturnStatement>
+    <ParamNameMismatch occurrences="2">
+      <code>$events</code>
+      <code>$formFactory</code>
+    </ParamNameMismatch>
     <PossiblyInvalidPropertyAssignmentValue occurrences="1">
       <code>$entity</code>
     </PossiblyInvalidPropertyAssignmentValue>
@@ -123,6 +127,9 @@
       <code>$listener</code>
       <code>$listenerName</code>
     </MixedAssignment>
+    <ParamNameMismatch occurrences="1">
+      <code>$container</code>
+    </ParamNameMismatch>
   </file>
   <file src="src/Annotation/ComposedObject.php">
     <MixedInferredReturnType occurrences="2">
@@ -350,8 +357,7 @@
     <InvalidScalarArgument occurrences="1">
       <code>$name</code>
     </InvalidScalarArgument>
-    <LessSpecificReturnStatement occurrences="9">
-      <code>$this</code>
+    <LessSpecificReturnStatement occurrences="8">
       <code>$this</code>
       <code>$this</code>
       <code>$this</code>
@@ -1465,8 +1471,9 @@
       <code>$factories</code>
       <code>$instanceOf</code>
     </NonInvariantDocblockPropertyType>
-    <ParamNameMismatch occurrences="1">
+    <ParamNameMismatch occurrences="2">
       <code>$name</code>
+      <code>$plugin</code>
     </ParamNameMismatch>
     <RedundantCondition occurrences="1">
       <code>$container</code>
@@ -1902,12 +1909,14 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/View/Helper/FormCheckbox.php">
-    <PossiblyInvalidArgument occurrences="1">
+    <InvalidArgument occurrences="1">
       <code>$attributes</code>
-    </PossiblyInvalidArgument>
-    <UndefinedInterfaceMethod occurrences="6">
-      <code>$attributes</code>
-      <code>$attributes</code>
+    </InvalidArgument>
+    <InvalidArrayAccess occurrences="2">
+      <code>$attributes['disabled']</code>
+      <code>$attributes['name']</code>
+    </InvalidArrayAccess>
+    <UndefinedInterfaceMethod occurrences="4">
       <code>$attributes</code>
       <code>$attributes</code>
       <code>$attributes</code>
@@ -2142,9 +2151,11 @@
       <code>$attributes</code>
       <code>$attributes</code>
     </PossiblyInvalidArgument>
-    <UndefinedInterfaceMethod occurrences="6">
-      <code>$attributes</code>
-      <code>$attributes</code>
+    <PossiblyInvalidArrayAssignment occurrences="2">
+      <code>$attributes['value']</code>
+      <code>$attributes['value']</code>
+    </PossiblyInvalidArrayAssignment>
+    <UndefinedInterfaceMethod occurrences="4">
       <code>$attributes</code>
       <code>$attributes</code>
       <code>$attributes</code>
@@ -2160,6 +2171,9 @@
     <DocblockTypeContradiction occurrences="1">
       <code>$name === null</code>
     </DocblockTypeContradiction>
+    <InvalidArgument occurrences="1">
+      <code>$attributes</code>
+    </InvalidArgument>
     <MixedArgument occurrences="1">
       <code>$type</code>
     </MixedArgument>
@@ -2167,9 +2181,6 @@
       <code>$attributes['value']</code>
       <code>$type</code>
     </MixedAssignment>
-    <PossiblyInvalidArgument occurrences="1">
-      <code>$attributes</code>
-    </PossiblyInvalidArgument>
     <UndefinedInterfaceMethod occurrences="4">
       <code>$attributes</code>
       <code>$attributes</code>
@@ -5108,6 +5119,9 @@
       <code>$creationString</code>
       <code>$name</code>
     </MixedAssignment>
+    <ParamNameMismatch occurrences="1">
+      <code>$container</code>
+    </ParamNameMismatch>
   </file>
   <file src="test/TestAsset/CustomFieldsetHelper.php">
     <InvalidFunctionCall occurrences="1">
@@ -5287,6 +5301,9 @@
     <MixedAssignment occurrences="1">
       <code>$name</code>
     </MixedAssignment>
+    <ParamNameMismatch occurrences="1">
+      <code>$container</code>
+    </ParamNameMismatch>
   </file>
   <file src="test/TestAsset/FieldsetWithInputFilter.php">
     <PropertyNotSetInConstructor occurrences="3">
