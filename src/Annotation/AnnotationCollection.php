@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-code for the canonical source repository
- * @copyright https://github.com/laminas/laminas-code/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-code/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Form\Annotation;
 
 use ArrayObject;
@@ -15,7 +9,7 @@ use function get_class;
 /**
  * @extends ArrayObject<array-key, object>
  */
-class AnnotationCollection extends ArrayObject
+final class AnnotationCollection extends ArrayObject
 {
     /**
      * Checks if the collection has annotations for a class
