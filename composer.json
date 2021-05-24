@@ -13,9 +13,6 @@
         "laminas/laminas-inputfilter": "^2.10",
         "laminas/laminas-stdlib": "^3.3"
     },
-    "replace": {
-        "zendframework/zend-form": "^2.14.3"
-    },
     "conflict": {
         "laminas/laminas-servicemanager": "<3.0.0"
     },
