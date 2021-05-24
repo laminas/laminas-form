@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
   <file src="src/Annotation/AbstractAnnotationsListener.php">
-    <InvalidNullableReturnType occurrences="1">
-      <code>false|string</code>
-    </InvalidNullableReturnType>
     <MixedAssignment occurrences="1">
       <code>$reflection</code>
     </MixedAssignment>
@@ -16,21 +13,18 @@
     <MixedReturnStatement occurrences="1">
       <code>$reflection-&gt;getName()</code>
     </MixedReturnStatement>
-    <NullableReturnStatement occurrences="1">
-      <code>$annotation-&gt;getName()</code>
-    </NullableReturnStatement>
   </file>
   <file src="src/Annotation/AllowEmpty.php">
-    <MixedArgument occurrences="1">
-      <code>$allowEmpty</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="3">
-      <code>$allowEmpty</code>
+    <MixedAssignment occurrences="2">
       <code>$allowEmpty</code>
       <code>$this-&gt;allowEmpty</code>
     </MixedAssignment>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$entity</code>
+      <code>$entity</code>
+    </ArgumentTypeCoercion>
     <DeprecatedMethod occurrences="1">
       <code>AnnotationRegistry::registerLoader('class_exists')</code>
     </DeprecatedMethod>
@@ -51,22 +45,48 @@
       <code>$r</code>
       <code>$r</code>
     </MissingClosureParamType>
-    <MixedArgument occurrences="1">
+    <MixedArgument occurrences="5">
+      <code>$attribute-&gt;newInstance()</code>
+      <code>$attribute-&gt;newInstance()</code>
+      <code>$filterSpec-&gt;getArrayCopy()</code>
+      <code>$formSpec['input_filter']</code>
       <code>$type</code>
     </MixedArgument>
-    <MixedArrayAssignment occurrences="2">
+    <MixedArrayAccess occurrences="2">
+      <code>$formSpec['input_filter']</code>
+      <code>$formSpec['input_filter']</code>
+    </MixedArrayAccess>
+    <MixedArrayAssignment occurrences="4">
       <code>$formSpec['elements'][]</code>
       <code>$formSpec['fieldsets'][]</code>
+      <code>$formSpec['input_filter']</code>
+      <code>$formSpec['input_filter']</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="1">
+    <MixedAssignment occurrences="6">
+      <code>$annotations[]</code>
+      <code>$annotations[]</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$formSpec['input_filter']</code>
       <code>$type</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType occurrences="2">
+      <code>ArrayObject</code>
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
+    <MixedMethodCall occurrences="3">
+      <code>getArrayCopy</code>
+      <code>newInstance</code>
+      <code>newInstance</code>
+    </MixedMethodCall>
+    <MixedReturnStatement occurrences="2">
+      <code>$formSpec</code>
       <code>$results-&gt;last()</code>
     </MixedReturnStatement>
+    <NullArgument occurrences="2">
+      <code>$annotations</code>
+      <code>$annotations</code>
+    </NullArgument>
     <ParamNameMismatch occurrences="2">
       <code>$events</code>
       <code>$formFactory</code>
@@ -89,6 +109,10 @@
       <code>$this-&gt;formFactory</code>
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
+    <UndefinedMethod occurrences="2">
+      <code>getAttributes</code>
+      <code>getAttributes</code>
+    </UndefinedMethod>
   </file>
   <file src="src/Annotation/AnnotationBuilderFactory.php">
     <MissingReturnType occurrences="1">
@@ -114,29 +138,19 @@
     </MixedAssignment>
   </file>
   <file src="src/Annotation/ComposedObject.php">
-    <MixedInferredReturnType occurrences="2">
-      <code>array</code>
-      <code>null|string</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="2">
-      <code>$this-&gt;value['target_object']</code>
-      <code>is_array($this-&gt;value) &amp;&amp; isset($this-&gt;value['options']) ? $this-&gt;value['options'] : []</code>
-    </MixedReturnStatement>
+    <MixedAssignment occurrences="3">
+      <code>$this-&gt;isCollection</code>
+      <code>$this-&gt;options</code>
+      <code>$this-&gt;targetObject</code>
+    </MixedAssignment>
   </file>
   <file src="src/Annotation/ContinueIfEmpty.php">
-    <MixedArgument occurrences="1">
-      <code>$continueIfEmpty</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="3">
-      <code>$continueIfEmpty</code>
+    <MixedAssignment occurrences="2">
       <code>$continueIfEmpty</code>
       <code>$this-&gt;continueIfEmpty</code>
     </MixedAssignment>
   </file>
   <file src="src/Annotation/ElementAnnotationsListener.php">
-    <InvalidNullableReturnType occurrences="1">
-      <code>array</code>
-    </InvalidNullableReturnType>
     <MixedArgument occurrences="7">
       <code>$elementSpec</code>
       <code>$elementSpec</code>
@@ -236,23 +250,22 @@
       <code>getArrayCopy</code>
       <code>getFormSpecification</code>
     </MixedMethodCall>
-    <NullableReturnStatement occurrences="1">
-      <code>$annotation-&gt;getOptions()</code>
-    </NullableReturnStatement>
     <PossiblyInvalidMethodCall occurrences="1">
       <code>getFormSpecification</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyNullArgument occurrences="3">
-      <code>$annotation-&gt;getAttributes()</code>
-      <code>$annotation-&gt;getOptions()</code>
-      <code>$annotation-&gt;getOptions()</code>
-    </PossiblyNullArgument>
     <PossiblyNullReference occurrences="1">
       <code>getFormSpecification</code>
     </PossiblyNullReference>
-    <RedundantCastGivenDocblockType occurrences="1">
+    <RedundantCast occurrences="1">
       <code>(bool) $annotation-&gt;getRequired()</code>
-    </RedundantCastGivenDocblockType>
+    </RedundantCast>
+  </file>
+  <file src="src/Annotation/Filter.php">
+    <MixedAssignment occurrences="3">
+      <code>$this-&gt;name</code>
+      <code>$this-&gt;options</code>
+      <code>$this-&gt;priority</code>
+    </MixedAssignment>
   </file>
   <file src="src/Annotation/FormAnnotationsListener.php">
     <MissingParamType occurrences="1">
@@ -291,22 +304,29 @@
       <code>$formSpec</code>
     </MixedAssignment>
   </file>
+  <file src="src/Annotation/Hydrator.php">
+    <MixedAssignment occurrences="2">
+      <code>$this-&gt;options</code>
+      <code>$this-&gt;type</code>
+    </MixedAssignment>
+  </file>
   <file src="src/Annotation/InputFilter.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>$this-&gt;value</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>null|string</code>
-    </InvalidReturnType>
+    <DocblockTypeContradiction occurrences="1">
+      <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
+    </DocblockTypeContradiction>
   </file>
   <file src="src/Annotation/Required.php">
-    <MixedArgument occurrences="1">
-      <code>$required</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="3">
-      <code>$required</code>
+    <MixedAssignment occurrences="2">
       <code>$required</code>
       <code>$this-&gt;required</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Annotation/Validator.php">
+    <MixedAssignment occurrences="4">
+      <code>$this-&gt;breakChainOnFailure</code>
+      <code>$this-&gt;name</code>
+      <code>$this-&gt;options</code>
+      <code>$this-&gt;priority</code>
     </MixedAssignment>
   </file>
   <file src="src/ConfigProvider.php">
@@ -2408,7 +2428,34 @@
     <DeprecatedMethod occurrences="1">
       <code>allowEmpty</code>
     </DeprecatedMethod>
-    <MissingReturnType occurrences="21">
+    <MissingParamType occurrences="25">
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+    </MissingParamType>
+    <MissingReturnType occurrences="25">
       <code>testAllowEmptyInput</code>
       <code>testAllowTypeAsElementNameInInputFilter</code>
       <code>testAllowsComposingChildEntities</code>
@@ -2428,13 +2475,42 @@
       <code>testInputFilterInputAnnotation</code>
       <code>testInputNotRequiredByDefault</code>
       <code>testInstanceElementAnnotation</code>
+      <code>testLegacyComposedObjectAnnotation</code>
+      <code>testLegacyStyleFilterAnnotations</code>
+      <code>testLegacyStyleHydratorAnnotations</code>
+      <code>testLegacyStyleValidatorAnnotations</code>
       <code>testOptionsAnnotationAndComposedObjectAnnotation</code>
       <code>testOptionsAnnotationAndComposedObjectAnnotationNoneCollection</code>
     </MissingReturnType>
-    <MixedArgument occurrences="5">
+    <MixedArgument occurrences="30">
       <code>$inputFilter-&gt;get('username')-&gt;getValidatorChain()</code>
       <code>$password-&gt;getFilterChain()</code>
       <code>$password-&gt;getValidatorChain()</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
+      <code>$useAttributes</code>
       <code>$username-&gt;getFilterChain()</code>
       <code>$username-&gt;getValidatorChain()</code>
     </MixedArgument>
@@ -2445,6 +2521,11 @@
       <code>$test</code>
       <code>$test[]</code>
     </MixedAssignment>
+    <MixedInferredReturnType occurrences="3">
+      <code>\Generator</code>
+      <code>\Generator</code>
+      <code>\Generator</code>
+    </MixedInferredReturnType>
     <MixedMethodCall occurrences="11">
       <code>current</code>
       <code>current</code>
@@ -2506,6 +2587,12 @@
       <code>has</code>
       <code>useAsBaseFieldset</code>
     </UndefinedInterfaceMethod>
+    <UnusedVariable occurrences="4">
+      <code>$form</code>
+      <code>$form</code>
+      <code>$form</code>
+      <code>$form</code>
+    </UnusedVariable>
   </file>
   <file src="test/Element/CaptchaTest.php">
     <ArgumentTypeCoercion occurrences="6">
@@ -4840,6 +4927,26 @@
       <code>InputFilterInput</code>
       <code>InputFilterInput</code>
     </PropertyNotSetInConstructor>
+  </file>
+  <file src="test/TestAsset/Annotation/LegacyComposedObjectAnnotation.php">
+    <MissingPropertyType occurrences="1">
+      <code>$child</code>
+    </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/LegacyFilterAnnotation.php">
+    <MissingPropertyType occurrences="1">
+      <code>$username</code>
+    </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
+    <MissingPropertyType occurrences="1">
+      <code>$username</code>
+    </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/LegacyValidatorAnnotation.php">
+    <MissingPropertyType occurrences="1">
+      <code>$username</code>
+    </MissingPropertyType>
   </file>
   <file src="test/TestAsset/Annotation/SampleEntity.php">
     <MissingPropertyType occurrences="2">
