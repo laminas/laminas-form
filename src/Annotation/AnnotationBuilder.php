@@ -37,11 +37,13 @@ use function var_export;
 class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareInterface
 {
     /**
+     * @deprecated 2.17.0 The annotation parser will be replaced by doctrine/annotations in 3.0
      * @var Parser\DoctrineAnnotationParser
      */
     protected $annotationParser;
 
     /**
+     * @deprecated 2.17.0 The annotation manager will be replaced by doctrine/annotations in 3.0
      * @var AnnotationManager
      */
     protected $annotationManager;
@@ -108,7 +110,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      * Set annotation manager to use when building form from annotations
      *
      * @param  AnnotationManager $annotationManager
-     * @deprecated 2.17.0 The annotation manager will replaced with doctrine/annotations in 3.0
+     * @deprecated 2.17.0 The annotation manager will be replaced by doctrine/annotations in 3.0
      * @return $this
      */
     public function setAnnotationManager(AnnotationManager $annotationManager)
@@ -163,7 +165,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
      *
      * If none is currently set, creates one with default annotations.
      *
-     * @deprecated 2.17.0 The annotation manager will replaced with doctrine/annotations in 3.0
+     * @deprecated 2.17.0 The annotation manager will be replaced by doctrine/annotations in 3.0
      * @return AnnotationManager
      */
     public function getAnnotationManager()
@@ -444,7 +446,7 @@ class AnnotationBuilder implements EventManagerAwareInterface, FormFactoryAwareI
     }
 
     /**
-     * @deprecated 2.17.0 The annotation parser will replaced with doctrine/annotations in 3.0
+     * @deprecated 2.17.0 The annotation parser will be replaced by doctrine/annotations in 3.0
      * @return Parser\DoctrineAnnotationParser
      */
     public function getAnnotationParser()
