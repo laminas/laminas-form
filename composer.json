@@ -1,35 +1,21 @@
 {
     "name": "laminas/laminas-form",
     "description": "Validate and display simple and complex forms, casting forms to business objects and vice versa",
-    "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
         "form"
     ],
     "homepage": "https://laminas.dev",
-    "support": {
-        "docs": "https://docs.laminas.dev/laminas-form/",
-        "issues": "https://github.com/laminas/laminas-form/issues",
-        "source": "https://github.com/laminas/laminas-form",
-        "rss": "https://github.com/laminas/laminas-form/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laminas": {
-            "component": "Laminas\\Form",
-            "config-provider": "Laminas\\Form\\ConfigProvider"
-        }
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^7.3 || ~8.0.0",
         "laminas/laminas-hydrator": "^3.2 || ^4.0",
         "laminas/laminas-inputfilter": "^2.10",
         "laminas/laminas-stdlib": "^3.3",
         "laminas/laminas-zendframework-bridge": "^1.1"
+    },
+    "replace": {
+        "zendframework/zend-form": "^2.14.3"
     },
     "conflict": {
         "laminas/laminas-code": "<3.5.0 || >=4.0.0"
@@ -64,18 +50,27 @@
         "laminas/laminas-servicemanager": "^3.4.1, required to use the form factories or provide services",
         "laminas/laminas-view": "^2.11.4, required for using the laminas-form view helpers"
     },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laminas": {
+            "component": "Laminas\\Form",
+            "config-provider": "Laminas\\Form\\ConfigProvider"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Laminas\\Form\\": "src/"
         }
     },
     "autoload-dev": {
-        "files": [
-            "test/_autoload.php"
-        ],
         "psr-4": {
             "LaminasTest\\Form\\": "test/"
-        }
+        },
+        "files": [
+            "test/_autoload.php"
+        ]
     },
     "scripts": {
         "check": [
@@ -89,7 +84,12 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zendframework/zend-form": "^2.14.3"
+    "support": {
+        "issues": "https://github.com/laminas/laminas-form/issues",
+        "forum": "https://discourse.laminas.dev",
+        "chat": "https://laminas.dev/chat",
+        "source": "https://github.com/laminas/laminas-form",
+        "docs": "https://docs.laminas.dev/laminas-form/",
+        "rss": "https://github.com/laminas/laminas-form/releases.atom"
     }
 }
