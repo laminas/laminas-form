@@ -126,11 +126,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Instance annotations
      *
      * Sets the object to bind to the form or fieldset
-     *
-     * @param  EventInterface $e
-     * @return void
      */
-    public function handleInstanceAnnotation($e)
+    public function handleInstanceAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Instance) {
