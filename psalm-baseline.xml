@@ -1664,12 +1664,13 @@
       <code>$this-&gt;booleanAttributes[$attribute]['on']</code>
       <code>$this-&gt;booleanAttributes[$key]['off']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="10">
+    <MixedAssignment occurrences="11">
       <code>$attributes[$attribute]</code>
       <code>$escapedAttribute</code>
       <code>$prefix</code>
       <code>$prefix</code>
       <code>$prefix</code>
+      <code>$strings[]</code>
       <code>$this-&gt;doctypeHelper</code>
       <code>$this-&gt;escapeHtmlAttrHelper</code>
       <code>$this-&gt;escapeHtmlHelper</code>
@@ -7032,22 +7033,26 @@
       <code>$mockTranslator</code>
       <code>$mockTranslator</code>
     </InvalidArgument>
-    <MissingParamType occurrences="9">
+    <MissingParamType occurrences="12">
       <code>$assertion</code>
       <code>$assertion</code>
+      <code>$attribute</code>
       <code>$attribute</code>
       <code>$attribute</code>
       <code>$doctype</code>
       <code>$doctype</code>
       <code>$off</code>
+      <code>$off</code>
+      <code>$on</code>
       <code>$on</code>
       <code>$type</code>
     </MissingParamType>
-    <MissingReturnType occurrences="17">
+    <MissingReturnType occurrences="18">
       <code>getCompleteElement</code>
       <code>inputTypes</code>
       <code>nonXhtmlDoctypes</code>
       <code>testBooleanAttributeTypesAreRenderedCorrectly</code>
+      <code>testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5</code>
       <code>testCanTranslatePlaceholder</code>
       <code>testCanTranslateTitle</code>
       <code>testGeneratesInputTagWithElementsTypeAttribute</code>
@@ -7062,7 +7067,23 @@
       <code>validAttributes2</code>
       <code>xhtmlDoctypes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="47">
+    <MixedArgument occurrences="89">
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
       <code>$attribute</code>
       <code>$attribute</code>
       <code>$attribute</code>
@@ -7081,6 +7102,22 @@
       <code>$attribute</code>
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -7105,14 +7142,32 @@
       <code>$off</code>
       <code>$off</code>
       <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
       <code>$on</code>
       <code>$on</code>
       <code>$on</code>
       <code>$on</code>
       <code>$type</code>
     </MixedArgument>
-    <MixedAssignment occurrences="15">
+    <MixedAssignment occurrences="23">
       <code>$element</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -7135,16 +7190,21 @@
       <code>getAttribute</code>
       <code>getValue</code>
     </MixedMethodCall>
-    <UndefinedInterfaceMethod occurrences="2">
+    <UndefinedInterfaceMethod occurrences="3">
+      <code>doctype</code>
       <code>doctype</code>
       <code>doctype</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMethod occurrences="16">
+    <UndefinedMethod occurrences="20">
       <code>__invoke</code>
       <code>__invoke</code>
       <code>__invoke</code>
       <code>__invoke</code>
       <code>__invoke</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
       <code>render</code>
       <code>render</code>
       <code>render</code>
@@ -8545,18 +8605,22 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>'Laminas\Form\Exception\DomainException'</code>
     </ArgumentTypeCoercion>
-    <MissingParamType occurrences="5">
+    <MissingParamType occurrences="8">
       <code>$assertion</code>
       <code>$attribute</code>
       <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$off</code>
       <code>$off</code>
       <code>$on</code>
+      <code>$on</code>
     </MissingParamType>
-    <MissingReturnType occurrences="10">
+    <MissingReturnType occurrences="11">
       <code>booleanAttributeTypes</code>
       <code>getCompleteElement</code>
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testBooleanAttributeTypesAreRenderedCorrectly</code>
+      <code>testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5</code>
       <code>testGeneratesEmptyTextareaWhenNoValueAttributePresent</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
@@ -8564,7 +8628,30 @@
       <code>testRendersValueAttributeAsTextareaContent</code>
       <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="22">
+    <MixedArgument occurrences="81">
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
       <code>$attribute</code>
       <code>$attribute</code>
       <code>$attribute</code>
@@ -8574,6 +8661,28 @@
       <code>$attribute</code>
       <code>$attribute</code>
       <code>$element-&gt;getAttribute($attribute)</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8585,11 +8694,35 @@
       <code>$markup</code>
       <code>$off</code>
       <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$off</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
+      <code>$on</code>
       <code>$on</code>
       <code>$on</code>
     </MixedArgument>
-    <MixedAssignment occurrences="7">
+    <MixedAssignment occurrences="17">
       <code>$element</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$expect</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8600,9 +8733,18 @@
     <MixedMethodCall occurrences="1">
       <code>getAttribute</code>
     </MixedMethodCall>
-    <UndefinedMethod occurrences="8">
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>doctype</code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="14">
       <code>__invoke</code>
       <code>__invoke</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
       <code>render</code>
       <code>render</code>
       <code>render</code>

@@ -246,20 +246,27 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     public function createAttributesString(array $attributes)
     {
-        $attributes = $this->prepareAttributes($attributes);
-        $escape     = $this->getEscapeHtmlHelper();
-        $escapeAttr = $this->getEscapeHtmlAttrHelper();
-        $strings    = [];
+        $attributes    = $this->prepareAttributes($attributes);
+        $escape        = $this->getEscapeHtmlHelper();
+        $escapeAttr    = $this->getEscapeHtmlAttrHelper();
+        $doctypeHelper = $this->getDoctypeHelper();
+        $strings       = [];
 
         foreach ($attributes as $key => $value) {
             $key = strtolower($key);
 
-            if (! $value && isset($this->booleanAttributes[$key])) {
-                // Skip boolean attributes that expect empty string as false value
-                if ('' === $this->booleanAttributes[$key]['off']) {
+            if (isset($this->booleanAttributes[$key])) {
+                if (! $value) {
+                    // Skip boolean attributes that expect empty string as false value
+                    if ('' === $this->booleanAttributes[$key]['off']) {
+                        continue;
+                    }
+                } elseif ($doctypeHelper->isHtml5() && ! $doctypeHelper->isXhtml()) {
+                    $strings[] = $escape($key);
                     continue;
                 }
             }
+
 
             //check if attribute is translatable and translate it
             $value = $this->translateHtmlAttributeValue($key, $value);
