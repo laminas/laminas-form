@@ -12,6 +12,9 @@ use ArrayObject;
 
 use function get_class;
 
+/**
+ * @extends ArrayObject<array-key, object>
+ */
 class AnnotationCollection extends ArrayObject
 {
     /**

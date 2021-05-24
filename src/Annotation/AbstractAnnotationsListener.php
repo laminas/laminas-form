@@ -27,6 +27,7 @@ abstract class AbstractAnnotationsListener extends AbstractListenerAggregate
     public function handleNameAnnotation($e)
     {
         $annotations = $e->getParam('annotations');
+        assert($annotations instanceof AnnotationCollection);
 
         if (! $annotations->hasAnnotation(Name::class)) {
             return false;

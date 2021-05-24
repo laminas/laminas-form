@@ -227,6 +227,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     public function handleExcludeAnnotation($e)
     {
         $annotations = $e->getParam('annotations');
+        assert($annotations instanceof AnnotationCollection);
+
         if ($annotations->hasAnnotation(Exclude::class)) {
             return true;
         }
