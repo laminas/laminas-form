@@ -3,6 +3,9 @@
 namespace Laminas\Form\Annotation;
 
 use Attribute;
+use Doctrine\Common\Annotations\Annotation;
+use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
+
 use const E_USER_DEPRECATED;
 use function is_array;
 
