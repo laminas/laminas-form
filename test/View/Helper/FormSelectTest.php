@@ -441,4 +441,26 @@ class FormSelectTest extends CommonTestCase
         $this->assertMatchesRegularExpression('#option .*?value="42" selected="selected"#', $markup);
         $this->assertDoesNotMatchRegularExpression('#option .*?value="43" selected="selected"#', $markup);
     }
+
+    public function testComparisonOfSelectedValuesIsPerformedInStrictMode()
+    {
+        $select = new SelectElement('language');
+        $select->setLabel('Which is your mother tongue?');
+        $select->setAttribute('multiple', true);
+        $select->setValueOptions([
+            '1.1' => 'French',
+            '1.2' => 'English',
+            '1.10' => 'Japanese',
+            '1.20' => 'Chinese',
+        ]);
+        $select->setValue(['1.1']);
+        $this->assertEquals(['1.1'], $select->getValue());
+
+        $markup  = $this->helper->render($select);
+
+        $this->assertMatchesRegularExpression('{value="1.1" selected="selected"}i', $markup);
+        $this->assertDoesNotMatchRegularExpression('{value="1.2" selected="selected"}i', $markup);
+        $this->assertDoesNotMatchRegularExpression('{value="1.10" selected="selected"}i', $markup);
+        $this->assertDoesNotMatchRegularExpression('{value="1.20" selected="selected"}i', $markup);
+    }
 }

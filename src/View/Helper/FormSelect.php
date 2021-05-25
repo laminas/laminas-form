@@ -205,7 +205,8 @@ class FormSelect extends AbstractHelper
                 $disabled = $optionSpec['disabled'];
             }
 
-            if (ArrayUtils::inArray($value, $selectedOptions)) {
+            $stringSelectedOptions = array_map('\\strval', $selectedOptions);
+            if (ArrayUtils::inArray((string) $value, $stringSelectedOptions, true)) {
                 $selected = true;
             }
 
