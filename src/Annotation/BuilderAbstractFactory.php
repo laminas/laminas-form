@@ -7,24 +7,38 @@ use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\Form\Factory;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
 
 use function is_array;
+use function is_subclass_of;
 use function sprintf;
 
-class AnnotationBuilderFactory implements FactoryInterface
+class BuilderAbstractFactory implements AbstractFactoryInterface
 {
     /**
+     * @var string[]
+     */
+    protected $aliases = [
+        'FormAnnotationBuilder' => AnnotationBuilder::class,
+        'FormAttributeBuilder' => AttributeBuilder::class,
+    ];
+
+    /**
      * @param  ContainerInterface $container
-     * @param  string $name
+     * @param  string $requestedName
      * @param  null|array $options
      * @return AnnotationBuilder
      * @throws ServiceNotCreatedException for invalid listener configuration.
      */
-    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        //setup a form factory which can use custom form elements
-        $annotationBuilder = new AnnotationBuilder();
+        // resolve aliases used in laminas servicemanager
+        if (isset($this->aliases[$requestedName])) {
+            $requestedName = $this->aliases[$requestedName];
+        }
+
+        // setup a form factory which can use custom form elements
+        $annotationBuilder = new $requestedName;
         $eventManager      = $container->get('EventManager');
         $annotationBuilder->setEventManager($eventManager);
 
@@ -41,6 +55,16 @@ class AnnotationBuilderFactory implements FactoryInterface
     }
 
     /**
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @return bool
+     */
+    public function canCreate(ContainerInterface $container, $requestedName)
+    {
+        return isset($this->aliases[$requestedName]) || is_subclass_of($requestedName, AbstractBuilder::class);
+    }
+
+    /**
      * Marshal annotation builder configuration, if any.
      *
      * Looks for the `config` service in the container, returning an empty array
@@ -51,7 +75,7 @@ class AnnotationBuilderFactory implements FactoryInterface
      *
      * Otherwise, returns the `form_annotation_builder` array.
      *
-     * @param ContainerInterface $container
+     * @param  ContainerInterface $container
      * @return array
      */
     private function marshalConfig(ContainerInterface $container)
@@ -77,9 +101,9 @@ class AnnotationBuilderFactory implements FactoryInterface
      * - if the fetched instance is not a `ListenerAggregate`, raises an exception
      * - otherwise attaches it to the event manager
      *
-     * @param array $config
-     * @param EventManagerInterface $events
-     * @param ContainerInterface $container
+     * @param  array $config
+     * @param  EventManagerInterface $events
+     * @param  ContainerInterface $container
      * @return void
      * @throws ServiceNotCreatedException if any listener is not an event listener
      *     aggregate.
