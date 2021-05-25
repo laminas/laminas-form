@@ -8316,7 +8316,7 @@
     <MissingParamType occurrences="1">
       <code>$options</code>
     </MissingParamType>
-    <MissingReturnType occurrences="29">
+    <MissingReturnType occurrences="30">
       <code>getElement</code>
       <code>getElementWithObjectIdentifiers</code>
       <code>getScalarOptionsDataProvider</code>
@@ -8331,6 +8331,7 @@
       <code>testCanOnlyMarkSingleOptionAsSelectedIfMultipleAttributeIsDisabled</code>
       <code>testCanTranslateContent</code>
       <code>testCanTranslateOptGroupLabel</code>
+      <code>testComparisonOfSelectedValuesIsPerformedInStrictMode</code>
       <code>testCreatesSelectWithOptionsFromAttribute</code>
       <code>testDoesNotRenderEmptyOptionByDefault</code>
       <code>testDoesNotThrowExceptionIfNameIsZero</code>
@@ -8347,7 +8348,8 @@
       <code>testScalarOptionValues</code>
       <code>testTranslatorMethods</code>
     </MissingReturnType>
-    <MixedArgument occurrences="27">
+    <MixedArgument occurrences="28">
+      <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8389,7 +8391,7 @@
       <code>$options[1]</code>
       <code>$options[1]</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="43">
+    <MixedAssignment occurrences="44">
       <code>$element</code>
       <code>$element</code>
       <code>$element</code>
@@ -8405,6 +8407,7 @@
       <code>$element</code>
       <code>$element</code>
       <code>$label</code>
+      <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8454,12 +8457,13 @@
       <code>setValueOptions</code>
       <code>setValueOptions</code>
     </MixedMethodCall>
-    <UndefinedMethod occurrences="28">
+    <UndefinedMethod occurrences="29">
       <code>__invoke</code>
       <code>__invoke</code>
       <code>__invoke</code>
       <code>__invoke</code>
       <code>__invoke</code>
+      <code>render</code>
       <code>render</code>
       <code>render</code>
       <code>render</code>
