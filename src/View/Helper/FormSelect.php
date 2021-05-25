@@ -7,6 +7,7 @@ use Laminas\Form\Element\Select as SelectElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use Laminas\Stdlib\ArrayUtils;
 use function array_key_exists;
 use function array_merge;
 use function compact;
@@ -204,7 +205,7 @@ class FormSelect extends AbstractHelper
                 $disabled = $optionSpec['disabled'];
             }
 
-            if ($this->inArrayWithStringConversion($value, $selectedOptions)) {
+            if (ArrayUtils::inArray($value, $selectedOptions, true)) {
                 $selected = true;
             }
 
@@ -298,16 +299,6 @@ class FormSelect extends AbstractHelper
         }
 
         return $value;
-    }
-
-    protected function inArrayWithStringConversion($needle, array $haystack)
-    {
-        $needle = (string) $needle;
-        foreach ($haystack as &$value) {
-            $value = (string) $value;
-        }
-
-        return in_array($needle, $haystack, true);
     }
 
     protected function renderHiddenElement(ElementInterface $element)
