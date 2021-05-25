@@ -31,8 +31,8 @@ class ConfigProvider
                 FormAbstractServiceFactory::class,
             ],
             'aliases' => [
-                'Laminas\Form\Annotation\FormAnnotationBuilder' => 'FormAnnotationBuilder',
                 Annotation\AnnotationBuilder::class => 'FormAnnotationBuilder',
+                Annotation\AttributeBuilder::class => 'FormAttributeBuilder',
                 FormElementManager::class => 'FormElementManager',
 
                 // Legacy Zend Framework aliases
@@ -41,7 +41,8 @@ class ConfigProvider
                 \Zend\Form\FormElementManager::class => FormElementManager::class,
             ],
             'factories' => [
-                'FormAnnotationBuilder' => Annotation\AnnotationBuilderFactory::class,
+                'FormAnnotationBuilder' => Annotation\BuilderAbstractFactory::class,
+                'FormAttributeBuilder' => Annotation\BuilderAbstractFactory::class,
                 'FormElementManager' => FormElementManagerFactory::class,
             ],
         ];

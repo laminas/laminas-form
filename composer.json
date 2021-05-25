@@ -14,10 +14,11 @@
         "laminas/laminas-stdlib": "^3.3.1"
     },
     "conflict": {
+        "doctrine/annotations": "<1.12.0",
         "laminas/laminas-servicemanager": "<3.6.0"
     },
     "require-dev": {
-        "doctrine/annotations": "^1.11.0",
+        "doctrine/annotations": "^1.12.0",
         "laminas/laminas-captcha": "^2.10.0",
         "laminas/laminas-coding-standard": "^1.0.0",
         "laminas/laminas-escaper": "^2.7.0",
@@ -36,7 +37,7 @@
         "vimeo/psalm": "^4.7.3"
     },
     "suggest": {
-        "doctrine/annotations": "^1.11, required to use laminas-form annotations support",
+        "doctrine/annotations": "^1.12, required to use laminas-form annotations support",
         "laminas/laminas-captcha": "^2.10, required for using CAPTCHA form elements",
         "laminas/laminas-eventmanager": "^3.3, reuired for laminas-form annotations support",
         "laminas/laminas-i18n": "^2.11, required when using laminas-form view helpers",

@@ -254,7 +254,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
         if (! isset($inputSpec['filters'])) {
             $inputSpec['filters'] = [];
         }
-        $inputSpec['filters'][] = $annotation->getFilter();
+        $inputSpec['filters'][] = $annotation->getFilterSpecification();
     }
 
     /**
@@ -293,7 +293,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
         }
 
         $elementSpec = $e->getParam('elementSpec');
-        $elementSpec['spec']['hydrator'] = $annotation->getHydrator();
+        $elementSpec['spec']['hydrator'] = $annotation->getHydratorSpecification();
     }
 
     /**
@@ -329,7 +329,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
         }
 
         $elementSpec = $e->getParam('elementSpec');
-        $elementSpec['spec']['object'] = $annotation->getObject();
+        $elementSpec['spec']['object'] = $annotation->getInstance();
     }
 
     /**
@@ -418,7 +418,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
         if (! isset($inputSpec['validators'])) {
             $inputSpec['validators'] = [];
         }
-        $inputSpec['validators'][] = $annotation->getValidator();
+        $inputSpec['validators'][] = $annotation->getValidatorSpecification();
     }
 
     /**

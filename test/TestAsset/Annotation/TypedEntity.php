@@ -7,11 +7,14 @@ use Laminas\Form\Annotation;
 /**
  * @Annotation\Type("LaminasTest\Form\TestAsset\Annotation\Form")
  */
+#[Annotation\Type("LaminasTest\Form\TestAsset\Annotation\Form")]
 class TypedEntity
 {
     /**
      * @Annotation\Type("LaminasTest\Form\TestAsset\Annotation\Element")
      * @Annotation\Name("typed_element")
      */
+    #[Annotation\Type("LaminasTest\Form\TestAsset\Annotation\Element")]
+    #[Annotation\Name("typed_element")]
     public $typedElement;
 }

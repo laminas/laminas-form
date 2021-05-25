@@ -2,6 +2,10 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+use Doctrine\Common\Annotations\Annotation;
+use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
+
 /**
  * Filter annotation
  *
@@ -14,16 +18,68 @@ namespace Laminas\Form\Annotation;
  * to the filter chain in the order specified.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class Filter extends AbstractArrayAnnotation
+#[Attribute(Attribute::IS_REPEATABLE | ATTRIBUTE::TARGET_ALL)]
+class Filter
 {
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * @var int|null
+     */
+    protected $priority;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param string|array $name
+     * @param array $options
+     * @param int|null $priority
+     */
+    public function __construct($name, array $options = [], int $priority = null)
+    {
+        if (is_array($name)) {
+            // support for legacy notation with array as first parameter
+            trigger_error(sprintf(
+                'Passing a single array to the constructor of %s is deprecated since 3.0.0,'
+                . ' please use separate parameters.',
+                get_class($this)
+            ), E_USER_DEPRECATED);
+
+            $this->name = $name['name'] ?? null;
+            $this->options = $name['options'] ?? $options;
+            $this->priority = $name['priority'] ?? $priority;
+        } else {
+            $this->name = $name;
+            $this->options = $options;
+            $this->priority = $priority;
+        }
+    }
+
     /**
      * Retrieve the filter specification
      *
-     * @return null|array
+     * @return array
      */
-    public function getFilter()
+    public function getFilterSpecification(): array
     {
-        return $this->value;
+        $inputSpec = ['name' => $this->name];
+        if (! empty($this->options)) {
+            $inputSpec['options'] = $this->options;
+        }
+        if (null !== $this->priority) {
+            $inputSpec['priority'] = $this->priority;
+        }
+
+        return $inputSpec;
     }
 }

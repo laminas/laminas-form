@@ -2,6 +2,10 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+use Doctrine\Common\Annotations\Annotation;
+use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
+
 /**
  * Exclude annotation
  *
@@ -9,7 +13,9 @@ namespace Laminas\Form\Annotation;
  * element when creating the form specification.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
+#[Attribute]
 class Exclude
 {
 }

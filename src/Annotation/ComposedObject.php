@@ -2,6 +2,11 @@
 
 namespace Laminas\Form\Annotation;
 
+use Attribute;
+use Doctrine\Common\Annotations\Annotation;
+use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
+
+use const E_USER_DEPRECATED;
 use function is_array;
 
 /**
@@ -13,20 +18,61 @@ use function is_array;
  * to use.
  *
  * @Annotation
+ * @NamedArgumentConstructor
  */
-class ComposedObject extends AbstractArrayOrStringAnnotation
+#[Attribute]
+class ComposedObject
 {
+    /**
+     * @var string|null
+     */
+    protected $targetObject;
+
+    /**
+     * @var bool
+     */
+    protected $isCollection;
+
+    /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * Receive and process the contents of an annotation
+     *
+     * @param array|string $targetObject
+     * @param bool $isCollection
+     * @param array $options
+     */
+    public function __construct($targetObject, bool $isCollection = false, array $options = [])
+    {
+        if (is_array($targetObject)) {
+            // support for legacy notation with array as first parameter
+            trigger_error(sprintf(
+                'Passing a single array to the constructor of %s is deprecated since 3.0.0,'
+                    . ' please use separate parameters.',
+                get_class($this)
+            ), E_USER_DEPRECATED);
+
+            $this->targetObject = $targetObject['target_object'] ?? null;
+            $this->isCollection = $targetObject['is_collection'] ?? $isCollection;
+            $this->options = $targetObject['options'] ?? $options;
+        } else {
+            $this->targetObject = $targetObject;
+            $this->isCollection = $isCollection;
+            $this->options = $options;
+        }
+    }
+
     /**
      * Retrieve the composed object classname
      *
      * @return null|string
      */
-    public function getComposedObject()
+    public function getComposedObject(): ?string
     {
-        if (is_array($this->value)) {
-            return $this->value['target_object'];
-        }
-        return $this->value;
+        return $this->targetObject;
     }
 
     /**
@@ -34,9 +80,9 @@ class ComposedObject extends AbstractArrayOrStringAnnotation
      *
      * @return bool
      */
-    public function isCollection()
+    public function isCollection(): bool
     {
-        return is_array($this->value) && isset($this->value['is_collection']) && $this->value['is_collection'];
+        return $this->isCollection;
     }
 
     /**
@@ -44,8 +90,8 @@ class ComposedObject extends AbstractArrayOrStringAnnotation
      *
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
-        return is_array($this->value) && isset($this->value['options']) ? $this->value['options'] : [];
+        return $this->options;
     }
 }

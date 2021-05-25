@@ -588,6 +588,7 @@ class Factory
     /**
      * Try to pull hydrator from service manager, or instantiates it from its name
      *
+     * @deprecated 3.0.0 Please use FormElementManager::getHydratorFromName() instead
      * @param  string $hydratorName
      * @return mixed
      * @throws Exception\DomainException
@@ -605,6 +606,7 @@ class Factory
     /**
      * Try to pull factory from service manager, or instantiates it from its name
      *
+     * @deprecated 3.0.0 Please use FormElementManager::getFactoryFromName() instead
      * @param  string $factoryName
      * @return mixed
      * @throws Exception\DomainException
