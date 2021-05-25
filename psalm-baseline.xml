@@ -2371,9 +2371,10 @@
     <MissingReturnType occurrences="1">
       <code>renderHiddenElement</code>
     </MissingReturnType>
-    <MixedArgument occurrences="2">
+    <MixedArgument occurrences="3">
       <code>$escapeHtml($label)</code>
       <code>$label</code>
+      <code>$selectedOptions</code>
     </MixedArgument>
     <MixedAssignment occurrences="6">
       <code>$disabled</code>
