@@ -13,6 +13,7 @@ use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 
 use function array_merge;
+use function is_array;
 use function is_string;
 use function sprintf;
 
@@ -107,7 +108,7 @@ class DateSelect extends MonthSelect
             }
         }
 
-        if (null === $value && !$this->shouldCreateEmptyOption()) {
+        if (null === $value && ! $this->shouldCreateEmptyOption()) {
             $value = new PhpDateTime();
         }
 
@@ -134,9 +135,9 @@ class DateSelect extends MonthSelect
 
     public function getValue(): string
     {
-        $year = $this->getYearElement()->getValue();
+        $year  = $this->getYearElement()->getValue();
         $month = $this->getMonthElement()->getValue();
-        $day = $this->getDayElement()->getValue();
+        $day   = $this->getDayElement()->getValue();
 
         if ($this->shouldCreateEmptyOption() && null === $year && null === $month && null === $day) {
             return null;

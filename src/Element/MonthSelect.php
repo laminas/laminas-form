@@ -251,7 +251,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      */
     public function setValue($value)
     {
-        if (null === $value && !$this->shouldCreateEmptyOption()) {
+        if (null === $value && ! $this->shouldCreateEmptyOption()) {
             $value = new PhpDateTime();
         }
 
@@ -275,7 +275,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     public function getValue(): string
     {
-        $year = $this->getYearElement()->getValue();
+        $year  = $this->getYearElement()->getValue();
         $month = $this->getMonthElement()->getValue();
 
         if ($this->shouldCreateEmptyOption() && null === $year && null === $month) {

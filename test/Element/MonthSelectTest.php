@@ -87,9 +87,9 @@ final class MonthSelectTest extends TestCase
 
     public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption()
     {
-        $element  = new MonthSelectElement('foo');
+        $element = new MonthSelectElement('foo');
         $element->setShouldCreateEmptyOption(false);
-        $now = new \DateTime();
+        $now = new DateTime();
         $element->setValue(null);
         $value = $element->getValue();
         // the getValue() function returns the date in 'Y-m-d' format
@@ -98,7 +98,7 @@ final class MonthSelectTest extends TestCase
 
     public function testNullSetValueIsNullWithEmptyOption()
     {
-        $element  = new MonthSelectElement('foo');
+        $element = new MonthSelectElement('foo');
         $element->setShouldCreateEmptyOption(true);
         $element->setValue(null);
         $value = $element->getValue();

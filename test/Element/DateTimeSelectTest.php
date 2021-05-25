@@ -133,16 +133,57 @@ final class DateTimeSelectTest extends TestCase
         $this->assertEquals('05', $cloned->getSecondElement()->getValue());
     }
 
-    public function testPassingNullValueToSetValueWillUseCurrentDate(): void
+    public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption(): void
+    {
+        $element = new DateTimeSelectElement('foo');
+        $element->setShouldCreateEmptyOption(false);
+        $now = new DateTime();
+        $element->setValue(null);
+        $value = $element->getValue();
+        // the getValue() function returns the date in 'Y-m-d' format
+        $this->assertEquals($now->format('Y-m-d H:i:s'), $value);
+    }
+
+    public function testNullSetValueIsNullWithEmptyOption(): void
+    {
+        $element = new DateTimeSelectElement('foo');
+        $element->setShouldCreateEmptyOption(true);
+        $element->setValue(null);
+        $value = $element->getValue();
+        $this->assertEquals(null, $value);
+    }
+
+    public function testSettingTimeOnlyUsesCurrentDate(): void
     {
         $now     = new DateTime();
-        $element = new DateTimeSelectElement();
-        $element->setValue(null);
-        $yearElement  = $element->getYearElement();
-        $monthElement = $element->getMonthElement();
-        $dayElement   = $element->getDayElement();
-        $this->assertEquals($now->format('Y'), $yearElement->getValue());
-        $this->assertEquals($now->format('m'), $monthElement->getValue());
-        $this->assertEquals($now->format('d'), $dayElement->getValue());
+        $element = new DateTimeSelectElement('foo');
+        $element->setShouldCreateEmptyOption(true);
+        $element->setValue([
+            'year'   => null,
+            'month'  => null,
+            'day'    => null,
+            'hour'   => $now->format('H'),
+            'minute' => $now->format('i'),
+            'second' => $now->format('s'),
+        ]);
+        $value = $element->getValue();
+        $this->assertEquals($now->format('Y-m-d H:i:s'), $value);
+    }
+
+    public function testSettingDateOnlyUsesMidnightTime(): void
+    {
+        $now     = new DateTime();
+        $element = new DateTimeSelectElement('foo');
+        $element->setShouldCreateEmptyOption(true);
+        $element->setValue([
+            'year'   => $now->format('Y'),
+            'month'  => $now->format('m'),
+            'day'    => $now->format('d'),
+            'hour'   => null,
+            'minute' => null,
+            'second' => null,
+        ]);
+        $value = $element->getValue();
+        $this->assertEquals($now->format('Y-m-d 00:00:00'), $value);
     }
 }

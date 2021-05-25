@@ -11,6 +11,7 @@ use Laminas\Form\FormInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 
+use function is_array;
 use function is_string;
 use function sprintf;
 
@@ -207,7 +208,7 @@ class DateTimeSelect extends DateSelect
             }
         }
 
-        if (null === $value) {
+        if (null === $value && ! $this->shouldCreateEmptyOption()) {
             $value = new PhpDateTime();
         }
 
@@ -222,30 +223,72 @@ class DateTimeSelect extends DateSelect
             ];
         }
 
-        if (! isset($value['second'])) {
-            $value['second'] = '00';
+        if (is_array($value)) {
+            $this->yearElement->setValue($value['year']);
+            $this->monthElement->setValue($value['month']);
+            $this->dayElement->setValue($value['day']);
+            $this->hourElement->setValue($value['hour']);
+            $this->minuteElement->setValue($value['minute']);
+            $this->secondElement->setValue($value['second'] ?? '00');
+        } else {
+            $this->yearElement->setValue(null);
+            $this->monthElement->setValue(null);
+            $this->dayElement->setValue(null);
+            $this->hourElement->setValue(null);
+            $this->minuteElement->setValue(null);
+            $this->secondElement->setValue(null);
         }
-
-        $this->yearElement->setValue($value['year']);
-        $this->monthElement->setValue($value['month']);
-        $this->dayElement->setValue($value['day']);
-        $this->hourElement->setValue($value['hour']);
-        $this->minuteElement->setValue($value['minute']);
-        $this->secondElement->setValue($value['second']);
 
         return $this;
     }
 
     public function getValue(): string
     {
+        $year   = $this->getYearElement()->getValue();
+        $month  = $this->getMonthElement()->getValue();
+        $day    = $this->getDayElement()->getValue();
+        $hour   = $this->getHourElement()->getValue();
+        $minute = $this->getMinuteElement()->getValue();
+        $second = $this->getSecondElement()->getValue();
+
+        // if everything is null, return null
+        if (
+            $this->shouldCreateEmptyOption()
+            && null === $year && null === $month && null === $day
+            && null === $hour && null === $minute && (null === $second || '00' === $second)
+        ) {
+            return null;
+        }
+
+        // if time is given, but date is null, use current date
+        if (
+            $this->shouldCreateEmptyOption()
+            && null === $year && null === $month && null === $day
+        ) {
+            $now   = new PhpDateTime();
+            $year  = $now->format('Y');
+            $month = $now->format('m');
+            $day   = $now->format('d');
+        }
+
+        // if date is give, but time is null, use 00:00:00 instead
+        if (
+            $this->shouldCreateEmptyOption()
+            && null === $hour && null === $minute && (null === $second || '00' === $second)
+        ) {
+            $hour   = '00';
+            $minute = '00';
+            $second = '00';
+        }
+
         return sprintf(
             '%s-%s-%s %s:%s:%s',
-            $this->getYearElement()->getValue(),
-            $this->getMonthElement()->getValue(),
-            $this->getDayElement()->getValue(),
-            $this->getHourElement()->getValue(),
-            $this->getMinuteElement()->getValue(),
-            $this->getSecondElement()->getValue()
+            $year,
+            $month,
+            $day,
+            $hour,
+            $minute,
+            $second
         );
     }
 
