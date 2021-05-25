@@ -6,8 +6,8 @@ use Laminas\Form\Element\Hidden;
 use Laminas\Form\Element\Select as SelectElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
-
 use Laminas\Stdlib\ArrayUtils;
+
 use function array_key_exists;
 use function array_merge;
 use function compact;
