@@ -14,20 +14,7 @@
       <code>$reflection-&gt;getName()</code>
     </MixedReturnStatement>
   </file>
-  <file src="src/Annotation/AllowEmpty.php">
-    <MixedAssignment occurrences="2">
-      <code>$allowEmpty</code>
-      <code>$this-&gt;allowEmpty</code>
-    </MixedAssignment>
-  </file>
-  <file src="src/Annotation/AnnotationBuilder.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>$entity</code>
-      <code>$entity</code>
-    </ArgumentTypeCoercion>
-    <DeprecatedMethod occurrences="1">
-      <code>AnnotationRegistry::registerLoader('class_exists')</code>
-    </DeprecatedMethod>
+  <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="2">
       <code>! is_string($entity)</code>
       <code>null === $this-&gt;events</code>
@@ -45,9 +32,7 @@
       <code>$r</code>
       <code>$r</code>
     </MissingClosureParamType>
-    <MixedArgument occurrences="5">
-      <code>$attribute-&gt;newInstance()</code>
-      <code>$attribute-&gt;newInstance()</code>
+    <MixedArgument occurrences="3">
       <code>$filterSpec-&gt;getArrayCopy()</code>
       <code>$formSpec['input_filter']</code>
       <code>$type</code>
@@ -62,11 +47,7 @@
       <code>$formSpec['input_filter']</code>
       <code>$formSpec['input_filter']</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="6">
-      <code>$annotations[]</code>
-      <code>$annotations[]</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedAssignment occurrences="2">
       <code>$formSpec['input_filter']</code>
       <code>$type</code>
     </MixedAssignment>
@@ -74,19 +55,13 @@
       <code>ArrayObject</code>
       <code>string</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="3">
+    <MixedMethodCall occurrences="1">
       <code>getArrayCopy</code>
-      <code>newInstance</code>
-      <code>newInstance</code>
     </MixedMethodCall>
     <MixedReturnStatement occurrences="2">
       <code>$formSpec</code>
       <code>$results-&gt;last()</code>
     </MixedReturnStatement>
-    <NullArgument occurrences="2">
-      <code>$annotations</code>
-      <code>$annotations</code>
-    </NullArgument>
     <ParamNameMismatch occurrences="2">
       <code>$events</code>
       <code>$formFactory</code>
@@ -97,11 +72,6 @@
     <PossiblyNullArgument occurrences="1">
       <code>var_export($entity, 1)</code>
     </PossiblyNullArgument>
-    <PropertyNotSetInConstructor occurrences="3">
-      <code>$entity</code>
-      <code>$events</code>
-      <code>$formFactory</code>
-    </PropertyNotSetInConstructor>
     <RedundantCastGivenDocblockType occurrences="1">
       <code>(bool) $preserveDefinedOrder</code>
     </RedundantCastGivenDocblockType>
@@ -109,17 +79,70 @@
       <code>$this-&gt;formFactory</code>
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Annotation/AllowEmpty.php">
+    <MixedAssignment occurrences="2">
+      <code>$allowEmpty</code>
+      <code>$this-&gt;allowEmpty</code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Annotation/AnnotationBuilder.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$entity</code>
+    </ArgumentTypeCoercion>
+    <DeprecatedMethod occurrences="1">
+      <code>AnnotationRegistry::registerLoader('class_exists')</code>
+    </DeprecatedMethod>
+    <PropertyNotSetInConstructor occurrences="3">
+      <code>AnnotationBuilder</code>
+      <code>AnnotationBuilder</code>
+      <code>AnnotationBuilder</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Annotation/AttributeBuilder.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$entity</code>
+    </ArgumentTypeCoercion>
+    <MixedArgument occurrences="2">
+      <code>$attribute-&gt;newInstance()</code>
+      <code>$attribute-&gt;newInstance()</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="4">
+      <code>$annotations[]</code>
+      <code>$annotations[]</code>
+      <code>$attribute</code>
+      <code>$attribute</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="2">
+      <code>newInstance</code>
+      <code>newInstance</code>
+    </MixedMethodCall>
+    <NullArgument occurrences="2">
+      <code>$annotations</code>
+      <code>$annotations</code>
+    </NullArgument>
+    <PropertyNotSetInConstructor occurrences="3">
+      <code>AttributeBuilder</code>
+      <code>AttributeBuilder</code>
+      <code>AttributeBuilder</code>
+    </PropertyNotSetInConstructor>
     <UndefinedMethod occurrences="2">
       <code>getAttributes</code>
       <code>getAttributes</code>
     </UndefinedMethod>
   </file>
-  <file src="src/Annotation/AnnotationBuilderFactory.php">
+  <file src="src/Annotation/BuilderAbstractFactory.php">
+    <InvalidStringClass occurrences="1">
+      <code>new $requestedName</code>
+    </InvalidStringClass>
+    <LessSpecificReturnStatement occurrences="1">
+      <code>$annotationBuilder</code>
+    </LessSpecificReturnStatement>
     <MissingReturnType occurrences="1">
       <code>injectFactory</code>
     </MissingReturnType>
     <MixedArgument occurrences="5">
-      <code>$config['preserve_defined_order']</code>
+      <code>$annotationBuilder-&gt;getFormFactory()</code>
       <code>$container-&gt;get('FormElementManager')</code>
       <code>$eventManager</code>
       <code>$inputFilters</code>
@@ -136,6 +159,14 @@
       <code>$listener</code>
       <code>$listenerName</code>
     </MixedAssignment>
+    <MixedMethodCall occurrences="3">
+      <code>getFormFactory</code>
+      <code>setEventManager</code>
+      <code>setPreserveDefinedOrder</code>
+    </MixedMethodCall>
+    <MoreSpecificReturnType occurrences="1">
+      <code>AnnotationBuilder</code>
+    </MoreSpecificReturnType>
   </file>
   <file src="src/Annotation/ComposedObject.php">
     <MixedAssignment occurrences="3">
@@ -2389,15 +2420,7 @@
       <code>$attributes</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="test/Annotation/AnnotationBuilderFactoryTest.php">
-    <MissingReturnType occurrences="4">
-      <code>testFactoryAllowsAttachingListenersFromConfiguration</code>
-      <code>testFactoryCanSetPreserveDefinedOrderFlagFromConfiguration</code>
-      <code>testFactoryReturnsAnnotationBuilder</code>
-      <code>testFactoryThrowsExceptionWhenAttachingInvalidListeners</code>
-    </MissingReturnType>
-  </file>
-  <file src="test/Annotation/AnnotationBuilderTest.php">
+  <file src="test/Annotation/AbstractBuilderTestCase.php">
     <ArgumentTypeCoercion occurrences="21">
       <code>$expectedInstance</code>
       <code>$this-&gt;classMethodsHydratorClass</code>
@@ -2428,33 +2451,6 @@
     <DeprecatedMethod occurrences="1">
       <code>allowEmpty</code>
     </DeprecatedMethod>
-    <MissingParamType occurrences="25">
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-    </MissingParamType>
     <MissingReturnType occurrences="25">
       <code>testAllowEmptyInput</code>
       <code>testAllowTypeAsElementNameInInputFilter</code>
@@ -2482,35 +2478,10 @@
       <code>testOptionsAnnotationAndComposedObjectAnnotation</code>
       <code>testOptionsAnnotationAndComposedObjectAnnotationNoneCollection</code>
     </MissingReturnType>
-    <MixedArgument occurrences="30">
+    <MixedArgument occurrences="5">
       <code>$inputFilter-&gt;get('username')-&gt;getValidatorChain()</code>
       <code>$password-&gt;getFilterChain()</code>
       <code>$password-&gt;getValidatorChain()</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
-      <code>$useAttributes</code>
       <code>$username-&gt;getFilterChain()</code>
       <code>$username-&gt;getValidatorChain()</code>
     </MixedArgument>
@@ -2521,8 +2492,7 @@
       <code>$test</code>
       <code>$test[]</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="3">
-      <code>\Generator</code>
+    <MixedInferredReturnType occurrences="2">
       <code>\Generator</code>
       <code>\Generator</code>
     </MixedInferredReturnType>
@@ -2593,6 +2563,16 @@
       <code>$form</code>
       <code>$form</code>
     </UnusedVariable>
+  </file>
+  <file src="test/Annotation/BuilderAbstractFactoryTest.php">
+    <MissingReturnType occurrences="6">
+      <code>testFactoryAllowsAttachingListenersFromConfiguration</code>
+      <code>testFactoryCanSetPreserveDefinedOrderFlagFromConfiguration</code>
+      <code>testFactoryReturnsAnnotationBuilder</code>
+      <code>testFactoryReturnsAttributeBuilderForPhp8</code>
+      <code>testFactoryReturnsNoAttributeBuilderForPhp7</code>
+      <code>testFactoryThrowsExceptionWhenAttachingInvalidListeners</code>
+    </MissingReturnType>
   </file>
   <file src="test/Element/CaptchaTest.php">
     <ArgumentTypeCoercion occurrences="6">
