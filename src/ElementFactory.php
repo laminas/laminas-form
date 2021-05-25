@@ -17,12 +17,11 @@ final class ElementFactory implements FactoryInterface
     /**
      * Create an instance of the requested class name.
      *
-     * @param ContainerInterface $container
      * @param string $requestedName
      * @param null|array $options
      * @return object
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         if ($options === null) {
             $options = [];
@@ -33,7 +32,7 @@ final class ElementFactory implements FactoryInterface
         } else {
             // 'Laminas\Form\Element' -> 'element'
             $parts = explode('\\', $requestedName);
-            $name = strtolower(array_pop($parts));
+            $name  = strtolower(array_pop($parts));
         }
 
         if (isset($options['options'])) {

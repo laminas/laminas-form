@@ -12,7 +12,7 @@ class InputFilterProvider extends Form implements InputFilterProviderInterface
         parent::__construct($name, $options);
 
         $this->add([
-            'name' => 'foo',
+            'name'    => 'foo',
             'options' => [
                 'label' => 'Foo',
             ],

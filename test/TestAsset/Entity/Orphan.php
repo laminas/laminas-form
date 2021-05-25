@@ -8,6 +8,7 @@ class Orphan
 {
     /**
      * Name
+     *
      * @var string
      */
     public $name;

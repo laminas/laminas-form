@@ -46,7 +46,6 @@ interface FormInterface extends FieldsetInterface
     /**
      * Set input filter
      *
-     * @param  InputFilterInterface $inputFilter
      * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter);

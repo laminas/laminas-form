@@ -4,6 +4,7 @@ namespace LaminasTest\Form\View\Helper;
 
 use IntlDateFormatter;
 use Laminas\Form\Element\DateTimeSelect;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 
 use function extension_loaded;
@@ -24,7 +25,7 @@ class FormDateTimeSelectTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new DateTimeSelect();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -45,7 +46,7 @@ class FormDateTimeSelectTest extends CommonTestCase
     {
         $element = new DateTimeSelect('foo');
         $element->setShouldShowSeconds(true);
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<select name="day"', $markup);
         $this->assertStringContainsString('<select name="month"', $markup);
         $this->assertStringContainsString('<select name="year"', $markup);
@@ -58,7 +59,7 @@ class FormDateTimeSelectTest extends CommonTestCase
     {
         $element = new DateTimeSelect('foo');
         $element->setShouldCreateEmptyOption(true);
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<select name="day"', $markup);
         $this->assertStringContainsString('<select name="month"', $markup);
         $this->assertStringContainsString('<select name="year"', $markup);
@@ -109,7 +110,7 @@ class FormDateTimeSelectTest extends CommonTestCase
 
     public function testNoMinutesDelimiterIfSecondsNotShown()
     {
-        $element  = new DateTimeSelect('foo');
+        $element = new DateTimeSelect('foo');
         $element->setValue([
             'year'   => '2012',
             'month'  => '09',
@@ -121,7 +122,7 @@ class FormDateTimeSelectTest extends CommonTestCase
 
         $element->setShouldShowSeconds(false);
         $element->shouldRenderDelimiters(true);
-        $markup  = $this->helper->__invoke($element);
+        $markup = $this->helper->__invoke($element);
 
         // the last $markup char should be the '>' of the minutes  html select
         // closing tag and not the delimiter

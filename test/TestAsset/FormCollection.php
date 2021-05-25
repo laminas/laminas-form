@@ -2,6 +2,7 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element\Collection;
 use Laminas\Form\Element\Color as ColorElement;
 use Laminas\Form\Form;
 
@@ -14,20 +15,20 @@ class FormCollection extends Form
 
         $element = new ColorElement('color');
         $this->add([
-            'type' => 'Laminas\Form\Element\Collection',
-            'name' => 'colors',
+            'type'    => Collection::class,
+            'name'    => 'colors',
             'options' => [
-                'count' => 2,
+                'count'          => 2,
                 'target_element' => $element,
             ],
         ]);
 
         $fieldset = new BasicFieldset();
         $this->add([
-            'type' => 'Laminas\Form\Element\Collection',
-            'name' => 'fieldsets',
+            'type'    => Collection::class,
+            'name'    => 'fieldsets',
             'options' => [
-                'count' => 2,
+                'count'          => 2,
                 'target_element' => $fieldset,
             ],
         ]);

@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Fieldset;
+use Laminas\InputFilter\FileInput;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
 class FileInputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
@@ -12,8 +13,8 @@ class FileInputFilterProviderFieldset extends Fieldset implements InputFilterPro
         parent::__construct($name, $options);
 
         $this->add([
-            'type' => 'file',
-            'name' => 'file_field',
+            'type'    => 'file',
+            'name'    => 'file_field',
             'options' => [
                 'label' => 'File Label',
             ],
@@ -24,10 +25,10 @@ class FileInputFilterProviderFieldset extends Fieldset implements InputFilterPro
     {
         return [
             'file_field' => [
-                'type'     => 'Laminas\InputFilter\FileInput',
-                'filters'  => [
+                'type'    => FileInput::class,
+                'filters' => [
                     [
-                        'name' => 'filerenameupload',
+                        'name'    => 'filerenameupload',
                         'options' => [
                             'target'    => __FILE__,
                             'randomize' => true,

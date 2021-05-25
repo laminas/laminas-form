@@ -38,7 +38,6 @@ class FormSubmit extends FormInput
     /**
      * Determine input type to use
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */

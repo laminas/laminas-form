@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\Annotation;
 
-use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 
@@ -15,15 +14,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  *
  * @Annotation
  * @NamedArgumentConstructor
- * @copyright  Copyright (c) 2005-2015 Laminas (https://www.zend.com)
- * @license    https://getlaminas.org/license/new-bsd     New BSD License
  */
 #[Attribute]
 class ValidationGroup
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $validationGroup;
 
     /**

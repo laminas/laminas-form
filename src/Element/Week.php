@@ -37,9 +37,9 @@ class Week extends DateTime
      */
     protected function getStepValidator()
     {
-        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Weeks
+        $stepValue = $this->attributes['step'] ?? 1; // Weeks
 
-        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : '1970-W01';
+        $baseValue = $this->attributes['min'] ?? '1970-W01';
 
         return new DateStepValidator([
             'format'    => 'Y-\WW',
@@ -50,6 +50,7 @@ class Week extends DateTime
 
     /**
      * @see https://bugs.php.net/bug.php?id=74511
+     *
      * @return array
      */
     protected function getValidators()
@@ -57,7 +58,7 @@ class Week extends DateTime
         if ($this->validators) {
             return $this->validators;
         }
-        $validators = [];
+        $validators   = [];
         $validators[] = $this->getDateValidator();
         if (isset($this->attributes['min'])) {
             $validators[] = new GreaterThanValidator([
@@ -71,7 +72,8 @@ class Week extends DateTime
                 'inclusive' => true,
             ]);
         }
-        if (! isset($this->attributes['step'])
+        if (
+            ! isset($this->attributes['step'])
             || 'any' !== $this->attributes['step']
         ) {
             $validators[] = $this->getStepValidator();

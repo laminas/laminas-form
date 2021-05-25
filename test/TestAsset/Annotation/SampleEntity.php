@@ -18,10 +18,7 @@ class SampleEntity
     #[Annotation\ContinueIfEmpty(true)]
     public $sampleinput;
 
-    /**
-     *
-     * @Annotation\Attributes({"type":"text"})
-     */
+    /** @Annotation\Attributes({"type":"text"}) */
     #[Annotation\Attributes(["type" => "text"])]
     public $anotherSampleInput;
 }

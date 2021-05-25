@@ -12,18 +12,17 @@ class FormHidden extends FormInput
      * @var array
      */
     protected $validTagAttributes = [
-        'name'           => true,
-        'disabled'       => true,
-        'form'           => true,
-        'type'           => true,
-        'value'          => true,
-        'autocomplete'   => true,
+        'name'         => true,
+        'disabled'     => true,
+        'form'         => true,
+        'type'         => true,
+        'value'        => true,
+        'autocomplete' => true,
     ];
 
     /**
      * Determine input type to use
      *
-     * @param  ElementInterface $element
      * @return string
      */
     protected function getType(ElementInterface $element)

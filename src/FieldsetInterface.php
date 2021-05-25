@@ -114,7 +114,6 @@ interface FieldsetInterface extends
     /**
      * Set the hydrator to use when binding an object to the element
      *
-     * @param  HydratorInterface $hydrator
      * @return $this
      */
     public function setHydrator(HydratorInterface $hydrator);

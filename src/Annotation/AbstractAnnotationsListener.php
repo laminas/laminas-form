@@ -6,6 +6,8 @@ use Laminas\EventManager\AbstractListenerAggregate;
 use Laminas\EventManager\EventInterface;
 use ReflectionClass;
 
+use function assert;
+
 /**
  * Base annotations listener.
  *

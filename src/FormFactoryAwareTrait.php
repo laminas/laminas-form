@@ -4,15 +4,12 @@ namespace Laminas\Form;
 
 trait FormFactoryAwareTrait
 {
-    /**
-     * @var Factory
-     */
-    protected $factory = null;
+    /** @var Factory */
+    protected $factory;
 
     /**
      * Compose a form factory into the object
      *
-     * @param Factory $factory
      * @return mixed
      */
     public function setFormFactory(Factory $factory)

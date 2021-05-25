@@ -30,13 +30,13 @@ class FormCreatesCollectionInputFilterTest extends TestCase
      */
     public function testCollectionInputFilterContainsExpectedValidators()
     {
-        $form = new Form;
+        $form = new Form();
         $form->add([
-            'name' => 'collection',
-            'type' => 'collection',
+            'name'    => 'collection',
+            'type'    => 'collection',
             'options' => [
                 'target_element' => [
-                    'type' => InputFilterProviderFieldset::class,
+                    'type'     => InputFilterProviderFieldset::class,
                     'elements' => [
                         [
                             'spec' => [
@@ -45,10 +45,10 @@ class FormCreatesCollectionInputFilterTest extends TestCase
                             ],
                         ],
                     ],
-                    'options' => [
+                    'options'  => [
                         'input_filter_spec' => [
                             'date' => [
-                                'required' => false,
+                                'required'   => false,
                                 'validators' => [
                                     ['name' => 'StringLength'],
                                 ],
@@ -59,7 +59,7 @@ class FormCreatesCollectionInputFilterTest extends TestCase
             ],
         ]);
         $inputFilter = $form->getInputFilter();
-        $filter = $inputFilter->get('collection')->getInputFilter()->get('date');
+        $filter      = $inputFilter->get('collection')->getInputFilter()->get('date');
 
         $validators = $filter->getValidatorChain()->getValidators();
         $this->assertCount(3, $validators);

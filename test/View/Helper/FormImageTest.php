@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormImage as FormImageHelper;
 
 use function sprintf;
@@ -19,7 +20,7 @@ class FormImageTest extends CommonTestCase
     {
         $element = new Element();
         $element->setAttribute('src', 'foo.png');
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -27,7 +28,7 @@ class FormImageTest extends CommonTestCase
     public function testRaisesExceptionWhenSrcIsNotPresentInElement()
     {
         $element = new Element('foo');
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('src');
         $this->helper->render($element);
     }
@@ -36,7 +37,7 @@ class FormImageTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttribute('src', 'foo.png');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="image"', $markup);
         $this->assertStringContainsString('src="foo.png"', $markup);
@@ -47,7 +48,7 @@ class FormImageTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('src', 'foo.png');
         $element->setAttribute('type', 'email');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="image"', $markup);
         $this->assertStringContainsString('src="foo.png"', $markup);
@@ -92,35 +93,35 @@ class FormImageTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttributes([
-            'accept'             => 'value',
-            'alt'                => 'value',
-            'autocomplete'       => 'on',
-            'autofocus'          => 'autofocus',
-            'checked'            => 'checked',
-            'dirname'            => 'value',
-            'disabled'           => 'disabled',
-            'form'               => 'value',
-            'formaction'         => 'value',
-            'formenctype'        => 'value',
-            'formmethod'         => 'value',
-            'formnovalidate'     => 'value',
-            'formtarget'         => 'value',
-            'height'             => 'value',
-            'id'                 => 'value',
-            'list'               => 'value',
-            'max'                => 'value',
-            'maxlength'          => 'value',
-            'min'                => 'value',
-            'multiple'           => 'multiple',
-            'name'               => 'value',
-            'pattern'            => 'value',
-            'placeholder'        => 'value',
-            'readonly'           => 'readonly',
-            'required'           => 'required',
-            'size'               => 'value',
-            'src'                => 'value',
-            'step'               => 'value',
-            'width'              => 'value',
+            'accept'         => 'value',
+            'alt'            => 'value',
+            'autocomplete'   => 'on',
+            'autofocus'      => 'autofocus',
+            'checked'        => 'checked',
+            'dirname'        => 'value',
+            'disabled'       => 'disabled',
+            'form'           => 'value',
+            'formaction'     => 'value',
+            'formenctype'    => 'value',
+            'formmethod'     => 'value',
+            'formnovalidate' => 'value',
+            'formtarget'     => 'value',
+            'height'         => 'value',
+            'id'             => 'value',
+            'list'           => 'value',
+            'max'            => 'value',
+            'maxlength'      => 'value',
+            'min'            => 'value',
+            'multiple'       => 'multiple',
+            'name'           => 'value',
+            'pattern'        => 'value',
+            'placeholder'    => 'value',
+            'readonly'       => 'readonly',
+            'required'       => 'required',
+            'size'           => 'value',
+            'src'            => 'value',
+            'step'           => 'value',
+            'width'          => 'value',
         ]);
         $element->setValue('value');
         return $element;
@@ -136,10 +137,10 @@ class FormImageTest extends CommonTestCase
         switch ($attribute) {
             // Intentionally allowing fall-through
             case 'value':
-                $expect  = sprintf('%s="%s"', $attribute, $element->getValue());
+                $expect = sprintf('%s="%s"', $attribute, $element->getValue());
                 break;
             default:
-                $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+                $expect = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
                 break;
         }
         $this->$assertion($expect, $markup);
@@ -149,7 +150,7 @@ class FormImageTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttribute('src', 'foo.png');
-        $markup  = $this->helper->__invoke($element);
+        $markup = $this->helper->__invoke($element);
         $this->assertStringContainsString('<input', $markup);
         $this->assertStringContainsString('name="foo"', $markup);
         $this->assertStringContainsString('type="image"', $markup);

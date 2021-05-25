@@ -72,10 +72,9 @@ class FormElement extends BaseAbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
      * @return string
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null)
     {
         if (! $element) {
             return $this;
@@ -90,7 +89,6 @@ class FormElement extends BaseAbstractHelper
      * Introspects the element type and attributes to determine which
      * helper to utilize when rendering.
      *
-     * @param  ElementInterface $element
      * @return string
      */
     public function render(ElementInterface $element)
@@ -161,7 +159,6 @@ class FormElement extends BaseAbstractHelper
      * Render element by helper name
      *
      * @param string $name
-     * @param ElementInterface $element
      * @return string
      */
     protected function renderHelper($name, ElementInterface $element)
@@ -173,7 +170,6 @@ class FormElement extends BaseAbstractHelper
     /**
      * Render element by instance map
      *
-     * @param ElementInterface $element
      * @return string|null
      */
     protected function renderInstance(ElementInterface $element)
@@ -190,7 +186,6 @@ class FormElement extends BaseAbstractHelper
     /**
      * Render element by type map
      *
-     * @param ElementInterface $element
      * @return string|null
      */
     protected function renderType(ElementInterface $element)

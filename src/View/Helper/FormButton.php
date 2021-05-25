@@ -40,9 +40,9 @@ class FormButton extends FormInput
      * @var array
      */
     protected $validTypes = [
-        'button'         => true,
-        'reset'          => true,
-        'submit'         => true,
+        'button' => true,
+        'reset'  => true,
+        'submit' => true,
     ];
 
     /**
@@ -50,11 +50,10 @@ class FormButton extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
      * @param  null|string           $buttonContent
      * @return string|FormButton
      */
-    public function __invoke(ElementInterface $element = null, $buttonContent = null)
+    public function __invoke(?ElementInterface $element = null, $buttonContent = null)
     {
         if (! $element) {
             return $this;
@@ -67,7 +66,6 @@ class FormButton extends FormInput
      * Render a form <button> element from the provided $element,
      * using content from $buttonContent or the element's "label" attribute
      *
-     * @param  ElementInterface $element
      * @param  null|string $buttonContent
      * @throws Exception\DomainException
      * @return string
@@ -98,7 +96,7 @@ class FormButton extends FormInput
 
         if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
             $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-            $buttonContent = $escapeHtmlHelper($buttonContent);
+            $buttonContent    = $escapeHtmlHelper($buttonContent);
         }
 
         return $openTag . $buttonContent . $this->closeTag();
@@ -164,7 +162,6 @@ class FormButton extends FormInput
     /**
      * Determine button type to use
      *
-     * @param  ElementInterface $element
      * @return string
      */
     protected function getType(ElementInterface $element)

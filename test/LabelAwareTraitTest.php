@@ -2,9 +2,8 @@
 
 /**
  * @see       https://github.com/laminas/laminas-form for the canonical source repository
- * @copyright https://github.com/laminas/laminas-form/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-form/blob/master/LICENSE.md New BSD License
  */
+
 namespace LaminasTest\Form;
 
 use Laminas\Form\LabelAwareTrait;
@@ -37,7 +36,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetEmptyLabelAttributes()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelAttributes = $object->getLabelAttributes();
 
@@ -46,7 +45,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelAttributes()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelAttributes = [
             'test',
@@ -62,7 +61,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetEmptyLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelOptions = [];
 
@@ -73,10 +72,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelOptions = [
-            'foo' => 'bar',
+            'foo'  => 'bar',
             'foo2' => 'bar2',
         ];
 
@@ -89,10 +88,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOptionsTraversable()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelOptions = [
-            'foo' => 'bar',
+            'foo'  => 'bar',
             'foo2' => 'bar2',
         ];
 
@@ -105,7 +104,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetEmptyLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelOptions = $object->getLabelOptions();
 
@@ -114,10 +113,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelOptions = [
-            'foo' => 'bar',
+            'foo'  => 'bar',
             'foo2' => 'bar',
         ];
 
@@ -130,10 +129,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testClearLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelOptions = [
-            'foo' => 'bar',
+            'foo'  => 'bar',
             'foo2' => 'bar',
         ];
 
@@ -148,10 +147,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testRemoveLabelOptions()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $labelOptions = [
-            'foo' => 'bar',
+            'foo'  => 'bar',
             'foo2' => 'bar2',
         ];
 
@@ -174,7 +173,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOption()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $object->setLabelOption('foo', 'bar');
 
@@ -189,7 +188,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetInvalidLabelOption()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $invalidOption = 'foo';
 
@@ -200,10 +199,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelOption()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $option = 'foo';
-        $value = 'bar';
+        $value  = 'bar';
 
         $object->setLabelOption($option, $value);
 
@@ -214,10 +213,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testRemoveLabelOption()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $option = 'foo';
-        $value = 'bar';
+        $value  = 'bar';
 
         $object->setLabelOption($option, $value);
 
@@ -230,10 +229,10 @@ class LabelAwareTraitTest extends TestCase
 
     public function testHasValidLabelOption()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $option = 'foo';
-        $value = 'bar';
+        $value  = 'bar';
 
         $object->setLabelOption($option, $value);
 
@@ -243,7 +242,7 @@ class LabelAwareTraitTest extends TestCase
 
     public function testHasInvalidLabelOption()
     {
-        $object = $this->getObjectForTrait('\Laminas\Form\LabelAwareTrait');
+        $object = $this->getObjectForTrait(LabelAwareTrait::class);
 
         $option = 'foo';
 

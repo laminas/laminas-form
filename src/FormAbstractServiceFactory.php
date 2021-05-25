@@ -12,30 +12,23 @@ use function is_string;
 
 class FormAbstractServiceFactory implements AbstractFactoryInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $config;
 
-    /**
-     * @var string Top-level configuration key indicating forms configuration
-     */
+    /** @var string Top-level configuration key indicating forms configuration */
     protected $configKey = 'forms';
 
-    /**
-     * @var Factory Form factory used to create forms
-     */
+    /** @var Factory Form factory used to create forms */
     protected $factory;
 
     /**
      * Create a form (v3)
      *
-     * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
      * @return FormInterface
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         $config  = $this->getConfig($container);
         $config  = $config[$requestedName];
@@ -48,7 +41,6 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
     /**
      * Can we create the requested service? (v3)
      *
-     * @param  ContainerInterface $container
      * @param  string             $requestedName
      * @return bool
      */
@@ -87,7 +79,8 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
         }
 
         $config = $container->get('config');
-        if (! isset($config[$this->configKey])
+        if (
+            ! isset($config[$this->configKey])
             || ! is_array($config[$this->configKey])
         ) {
             $this->config = [];
@@ -129,8 +122,6 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      *   attaches the FilterManager and ValidatorManager to it.
      *
      * @param array $config
-     * @param ContainerInterface $container
-     * @param Factory $formFactory
      */
     protected function marshalInputFilter(array &$config, ContainerInterface $container, Factory $formFactory)
     {
@@ -142,7 +133,8 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
             return;
         }
 
-        if (is_string($config['input_filter'])
+        if (
+            is_string($config['input_filter'])
             && $container->has('InputFilterManager')
         ) {
             $inputFilters = $container->get('InputFilterManager');

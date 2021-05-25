@@ -3,7 +3,9 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormInput as FormInputHelper;
+use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
@@ -18,7 +20,7 @@ class FormInputTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -35,7 +37,7 @@ class FormInputTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="email"', $markup);
     }
@@ -338,10 +340,10 @@ class FormInputTest extends CommonTestCase
         $markup  = $this->helper->render($element);
         switch ($attribute) {
             case 'value':
-                $expect  = sprintf(' %s="%s"', $attribute, $element->getValue());
+                $expect = sprintf(' %s="%s"', $attribute, $element->getValue());
                 break;
             default:
-                $expect  = sprintf(' %s="%s"', $attribute, $element->getAttribute($attribute));
+                $expect = sprintf(' %s="%s"', $attribute, $element->getAttribute($attribute));
                 break;
         }
         $this->$assertion($expect, $markup);
@@ -579,7 +581,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('test');
         $element->setAttribute('placeholder', 'test');
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
 
         $mockTranslator->expects($this->once())
                 ->method('translate')
@@ -599,7 +601,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('test');
         $element->setAttribute('title', 'test');
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
 
         $mockTranslator->expects($this->once())
                 ->method('translate')
@@ -623,7 +625,7 @@ class FormInputTest extends CommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'password');
 
-        $markup  = $this->helper->__invoke($element);
+        $markup = $this->helper->__invoke($element);
         $this->assertStringContainsString('value=""', $markup);
     }
 }

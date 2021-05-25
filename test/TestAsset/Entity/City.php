@@ -4,23 +4,16 @@ namespace LaminasTest\Form\TestAsset\Entity;
 
 class City
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $zipCode;
 
-    /**
-     * @var Country
-     */
+    /** @var Country */
     protected $country;
 
     /**
-     * @param Country $country
      * @return $this
      */
     public function setCountry(Country $country)

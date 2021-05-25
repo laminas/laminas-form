@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\Annotation;
 
-use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 use Laminas\Filter\Boolean as BooleanFilter;
@@ -15,16 +14,15 @@ use function is_bool;
  * Presence of this annotation is a hint that the associated
  * \Laminas\InputFilter\Input should enable the allowEmpty flag.
  *
+ * @deprecated 2.4.8 Use `@Validator({"name":"NotEmpty"})` instead.
+ *
  * @Annotation
  * @NamedArgumentConstructor
- * @deprecated 2.4.8 Use `@Validator({"name":"NotEmpty"})` instead.
  */
 #[Attribute]
 class AllowEmpty
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $allowEmpty;
 
     /**
@@ -35,7 +33,7 @@ class AllowEmpty
     public function __construct($allowEmpty = true)
     {
         if (! is_bool($allowEmpty)) {
-            $filter   = new BooleanFilter();
+            $filter     = new BooleanFilter();
             $allowEmpty = $filter->filter($allowEmpty);
         }
 
@@ -44,8 +42,6 @@ class AllowEmpty
 
     /**
      * Get value of required flag
-     *
-     * @return bool
      */
     public function getAllowEmpty(): bool
     {

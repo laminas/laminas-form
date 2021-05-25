@@ -268,7 +268,6 @@ class DateTimeSelect extends DateSelect
     /**
      * Prepare the form element (mostly used for rendering purposes)
      *
-     * @param  FormInterface $form
      * @return void
      */
     public function prepareElement(FormInterface $form)
@@ -304,9 +303,9 @@ class DateTimeSelect extends DateSelect
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => false,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => false,
+            'filters'    => [
                 ['name' => 'DateTimeSelect'],
             ],
             'validators' => [

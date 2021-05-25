@@ -2,6 +2,9 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element\Collection;
+use Laminas\Form\Element\Text;
+use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 
 class NestedCollectionsForm extends Form
@@ -11,39 +14,39 @@ class NestedCollectionsForm extends Form
         parent::__construct('nestedCollectionsForm');
 
         $this->add([
-            'name' => 'testFieldset',
-            'type' => 'Laminas\Form\Fieldset',
-            'options' => [
+            'name'     => 'testFieldset',
+            'type'     => Fieldset::class,
+            'options'  => [
                 'use_as_base_fieldset' => true,
             ],
             'elements' => [
                 [
                     'spec' => [
-                        'name' => 'groups',
-                        'type' => 'Laminas\Form\Element\Collection',
+                        'name'    => 'groups',
+                        'type'    => Collection::class,
                         'options' => [
                             'target_element' => [
-                                'type' => 'Laminas\Form\Fieldset',
-                                'name' => 'group',
+                                'type'     => Fieldset::class,
+                                'name'     => 'group',
                                 'elements' => [
                                     [
                                         'spec' => [
-                                            'type' => 'Laminas\Form\Element\Text',
+                                            'type' => Text::class,
                                             'name' => 'name',
                                         ],
                                     ],
                                     [
                                         'spec' => [
-                                            'type' => 'Laminas\Form\Element\Collection',
-                                            'name' => 'items',
+                                            'type'    => Collection::class,
+                                            'name'    => 'items',
                                             'options' => [
                                                 'target_element' => [
-                                                    'type' => 'Laminas\Form\Fieldset',
-                                                    'name' => 'item',
+                                                    'type'     => Fieldset::class,
+                                                    'name'     => 'item',
                                                     'elements' => [
                                                         [
                                                             'spec' => [
-                                                                'type' => 'Laminas\Form\Element\Text',
+                                                                'type' => Text::class,
                                                                 'name' => 'itemId',
                                                             ],
                                                         ],

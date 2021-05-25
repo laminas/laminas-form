@@ -75,11 +75,10 @@ class FormMultiCheckbox extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
      * @param  null|string           $labelPosition
      * @return string|FormMultiCheckbox
      */
-    public function __invoke(ElementInterface $element = null, $labelPosition = null)
+    public function __invoke(?ElementInterface $element = null, $labelPosition = null)
     {
         if (! $element) {
             return $this;
@@ -95,7 +94,6 @@ class FormMultiCheckbox extends FormInput
     /**
      * Render a form <input> element from the provided $element
      *
-     * @param  ElementInterface $element
      * @throws Exception\InvalidArgumentException
      * @return string
      */
@@ -134,7 +132,6 @@ class FormMultiCheckbox extends FormInput
     /**
      * Render options
      *
-     * @param  MultiCheckboxElement $element
      * @param  array                $options
      * @param  array                $selectedOptions
      * @param  array                $attributes
@@ -146,12 +143,12 @@ class FormMultiCheckbox extends FormInput
         array $selectedOptions,
         array $attributes
     ) {
-        $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-        $labelHelper      = $this->getLabelHelper();
-        $labelClose       = $labelHelper->closeTag();
-        $labelPosition    = $this->getLabelPosition();
+        $escapeHtmlHelper      = $this->getEscapeHtmlHelper();
+        $labelHelper           = $this->getLabelHelper();
+        $labelClose            = $labelHelper->closeTag();
+        $labelPosition         = $this->getLabelPosition();
         $globalLabelAttributes = [];
-        $closingBracket   = $this->getInlineClosingBracket();
+        $closingBracket        = $this->getInlineClosingBracket();
 
         if ($element instanceof LabelAwareInterface) {
             $globalLabelAttributes = $element->getLabelAttributes();
@@ -253,7 +250,6 @@ class FormMultiCheckbox extends FormInput
     /**
      * Render a hidden element for empty/unchecked value
      *
-     * @param  MultiCheckboxElement $element
      * @param  array                $attributes
      * @return string
      */
@@ -313,8 +309,8 @@ class FormMultiCheckbox extends FormInput
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
                 __METHOD__,
-                __CLASS__,
-                __CLASS__,
+                self::class,
+                self::class,
                 (string) $labelPosition
             ));
         }
@@ -414,7 +410,6 @@ class FormMultiCheckbox extends FormInput
     /**
      * Get element name
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */

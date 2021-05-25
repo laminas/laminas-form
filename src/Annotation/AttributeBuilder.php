@@ -5,8 +5,12 @@ namespace Laminas\Form\Annotation;
 use ArrayObject;
 use Laminas\Form\Exception;
 use ReflectionClass;
+use ReflectionException;
 
 use function sprintf;
+
+use const PHP_MAJOR_VERSION;
+use const PHP_VERSION;
 
 /**
  * Parses the properties of a class for PHP attributes in order to create a form
@@ -31,15 +35,15 @@ final class AttributeBuilder extends AbstractBuilder
      * Derive a form specification from PHP attributes for a given entity
      *
      * @param  object|string $entity
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @return array
      */
     protected function getFormSpecificationInternal($entity): array
     {
-        $formSpec          = new ArrayObject();
-        $filterSpec        = new ArrayObject();
+        $formSpec   = new ArrayObject();
+        $filterSpec = new ArrayObject();
 
-        $reflection = new ReflectionClass($entity);
+        $reflection  = new ReflectionClass($entity);
         $annotations = new AnnotationCollection();
         foreach ($reflection->getAttributes() as $attribute) {
             $annotations[] = $attribute->newInstance();

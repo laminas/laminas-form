@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\Annotation;
 
-use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 use Laminas\Filter\Boolean as BooleanFilter;
@@ -23,9 +22,7 @@ use function is_bool;
 #[Attribute]
 class Required
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $required;
 
     /**
@@ -45,8 +42,6 @@ class Required
 
     /**
      * Get value of required flag
-     *
-     * @return bool
      */
     public function getRequired(): bool
     {

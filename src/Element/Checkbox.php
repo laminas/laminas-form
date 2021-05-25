@@ -19,24 +19,16 @@ class Checkbox extends Element implements InputProviderInterface
         'type' => 'checkbox',
     ];
 
-    /**
-     * @var ValidatorInterface
-     */
+    /** @var ValidatorInterface */
     protected $validator;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $useHiddenElement = true;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $uncheckedValue = '0';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $checkedValue = '1';
 
     /**
@@ -159,7 +151,7 @@ class Checkbox extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         $spec = [
-            'name' => $this->getName(),
+            'name'     => $this->getName(),
             'required' => true,
         ];
 
@@ -203,7 +195,7 @@ class Checkbox extends Element implements InputProviderInterface
     public function setValue($value)
     {
         // Cast to strings because POST data comes in string form
-        $checked = (string) $value === (string) $this->getCheckedValue();
+        $checked     = (string) $value === (string) $this->getCheckedValue();
         $this->value = $checked ? $this->getCheckedValue() : $this->getUncheckedValue();
         return $this;
     }

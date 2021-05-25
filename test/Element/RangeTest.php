@@ -3,6 +3,10 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Range as RangeElement;
+use Laminas\I18n\Validator\IsFloat;
+use Laminas\Validator\GreaterThan;
+use Laminas\Validator\LessThan;
+use Laminas\Validator\Step;
 use PHPUnit\Framework\TestCase;
 
 use function extension_loaded;
@@ -24,24 +28,24 @@ class RangeTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\I18n\Validator\IsFloat',
-            'Laminas\Validator\GreaterThan',
-            'Laminas\Validator\LessThan',
-            'Laminas\Validator\Step',
+            IsFloat::class,
+            GreaterThan::class,
+            LessThan::class,
+            Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\GreaterThan':
+                case GreaterThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals(0, $validator->getMin());
                     break;
-                case 'Laminas\Validator\LessThan':
+                case LessThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals(100, $validator->getMax());
                     break;
-                case 'Laminas\Validator\Step':
+                case Step::class:
                     $this->assertEquals(1, $validator->getStep());
                     break;
                 default:
@@ -70,24 +74,24 @@ class RangeTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\I18n\Validator\IsFloat',
-            'Laminas\Validator\GreaterThan',
-            'Laminas\Validator\LessThan',
-            'Laminas\Validator\Step',
+            IsFloat::class,
+            GreaterThan::class,
+            LessThan::class,
+            Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\GreaterThan':
+                case GreaterThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals(2, $validator->getMin());
                     break;
-                case 'Laminas\Validator\LessThan':
+                case LessThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals(102, $validator->getMax());
                     break;
-                case 'Laminas\Validator\Step':
+                case Step::class:
                     $this->assertEquals(2, $validator->getStep());
                     break;
                 default:

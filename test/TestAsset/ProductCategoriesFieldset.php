@@ -11,14 +11,14 @@ class ProductCategoriesFieldset extends ProductFieldset
         $template = new CategoryFieldset();
 
         $this->add([
-            'name' => 'categories',
-            'type' => 'collection',
+            'name'    => 'categories',
+            'type'    => 'collection',
             'options' => [
-                'label' => 'Categories',
+                'label'                  => 'Categories',
                 'should_create_template' => true,
-                'allow_add' => true,
-                'count' => 0,
-                'target_element' => $template,
+                'allow_add'              => true,
+                'count'                  => 0,
+                'target_element'         => $template,
             ],
         ]);
     }

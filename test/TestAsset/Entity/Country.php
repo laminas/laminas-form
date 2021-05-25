@@ -4,14 +4,10 @@ namespace LaminasTest\Form\TestAsset\Entity;
 
 class Country
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $continent;
 
     /**

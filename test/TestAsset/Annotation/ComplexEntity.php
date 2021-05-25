@@ -3,6 +3,8 @@
 namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
+use Laminas\Hydrator\ObjectPropertyHydrator;
+use LaminasTest\Form\TestAsset\Annotation\UrlValidator;
 
 /**
  * @Annotation\Name("user")
@@ -11,7 +13,7 @@ use Laminas\Form\Annotation;
  */
 #[Annotation\Name("user")]
 #[Annotation\Attributes(["legend" => "Register"])]
-#[Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")]
+#[Annotation\Hydrator(ObjectPropertyHydrator::class)]
 class ComplexEntity
 {
     /**
@@ -23,7 +25,7 @@ class ComplexEntity
     #[Annotation\ErrorMessage("Invalid or missing username")]
     #[Annotation\Filter("StringTrim")]
     #[Annotation\Validator("NotEmpty")]
-    #[Annotation\Validator("StringLength", options: ["min" => 3,"max" => 25])]
+    #[Annotation\Validator("StringLength", options: ["min" => 3, "max" => 25])]
     public $username;
 
     /**
@@ -59,12 +61,10 @@ class ComplexEntity
     #[Annotation\AllowEmpty()]
     #[Annotation\Required(false)]
     #[Annotation\Attributes(["type" => "text", "label" => "Provide a URL for your avatar (optional):"])]
-    #[Annotation\Validator("LaminasTest\Form\TestAsset\Annotation\UrlValidator")]
+    #[Annotation\Validator(UrlValidator::class)]
     public $avatar;
 
-    /**
-     * @Annotation\Exclude()
-     */
+    /** @Annotation\Exclude() */
     #[Annotation\Exclude]
     protected $someComposedObject;
 }

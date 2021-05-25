@@ -16,7 +16,7 @@ class AbstractHelperTest extends CommonTestCase
 {
     protected function setUp(): void
     {
-        $this->helper = $this->getMockForAbstractClass('Laminas\Form\View\Helper\AbstractHelper');
+        $this->helper = $this->getMockForAbstractClass(AbstractHelper::class);
         parent::setUp();
     }
 

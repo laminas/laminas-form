@@ -12,7 +12,7 @@ class InputFilterProviderFieldset extends Fieldset implements InputFilterProvide
         parent::__construct($name, $options);
 
         $this->add([
-            'name' => 'foo',
+            'name'    => 'foo',
             'options' => [
                 'label' => 'Foo',
             ],

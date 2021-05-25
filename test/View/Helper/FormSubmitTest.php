@@ -3,7 +3,9 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormSubmit as FormSubmitHelper;
+use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
@@ -18,7 +20,7 @@ class FormSubmitTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -35,7 +37,7 @@ class FormSubmitTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="submit"', $markup);
     }
@@ -79,35 +81,35 @@ class FormSubmitTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttributes([
-            'accept'             => 'value',
-            'alt'                => 'value',
-            'autocomplete'       => 'on',
-            'autofocus'          => 'autofocus',
-            'checked'            => 'checked',
-            'dirname'            => 'value',
-            'disabled'           => 'disabled',
-            'form'               => 'value',
-            'formaction'         => 'value',
-            'formenctype'        => 'value',
-            'formmethod'         => 'value',
-            'formnovalidate'     => 'value',
-            'formtarget'         => 'value',
-            'height'             => 'value',
-            'id'                 => 'value',
-            'list'               => 'value',
-            'max'                => 'value',
-            'maxlength'          => 'value',
-            'min'                => 'value',
-            'multiple'           => 'multiple',
-            'name'               => 'value',
-            'pattern'            => 'value',
-            'placeholder'        => 'value',
-            'readonly'           => 'readonly',
-            'required'           => 'required',
-            'size'               => 'value',
-            'src'                => 'value',
-            'step'               => 'value',
-            'width'              => 'value',
+            'accept'         => 'value',
+            'alt'            => 'value',
+            'autocomplete'   => 'on',
+            'autofocus'      => 'autofocus',
+            'checked'        => 'checked',
+            'dirname'        => 'value',
+            'disabled'       => 'disabled',
+            'form'           => 'value',
+            'formaction'     => 'value',
+            'formenctype'    => 'value',
+            'formmethod'     => 'value',
+            'formnovalidate' => 'value',
+            'formtarget'     => 'value',
+            'height'         => 'value',
+            'id'             => 'value',
+            'list'           => 'value',
+            'max'            => 'value',
+            'maxlength'      => 'value',
+            'min'            => 'value',
+            'multiple'       => 'multiple',
+            'name'           => 'value',
+            'pattern'        => 'value',
+            'placeholder'    => 'value',
+            'readonly'       => 'readonly',
+            'required'       => 'required',
+            'size'           => 'value',
+            'src'            => 'value',
+            'step'           => 'value',
+            'width'          => 'value',
         ]);
         $element->setValue('value');
         return $element;
@@ -122,10 +124,10 @@ class FormSubmitTest extends CommonTestCase
         $markup  = $this->helper->render($element);
         switch ($attribute) {
             case 'value':
-                $expect  = sprintf('%s="%s"', $attribute, $element->getValue());
+                $expect = sprintf('%s="%s"', $attribute, $element->getValue());
                 break;
             default:
-                $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+                $expect = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
                 break;
         }
         $this->$assertion($expect, $markup);
@@ -153,7 +155,7 @@ class FormSubmitTest extends CommonTestCase
         $element = new Element('foo');
         $element->setValue('Submit Label');
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->once())
                        ->method('translate')
                        ->willReturn('translated content');

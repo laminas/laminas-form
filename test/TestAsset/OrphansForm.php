@@ -2,7 +2,9 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element\Collection;
 use Laminas\Form\Form;
+use LaminasTest\Form\TestAsset\OrphansFieldset;
 
 class OrphansForm extends Form
 {
@@ -17,15 +19,15 @@ class OrphansForm extends Form
         //adds a collection of 2
         $this->add(
             [
-                'type' => '\Laminas\Form\Element\Collection',
-                'name' => 'test',
+                'type'    => Collection::class,
+                'name'    => 'test',
                 'options' => [
-                    'use_as_base_fieldset' => true,
-                    'count' => 2,
+                    'use_as_base_fieldset'   => true,
+                    'count'                  => 2,
                     'should_create_template' => true,
-                    'allow_add' => true,
-                    'target_element' => [
-                        'type' => '\LaminasTest\Form\TestAsset\OrphansFieldset',
+                    'allow_add'              => true,
+                    'target_element'         => [
+                        'type' => OrphansFieldset::class,
                     ],
                 ],
             ]
@@ -33,9 +35,9 @@ class OrphansForm extends Form
 
         $this->add(
             [
-                'name' => 'submit',
+                'name'       => 'submit',
                 'attributes' => [
-                    'type' => 'submit',
+                    'type'  => 'submit',
                     'value' => 'Send',
                 ],
             ]

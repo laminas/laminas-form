@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Checkbox as CheckboxElement;
+use Laminas\Validator\InArray;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
@@ -26,13 +27,13 @@ class CheckboxTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\InArray',
+            InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\InArray':
+                case InArray::class:
                     $this->assertEquals(
                         [$element->getCheckedValue(), $element->getUncheckedValue()],
                         $validator->getHaystack()
@@ -112,8 +113,8 @@ class CheckboxTest extends TestCase
         $element = new CheckboxElement();
         $element->setOptions([
             'use_hidden_element' => true,
-            'unchecked_value' => 'foo',
-            'checked_value' => 'bar',
+            'unchecked_value'    => 'foo',
+            'checked_value'      => 'bar',
         ]);
         $this->assertEquals(true, $element->getOption('use_hidden_element'));
         $this->assertEquals('foo', $element->getOption('unchecked_value'));
@@ -125,8 +126,8 @@ class CheckboxTest extends TestCase
         $element = new CheckboxElement();
         $element->setOptions(new CustomTraversable([
             'use_hidden_element' => true,
-            'unchecked_value' => 'foo',
-            'checked_value' => 'bar',
+            'unchecked_value'    => 'foo',
+            'checked_value'      => 'bar',
         ]));
         $this->assertEquals(true, $element->getOption('use_hidden_element'));
         $this->assertEquals('foo', $element->getOption('unchecked_value'));

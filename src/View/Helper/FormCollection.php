@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\View\Helper;
 
-use Laminas\Form\Element;
 use Laminas\Form\Element\Collection as CollectionElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FieldsetInterface;
@@ -69,11 +68,10 @@ class FormCollection extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
      * @param  bool                  $wrap
      * @return string|FormCollection
      */
-    public function __invoke(ElementInterface $element = null, $wrap = true)
+    public function __invoke(?ElementInterface $element = null, $wrap = true)
     {
         if (! $element) {
             return $this;
@@ -87,7 +85,6 @@ class FormCollection extends AbstractHelper
     /**
      * Render a collection by iterating through all fieldsets and elements
      *
-     * @param  ElementInterface $element
      * @return string
      */
     public function render(ElementInterface $element)
@@ -98,10 +95,10 @@ class FormCollection extends AbstractHelper
             return '';
         }
 
-        $markup           = '';
-        $templateMarkup   = '';
-        $elementHelper    = $this->getElementHelper();
-        $fieldsetHelper   = $this->getFieldsetHelper();
+        $markup         = '';
+        $templateMarkup = '';
+        $elementHelper  = $this->getElementHelper();
+        $fieldsetHelper = $this->getFieldsetHelper();
 
         if ($element instanceof CollectionElement && $element->shouldCreateTemplate()) {
             $templateMarkup = $this->renderTemplate($element);
@@ -121,7 +118,7 @@ class FormCollection extends AbstractHelper
             unset($attributes['name']);
             $attributesString = $attributes ? ' ' . $this->createAttributesString($attributes) : '';
 
-            $label = $element->getLabel();
+            $label  = $element->getLabel();
             $legend = '';
 
             if (! empty($label)) {
@@ -134,7 +131,7 @@ class FormCollection extends AbstractHelper
 
                 if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
                     $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-                    $label = $escapeHtmlHelper($label);
+                    $label            = $escapeHtmlHelper($label);
                 }
 
                 $legend = sprintf(
@@ -160,7 +157,6 @@ class FormCollection extends AbstractHelper
     /**
      * Only render a template
      *
-     * @param  CollectionElement $collection
      * @return string
      */
     public function renderTemplate(CollectionElement $collection)
@@ -169,7 +165,7 @@ class FormCollection extends AbstractHelper
         $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
         $fieldsetHelper         = $this->getFieldsetHelper();
 
-        $templateMarkup         = '';
+        $templateMarkup = '';
 
         $elementOrFieldset = $collection->getTemplateElement();
 
@@ -317,7 +313,6 @@ class FormCollection extends AbstractHelper
      * The preset default is <pre><fieldset>%2$s%1$s%3$s</fieldset></pre>
      *
      * @param string $wrapper
-     *
      * @return $this
      */
     public function setWrapper($wrapper)
@@ -334,7 +329,6 @@ class FormCollection extends AbstractHelper
      * This defaults to '<legend>%s</legend>'
      *
      * @param string $labelWrapper
-     *
      * @return $this
      */
     public function setLabelWrapper($labelWrapper)
@@ -373,7 +367,6 @@ class FormCollection extends AbstractHelper
      * THis defaults to '<span data-template="%s"></span>'
      *
      * @param string $templateWrapper
-     *
      * @return $this
      */
     public function setTemplateWrapper($templateWrapper)

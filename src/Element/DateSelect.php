@@ -141,7 +141,6 @@ class DateSelect extends MonthSelect
     /**
      * Prepare the form element (mostly used for rendering purposes)
      *
-     * @param  FormInterface $form
      * @return mixed
      */
     public function prepareElement(FormInterface $form)
@@ -175,9 +174,9 @@ class DateSelect extends MonthSelect
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => false,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => false,
+            'filters'    => [
                 ['name' => 'DateSelect'],
             ],
             'validators' => [

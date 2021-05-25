@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Color as ColorElement;
+use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -36,13 +37,13 @@ class ColorTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Regex',
+            Regex::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Regex':
+                case Regex::class:
                     $this->assertEquals('/^#[0-9a-fA-F]{6}$/', $validator->getPattern());
                     break;
                 default:

@@ -6,6 +6,10 @@ use DateInterval;
 use DateTime;
 use Laminas\Form\Element\Date as DateElement;
 use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\Validator\Date;
+use Laminas\Validator\DateStep;
+use Laminas\Validator\GreaterThan;
+use Laminas\Validator\LessThan;
 use PHPUnit\Framework\TestCase;
 
 use function date;
@@ -50,14 +54,14 @@ class DateTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Date',
-            'Laminas\Validator\DateStep',
+            Date::class,
+            DateStep::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\DateStep':
+                case DateStep::class:
                     $dateInterval = new DateInterval('P1D');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     $this->assertEquals(date('Y-m-d', 0), $validator->getBaseValue());
@@ -83,24 +87,24 @@ class DateTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Date',
-            'Laminas\Validator\GreaterThan',
-            'Laminas\Validator\LessThan',
-            'Laminas\Validator\DateStep',
+            Date::class,
+            GreaterThan::class,
+            LessThan::class,
+            DateStep::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\GreaterThan':
+                case GreaterThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2000-01-01', $validator->getMin());
                     break;
-                case 'Laminas\Validator\LessThan':
+                case LessThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2001-01-01', $validator->getMax());
                     break;
-                case 'Laminas\Validator\DateStep':
+                case DateStep::class:
                     $dateInterval = new DateInterval('P1D');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     $this->assertEquals('2000-01-01', $validator->getBaseValue());
@@ -116,7 +120,7 @@ class DateTest extends TestCase
         $element = new DateElement('foo');
         $date    = new DateTime();
         $element->setValue($date);
-        $value   = $element->getValue();
+        $value = $element->getValue();
         $this->assertEquals($date->format('Y-m-d'), $value);
     }
 
@@ -132,8 +136,8 @@ class DateTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
             switch (get_class($validator)) {
-                case 'Laminas\Validator\DateStep':
-                case 'Laminas\Validator\Date':
+                case DateStep::class:
+                case Date::class:
                     $this->assertEquals('d-m-Y', $validator->getFormat());
                     break;
             }
@@ -147,12 +151,12 @@ class DateTest extends TestCase
     {
         date_default_timezone_set('Europe/London');
 
-        $element   = new DateElement('foo');
+        $element = new DateElement('foo');
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
             switch (get_class($validator)) {
-                case 'Laminas\Validator\DateStep':
+                case DateStep::class:
                     $this->assertTrue($validator->isValid('2013-12-25'));
                     break;
             }

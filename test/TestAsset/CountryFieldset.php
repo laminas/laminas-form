@@ -42,7 +42,7 @@ class CountryFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return [
-            'name' => [
+            'name'      => [
                 'required' => true,
             ],
             'continent' => [

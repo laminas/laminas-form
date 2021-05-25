@@ -18,39 +18,34 @@ use ReflectionClass;
 use ReflectionProperty;
 use Reflector;
 
-use function get_class;
+use function class_exists;
+use function is_array;
+use function is_object;
 use function is_string;
 use function is_subclass_of;
+use function sprintf;
+use function var_export;
 
 /**
  * Creates a form and input-filters from an array-based form specification
  */
 abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactoryAwareInterface
 {
-    /**
-     * @var EventManagerInterface
-     */
+    /** @var EventManagerInterface */
     protected $events;
 
-    /**
-     * @var Factory
-     */
+    /** @var Factory */
     protected $formFactory;
 
-    /**
-     * @var object
-     */
+    /** @var object */
     protected $entity;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $preserveDefinedOrder = false;
 
     /**
      * Set form factory to use when building form from annotations
      *
-     * @param  Factory $formFactory
      * @return $this
      */
     public function setFormFactory(Factory $formFactory)
@@ -62,14 +57,13 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Set event manager instance
      *
-     * @param  EventManagerInterface $events
      * @return $this
      */
     public function setEventManager(EventManagerInterface $events)
     {
         $events->setIdentifiers([
-            __CLASS__,
-            get_class($this),
+            self::class,
+            static::class,
         ]);
         (new ElementAnnotationsListener())->attach($events);
         (new FormAnnotationsListener())->attach($events);
@@ -117,7 +111,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     public function getFormSpecification($entity)
     {
         if (! is_object($entity)) {
-            if ((is_string($entity) && (! class_exists($entity))) // non-existent class
+            if (
+                (is_string($entity) && (! class_exists($entity))) // non-existent class
                 || (! is_string($entity)) // not an object or string
             ) {
                 throw new Exception\InvalidArgumentException(sprintf(
@@ -128,8 +123,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
             }
         }
 
-        $this->entity = $entity;
-        list ($formSpec, $filterSpec) = $this->getFormSpecificationInternal($entity);
+        $this->entity            = $entity;
+        [$formSpec, $filterSpec] = $this->getFormSpecificationInternal($entity);
 
         if (! isset($formSpec['input_filter'])) {
             $formSpec['input_filter'] = $filterSpec;
@@ -232,7 +227,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
                 'name' => $name,
             ],
         ]);
-        $inputSpec = new ArrayObject([
+        $inputSpec   = new ArrayObject([
             'name' => $name,
         ]);
 
@@ -260,9 +255,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
         }
 
         $elementSpec = $params['elementSpec'];
-        $type        = isset($elementSpec['spec']['type'])
-            ? $elementSpec['spec']['type']
-            : Element::class;
+        $type        = $elementSpec['spec']['type'] ?? Element::class;
 
         // Compose as a fieldset or an element, based on specification type.
         // If preserve defined order is true, all elements are composed as elements to keep their ordering

@@ -7,6 +7,7 @@ use Laminas\Form\ConfigProvider;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\View\Helper\FormElement as FormElementHelper;
+use Laminas\Validator\Csrf;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Renderer\PhpRenderer;
 use Laminas\View\Renderer\RendererInterface;
@@ -17,25 +18,21 @@ use function substr_count;
 
 class FormElementTest extends TestCase
 {
-    /**
-     * @var AbstractHelper
-     */
+    /** @var AbstractHelper */
     public $helper;
 
-    /**
-     * @var RendererInterface
-     */
+    /** @var RendererInterface */
     public $renderer;
 
     protected function setUp(): void
     {
         Doctype::unsetDoctypeRegistry();
 
-        $this->helper = new FormElementHelper();
-        $this->renderer = new PhpRenderer;
+        $this->helper   = new FormElementHelper();
+        $this->renderer = new PhpRenderer();
 
         $helperPluginManager = $this->renderer->getHelperPluginManager();
-        $viewHelperConfig = (new ConfigProvider())->getViewHelperConfig();
+        $viewHelperConfig    = (new ConfigProvider())->getViewHelperConfig();
         $helperPluginManager->configure($viewHelperConfig);
         $this->renderer->setHelperPluginManager($helperPluginManager);
 
@@ -89,7 +86,7 @@ class FormElementTest extends TestCase
         $element->setAttribute('type', $type);
         $element->setAttribute('options', ['option' => 'value']);
         $element->setAttribute('src', 'http://zend.com/img.png');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertStringContainsString('<input', $markup);
         $this->assertStringContainsString('type="' . $type . '"', $markup);
@@ -129,7 +126,7 @@ class FormElementTest extends TestCase
             'value3' => 'last',
         ]);
         $element->setAttribute('value', 'value2');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertEquals(3, substr_count($markup, '<' . $inputType), $markup);
         $this->assertStringContainsString($additionalMarkup, $markup);
@@ -152,12 +149,12 @@ class FormElementTest extends TestCase
     {
         $element   = new Element\Csrf('foo');
         $inputSpec = $element->getInputSpecification();
-        $hash = '';
+        $hash      = '';
 
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             switch ($class) {
-                case 'Laminas\Validator\Csrf':
+                case Csrf::class:
                     $hash = $validator->getHash();
                     break;
                 default:
@@ -165,7 +162,7 @@ class FormElementTest extends TestCase
             }
         }
 
-        $markup    = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertMatchesRegularExpression('#<input[^>]*(type="hidden")#', $markup);
         $this->assertMatchesRegularExpression('#<input[^>]*(value="' . $hash . '")#', $markup);
@@ -176,7 +173,7 @@ class FormElementTest extends TestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'textarea');
         $element->setAttribute('value', 'Initial content');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertStringContainsString('<textarea', $markup);
         $this->assertStringContainsString('>Initial content<', $markup);
@@ -187,7 +184,7 @@ class FormElementTest extends TestCase
         $element = new Element\Collection();
         $element->setLabel('foo');
 
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<legend>foo</legend>', $markup);
     }
 
@@ -195,7 +192,7 @@ class FormElementTest extends TestCase
     {
         $element = new Element\Button('foo');
         $element->setLabel('My Button');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertStringContainsString('<button', $markup);
         $this->assertStringContainsString('>My Button<', $markup);

@@ -11,9 +11,7 @@ use function preg_replace;
 
 class CustomFieldsetHelper extends AbstractHelper
 {
-    /**
-     * @var FormCollection
-     */
+    /** @var FormCollection */
     protected $fieldsetHelper;
 
     public function __invoke(FieldsetInterface $fieldset)
@@ -21,9 +19,7 @@ class CustomFieldsetHelper extends AbstractHelper
         $fieldsetHelper = $this->getFieldsetHelper();
 
         $name = preg_replace('/[^a-z0-9_-]+/', '', $fieldset->getName());
-        $result = '<div id="customFieldset' . $name . '">' . $fieldsetHelper($fieldset) . '</div>';
-
-        return $result;
+        return '<div id="customFieldset' . $name . '">' . $fieldsetHelper($fieldset) . '</div>';
     }
 
     /**

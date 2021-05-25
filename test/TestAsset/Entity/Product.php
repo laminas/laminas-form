@@ -6,24 +6,16 @@ use function get_object_vars;
 
 class Product
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $price;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $categories;
 
-    /**
-     * @var Country
-     */
+    /** @var Country */
     protected $madeInCountry;
 
     /**

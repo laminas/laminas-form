@@ -15,22 +15,19 @@ use function sprintf;
 
 class BuilderAbstractFactory implements AbstractFactoryInterface
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     protected $aliases = [
         'FormAnnotationBuilder' => AnnotationBuilder::class,
-        'FormAttributeBuilder' => AttributeBuilder::class,
+        'FormAttributeBuilder'  => AttributeBuilder::class,
     ];
 
     /**
-     * @param  ContainerInterface $container
      * @param  string $requestedName
      * @param  null|array $options
      * @return AnnotationBuilder
      * @throws ServiceNotCreatedException for invalid listener configuration.
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
         // resolve aliases used in laminas servicemanager
         if (isset($this->aliases[$requestedName])) {
@@ -38,7 +35,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
         }
 
         // setup a form factory which can use custom form elements
-        $annotationBuilder = new $requestedName;
+        $annotationBuilder = new $requestedName();
         $eventManager      = $container->get('EventManager');
         $annotationBuilder->setEventManager($eventManager);
 
@@ -55,7 +52,6 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
     }
 
     /**
-     * @param  ContainerInterface $container
      * @param  string $requestedName
      * @return bool
      */
@@ -75,7 +71,6 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      *
      * Otherwise, returns the `form_annotation_builder` array.
      *
-     * @param  ContainerInterface $container
      * @return array
      */
     private function marshalConfig(ContainerInterface $container)
@@ -85,9 +80,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
         }
 
         $config = $container->get('config');
-        $config = isset($config['form_annotation_builder'])
-            ? $config['form_annotation_builder']
-            : [];
+        $config = $config['form_annotation_builder'] ?? [];
 
         return is_array($config) ? $config : [];
     }
@@ -102,8 +95,6 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * - otherwise attaches it to the event manager
      *
      * @param  array $config
-     * @param  EventManagerInterface $events
-     * @param  ContainerInterface $container
      * @return void
      * @throws ServiceNotCreatedException if any listener is not an event listener
      *     aggregate.
@@ -129,9 +120,6 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * Inject the annotation builder's factory instance with the FormElementManager.
      *
      * Also injects the factory with the InputFilterManager if present.
-     *
-     * @param Factory $factory
-     * @param ContainerInterface $container
      */
     private function injectFactory(Factory $factory, ContainerInterface $container)
     {

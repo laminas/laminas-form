@@ -4,6 +4,7 @@ namespace LaminasTest\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\Figlet as FigletCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\Figlet as FigletCaptchaHelper;
 use LaminasTest\Form\View\Helper\CommonTestCase;
 
@@ -27,7 +28,7 @@ class FigletTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->helper->render($element);
     }
 

@@ -3,6 +3,8 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormCheckbox as FormCheckboxHelper;
 
 class FormCheckboxTest extends CommonTestCase
@@ -27,7 +29,7 @@ class FormCheckboxTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element\Checkbox();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -47,7 +49,7 @@ class FormCheckboxTest extends CommonTestCase
     {
         $element = $this->getElement();
         $element->setValue('checked');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertMatchesRegularExpression('#value="checked"\s+checked="checked"#', $markup);
         $this->assertDoesNotMatchRegularExpression('#value="unchecked"\s+checked="checked"#', $markup);
@@ -65,7 +67,7 @@ class FormCheckboxTest extends CommonTestCase
     {
         $element = new Element\Checkbox('foo');
         $element->setUseHiddenElement(false);
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertMatchesRegularExpression('#type="checkbox".*?(value="1")#', $markup);
         $this->assertDoesNotMatchRegularExpression('#type="hidden"\s+name="foo"\s+value="0"#', $markup);
     }
@@ -73,7 +75,7 @@ class FormCheckboxTest extends CommonTestCase
     public function testDoesNotThrowExceptionIfNameIsZero()
     {
         $element = new Element\Checkbox(0);
-        $markup = $this->helper->__invoke($element);
+        $markup  = $this->helper->__invoke($element);
         $this->assertStringContainsString('name="0"', $markup);
     }
 
@@ -83,7 +85,7 @@ class FormCheckboxTest extends CommonTestCase
     public function testBaseElementType()
     {
         $element = new Element('foo');
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $markup = $this->helper->render($element);
     }
 

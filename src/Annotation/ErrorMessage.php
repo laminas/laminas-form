@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\Annotation;
 
-use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 
@@ -18,15 +17,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 class ErrorMessage
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $message;
 
     /**
      * Receive and process the contents of an annotation
-     *
-     * @param string $message
      */
     public function __construct(string $message)
     {
@@ -35,8 +30,6 @@ class ErrorMessage
 
     /**
      * Retrieve the message
-     *
-     * @return string
      */
     public function getMessage(): string
     {

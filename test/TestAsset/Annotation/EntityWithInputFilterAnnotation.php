@@ -3,11 +3,12 @@
 namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
+use Laminas\InputFilter\InputFilter;
 
 /**
  * @Annotation\InputFilter({"type":"Laminas\InputFilter\InputFilter"})
  */
-#[Annotation\InputFilter(["type" => "Laminas\InputFilter\InputFilter"])]
+#[Annotation\InputFilter(["type" => InputFilter::class])]
 class EntityWithInputFilterAnnotation
 {
     /**

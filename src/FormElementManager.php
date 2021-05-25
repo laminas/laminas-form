@@ -7,6 +7,37 @@ use Laminas\Form\Exception;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\Stdlib\InitializableInterface;
+use Zend\Form\Element\Button;
+use Zend\Form\Element\Captcha;
+use Zend\Form\Element\Checkbox;
+use Zend\Form\Element\Collection;
+use Zend\Form\Element\Color;
+use Zend\Form\Element\Csrf;
+use Zend\Form\Element\Date;
+use Zend\Form\Element\DateSelect;
+use Zend\Form\Element\DateTime;
+use Zend\Form\Element\DateTimeLocal;
+use Zend\Form\Element\DateTimeSelect;
+use Zend\Form\Element\Email;
+use Zend\Form\Element\File;
+use Zend\Form\Element\Hidden;
+use Zend\Form\Element\Image;
+use Zend\Form\Element\Month;
+use Zend\Form\Element\MonthSelect;
+use Zend\Form\Element\MultiCheckbox;
+use Zend\Form\Element\Number;
+use Zend\Form\Element\Password;
+use Zend\Form\Element\Radio;
+use Zend\Form\Element\Range;
+use Zend\Form\Element\Search;
+use Zend\Form\Element\Select;
+use Zend\Form\Element\Submit;
+use Zend\Form\Element\Tel;
+use Zend\Form\Element\Text;
+use Zend\Form\Element\Textarea;
+use Zend\Form\Element\Time;
+use Zend\Form\Element\Url;
+use Zend\Form\Element\Week;
 
 use function array_push;
 use function array_search;
@@ -109,76 +140,76 @@ class FormElementManager extends AbstractPluginManager
         'Week'           => Element\Week::class,
 
         // Legacy Zend Framework aliases
-        \Zend\Form\Element\Button::class => Element\Button::class,
-        \Zend\Form\Element\Captcha::class => Element\Captcha::class,
-        \Zend\Form\Element\Checkbox::class => Element\Checkbox::class,
-        \Zend\Form\Element\Collection::class => Element\Collection::class,
-        \Zend\Form\Element\Color::class => Element\Color::class,
-        \Zend\Form\Element\Csrf::class => Element\Csrf::class,
-        \Zend\Form\Element\Date::class => Element\Date::class,
-        \Zend\Form\Element\DateSelect::class => Element\DateSelect::class,
-        \Zend\Form\Element\DateTime::class => Element\DateTime::class,
-        \Zend\Form\Element\DateTimeLocal::class => Element\DateTimeLocal::class,
-        \Zend\Form\Element\DateTimeSelect::class => Element\DateTimeSelect::class,
-        \Zend\Form\Element::class => Element::class,
-        \Zend\Form\Element\Email::class => Element\Email::class,
+        Button::class              => Element\Button::class,
+        Captcha::class             => Element\Captcha::class,
+        Checkbox::class            => Element\Checkbox::class,
+        Collection::class          => Element\Collection::class,
+        Color::class               => Element\Color::class,
+        Csrf::class                => Element\Csrf::class,
+        Date::class                => Element\Date::class,
+        DateSelect::class          => Element\DateSelect::class,
+        DateTime::class            => Element\DateTime::class,
+        DateTimeLocal::class       => Element\DateTimeLocal::class,
+        DateTimeSelect::class      => Element\DateTimeSelect::class,
+        \Zend\Form\Element::class  => Element::class,
+        Email::class               => Element\Email::class,
         \Zend\Form\Fieldset::class => Fieldset::class,
-        \Zend\Form\Element\File::class => Element\File::class,
-        \Zend\Form\Form::class => Form::class,
-        \Zend\Form\Element\Hidden::class => Element\Hidden::class,
-        \Zend\Form\Element\Image::class => Element\Image::class,
-        \Zend\Form\Element\Month::class => Element\Month::class,
-        \Zend\Form\Element\MonthSelect::class => Element\MonthSelect::class,
-        \Zend\Form\Element\MultiCheckbox::class => Element\MultiCheckbox::class,
-        \Zend\Form\Element\Number::class => Element\Number::class,
-        \Zend\Form\Element\Password::class => Element\Password::class,
-        \Zend\Form\Element\Radio::class => Element\Radio::class,
-        \Zend\Form\Element\Range::class => Element\Range::class,
-        \Zend\Form\Element\Search::class => Element\Search::class,
-        \Zend\Form\Element\Select::class => Element\Select::class,
-        \Zend\Form\Element\Submit::class => Element\Submit::class,
-        \Zend\Form\Element\Tel::class => Element\Tel::class,
-        \Zend\Form\Element\Text::class => Element\Text::class,
-        \Zend\Form\Element\Textarea::class => Element\Textarea::class,
-        \Zend\Form\Element\Time::class => Element\Time::class,
-        \Zend\Form\Element\Url::class => Element\Url::class,
-        \Zend\Form\Element\Week::class => Element\Week::class,
+        File::class                => Element\File::class,
+        \Zend\Form\Form::class     => Form::class,
+        Hidden::class              => Element\Hidden::class,
+        Image::class               => Element\Image::class,
+        Month::class               => Element\Month::class,
+        MonthSelect::class         => Element\MonthSelect::class,
+        MultiCheckbox::class       => Element\MultiCheckbox::class,
+        Number::class              => Element\Number::class,
+        Password::class            => Element\Password::class,
+        Radio::class               => Element\Radio::class,
+        Range::class               => Element\Range::class,
+        Search::class              => Element\Search::class,
+        Select::class              => Element\Select::class,
+        Submit::class              => Element\Submit::class,
+        Tel::class                 => Element\Tel::class,
+        Text::class                => Element\Text::class,
+        Textarea::class            => Element\Textarea::class,
+        Time::class                => Element\Time::class,
+        Url::class                 => Element\Url::class,
+        Week::class                => Element\Week::class,
 
         // v2 normalized FQCNs
-        'zendformelementbutton' => Element\Button::class,
-        'zendformelementcaptcha' => Element\Captcha::class,
-        'zendformelementcheckbox' => Element\Checkbox::class,
-        'zendformelementcollection' => Element\Collection::class,
-        'zendformelementcolor' => Element\Color::class,
-        'zendformelementcsrf' => Element\Csrf::class,
-        'zendformelementdate' => Element\Date::class,
-        'zendformelementdateselect' => Element\DateSelect::class,
-        'zendformelementdatetime' => Element\DateTime::class,
-        'zendformelementdatetimelocal' => Element\DateTimeLocal::class,
+        'zendformelementbutton'         => Element\Button::class,
+        'zendformelementcaptcha'        => Element\Captcha::class,
+        'zendformelementcheckbox'       => Element\Checkbox::class,
+        'zendformelementcollection'     => Element\Collection::class,
+        'zendformelementcolor'          => Element\Color::class,
+        'zendformelementcsrf'           => Element\Csrf::class,
+        'zendformelementdate'           => Element\Date::class,
+        'zendformelementdateselect'     => Element\DateSelect::class,
+        'zendformelementdatetime'       => Element\DateTime::class,
+        'zendformelementdatetimelocal'  => Element\DateTimeLocal::class,
         'zendformelementdatetimeselect' => Element\DateTimeSelect::class,
-        'zendformelement' => Element::class,
-        'zendformelementemail' => Element\Email::class,
-        'zendformfieldset' => Fieldset::class,
-        'zendformelementfile' => Element\File::class,
-        'zendformform' => Form::class,
-        'zendformelementhidden' => Element\Hidden::class,
-        'zendformelementimage' => Element\Image::class,
-        'zendformelementmonth' => Element\Month::class,
-        'zendformelementmonthselect' => Element\MonthSelect::class,
-        'zendformelementmulticheckbox' => Element\MultiCheckbox::class,
-        'zendformelementnumber' => Element\Number::class,
-        'zendformelementpassword' => Element\Password::class,
-        'zendformelementradio' => Element\Radio::class,
-        'zendformelementrange' => Element\Range::class,
-        'zendformelementsearch' => Element\Search::class,
-        'zendformelementselect' => Element\Select::class,
-        'zendformelementsubmit' => Element\Submit::class,
-        'zendformelementtel' => Element\Tel::class,
-        'zendformelementtext' => Element\Text::class,
-        'zendformelementtextarea' => Element\Textarea::class,
-        'zendformelementtime' => Element\Time::class,
-        'zendformelementurl' => Element\Url::class,
-        'zendformelementweek' => Element\Week::class,
+        'zendformelement'               => Element::class,
+        'zendformelementemail'          => Element\Email::class,
+        'zendformfieldset'              => Fieldset::class,
+        'zendformelementfile'           => Element\File::class,
+        'zendformform'                  => Form::class,
+        'zendformelementhidden'         => Element\Hidden::class,
+        'zendformelementimage'          => Element\Image::class,
+        'zendformelementmonth'          => Element\Month::class,
+        'zendformelementmonthselect'    => Element\MonthSelect::class,
+        'zendformelementmulticheckbox'  => Element\MultiCheckbox::class,
+        'zendformelementnumber'         => Element\Number::class,
+        'zendformelementpassword'       => Element\Password::class,
+        'zendformelementradio'          => Element\Radio::class,
+        'zendformelementrange'          => Element\Range::class,
+        'zendformelementsearch'         => Element\Search::class,
+        'zendformelementselect'         => Element\Select::class,
+        'zendformelementsubmit'         => Element\Submit::class,
+        'zendformelementtel'            => Element\Tel::class,
+        'zendformelementtext'           => Element\Text::class,
+        'zendformelementtextarea'       => Element\Textarea::class,
+        'zendformelementtime'           => Element\Time::class,
+        'zendformelementurl'            => Element\Url::class,
+        'zendformelementweek'           => Element\Week::class,
     ];
 
     /**
@@ -268,6 +299,7 @@ class FormElementManager extends AbstractPluginManager
 
     /**
      * Interface all plugins managed by this class must implement.
+     *
      * @var string
      */
     protected $instanceOf = ElementInterface::class;
@@ -275,7 +307,6 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Inject the factory to any element that implements FormFactoryAwareInterface
      *
-     * @param ContainerInterface $container
      * @param mixed $instance Instance to inspect and optionally inject.
      */
     public function injectFactory(ContainerInterface $container, $instance)
@@ -296,7 +327,6 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Call init() on any element that implements InitializableInterface
      *
-     * @param ContainerInterface $container
      * @param mixed $instance Instance to inspect and optionally initialize.
      */
     public function callElementInit(ContainerInterface $container, $instance)
@@ -347,7 +377,7 @@ class FormElementManager extends AbstractPluginManager
         if (! $plugin instanceof $this->instanceOf) {
             throw new InvalidServiceException(sprintf(
                 '%s can only create instances of %s; %s is invalid',
-                get_class($this),
+                static::class,
                 $this->instanceOf,
                 is_object($plugin) ? get_class($plugin) : gettype($plugin)
             ));
@@ -405,7 +435,7 @@ class FormElementManager extends AbstractPluginManager
                     sprintf(
                         'A plugin by the name "%s" was not found in the plugin manager %s',
                         $name,
-                        get_class($this)
+                        static::class
                     )
                 );
             }
@@ -444,8 +474,7 @@ class FormElementManager extends AbstractPluginManager
             ));
         }
 
-        $hydrator = new $hydratorName;
-        return $hydrator;
+        return new $hydratorName();
     }
 
     /**
@@ -470,7 +499,6 @@ class FormElementManager extends AbstractPluginManager
             ));
         }
 
-        $factory = new $factoryName;
-        return $factory;
+        return new $factoryName();
     }
 }

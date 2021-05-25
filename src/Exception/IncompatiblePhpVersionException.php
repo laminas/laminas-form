@@ -2,7 +2,9 @@
 
 namespace Laminas\Form\Exception;
 
-class IncompatiblePhpVersionException extends \RuntimeException implements
+use RuntimeException;
+
+class IncompatiblePhpVersionException extends RuntimeException implements
     ExceptionInterface
 {
 }

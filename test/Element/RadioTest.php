@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Radio as RadioElement;
+use Laminas\Validator\InArray;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -35,7 +36,7 @@ class RadioTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\InArray',
+            InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -75,7 +76,7 @@ class RadioTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
+        $this->assertInstanceOf(InArray::class, $inArrayValidator);
         foreach ($valueTests as $valueToTest) {
             $this->assertTrue($inArrayValidator->isValid($valueToTest));
         }

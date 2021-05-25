@@ -23,14 +23,10 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
         'type' => 'hidden',
     ];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $csrfValidatorOptions = [];
 
-    /**
-     * @var CsrfValidator
-     */
+    /** @var CsrfValidator */
     protected $csrfValidator;
 
     /**
@@ -85,7 +81,6 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
     }
 
     /**
-     * @param  CsrfValidator $validator
      * @return $this
      */
     public function setCsrfValidator(CsrfValidator $validator)
@@ -116,8 +111,8 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      */
     public function getAttributes()
     {
-        $attributes = parent::getAttributes();
-        $validator  = $this->getCsrfValidator();
+        $attributes          = parent::getAttributes();
+        $validator           = $this->getCsrfValidator();
         $attributes['value'] = $validator->getHash();
         return $attributes;
     }
@@ -132,9 +127,9 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => true,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => true,
+            'filters'    => [
                 ['name' => StringTrim::class],
             ],
             'validators' => [

@@ -5,6 +5,7 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Form;
 use Laminas\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
+use Laminas\I18n\Translator\Translator;
 use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Translator\TranslatorInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -13,15 +14,13 @@ class FormElementErrorsTest extends CommonTestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @var null|TranslatorInterface
-     */
+    /** @var null|TranslatorInterface */
     protected $defaultTranslator;
 
     protected function setUp(): void
     {
         $this->defaultTranslator = AbstractValidator::getDefaultTranslator();
-        $this->helper = new FormElementErrorsHelper();
+        $this->helper            = new FormElementErrorsHelper();
         parent::setUp();
     }
 
@@ -60,15 +59,14 @@ class FormElementErrorsTest extends CommonTestCase
 
     public function testRendersErrorMessagesUsingUnorderedListTranslated()
     {
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->exactly(3))
             ->method('translate')
             ->willReturnOnConsecutiveCalls(
                 'Translated first error message',
                 'Translated second error message',
                 'Translated third error message'
-            )
-        ;
+            );
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -94,7 +92,7 @@ class FormElementErrorsTest extends CommonTestCase
         ]);
         $form->setData(['test_element' => 'This is invalid!']);
 
-        $mockValidatorTranslator = $this->createMock('Laminas\Validator\Translator\TranslatorInterface');
+        $mockValidatorTranslator = $this->createMock(TranslatorInterface::class);
         $mockValidatorTranslator
             ->expects(self::once())
             ->method('translate')
@@ -114,7 +112,7 @@ class FormElementErrorsTest extends CommonTestCase
 
         self::assertFalse($form->isValid());
 
-        $mockFormTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockFormTranslator = $this->createMock(Translator::class);
         $mockFormTranslator
             ->expects(self::never())
             ->method('translate');
@@ -144,7 +142,7 @@ class FormElementErrorsTest extends CommonTestCase
 
     public function testCanSpecifyAttributesForOpeningTagUsingInvoke()
     {
-        $helper = $this->helper;
+        $helper   = $this->helper;
         $messages = $this->getMessageList();
         $element  = new Element('foo');
         $element->setMessages($messages);

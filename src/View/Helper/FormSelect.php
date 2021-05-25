@@ -9,6 +9,7 @@ use Laminas\Form\Exception;
 use Laminas\Stdlib\ArrayUtils;
 
 use function array_key_exists;
+use function array_map;
 use function array_merge;
 use function compact;
 use function implode;
@@ -70,9 +71,7 @@ class FormSelect extends AbstractHelper
         'label' => true,
     ];
 
-    /**
-     * @var FormHidden|null
-     */
+    /** @var FormHidden|null */
     protected $formHiddenHelper;
 
     /**
@@ -80,10 +79,9 @@ class FormSelect extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
      * @return string|FormSelect
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null)
     {
         if (! $element) {
             return $this;
@@ -95,7 +93,6 @@ class FormSelect extends AbstractHelper
     /**
      * Render a form <select> element from the provided $element
      *
-     * @param  ElementInterface $element
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      * @return string
@@ -109,7 +106,7 @@ class FormSelect extends AbstractHelper
             ));
         }
 
-        $name   = $element->getName();
+        $name = $element->getName();
         if (empty($name) && $name !== 0) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has an assigned name; none discovered',
@@ -224,7 +221,7 @@ class FormSelect extends AbstractHelper
             }
 
             $this->validTagAttributes = $this->validOptionAttributes;
-            $optionStrings[] = sprintf(
+            $optionStrings[]          = sprintf(
                 $template,
                 $this->createAttributesString($attributes),
                 $escapeHtml($label)
@@ -256,7 +253,7 @@ class FormSelect extends AbstractHelper
         }
 
         $this->validTagAttributes = $this->validOptgroupAttributes;
-        $attributes = $this->createAttributesString($optgroup);
+        $attributes               = $this->createAttributesString($optgroup);
         if (! empty($attributes)) {
             $attributes = ' ' . $attributes;
         }
@@ -295,7 +292,7 @@ class FormSelect extends AbstractHelper
             throw new Exception\DomainException(sprintf(
                 '%s does not allow specifying multiple selected values when the element does not have a multiple '
                 . 'attribute set to a boolean true',
-                __CLASS__
+                self::class
             ));
         }
 

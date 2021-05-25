@@ -20,9 +20,7 @@ class Color extends Element implements InputProviderInterface
         'type' => 'color',
     ];
 
-    /**
-     * @var ValidatorInterface
-     */
+    /** @var ValidatorInterface */
     protected $validator;
 
     /**
@@ -48,9 +46,9 @@ class Color extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => true,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => true,
+            'filters'    => [
                 ['name' => StringTrim::class],
                 ['name' => StringToLower::class],
             ],

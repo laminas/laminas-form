@@ -6,6 +6,7 @@ use DateTime;
 use Laminas\Form\Element\DateTimeSelect as DateTimeSelectElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\InputFilter\Factory as InputFilterFactory;
+use Laminas\Validator\Date;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -21,13 +22,13 @@ class DateTimeSelectTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Date',
+            Date::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Date':
+                case Date::class:
                     $this->assertEquals('Y-m-d H:i:s', $validator->getFormat());
                     break;
                 default:
@@ -38,17 +39,17 @@ class DateTimeSelectTest extends TestCase
 
     public function testInputSpecificationFilterIfSecondNotProvided()
     {
-        $element = new DateTimeSelectElement('test');
-        $factory = new InputFilterFactory();
+        $element     = new DateTimeSelectElement('test');
+        $factory     = new InputFilterFactory();
         $inputFilter = $factory->createInputFilter([
             'test' => $element->getInputSpecification(),
         ]);
         $inputFilter->setData([
             'test' => [
-                'year' => '2013',
-                'month' => '02',
-                'day' => '07',
-                'hour' => '03',
+                'year'   => '2013',
+                'month'  => '02',
+                'day'    => '07',
+                'hour'   => '03',
                 'minute' => '14',
             ],
         ]);
@@ -57,7 +58,7 @@ class DateTimeSelectTest extends TestCase
 
     public function testCanSetDateFromDateTime()
     {
-        $element  = new DateTimeSelectElement();
+        $element = new DateTimeSelectElement();
         $element->setValue(new DateTime('2012-09-24 03:04:05'));
 
         $this->assertEquals('2012', $element->getYearElement()->getValue());
@@ -70,7 +71,7 @@ class DateTimeSelectTest extends TestCase
 
     public function testCanSetDateFromString()
     {
-        $element  = new DateTimeSelectElement();
+        $element = new DateTimeSelectElement();
         $element->setValue('2012-09-24 03:04:05');
 
         $this->assertEquals('2012', $element->getYearElement()->getValue());
@@ -83,7 +84,7 @@ class DateTimeSelectTest extends TestCase
 
     public function testCanGetValue()
     {
-        $element  = new DateTimeSelectElement();
+        $element = new DateTimeSelectElement();
         $element->setValue(new DateTime('2012-09-24 03:04:05'));
 
         $this->assertEquals('2012-09-24 03:04:05', $element->getValue());
@@ -91,19 +92,19 @@ class DateTimeSelectTest extends TestCase
 
     public function testThrowsOnInvalidValue()
     {
-        $element  = new DateTimeSelectElement();
+        $element = new DateTimeSelectElement();
         $this->expectException(InvalidArgumentException::class);
         $element->setValue('hello world');
     }
 
     public function testUseDefaultValueForSecondsIfNotProvided()
     {
-        $element  = new DateTimeSelectElement();
+        $element = new DateTimeSelectElement();
         $element->setValue([
-            'year' => '2012',
-            'month' => '09',
-            'day' => '24',
-            'hour' => '03',
+            'year'   => '2012',
+            'month'  => '09',
+            'day'    => '24',
+            'hour'   => '03',
             'minute' => '04',
         ]);
 
@@ -132,12 +133,12 @@ class DateTimeSelectTest extends TestCase
 
     public function testPassingNullValueToSetValueWillUseCurrentDate()
     {
-        $now     = new DateTime;
+        $now     = new DateTime();
         $element = new DateTimeSelectElement();
         $element->setValue(null);
-        $yearElement = $element->getYearElement();
+        $yearElement  = $element->getYearElement();
         $monthElement = $element->getMonthElement();
-        $dayElement = $element->getDayElement();
+        $dayElement   = $element->getDayElement();
         $this->assertEquals($now->format('Y'), $yearElement->getValue());
         $this->assertEquals($now->format('m'), $monthElement->getValue());
         $this->assertEquals($now->format('d'), $dayElement->getValue());

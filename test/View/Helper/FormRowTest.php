@@ -4,7 +4,9 @@ namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
 use Laminas\Form\Element\Captcha;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormRow as FormRowHelper;
+use Laminas\I18n\Translator\Translator;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Validator\Date;
 
@@ -106,9 +108,9 @@ class FormRowTest extends CommonTestCase
     public function testCanHandleMultiCheckboxesCorrectly()
     {
         $options = [
-            'This is the first label' => 'value1',
+            'This is the first label'  => 'value1',
             'This is the second label' => 'value2',
-            'This is the third label' => 'value3',
+            'This is the third label'  => 'value3',
         ];
 
         $element = new Element\MultiCheckbox('foo');
@@ -134,7 +136,7 @@ class FormRowTest extends CommonTestCase
 
     public function testCanRenderErrors()
     {
-        $element  = new Element('foo');
+        $element = new Element('foo');
         $element->setMessages([
             'First error message',
             'Second error message',
@@ -149,7 +151,7 @@ class FormRowTest extends CommonTestCase
 
     public function testDoesNotRenderErrorsListIfSetToFalse()
     {
-        $element  = new Element('foo');
+        $element = new Element('foo');
         $element->setMessages([
             'First error message',
             'Second error message',
@@ -165,7 +167,7 @@ class FormRowTest extends CommonTestCase
 
     public function testCanModifyDefaultErrorClass()
     {
-        $element  = new Element('foo');
+        $element = new Element('foo');
         $element->setMessages([
             'Error message',
         ]);
@@ -179,7 +181,7 @@ class FormRowTest extends CommonTestCase
 
     public function testDoesNotOverrideClassesIfAlreadyPresentWhenThereAreErrors()
     {
-        $element  = new Element('foo');
+        $element = new Element('foo');
         $element->setMessages([
             'Error message',
         ]);
@@ -202,7 +204,7 @@ class FormRowTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator
             ->method('translate')
             ->willReturn('translated content');
@@ -225,7 +227,7 @@ class FormRowTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->createMock('Laminas\I18n\Translator\Translator');
+        $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());
@@ -278,7 +280,7 @@ class FormRowTest extends CommonTestCase
 
     public function testSetLabelPositionInputNullRaisesException()
     {
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->helper->setLabelPosition(null);
     }
 
@@ -404,7 +406,7 @@ class FormRowTest extends CommonTestCase
 
     public function testAppendLabelEvenIfElementHasId()
     {
-        $element  = new Element('foo');
+        $element = new Element('foo');
         $element->setAttribute('id', 'bar');
         $element->setLabel('Baz');
 
@@ -444,7 +446,7 @@ class FormRowTest extends CommonTestCase
 
     public function testAssertLabelHtmlEscapeIsOnByDefault()
     {
-        $element = new Element('fooname');
+        $element      = new Element('fooname');
         $escapeHelper = $this->renderer->getHelperPluginManager()->get('escapeHtml');
 
         $label = '<span>foo</span>';
@@ -457,7 +459,7 @@ class FormRowTest extends CommonTestCase
 
     public function testCanDisableLabelHtmlEscape()
     {
-        $label = '<span>foo</span>';
+        $label   = '<span>foo</span>';
         $element = new Element('fooname');
         $element->setLabel($label);
         $element->setLabelOptions(['disable_html_escape' => true]);
@@ -482,7 +484,7 @@ class FormRowTest extends CommonTestCase
      */
     public function testCanSetLabelPositionViaRender()
     {
-        $element  = new Element('foo');
+        $element = new Element('foo');
         $element->setAttribute('id', 'bar');
         $element->setLabel('Baz');
 
@@ -502,7 +504,7 @@ class FormRowTest extends CommonTestCase
     public function testSetLabelPositionViaRenderIsNotCached()
     {
         $labelPositionBeforeRender = $this->helper->getLabelPosition();
-        $element = new Element('foo');
+        $element                   = new Element('foo');
 
         $this->helper->render($element, 'append');
         $this->assertSame($labelPositionBeforeRender, $this->helper->getLabelPosition());
@@ -516,7 +518,7 @@ class FormRowTest extends CommonTestCase
      */
     public function testCanSetLabelPositionViaInvoke()
     {
-        $element  = new Element('foo');
+        $element = new Element('foo');
         $element->setAttribute('id', 'bar');
         $element->setLabel('Baz');
 
@@ -539,7 +541,7 @@ class FormRowTest extends CommonTestCase
     public function testSetLabelPositionViaInvokeIsNotCached()
     {
         $labelPositionBeforeRender = $this->helper->getLabelPosition();
-        $element = new Element('foo');
+        $element                   = new Element('foo');
 
         $this->helper->__invoke($element, 'append');
         $this->assertSame($labelPositionBeforeRender, $this->helper->getLabelPosition());
@@ -584,7 +586,7 @@ class FormRowTest extends CommonTestCase
             . '<\/fieldset>$#',
             $this->helper->render(new Captcha('captcha', [
                 'captcha' => ['class' => 'dumb'],
-                'label' => 'baz',
+                'label'   => 'baz',
             ]))
         );
     }

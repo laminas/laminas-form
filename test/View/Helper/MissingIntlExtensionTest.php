@@ -2,6 +2,7 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Form\Exception\ExtensionNotLoadedException;
 use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
@@ -20,7 +21,7 @@ class MissingIntlExtensionTest extends TestCase
 
     public function testFormDateSelectHelper()
     {
-        $this->expectException('Laminas\Form\Exception\ExtensionNotLoadedException');
+        $this->expectException(ExtensionNotLoadedException::class);
         $this->expectExceptionMessage('Laminas\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormDateSelectHelper();
@@ -28,7 +29,7 @@ class MissingIntlExtensionTest extends TestCase
 
     public function testFormDateTimeSelectHelper()
     {
-        $this->expectException('Laminas\Form\Exception\ExtensionNotLoadedException');
+        $this->expectException(ExtensionNotLoadedException::class);
         $this->expectExceptionMessage('Laminas\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormDateTimeSelectHelper();
@@ -36,7 +37,7 @@ class MissingIntlExtensionTest extends TestCase
 
     public function testFormMonthSelectHelper()
     {
-        $this->expectException('Laminas\Form\Exception\ExtensionNotLoadedException');
+        $this->expectException(ExtensionNotLoadedException::class);
         $this->expectExceptionMessage('Laminas\Form\View\Helper component requires the intl PHP extension');
 
         $helper = new FormMonthSelectHelper();

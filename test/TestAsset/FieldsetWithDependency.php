@@ -6,9 +6,7 @@ use Laminas\Form\Fieldset;
 
 class FieldsetWithDependency extends Fieldset
 {
-    /**
-     * @var InputFilter
-     */
+    /** @var InputFilter */
     private $dependency;
 
     public function __construct($name = null, $options = [])

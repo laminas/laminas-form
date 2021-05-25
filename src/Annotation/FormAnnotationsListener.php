@@ -28,7 +28,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     /**
      * Attach listeners
      *
-     * @param  EventManagerInterface $events
      * @return void
      */
     public function attach(EventManagerInterface $events, $priority = 1)
@@ -61,7 +60,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec               = $e->getParam('formSpec');
         $formSpec['attributes'] = $annotation->getAttributes();
     }
 
@@ -80,7 +79,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec          = $e->getParam('formSpec');
         $formSpec['flags'] = $annotation->getFlags();
     }
 
@@ -99,7 +98,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec             = $e->getParam('formSpec');
         $formSpec['hydrator'] = $annotation->getHydratorSpecification();
     }
 
@@ -118,7 +117,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec                 = $e->getParam('formSpec');
         $formSpec['input_filter'] = $annotation->getInputFilter();
     }
 
@@ -134,7 +133,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec           = $e->getParam('formSpec');
         $formSpec['object'] = $annotation->getInstance();
     }
 
@@ -153,7 +152,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec            = $e->getParam('formSpec');
         $formSpec['options'] = $annotation->getOptions();
     }
 
@@ -172,7 +171,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec         = $e->getParam('formSpec');
         $formSpec['type'] = $annotation->getType();
     }
 
@@ -191,7 +190,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $formSpec = $e->getParam('formSpec');
+        $formSpec                     = $e->getParam('formSpec');
         $formSpec['validation_group'] = $annotation->getValidationGroup();
     }
 }

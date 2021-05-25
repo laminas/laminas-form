@@ -20,9 +20,7 @@ class Tel extends Element implements InputProviderInterface
         'type' => 'tel',
     ];
 
-    /**
-     * @var ValidatorInterface
-     */
+    /** @var ValidatorInterface */
     protected $validator;
 
     /**
@@ -46,9 +44,9 @@ class Tel extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => true,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => true,
+            'filters'    => [
                 ['name' => StringTrim::class],
                 ['name' => StripNewlines::class],
             ],

@@ -2,7 +2,9 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
+use Laminas\Form\Element\Csrf;
 use Laminas\Form\Form;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
@@ -33,13 +35,13 @@ class CustomForm extends Form
         $this->add($field2);
 
         $this->add([
-            'name' => 'csrf',
-            'type' => 'Laminas\Form\Element\Csrf',
+            'name'       => 'csrf',
+            'type'       => Csrf::class,
             'attributes' => [],
         ]);
 
         $this->add([
-            'name' => 'submit',
+            'name'       => 'submit',
             'attributes' => [
                 'type' => 'submit',
             ],
@@ -49,16 +51,16 @@ class CustomForm extends Form
     public function getInputFilterSpecification()
     {
         return [
-            'name' => [
+            'name'  => [
                 'required' => true,
                 'filters'  => [
-                    ['name' => 'Laminas\Filter\StringTrim'],
+                    ['name' => StringTrim::class],
                 ],
             ],
             'email' => [
-                'required' => true,
-                'filters'  => [
-                    ['name' => 'Laminas\Filter\StringTrim'],
+                'required'   => true,
+                'filters'    => [
+                    ['name' => StringTrim::class],
                 ],
                 'validators' => [
                     new Validator\EmailAddress(),

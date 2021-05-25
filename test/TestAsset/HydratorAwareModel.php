@@ -8,17 +8,17 @@ use Laminas\Hydrator\HydratorInterface;
 
 class HydratorAwareModel implements HydratorAwareInterface
 {
-    protected $hydrator = null;
+    protected $hydrator;
 
-    protected $foo = null;
-    protected $bar = null;
+    protected $foo;
+    protected $bar;
 
-    public function setHydrator(HydratorInterface $hydrator) : void
+    public function setHydrator(HydratorInterface $hydrator): void
     {
         $this->hydrator = $hydrator;
     }
 
-    public function getHydrator() : ?HydratorInterface
+    public function getHydrator(): ?HydratorInterface
     {
         if (! $this->hydrator) {
             $this->hydrator = new ClassMethodsHydrator();

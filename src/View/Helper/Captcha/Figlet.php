@@ -13,7 +13,6 @@ class Figlet extends AbstractWord
     /**
      * Render the captcha
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */

@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\Annotation;
 
-use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 

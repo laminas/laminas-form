@@ -4,6 +4,7 @@ namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element\Radio as RadioElement;
 use Laminas\Form\View\Helper\FormRadio as FormRadioHelper;
+use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 use function substr_count;
@@ -33,12 +34,12 @@ class FormRadioTest extends CommonTestCase
         $element = new RadioElement('foo');
         $options = [
             'value1' => 'This is the first label',
-            1 => [
-                'value'           => 'value2',
-                'label'           => 'This is the second label (overridden)',
-                'disabled'        => false,
+            1        => [
+                'value'            => 'value2',
+                'label'            => 'This is the second label (overridden)',
+                'disabled'         => false,
                 'label_attributes' => ['class' => 'label-class'],
-                'attributes'      => ['class' => 'input-class'],
+                'attributes'       => ['class' => 'input-class'],
             ],
             'value3' => 'This is the third label',
         ];
@@ -120,7 +121,7 @@ class FormRadioTest extends CommonTestCase
     {
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value3']);
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertMatchesRegularExpression('#value="value1"\s+checked="checked"#', $markup);
         $this->assertDoesNotMatchRegularExpression('#value="value2"\s+checked="checked"#', $markup);
@@ -131,7 +132,7 @@ class FormRadioTest extends CommonTestCase
     {
         $element = $this->getElement();
         $this->helper->setSeparator('<br />');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertEquals(2, substr_count($markup, '<br />'));
     }
 
@@ -140,7 +141,7 @@ class FormRadioTest extends CommonTestCase
         $element = $this->getElement();
         $options = $element->getValueOptions();
         $this->helper->setLabelPosition(FormRadioHelper::LABEL_PREPEND);
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertEquals(3, substr_count($markup, 'name="foo"'));
         $this->assertEquals(3, substr_count($markup, 'type="radio"'));
@@ -165,7 +166,7 @@ class FormRadioTest extends CommonTestCase
     {
         $element = $this->getElement();
 
-        $markup  = $this->helper
+        $markup = $this->helper
             ->setLabelAttributes(['class' => 'radio'])
             ->render($element);
 
@@ -177,7 +178,7 @@ class FormRadioTest extends CommonTestCase
         $element = $this->getElement();
         $element->setLabelAttributes(['class' => 'radio']);
 
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertEquals(3, substr_count($markup, '<label class="radio"'));
     }
@@ -186,7 +187,7 @@ class FormRadioTest extends CommonTestCase
     {
         $element = $this->getElement();
         $element->setAttribute('id', 'foo');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertLessThanOrEqual(1, substr_count($markup, 'id="foo"'));
     }
 
@@ -194,7 +195,7 @@ class FormRadioTest extends CommonTestCase
     {
         $element = $this->getElement();
         $element->setAttribute('id', 'foo');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertEquals(1, substr_count($markup, 'id="foo"'));
     }
 
@@ -216,7 +217,7 @@ class FormRadioTest extends CommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->once())
             ->method('translate')
             ->willReturn('translated content');
@@ -230,7 +231,7 @@ class FormRadioTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->createMock('Laminas\I18n\Translator\Translator');
+        $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());

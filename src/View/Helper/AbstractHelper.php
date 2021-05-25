@@ -48,14 +48,14 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @var array
      */
     protected $booleanAttributes = [
-        'autofocus'    => ['on' => 'autofocus', 'off' => ''],
-        'checked'      => ['on' => 'checked',   'off' => ''],
-        'disabled'     => ['on' => 'disabled',  'off' => ''],
-        'itemscope'    => ['on' => 'itemscope', 'off' => ''],
-        'multiple'     => ['on' => 'multiple',  'off' => ''],
-        'readonly'     => ['on' => 'readonly',  'off' => ''],
-        'required'     => ['on' => 'required',  'off' => ''],
-        'selected'     => ['on' => 'selected',  'off' => ''],
+        'autofocus' => ['on' => 'autofocus', 'off' => ''],
+        'checked'   => ['on' => 'checked',   'off' => ''],
+        'disabled'  => ['on' => 'disabled',  'off' => ''],
+        'itemscope' => ['on' => 'itemscope', 'off' => ''],
+        'multiple'  => ['on' => 'multiple',  'off' => ''],
+        'readonly'  => ['on' => 'readonly',  'off' => ''],
+        'required'  => ['on' => 'required',  'off' => ''],
+        'selected'  => ['on' => 'selected',  'off' => ''],
     ];
 
     /**
@@ -74,19 +74,13 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     protected $translatableAttributePrefixes = [];
 
-    /**
-     * @var Doctype
-     */
+    /** @var Doctype */
     protected $doctypeHelper;
 
-    /**
-     * @var EscapeHtml
-     */
+    /** @var EscapeHtml */
     protected $escapeHtmlHelper;
 
-    /**
-     * @var EscapeHtmlAttr
-     */
+    /** @var EscapeHtmlAttr */
     protected $escapeHtmlAttrHelper;
 
     /**
@@ -267,14 +261,13 @@ abstract class AbstractHelper extends BaseAbstractHelper
                 }
             }
 
-
             //check if attribute is translatable and translate it
             $value = $this->translateHtmlAttributeValue($key, $value);
 
             // @todo Escape event attributes like AbstractHtmlElement view helper does in htmlAttribs ??
             try {
                 $escapedAttribute = $escapeAttr($value);
-                $strings[] = sprintf('%s="%s"', $escape($key), $escapedAttribute);
+                $strings[]        = sprintf('%s="%s"', $escape($key), $escapedAttribute);
             } catch (EscaperException $x) {
                 // If an escaper exception happens, escape only the key, and use a blank value.
                 $strings[] = sprintf('%s=""', $escape($key));
@@ -290,7 +283,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * If no ID attribute present, attempts to use the name attribute.
      * If no name attribute is present, either, returns null.
      *
-     * @param  ElementInterface $element
      * @return null|string
      */
     public function getId(ElementInterface $element)
@@ -401,7 +393,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
         foreach ($attributes as $key => $value) {
             $attribute = strtolower($key);
 
-            if (! isset($this->validGlobalAttributes[$attribute])
+            if (
+                ! isset($this->validGlobalAttributes[$attribute])
                 && ! isset($this->validTagAttributes[$attribute])
                 && ! $this->hasAllowedPrefix($attribute)
             ) {
@@ -450,7 +443,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $key
      * @param string $value
-     *
      * @return string
      */
     protected function translateHtmlAttributeValue($key, $value)
@@ -519,7 +511,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds an HTML attribute to the list of translatable attributes
      *
      * @param string $attribute
-     *
      * @return $this
      */
     public function addTranslatableAttribute($attribute)
@@ -543,7 +534,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Adds an HTML attribute to the list of translatable attributes
      *
      * @param string $prefix
-     *
      * @return $this
      */
     public function addTranslatableAttributePrefix($prefix)
@@ -568,6 +558,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @see https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
      *     Description of valid attributes
+     *
      * @param string  $attribute
      * @return bool
      */

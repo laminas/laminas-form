@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\Annotation;
 
-use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 use Laminas\Filter\Boolean as BooleanFilter;
@@ -15,16 +14,15 @@ use function is_bool;
  * Presence of this annotation is a hint that the associated
  * \Laminas\InputFilter\Input should enable the continueIfEmpty flag.
  *
+ * @deprecated 2.4.8 Use `@Validator({"name":"NotEmpty"})` instead.
+ *
  * @Annotation
  * @NamedArgumentConstructor
- * @deprecated 2.4.8 Use `@Validator({"name":"NotEmpty"})` instead.
  */
 #[Attribute]
 class ContinueIfEmpty
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $continueIfEmpty;
 
     /**
@@ -35,7 +33,7 @@ class ContinueIfEmpty
     public function __construct($continueIfEmpty = true)
     {
         if (! is_bool($continueIfEmpty)) {
-            $filter = new BooleanFilter();
+            $filter          = new BooleanFilter();
             $continueIfEmpty = $filter->filter($continueIfEmpty);
         }
 
@@ -44,8 +42,6 @@ class ContinueIfEmpty
 
     /**
      * Get value of required flag
-     *
-     * @return bool
      */
     public function getContinueIfEmpty(): bool
     {

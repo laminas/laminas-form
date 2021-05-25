@@ -4,7 +4,11 @@ namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
 use Laminas\Form\Element\Select as SelectElement;
+use Laminas\Form\Exception\DomainException;
+use Laminas\Form\Exception\ExceptionInterface;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormSelect as FormSelectHelper;
+use Laminas\I18n\Translator\Translator;
 use LaminasTest\Form\TestAsset\Identifier;
 
 use function current;
@@ -33,8 +37,8 @@ class FormSelectTest extends CommonTestCase
                 'value' => 'value2',
             ],
             [
-                'label' => 'This is the third label',
-                'value' => 'value3',
+                'label'      => 'This is the third label',
+                'value'      => 'value3',
                 'attributes' => [
                     'class' => 'test-class',
                 ],
@@ -69,7 +73,7 @@ class FormSelectTest extends CommonTestCase
         $element = $this->getElement();
         $element->setAttribute('value', 'value2');
 
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertMatchesRegularExpression('#option .*?value="value2" selected="selected"#', $markup);
         $this->assertDoesNotMatchRegularExpression('#option .*?value="value1" selected="selected"#', $markup);
         $this->assertDoesNotMatchRegularExpression('#option .*?value="value3" selected="selected"#', $markup);
@@ -80,7 +84,7 @@ class FormSelectTest extends CommonTestCase
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value2']);
 
-        $this->expectException('Laminas\Form\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->expectExceptionMessage('multiple');
         $markup = $this->helper->render($element);
     }
@@ -100,8 +104,8 @@ class FormSelectTest extends CommonTestCase
 
     public function testCanMarkOptionsAsDisabled()
     {
-        $element = $this->getElement();
-        $options = $element->getValueOptions('options');
+        $element                = $this->getElement();
+        $options                = $element->getValueOptions('options');
         $options[1]['disabled'] = true;
         $element->setValueOptions($options);
 
@@ -111,8 +115,8 @@ class FormSelectTest extends CommonTestCase
 
     public function testCanMarkOptionsAsSelected()
     {
-        $element = $this->getElement();
-        $options = $element->getValueOptions('options');
+        $element                = $this->getElement();
+        $options                = $element->getValueOptions('options');
         $options[1]['selected'] = true;
         $element->setValueOptions($options);
 
@@ -122,8 +126,8 @@ class FormSelectTest extends CommonTestCase
 
     public function testOptgroupsAreCreatedWhenAnOptionHasAnOptionsKey()
     {
-        $element = $this->getElement();
-        $options = $element->getValueOptions('options');
+        $element               = $this->getElement();
+        $options               = $element->getValueOptions('options');
         $options[1]['options'] = [
             [
                 'label' => 'foo',
@@ -140,8 +144,8 @@ class FormSelectTest extends CommonTestCase
 
     public function testCanDisableAnOptgroup()
     {
-        $element = $this->getElement();
-        $options = $element->getValueOptions('options');
+        $element                = $this->getElement();
+        $options                = $element->getValueOptions('options');
         $options[1]['disabled'] = true;
         $options[1]['options']  = [
             [
@@ -194,15 +198,15 @@ class FormSelectTest extends CommonTestCase
     {
         return [
             [['value' => 'string']],
-            [[1       => 'int']],
-            [[-1      => 'int-neg']],
-            [[0x1A    => 'hex']],
-            [[0123    => 'oct']],
-            [[2.1     => 'float']],
-            [[1.2e3   => 'float-e']],
-            [[7E-10   => 'float-E']],
-            [[true    => 'bool-t']],
-            [[false   => 'bool-f']],
+            [[1 => 'int']],
+            [[-1 => 'int-neg']],
+            [[0x1A => 'hex']],
+            [[0123 => 'oct']],
+            [[2.1 => 'float']],
+            [[1.2e3 => 'float-e']],
+            [[7E-10 => 'float-E']],
+            [[true => 'bool-t']],
+            [[false => 'bool-f']],
         ];
     }
 
@@ -215,8 +219,8 @@ class FormSelectTest extends CommonTestCase
         $element = new SelectElement('foo');
         $element->setValueOptions($options);
         $markup = $this->helper->render($element);
-        $value = key($options);
-        $label = current($options);
+        $value  = key($options);
+        $label  = current($options);
         $this->assertMatchesRegularExpression(sprintf('#option .*?value="%s"#', (string) $value), $markup);
     }
 
@@ -237,7 +241,7 @@ class FormSelectTest extends CommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->once())
             ->method('translate')
             ->willReturn('translated content');
@@ -254,7 +258,7 @@ class FormSelectTest extends CommonTestCase
         $element = new SelectElement('test');
         $element->setValueOptions([
             'optgroup' => [
-                'label' => 'translate me',
+                'label'   => 'translate me',
                 'options' => [
                     '0' => 'foo',
                     '1' => 'bar',
@@ -262,7 +266,7 @@ class FormSelectTest extends CommonTestCase
             ],
         ]);
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->exactly(3))
             ->method('translate')
             ->withConsecutive(
@@ -274,8 +278,7 @@ class FormSelectTest extends CommonTestCase
                 'translated label',
                 'translated foo',
                 'translated bar',
-            )
-        ;
+            );
 
         $this->helper->setTranslator($mockTranslator);
         $this->assertTrue($this->helper->hasTranslator());
@@ -289,7 +292,7 @@ class FormSelectTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->createMock('Laminas\I18n\Translator\Translator');
+        $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());
@@ -403,7 +406,7 @@ class FormSelectTest extends CommonTestCase
     public function testRenderInputNotSelectElementRaisesException()
     {
         $element = new Element\Text('foo');
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->helper->render($element);
     }
 
@@ -411,7 +414,7 @@ class FormSelectTest extends CommonTestCase
     {
         $element = new SelectElement();
 
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->helper->render($element);
     }
 
@@ -448,15 +451,15 @@ class FormSelectTest extends CommonTestCase
         $select->setLabel('Which is your mother tongue?');
         $select->setAttribute('multiple', true);
         $select->setValueOptions([
-            '1.1' => 'French',
-            '1.2' => 'English',
+            '1.1'  => 'French',
+            '1.2'  => 'English',
             '1.10' => 'Japanese',
             '1.20' => 'Chinese',
         ]);
         $select->setValue(['1.1']);
         $this->assertEquals(['1.1'], $select->getValue());
 
-        $markup  = $this->helper->render($select);
+        $markup = $this->helper->render($select);
 
         $this->assertMatchesRegularExpression('{value="1.1" selected="selected"}i', $markup);
         $this->assertDoesNotMatchRegularExpression('{value="1.2" selected="selected"}i', $markup);

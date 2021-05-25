@@ -9,10 +9,6 @@ use LaminasTest\Form\TestAsset\ArgumentRecorder;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-use function uniqid;
-
-use const PHP_INT_MAX;
-
 class ElementFactoryTest extends TestCase
 {
     use ProphecyTrait;
@@ -26,7 +22,6 @@ class ElementFactoryTest extends TestCase
 
     /**
      * @dataProvider validCreationOptions
-     *
      * @param mixed $creationOptions
      * @param array $expectedValue
      */
@@ -37,7 +32,7 @@ class ElementFactoryTest extends TestCase
             ->reveal();
 
         $factory = new ElementFactory();
-        $result = $factory->__invoke($container, ArgumentRecorder::class, $creationOptions);
+        $result  = $factory->__invoke($container, ArgumentRecorder::class, $creationOptions);
         $this->assertInstanceOf(ArgumentRecorder::class, $result);
         $this->assertSame(['argumentrecorder', $expectedValue], $result->args);
     }

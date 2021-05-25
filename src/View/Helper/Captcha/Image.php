@@ -13,7 +13,6 @@ class Image extends AbstractWord
     /**
      * Render the captcha
      *
-     * @param  ElementInterface          $element
      * @throws Exception\DomainException
      * @return string
      */
@@ -42,7 +41,7 @@ class Image extends AbstractWord
         }
 
         $closingBracket = $this->getInlineClosingBracket();
-        $img = sprintf(
+        $img            = sprintf(
             '<img %s%s',
             $this->createAttributesString($imgAttributes),
             $closingBracket

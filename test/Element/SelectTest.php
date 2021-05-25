@@ -3,6 +3,8 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Select as SelectElement;
+use Laminas\Validator\Explode;
+use Laminas\Validator\InArray;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
@@ -25,7 +27,7 @@ class SelectTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\InArray',
+            InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -38,7 +40,7 @@ class SelectTest extends TestCase
         $element = new SelectElement();
         $element->setValueOptions([
             [
-                'label' => 'group 1',
+                'label'   => 'group 1',
                 'options' => [
                     'Option 1' => 'Label 1',
                     'Option 2' => 'Label 2',
@@ -47,7 +49,7 @@ class SelectTest extends TestCase
             ],
         ]);
 
-        $inputSpec = $element->getInputSpecification();
+        $inputSpec        = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
 
         $this->assertTrue($inArrayValidator->isValid('Option 1'));
@@ -59,7 +61,7 @@ class SelectTest extends TestCase
         $element = new SelectElement();
         $element->setValueOptions([
             [
-                'label' => 'group 1',
+                'label'   => 'group 1',
                 'options' => [
                     ['value' => 'Option 1', 'label' => 'Label 1'],
                     ['value' => 'Option 2', 'label' => 'Label 2'],
@@ -68,7 +70,7 @@ class SelectTest extends TestCase
             ],
         ]);
 
-        $inputSpec = $element->getInputSpecification();
+        $inputSpec        = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
 
         $this->assertTrue($inArrayValidator->isValid('Option 1'));
@@ -94,14 +96,14 @@ class SelectTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Explode',
+            Explode::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Explode':
-                    $this->assertInstanceOf('Laminas\Validator\InArray', $validator->getValidator());
+                case Explode::class:
+                    $this->assertInstanceOf(InArray::class, $validator->getValidator());
                     break;
                 default:
                     break;
@@ -139,7 +141,7 @@ class SelectTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
+        $this->assertInstanceOf(InArray::class, $inArrayValidator);
         foreach ($valueTests as $valueToTest) {
             $this->assertTrue($inArrayValidator->isValid($valueToTest));
         }
@@ -153,11 +155,11 @@ class SelectTest extends TestCase
      */
     public function testInArrayValidatorHaystakIsUpdated($valueTests, $options)
     {
-        $element = new SelectElement('my-select');
+        $element   = new SelectElement('my-select');
         $inputSpec = $element->getInputSpecification();
 
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
+        $this->assertInstanceOf(InArray::class, $inArrayValidator);
 
         $element->setValueOptions($options);
         $haystack = $inArrayValidator->getHaystack();
@@ -172,7 +174,7 @@ class SelectTest extends TestCase
 
     public function testDeprecateOptionsInAttributes()
     {
-        $element = new SelectElement();
+        $element      = new SelectElement();
         $valueOptions = [
             'Option 1' => 'option1',
             'Option 2' => 'option2',
@@ -190,8 +192,8 @@ class SelectTest extends TestCase
         $element = new SelectElement();
         $element->setOptions([
             'value_options' => ['bar' => 'baz'],
-            'options' => ['foo' => 'bar'],
-            'empty_option' => ['baz' => 'foo'],
+            'options'       => ['foo' => 'bar'],
+            'empty_option'  => ['baz' => 'foo'],
         ]);
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
@@ -203,8 +205,8 @@ class SelectTest extends TestCase
         $element = new SelectElement();
         $element->setOptions(new CustomTraversable([
             'value_options' => ['bar' => 'baz'],
-            'options' => ['foo' => 'bar'],
-            'empty_option' => ['baz' => 'foo'],
+            'options'       => ['foo' => 'bar'],
+            'empty_option'  => ['baz' => 'foo'],
         ]));
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
@@ -256,10 +258,10 @@ class SelectTest extends TestCase
     public function testSetOptionsToSelectMultiple()
     {
         $element = new SelectElement(null, [
-            'label' => 'Importance',
+            'label'              => 'Importance',
             'use_hidden_element' => true,
-            'unselected_value' => 'empty',
-            'value_options' => [
+            'unselected_value'   => 'empty',
+            'value_options'      => [
                 'foo' => 'Foo',
                 'bar' => 'Bar',
             ],

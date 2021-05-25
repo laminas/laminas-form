@@ -5,6 +5,7 @@ namespace LaminasTest\Form\View\Helper\Captcha;
 use DirectoryIterator;
 use Laminas\Captcha\Image as ImageCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\Image as ImageCaptchaHelper;
 use LaminasTest\Form\View\Helper\CommonTestCase;
 
@@ -48,8 +49,8 @@ class ImageTest extends CommonTestCase
 
         $this->helper  = new ImageCaptchaHelper();
         $this->captcha = new ImageCaptcha([
-            'imgDir'       => $this->testDir,
-            'font'         => __DIR__. '/_files/Vera.ttf',
+            'imgDir' => $this->testDir,
+            'font'   => __DIR__ . '/_files/Vera.ttf',
         ]);
         parent::setUp();
     }
@@ -57,8 +58,6 @@ class ImageTest extends CommonTestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     protected function tearDown(): void
     {
@@ -101,7 +100,7 @@ class ImageTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->helper->render($element);
     }
 

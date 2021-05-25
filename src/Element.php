@@ -20,19 +20,13 @@ class Element implements
     InitializableInterface,
     LabelAwareInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $attributes = [];
 
-    /**
-     * @var null|string
-     */
+    /** @var null|string */
     protected $label;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $labelAttributes = [];
 
     /**
@@ -42,24 +36,16 @@ class Element implements
      */
     protected $labelOptions = [];
 
-    /**
-     * @var array|Traversable Validation error messages
-     */
+    /** @var array|Traversable Validation error messages */
     protected $messages = [];
 
-    /**
-     * @var array custom options
-     */
+    /** @var array custom options */
     protected $options = [];
 
-    /**
-     * @var mixed
-     */
+    /** @var mixed */
     protected $value;
 
-    /**
-     * @var boolean
-     */
+    /** @var boolean */
     protected $hasValue = false;
 
     /**
@@ -309,7 +295,7 @@ class Element implements
      */
     public function setValue($value)
     {
-        $this->value = $value;
+        $this->value    = $value;
         $this->hasValue = true;
 
         return $this;

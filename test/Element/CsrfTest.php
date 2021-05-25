@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Csrf as CsrfElement;
+use Laminas\Validator\Csrf;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
@@ -19,13 +20,13 @@ class CsrfTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Csrf',
+            Csrf::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Csrf':
+                case Csrf::class:
                     $this->assertEquals('foo', $validator->getName());
                     break;
                 default:
@@ -36,8 +37,8 @@ class CsrfTest extends TestCase
 
     public function testAllowSettingCustomCsrfValidator()
     {
-        $element = new CsrfElement('foo');
-        $validatorMock = $this->createMock('Laminas\Validator\Csrf');
+        $element       = new CsrfElement('foo');
+        $validatorMock = $this->createMock(Csrf::class);
         $element->setCsrfValidator($validatorMock);
         $this->assertEquals($validatorMock, $element->getCsrfValidator());
     }
@@ -57,7 +58,7 @@ class CsrfTest extends TestCase
         $element->setOptions([
             'csrf_options' => [
                 'timeout' => 777,
-                'salt' => 'MySalt',
+                'salt'    => 'MySalt',
             ],
         ]);
         $validator = $element->getCsrfValidator();
@@ -72,7 +73,7 @@ class CsrfTest extends TestCase
         $element->setOptions(new CustomTraversable([
             'csrf_options' => [
                 'timeout' => 777,
-                'salt' => 'MySalt',
+                'salt'    => 'MySalt',
             ],
         ]));
         $validator = $element->getCsrfValidator();

@@ -3,6 +3,8 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Email as EmailElement;
+use Laminas\Validator\Explode;
+use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -18,7 +20,7 @@ class EmailTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedValidators = [
-            'Laminas\Validator\Regex',
+            Regex::class,
         ];
         foreach ($inputSpec['validators'] as $i => $validator) {
             $class = get_class($validator);
@@ -30,8 +32,8 @@ class EmailTest extends TestCase
     {
         return [
                   // attributes               // expectedValidators
-            [['multiple' => true],  ['Laminas\Validator\Explode']],
-            [['multiple' => false], ['Laminas\Validator\Regex']],
+            [['multiple' => true], [Explode::class]],
+            [['multiple' => false], [Regex::class]],
         ];
     }
 
@@ -51,8 +53,8 @@ class EmailTest extends TestCase
             $class = get_class($validator);
             $this->assertEquals($expectedValidators[$i], $class);
             switch ($class) {
-                case 'Laminas\Validator\Explode':
-                    $this->assertInstanceOf('Laminas\Validator\Regex', $validator->getValidator());
+                case Explode::class:
+                    $this->assertInstanceOf(Regex::class, $validator->getValidator());
                     break;
                 default:
                     break;
