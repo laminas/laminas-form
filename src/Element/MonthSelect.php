@@ -13,6 +13,7 @@ use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
 use function date;
+use function is_array;
 use function sprintf;
 
 class MonthSelect extends Element implements InputProviderInterface, ElementPrepareAwareInterface
@@ -250,6 +251,10 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      */
     public function setValue($value)
     {
+        if (null === $value && !$this->shouldCreateEmptyOption()) {
+            $value = new PhpDateTime();
+        }
+
         if ($value instanceof PhpDateTime) {
             $value = [
                 'year'  => $value->format('Y'),
@@ -257,13 +262,26 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
             ];
         }
 
-        $this->yearElement->setValue($value['year']);
-        $this->monthElement->setValue($value['month']);
+        if (is_array($value)) {
+            $this->yearElement->setValue($value['year']);
+            $this->monthElement->setValue($value['month']);
+        } else {
+            $this->yearElement->setValue(null);
+            $this->monthElement->setValue(null);
+        }
+
         return $this;
     }
 
     public function getValue(): string
     {
+        $year = $this->getYearElement()->getValue();
+        $month = $this->getMonthElement()->getValue();
+
+        if ($this->shouldCreateEmptyOption() && null === $year && null === $month) {
+            return null;
+        }
+
         return sprintf(
             '%s-%s',
             $this->getYearElement()->getValue(),

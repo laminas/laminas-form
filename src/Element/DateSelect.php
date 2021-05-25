@@ -93,7 +93,7 @@ class DateSelect extends MonthSelect
     }
 
     /**
-     * @param  string|array|ArrayAccess|PhpDateTime $value
+     * @param  string|array|ArrayAccess|PhpDateTime|null $value
      * @return $this Provides a fluent interface
      * @throws InvalidArgumentException
      */
@@ -107,6 +107,10 @@ class DateSelect extends MonthSelect
             }
         }
 
+        if (null === $value && !$this->shouldCreateEmptyOption()) {
+            $value = new PhpDateTime();
+        }
+
         if ($value instanceof PhpDateTime) {
             $value = [
                 'year'  => $value->format('Y'),
@@ -115,21 +119,30 @@ class DateSelect extends MonthSelect
             ];
         }
 
-        $this->yearElement->setValue($value['year']);
-        $this->monthElement->setValue($value['month']);
-        $this->dayElement->setValue($value['day']);
+        if (is_array($value)) {
+            $this->yearElement->setValue($value['year']);
+            $this->monthElement->setValue($value['month']);
+            $this->dayElement->setValue($value['day']);
+        } else {
+            $this->yearElement->setValue(null);
+            $this->monthElement->setValue(null);
+            $this->dayElement->setValue(null);
+        }
 
         return $this;
     }
 
     public function getValue(): string
     {
-        return sprintf(
-            '%s-%s-%s',
-            $this->getYearElement()->getValue(),
-            $this->getMonthElement()->getValue(),
-            $this->getDayElement()->getValue()
-        );
+        $year = $this->getYearElement()->getValue();
+        $month = $this->getMonthElement()->getValue();
+        $day = $this->getDayElement()->getValue();
+
+        if ($this->shouldCreateEmptyOption() && null === $year && null === $month && null === $day) {
+            return null;
+        }
+
+        return sprintf('%s-%s-%s', $year, $month, $day);
     }
 
     /**
