@@ -622,11 +622,6 @@ class Fieldset extends Element implements FieldsetInterface
 
         $values = $hydrator->extract($this->object);
 
-        if (! is_array($values)) {
-            // Do nothing if the hydrator returned a non-array
-            return [];
-        }
-
         // Recursively extract and populate values for nested fieldsets
         foreach ($this->fieldsets as $fieldset) {
             $name = $fieldset->getName();

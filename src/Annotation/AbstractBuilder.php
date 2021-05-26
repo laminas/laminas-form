@@ -57,7 +57,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Set event manager instance
      *
-     * @return $this
+     * @return void
      */
     public function setEventManager(EventManagerInterface $eventManager)
     {
@@ -68,7 +68,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
         (new ElementAnnotationsListener())->attach($eventManager);
         (new FormAnnotationsListener())->attach($eventManager);
         $this->eventManager = $eventManager;
-        return $this;
     }
 
     /**
@@ -118,7 +117,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
                 throw new Exception\InvalidArgumentException(sprintf(
                     '%s expects an object or valid class name; received "%s"',
                     __METHOD__,
-                    var_export($entity, 1)
+                    var_export($entity, true)
                 ));
             }
         }

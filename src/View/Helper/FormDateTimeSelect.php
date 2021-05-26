@@ -46,9 +46,9 @@ class FormDateTimeSelect extends FormDateSelectHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param int              $dateType
-     * @param int|null|string  $timeType
-     * @param null|string      $locale
+     * @param int         $dateType
+     * @param int         $timeType
+     * @param null|string $locale
      * @return string|self
      */
     public function __invoke(

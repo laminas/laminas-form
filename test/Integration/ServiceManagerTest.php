@@ -12,8 +12,6 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-use function method_exists;
-
 class ServiceManagerTest extends TestCase
 {
     use ProphecyTrait;
@@ -45,17 +43,10 @@ class ServiceManagerTest extends TestCase
             $test += 1;
         };
 
-        if (method_exists($serviceManager, 'configure')) {
-            $initializer->__invoke(
-                $serviceManager,
-                $element->reveal()
-            )->will($incrementTest)->shouldBeCalled();
-        } else {
-            $initializer->initialize(
-                $element->reveal(),
-                $formElementManager
-            )->will($incrementTest)->shouldBeCalled();
-        }
+        $initializer->__invoke(
+            $serviceManager,
+            $element->reveal()
+        )->will($incrementTest)->shouldBeCalled();
 
         $formElementManagerConfig = new Config([
             'factories'    => [
@@ -93,17 +84,10 @@ class ServiceManagerTest extends TestCase
             TestCase::assertSame($formElementManager, $form->getFormFactory()->getFormElementManager());
             return true;
         };
-        if (method_exists($serviceManager, 'configure')) {
-            $initializer->__invoke(
-                $serviceManager,
-                Argument::that($formElementManagerAssertion)
-            )->shouldBeCalled();
-        } else {
-            $initializer->initialize(
-                Argument::that($formElementManagerAssertion),
-                $formElementManager
-            )->shouldBeCalled();
-        }
+        $initializer->__invoke(
+            $serviceManager,
+            Argument::that($formElementManagerAssertion)
+        )->shouldBeCalled();
 
         $formElementManagerConfig = new Config([
             'factories'    => [

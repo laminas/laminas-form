@@ -106,7 +106,7 @@ class FormSelectTest extends AbstractCommonTestCase
     public function testCanMarkOptionsAsDisabled()
     {
         $element                = $this->getElement();
-        $options                = $element->getValueOptions('options');
+        $options                = $element->getValueOptions();
         $options[1]['disabled'] = true;
         $element->setValueOptions($options);
 
@@ -117,7 +117,7 @@ class FormSelectTest extends AbstractCommonTestCase
     public function testCanMarkOptionsAsSelected()
     {
         $element                = $this->getElement();
-        $options                = $element->getValueOptions('options');
+        $options                = $element->getValueOptions();
         $options[1]['selected'] = true;
         $element->setValueOptions($options);
 
@@ -128,7 +128,7 @@ class FormSelectTest extends AbstractCommonTestCase
     public function testOptgroupsAreCreatedWhenAnOptionHasAnOptionsKey()
     {
         $element               = $this->getElement();
-        $options               = $element->getValueOptions('options');
+        $options               = $element->getValueOptions();
         $options[1]['options'] = [
             [
                 'label' => 'foo',
@@ -146,7 +146,7 @@ class FormSelectTest extends AbstractCommonTestCase
     public function testCanDisableAnOptgroup()
     {
         $element                = $this->getElement();
-        $options                = $element->getValueOptions('options');
+        $options                = $element->getValueOptions();
         $options[1]['disabled'] = true;
         $options[1]['options']  = [
             [
@@ -302,7 +302,7 @@ class FormSelectTest extends AbstractCommonTestCase
     public function testDoesNotThrowExceptionIfNameIsZero()
     {
         $element = $this->getElement();
-        $element->setName(0);
+        $element->setName('0');
 
         $this->helper->__invoke($element);
         $markup = $this->helper->__invoke($element);

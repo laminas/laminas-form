@@ -481,7 +481,7 @@ class Collection extends Fieldset
         if (true === $this->shouldCreateChildrenOnPrepareElement) {
             if ($this->targetElement !== null && $this->count > 0) {
                 while ($this->count > $this->lastChildIndex + 1) {
-                    $this->addNewTargetElementInstance(++$this->lastChildIndex);
+                    $this->addNewTargetElementInstance((string) ++$this->lastChildIndex);
                 }
             }
         }

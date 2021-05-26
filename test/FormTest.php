@@ -312,7 +312,7 @@ class FormTest extends TestCase
         $this->form->setValidationGroup(Form::VALIDATE_ALL);
         $this->assertFalse($this->form->isValid());
         $messages = $this->form->getMessages();
-        $this->assertArrayHasKey('foobar', $messages, var_export($messages, 1));
+        $this->assertArrayHasKey('foobar', $messages, var_export($messages, true));
     }
 
     public function testSetValidationGroupWithNoArgumentsRaisesException()
@@ -1125,7 +1125,11 @@ class FormTest extends TestCase
         $form->setData($data);
 
         $this->assertEquals(true, $form->isValid());
-        $this->assertEquals($address, $emptyAddress, var_export($address, 1) . "\n\n" . var_export($emptyAddress, 1));
+        $this->assertEquals(
+            $address,
+            $emptyAddress,
+            var_export($address, true) . "\n\n" . var_export($emptyAddress, true)
+        );
     }
 
     public function testCanCorrectlyExtractDataFromOneToManyRelationship()
@@ -1174,7 +1178,11 @@ class FormTest extends TestCase
         $form->setData($data);
 
         $this->assertEquals(true, $form->isValid());
-        $this->assertEquals($product, $emptyProduct, var_export($product, 1) . "\n\n" . var_export($emptyProduct, 1));
+        $this->assertEquals(
+            $product,
+            $emptyProduct,
+            var_export($product, true) . "\n\n" . var_export($emptyProduct, true)
+        );
     }
 
     public function testCanCorrectlyPopulateOrphanedEntities()
@@ -1467,7 +1475,7 @@ class FormTest extends TestCase
         $data = $this->form->getData(Form::VALUES_AS_ARRAY);
         $this->assertEquals($validSet, $data);
 
-        $entities = (array) $model->getEntities();
+        $entities = $model->getEntities();
         $this->assertCount(2, $entities);
 
         $this->assertEquals(111, $entities[0]->getField1());
@@ -1855,7 +1863,7 @@ class FormTest extends TestCase
         $this->assertInstanceOf(FileInput::class, $fileInput);
 
         $chain = $fileInput->getFilterChain();
-        $this->assertCount(1, $chain, print_r($chain, 1));
+        $this->assertCount(1, $chain, (string) print_r($chain, true));
     }
 
     public function testInputFilterNotAddedTwiceWhenUsingFieldsets()

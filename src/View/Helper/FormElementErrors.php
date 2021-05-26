@@ -4,16 +4,10 @@ namespace Laminas\Form\View\Helper;
 
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
-use Traversable;
 
 use function array_merge;
 use function array_walk_recursive;
-use function get_class;
-use function gettype;
 use function implode;
-use function is_array;
-use function is_object;
-use function iterator_to_array;
 use function sprintf;
 
 class FormElementErrors extends AbstractHelper
@@ -62,16 +56,6 @@ class FormElementErrors extends AbstractHelper
     public function render(ElementInterface $element, array $attributes = [])
     {
         $messages = $element->getMessages();
-        if ($messages instanceof Traversable) {
-            $messages = iterator_to_array($messages);
-        } elseif (! is_array($messages)) {
-            throw new Exception\DomainException(sprintf(
-                '%s expects that $element->getMessages() will return an array or Traversable; received "%s"',
-                __METHOD__,
-                is_object($messages) ? get_class($messages) : gettype($messages)
-            ));
-        }
-
         if (! $messages) {
             return '';
         }

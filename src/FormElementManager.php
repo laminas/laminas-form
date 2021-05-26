@@ -46,7 +46,6 @@ use function class_exists;
 use function get_class;
 use function gettype;
 use function is_object;
-use function is_string;
 use function sprintf;
 
 /**
@@ -318,7 +317,7 @@ class FormElementManager extends AbstractPluginManager
         $factory = $instance->getFormFactory();
         $factory->setFormElementManager($this);
 
-        if ($container && $container->has('InputFilterManager')) {
+        if ($container->has('InputFilterManager')) {
             $inputFilters = $container->get('InputFilterManager');
             $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
         }
@@ -424,10 +423,6 @@ class FormElementManager extends AbstractPluginManager
      */
     public function get($name, ?array $options = null)
     {
-        if (is_string($options)) {
-            $options = ['name' => $options];
-        }
-
         if (! $this->has($name)) {
             if (! $this->autoAddInvokableClass || ! class_exists($name)) {
                 throw new Exception\InvalidElementException(

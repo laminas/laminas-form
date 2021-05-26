@@ -913,7 +913,7 @@ class CollectionTest extends TestCase
         foreach ($prices as $key => $price) {
             $this->assertEquals(
                 $price,
-                $form->get('collection')->get($key)
+                $form->get('collection')->get((string) $key)
                     ->get('product')
                     ->get('price')
                     ->getValue()
@@ -924,7 +924,7 @@ class CollectionTest extends TestCase
         foreach ($productCountries as $key => $countryName) {
             $this->assertEquals(
                 $countryName,
-                $form->get('collection')->get($key)
+                $form->get('collection')->get((string) $key)
                     ->get('product')
                     ->get('made_in_country')
                     ->get('name')
@@ -936,9 +936,9 @@ class CollectionTest extends TestCase
         foreach ($categoryNames as $key => $categoryName) {
             $this->assertEquals(
                 $categoryName,
-                $form->get('collection')->get($key)
+                $form->get('collection')->get((string) $key)
                     ->get('product')
-                    ->get('categories')->get(0)
+                    ->get('categories')->get((string) 0)
                     ->get('name')->getValue()
             );
         }

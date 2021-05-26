@@ -118,7 +118,7 @@ interface ElementInterface
     /**
      * Retrieve the label (if any) used for this element
      *
-     * @return string
+     * @return null|string
      */
     public function getLabel();
 

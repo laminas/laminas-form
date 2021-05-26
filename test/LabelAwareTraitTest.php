@@ -36,7 +36,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetEmptyLabelAttributes()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelAttributes = $object->getLabelAttributes();
 
@@ -45,7 +47,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelAttributes()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelAttributes = [
             'test',
@@ -61,7 +65,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetEmptyLabelOptions()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelOptions = [];
 
@@ -72,7 +78,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOptions()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelOptions = [
             'foo'  => 'bar',
@@ -88,7 +96,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOptionsTraversable()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelOptions = [
             'foo'  => 'bar',
@@ -104,7 +114,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetEmptyLabelOptions()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelOptions = $object->getLabelOptions();
 
@@ -113,7 +125,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelOptions()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelOptions = [
             'foo'  => 'bar',
@@ -129,7 +143,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testClearLabelOptions()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelOptions = [
             'foo'  => 'bar',
@@ -147,7 +163,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testRemoveLabelOptions()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $labelOptions = [
             'foo'  => 'bar',
@@ -173,7 +191,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testSetLabelOption()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $object->setLabelOption('foo', 'bar');
 
@@ -188,7 +208,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetInvalidLabelOption()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $invalidOption = 'foo';
 
@@ -199,7 +221,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testGetLabelOption()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $option = 'foo';
         $value  = 'bar';
@@ -213,7 +237,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testRemoveLabelOption()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $option = 'foo';
         $value  = 'bar';
@@ -229,7 +255,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testHasValidLabelOption()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $option = 'foo';
         $value  = 'bar';
@@ -242,7 +270,9 @@ class LabelAwareTraitTest extends TestCase
 
     public function testHasInvalidLabelOption()
     {
-        $object = $this->getObjectForTrait(LabelAwareTrait::class);
+        $object = new class {
+            use LabelAwareTrait;
+        };
 
         $option = 'foo';
 

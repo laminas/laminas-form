@@ -39,7 +39,7 @@ interface FormInterface extends FieldsetInterface
      * Whether or not to bind values to the bound object when validation succeeds
      *
      * @param  int $bindOnValidateFlag
-     * @return void
+     * @return $this
      */
     public function setBindOnValidate($bindOnValidateFlag);
 
