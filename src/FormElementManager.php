@@ -370,7 +370,7 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param  mixed $instance
      * @return void
-     *@throws InvalidServiceException
+     * @throws InvalidServiceException
      */
     public function validate($instance)
     {
