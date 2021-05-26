@@ -255,11 +255,14 @@ optionally further `options` to pass to the constructor of the filter.
 `options` must be an associative array, for PHPDoc annotations encoded
 as JSON.
 
+Additionally, you can use the `priority` argument to modify the order
+of the filters in the [filter chain](../../laminas-filter/filter-chains/).
+
 This annotation may be specified multiple times.
 
 ```php
 /**
-* @Filter("Boolean", options={"casting":true})
+* @Filter("Boolean", options={"casting":true}, priority=-100)
 */
 protected $myProperty;
 
@@ -270,7 +273,7 @@ protected $myOtherProperty;
 ```
 
 ```php
-#[Filter("Boolean", options: ["casting" => true])]
+#[Filter("Boolean", options: ["casting" => true]), priority=-100]
 protected $myProperty;
 
 #[Filter(\Laminas\Filter\Boolean::class, options: ["casting" => true])]
@@ -448,18 +451,21 @@ optionally further `options` to pass to the constructor of the validator.
 `options` must be an associative array, for PHPDoc annotations encoded
 as JSON.
 
+Additionally, you can use the `breakChainOnFailure` and the `priority`
+argument to modify the [filter chain](../../laminas-validator/validator-chains/).
+
 This annotation may be specified multiple times.
 
 ```php
 /**
-* @Validator("StringLength", options={"min":3, "max":25})
+* @Validator("StringLength", options={"min":3, "max":25}, breakChainOnFailure=true)
 * @Validator("Laminas\Validator\Regex", options={"pattern": "/^[a-zA-Z]/"})
 */
 protected $myProperty;
 ```
 
 ```php
-#[Validator("StringLength", options: ["min" => 3, "max" => 25])]
+#[Validator("StringLength", options: ["min" => 3, "max" => 25]), breakChainOnFailure: true]
 #[Validator(\Laminas\Validator\Regex::class, options: ["pattern" => "/^[a-zA-Z]/"])]
 protected $myProperty;
 ``` 
