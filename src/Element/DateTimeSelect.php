@@ -8,7 +8,6 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
-use Traversable;
 
 use function is_string;
 use function sprintf;
@@ -68,10 +67,9 @@ class DateTimeSelect extends DateSelect
      * - second_attributes: HTML attributes to be rendered with the second element
      * - should_show_seconds: if set to true, the seconds select is shown
      *
-     * @param array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 

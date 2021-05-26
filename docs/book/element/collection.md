@@ -53,8 +53,8 @@ Method signature                                        | Description
 ------------------------------------------------------- | -----------
 `setOptions(array $options) : void`                     | Set options for an element of type Collection. Accepted options, in addition to the options inherited from [Element](element.md#public-methods), are: `target_element`, `count`, `allow_add`, `allow_remove`, `should_create_template` and `template_placeholder`. Those option keys respectively call `setTargetElement()`, `setCount()`, `setAllowAdd()`, `setAllowRemove()`, `setShouldCreateTemplate()` and `setTemplatePlaceholder()`.
 `allowObjectBinding(object $object) : bool`             | Checks if the object can be set in this fieldset.
-`setObject(array|Traversable $object) : void`           | Set the object used by the hydrator. In this case the "object" is a collection of objects.
-`populateValues(array|Traversable $data) : void`        | Populate values
+`setObject(iterable $object) : void`                    | Set the object used by the hydrator. In this case the "object" is a collection of objects.
+`populateValues(iterable $data) : void`                 | Populate values
 `allowValueBinding() : bool`                            | Checks if this fieldset can bind data
 `setCount($count) : void`                               | Defines how many times the target element will be initially rendered by the `Laminas\Form\View\Helper\FormCollection` view helper.
 `getCount() : integer`                                  | Return the number of times the target element will be initially rendered by the `Laminas\Form\View\Helper\FormCollection` view helper.

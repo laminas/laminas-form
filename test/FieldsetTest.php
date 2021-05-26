@@ -108,12 +108,6 @@ class FieldsetTest extends TestCase
         $this->assertEquals($subValue, $subFieldset->getStoredValue());
     }
 
-    public function testPopulateValuesWithInvalidElementRaisesException()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->fieldset->populateValues(null);
-    }
-
     public function testFieldsetIsEmptyByDefault()
     {
         $this->assertCount(0, $this->fieldset);
@@ -251,12 +245,6 @@ class FieldsetTest extends TestCase
         $this->fieldset->setMessages($messages);
         $test = $this->fieldset->getMessages();
         $this->assertEquals($messages, $test);
-    }
-
-    public function testSetMessagesWithInvalidElementRaisesException()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->fieldset->setMessages(null);
     }
 
     public function testOnlyElementsWithErrorsInMessages()

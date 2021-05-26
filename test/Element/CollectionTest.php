@@ -365,13 +365,6 @@ class CollectionTest extends TestCase
         $collection->setObject(null);
     }
 
-    public function testPopulateValuesNullRaisesException()
-    {
-        $collection = $this->form->get('colors');
-        $this->expectException(InvalidArgumentException::class);
-        $collection->populateValues(null);
-    }
-
     public function testSetTargetElementNullRaisesException()
     {
         $collection = $this->form->get('colors');

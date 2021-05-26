@@ -2,8 +2,6 @@
 
 namespace Laminas\Form;
 
-use Traversable;
-
 interface ElementInterface
 {
     /**
@@ -27,10 +25,9 @@ interface ElementInterface
     /**
      * Set options for an element
      *
-     * @param  array|Traversable $options
      * @return $this
      */
-    public function setOptions($options);
+    public function setOptions(iterable $options);
 
     /**
      * Set a single option for an element
@@ -86,17 +83,14 @@ interface ElementInterface
      *
      * Implementation will decide if this will overwrite or merge.
      *
-     * @param  array|Traversable $arrayOrTraversable
      * @return $this
      */
-    public function setAttributes($arrayOrTraversable);
+    public function setAttributes(iterable $arrayOrTraversable);
 
     /**
      * Retrieve all attributes at once
-     *
-     * @return array|Traversable
      */
-    public function getAttributes();
+    public function getAttributes(): array;
 
     /**
      * Set the value of the element
@@ -131,17 +125,14 @@ interface ElementInterface
     /**
      * Set a list of messages to report when validation fails
      *
-     * @param  array|Traversable $messages
      * @return $this
      */
-    public function setMessages($messages);
+    public function setMessages(iterable $messages);
 
     /**
      * Get validation error messages, if any
      *
      * Returns a list of validation failure messages, if any.
-     *
-     * @return array|Traversable
      */
-    public function getMessages();
+    public function getMessages(): array;
 }

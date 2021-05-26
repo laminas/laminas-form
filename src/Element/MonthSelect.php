@@ -9,7 +9,6 @@ use Laminas\Form\FormInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
-use Traversable;
 
 use function date;
 use function sprintf;
@@ -66,10 +65,10 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Constructor. Add two selects elements
      *
-     * @param  null|int|string   $name    Optional name for the element
-     * @param  array|Traversable $options Optional options for the element
+     * @param  null|int|string $name    Optional name for the element
+     * @param  iterable        $options Optional options for the element
      */
-    public function __construct($name = null, $options = [])
+    public function __construct($name = null, iterable $options = [])
     {
         $this->minYear = ((int) date('Y')) - 100;
         $this->maxYear = (int) date('Y');
@@ -90,10 +89,9 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      * - min_year: min year to use in the year select
      * - max_year: max year to use in the year select
      *
-     * @param array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 

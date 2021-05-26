@@ -52,9 +52,9 @@ Method signature                                    | Description
 `getAttribute(string $key) : mixed`                 | Retrieve a single element attribute.
 `removeAttribute(string $key) : void`               | Remove a single attribute
 `hasAttribute(string $key) : boolean`               | Check if a specific attribute exists for this element.
-`setAttributes(array|Traversable $arrayOrTraversable) : void` | Set many attributes at once. Implementation will decide if this will overwrite or merge.
-`getAttributes() : array|Traversable`               | Retrieve all attributes at once.
+`setAttributes(iterable $arrayOrTraversable) : void` | Set many attributes at once. Implementation will decide if this will overwrite or merge.
+`getAttributes() : iterable`                        | Retrieve all attributes at once.
 `removeAttributes(array $keys) : void`              | Remove many attributes at once
 `clearAttributes() : void`                          | Clear all attributes for this element.
-`setMessages(array|Traversable $messages) : void`   | Set a list of messages to report when validation fails.
-`getMessages() : array|Traversable`                 | Returns a list of validation failure messages, if any.
+`setMessages(iterable $messages) : void`            | Set a list of messages to report when validation fails.
+`getMessages() : iterable`                          | Returns a list of validation failure messages, if any.

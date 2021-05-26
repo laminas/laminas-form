@@ -2,8 +2,6 @@
 
 namespace Laminas\Form;
 
-use Traversable;
-
 interface LabelAwareInterface
 {
     /**
@@ -41,10 +39,9 @@ interface LabelAwareInterface
      *
      * Implementation will decide if this will overwrite or merge.
      *
-     * @param  array|Traversable $arrayOrTraversable
      * @return $this
      */
-    public function setLabelOptions($arrayOrTraversable);
+    public function setLabelOptions(iterable $arrayOrTraversable);
 
     /**
      * Get label specific options
