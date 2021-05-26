@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormDateTime as FormDateTimeHelper;
 
 use function sprintf;
 
+/**
+ * @property FormDateTimeHelper $helper
+ */
 class FormDateTimeTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

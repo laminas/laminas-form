@@ -5,7 +5,6 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Captcha;
 use Laminas\Form\ConfigProvider;
 use Laminas\Form\Element;
-use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\View\Helper\FormElement as FormElementHelper;
 use Laminas\Validator\Csrf;
 use Laminas\View\Helper\Doctype;
@@ -18,7 +17,7 @@ use function substr_count;
 
 class FormElementTest extends TestCase
 {
-    /** @var AbstractHelper */
+    /** @var FormElementHelper */
     public $helper;
 
     /** @var RendererInterface */
@@ -120,11 +119,13 @@ class FormElementTest extends TestCase
             $element = new Element('foo');
         }
         $element->setAttribute('type', $type);
-        $element->setValueOptions([
-            'value1' => 'option',
-            'value2' => 'label',
-            'value3' => 'last',
-        ]);
+        if ($element instanceof Element\Select || $element instanceof Element\MultiCheckbox) {
+            $element->setValueOptions([
+                'value1' => 'option',
+                'value2' => 'label',
+                'value3' => 'last',
+            ]);
+        }
         $element->setAttribute('value', 'value2');
         $markup = $this->helper->render($element);
 

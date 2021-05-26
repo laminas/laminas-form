@@ -5,7 +5,7 @@ namespace LaminasTest\Form\View\Helper;
 use DirectoryIterator;
 use Laminas\Captcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
-use Laminas\Form\Exception\ExceptionInterface;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormCaptcha as FormCaptchaHelper;
 
 use function class_exists;
@@ -18,6 +18,9 @@ use function mkdir;
 use function sys_get_temp_dir;
 use function unlink;
 
+/**
+ * @property FormCaptchaHelper $helper
+ */
 class FormCaptchaTest extends AbstractCommonTestCase
 {
     /** @var null|string */
@@ -76,7 +79,7 @@ class FormCaptchaTest extends AbstractCommonTestCase
     public function testRaisesExceptionIfElementHasNoCaptcha()
     {
         $element = $this->getElement();
-        $this->expectException(ExceptionInterface::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('captcha');
         $this->helper->render($element);
     }

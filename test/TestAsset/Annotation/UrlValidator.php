@@ -11,6 +11,7 @@ class UrlValidator implements ValidatorInterface
      */
     public function isValid($value)
     {
+        return true;
     }
 
     /**
@@ -18,5 +19,6 @@ class UrlValidator implements ValidatorInterface
      */
     public function getMessages()
     {
+        return [];
     }
 }

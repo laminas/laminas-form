@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormRange as FormRangeHelper;
 
 use function sprintf;
 
+/**
+ * @property FormRangeHelper $helper
+ */
 class FormRangeTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

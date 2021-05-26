@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormFile as FormFileHelper;
 
 use function sprintf;
 
+/**
+ * @property FormFileHelper $helper
+ */
 class FormFileTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

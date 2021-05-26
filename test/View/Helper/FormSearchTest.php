@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormSearch as FormSearchHelper;
 
 use function sprintf;
 
+/**
+ * @property FormSearchHelper $helper
+ */
 class FormSearchTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

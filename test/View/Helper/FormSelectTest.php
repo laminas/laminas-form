@@ -5,17 +5,18 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Element\Select as SelectElement;
 use Laminas\Form\Exception\DomainException;
-use Laminas\Form\Exception\ExceptionInterface;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormSelect as FormSelectHelper;
 use Laminas\I18n\Translator\Translator;
 use LaminasTest\Form\TestAsset\Identifier;
 
-use function current;
 use function key;
 use function sprintf;
 use function substr_count;
 
+/**
+ * @property FormSelectHelper $helper
+ */
 class FormSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
@@ -84,7 +85,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value2']);
 
-        $this->expectException(ExceptionInterface::class);
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('multiple');
         $markup = $this->helper->render($element);
     }
@@ -202,11 +203,6 @@ class FormSelectTest extends AbstractCommonTestCase
             [[-1 => 'int-neg']],
             [[0x1A => 'hex']],
             [[0123 => 'oct']],
-            [[2.1 => 'float']],
-            [[1.2e3 => 'float-e']],
-            [[7E-10 => 'float-E']],
-            [[true => 'bool-t']],
-            [[false => 'bool-f']],
         ];
     }
 
@@ -220,7 +216,6 @@ class FormSelectTest extends AbstractCommonTestCase
         $element->setValueOptions($options);
         $markup = $this->helper->render($element);
         $value  = key($options);
-        $label  = current($options);
         $this->assertMatchesRegularExpression(sprintf('#option .*?value="%s"#', (string) $value), $markup);
     }
 

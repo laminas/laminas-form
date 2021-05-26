@@ -76,7 +76,7 @@ interface FieldsetInterface extends
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|Traversable
+     * @return FieldsetInterface[]|Traversable<array-key, FieldsetInterface>
      */
     public function getFieldsets();
 

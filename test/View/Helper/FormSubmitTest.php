@@ -9,6 +9,9 @@ use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
+/**
+ * @property FormSubmitHelper $helper
+ */
 class FormSubmitTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

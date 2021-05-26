@@ -11,11 +11,8 @@ use Laminas\Form\Factory;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\Form;
-use Laminas\Hydrator\ArraySerializable;
 use Laminas\Hydrator\ArraySerializableHydrator;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
-use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\BaseInputFilter;
 use Laminas\InputFilter\CollectionInputFilter;
@@ -28,7 +25,6 @@ use Laminas\InputFilter\InputInterface;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-use function class_exists;
 use function extension_loaded;
 use function print_r;
 use function spl_object_hash;
@@ -39,27 +35,9 @@ class FormTest extends TestCase
     /** @var Form */
     protected $form;
 
-    /** @var string */
-    private $arraySerializableHydratorClass;
-
-    /** @var string */
-    private $classMethodsHydratorClass;
-
-    /** @var string */
-    private $objectPropertyHydratorClass;
-
     protected function setUp(): void
     {
-        $this->arraySerializableHydratorClass = class_exists(ArraySerializableHydrator::class)
-            ? ArraySerializableHydrator::class
-            : ArraySerializable::class;
-        $this->classMethodsHydratorClass      = class_exists(ClassMethodsHydrator::class)
-            ? ClassMethodsHydrator::class
-            : ClassMethods::class;
-        $this->objectPropertyHydratorClass    = class_exists(ObjectPropertyHydrator::class)
-            ? ObjectPropertyHydrator::class
-            : ObjectProperty::class;
-        $this->form                           = new Form();
+        $this->form = new Form();
     }
 
     private function getComposedEntity(): TestAsset\Entity\Address
@@ -461,7 +439,7 @@ class FormTest extends TestCase
     public function testGetDataReturnsBoundModel()
     {
         $model = new stdClass();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->populateForm();
         $this->form->setData([]);
         $this->form->bind($model);
@@ -482,7 +460,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model);
         $this->form->setData($validSet);
         $this->form->isValid();
@@ -502,7 +480,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model);
         $this->form->setData($validSet);
         $this->form->isValid();
@@ -530,7 +508,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model, Form::VALUES_RAW);
         $this->form->setData($validSet);
         $this->form->isValid();
@@ -579,7 +557,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model);
         $this->form->setData($validSet);
         $this->form->setValidationGroup('foo');
@@ -613,7 +591,7 @@ class FormTest extends TestCase
                 ],
             ],
         ]);
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model);
         $this->form->setData($data);
         $this->form->setValidationGroup([
@@ -649,7 +627,7 @@ class FormTest extends TestCase
                 ],
             ],
         ]);
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model);
         $this->form->setData($dataWithoutCollection);
         $this->form->setValidationGroup(['foo']);
@@ -673,7 +651,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->arraySerializableHydratorClass());
+        $this->form->setHydrator(new ArraySerializableHydrator());
         $this->form->bind($model);
         $this->form->setData($validSet);
         $this->form->isValid();
@@ -724,7 +702,7 @@ class FormTest extends TestCase
         $object      = new stdClass();
         $object->foo = 'foobar';
         $object->bar = 'barbaz';
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($object);
 
         $foo = $this->form->get('foo');
@@ -743,7 +721,7 @@ class FormTest extends TestCase
             'foo' => 'foos',
             'bar' => 'bar',
         ];
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($object);
 
         $this->assertTrue($this->form->isValid());
@@ -786,7 +764,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->setBindOnValidate(false);
         $this->form->bind($model);
         $this->form->setData($validSet);
@@ -821,7 +799,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->setName('formName');
         $this->form->setWrapElements(true);
         $this->form->prepare();
@@ -849,7 +827,7 @@ class FormTest extends TestCase
 
         $form = new Form();
         $form->add($baseFieldset);
-        $form->setHydrator(new $this->objectPropertyHydratorClass());
+        $form->setHydrator(new ObjectPropertyHydrator());
 
         $model = new stdClass();
         $form->bind($model);
@@ -1288,7 +1266,7 @@ class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model);
         $this->form->setData($validSet);
         $this->form->isValid();
@@ -1468,7 +1446,7 @@ class FormTest extends TestCase
     {
         $this->populateHydratorStrategyForm();
 
-        $hydrator = new $this->objectPropertyHydratorClass();
+        $hydrator = new ObjectPropertyHydrator();
         $hydrator->addStrategy('entities', new TestAsset\HydratorStrategy());
         $this->form->setHydrator($hydrator);
 
@@ -1520,10 +1498,10 @@ class FormTest extends TestCase
         $fieldset->add(new Element('foo'));
         $fieldset->setUseAsBaseFieldset(true);
         $this->form->add($fieldset);
-        $this->form->setHydrator(new $this->arraySerializableHydratorClass());
+        $this->form->setHydrator(new ArraySerializableHydrator());
 
         $baseHydrator = $this->form->get('foobar')->getHydrator();
-        $this->assertInstanceOf($this->arraySerializableHydratorClass, $baseHydrator);
+        $this->assertInstanceOf(ArraySerializableHydrator::class, $baseHydrator);
     }
 
     public function testBindWithWrongFlagRaisesException()
@@ -1583,11 +1561,11 @@ class FormTest extends TestCase
 
         // Add a hydrator that ignores if values does not exist in the
         $fieldset->setObject(new TestAsset\Entity\SimplePublicProperty());
-        $fieldset->setHydrator(new $this->objectPropertyHydratorClass());
+        $fieldset->setHydrator(new ObjectPropertyHydrator());
 
         $this->form->add($fieldset);
         $this->form->setBaseFieldset($fieldset);
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
 
         // Add some inputs that do not belong to the base fieldset
         $this->form->add([
@@ -1622,7 +1600,7 @@ class FormTest extends TestCase
         ];
 
         $element  = new TestAsset\ElementWithStringToArrayFilter('foo');
-        $hydrator = $this->createMock($this->arraySerializableHydratorClass);
+        $hydrator = $this->createMock(ArraySerializableHydrator::class);
         $hydrator->expects($this->any())->method('hydrate')->with($filteredData, $this->anything());
 
         $this->form->add($element);
@@ -2296,7 +2274,7 @@ class FormTest extends TestCase
     public function testGetInputFilterInjectsFormInputFilterFactoryInstanceWhenObjectIsInputFilterAware()
     {
         $this->form->setBaseFieldset(new Fieldset());
-        $this->form->setHydrator(new $this->classMethodsHydratorClass());
+        $this->form->setHydrator(new ClassMethodsHydrator());
         $this->form->bind(new TestAsset\Entity\Cat());
         $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
         $inputFilter        = $this->form->getInputFilter();
@@ -2320,7 +2298,7 @@ class FormTest extends TestCase
 
         $this->form->add($fieldset);
         $this->form->setBaseFieldset($fieldset);
-        $this->form->setHydrator(new $this->objectPropertyHydratorClass());
+        $this->form->setHydrator(new ObjectPropertyHydrator());
 
         $object      = new TestAsset\Entity\SimplePublicProperty();
         $object->foo = ['item 1', 'item 2'];

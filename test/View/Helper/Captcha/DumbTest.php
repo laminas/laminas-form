@@ -11,6 +11,9 @@ use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 use function strrev;
 
+/**
+ * @property DumbCaptchaHelper $helper
+ */
 class DumbTest extends AbstractCommonTestCase
 {
     /** @var DumbCaptcha */

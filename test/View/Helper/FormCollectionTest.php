@@ -9,6 +9,9 @@ use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
 use ReflectionMethod;
 
+/**
+ * @property FormCollectionHelper $helper
+ */
 class FormCollectionTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

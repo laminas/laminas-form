@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormTel as FormTelHelper;
 
 use function sprintf;
 
+/**
+ * @property FormTelHelper $helper
+ */
 class FormTelTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

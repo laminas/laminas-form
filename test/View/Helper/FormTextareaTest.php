@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormTextarea as FormTextareaHelper;
 
 use function sprintf;
 
+/**
+ * @property FormTextareaHelper $helper
+ */
 class FormTextareaTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

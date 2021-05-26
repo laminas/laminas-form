@@ -8,8 +8,14 @@ use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\Figlet as FigletCaptchaHelper;
 use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
+/**
+ * @property FigletCaptchaHelper $helper
+ */
 class FigletTest extends AbstractCommonTestCase
 {
+    /** @var FigletCaptcha */
+    private $captcha;
+
     protected function setUp(): void
     {
         $this->helper  = new FigletCaptchaHelper();

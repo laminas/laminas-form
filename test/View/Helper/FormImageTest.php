@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormImage as FormImageHelper;
 
 use function sprintf;
 
+/**
+ * @property FormImageHelper $helper
+ */
 class FormImageTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

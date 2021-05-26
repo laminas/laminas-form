@@ -11,6 +11,9 @@ use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
+/**
+ * @property FormButtonHelper $helper
+ */
 class FormButtonTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

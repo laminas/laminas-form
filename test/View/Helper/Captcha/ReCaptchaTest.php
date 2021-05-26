@@ -11,8 +11,14 @@ use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 use function class_exists;
 use function getenv;
 
+/**
+ * @property ReCaptchaHelper $helper
+ */
 class ReCaptchaTest extends AbstractCommonTestCase
 {
+    /** @var ReCaptcha */
+    private $captcha;
+
     protected function setUp(): void
     {
         if (! getenv('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {

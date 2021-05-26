@@ -8,7 +8,6 @@ use Laminas\Form\Form;
 use Laminas\Form\FormAbstractServiceFactory;
 use Laminas\Form\FormElementManager;
 use Laminas\Hydrator\HydratorPluginManager;
-use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\Factory;
 use Laminas\InputFilter\InputFilter;
@@ -21,12 +20,13 @@ use function class_exists;
 
 class FormAbstractServiceFactoryTest extends TestCase
 {
+    /** @var ServiceManager */
+    private $services;
+    /** @var FormAbstractServiceFactory */
+    private $forms;
+
     protected function setUp(): void
     {
-        $this->objectPropertyHydratorClass = class_exists(ObjectPropertyHydrator::class)
-            ? ObjectPropertyHydrator::class
-            : ObjectProperty::class;
-
         $services     = $this->services = new ServiceManager();
         $elements     = new FormElementManager($services);
         $filters      = new FilterPluginManager($services);
@@ -42,7 +42,7 @@ class FormAbstractServiceFactoryTest extends TestCase
 
         $inputFilters->setInvokableClass('FooInputFilter', InputFilter::class);
 
-        $forms = $this->forms = new FormAbstractServiceFactory($services);
+        $forms = $this->forms = new FormAbstractServiceFactory();
         $services->addAbstractFactory($forms);
     }
 
@@ -144,7 +144,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertInstanceOf(Form::class, $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
+        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
 
         $inputFilter = $form->getInputFilter();
         $this->assertInstanceOf(InputFilter::class, $inputFilter);
@@ -197,7 +197,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertInstanceOf(Form::class, $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
+        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
 
         $inputFilter = $form->getInputFilter();
         $this->assertInstanceOf(InputFilter::class, $inputFilter);

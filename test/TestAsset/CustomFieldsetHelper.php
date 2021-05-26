@@ -11,7 +11,7 @@ use function preg_replace;
 
 class CustomFieldsetHelper extends AbstractHelper
 {
-    /** @var FormCollection */
+    /** @var FormCollectionHelper */
     protected $fieldsetHelper;
 
     public function __invoke(FieldsetInterface $fieldset): string
@@ -25,7 +25,7 @@ class CustomFieldsetHelper extends AbstractHelper
     /**
      * Retrieve the FormCollection helper
      *
-     * @return FormCollection
+     * @return FormCollectionHelper
      */
     protected function getFieldsetHelper()
     {
