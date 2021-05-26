@@ -85,6 +85,9 @@
       <code>$allowEmpty</code>
       <code>$this-&gt;allowEmpty</code>
     </MixedAssignment>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -131,9 +134,14 @@
       <code>getAttributes</code>
     </UndefinedMethod>
   </file>
+  <file src="src/Annotation/Attributes.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
-      <code>new $requestedName</code>
+      <code>new $requestedName()</code>
     </InvalidStringClass>
     <LessSpecificReturnStatement occurrences="1">
       <code>$annotationBuilder</code>
@@ -174,12 +182,18 @@
       <code>$this-&gt;options</code>
       <code>$this-&gt;targetObject</code>
     </MixedAssignment>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/ContinueIfEmpty.php">
     <MixedAssignment occurrences="2">
       <code>$continueIfEmpty</code>
       <code>$this-&gt;continueIfEmpty</code>
     </MixedAssignment>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/ElementAnnotationsListener.php">
     <MixedArgument occurrences="7">
@@ -291,6 +305,16 @@
       <code>(bool) $annotation-&gt;getRequired()</code>
     </RedundantCast>
   </file>
+  <file src="src/Annotation/ErrorMessage.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Exclude.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/Filter.php">
     <MixedAssignment occurrences="3">
       <code>$this-&gt;name</code>
@@ -298,22 +322,12 @@
       <code>$this-&gt;priority</code>
     </MixedAssignment>
   </file>
+  <file src="src/Annotation/Flags.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/FormAnnotationsListener.php">
-    <MissingParamType occurrences="1">
-      <code>$priority</code>
-    </MissingParamType>
-    <MixedArgument occurrences="10">
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-      <code>$priority</code>
-    </MixedArgument>
     <MixedArrayAssignment occurrences="8">
       <code>$formSpec['attributes']</code>
       <code>$formSpec['flags']</code>
@@ -340,17 +354,56 @@
       <code>$this-&gt;options</code>
       <code>$this-&gt;type</code>
     </MixedAssignment>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Input.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/InputFilter.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
     </DocblockTypeContradiction>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Instance.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Name.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Options.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/Required.php">
     <MixedAssignment occurrences="2">
       <code>$required</code>
       <code>$this-&gt;required</code>
     </MixedAssignment>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Type.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/ValidationGroup.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/Validator.php">
     <MixedAssignment occurrences="4">
@@ -362,8 +415,8 @@
   </file>
   <file src="src/ConfigProvider.php">
     <DuplicateArrayKey occurrences="2">
-      <code>\Zend\Form\Annotation\AnnotationBuilder::class =&gt; Annotation\AnnotationBuilder::class</code>
-      <code>\Zend\Form\FormElementManager::class =&gt; FormElementManager::class</code>
+      <code>AnnotationBuilder::class                     =&gt; Annotation\AnnotationBuilder::class</code>
+      <code>\Zend\Form\FormElementManager::class         =&gt; FormElementManager::class</code>
     </DuplicateArrayKey>
   </file>
   <file src="src/Element.php">
@@ -393,21 +446,15 @@
       <code>$this</code>
       <code>$this</code>
     </LessSpecificReturnStatement>
-    <MissingParamType occurrences="3">
+    <MixedArgument occurrences="5">
       <code>$key</code>
       <code>$key</code>
-      <code>$label</code>
-    </MissingParamType>
-    <MixedArgument occurrences="4">
-      <code>$key</code>
-      <code>$key</code>
+      <code>$options['label']</code>
       <code>$options['label_attributes']</code>
       <code>$options['label_options']</code>
     </MixedArgument>
-    <MixedArrayOffset occurrences="4">
+    <MixedArrayOffset occurrences="2">
       <code>$this-&gt;attributes[$key]</code>
-      <code>$this-&gt;attributes[$key]</code>
-      <code>$this-&gt;labelOptions[$key]</code>
       <code>$this-&gt;labelOptions[$key]</code>
     </MixedArrayOffset>
     <MixedAssignment occurrences="6">
@@ -443,17 +490,11 @@
     <DocblockTypeContradiction occurrences="1">
       <code>null === $this-&gt;validator</code>
     </DocblockTypeContradiction>
-    <MissingParamType occurrences="2">
-      <code>$checkedValue</code>
-      <code>$uncheckedValue</code>
-    </MissingParamType>
-    <MixedArgument occurrences="1">
+    <MixedArgument occurrences="3">
+      <code>$this-&gt;options['checked_value']</code>
+      <code>$this-&gt;options['unchecked_value']</code>
       <code>$this-&gt;options['use_hidden_element']</code>
     </MixedArgument>
-    <MixedAssignment occurrences="2">
-      <code>$this-&gt;checkedValue</code>
-      <code>$this-&gt;uncheckedValue</code>
-    </MixedAssignment>
     <PropertyNotSetInConstructor occurrences="1">
       <code>$validator</code>
     </PropertyNotSetInConstructor>
@@ -486,17 +527,16 @@
       <code>Fieldset|FieldsetInterface</code>
       <code>mixed|void</code>
     </LessSpecificImplementedReturnType>
-    <MissingParamType occurrences="1">
-      <code>$count</code>
-    </MissingParamType>
-    <MixedArgument occurrences="10">
+    <MixedArgument occurrences="12">
       <code>$name</code>
       <code>$this-&gt;options['allow_add']</code>
       <code>$this-&gt;options['allow_remove']</code>
+      <code>$this-&gt;options['count']</code>
       <code>$this-&gt;options['create_new_objects']</code>
       <code>$this-&gt;options['should_create_template']</code>
       <code>$this-&gt;options['target_element']</code>
       <code>$this-&gt;options['template_placeholder']</code>
+      <code>$value</code>
       <code>$value</code>
       <code>$value</code>
       <code>$value</code>
@@ -515,7 +555,7 @@
       <code>$data[$name]</code>
       <code>$this-&gt;object[$i]</code>
     </MixedArrayOffset>
-    <MixedAssignment occurrences="14">
+    <MixedAssignment occurrences="13">
       <code>$collection[]</code>
       <code>$collection[]</code>
       <code>$elementOrFieldset</code>
@@ -523,7 +563,6 @@
       <code>$i</code>
       <code>$name</code>
       <code>$name</code>
-      <code>$this-&gt;count</code>
       <code>$toRemove[]</code>
       <code>$value</code>
       <code>$value</code>
@@ -884,13 +923,6 @@
     <MissingClosureReturnType occurrences="1">
       <code>static function ($value) use ($unselectedValue) {</code>
     </MissingClosureReturnType>
-    <MissingParamType occurrences="2">
-      <code>$key</code>
-      <code>$optionSpec</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>getOptionValue</code>
-    </MissingReturnType>
     <MixedArgument occurrences="7">
       <code>$this-&gt;options['disable_inarray_validator']</code>
       <code>$this-&gt;options['empty_option']</code>
@@ -910,10 +942,8 @@
     <MixedMethodCall occurrences="1">
       <code>setHaystack</code>
     </MixedMethodCall>
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>null</code>
-    </PossiblyNullPropertyAssignmentValue>
-    <PropertyNotSetInConstructor occurrences="1">
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>$emptyOption</code>
       <code>$validator</code>
     </PropertyNotSetInConstructor>
     <RedundantCastGivenDocblockType occurrences="3">
@@ -974,11 +1004,6 @@
       <code>$name</code>
       <code>$options</code>
     </MixedAssignment>
-  </file>
-  <file src="src/ElementInterface.php">
-    <MissingParamType occurrences="1">
-      <code>$label</code>
-    </MissingParamType>
   </file>
   <file src="src/Factory.php">
     <ArgumentTypeCoercion occurrences="7">
@@ -1054,8 +1079,8 @@
       <code>$type</code>
     </MixedAssignment>
     <MixedMethodCall occurrences="2">
-      <code>new $objectName</code>
-      <code>new $spec</code>
+      <code>new $objectName()</code>
+      <code>new $spec()</code>
     </MixedMethodCall>
     <MoreSpecificReturnType occurrences="4">
       <code>FieldsetInterface</code>
@@ -1197,6 +1222,9 @@
     <MixedReturnStatement occurrences="1">
       <code>$this-&gt;iterator-&gt;get($elementOrFieldset)</code>
     </MixedReturnStatement>
+    <MoreSpecificImplementedParamType occurrences="1">
+      <code>$object</code>
+    </MoreSpecificImplementedParamType>
     <NonInvariantDocblockPropertyType occurrences="1">
       <code>$messages</code>
     </NonInvariantDocblockPropertyType>
@@ -1222,12 +1250,6 @@
       <code>is_array($values)</code>
     </TypeDoesNotContainType>
   </file>
-  <file src="src/FieldsetInterface.php">
-    <MissingParamType occurrences="2">
-      <code>$object</code>
-      <code>$object</code>
-    </MissingParamType>
-  </file>
   <file src="src/Form.php">
     <ArgumentTypeCoercion occurrences="1">
       <code>$filter</code>
@@ -1237,7 +1259,7 @@
       <code>$this-&gt;baseFieldset === null</code>
       <code>gettype($data)</code>
       <code>is_array($data)</code>
-      <code>null == $this-&gt;baseFieldset</code>
+      <code>null === $this-&gt;baseFieldset</code>
     </DocblockTypeContradiction>
     <ImplementedReturnTypeMismatch occurrences="1">
       <code>$this</code>
@@ -1462,8 +1484,8 @@
       <code>get</code>
       <code>getInputFilterFactory</code>
       <code>has</code>
-      <code>new $factoryName</code>
-      <code>new $hydratorName</code>
+      <code>new $factoryName()</code>
+      <code>new $hydratorName()</code>
       <code>setFormElementManager</code>
       <code>setInputFilterManager</code>
     </MixedMethodCall>
@@ -1504,6 +1526,11 @@
       <code>setFormFactory</code>
     </MissingReturnType>
   </file>
+  <file src="src/FormFactoryAwareTrait.php">
+    <MissingConstructor occurrences="1">
+      <code>$factory</code>
+    </MissingConstructor>
+  </file>
   <file src="src/InputFilterProviderFieldset.php">
     <ImplementedReturnTypeMismatch occurrences="1">
       <code>array|Traversable</code>
@@ -1523,12 +1550,6 @@
       <code>$options</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="src/LabelAwareInterface.php">
-    <MissingParamType occurrences="2">
-      <code>$key</code>
-      <code>$label</code>
-    </MissingParamType>
-  </file>
   <file src="src/LabelAwareTrait.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_array($arrayOrTraversable) &amp;&amp; ! $arrayOrTraversable instanceof Traversable</code>
@@ -1536,11 +1557,7 @@
     <MissingConstructor occurrences="1">
       <code>$labelAttributes</code>
     </MissingConstructor>
-    <MissingParamType occurrences="1">
-      <code>$key</code>
-    </MissingParamType>
-    <MixedArgument occurrences="2">
-      <code>$key</code>
+    <MixedArgument occurrences="1">
       <code>$key</code>
     </MixedArgument>
     <MixedArrayOffset occurrences="1">
@@ -2087,11 +2104,6 @@
     <MissingClosureReturnType occurrences="1">
       <code>static function ($item) use (&amp;$messagesToPrint, $translator, $textDomain) {</code>
     </MissingClosureReturnType>
-    <MissingPropertyType occurrences="3">
-      <code>$messageCloseString</code>
-      <code>$messageOpenFormat</code>
-      <code>$messageSeparatorString</code>
-    </MissingPropertyType>
     <MixedArgument occurrences="1">
       <code>$item</code>
     </MixedArgument>
@@ -2102,19 +2114,13 @@
     <MixedAssignment occurrences="1">
       <code>$messagesToPrint[]</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="5">
+    <MixedInferredReturnType occurrences="2">
       <code>array</code>
       <code>array</code>
-      <code>string</code>
-      <code>string</code>
-      <code>string</code>
     </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="5">
+    <MixedReturnStatement occurrences="2">
       <code>$messagesToPrint</code>
       <code>$messagesToPrint</code>
-      <code>$this-&gt;messageCloseString</code>
-      <code>$this-&gt;messageOpenFormat</code>
-      <code>$this-&gt;messageSeparatorString</code>
     </MixedReturnStatement>
     <PossiblyNullReference occurrences="1">
       <code>translate</code>
@@ -2365,12 +2371,12 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormSelect.php">
+    <LessSpecificReturnStatement occurrences="1">
+      <code>$this-&gt;getFormHiddenHelper()-&gt;__invoke($hiddenElement)</code>
+    </LessSpecificReturnStatement>
     <MissingConstructor occurrences="1">
       <code>$validTagAttributes</code>
     </MissingConstructor>
-    <MissingReturnType occurrences="1">
-      <code>renderHiddenElement</code>
-    </MissingReturnType>
     <MixedArgument occurrences="3">
       <code>$escapeHtml($label)</code>
       <code>$label</code>
@@ -2384,16 +2390,24 @@
       <code>$this-&gt;formHiddenHelper</code>
       <code>$value</code>
     </MixedAssignment>
-    <MixedOperand occurrences="2">
+    <MixedOperand occurrences="1">
       <code>$attributes['name']</code>
-      <code>$this-&gt;renderHiddenElement($element)</code>
     </MixedOperand>
+    <MoreSpecificReturnType occurrences="1">
+      <code>FormHidden|string</code>
+    </MoreSpecificReturnType>
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$translatableAttributes</code>
+    </NonInvariantDocblockPropertyType>
     <PossiblyInvalidArgument occurrences="4">
       <code>$attributes</code>
       <code>$attributes</code>
       <code>$attributes</code>
       <code>$optionSpec</code>
     </PossiblyInvalidArgument>
+    <PossiblyInvalidOperand occurrences="1">
+      <code>$this-&gt;renderHiddenElement($element)</code>
+    </PossiblyInvalidOperand>
     <RedundantCondition occurrences="2">
       <code>method_exists($element, 'useHiddenElement')</code>
     </RedundantCondition>
@@ -2422,28 +2436,11 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
-    <ArgumentTypeCoercion occurrences="21">
-      <code>$expectedInstance</code>
+    <ArgumentTypeCoercion occurrences="4">
       <code>$this-&gt;classMethodsHydratorClass</code>
       <code>$this-&gt;classMethodsHydratorClass</code>
       <code>$this-&gt;objectPropertyHydratorClass</code>
       <code>'ArrayObject'</code>
-      <code>'LaminasTest\Form\TestAsset\Annotation\Element'</code>
-      <code>'LaminasTest\Form\TestAsset\Annotation\Entity'</code>
-      <code>'LaminasTest\Form\TestAsset\Annotation\Form'</code>
-      <code>'LaminasTest\Form\TestAsset\Annotation\InputFilter'</code>
-      <code>'Laminas\Form\Element'</code>
-      <code>'Laminas\Form\Element'</code>
-      <code>'Laminas\Form\Element'</code>
-      <code>'Laminas\Form\Element'</code>
-      <code>'Laminas\Form\Element\Collection'</code>
-      <code>'Laminas\Form\Fieldset'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\Form'</code>
-      <code>'Laminas\InputFilter\InputFilterInterface'</code>
     </ArgumentTypeCoercion>
     <DeprecatedClass occurrences="2">
       <code>ClassMethods::class</code>
@@ -2452,6 +2449,9 @@
     <DeprecatedMethod occurrences="1">
       <code>allowEmpty</code>
     </DeprecatedMethod>
+    <DocblockTypeContradiction occurrences="1">
+      <code>assertInstanceOf</code>
+    </DocblockTypeContradiction>
     <MissingReturnType occurrences="25">
       <code>testAllowEmptyInput</code>
       <code>testAllowTypeAsElementNameInInputFilter</code>
@@ -2486,18 +2486,16 @@
       <code>$username-&gt;getFilterChain()</code>
       <code>$username-&gt;getValidatorChain()</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
+    <MixedAssignment occurrences="3">
       <code>$element</code>
-      <code>$target</code>
-      <code>$target</code>
       <code>$test</code>
       <code>$test[]</code>
     </MixedAssignment>
     <MixedInferredReturnType occurrences="2">
-      <code>\Generator</code>
-      <code>\Generator</code>
+      <code>Generator</code>
+      <code>Generator</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="11">
+    <MixedMethodCall occurrences="8">
       <code>current</code>
       <code>current</code>
       <code>current</code>
@@ -2506,9 +2504,6 @@
       <code>getName</code>
       <code>getName</code>
       <code>getName</code>
-      <code>getUnderscoreSeparatedKeys</code>
-      <code>has</code>
-      <code>has</code>
     </MixedMethodCall>
     <MixedOperand occurrences="4">
       <code>$first-&gt;getName()</code>
@@ -2524,38 +2519,33 @@
     <PossiblyNullReference occurrences="1">
       <code>getUnderscoreSeparatedKeys</code>
     </PossiblyNullReference>
-    <PossiblyUndefinedMethod occurrences="11">
+    <PossiblyUndefinedMethod occurrences="9">
       <code>allowEmpty</code>
       <code>getFilterChain</code>
       <code>getFilterChain</code>
       <code>getValidatorChain</code>
       <code>getValidatorChain</code>
       <code>getValidatorChain</code>
-      <code>has</code>
-      <code>has</code>
       <code>isRequired</code>
       <code>isRequired</code>
       <code>isRequired</code>
     </PossiblyUndefinedMethod>
-    <UndefinedInterfaceMethod occurrences="19">
+    <UndefinedDocblockClass occurrences="1">
+      <code>$this-&gt;assertInstanceOf(Fieldset::class, $fieldset);</code>
+    </UndefinedDocblockClass>
+    <UndefinedInterfaceMethod occurrences="13">
       <code>$attributes</code>
       <code>$attributes</code>
       <code>$attributes</code>
       <code>continueIfEmpty</code>
       <code>current</code>
-      <code>getHydrator</code>
-      <code>getHydrator</code>
       <code>getIterator</code>
       <code>getIterator</code>
       <code>getIterator</code>
-      <code>getLabelAttributes</code>
-      <code>getObject</code>
-      <code>getTargetElement</code>
       <code>getTargetElement</code>
       <code>getUnderscoreSeparatedKeys</code>
+      <code>getUnderscoreSeparatedKeys</code>
       <code>getValidationGroup</code>
-      <code>has</code>
-      <code>has</code>
       <code>useAsBaseFieldset</code>
     </UndefinedInterfaceMethod>
     <UnusedVariable occurrences="4">
@@ -2576,14 +2566,6 @@
     </MissingReturnType>
   </file>
   <file src="test/Element/CaptchaTest.php">
-    <ArgumentTypeCoercion occurrences="6">
-      <code>'Laminas\Captcha\Dumb'</code>
-      <code>'Laminas\Captcha\Dumb'</code>
-      <code>'Laminas\Captcha\Dumb'</code>
-      <code>'Laminas\Captcha\Dumb'</code>
-      <code>'Laminas\Form\Element\Captcha'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-    </ArgumentTypeCoercion>
     <InvalidArgument occurrences="1">
       <code>$captcha</code>
     </InvalidArgument>
@@ -2596,17 +2578,14 @@
       <code>testProvidesInputSpecificationThatIncludesCaptchaAsValidator</code>
       <code>testSettingCaptchaSetsCaptchaAttribute</code>
     </MissingReturnType>
-    <MixedAssignment occurrences="1">
-      <code>$captcha</code>
-    </MixedAssignment>
     <NullArgument occurrences="1">
       <code>null</code>
     </NullArgument>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>getCaptcha</code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/CheckboxTest.php">
+    <InvalidScalarArgument occurrences="1">
+      <code>123</code>
+    </InvalidScalarArgument>
     <MissingReturnType occurrences="9">
       <code>testCheckWithCheckedValue</code>
       <code>testIntegerCheckedValue</code>
@@ -2624,38 +2603,19 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getHaystack</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/CollectionTest.php">
-    <ArgumentTypeCoercion occurrences="28">
+    <ArgumentTypeCoercion occurrences="12">
+      <code>$collection</code>
+      <code>$collection</code>
+      <code>$collection</code>
+      <code>$collection</code>
+      <code>$collection</code>
+      <code>$collection</code>
       <code>$collection-&gt;getFieldsets()</code>
       <code>$result</code>
       <code>'ArrayAccess'</code>
       <code>'ArrayObject'</code>
-      <code>'LaminasTest\Form\TestAsset\CategoryFieldset'</code>
-      <code>'LaminasTest\Form\TestAsset\CountryFieldset'</code>
-      <code>'LaminasTest\Form\TestAsset\Entity\Address'</code>
-      <code>'LaminasTest\Form\TestAsset\Entity\Category'</code>
-      <code>'LaminasTest\Form\TestAsset\Entity\City'</code>
-      <code>'LaminasTest\Form\TestAsset\Entity\Country'</code>
-      <code>'LaminasTest\Form\TestAsset\Entity\Phone'</code>
-      <code>'LaminasTest\Form\TestAsset\Entity\Product'</code>
-      <code>'LaminasTest\Form\TestAsset\Entity\Product'</code>
-      <code>'LaminasTest\Form\TestAsset\ProductFieldset'</code>
-      <code>'Laminas\Form\Element'</code>
-      <code>'Laminas\Form\Element'</code>
-      <code>'Laminas\Form\Element'</code>
-      <code>'Laminas\Form\Element\Collection'</code>
-      <code>'Laminas\Form\Element\Collection'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Fieldset'</code>
-      <code>'Laminas\Hydrator\HydratorInterface'</code>
       <code>'stdClass'</code>
       <code>'stdClass'</code>
     </ArgumentTypeCoercion>
@@ -2685,21 +2645,13 @@
       <code>new ObjectProperty()</code>
     </DeprecatedClass>
     <InvalidScalarArgument occurrences="3">
-      <code>$_k</code>
-      <code>$_k</code>
-      <code>$_k</code>
+      <code>$key</code>
+      <code>$key</code>
+      <code>$key</code>
     </InvalidScalarArgument>
     <MissingClosureParamType occurrences="1">
       <code>$object</code>
     </MissingClosureParamType>
-    <MissingParamType occurrences="2">
-      <code>$collection</code>
-      <code>$collection</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="2">
-      <code>$form</code>
-      <code>$productFieldset</code>
-    </MissingPropertyType>
     <MissingReturnType occurrences="49">
       <code>prepareForExtract</code>
       <code>prepareForExtractWithCustomTraversable</code>
@@ -2751,10 +2703,7 @@
       <code>testThrowExceptionIfThereAreLessElementsAndAllowRemoveNotAllowed</code>
       <code>testValidateData</code>
     </MissingReturnType>
-    <MixedArgument occurrences="26">
-      <code>$_fieldset-&gt;getFieldsets()</code>
-      <code>$_nestedfieldset-&gt;getFieldsets()</code>
-      <code>$_productfieldset-&gt;getFieldsets()</code>
+    <MixedArgument occurrences="19">
       <code>$collection-&gt;getElements()</code>
       <code>$collection-&gt;getElements()</code>
       <code>$collection-&gt;getElements()</code>
@@ -2764,70 +2713,160 @@
       <code>$collection-&gt;getElements()</code>
       <code>$collection-&gt;getElements()</code>
       <code>$collection-&gt;getObject()</code>
+      <code>$fieldset-&gt;getFieldsets()</code>
       <code>$form-&gt;get('main')-&gt;getFieldsets()</code>
       <code>$form-&gt;get('product')-&gt;get('categories')-&gt;getIterator()</code>
       <code>$form-&gt;get('product')-&gt;get('categories')-&gt;getIterator()</code>
       <code>$formCollection-&gt;getFieldsets()</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
+      <code>$nestedfieldset-&gt;getFieldsets()</code>
+      <code>$productfieldset-&gt;getFieldsets()</code>
       <code>$result-&gt;collection[0]</code>
-      <code>$this-&gt;productFieldset</code>
-      <code>$this-&gt;productFieldset</code>
-      <code>$this-&gt;productFieldset</code>
-      <code>$this-&gt;productFieldset</code>
       <code>$this-&gt;productFieldset-&gt;get('categories')-&gt;getTargetElement()-&gt;getObject()</code>
       <code>$this-&gt;productFieldset-&gt;get('categories')-&gt;getTargetElement()-&gt;getObject()</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="1">
       <code>$result-&gt;collection[0]['test']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="36">
-      <code>$categories</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
+    <MixedAssignment occurrences="17">
+      <code>$addresses</code>
+      <code>$category</code>
+      <code>$childFieldset</code>
+      <code>$childFieldsetName</code>
       <code>$expected</code>
       <code>$field</code>
-      <code>$form</code>
-      <code>$inputFilter</code>
-      <code>$messages</code>
-      <code>$messages</code>
+      <code>$fieldset</code>
+      <code>$fieldset</code>
+      <code>$nestedfieldset</code>
       <code>$phone</code>
+      <code>$phoneFieldset</code>
       <code>$placeholder</code>
-      <code>$targetElement</code>
+      <code>$product</code>
+      <code>$productfieldset</code>
       <code>$targetElement</code>
       <code>$targetElement</code>
       <code>$test</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="186">
-      <code>add</code>
-      <code>add</code>
+    <MixedMethodCall occurrences="41">
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getIterator</code>
+      <code>getIterator</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getValue</code>
+      <code>getValue</code>
+      <code>getValue</code>
+      <code>getValue</code>
+      <code>getValue</code>
+      <code>getValue</code>
+      <code>setHydrator</code>
+      <code>setHydrator</code>
+      <code>setObject</code>
+      <code>setObject</code>
+      <code>setObject</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="1">
+      <code>$object-&gt;field</code>
+    </MixedOperand>
+    <MixedPropertyFetch occurrences="1">
+      <code>$object-&gt;field</code>
+    </MixedPropertyFetch>
+    <NullArgument occurrences="1">
+      <code>null</code>
+    </NullArgument>
+    <PossibleRawObjectIteration occurrences="2">
+      <code>$form-&gt;get('addresses')</code>
+      <code>$form-&gt;get('names')</code>
+    </PossibleRawObjectIteration>
+    <PossiblyInvalidArgument occurrences="6">
+      <code>$form-&gt;get('names')</code>
+      <code>$form-&gt;get('names')</code>
+      <code>$form-&gt;get('names')</code>
+      <code>$messages</code>
+      <code>$messages</code>
+      <code>$result</code>
+    </PossiblyInvalidArgument>
+    <PossiblyInvalidArrayAccess occurrences="1">
+      <code>$result['text']</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidPropertyFetch occurrences="1">
+      <code>$result-&gt;collection</code>
+    </PossiblyInvalidPropertyFetch>
+    <PossiblyNullReference occurrences="1">
+      <code>setHydrator</code>
+    </PossiblyNullReference>
+    <PossiblyUndefinedMethod occurrences="37">
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>getElements</code>
+      <code>getElements</code>
+      <code>getElements</code>
+      <code>getElements</code>
+      <code>getElements</code>
+      <code>getElements</code>
+      <code>getElements</code>
+      <code>getElements</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getFieldsets</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>getObject</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>populateValues</code>
+      <code>setHydrator</code>
+      <code>setHydrator</code>
+      <code>setObject</code>
+      <code>setObject</code>
+      <code>setObject</code>
+      <code>setObject</code>
+    </PossiblyUndefinedMethod>
+    <PossiblyUndefinedVariable occurrences="2">
+      <code>$products</code>
+      <code>$shop</code>
+    </PossiblyUndefinedVariable>
+    <UndefinedInterfaceMethod occurrences="37">
       <code>allowAdd</code>
       <code>allowAdd</code>
       <code>allowAdd</code>
       <code>allowRemove</code>
-      <code>bind</code>
       <code>extract</code>
       <code>extract</code>
       <code>extract</code>
@@ -2836,101 +2875,7 @@
       <code>extract</code>
       <code>extract</code>
       <code>extract</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
       <code>getCount</code>
-      <code>getElements</code>
-      <code>getElements</code>
-      <code>getElements</code>
-      <code>getElements</code>
-      <code>getElements</code>
-      <code>getElements</code>
-      <code>getElements</code>
-      <code>getElements</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getInputFilter</code>
-      <code>getIterator</code>
-      <code>getIterator</code>
-      <code>getMessages</code>
-      <code>getMessages</code>
-      <code>getMessages</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getObject</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getOption</code>
-      <code>getTargetElement</code>
       <code>getTargetElement</code>
       <code>getTargetElement</code>
       <code>getTargetElement</code>
@@ -2939,30 +2884,6 @@
       <code>getTargetElement</code>
       <code>getTargetElement</code>
       <code>getTemplatePlaceholder</code>
-      <code>getValue</code>
-      <code>getValue</code>
-      <code>getValue</code>
-      <code>getValue</code>
-      <code>getValue</code>
-      <code>getValue</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
-      <code>populateValues</code>
       <code>setAllowAdd</code>
       <code>setAllowAdd</code>
       <code>setAllowAdd</code>
@@ -2972,88 +2893,20 @@
       <code>setAllowRemove</code>
       <code>setAllowRemove</code>
       <code>setCount</code>
-      <code>setData</code>
-      <code>setData</code>
-      <code>setData</code>
-      <code>setData</code>
-      <code>setData</code>
-      <code>setData</code>
-      <code>setData</code>
-      <code>setData</code>
       <code>setHydrator</code>
-      <code>setHydrator</code>
-      <code>setHydrator</code>
-      <code>setHydrator</code>
-      <code>setHydrator</code>
-      <code>setHydrator</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setObject</code>
-      <code>setOptions</code>
-      <code>setOptions</code>
-      <code>setOptions</code>
       <code>setShouldCreateTemplate</code>
       <code>setTargetElement</code>
       <code>setTargetElement</code>
       <code>setTemplatePlaceholder</code>
-      <code>setUseAsBaseFieldset</code>
-      <code>setUseAsBaseFieldset</code>
-      <code>setUseAsBaseFieldset</code>
       <code>shouldCreateTemplate</code>
       <code>shouldCreateTemplate</code>
-    </MixedMethodCall>
-    <MixedOperand occurrences="1">
-      <code>$object-&gt;field</code>
-    </MixedOperand>
-    <MixedPropertyFetch occurrences="1">
-      <code>$object-&gt;field</code>
-    </MixedPropertyFetch>
-    <PossibleRawObjectIteration occurrences="3">
-      <code>$_marketCollection</code>
-      <code>$form-&gt;get('addresses')</code>
-      <code>$form-&gt;get('names')</code>
-    </PossibleRawObjectIteration>
-    <PossiblyInvalidArgument occurrences="4">
-      <code>$form-&gt;get('names')</code>
-      <code>$form-&gt;get('names')</code>
-      <code>$form-&gt;get('names')</code>
-      <code>$result</code>
-    </PossiblyInvalidArgument>
-    <PossiblyInvalidArrayAccess occurrences="1">
-      <code>$result['text']</code>
-    </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidPropertyFetch occurrences="1">
-      <code>$result-&gt;collection</code>
-    </PossiblyInvalidPropertyFetch>
-    <PossiblyUndefinedMethod occurrences="10">
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>getFieldsets</code>
-      <code>populateValues</code>
-    </PossiblyUndefinedMethod>
-    <PossiblyUndefinedVariable occurrences="2">
-      <code>$products</code>
-      <code>$shop</code>
-    </PossiblyUndefinedVariable>
+    </UndefinedInterfaceMethod>
     <UnusedVariable occurrences="1">
       <code>$collection</code>
     </UnusedVariable>
   </file>
   <file src="test/Element/ColorTest.php">
-    <MissingReturnType occurrences="2">
-      <code>colorData</code>
+    <MissingReturnType occurrences="1">
       <code>testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes</code>
     </MissingReturnType>
     <MixedArgument occurrences="1">
@@ -3062,17 +2915,8 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getPattern</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/CsrfTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Validator\Csrf'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="1">
-      <code>$validatorMock</code>
-    </InvalidArgument>
     <MissingReturnType occurrences="5">
       <code>testAllowSettingCsrfOptions</code>
       <code>testAllowSettingCsrfValidatorOptions</code>
@@ -3086,9 +2930,6 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getName</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/DateSelectTest.php">
     <InvalidArgument occurrences="1">
@@ -3111,9 +2952,6 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getFormat</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/DateTest.php">
     <MissingReturnType occurrences="7">
@@ -3125,12 +2963,11 @@
       <code>testStepValidatorIgnoresDaylightSavings</code>
       <code>testValueReturnedFromComposedDateTimeIsRfc3339FullDateFormat</code>
     </MissingReturnType>
-    <MixedArgument occurrences="5">
+    <MixedArgument occurrences="4">
       <code>$validator</code>
       <code>$validator</code>
       <code>$validator</code>
       <code>$validator</code>
-      <code>get_class($validator)</code>
     </MixedArgument>
     <MixedAssignment occurrences="5">
       <code>$validator</code>
@@ -3139,23 +2976,6 @@
       <code>$validator</code>
       <code>$value</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="10">
-      <code>getBaseValue</code>
-      <code>getBaseValue</code>
-      <code>getFormat</code>
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getStep</code>
-      <code>getStep</code>
-      <code>isValid</code>
-    </MixedMethodCall>
-    <TypeDoesNotContainType occurrences="3">
-      <code>'Laminas\Validator\Date'</code>
-      <code>'Laminas\Validator\DateStep'</code>
-      <code>'Laminas\Validator\DateStep'</code>
-    </TypeDoesNotContainType>
   </file>
   <file src="test/Element/DateTimeLocalTest.php">
     <MissingReturnType occurrences="3">
@@ -3169,13 +2989,6 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="5">
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getStep</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/DateTimeSelectTest.php">
     <MissingReturnType occurrences="9">
@@ -3195,9 +3008,6 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getFormat</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/DateTimeTest.php">
     <MissingReturnType occurrences="9">
@@ -3225,61 +3035,31 @@
       <code>$filter</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="5">
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getStep</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/EmailTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Validator\Regex'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$attributes</code>
-      <code>$expectedValidators</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="3">
-      <code>emailAttributesDataProvider</code>
+    <MissingReturnType occurrences="2">
       <code>testProvidesInputSpecificationBasedOnAttributes</code>
       <code>testProvidesInputSpecificationThatIncludesDefaultValidators</code>
     </MissingReturnType>
-    <MixedArgument occurrences="3">
-      <code>$attributes</code>
+    <MixedArgument occurrences="2">
       <code>$validator</code>
       <code>$validator</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="1">
-      <code>$expectedValidators[$i]</code>
-    </MixedArrayAccess>
     <MixedAssignment occurrences="2">
       <code>$validator</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getValidator</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
   </file>
   <file src="test/Element/FileTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Form'</code>
-      <code>'Laminas\InputFilter\FileInput'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="1">
-      <code>$formMock</code>
-    </InvalidArgument>
     <MissingReturnType occurrences="2">
       <code>testProvidesDefaultInputSpecification</code>
       <code>testWillAddFileEnctypeAttributeToForm</code>
     </MissingReturnType>
   </file>
   <file src="test/Element/MonthSelectTest.php">
-    <MissingParamType occurrences="2">
-      <code>$expected</code>
-      <code>$value</code>
-    </MissingParamType>
     <MissingReturnType occurrences="4">
       <code>testCanGetValue</code>
       <code>testCanSetMonthFromDateTime</code>
@@ -3299,18 +3079,12 @@
     <MixedInferredReturnType occurrences="1">
       <code>array</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="2">
-      <code>getPattern</code>
+    <MixedMethodCall occurrences="1">
       <code>isValid</code>
     </MixedMethodCall>
   </file>
   <file src="test/Element/MonthTest.php">
-    <MissingParamType occurrences="2">
-      <code>$expected</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="3">
-      <code>monthValuesDataProvider</code>
+    <MissingReturnType occurrences="2">
       <code>testHTML5MonthValidation</code>
       <code>testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes</code>
     </MissingReturnType>
@@ -3324,29 +3098,15 @@
       <code>$monthValidator</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="6">
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getStep</code>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
       <code>isValid</code>
     </MixedMethodCall>
   </file>
   <file src="test/Element/MultiCheckboxTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Validator\Explode'</code>
-      <code>'Laminas\Validator\InArray'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="5">
-      <code>$options</code>
-      <code>$options</code>
-      <code>$useHiddenElement</code>
-      <code>$valueTests</code>
-      <code>$valueTests</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="11">
-      <code>multiCheckboxOptionsDataProvider</code>
+    <MissingReturnType occurrences="9">
       <code>testAttributeType</code>
       <code>testDisableInputSpecification</code>
       <code>testInArrayValidationOfOptions</code>
@@ -3356,31 +3116,28 @@
       <code>testSetOptionsOptions</code>
       <code>testUnsetUndefinedValueOption</code>
       <code>testUnsetValueOption</code>
-      <code>useHiddenAttributeDataProvider</code>
     </MissingReturnType>
-    <MixedArgument occurrences="5">
+    <MixedArgument occurrences="3">
       <code>$element-&gt;getValue()</code>
       <code>$haystack</code>
-      <code>$options</code>
-      <code>$useHiddenElement</code>
       <code>$validator</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="2">
       <code>$inputSpec['validators'][0]</code>
       <code>$inputSpec['validators'][0]</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="5">
-      <code>$explodeValidator</code>
+    <MixedAssignment occurrences="3">
       <code>$haystack</code>
-      <code>$inArrayValidator</code>
       <code>$inArrayValidator</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="4">
+    <MixedInferredReturnType occurrences="2">
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="2">
       <code>getHaystack</code>
       <code>getValidator</code>
-      <code>getValidator</code>
-      <code>isValid</code>
     </MixedMethodCall>
     <PossiblyInvalidArgument occurrences="1">
       <code>$attributes</code>
@@ -3411,57 +3168,27 @@
       <code>$validator</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="12">
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getStep</code>
-      <code>getStep</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-      <code>isValid</code>
-    </MixedMethodCall>
-    <TypeDoesNotContainType occurrences="3">
-      <code>get_class($validator) == 'Laminas\Validator\GreaterThan'</code>
-      <code>get_class($validator) == 'Laminas\Validator\GreaterThan'</code>
-      <code>get_class($validator) == 'Laminas\Validator\Regex'</code>
-    </TypeDoesNotContainType>
   </file>
   <file src="test/Element/RadioTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Validator\InArray'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="3">
-      <code>$options</code>
-      <code>$useHiddenElement</code>
-      <code>$valueTests</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="5">
-      <code>radioOptionsDataProvider</code>
+    <MissingReturnType occurrences="3">
       <code>testDisableInputSpecification</code>
       <code>testInArrayValidationOfOptions</code>
       <code>testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes</code>
-      <code>useHiddenAttributeDataProvider</code>
     </MissingReturnType>
-    <MixedArgument occurrences="2">
-      <code>$useHiddenElement</code>
+    <MixedArgument occurrences="1">
       <code>$validator</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="1">
       <code>$inputSpec['validators'][0]</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="3">
-      <code>$inArrayValidator</code>
+    <MixedAssignment occurrences="2">
       <code>$validator</code>
       <code>$valueToTest</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>isValid</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="2">
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
   </file>
   <file src="test/Element/RangeTest.php">
     <MissingReturnType occurrences="2">
@@ -3476,18 +3203,6 @@
       <code>$validator</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="10">
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getMin</code>
-      <code>getStep</code>
-      <code>getStep</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/SearchTest.php">
     <MissingReturnType occurrences="1">
@@ -3495,19 +3210,7 @@
     </MissingReturnType>
   </file>
   <file src="test/Element/SelectTest.php">
-    <ArgumentTypeCoercion occurrences="3">
-      <code>'Laminas\Validator\InArray'</code>
-      <code>'Laminas\Validator\InArray'</code>
-      <code>'Laminas\Validator\InArray'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="4">
-      <code>$options</code>
-      <code>$options</code>
-      <code>$valueTests</code>
-      <code>$valueTests</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="16">
-      <code>selectOptionsDataProvider</code>
+    <MissingReturnType occurrences="15">
       <code>testDeprecateOptionsInAttributes</code>
       <code>testDisableInputSpecification</code>
       <code>testInArrayValidationOfOptions</code>
@@ -3524,10 +3227,8 @@
       <code>testValidateWorksForNestedSelectElementWithExplicitNaming</code>
       <code>testValidateWorksForNestedSelectElementWithSimpleNaming</code>
     </MissingReturnType>
-    <MixedArgument occurrences="5">
+    <MixedArgument occurrences="3">
       <code>$haystack</code>
-      <code>$options</code>
-      <code>$options</code>
       <code>$validator</code>
       <code>$validator</code>
     </MixedArgument>
@@ -3537,20 +3238,18 @@
       <code>$inputSpec['validators'][0]</code>
       <code>$inputSpec['validators'][0]</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="8">
+    <MixedAssignment occurrences="6">
       <code>$haystack</code>
-      <code>$inArrayValidator</code>
-      <code>$inArrayValidator</code>
       <code>$inArrayValidator</code>
       <code>$inArrayValidator</code>
       <code>$validator</code>
       <code>$validator</code>
       <code>$valueToTest</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="9">
-      <code>getHaystack</code>
-      <code>getValidator</code>
-      <code>isValid</code>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="6">
       <code>isValid</code>
       <code>isValid</code>
       <code>isValid</code>
@@ -3560,22 +3259,24 @@
     </MixedMethodCall>
   </file>
   <file src="test/Element/TelTest.php">
-    <MissingReturnType occurrences="5">
+    <MissingReturnType occurrences="4">
       <code>assertInputSpecContainsFilters</code>
       <code>assertInputSpecContainsRegexValidator</code>
-      <code>getFilterName</code>
       <code>testInputSpecification</code>
       <code>testType</code>
     </MissingReturnType>
     <MixedArgument occurrences="1">
       <code>$inputSpec['filters']</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="1">
-      <code>$inputSpec['filters']</code>
-    </MixedArrayAccess>
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
+    <MixedInferredReturnType occurrences="1">
+      <code>string</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="1">
+      <code>$filterSpec['name']</code>
+    </MixedReturnStatement>
   </file>
   <file src="test/Element/TimeTest.php">
     <MissingReturnType occurrences="3">
@@ -3589,14 +3290,6 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="6">
-      <code>getFormat</code>
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getStep</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/UrlTest.php">
     <MissingReturnType occurrences="1">
@@ -3608,20 +3301,11 @@
     <MixedAssignment occurrences="1">
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAllowAbsolute</code>
-      <code>getAllowRelative</code>
-    </MixedMethodCall>
   </file>
   <file src="test/Element/WeekTest.php">
-    <MissingParamType occurrences="2">
-      <code>$expected</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="3">
+    <MissingReturnType occurrences="2">
       <code>testHTML5WeekValidation</code>
       <code>testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes</code>
-      <code>weekValuesDataProvider</code>
     </MissingReturnType>
     <MixedArgument occurrences="1">
       <code>$validator</code>
@@ -3633,33 +3317,25 @@
       <code>$validator</code>
       <code>$weekValidator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="6">
-      <code>getInclusive</code>
-      <code>getInclusive</code>
-      <code>getMax</code>
-      <code>getMin</code>
-      <code>getStep</code>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="1">
       <code>isValid</code>
     </MixedMethodCall>
   </file>
   <file src="test/ElementFactoryTest.php">
-    <MissingPropertyType occurrences="1">
-      <code>$result-&gt;args</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="2">
+    <MissingReturnType occurrences="1">
       <code>testValidCreationOptions</code>
-      <code>validCreationOptions</code>
     </MissingReturnType>
     <MixedArgument occurrences="1">
       <code>$creationOptions</code>
     </MixedArgument>
+    <MixedInferredReturnType occurrences="1">
+      <code>Generator</code>
+    </MixedInferredReturnType>
   </file>
   <file src="test/ElementTest.php">
-    <ArgumentTypeCoercion occurrences="3">
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="35">
       <code>testAddingAttributesMerges</code>
       <code>testAttributesAreEmptyByDefault</code>
@@ -3710,50 +3386,6 @@
     </NullArgument>
   </file>
   <file src="test/FactoryTest.php">
-    <ArgumentTypeCoercion occurrences="42">
-      <code>'LaminasTest\Form\TestAsset\InputFilter'</code>
-      <code>'LaminasTest\Form\TestAsset\InputFilter'</code>
-      <code>'Laminas\Form\ElementInterface'</code>
-      <code>'Laminas\Form\ElementInterface'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Factory'</code>
-      <code>'Laminas\Form\Factory'</code>
-      <code>'Laminas\Form\Fieldset'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\Form\Form'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\Form\FormInterface'</code>
-      <code>'Laminas\InputFilter\Input'</code>
-      <code>'Laminas\InputFilter\Input'</code>
-      <code>'Laminas\InputFilter\Input'</code>
-      <code>'Laminas\InputFilter\Input'</code>
-      <code>'Laminas\InputFilter\InputFilterInterface'</code>
-      <code>'Laminas\InputFilter\InputFilterInterface'</code>
-      <code>'Laminas\InputFilter\InputFilterInterface'</code>
-      <code>'Laminas\Validator\ValidatorChain'</code>
-      <code>'Laminas\Validator\ValidatorChain'</code>
-      <code>'Laminas\Validator\ValidatorInterface'</code>
-      <code>'Laminas\Validator\ValidatorInterface'</code>
-    </ArgumentTypeCoercion>
     <DeprecatedClass occurrences="6">
       <code>ClassMethods::class</code>
       <code>ObjectProperty::class</code>
@@ -3795,90 +3427,42 @@
       <code>testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected</code>
       <code>testPrepareAndInjectWillThrowAndException</code>
     </MissingReturnType>
-    <MixedArgument occurrences="2">
-      <code>$input-&gt;getFilterChain()</code>
-      <code>$input-&gt;getValidatorChain()</code>
-    </MixedArgument>
     <MixedArrayAccess occurrences="2">
       <code>$validator['instance']</code>
       <code>$validator['instance']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="24">
+    <MixedAssignment occurrences="12">
       <code>$element</code>
       <code>$element</code>
       <code>$element</code>
       <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$factory</code>
-      <code>$factory</code>
       <code>$test</code>
       <code>$test</code>
       <code>$test</code>
       <code>$test</code>
       <code>$validator</code>
       <code>$validator</code>
-      <code>$validatorArray</code>
-      <code>$validatorArray</code>
-      <code>$validatorChain</code>
-      <code>$validatorChain</code>
       <code>$validatorInstance</code>
       <code>$validatorInstance</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="19">
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
+    <MixedMethodCall occurrences="5">
       <code>getFormElementManager</code>
       <code>getName</code>
       <code>getName</code>
       <code>getName</code>
       <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getValidators</code>
-      <code>getValidators</code>
     </MixedMethodCall>
     <ParadoxicalCondition occurrences="1"/>
     <PossiblyNullReference occurrences="1">
       <code>getUnderscoreSeparatedKeys</code>
     </PossiblyNullReference>
-    <PossiblyUndefinedMethod occurrences="6">
-      <code>allowEmpty</code>
-      <code>getFilterChain</code>
-      <code>getValidatorChain</code>
-      <code>getValidatorChain</code>
-      <code>getValidatorChain</code>
-      <code>isRequired</code>
-    </PossiblyUndefinedMethod>
     <PossiblyUndefinedVariable occurrences="4">
       <code>$test</code>
       <code>$test</code>
       <code>$test</code>
       <code>$test</code>
     </PossiblyUndefinedVariable>
-    <RawObjectIteration occurrences="2">
-      <code>$fieldset</code>
-      <code>$fieldset</code>
-    </RawObjectIteration>
-    <UndefinedInterfaceMethod occurrences="11">
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
+    <UndefinedInterfaceMethod occurrences="5">
       <code>getFormFactory</code>
       <code>getFormFactory</code>
       <code>getFormFactory</code>
@@ -3887,14 +3471,6 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/FieldsetTest.php">
-    <ArgumentTypeCoercion occurrences="6">
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-    </ArgumentTypeCoercion>
     <DeprecatedClass occurrences="3">
       <code>new Hydrator\ObjectProperty()</code>
       <code>new Hydrator\ObjectProperty()</code>
@@ -3911,8 +3487,7 @@
       <code>$elements[$name]</code>
       <code>$fieldsets[$name]</code>
     </InvalidArrayAccess>
-    <MissingReturnType occurrences="50">
-      <code>getMessages</code>
+    <MissingReturnType occurrences="49">
       <code>populateFieldset</code>
       <code>testAddWithInvalidElementRaisesException</code>
       <code>testAddingAnElementWithNoNameOrAliasWillRaiseException</code>
@@ -3963,26 +3538,16 @@
       <code>testSubFieldsetsBindObject</code>
       <code>testTraversableAcceptedValueForFieldset</code>
     </MissingReturnType>
-    <MixedArgument occurrences="5">
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
+    <MixedArgument occurrences="2">
       <code>$messages['set']</code>
       <code>$messages['set']</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="2">
-      <code>$messages['bar']</code>
-      <code>$messages['barbaz']</code>
-    </MixedArrayAccess>
-    <MixedAssignment occurrences="16">
+    <MixedAssignment occurrences="13">
       <code>$element</code>
       <code>$element</code>
       <code>$element</code>
       <code>$element</code>
       <code>$element</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
       <code>$option</code>
       <code>$option</code>
       <code>$option</code>
@@ -4010,13 +3575,6 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/FormAbstractServiceFactoryTest.php">
-    <ArgumentTypeCoercion occurrences="5">
-      <code>'Laminas\Form\Form'</code>
-      <code>'Laminas\Form\Form'</code>
-      <code>'Laminas\InputFilter\Factory'</code>
-      <code>'Laminas\InputFilter\InputFilter'</code>
-      <code>'Laminas\InputFilter\InputFilter'</code>
-    </ArgumentTypeCoercion>
     <DeprecatedClass occurrences="1">
       <code>ObjectProperty::class</code>
     </DeprecatedClass>
@@ -4037,21 +3595,13 @@
       <code>$this-&gt;objectPropertyHydratorClass</code>
       <code>$this-&gt;objectPropertyHydratorClass</code>
     </MixedArgument>
-    <MixedAssignment occurrences="12">
+    <MixedAssignment occurrences="4">
       <code>$filters</code>
       <code>$filters</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$hydrator</code>
-      <code>$hydrator</code>
-      <code>$inputFactory</code>
-      <code>$inputFactory</code>
-      <code>$inputFilter</code>
-      <code>$inputFilter</code>
       <code>$validators</code>
       <code>$validators</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="39">
+    <MixedMethodCall occurrences="25">
       <code>__invoke</code>
       <code>__invoke</code>
       <code>canCreate</code>
@@ -4067,20 +3617,6 @@
       <code>get</code>
       <code>get</code>
       <code>get</code>
-      <code>getDefaultFilterChain</code>
-      <code>getDefaultFilterChain</code>
-      <code>getDefaultValidatorChain</code>
-      <code>getDefaultValidatorChain</code>
-      <code>getFactory</code>
-      <code>getFactory</code>
-      <code>getHydrator</code>
-      <code>getHydrator</code>
-      <code>getInputFilter</code>
-      <code>getInputFilter</code>
-      <code>getPluginManager</code>
-      <code>getPluginManager</code>
-      <code>getPluginManager</code>
-      <code>getPluginManager</code>
       <code>setService</code>
       <code>setService</code>
       <code>setService</code>
@@ -4092,6 +3628,12 @@
       <code>setService</code>
       <code>setService</code>
     </MixedMethodCall>
+    <PossiblyNullReference occurrences="4">
+      <code>getPluginManager</code>
+      <code>getPluginManager</code>
+      <code>getPluginManager</code>
+      <code>getPluginManager</code>
+    </PossiblyNullReference>
     <TooManyArguments occurrences="1">
       <code>new FormAbstractServiceFactory($services)</code>
     </TooManyArguments>
@@ -4153,8 +3695,9 @@
     </UnusedVariable>
   </file>
   <file src="test/FormElementManagerTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Element'</code>
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$this-&gt;getInvalidServiceException()</code>
+      <code>$this-&gt;getInvalidServiceException()</code>
     </ArgumentTypeCoercion>
     <DeprecatedMethod occurrences="1">
       <code>setMethods</code>
@@ -4171,8 +3714,7 @@
       <code>function () {}</code>
       <code>function () {}</code>
     </MissingClosureReturnType>
-    <MissingReturnType occurrences="14">
-      <code>getInvalidServiceException</code>
+    <MissingReturnType occurrences="13">
       <code>testAddingInvokableCreatesAliasAndMapsClassToElementFactory</code>
       <code>testAllAliasesShouldBeCanonicalized</code>
       <code>testArrayCreationOptions</code>
@@ -4187,7 +3729,7 @@
       <code>testSharedFormElementsAreNotInitializedMultipleTimes</code>
       <code>testWillInstantiateFormFromInvokable</code>
     </MissingReturnType>
-    <MixedArgument occurrences="11">
+    <MixedArgument occurrences="9">
       <code>$actual</code>
       <code>$actual</code>
       <code>$actual</code>
@@ -4197,8 +3739,6 @@
       <code>$factories</code>
       <code>$name</code>
       <code>$name</code>
-      <code>$this-&gt;getInvalidServiceException()</code>
-      <code>$this-&gt;getInvalidServiceException()</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="3">
       <code>$aliases['foo']</code>
@@ -4250,28 +3790,15 @@
     </UnusedVariable>
   </file>
   <file src="test/FormFactoryAwareTraitTest.php">
-    <MissingReturnType occurrences="2">
-      <code>getFormFactory</code>
+    <MissingReturnType occurrences="1">
       <code>testSetFormFactory</code>
     </MissingReturnType>
   </file>
   <file src="test/FormTest.php">
-    <ArgumentTypeCoercion occurrences="34">
+    <ArgumentTypeCoercion occurrences="22">
       <code>$hydrator</code>
       <code>$this-&gt;arraySerializableHydratorClass</code>
       <code>$this-&gt;arraySerializableHydratorClass</code>
-      <code>'Laminas\Form\ElementInterface'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Factory'</code>
-      <code>'Laminas\Form\FieldsetInterface'</code>
-      <code>'Laminas\InputFilter\FileInput'</code>
-      <code>'Laminas\InputFilter\InputInterface'</code>
       <code>new $this-&gt;arraySerializableHydratorClass()</code>
       <code>new $this-&gt;arraySerializableHydratorClass()</code>
       <code>new $this-&gt;classMethodsHydratorClass()</code>
@@ -4335,9 +3862,7 @@
       <code>new $this-&gt;objectPropertyHydratorClass()</code>
       <code>new $this-&gt;objectPropertyHydratorClass()</code>
     </InvalidStringClass>
-    <MissingReturnType occurrences="103">
-      <code>getComposedEntity</code>
-      <code>getOneToManyEntity</code>
+    <MissingReturnType occurrences="101">
       <code>populateForm</code>
       <code>populateHydratorStrategyForm</code>
       <code>testAddNonBaseFieldsetObjectInputFilterToFormInputFilter</code>
@@ -4440,20 +3965,15 @@
       <code>testWillUseInputFilterSpecificationFromFieldsetInInputFilterIfNoMatchingInputFilterFound</code>
       <code>testWillUseInputSpecificationFromElementInInputFilterIfNoMatchingInputFound</code>
     </MissingReturnType>
-    <MixedArgument occurrences="17">
-      <code>$address</code>
-      <code>$chain</code>
-      <code>$filters</code>
+    <MixedArgument occurrences="12">
       <code>$filters</code>
       <code>$filters</code>
       <code>$filters</code>
       <code>$filters</code>
       <code>$model-&gt;categories[0]</code>
-      <code>$product</code>
       <code>$this-&gt;form-&gt;getInputFilter()-&gt;get('items')-&gt;getInputFilter()-&gt;getInputs()</code>
       <code>$this-&gt;form-&gt;getObject()-&gt;getCategory(0)</code>
       <code>$this-&gt;form-&gt;getObject()-&gt;getCategory(0)</code>
-      <code>$validators</code>
       <code>$validators</code>
       <code>$validators</code>
       <code>$validators</code>
@@ -4465,19 +3985,14 @@
       <code>$model-&gt;categories[0]</code>
       <code>$model-&gt;categories[0]</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="26">
-      <code>$address</code>
-      <code>$address</code>
+    <MixedAssignment occurrences="18">
       <code>$baseHydrator</code>
-      <code>$chain</code>
       <code>$element</code>
       <code>$fieldsetBar</code>
       <code>$fieldsetBar</code>
       <code>$fieldsetFoo</code>
       <code>$fieldsetFoo</code>
       <code>$fieldsets</code>
-      <code>$fileInput</code>
-      <code>$filters</code>
       <code>$filters</code>
       <code>$filters</code>
       <code>$filters</code>
@@ -4485,9 +4000,6 @@
       <code>$filters</code>
       <code>$formCollection</code>
       <code>$nestedFieldset</code>
-      <code>$product</code>
-      <code>$product</code>
-      <code>$validators</code>
       <code>$validators</code>
       <code>$validators</code>
       <code>$validators</code>
@@ -4496,7 +4008,7 @@
     <MixedInferredReturnType occurrences="1">
       <code>array</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="31">
+    <MixedMethodCall occurrences="26">
       <code>addStrategy</code>
       <code>count</code>
       <code>get</code>
@@ -4505,12 +4017,7 @@
       <code>get</code>
       <code>getCategory</code>
       <code>getCategory</code>
-      <code>getField1</code>
-      <code>getField1</code>
-      <code>getField2</code>
-      <code>getField2</code>
       <code>getFieldsets</code>
-      <code>getFilterChain</code>
       <code>getFilterChain</code>
       <code>getInputs</code>
       <code>getName</code>
@@ -4555,7 +4062,7 @@
       <code>var_export($emptyProduct, 1)</code>
       <code>var_export($product, 1)</code>
     </PossiblyNullOperand>
-    <PossiblyUndefinedMethod occurrences="37">
+    <PossiblyUndefinedMethod occurrences="33">
       <code>add</code>
       <code>get</code>
       <code>get</code>
@@ -4571,19 +4078,15 @@
       <code>getFilterChain</code>
       <code>getFilterChain</code>
       <code>getFilterChain</code>
-      <code>getFilterChain</code>
       <code>getHydrator</code>
       <code>getName</code>
       <code>getName</code>
       <code>getName</code>
-      <code>getName</code>
-      <code>getValidatorChain</code>
       <code>getValidatorChain</code>
       <code>getValidatorChain</code>
       <code>getValidatorChain</code>
       <code>getValidatorChain</code>
       <code>has</code>
-      <code>isRequired</code>
       <code>isRequired</code>
       <code>isRequired</code>
       <code>isRequired</code>
@@ -4599,6 +4102,9 @@
       <code>$factory-&gt;createForm($spec)</code>
       <code>$factory-&gt;createForm($spec)</code>
     </PropertyTypeCoercion>
+    <RedundantCast occurrences="1">
+      <code>(array) $model-&gt;getEntities()</code>
+    </RedundantCast>
     <UndefinedInterfaceMethod occurrences="10">
       <code>$fieldsets</code>
       <code>$fieldsets</code>
@@ -4639,28 +4145,19 @@
     </UndefinedThisPropertyFetch>
   </file>
   <file src="test/Integration/FormCreatesCollectionInputFilterTest.php">
-    <MissingParamType occurrences="2">
-      <code>$class</code>
-      <code>$message</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="3">
-      <code>assertValidatorFound</code>
+    <MissingReturnType occurrences="1">
       <code>testCollectionElementDoesNotCreateDiscreteElementInInputFilter</code>
-      <code>testCollectionInputFilterContainsExpectedValidators</code>
     </MissingReturnType>
-    <MixedArgument occurrences="4">
-      <code>$class</code>
-      <code>$message</code>
+    <MixedArgument occurrences="2">
       <code>$validators</code>
       <code>$validators</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="1">
       <code>$instance['instance']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="5">
+    <MixedAssignment occurrences="4">
       <code>$filter</code>
       <code>$instance</code>
-      <code>$message</code>
       <code>$validator</code>
       <code>$validators</code>
     </MixedAssignment>
@@ -4678,6 +4175,9 @@
       <code>$this-&gt;prophesize(InitializerInterface::class)</code>
       <code>$this-&gt;prophesize(InitializerInterface::class)</code>
     </DeprecatedClass>
+    <DocblockTypeContradiction occurrences="1">
+      <code>assertSame</code>
+    </DocblockTypeContradiction>
     <MissingClosureParamType occurrences="1">
       <code>$form</code>
     </MissingClosureParamType>
@@ -4686,9 +4186,6 @@
       <code>function () use (&amp;$test) {</code>
       <code>function () use (&amp;$test) {</code>
     </MissingClosureReturnType>
-    <MissingPropertyType occurrences="1">
-      <code>$form-&gt;elementManagerAtInit</code>
-    </MissingPropertyType>
     <MissingReturnType occurrences="2">
       <code>testInitInitializerShouldBeCalledAfterAllOtherInitializers</code>
       <code>testInjectFactoryInitializerShouldTriggerBeforeInitInitializer</code>
@@ -4710,33 +4207,36 @@
     </RedundantCondition>
   </file>
   <file src="test/Integration/TestAsset/Form.php">
-    <MissingPropertyType occurrences="1">
-      <code>$elementManagerAtInit</code>
-    </MissingPropertyType>
+    <InvalidPropertyAssignmentValue occurrences="1">
+      <code>$this-&gt;getFormFactory()-&gt;getFormElementManager()</code>
+    </InvalidPropertyAssignmentValue>
     <PropertyNotSetInConstructor occurrences="4">
       <code>Form</code>
       <code>Form</code>
       <code>Form</code>
       <code>Form</code>
     </PropertyNotSetInConstructor>
+    <UndefinedDocblockClass occurrences="1">
+      <code>null|FormElementManager</code>
+    </UndefinedDocblockClass>
   </file>
   <file src="test/LabelAwareTraitTest.php">
     <InvalidScalarArgument occurrences="15">
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
-      <code>'\Laminas\Form\LabelAwareTrait'</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
+      <code>LabelAwareTrait::class</code>
     </InvalidScalarArgument>
     <MissingReturnType occurrences="16">
       <code>testClearLabelOptions</code>
@@ -4812,85 +4312,126 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/Annotation/ClassEntity.php">
-    <MissingPropertyType occurrences="2">
-      <code>$keep</code>
-      <code>$omit</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="7">
+      <code>Annotation\Attributes</code>
+      <code>Annotation\Attributes</code>
+      <code>Annotation\Exclude</code>
+      <code>Annotation\InputFilter</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\ValidationGroup</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/ComplexEntity.php">
-    <MissingPropertyType occurrences="5">
-      <code>$avatar</code>
-      <code>$email</code>
-      <code>$password</code>
-      <code>$someComposedObject</code>
-      <code>$username</code>
-    </MissingPropertyType>
+    <DeprecatedClass occurrences="1">
+      <code>Annotation\AllowEmpty()</code>
+    </DeprecatedClass>
+    <InvalidAttribute occurrences="12">
+      <code>Annotation\AllowEmpty</code>
+      <code>Annotation\Attributes</code>
+      <code>Annotation\Attributes</code>
+      <code>Annotation\Attributes</code>
+      <code>Annotation\Attributes</code>
+      <code>Annotation\ErrorMessage</code>
+      <code>Annotation\Exclude</code>
+      <code>Annotation\Flags</code>
+      <code>Annotation\Hydrator</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Required</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/Entity.php">
-    <MissingPropertyType occurrences="2">
-      <code>$password</code>
-      <code>$username</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="3">
+      <code>Annotation\Attributes</code>
+      <code>Annotation\ErrorMessage</code>
+      <code>Annotation\Required</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityComposingAnEntity.php">
-    <MissingPropertyType occurrences="1">
-      <code>$child</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="3">
+      <code>Annotation\ComposedObject</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityComposingMultipleEntities.php">
-    <MissingPropertyType occurrences="1">
-      <code>$child</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="3">
+      <code>Annotation\ComposedObject</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityUsingComposedObjectAndOptions.php">
-    <MissingPropertyType occurrences="4">
-      <code>$child</code>
-      <code>$childTheFourth</code>
-      <code>$childTheSecond</code>
-      <code>$childTheThird</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="13">
+      <code>Annotation\ComposedObject</code>
+      <code>Annotation\ComposedObject</code>
+      <code>Annotation\ComposedObject</code>
+      <code>Annotation\ComposedObject</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Options</code>
+      <code>Annotation\Options</code>
+      <code>Annotation\Options</code>
+      <code>Annotation\Options</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityUsingInstanceProperty.php">
-    <MissingPropertyType occurrences="1">
-      <code>$object</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="4">
+      <code>Annotation\Hydrator</code>
+      <code>Annotation\Instance</code>
+      <code>Annotation\Options</code>
+      <code>Annotation\Type</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityUsingOptions.php">
-    <MissingPropertyType occurrences="1">
-      <code>$username</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="2">
+      <code>Annotation\Options</code>
+      <code>Annotation\Options</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityWithHydratorArray.php">
-    <MissingPropertyType occurrences="1">
-      <code>$username</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="4">
+      <code>Annotation\Attributes</code>
+      <code>Annotation\Hydrator</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Options</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityWithInputFilterAnnotation.php">
-    <MissingPropertyType occurrences="2">
-      <code>$password</code>
-      <code>$username</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="4">
+      <code>Annotation\Attributes</code>
+      <code>Annotation\ErrorMessage</code>
+      <code>Annotation\InputFilter</code>
+      <code>Annotation\Required</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityWithInputFilterInput.php">
-    <MissingPropertyType occurrences="1">
-      <code>$input</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="1">
+      <code>Annotation\Input</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/EntityWithTypeAsElementName.php">
-    <MissingPropertyType occurrences="1">
-      <code>$type</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="2">
+      <code>Annotation\Name</code>
+      <code>Annotation\Required</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/ExtendedEntity.php">
-    <MissingPropertyType occurrences="1">
-      <code>$email</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="3">
+      <code>Annotation\Attributes</code>
+      <code>Annotation\Flags</code>
+      <code>Annotation\Name</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/FieldsetOrderEntity.php">
-    <MissingPropertyType occurrences="2">
-      <code>$element</code>
-      <code>$fieldset</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="2">
+      <code>Annotation\Type</code>
+      <code>Annotation\Type</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/Form.php">
     <PropertyNotSetInConstructor occurrences="4">
@@ -4910,54 +4451,57 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/Annotation/LegacyComposedObjectAnnotation.php">
-    <MissingPropertyType occurrences="1">
-      <code>$child</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="3">
+      <code>Annotation\ComposedObject</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Name</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/LegacyFilterAnnotation.php">
-    <MissingPropertyType occurrences="1">
-      <code>$username</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="1">
+      <code>Annotation\Required</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
+    <InvalidAttribute occurrences="3">
+      <code>Annotation\Hydrator</code>
+      <code>Annotation\Name</code>
+      <code>Annotation\Options</code>
+    </InvalidAttribute>
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
   </file>
   <file src="test/TestAsset/Annotation/LegacyValidatorAnnotation.php">
-    <MissingPropertyType occurrences="1">
-      <code>$username</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="1">
+      <code>Annotation\Required</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/SampleEntity.php">
-    <MissingPropertyType occurrences="2">
-      <code>$anotherSampleInput</code>
-      <code>$sampleinput</code>
-    </MissingPropertyType>
+    <DeprecatedClass occurrences="2">
+      <code>Annotation\AllowEmpty(true)</code>
+      <code>Annotation\ContinueIfEmpty(true)</code>
+    </DeprecatedClass>
+    <InvalidAttribute occurrences="5">
+      <code>Annotation\AllowEmpty</code>
+      <code>Annotation\Attributes</code>
+      <code>Annotation\ContinueIfEmpty</code>
+      <code>Annotation\ErrorMessage</code>
+      <code>Annotation\Required</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/TypedEntity.php">
-    <MissingPropertyType occurrences="1">
-      <code>$typedElement</code>
-    </MissingPropertyType>
+    <InvalidAttribute occurrences="3">
+      <code>Annotation\Name</code>
+      <code>Annotation\Type</code>
+      <code>Annotation\Type</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/UrlValidator.php">
     <InvalidReturnType occurrences="2">
       <code>getMessages</code>
       <code>isValid</code>
     </InvalidReturnType>
-  </file>
-  <file src="test/TestAsset/ArgumentRecorder.php">
-    <MissingParamType occurrences="1">
-      <code>$args</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="1">
-      <code>$args</code>
-    </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/ArrayModel.php">
-    <MissingReturnType occurrences="1">
-      <code>toArray</code>
-    </MissingReturnType>
   </file>
   <file src="test/TestAsset/BasicFieldset.php">
     <PropertyNotSetInConstructor occurrences="3">
@@ -4986,11 +4530,6 @@
       <code>CityFieldset</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="test/TestAsset/ConstructedElement.php">
-    <MissingPropertyType occurrences="1">
-      <code>$constructedKey</code>
-    </MissingPropertyType>
-  </file>
   <file src="test/TestAsset/CountryFieldset.php">
     <DeprecatedClass occurrences="1">
       <code>new ClassMethods()</code>
@@ -5013,9 +4552,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/CustomCollection.php">
-    <MissingReturnType occurrences="1">
-      <code>toArray</code>
-    </MissingReturnType>
     <MixedArrayOffset occurrences="1">
       <code>$ret[$key]</code>
     </MixedArrayOffset>
@@ -5032,20 +4568,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/CustomCreatedForm.php">
-    <MissingParamType occurrences="2">
-      <code>$name</code>
-      <code>$options</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="1">
-      <code>$created</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="1">
-      <code>getCreated</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="2">
-      <code>$name</code>
-      <code>$options</code>
-    </MixedArgument>
     <PropertyNotSetInConstructor occurrences="4">
       <code>CustomCreatedForm</code>
       <code>CustomCreatedForm</code>
@@ -5054,8 +4576,9 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/CustomCreatedFormFactory.php">
-    <MixedArgument occurrences="1">
+    <MixedArgument occurrences="2">
       <code>$creationString</code>
+      <code>$name</code>
     </MixedArgument>
     <MixedAssignment occurrences="2">
       <code>$creationString</code>
@@ -5092,9 +4615,6 @@
     <DeprecatedClass occurrences="1">
       <code>new ClassMethods()</code>
     </DeprecatedClass>
-    <MissingReturnType occurrences="1">
-      <code>getInputFilterSpecification</code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor occurrences="4">
       <code>CustomForm</code>
       <code>CustomForm</code>
@@ -5131,21 +4651,15 @@
       <code>$city</code>
       <code>$street</code>
     </MissingConstructor>
-    <MissingParamType occurrences="1">
-      <code>$street</code>
-    </MissingParamType>
-    <MixedAssignment occurrences="1">
-      <code>$this-&gt;street</code>
-    </MixedAssignment>
   </file>
   <file src="test/TestAsset/Entity/Cat.php">
     <DocblockTypeContradiction occurrences="1">
       <code>null === $this-&gt;inputFilter</code>
     </DocblockTypeContradiction>
-    <PossiblyNullPropertyAssignmentValue occurrences="2">
-      <code>null</code>
-      <code>null</code>
-    </PossiblyNullPropertyAssignmentValue>
+    <MissingConstructor occurrences="2">
+      <code>$inputFilter</code>
+      <code>$name</code>
+    </MissingConstructor>
   </file>
   <file src="test/TestAsset/Entity/Category.php">
     <MissingConstructor occurrences="2">
@@ -5170,16 +4684,9 @@
     <MissingConstructor occurrences="1">
       <code>$name</code>
     </MissingConstructor>
-    <MissingParamType occurrences="1">
-      <code>$data</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="2">
+    <MissingReturnType occurrences="1">
       <code>exchangeArray</code>
-      <code>getArrayCopy</code>
     </MissingReturnType>
-    <MixedArrayAccess occurrences="1">
-      <code>$data['name']</code>
-    </MixedArrayAccess>
     <MixedAssignment occurrences="1">
       <code>$this-&gt;name</code>
     </MixedAssignment>
@@ -5196,15 +4703,9 @@
       <code>$name</code>
       <code>$price</code>
     </MissingConstructor>
-    <MissingReturnType occurrences="2">
-      <code>getCategory</code>
+    <MissingReturnType occurrences="1">
       <code>setMadeInCountry</code>
     </MissingReturnType>
-  </file>
-  <file src="test/TestAsset/Entity/SimplePublicProperty.php">
-    <MissingPropertyType occurrences="1">
-      <code>$foo</code>
-    </MissingPropertyType>
   </file>
   <file src="test/TestAsset/FieldsetWithDependency.php">
     <MissingParamType occurrences="2">
@@ -5275,36 +4776,7 @@
       <code>FormCollection</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="test/TestAsset/HydratorAwareModel.php">
-    <MissingParamType occurrences="2">
-      <code>$value</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="3">
-      <code>$bar</code>
-      <code>$foo</code>
-      <code>$hydrator</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="4">
-      <code>getBar</code>
-      <code>getFoo</code>
-      <code>setBar</code>
-      <code>setFoo</code>
-    </MissingReturnType>
-    <MixedInferredReturnType occurrences="1">
-      <code>?HydratorInterface</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;hydrator</code>
-    </MixedReturnStatement>
-  </file>
   <file src="test/TestAsset/HydratorStrategy.php">
-    <MissingParamType occurrences="1">
-      <code>$field1</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>findEntity</code>
-    </MissingReturnType>
     <MixedAssignment occurrences="7">
       <code>$entity</code>
       <code>$field1</code>
@@ -5323,60 +4795,17 @@
     <InvalidReturnType occurrences="1">
       <code>setInputFilter</code>
     </InvalidReturnType>
-    <MissingParamType occurrences="2">
-      <code>$data</code>
-      <code>$entities</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="2">
-      <code>$entities</code>
-      <code>$inputFilter</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="5">
+    <MissingReturnType occurrences="1">
       <code>addEntity</code>
-      <code>getArrayCopy</code>
-      <code>getEntities</code>
-      <code>populate</code>
-      <code>setEntities</code>
     </MissingReturnType>
-    <MixedArrayAssignment occurrences="1">
-      <code>$this-&gt;entities[]</code>
-    </MixedArrayAssignment>
-    <MixedAssignment occurrences="2">
-      <code>$name</code>
+    <MixedAssignment occurrences="1">
       <code>$value</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>getInputFilter</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;inputFilter</code>
-    </MixedReturnStatement>
   </file>
   <file src="test/TestAsset/HydratorStrategyEntityB.php">
-    <MissingParamType occurrences="4">
-      <code>$field1</code>
-      <code>$field2</code>
+    <InvalidPropertyAssignmentValue occurrences="1">
       <code>$value</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="2">
-      <code>$field1</code>
-      <code>$field2</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="4">
-      <code>getField1</code>
-      <code>getField2</code>
-      <code>setField1</code>
-      <code>setField2</code>
-    </MissingReturnType>
-  </file>
-  <file src="test/TestAsset/Identifier.php">
-    <MissingParamType occurrences="1">
-      <code>$id</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="1">
-      <code>$id</code>
-    </MissingPropertyType>
+    </InvalidPropertyAssignmentValue>
   </file>
   <file src="test/TestAsset/InputFilterProvider.php">
     <MissingParamType occurrences="2">
@@ -5434,19 +4863,6 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/Model.php">
-    <MissingParamType occurrences="3">
-      <code>$name</code>
-      <code>$name</code>
-      <code>$value</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="3">
-      <code>$bar</code>
-      <code>$foo</code>
-      <code>$foobar</code>
-    </MissingPropertyType>
-    <MixedArgument occurrences="1">
-      <code>$name</code>
-    </MixedArgument>
     <MixedArgumentTypeCoercion occurrences="1">
       <code>$key</code>
     </MixedArgumentTypeCoercion>
@@ -5546,354 +4962,22 @@
     </MixedArgument>
   </file>
   <file src="test/TestAsset/ValidatingModel.php">
-    <InvalidReturnType occurrences="1">
-      <code>setInputFilter</code>
-    </InvalidReturnType>
-    <MissingPropertyType occurrences="1">
-      <code>$inputFilter</code>
-    </MissingPropertyType>
-    <MixedInferredReturnType occurrences="1">
+    <InvalidNullableReturnType occurrences="1">
       <code>getInputFilter</code>
-    </MixedInferredReturnType>
-    <MixedReturnStatement occurrences="1">
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
       <code>$this-&gt;inputFilter</code>
-    </MixedReturnStatement>
+    </NullableReturnStatement>
   </file>
   <file src="test/TestAsset/ValueStoringFieldset.php">
-    <MissingPropertyType occurrences="1">
+    <PropertyNotSetInConstructor occurrences="4">
       <code>$storedValue</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="1">
-      <code>getStoredValue</code>
-    </MissingReturnType>
-    <PropertyNotSetInConstructor occurrences="3">
       <code>ValueStoringFieldset</code>
       <code>ValueStoringFieldset</code>
       <code>ValueStoringFieldset</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="test/View/Helper/AbstractHelperTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\View\Helper\AbstractHelper'</code>
-    </ArgumentTypeCoercion>
-    <DeprecatedMethod occurrences="2">
-      <code>setMethods</code>
-      <code>setMethods</code>
-    </DeprecatedMethod>
-    <InvalidPropertyAssignmentValue occurrences="1">
-      <code>$this-&gt;getMockForAbstractClass('Laminas\Form\View\Helper\AbstractHelper')</code>
-    </InvalidPropertyAssignmentValue>
-    <MissingParamType occurrences="6">
-      <code>$attribute</code>
-      <code>$exception</code>
-      <code>$exception</code>
-      <code>$expected</code>
-      <code>$expected</code>
-      <code>$prefix</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="10">
-      <code>addAttributesData</code>
-      <code>addAttributesPrefixData</code>
-      <code>testWillEncodeValueAttributeValuesCorrectly</code>
-      <code>testWillEscapeValueAttributeValuesCorrectly</code>
-      <code>testWillIncludeAdditionalAttributes</code>
-      <code>testWillIncludeAdditionalAttributesByPrefix</code>
-      <code>testWillInsulateAgainstBadAttributes</code>
-      <code>testWillNotEncodeValueAttributeValuesCorrectly</code>
-      <code>testWillTranslateAttributeValuesCorrectly</code>
-      <code>testWillTranslateDefaultAttributeValuesCorrectly</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="2">
-      <code>$attribute</code>
-      <code>$prefix</code>
-    </MixedArgument>
-    <MixedArrayOffset occurrences="1">
-      <code>[$attribute =&gt; 'value']</code>
-    </MixedArrayOffset>
-    <MixedOperand occurrences="1">
-      <code>$prefix</code>
-    </MixedOperand>
-  </file>
-  <file src="test/View/Helper/Captcha/DumbTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-    </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="9">
-      <code>getElement</code>
-      <code>testCanRenderLabelFollowingInput</code>
-      <code>testMissingCaptchaAttributeThrowsDomainException</code>
-      <code>testRenderSeparatorOneTimeAfterText</code>
-      <code>testRendersHiddenInputForId</code>
-      <code>testRendersLabelPriorToInputByDefault</code>
-      <code>testRendersTextInputForInput</code>
-      <code>testSetCaptchaPositionWithNullRaisesException</code>
-      <code>testSetSeparator</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="9">
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha-&gt;getWord()</code>
-      <code>$this-&gt;captcha-&gt;getWord()</code>
-      <code>$this-&gt;captcha-&gt;getWord()</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="11">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="10">
-      <code>getId</code>
-      <code>getLabel</code>
-      <code>getLabel</code>
-      <code>getLabel</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getWord</code>
-      <code>getWord</code>
-      <code>getWord</code>
-    </MixedMethodCall>
-    <MixedOperand occurrences="7">
-      <code>$element-&gt;getName()</code>
-      <code>$element-&gt;getName()</code>
-      <code>$element-&gt;getName()</code>
-      <code>$this-&gt;captcha-&gt;getId()</code>
-      <code>$this-&gt;captcha-&gt;getLabel()</code>
-      <code>$this-&gt;captcha-&gt;getLabel()</code>
-      <code>$this-&gt;captcha-&gt;getLabel()</code>
-    </MixedOperand>
-    <UndefinedMethod occurrences="17">
-      <code>getSeparator</code>
-      <code>getSeparator</code>
-      <code>getSeparator</code>
-      <code>getSeparator</code>
-      <code>getSeparator</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>setCaptchaPosition</code>
-      <code>setCaptchaPosition</code>
-      <code>setCaptchaPosition</code>
-      <code>setSeparator</code>
-      <code>setSeparator</code>
-    </UndefinedMethod>
-    <UndefinedThisPropertyAssignment occurrences="1">
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch occurrences="5">
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyFetch>
-  </file>
-  <file src="test/View/Helper/Captcha/FigletTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="6">
-      <code>getElement</code>
-      <code>testCanRenderFigletFollowingInput</code>
-      <code>testMissingCaptchaAttributeThrowsDomainException</code>
-      <code>testRendersFigletPriorToInputByDefault</code>
-      <code>testRendersHiddenInputForId</code>
-      <code>testRendersTextInputForInput</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="5">
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$this-&gt;captcha</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="8">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="7">
-      <code>getFiglet</code>
-      <code>getId</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getWord</code>
-      <code>render</code>
-    </MixedMethodCall>
-    <MixedOperand occurrences="5">
-      <code>$element-&gt;getName()</code>
-      <code>$element-&gt;getName()</code>
-      <code>$element-&gt;getName()</code>
-      <code>$this-&gt;captcha-&gt;getFiglet()-&gt;render($this-&gt;captcha-&gt;getWord())</code>
-      <code>$this-&gt;captcha-&gt;getId()</code>
-    </MixedOperand>
-    <UndefinedMethod occurrences="7">
-      <code>getSeparator</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>setCaptchaPosition</code>
-    </UndefinedMethod>
-    <UndefinedThisPropertyAssignment occurrences="1">
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch occurrences="3">
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyFetch>
-  </file>
-  <file src="test/View/Helper/Captcha/ImageTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingPropertyType occurrences="2">
-      <code>$testDir</code>
-      <code>$tmpDir</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="6">
-      <code>getElement</code>
-      <code>testCanRenderImageTagFollowingInput</code>
-      <code>testMissingCaptchaAttributeThrowsDomainException</code>
-      <code>testRendersHiddenInputForId</code>
-      <code>testRendersImageTagPriorToInputByDefault</code>
-      <code>testRendersTextInputForInput</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="6">
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;testDir</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="8">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-    </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>string</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="4">
-      <code>getId</code>
-      <code>getName</code>
-      <code>getName</code>
-      <code>getName</code>
-    </MixedMethodCall>
-    <MixedOperand occurrences="4">
-      <code>$element-&gt;getName()</code>
-      <code>$element-&gt;getName()</code>
-      <code>$element-&gt;getName()</code>
-      <code>$this-&gt;captcha-&gt;getId()</code>
-    </MixedOperand>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;tmpDir</code>
-    </MixedReturnStatement>
-    <UndefinedDocblockClass occurrences="1">
-      <code>Laminas_File_Transfer_Exception</code>
-    </UndefinedDocblockClass>
-    <UndefinedMethod occurrences="6">
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>setCaptchaPosition</code>
-    </UndefinedMethod>
-    <UndefinedThisPropertyAssignment occurrences="1">
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch occurrences="2">
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyFetch>
-  </file>
-  <file src="test/View/Helper/Captcha/ReCaptchaTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <DeprecatedMethod occurrences="2">
-      <code>setPrivKey</code>
-      <code>setPubKey</code>
-    </DeprecatedMethod>
-    <MissingReturnType occurrences="5">
-      <code>getElement</code>
-      <code>testDoesNotRenderHiddenInputWhenNameIsRecaptchaDefault</code>
-      <code>testMissingCaptchaAttributeThrowsDomainException</code>
-      <code>testRendersHiddenInputWhenNameIsNotRecaptchaDefault</code>
-      <code>testRendersReCaptchaMarkup</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="5">
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha-&gt;getService()-&gt;getHtml($element-&gt;getName())</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="6">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$markup</code>
-      <code>$markup</code>
-      <code>$markup</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="4">
-      <code>getHtml</code>
-      <code>getName</code>
-      <code>getService</code>
-      <code>setName</code>
-    </MixedMethodCall>
-    <PossiblyFalseArgument occurrences="2">
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
-    </PossiblyFalseArgument>
-    <UndefinedMethod occurrences="4">
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-      <code>render</code>
-    </UndefinedMethod>
-    <UndefinedThisPropertyAssignment occurrences="1">
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyAssignment>
-    <UndefinedThisPropertyFetch occurrences="2">
-      <code>$this-&gt;captcha</code>
-      <code>$this-&gt;captcha</code>
-    </UndefinedThisPropertyFetch>
-  </file>
-  <file src="test/View/Helper/CommonTestCase.php">
+  <file src="test/View/Helper/AbstractCommonTestCase.php">
     <MissingReturnType occurrences="7">
       <code>testAssumesHtml4LooseDoctypeByDefault</code>
       <code>testCanGetDoctypeFromDoctypeHelper</code>
@@ -5919,6 +5003,200 @@
     <UnsafeInstantiation occurrences="1">
       <code>new $helperClass()</code>
     </UnsafeInstantiation>
+  </file>
+  <file src="test/View/Helper/AbstractHelperTest.php">
+    <DeprecatedMethod occurrences="2">
+      <code>setMethods</code>
+      <code>setMethods</code>
+    </DeprecatedMethod>
+    <MissingReturnType occurrences="8">
+      <code>testWillEncodeValueAttributeValuesCorrectly</code>
+      <code>testWillEscapeValueAttributeValuesCorrectly</code>
+      <code>testWillIncludeAdditionalAttributes</code>
+      <code>testWillIncludeAdditionalAttributesByPrefix</code>
+      <code>testWillInsulateAgainstBadAttributes</code>
+      <code>testWillNotEncodeValueAttributeValuesCorrectly</code>
+      <code>testWillTranslateAttributeValuesCorrectly</code>
+      <code>testWillTranslateDefaultAttributeValuesCorrectly</code>
+    </MissingReturnType>
+    <MixedInferredReturnType occurrences="2">
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
+  </file>
+  <file src="test/View/Helper/Captcha/DumbTest.php">
+    <MissingReturnType occurrences="8">
+      <code>testCanRenderLabelFollowingInput</code>
+      <code>testMissingCaptchaAttributeThrowsDomainException</code>
+      <code>testRenderSeparatorOneTimeAfterText</code>
+      <code>testRendersHiddenInputForId</code>
+      <code>testRendersLabelPriorToInputByDefault</code>
+      <code>testRendersTextInputForInput</code>
+      <code>testSetCaptchaPositionWithNullRaisesException</code>
+      <code>testSetSeparator</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </MixedAssignment>
+    <UndefinedMethod occurrences="17">
+      <code>getSeparator</code>
+      <code>getSeparator</code>
+      <code>getSeparator</code>
+      <code>getSeparator</code>
+      <code>getSeparator</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>setCaptchaPosition</code>
+      <code>setCaptchaPosition</code>
+      <code>setCaptchaPosition</code>
+      <code>setSeparator</code>
+      <code>setSeparator</code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/View/Helper/Captcha/FigletTest.php">
+    <MissingReturnType occurrences="5">
+      <code>testCanRenderFigletFollowingInput</code>
+      <code>testMissingCaptchaAttributeThrowsDomainException</code>
+      <code>testRendersFigletPriorToInputByDefault</code>
+      <code>testRendersHiddenInputForId</code>
+      <code>testRendersTextInputForInput</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$this-&gt;captcha</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="4">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="4">
+      <code>getFiglet</code>
+      <code>getId</code>
+      <code>getWord</code>
+      <code>render</code>
+    </MixedMethodCall>
+    <MixedOperand occurrences="2">
+      <code>$this-&gt;captcha-&gt;getFiglet()-&gt;render($this-&gt;captcha-&gt;getWord())</code>
+      <code>$this-&gt;captcha-&gt;getId()</code>
+    </MixedOperand>
+    <UndefinedMethod occurrences="7">
+      <code>getSeparator</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>setCaptchaPosition</code>
+    </UndefinedMethod>
+    <UndefinedThisPropertyAssignment occurrences="1">
+      <code>$this-&gt;captcha</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="3">
+      <code>$this-&gt;captcha</code>
+      <code>$this-&gt;captcha</code>
+      <code>$this-&gt;captcha</code>
+    </UndefinedThisPropertyFetch>
+  </file>
+  <file src="test/View/Helper/Captcha/ImageTest.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>null === $this-&gt;tmpDir</code>
+    </DocblockTypeContradiction>
+    <MissingReturnType occurrences="5">
+      <code>testCanRenderImageTagFollowingInput</code>
+      <code>testMissingCaptchaAttributeThrowsDomainException</code>
+      <code>testRendersHiddenInputForId</code>
+      <code>testRendersImageTagPriorToInputByDefault</code>
+      <code>testRendersTextInputForInput</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="4">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="4">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </MixedAssignment>
+    <RedundantPropertyInitializationCheck occurrences="1">
+      <code>isset($this-&gt;testDir)</code>
+    </RedundantPropertyInitializationCheck>
+    <UndefinedMethod occurrences="6">
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>setCaptchaPosition</code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/View/Helper/Captcha/ReCaptchaTest.php">
+    <DeprecatedMethod occurrences="2">
+      <code>setPrivKey</code>
+      <code>setPubKey</code>
+    </DeprecatedMethod>
+    <MissingReturnType occurrences="4">
+      <code>testDoesNotRenderHiddenInputWhenNameIsRecaptchaDefault</code>
+      <code>testMissingCaptchaAttributeThrowsDomainException</code>
+      <code>testRendersHiddenInputWhenNameIsNotRecaptchaDefault</code>
+      <code>testRendersReCaptchaMarkup</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$this-&gt;captcha</code>
+      <code>$this-&gt;captcha-&gt;getService()-&gt;getHtml($element-&gt;getName())</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="3">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="2">
+      <code>getHtml</code>
+      <code>getService</code>
+    </MixedMethodCall>
+    <PossiblyFalseArgument occurrences="2">
+      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
+      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
+    </PossiblyFalseArgument>
+    <UndefinedMethod occurrences="4">
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+      <code>render</code>
+    </UndefinedMethod>
+    <UndefinedThisPropertyAssignment occurrences="1">
+      <code>$this-&gt;captcha</code>
+    </UndefinedThisPropertyAssignment>
+    <UndefinedThisPropertyFetch occurrences="2">
+      <code>$this-&gt;captcha</code>
+      <code>$this-&gt;captcha</code>
+    </UndefinedThisPropertyFetch>
   </file>
   <file src="test/View/Helper/File/FormFileApcProgressTest.php">
     <MissingReturnType occurrences="1">
@@ -5963,32 +5241,11 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormButtonTest.php">
-    <ArgumentTypeCoercion occurrences="6">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="3">
-      <code>$mockTranslator</code>
-      <code>$mockTranslator</code>
-      <code>$translatorMock</code>
-    </InvalidArgument>
     <InvalidFunctionCall occurrences="2">
       <code>$helper()</code>
       <code>$helper()</code>
     </InvalidFunctionCall>
-    <MissingParamType occurrences="4">
-      <code>$assertion</code>
-      <code>$assertion</code>
-      <code>$attribute</code>
-      <code>$type</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="25">
-      <code>getCompleteElement</code>
-      <code>inputTypes</code>
+    <MissingReturnType occurrences="22">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testCallingFromViewHelperCanHandleOpenTagAndCloseTag</code>
       <code>testCanDisableLabelHtmlEscape</code>
@@ -6011,11 +5268,8 @@
       <code>testRaisesExceptionWhenLabelAttributeIsNotPresentInElement</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElementWhenPassedToOpenTag</code>
       <code>testTranslatorMethods</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="17">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="14">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
@@ -6030,10 +5284,8 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$type</code>
     </MixedArgument>
-    <MixedAssignment occurrences="20">
-      <code>$element</code>
+    <MixedAssignment occurrences="19">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6054,13 +5306,17 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="5">
+    <MixedInferredReturnType occurrences="2">
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
+    <MixedMethodCall occurrences="2">
       <code>closeTag</code>
-      <code>getAttribute</code>
-      <code>getValue</code>
       <code>openTag</code>
-      <code>setLabel</code>
     </MixedMethodCall>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="20">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6089,62 +5345,32 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormCaptchaTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\ExceptionInterface'</code>
-    </ArgumentTypeCoercion>
     <DeprecatedMethod occurrences="2">
       <code>setPrivKey</code>
       <code>setPubKey</code>
     </DeprecatedMethod>
-    <MissingPropertyType occurrences="2">
-      <code>$testDir</code>
-      <code>$tmpDir</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="6">
-      <code>getElement</code>
+    <InvalidArgument occurrences="1">
+      <code>ExceptionInterface::class</code>
+    </InvalidArgument>
+    <MissingReturnType occurrences="5">
       <code>testPassingElementWithDumbCaptchaRendersCorrectly</code>
       <code>testPassingElementWithFigletCaptchaRendersCorrectly</code>
       <code>testPassingElementWithImageCaptchaRendersCorrectly</code>
       <code>testPassingElementWithReCaptchaRendersCorrectly</code>
       <code>testRaisesExceptionIfElementHasNoCaptcha</code>
     </MissingReturnType>
-    <MixedArgument occurrences="5">
+    <MixedArgument occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$this-&gt;testDir</code>
     </MixedArgument>
-    <MixedAssignment occurrences="9">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>string</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="14">
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>getAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setCaptcha</code>
-      <code>setCaptcha</code>
-      <code>setCaptcha</code>
-      <code>setCaptcha</code>
-    </MixedMethodCall>
     <MixedOperand occurrences="7">
       <code>$element-&gt;getAttribute('id')</code>
       <code>$element-&gt;getAttribute('id')</code>
@@ -6154,9 +5380,6 @@
       <code>$element-&gt;getAttribute('id')</code>
       <code>$element-&gt;getAttribute('id')</code>
     </MixedOperand>
-    <MixedReturnStatement occurrences="1">
-      <code>$this-&gt;tmpDir</code>
-    </MixedReturnStatement>
     <PossiblyFalseArgument occurrences="2">
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
@@ -6164,9 +5387,6 @@
     <PossiblyFalseOperand occurrences="1">
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
     </PossiblyFalseOperand>
-    <UndefinedDocblockClass occurrences="1">
-      <code>Laminas_File_Transfer_Exception</code>
-    </UndefinedDocblockClass>
     <UndefinedMethod occurrences="5">
       <code>render</code>
       <code>render</code>
@@ -6176,12 +5396,7 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormCheckboxTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-    </ArgumentTypeCoercion>
-    <MissingReturnType occurrences="9">
-      <code>getElement</code>
+    <MissingReturnType occurrences="8">
       <code>testBaseElementType</code>
       <code>testDisabledOptionIssetOnHiddenElement</code>
       <code>testDoesNotThrowExceptionIfNameIsZero</code>
@@ -6199,9 +5414,7 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="9">
-      <code>$element</code>
-      <code>$element</code>
+    <MixedAssignment occurrences="7">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6210,9 +5423,6 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>setValue</code>
-    </MixedMethodCall>
     <UndefinedMethod occurrences="8">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6228,16 +5438,10 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormCollectionTest.php">
-    <ArgumentTypeCoercion occurrences="3">
-      <code>'Laminas\Form\View\Helper\FormCollection'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
+    <ArgumentTypeCoercion occurrences="1">
       <code>'RuntimeException'</code>
     </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="1">
-      <code>$mockTranslator</code>
-    </InvalidArgument>
-    <MissingReturnType occurrences="34">
-      <code>getForm</code>
+    <MissingReturnType occurrences="33">
       <code>testCanDisableLabelHtmlEscape</code>
       <code>testCanGenerateTemplate</code>
       <code>testCanRenderFieldsetWithAttributes</code>
@@ -6302,50 +5506,7 @@
       <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm())</code>
       <code>$this-&gt;helper-&gt;__invoke($this-&gt;getForm(), false)</code>
     </MixedArgument>
-    <MixedAssignment occurrences="67">
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$collection</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
-      <code>$form</code>
+    <MixedAssignment occurrences="24">
       <code>$html</code>
       <code>$html</code>
       <code>$html</code>
@@ -6371,40 +5532,13 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="42">
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>get</code>
-      <code>getTemplatePlaceholder</code>
-      <code>getTemplatePlaceholder</code>
+    <MixedMethodCall occurrences="2">
       <code>render</code>
       <code>render</code>
-      <code>setAttribute</code>
-      <code>setAttributes</code>
-      <code>setLabel</code>
-      <code>setLabel</code>
-      <code>setLabel</code>
-      <code>setLabel</code>
-      <code>setLabel</code>
-      <code>setLabel</code>
-      <code>setLabel</code>
-      <code>setLabel</code>
+    </MixedMethodCall>
+    <UndefinedInterfaceMethod occurrences="11">
+      <code>getTemplatePlaceholder</code>
+      <code>getTemplatePlaceholder</code>
       <code>setLabelOptions</code>
       <code>setShouldCreateTemplate</code>
       <code>setShouldCreateTemplate</code>
@@ -6414,7 +5548,7 @@
       <code>setShouldCreateTemplate</code>
       <code>setShouldCreateTemplate</code>
       <code>setShouldCreateTemplate</code>
-    </MixedMethodCall>
+    </UndefinedInterfaceMethod>
     <UndefinedMethod occurrences="59">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6478,43 +5612,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormColorTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesColorInputTagRegardlessOfElementType</code>
       <code>testGeneratesColorInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6525,10 +5649,6 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormDateSelectTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Element\Select'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="9">
       <code>testCanDisableDelimiters</code>
       <code>testCanGenerateSelectsWithEmptyOption</code>
@@ -6548,13 +5668,12 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="6">
+    <MixedAssignment occurrences="5">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$subElement</code>
     </MixedAssignment>
     <MixedMethodCall occurrences="1">
       <code>getValueOptions</code>
@@ -6572,32 +5691,21 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormDateTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="6">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="5">
       <code>testGeneratesInputTagRegardlessOfElementType</code>
       <code>testGeneratesInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6606,10 +5714,9 @@
     <MixedInferredReturnType occurrences="1">
       <code>array</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6620,43 +5727,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormDateTimeLocalTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesInputTagRegardlessOfElementType</code>
       <code>testGeneratesInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6667,9 +5764,6 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormDateTimeSelectTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="9">
       <code>testCanDisableDelimiters</code>
       <code>testCanGenerateSelectsWithEmptyOption</code>
@@ -6718,43 +5812,33 @@
     </UnusedMethodCall>
   </file>
   <file src="test/View/Helper/FormDateTimeTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesInputTagRegardlessOfElementType</code>
       <code>testGeneratesInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6765,16 +5849,6 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormElementErrorsTest.php">
-    <ArgumentTypeCoercion occurrences="3">
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\Validator\Translator\TranslatorInterface'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="3">
-      <code>$mockFormTranslator</code>
-      <code>$mockTranslator</code>
-      <code>$mockValidatorTranslator</code>
-    </InvalidArgument>
     <InvalidFunctionCall occurrences="2">
       <code>$helper($element, ['class' =&gt; 'error'])</code>
       <code>$helper()</code>
@@ -6782,8 +5856,7 @@
     <MissingClosureParamType occurrences="1">
       <code>$message</code>
     </MissingClosureParamType>
-    <MissingReturnType occurrences="12">
-      <code>getMessageList</code>
+    <MissingReturnType occurrences="11">
       <code>testCallingTheHelperToRenderInvokeCanReturnObject</code>
       <code>testCanSpecifyAlternateMarkupStringsViaSetters</code>
       <code>testCanSpecifyAttributesForOpeningTag</code>
@@ -6796,7 +5869,7 @@
       <code>testRendersNestedMessageSetsAsAFlatList</code>
       <code>testSpecifiedAttributesOverrideDefaults</code>
     </MissingReturnType>
-    <MixedArgument occurrences="15">
+    <MixedArgument occurrences="8">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6805,15 +5878,8 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
     </MixedArgument>
-    <MixedAssignment occurrences="16">
+    <MixedAssignment occurrences="9">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6823,13 +5889,6 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
-      <code>$messages</code>
     </MixedAssignment>
     <MixedMethodCall occurrences="3">
       <code>setAttributes</code>
@@ -6856,15 +5915,7 @@
     <InvalidPropertyAssignmentValue occurrences="1">
       <code>new FormElementHelper()</code>
     </InvalidPropertyAssignmentValue>
-    <MissingParamType occurrences="4">
-      <code>$additionalMarkup</code>
-      <code>$inputType</code>
-      <code>$type</code>
-      <code>$type</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="10">
-      <code>getInputElements</code>
-      <code>getMultiElements</code>
+    <MissingReturnType occurrences="8">
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRendersButtonAsExpected</code>
       <code>testRendersCaptchaAsExpected</code>
@@ -6874,8 +5925,7 @@
       <code>testRendersMultiElementsAsExpected</code>
       <code>testRendersTextareaAsExpected</code>
     </MissingReturnType>
-    <MixedArgument occurrences="10">
-      <code>$additionalMarkup</code>
+    <MixedArgument occurrences="9">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6886,8 +5936,7 @@
       <code>$markup</code>
       <code>$validator</code>
     </MixedArgument>
-    <MixedAssignment occurrences="9">
-      <code>$hash</code>
+    <MixedAssignment occurrences="8">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -6897,14 +5946,10 @@
       <code>$markup</code>
       <code>$validator</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getHash</code>
-    </MixedMethodCall>
-    <MixedOperand occurrences="3">
-      <code>$hash</code>
-      <code>$inputType</code>
-      <code>$type</code>
-    </MixedOperand>
+    <MixedInferredReturnType occurrences="2">
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
     <UndefinedMethod occurrences="9">
       <code>__invoke</code>
       <code>render</code>
@@ -6921,43 +5966,33 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormEmailTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesEmailInputTagRegardlessOfElementType</code>
       <code>testGeneratesEmailInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -6968,19 +6003,10 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormFileTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
     <MissingReturnType occurrences="1">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
     </MissingReturnType>
-    <MixedArgument occurrences="9">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="7">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
@@ -7015,43 +6041,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormHiddenTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesHiddenInputTagRegardlessOfElementType</code>
       <code>testGeneratesHiddenInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -7062,16 +6078,7 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormImageTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="9">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="7">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesImageInputTagRegardlessOfElementType</code>
       <code>testGeneratesImageInputTagWithElement</code>
@@ -7079,28 +6086,26 @@
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
       <code>testRaisesExceptionWhenSrcIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="7">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -7112,33 +6117,7 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormInputTest.php">
-    <ArgumentTypeCoercion occurrences="3">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="2">
-      <code>$mockTranslator</code>
-      <code>$mockTranslator</code>
-    </InvalidArgument>
-    <MissingParamType occurrences="12">
-      <code>$assertion</code>
-      <code>$assertion</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$doctype</code>
-      <code>$doctype</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$type</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="18">
-      <code>getCompleteElement</code>
-      <code>inputTypes</code>
-      <code>nonXhtmlDoctypes</code>
+    <MissingReturnType occurrences="13">
       <code>testBooleanAttributeTypesAreRenderedCorrectly</code>
       <code>testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5</code>
       <code>testCanTranslatePlaceholder</code>
@@ -7152,48 +6131,10 @@
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
       <code>testRenderingIncludesClosingSlashWhenDoctypeIsXhtml</code>
       <code>testRenderingOmitsClosingSlashWhenDoctypeIsNotXhtml</code>
-      <code>validAttributes2</code>
-      <code>xhtmlDoctypes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="89">
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="34">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -7226,32 +6167,8 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$type</code>
     </MixedArgument>
-    <MixedAssignment occurrences="23">
-      <code>$element</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
+    <MixedAssignment occurrences="18">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -7271,13 +6188,15 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType occurrences="4">
+      <code>array</code>
+      <code>array</code>
+      <code>array</code>
       <code>array</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedInterfaceMethod occurrences="3">
       <code>doctype</code>
       <code>doctype</code>
@@ -7310,18 +6229,6 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormLabelTest.php">
-    <ArgumentTypeCoercion occurrences="6">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="2">
-      <code>$mockTranslator</code>
-      <code>$translatorMock</code>
-    </InvalidArgument>
     <InvalidFunctionCall occurrences="2">
       <code>$helper()</code>
       <code>$helper()</code>
@@ -7412,10 +6319,6 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormMonthSelectTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Element\Select'</code>
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="9">
       <code>testCanDisableDelimiters</code>
       <code>testCanGenerateSelectsWithEmptyOption</code>
@@ -7435,13 +6338,12 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="6">
+    <MixedAssignment occurrences="5">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$subElement</code>
     </MixedAssignment>
     <MixedMethodCall occurrences="1">
       <code>getValueOptions</code>
@@ -7459,43 +6361,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormMonthTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesInputTagRegardlessOfElementType</code>
       <code>testGeneratesInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -7506,20 +6398,7 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormMultiCheckboxTest.php">
-    <ArgumentTypeCoercion occurrences="5">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="2">
-      <code>$mockTranslator</code>
-      <code>$translatorMock</code>
-    </InvalidArgument>
-    <MissingReturnType occurrences="33">
-      <code>getElement</code>
-      <code>getElementWithOptionSpec</code>
+    <MissingReturnType occurrences="31">
       <code>testAllowsSpecifyingLabelAttributes</code>
       <code>testAllowsSpecifyingLabelAttributesInElementAttributes</code>
       <code>testAllowsSpecifyingLabelPosition</code>
@@ -7552,7 +6431,7 @@
       <code>testUsesOptionsAttributeToGenerateCheckBoxes</code>
       <code>testUsesOptionsAttributeWithOptionSpecToGenerateCheckBoxes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="40">
+    <MixedArgument occurrences="38">
       <code>$label</code>
       <code>$label</code>
       <code>$label</code>
@@ -7591,22 +6470,8 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$value</code>
-      <code>$value</code>
     </MixedArgument>
-    <MixedAssignment occurrences="40">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
+    <MixedAssignment occurrences="21">
       <code>$label</code>
       <code>$label</code>
       <code>$label</code>
@@ -7628,26 +6493,9 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$value</code>
-      <code>$value</code>
-      <code>$value</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="11">
-      <code>getValueOptions</code>
-      <code>getValueOptions</code>
-      <code>getValueOptions</code>
-      <code>getValueOptions</code>
+    <MixedMethodCall occurrences="1">
       <code>render</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setLabelAttributes</code>
-      <code>setUncheckedValue</code>
-      <code>setUseHiddenElement</code>
     </MixedMethodCall>
     <UndefinedMethod occurrences="35">
       <code>__invoke</code>
@@ -7694,43 +6542,33 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormNumberTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesNumberInputTagRegardlessOfElementType</code>
       <code>testGeneratesNumberInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -7741,41 +6579,32 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormPasswordTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesPasswordInputTagRegardlessOfElementType</code>
       <code>testGeneratesPasswordInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="6">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="4">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getAttribute</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -7786,17 +6615,7 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormRadioTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="2">
-      <code>$mockTranslator</code>
-      <code>$translatorMock</code>
-    </InvalidArgument>
-    <MissingReturnType occurrences="16">
-      <code>getElement</code>
-      <code>getElementWithOptionSpec</code>
+    <MissingReturnType occurrences="14">
       <code>testAllowsSpecifyingLabelAttributes</code>
       <code>testAllowsSpecifyingLabelAttributesInElementAttributes</code>
       <code>testAllowsSpecifyingLabelPosition</code>
@@ -7812,7 +6631,7 @@
       <code>testUsesOptionsAttributeToGenerateRadioOptions</code>
       <code>testUsesOptionsAttributeWithOptionSpecToGenerateRadioOptions</code>
     </MissingReturnType>
-    <MixedArgument occurrences="36">
+    <MixedArgument occurrences="34">
       <code>$label</code>
       <code>$label</code>
       <code>$label</code>
@@ -7847,22 +6666,8 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$value</code>
-      <code>$value</code>
     </MixedArgument>
-    <MixedAssignment occurrences="37">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
+    <MixedAssignment occurrences="17">
       <code>$label</code>
       <code>$label</code>
       <code>$label</code>
@@ -7880,28 +6685,9 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$value</code>
-      <code>$value</code>
-      <code>$value</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="12">
-      <code>getValueOptions</code>
-      <code>getValueOptions</code>
-      <code>getValueOptions</code>
-      <code>getValueOptions</code>
-      <code>getValueOptions</code>
+    <MixedMethodCall occurrences="1">
       <code>render</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setLabelAttributes</code>
-      <code>setUncheckedValue</code>
-      <code>setUseHiddenElement</code>
     </MixedMethodCall>
     <UndefinedMethod occurrences="16">
       <code>__invoke</code>
@@ -7929,43 +6715,33 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormRangeTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesNumberInputTagRegardlessOfElementType</code>
       <code>testGeneratesNumberInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -7976,19 +6752,7 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormResetTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="1">
-      <code>$mockTranslator</code>
-    </InvalidArgument>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="9">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="7">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testCanTranslateValue</code>
       <code>testGeneratesResetInputTagRegardlessOfElementType</code>
@@ -7996,11 +6760,8 @@
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="8">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="6">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
@@ -8008,18 +6769,19 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="6">
-      <code>$element</code>
+    <MixedAssignment occurrences="5">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="7">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8031,19 +6793,10 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormRowTest.php">
-    <ArgumentTypeCoercion occurrences="3">
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
     <DeprecatedMethod occurrences="2">
       <code>setMethods</code>
       <code>setMethods</code>
     </DeprecatedMethod>
-    <InvalidArgument occurrences="2">
-      <code>$mockTranslator</code>
-      <code>$translatorMock</code>
-    </InvalidArgument>
     <MissingReturnType occurrences="43">
       <code>testAppendLabelEvenIfElementHasId</code>
       <code>testAssertButtonElementDoesNotRenderLabelTwice</code>
@@ -8247,43 +7000,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormSearchTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesTextInputTagRegardlessOfElementType</code>
       <code>testGeneratesTextInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8294,33 +7037,20 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormSelectTest.php">
-    <ArgumentTypeCoercion occurrences="6">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\Form\Exception\ExceptionInterface'</code>
-      <code>'Laminas\Form\Exception\InvalidArgumentException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="3">
-      <code>$mockTranslator</code>
-      <code>$mockTranslator</code>
-      <code>$translatorMock</code>
+    <InvalidArgument occurrences="1">
+      <code>ExceptionInterface::class</code>
     </InvalidArgument>
     <InvalidArrayOffset occurrences="5">
-      <code>[1.2e3   =&gt; 'float-e']</code>
-      <code>[2.1     =&gt; 'float']</code>
-      <code>[7E-10   =&gt; 'float-E']</code>
-      <code>[false   =&gt; 'bool-f']</code>
-      <code>[true    =&gt; 'bool-t']</code>
+      <code>[1.2e3 =&gt; 'float-e']</code>
+      <code>[2.1 =&gt; 'float']</code>
+      <code>[7E-10 =&gt; 'float-E']</code>
+      <code>[false =&gt; 'bool-f']</code>
+      <code>[true =&gt; 'bool-t']</code>
     </InvalidArrayOffset>
-    <MissingParamType occurrences="1">
-      <code>$options</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="30">
-      <code>getElement</code>
-      <code>getElementWithObjectIdentifiers</code>
-      <code>getScalarOptionsDataProvider</code>
+    <InvalidScalarArgument occurrences="1">
+      <code>0</code>
+    </InvalidScalarArgument>
+    <MissingReturnType occurrences="27">
       <code>testCanCreateEmptyOption</code>
       <code>testCanCreateEmptyOptionWithEmptyString</code>
       <code>testCanDisableAnOptgroup</code>
@@ -8349,7 +7079,7 @@
       <code>testScalarOptionValues</code>
       <code>testTranslatorMethods</code>
     </MissingReturnType>
-    <MixedArgument occurrences="28">
+    <MixedArgument occurrences="27">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8377,36 +7107,15 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$options</code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="4">
-      <code>$options[1]</code>
-      <code>$options[1]</code>
-      <code>$options[1]</code>
-      <code>$options[1]</code>
-    </MixedArrayAccess>
     <MixedArrayAssignment occurrences="5">
-      <code>$options[1]</code>
-      <code>$options[1]</code>
-      <code>$options[1]</code>
-      <code>$options[1]</code>
-      <code>$options[1]</code>
+      <code>$options[1]['disabled']</code>
+      <code>$options[1]['disabled']</code>
+      <code>$options[1]['options']</code>
+      <code>$options[1]['options']</code>
+      <code>$options[1]['selected']</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="44">
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
-      <code>$element</code>
+    <MixedAssignment occurrences="26">
       <code>$label</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8433,31 +7142,16 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$options</code>
-      <code>$options</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="18">
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <TooManyArguments occurrences="4">
       <code>getValueOptions</code>
       <code>getValueOptions</code>
       <code>getValueOptions</code>
       <code>getValueOptions</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setAttribute</code>
-      <code>setName</code>
-      <code>setValue</code>
-      <code>setValueOptions</code>
-      <code>setValueOptions</code>
-      <code>setValueOptions</code>
-      <code>setValueOptions</code>
-    </MixedMethodCall>
+    </TooManyArguments>
     <UndefinedMethod occurrences="29">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8497,19 +7191,7 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormSubmitTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-      <code>'Laminas\I18n\Translator\Translator'</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="1">
-      <code>$mockTranslator</code>
-    </InvalidArgument>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="9">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="7">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testCanTranslateValue</code>
       <code>testGeneratesSubmitInputTagRegardlessOfElementType</code>
@@ -8517,11 +7199,8 @@
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="8">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="6">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
@@ -8529,18 +7208,19 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="6">
-      <code>$element</code>
+    <MixedAssignment occurrences="5">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="7">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8552,43 +7232,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormTelTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesTelInputTagRegardlessOfElementType</code>
       <code>testGeneratesTelInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8599,9 +7269,6 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\\Form\\Form'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="9">
       <code>testCallingCloseTagEmitsClosingFormTag</code>
       <code>testCallingOpenTagWithFormUsesFormAttributes</code>
@@ -8647,43 +7314,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormTextTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesTextInputTagRegardlessOfElementType</code>
       <code>testGeneratesTextInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8694,22 +7351,7 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormTextareaTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="8">
-      <code>$assertion</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$on</code>
-      <code>$on</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="11">
-      <code>booleanAttributeTypes</code>
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="8">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testBooleanAttributeTypesAreRenderedCorrectly</code>
       <code>testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5</code>
@@ -8718,45 +7360,9 @@
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
       <code>testRendersValueAttributeAsTextareaContent</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="81">
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="28">
       <code>$element-&gt;getAttribute($attribute)</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8784,31 +7390,8 @@
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$off</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
-      <code>$on</code>
     </MixedArgument>
-    <MixedAssignment occurrences="17">
-      <code>$element</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
-      <code>$expect</code>
+    <MixedAssignment occurrences="12">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -8822,9 +7405,13 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>getAttribute</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="2">
+      <code>array</code>
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedInterfaceMethod occurrences="1">
       <code>doctype</code>
     </UndefinedInterfaceMethod>
@@ -8849,43 +7436,33 @@
     </UnusedVariable>
   </file>
   <file src="test/View/Helper/FormTimeTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesInputTagRegardlessOfElementType</code>
       <code>testGeneratesInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8896,43 +7473,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormUrlTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesUrlInputTagRegardlessOfElementType</code>
       <code>testGeneratesUrlInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8943,43 +7510,33 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/FormWeekTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'Laminas\Form\Exception\DomainException'</code>
-    </ArgumentTypeCoercion>
-    <MissingParamType occurrences="2">
-      <code>$assertion</code>
-      <code>$attribute</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="8">
-      <code>getCompleteElement</code>
+    <MissingReturnType occurrences="6">
       <code>testAllValidFormMarkupAttributesPresentInElementAreRendered</code>
       <code>testGeneratesInputTagRegardlessOfElementType</code>
       <code>testGeneratesInputTagWithElement</code>
       <code>testInvokeProxiesToRender</code>
       <code>testInvokeWithNoElementChainsHelper</code>
       <code>testRaisesExceptionWhenNameIsNotPresentInElement</code>
-      <code>validAttributes</code>
     </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$attribute</code>
-      <code>$attribute</code>
+    <MixedArgument occurrences="5">
       <code>$element-&gt;getAttribute($attribute)</code>
       <code>$element-&gt;getValue()</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="5">
-      <code>$element</code>
+    <MixedAssignment occurrences="4">
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getAttribute</code>
-      <code>getValue</code>
-    </MixedMethodCall>
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
     <UndefinedMethod occurrences="6">
       <code>__invoke</code>
       <code>__invoke</code>
@@ -8990,11 +7547,6 @@
     </UndefinedMethod>
   </file>
   <file src="test/View/Helper/MissingIntlExtensionTest.php">
-    <ArgumentTypeCoercion occurrences="3">
-      <code>'Laminas\Form\Exception\ExtensionNotLoadedException'</code>
-      <code>'Laminas\Form\Exception\ExtensionNotLoadedException'</code>
-      <code>'Laminas\Form\Exception\ExtensionNotLoadedException'</code>
-    </ArgumentTypeCoercion>
     <MissingReturnType occurrences="3">
       <code>testFormDateSelectHelper</code>
       <code>testFormDateTimeSelectHelper</code>
