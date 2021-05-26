@@ -12,7 +12,6 @@ nav:
         - "Using Annotations or PHP8 Attributes": form-creation/using-annotations.md
     - "Application Integration":
         - "Usage in a laminas-mvc application": application-integration/usage-in-a-laminas-mvc-application.md
-        - "Using custom elements with laminas-servicemanager": application-integration/using-custom-elements-with-laminas-servicemanager.md
     - Reference:
         - Elements:
             - Introduction: element/intro.md
@@ -91,6 +90,7 @@ nav:
                 - formFileApcProgress: helper/form-file-apc-progress.md
                 - formFileSessionProgress: helper/form-file-session-progress.md
                 - formFileUploadProgress: helper/form-file-upload-progress.md
+        - Advanced: advanced.md
     - Migration:
        - "V2 to V3": migration/v2-to-v3.md
 site_name: laminas-form

@@ -1,4 +1,4 @@
-# Using Annotations or PHP8 Attributes
+# Using PHP8 Attributes or DocBlock Annotations
 
 Creating a complete form solution can often be tedious: you'll create a domain
 model object, an input filter for validating it, a form object for providing a
@@ -7,19 +7,18 @@ and fieldsets to the domain model. Wouldn't it be nice to have a central place
 to define all of these?
 
 Annotations allow us to solve this problem. With v3, laminas-form supports two
-different types of annotations: PHP8 attributes and traditional PHPDoc annotations.
+different types of annotations: PHP8 attributes and traditional DocBlock annotations.
 For new projects, PHP8 attributes are recommended.
-
 
 ## Using PHP8 Attributes
 
-General information on PHP attributes are available in the 
+General information on PHP attributes are available in the
 [PHP documentation](https://www.php.net/manual/en/language.attributes.overview.php).
 Besides the obvious requirement of PHP 8.0 or newer, there no further dependencies
 for using PHP attributes for form creation.
 
-To use attributes, add them to your class and/or properties. The attribute names 
-will be resolved according to the import statements in your class; as such, you can 
+To use attributes, add them to your class and/or properties. The attribute names
+will be resolved according to the import statements in your class; as such, you can
 make them as long or as short as you want depending on what you import.
 
 Here is an example:
@@ -58,8 +57,8 @@ have two elements, "username" and "email". The "username" element will have an
 associated input that has a `StringTrim` filter, and two validators: a
 `StringLength` validator indicating the username is between 1 and 25 characters,
 and a `Regex` validator asserting it follows a specific accepted pattern. The
-form element itself will have an attribute "autofocus", and a label "Username:". 
-The "email" element will be of type `Laminas\Form\Element\Email`, and have the label 
+form element itself will have an attribute "autofocus", and a label "Username:".
+The "email" element will be of type `Laminas\Form\Element\Email`, and have the label
 "Your email address:".
 
 To use the above, we need `Laminas\Form\Annotation\AttributeBuilder`:
@@ -71,29 +70,29 @@ $builder = new AttributeBuilder();
 $form    = $builder->createForm(User::class);
 ```
 
-
-## Using PHPDoc Annotations
+## Using DocBlock Annotations
 
 Besides PHP8-only attributes, laminas-form continues to support traditional
-PHPDoc annotations with v3, which have been supported with v2 already. Using
+DocBlock annotations with v3, which have been supported with v2 already. Using
 these is suitable for legacy projects or if you need support for PHP 7.
 
-To use PHPDoc annotations, include them in your class and/or property docblocks.
+To use DocBlock annotations, include them in your class and/or property docblocks.
 Annotation names will be resolved according to the import statements in your
 class; as such, you can make them as long or as short as you want depending on
 what you import.
 
-> ### doctrine/annotations dependency
+> ### Installation Requirements
 >
-> PHPDoc annotations require `doctrine\annotations` as a peer dependency, which 
-> contains an  annotation parsing engine. You need to manually install it using 
-> composer:
+> DocBlock annotations require
+> [Doctrine's annotation parser `doctrine\annotations`](https://www.doctrine-project.org/projects/annotations.html)
+> as a peer dependency, which contains an annotation parsing engine. You need to
+> manually install it using Composer:
 >
 > ```bash
 > $ composer require doctrine/annotations
 > ```
 
-Here is the same example from above using PHPDoc annotations:
+Here is the same example from above using DocBlock annotations:
 
 ```php
 use Laminas\Form\Annotation;
@@ -140,20 +139,20 @@ $form    = $builder->createForm(User::class);
 At this point, you have a form with the appropriate hydrator attached, an input
 filter with the appropriate inputs, and all elements.
 
-
 ## List of Supported Annotations
 
 ### AllowEmpty
 
-Marks an input as allowing an empty value. This annotation does
-not require a value. 
+> ### Deprecated
+>
+> This annotation is deprecated, please add a `NotEmpty` validator instead.
 
-*This annotation is deprecated, please add a `NotEmpty` validator instead.*
+Marks an input as allowing an empty value. This annotation does not require a value.
 
 ```php
 /**
-* @AllowEmpty
-*/
+ * @AllowEmpty
+ */
 protected $myProperty;
 ```
 
@@ -165,13 +164,13 @@ protected $myProperty;
 ### Attributes
 
 Used to specify the form, fieldset, or element attributes. This
-annotation requires an associative array of values. For PHPDoc annotations,
+annotation requires an associative array of values. For DocBlock annotations,
 the array has to be in JSON format.
 
 ```php
 /**
-* @Attributes({"id":"my_property_element","class":"laminas_form"}
-*/
+ * @Attributes({"id":"my_property_element","class":"laminas_form"}
+ */
 protected $myProperty;
 ```
 
@@ -182,16 +181,18 @@ protected $myProperty;
 
 ### ContinueIfEmpty
 
+> ### Deprecated
+>
+> This annotation is deprecated, please add a `NotEmpty` validator instead.
+
 Indicate whether the element can be submitted when it is empty. A boolean
 value is expected. If `@Required` is set to `false`, this needs to be set
 to `true` to allow the field to be empty.
 
-*This annotation is deprecated, please add a `NotEmpty` validator instead.*
-
 ```php
 /**
-* @ContinueIfEmpty(true)
-*/
+ * @ContinueIfEmpty(true)
+ */
 protected $myProperty;
 ```
 
@@ -205,19 +206,19 @@ protected $myProperty;
 Specify another object with annotations to parse. Typically, this is used if a
 property references another object, which will then be added to your form as an
 additional fieldset. Expects a string value indicating the class for the object
-being composed. To compose a collection, `isCollection` needs to be set to 
-`true` and additional `options` can be passed into the collection. `options` 
-must be an associative array, for PHPDoc annotations encoded as JSON.
+being composed. To compose a collection, `isCollection` needs to be set to
+`true` and additional `options` can be passed into the collection. `options`
+must be an associative array, for DocBlock annotations encoded as JSON.
 
 ```php
 /**
-* @ComposedObject("Namespace\Model\ComposedObject")
-*/
+ * @ComposedObject("Namespace\Model\ComposedObject")
+ */
 protected $myProperty;
 
 /**
-* @ComposedObject("Namespace\Model\ComposedObject", isCollection=true, options={"count":2})
-*/
+ * @ComposedObject("Namespace\Model\ComposedObject", isCollection=true, options={"count":2})
+ */
 protected $myOtherProperty;
 ```
 
@@ -229,16 +230,15 @@ protected $myProperty;
 protected $myOtherProperty;
 ```
 
-
 ### ErrorMessage
 
-Specify the error message to return for an element in the case of a failed 
+Specify the error message to return for an element in the case of a failed
 validation. Expects a string value.
 
 ```php
 /**
-* @ErrorMessage("This is a customized error message.")
-*/
+ * @ErrorMessage("This is a customized error message.")
+ */
 protected $myProperty;
 ```
 
@@ -250,9 +250,9 @@ protected $myProperty;
 ### Filter
 
 Used to provide a specification for a filter to use on a given element.
-Expects a name pointing to a string filter name or class, and 
+Expects a name pointing to a string filter name or class, and
 optionally further `options` to pass to the constructor of the filter.
-`options` must be an associative array, for PHPDoc annotations encoded
+`options` must be an associative array, for DocBlock annotations encoded
 as JSON.
 
 Additionally, you can use the `priority` argument to modify the order
@@ -262,13 +262,13 @@ This annotation may be specified multiple times.
 
 ```php
 /**
-* @Filter("Boolean", options={"casting":true}, priority=-100)
-*/
+ * @Filter("Boolean", options={"casting":true}, priority=-100)
+ */
 protected $myProperty;
 
 /**
-* @Filter("Laminas\Filter\Boolean", options={"casting":true})
-*/
+ * @Filter("Laminas\Filter\Boolean", options={"casting":true})
+ */
 protected $myOtherProperty;
 ```
 
@@ -280,20 +280,20 @@ protected $myProperty;
 protected $myOtherProperty;
 ```
 
-Through the `FilterPluginManager` of laminas-filter, both short names 
+Through the `FilterPluginManager` of laminas-filter, both short names
 (like `Boolean`) and fully-qualified class names are supported.
 
 ### Flags
 
 Additional flags to pass to the fieldset or form composing an element or
 fieldset; these are usually used to specify the name or priority. The
-annotation expects an associative array, for PHPDoc annotations encoded
+annotation expects an associative array, for DocBlock annotations encoded
 as JSON.
 
 ```php
 /**
-* @Flags({"priority": 100})
-*/
+ * @Flags({"priority": 100})
+ */
 protected $myProperty;
 ```
 
@@ -305,12 +305,12 @@ protected $myProperty;
 ### Hydrator
 
 Specify the hydrator class to use for this given form or fieldset.
-A string value is expected. 
+A string value is expected.
 
 ```php
 /**
-* @Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")
-*/
+ * @Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")
+ */
 protected $myProperty;
 ```
 
@@ -321,13 +321,13 @@ protected $myProperty;
 
 ### InputFilter
 
-Specify the input filter class to use for this given form or fieldset. A string 
+Specify the input filter class to use for this given form or fieldset. A string
 value is expected.
 
 ```php
 /**
-* @InputFilter("Laminas\InputFilter\InputFilter")
-*/
+ * @InputFilter("Laminas\InputFilter\InputFilter")
+ */
 protected $myProperty;
 ```
 
@@ -342,8 +342,8 @@ Specify the input class to use for this given element. A string value is expecte
 
 ```php
 /**
-* @Input("Laminas\InputFilter\Input")
-*/
+ * @Input("Laminas\InputFilter\Input")
+ */
 protected $myProperty;
 ```
 
@@ -358,8 +358,8 @@ Specify an object class instance to bind to the form or fieldset.
 
 ```php
 /**
-* @Instance("Namespace\Model\Entity")
-*/
+ * @Instance("Namespace\Model\Entity")
+ */
 protected $myProperty;
 ```
 
@@ -374,8 +374,8 @@ Specify the name of the current element, fieldset, or form. A string value is ex
 
 ```php
 /**
-* @Name("my_property")
-*/
+ * @Name("my_property")
+ */
 protected $myProperty;
 ```
 
@@ -386,49 +386,49 @@ protected $myProperty;
 
 ### Options
 
-Options to pass to the fieldset or form that are used to inform behavior &mdash; 
-things that are not attributes; e.g. labels, CAPTCHA adapters, etc. The annotation 
-expects an associative array, which for PHPDoc annotations needs to be JSON encoded.
+Options to pass to the fieldset or form that are used to inform behavior &mdash;
+things that are not attributes; e.g. labels, CAPTCHA adapters, etc. The annotation
+expects an associative array, which for DocBlock annotations needs to be JSON encoded.
 
 ```php
 /**
-* @Options({"label": "Username:"})
-*/
+ * @Options({"label": "Username:"})
+ */
 protected $myProperty;
 ```
 
 ```php
 #[Options(["label" => "Username:"])]
 protected $myProperty;
-``` 
+```
 
 ### Required
 
 This annotations indicates whether an element is required. A boolean value is
-expected. By default, all elements are required, so this annotation is mainly 
+expected. By default, all elements are required, so this annotation is mainly
 present to allow disabling a requirement.
 
 ```php
 /**
-* @Required(false)
-*/
+ * @Required(false)
+ */
 protected $myProperty;
 ```
 
 ```php
 #[Required(false)]
 protected $myProperty;
-``` 
+```
 
 ### Type
 
-Indicates the class to use for the current element, fieldset, or form. A string 
+Indicates the class to use for the current element, fieldset, or form. A string
 value is expected. See the [list of available elements](../element/intro.md).
 
 ```php
 /**
-* @Type("Email")
-*/
+ * @Type("Email")
+ */
 protected $myProperty;
 ```
 
@@ -438,7 +438,7 @@ protected $myProperty;
 
 #[Type(\Laminas\Form\Element\Email::class)]
 protected $myOtherProperty;
-``` 
+```
 
 Through the `FormElementManager` of laminas-form, both short names
 (like `Email`) and fully-qualified class names are supported.
@@ -448,7 +448,7 @@ Through the `FormElementManager` of laminas-form, both short names
 Used to provide a specification for a validator to use on a given element.
 Expects a name pointing to a string validator name or class, and
 optionally further `options` to pass to the constructor of the validator.
-`options` must be an associative array, for PHPDoc annotations encoded
+`options` must be an associative array, for DocBlock annotations encoded
 as JSON.
 
 Additionally, you can use the `breakChainOnFailure` and the `priority`
@@ -458,9 +458,9 @@ This annotation may be specified multiple times.
 
 ```php
 /**
-* @Validator("StringLength", options={"min":3, "max":25}, breakChainOnFailure=true)
-* @Validator("Laminas\Validator\Regex", options={"pattern": "/^[a-zA-Z]/"})
-*/
+ * @Validator("StringLength", options={"min":3, "max":25}, breakChainOnFailure=true)
+ * @Validator("Laminas\Validator\Regex", options={"pattern": "/^[a-zA-Z]/"})
+ */
 protected $myProperty;
 ```
 
@@ -468,7 +468,7 @@ protected $myProperty;
 #[Validator("StringLength", options: ["min" => 3, "max" => 25]), breakChainOnFailure: true]
 #[Validator(\Laminas\Validator\Regex::class, options: ["pattern" => "/^[a-zA-Z]/"])]
 protected $myProperty;
-``` 
+```
 
 Through the `ValidatorPluginManager` of laminas-validator, both short names
 (like `StringLength`) and fully-qualified class names are supported.
