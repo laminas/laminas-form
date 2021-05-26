@@ -315,8 +315,6 @@ class FactoryTest extends TestCase
                     $this->assertTrue($input->allowEmpty());
                     $this->assertCount(2, $input->getFilterChain());
                     break;
-                default:
-                    $this->fail('Unexpected input named "' . $name . '" found in input filter');
             }
         }
     }

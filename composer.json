@@ -25,6 +25,7 @@
         "laminas/laminas-eventmanager": "^3.3.1",
         "laminas/laminas-filter": "^2.11.0",
         "laminas/laminas-i18n": "^2.11.1",
+        "laminas/laminas-modulemanager": "^2.10.2",
         "laminas/laminas-recaptcha": "^3.3.0",
         "laminas/laminas-servicemanager": "^3.6.4",
         "laminas/laminas-session": "^2.10.0",

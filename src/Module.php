@@ -2,6 +2,7 @@
 
 namespace Laminas\Form;
 
+use Laminas\ModuleManager\Feature\FormElementProviderInterface;
 use Laminas\ModuleManager\ModuleManager;
 
 class Module
@@ -35,7 +36,7 @@ class Module
         $serviceListener->addServiceManager(
             'FormElementManager',
             'form_elements',
-            'Laminas\ModuleManager\Feature\FormElementProviderInterface',
+            FormElementProviderInterface::class,
             'getFormElementConfig'
         );
     }

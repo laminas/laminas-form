@@ -3,7 +3,6 @@
 namespace Laminas\Form;
 
 use Laminas\ServiceManager\Factory\InvokableFactory;
-use Zend\Form\Annotation\AnnotationBuilder;
 
 class ConfigProvider
 {
@@ -37,9 +36,10 @@ class ConfigProvider
                 FormElementManager::class           => 'FormElementManager',
 
                 // Legacy Zend Framework aliases
-                'Zend\Form\Annotation\FormAnnotationBuilder' => 'Laminas\Form\Annotation\FormAnnotationBuilder',
-                AnnotationBuilder::class                     => Annotation\AnnotationBuilder::class,
-                \Zend\Form\FormElementManager::class         => FormElementManager::class,
+                // @codingStandardsIgnoreStart
+                \Zend\Form\Annotation\AnnotationBuilder::class => Annotation\AnnotationBuilder::class,
+                \Zend\Form\FormElementManager::class           => FormElementManager::class,
+                // @codingStandardsIgnoreEnd
             ],
             'factories'          => [
                 'FormAnnotationBuilder' => Annotation\BuilderAbstractFactory::class,
