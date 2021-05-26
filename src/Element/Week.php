@@ -22,20 +22,16 @@ class Week extends DateTime
 
     /**
      * Retrieves a Date Validator configured for a Week Input type
-     *
-     * @return ValidatorInterface
      */
-    protected function getDateValidator()
+    protected function getDateValidator(): ValidatorInterface
     {
         return new RegexValidator('/^[0-9]{4}\-W[0-9]{2}$/');
     }
 
     /**
      * Retrieves a DateStep Validator configured for a Week Input type
-     *
-     * @return ValidatorInterface
      */
-    protected function getStepValidator()
+    protected function getStepValidator(): ValidatorInterface
     {
         $stepValue = $this->attributes['step'] ?? 1; // Weeks
 

@@ -18,7 +18,7 @@ interface ElementInterface
     /**
      * Retrieve the element name
      *
-     * @return string
+     * @return null|string
      */
     public function getName();
 

@@ -5,9 +5,11 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormInterface;
 use Laminas\View\Helper\Doctype;
+use Laminas\View\Renderer\PhpRenderer;
 
 use function array_key_exists;
 use function array_merge;
+use function assert;
 use function method_exists;
 use function sprintf;
 
@@ -59,11 +61,13 @@ class Form extends AbstractHelper
 
         $formContent = '';
 
+        $renderer = $this->getView();
+        assert($renderer instanceof PhpRenderer);
         foreach ($form as $element) {
             if ($element instanceof FieldsetInterface) {
-                $formContent .= $this->getView()->formCollection($element);
+                $formContent .= $renderer->formCollection($element);
             } else {
-                $formContent .= $this->getView()->formRow($element);
+                $formContent .= $renderer->formRow($element);
             }
         }
 

@@ -4,6 +4,7 @@ namespace LaminasTest\Form\Integration;
 
 use Laminas\Form\Form;
 use Laminas\Form\InputFilterProviderFieldset;
+use Laminas\InputFilter\CollectionInputFilter;
 use Laminas\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -56,8 +57,10 @@ class FormCreatesCollectionInputFilterTest extends TestCase
                 ],
             ],
         ]);
-        $inputFilter = $form->getInputFilter();
-        $filter      = $inputFilter->get('collection')->getInputFilter()->get('date');
+        $inputFilter           = $form->getInputFilter();
+        $inputFilterCollection = $inputFilter->get('collection');
+        $this->assertInstanceOf(CollectionInputFilter::class, $inputFilterCollection);
+        $filter = $inputFilterCollection->getInputFilter()->get('date');
 
         $validators = $filter->getValidatorChain()->getValidators();
         $this->assertCount(3, $validators);

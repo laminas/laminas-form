@@ -5,6 +5,8 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\InputFilter\InputFilterAwareInterface;
 use Laminas\InputFilter\InputFilterInterface;
 
+use function assert;
+
 class ValidatingModel extends Model implements InputFilterAwareInterface
 {
     /** @var null|InputFilterInterface */
@@ -24,6 +26,7 @@ class ValidatingModel extends Model implements InputFilterAwareInterface
      */
     public function getInputFilter()
     {
+        assert($this->inputFilter !== null);
         return $this->inputFilter;
     }
 }

@@ -11,6 +11,7 @@ use Laminas\Stdlib\ArrayUtils;
 use Laminas\Stdlib\Exception\InvalidArgumentException;
 use Traversable;
 
+use function assert;
 use function count;
 use function get_class;
 use function gettype;
@@ -163,7 +164,7 @@ class Collection extends Fieldset
      * In this case the "object" is a collection of objects
      *
      * @param  array|Traversable $object
-     * @return Fieldset|FieldsetInterface
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setObject($object)
@@ -473,7 +474,7 @@ class Collection extends Fieldset
     /**
      * Prepare the collection by adding a dummy template element if the user want one
      *
-     * @return mixed|void
+     * @return void
      */
     public function prepareElement(FormInterface $form)
     {
@@ -531,6 +532,7 @@ class Collection extends Fieldset
                     continue;
                 }
                 $targetElement = clone $this->targetElement;
+                assert($targetElement instanceof Fieldset);
                 $targetElement->setObject($value);
                 $values[$key] = $targetElement->extract();
                 if (! $this->createNewObjects() && $this->has($key)) {

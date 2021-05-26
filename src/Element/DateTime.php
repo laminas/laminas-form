@@ -13,6 +13,7 @@ use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\GreaterThan as GreaterThanValidator;
 use Laminas\Validator\LessThan as LessThanValidator;
+use Laminas\Validator\ValidatorInterface;
 
 use function date;
 use function sprintf;
@@ -168,20 +169,16 @@ class DateTime extends Element implements InputProviderInterface
 
     /**
      * Retrieves a Date Validator configured for a DateTime Input type
-     *
-     * @return DateValidator
      */
-    protected function getDateValidator()
+    protected function getDateValidator(): ValidatorInterface
     {
         return new DateValidator(['format' => $this->format]);
     }
 
     /**
      * Retrieves a DateStep Validator configured for a DateTime Input type
-     *
-     * @return DateStepValidator
      */
-    protected function getStepValidator()
+    protected function getStepValidator(): ValidatorInterface
     {
         $format    = $this->getFormat();
         $stepValue = $this->attributes['step'] ?? 1; // Minutes

@@ -3,7 +3,6 @@
 namespace Laminas\Form\Element;
 
 use Laminas\Form\Element;
-use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Explode as ExplodeValidator;
@@ -101,7 +100,7 @@ class Select extends Element implements InputProviderInterface
      * - value_options: list of values and labels for the select options
      * - empty_option: should an empty option be prepended to the options ?
      *
-     * @return Select|ElementInterface
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setOptions(iterable $options)
@@ -140,7 +139,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @param  string $key
      * @param  mixed  $value
-     * @return Select|ElementInterface
+     * @return $this
      */
     public function setAttribute($key, $value)
     {

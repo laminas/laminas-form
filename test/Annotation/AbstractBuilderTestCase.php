@@ -8,12 +8,12 @@ use Laminas\Form\Element;
 use Laminas\Form\Element\Collection;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
-use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
+use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputInterface;
+use Laminas\Stdlib\PriorityList;
 use LaminasTest\Form\TestAsset;
 use LaminasTest\Form\TestAsset\Annotation\Entity;
 use LaminasTest\Form\TestAsset\Annotation\Form;
@@ -21,30 +21,15 @@ use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
 use PHPUnit\Framework\TestCase;
 
-use function class_exists;
 use function getenv;
 
 abstract class AbstractBuilderTestCase extends TestCase
 {
-    /** @var string */
-    private $classMethodsHydratorClass;
-
-    /** @var string */
-    private $objectPropertyHydratorClass;
-
     protected function setUp(): void
     {
         if (! getenv('TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT to test annotation parsing');
         }
-
-        $this->classMethodsHydratorClass = class_exists(ClassMethodsHydrator::class)
-            ? ClassMethodsHydrator::class
-            : ClassMethods::class;
-
-        $this->objectPropertyHydratorClass = class_exists(ObjectPropertyHydrator::class)
-            ? ObjectPropertyHydrator::class
-            : ObjectProperty::class;
     }
 
     abstract protected function createBuilder(): Annotation\AbstractBuilder;
@@ -109,6 +94,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertArrayHasKey('type', $attributes);
         $this->assertEquals('text', $attributes['type']);
 
+        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $this->assertSame(['omit', 'keep'], $form->getValidationGroup());
     }
 
@@ -129,15 +115,17 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertTrue($form->has('password'));
         $this->assertTrue($form->has('username'));
 
-        $email = $form->get('email');
-        $test  = $form->getIterator()->getIterator()->current();
+        $email       = $form->get('email');
+        $traversable = $form->getIterator();
+        $this->assertInstanceOf(PriorityList::class, $traversable);
+        $test = $traversable->getIterator()->current();
         $this->assertSame($email, $test, 'Test is element ' . $test->getName());
 
-        $test = $form->getIterator()->current();
+        $test = $traversable->current();
         $this->assertSame($email, $test, 'Test is element ' . $test->getName());
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
+        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testFieldsetOrder()
@@ -146,8 +134,10 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $element = $form->get('element');
-        $first   = $form->getIterator()->getIterator()->current();
+        $element     = $form->get('element');
+        $traversable = $form->getIterator();
+        $this->assertInstanceOf(PriorityList::class, $traversable);
+        $first = $traversable->getIterator()->current();
         $this->assertSame($element, $first, 'Test is element ' . $first->getName());
     }
 
@@ -158,8 +148,10 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder->setPreserveDefinedOrder(true);
         $form = $builder->createForm($entity);
 
-        $fieldset = $form->get('fieldset');
-        $first    = $form->getIterator()->getIterator()->current();
+        $fieldset    = $form->get('fieldset');
+        $traversable = $form->getIterator();
+        $this->assertInstanceOf(PriorityList::class, $traversable);
+        $first = $traversable->getIterator()->current();
         $this->assertSame($fieldset, $first, 'Test is element ' . $first->getName());
     }
 
@@ -250,6 +242,7 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $child = $form->get($childName);
 
+        $this->assertInstanceOf(Collection::class, $child);
         $target = $child->getTargetElement();
         $this->assertInstanceOf(FieldsetInterface::class, $target);
         $this->assertEquals('My label', $child->getLabel());
@@ -300,6 +293,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
+        $this->assertInstanceOf(Fieldset::class, $form);
         $this->assertTrue($form->useAsBaseFieldset());
 
         $this->assertTrue($form->has('username'));
@@ -318,7 +312,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form    = $builder->createForm($entity);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($this->classMethodsHydratorClass, $hydrator);
+        $this->assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
@@ -352,6 +346,7 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('sampleinput');
+        $this->assertInstanceOf(Input::class, $sampleinput);
         $this->assertTrue($sampleinput->continueIfEmpty());
     }
 
@@ -375,8 +370,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $this->assertInstanceOf(Fieldset::class, $fieldset);
         $this->assertInstanceOf(Entity::class, $fieldset->getObject());
-        $this->assertInstanceOf($this->classMethodsHydratorClass, $fieldset->getHydrator());
-        $this->assertFalse($fieldset->getHydrator()->getUnderscoreSeparatedKeys());
+        $hydrator = $fieldset->getHydrator();
+        $this->assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
+        $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
     public function testInputFilterInputAnnotation()

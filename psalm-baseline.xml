@@ -21,6 +21,21 @@
       <code>\Zend\Form\FormElementManager::class           =&gt; FormElementManager::class</code>
     </DuplicateArrayKey>
   </file>
+  <file src="src/Element/Collection.php">
+    <MoreSpecificImplementedParamType occurrences="1">
+      <code>$object</code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Element/DateSelect.php">
+    <MoreSpecificImplementedParamType occurrences="1">
+      <code>$value</code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="src/Fieldset.php">
+    <MoreSpecificImplementedParamType occurrences="1">
+      <code>$object</code>
+    </MoreSpecificImplementedParamType>
+  </file>
   <file src="src/FormElementManager.php">
     <ParamNameMismatch occurrences="1">
       <code>$name</code>
@@ -32,6 +47,11 @@
     </InvalidArgument>
   </file>
   <file src="test/Element/CaptchaTest.php">
+    <NullArgument occurrences="1">
+      <code>null</code>
+    </NullArgument>
+  </file>
+  <file src="test/Element/CollectionTest.php">
     <NullArgument occurrences="1">
       <code>null</code>
     </NullArgument>
