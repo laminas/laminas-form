@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormWeek as FormWeekHelper;
 
 use function sprintf;
 
+/**
+ * @property FormWeekHelper $helper
+ */
 class FormWeekTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

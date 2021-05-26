@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormColor as FormColorHelper;
 
 use function sprintf;
 
+/**
+ * @property FormColorHelper $helper
+ */
 class FormColorTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

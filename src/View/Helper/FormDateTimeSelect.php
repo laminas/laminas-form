@@ -49,7 +49,7 @@ class FormDateTimeSelect extends FormDateSelectHelper
      * @param int              $dateType
      * @param int|null|string  $timeType
      * @param null|string      $locale
-     * @return string
+     * @return string|self
      */
     public function __invoke(
         ?ElementInterface $element = null,

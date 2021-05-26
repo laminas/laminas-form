@@ -12,7 +12,11 @@ use Laminas\Validator\Date;
 
 use function explode;
 use function get_class;
+use function uniqid;
 
+/**
+ * @property FormRowHelper $helper
+ */
 class FormRowTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
@@ -278,10 +282,10 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testSetLabelPositionInputNullRaisesException()
+    public function testSetLabelPositionInputRandomRaisesException()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->helper->setLabelPosition(null);
+        $this->helper->setLabelPosition(uniqid('non_existant_'));
     }
 
     public function testGetLabelPositionReturnsDefaultPrepend()

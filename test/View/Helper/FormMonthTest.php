@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormMonth as FormMonthHelper;
 
 use function sprintf;
 
+/**
+ * @property FormMonthHelper $helper
+ */
 class FormMonthTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

@@ -17,6 +17,9 @@ use function mkdir;
 use function sys_get_temp_dir;
 use function unlink;
 
+/**
+ * @property ImageCaptchaHelper $helper
+ */
 class ImageTest extends AbstractCommonTestCase
 {
     /** @var string */

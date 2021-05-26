@@ -12,6 +12,9 @@ use Laminas\I18n\Translator\Translator;
 use function sprintf;
 use function substr_count;
 
+/**
+ * @property FormMultiCheckboxHelper $helper
+ */
 class FormMultiCheckboxTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

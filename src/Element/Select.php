@@ -34,7 +34,7 @@ class Select extends Element implements InputProviderInterface
     /**
      * Create an empty option (option with label but no value). If set to null, no option is created
      *
-     * @var bool
+     * @var string|null
      */
     protected $emptyOption;
 

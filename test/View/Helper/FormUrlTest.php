@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormUrl as FormUrlHelper;
 
 use function sprintf;
 
+/**
+ * @property FormUrlHelper $helper
+ */
 class FormUrlTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

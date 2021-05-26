@@ -11,6 +11,9 @@ use LaminasTest\Form\TestAsset\CityFieldset;
 
 use function sprintf;
 
+/**
+ * @property FormHelper $helper
+ */
 class FormTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

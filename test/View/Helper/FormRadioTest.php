@@ -9,6 +9,9 @@ use Laminas\I18n\Translator\Translator;
 use function sprintf;
 use function substr_count;
 
+/**
+ * @property FormRadioHelper $helper
+ */
 class FormRadioTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

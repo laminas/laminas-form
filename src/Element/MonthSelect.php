@@ -66,13 +66,13 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Constructor. Add two selects elements
      *
-     * @param  null|int|string  $name    Optional name for the element
-     * @param  array            $options Optional options for the element
+     * @param  null|int|string   $name    Optional name for the element
+     * @param  array|Traversable $options Optional options for the element
      */
     public function __construct($name = null, $options = [])
     {
-        $this->minYear = date('Y') - 100;
-        $this->maxYear = date('Y');
+        $this->minYear = ((int) date('Y')) - 100;
+        $this->maxYear = (int) date('Y');
 
         $this->monthElement = new Select('month');
         $this->yearElement  = new Select('year');

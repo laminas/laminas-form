@@ -25,7 +25,7 @@ class HydratorStrategyEntityB
         return $this->field2;
     }
 
-    public function setField1(string $value): self
+    public function setField1(int $value): self
     {
         $this->field1 = $value;
         return $this;

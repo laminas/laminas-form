@@ -32,7 +32,7 @@ class CustomTraversable implements Iterator
      */
     public function next()
     {
-        return next($this->data);
+        next($this->data);
     }
 
     /**
@@ -56,6 +56,6 @@ class CustomTraversable implements Iterator
      */
     public function rewind()
     {
-        return reset($this->data);
+        reset($this->data);
     }
 }

@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormEmail as FormEmailHelper;
 
 use function sprintf;
 
+/**
+ * @property FormEmailHelper $helper
+ */
 class FormEmailTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

@@ -378,7 +378,7 @@ class FormMultiCheckbox extends FormInput
     /**
      * Sets the unchecked value used when "UseHiddenElement" is turned on.
      *
-     * @param  bool $value
+     * @param  string $value
      * @return $this
      */
     public function setUncheckedValue($value)

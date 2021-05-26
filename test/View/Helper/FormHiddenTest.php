@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormHidden as FormHiddenHelper;
 
 use function sprintf;
 
+/**
+ * @property FormHiddenHelper $helper
+ */
 class FormHiddenTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

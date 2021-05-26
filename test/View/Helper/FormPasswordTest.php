@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormPassword as FormPasswordHelper;
 
 use function sprintf;
 
+/**
+ * @property FormPasswordHelper $helper
+ */
 class FormPasswordTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

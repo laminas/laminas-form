@@ -29,7 +29,7 @@ class Fieldset extends Element implements FieldsetInterface
     /** @var array */
     protected $elements = [];
 
-    /** @var array */
+    /** @var FieldsetInterface[] */
     protected $fieldsets = [];
 
     /** @var array */
@@ -260,7 +260,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|Traversable
+     * @return array
      */
     public function getElements()
     {
@@ -272,7 +272,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|Traversable
+     * @return FieldsetInterface[]
      */
     public function getFieldsets()
     {

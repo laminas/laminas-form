@@ -10,6 +10,9 @@ use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Translator\TranslatorInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
 
+/**
+ * @property FormElementErrorsHelper $helper
+ */
 class FormElementErrorsTest extends AbstractCommonTestCase
 {
     use ProphecyTrait;

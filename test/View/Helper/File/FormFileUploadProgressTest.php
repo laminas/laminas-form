@@ -5,6 +5,9 @@ namespace LaminasTest\Form\View\Helper\File;
 use Laminas\Form\View\Helper\File\FormFileUploadProgress;
 use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
+/**
+ * @property FormFileUploadProgress $helper
+ */
 class FormFileUploadProgressTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

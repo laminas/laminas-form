@@ -394,11 +394,11 @@ class FieldsetTest extends TestCase
         $form     = new Form();
         $fieldset = new Fieldset('foobar');
         $form->add($fieldset);
-        $value           = new ArrayObject([
-            'foobar' => 'abc',
-        ]);
-        $value['foobar'] = new ArrayObject([
-            'foo' => 'abc',
+        $value = new ArrayObject([
+            'bar'    => 'abc',
+            'foobar' => new ArrayObject([
+                'foo' => 'abc',
+            ]),
         ]);
         $form->bind($value);
         $this->assertSame($fieldset, $form->get('foobar'));

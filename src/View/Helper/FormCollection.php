@@ -9,6 +9,8 @@ use Laminas\Form\LabelAwareInterface;
 use Laminas\View\Helper\HelperInterface;
 use RuntimeException;
 
+use function assert;
+use function is_callable;
 use function method_exists;
 use function sprintf;
 
@@ -98,7 +100,9 @@ class FormCollection extends AbstractHelper
         $markup         = '';
         $templateMarkup = '';
         $elementHelper  = $this->getElementHelper();
+        assert(is_callable($elementHelper));
         $fieldsetHelper = $this->getFieldsetHelper();
+        assert(is_callable($fieldsetHelper));
 
         if ($element instanceof CollectionElement && $element->shouldCreateTemplate()) {
             $templateMarkup = $this->renderTemplate($element);
@@ -161,9 +165,12 @@ class FormCollection extends AbstractHelper
      */
     public function renderTemplate(CollectionElement $collection)
     {
-        $elementHelper          = $this->getElementHelper();
+        $elementHelper = $this->getElementHelper();
+        assert(is_callable($elementHelper));
         $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
-        $fieldsetHelper         = $this->getFieldsetHelper();
+        assert(is_callable($escapeHtmlAttribHelper));
+        $fieldsetHelper = $this->getFieldsetHelper();
+        assert(is_callable($fieldsetHelper));
 
         $templateMarkup = '';
 

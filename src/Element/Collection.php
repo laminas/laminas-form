@@ -28,6 +28,9 @@ class Collection extends Fieldset
      */
     public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
 
+    /** @var array|Traversable */
+    protected $object;
+
     /**
      * Element used in the collection
      *

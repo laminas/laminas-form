@@ -563,7 +563,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     protected function isValidAttributeName($attribute)
     {
-        return preg_match('/^[^\t\n\f \/>"\'=]+$/', $attribute);
+        return (bool) preg_match('/^[^\t\n\f \/>"\'=]+$/', $attribute);
     }
 
     /**

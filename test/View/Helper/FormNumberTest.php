@@ -8,6 +8,9 @@ use Laminas\Form\View\Helper\FormNumber as FormNumberHelper;
 
 use function sprintf;
 
+/**
+ * @property FormNumberHelper $helper
+ */
 class FormNumberTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

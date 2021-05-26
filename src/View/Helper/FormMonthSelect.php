@@ -73,7 +73,7 @@ class FormMonthSelect extends AbstractHelper
      *
      * @param  int              $dateType
      * @param  null|string      $locale
-     * @return FormDateSelect
+     * @return string|self
      */
     public function __invoke(?ElementInterface $element = null, $dateType = IntlDateFormatter::LONG, $locale = null)
     {

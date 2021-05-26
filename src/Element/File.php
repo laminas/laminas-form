@@ -22,7 +22,7 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
     /**
      * Prepare the form element (mostly used for rendering purposes)
      *
-     * @return mixed
+     * @return void
      */
     public function prepareElement(FormInterface $form)
     {

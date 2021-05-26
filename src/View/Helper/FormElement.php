@@ -72,7 +72,7 @@ class FormElement extends BaseAbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @return string
+     * @return string|self
      */
     public function __invoke(?ElementInterface $element = null)
     {

@@ -7,6 +7,9 @@ use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 use function ini_get;
 
+/**
+ * @property FormFileApcProgress $helper
+ */
 class FormFileApcProgressTest extends AbstractCommonTestCase
 {
     protected function setUp(): void

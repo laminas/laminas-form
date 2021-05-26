@@ -54,9 +54,13 @@ class HydratorStrategyEntityA implements InputFilterAwareInterface
         return $this->inputFilter;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         $this->inputFilter = $inputFilter;
+        return $this;
     }
 
     /**

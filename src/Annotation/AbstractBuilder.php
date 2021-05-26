@@ -254,8 +254,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
             }
         }
 
-        $elementSpec = $params['elementSpec'];
-        $type        = $elementSpec['spec']['type'] ?? Element::class;
+        $type = $params['elementSpec']['spec']['type'] ?? Element::class;
 
         // Compose as a fieldset or an element, based on specification type.
         // If preserve defined order is true, all elements are composed as elements to keep their ordering
@@ -263,12 +262,12 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
             if (! isset($formSpec['fieldsets'])) {
                 $formSpec['fieldsets'] = [];
             }
-            $formSpec['fieldsets'][] = $elementSpec;
+            $formSpec['fieldsets'][] = $params['elementSpec'];
         } else {
             if (! isset($formSpec['elements'])) {
                 $formSpec['elements'] = [];
             }
-            $formSpec['elements'][] = $elementSpec;
+            $formSpec['elements'][] = $params['elementSpec'];
         }
     }
 

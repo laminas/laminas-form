@@ -10,6 +10,9 @@ use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
 use function extension_loaded;
 
+/**
+ * @property FormMonthSelectHelper $helper
+ */
 class FormMonthSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
