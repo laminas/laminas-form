@@ -32,7 +32,7 @@ use function var_export;
 abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactoryAwareInterface
 {
     /** @var EventManagerInterface */
-    protected $events;
+    protected $eventManager;
 
     /** @var Factory */
     protected $formFactory;
@@ -59,15 +59,15 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @return $this
      */
-    public function setEventManager(EventManagerInterface $events)
+    public function setEventManager(EventManagerInterface $eventManager)
     {
-        $events->setIdentifiers([
+        $eventManager->setIdentifiers([
             self::class,
             static::class,
         ]);
-        (new ElementAnnotationsListener())->attach($events);
-        (new FormAnnotationsListener())->attach($events);
-        $this->events = $events;
+        (new ElementAnnotationsListener())->attach($eventManager);
+        (new FormAnnotationsListener())->attach($eventManager);
+        $this->eventManager = $eventManager;
         return $this;
     }
 
@@ -95,10 +95,10 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      */
     public function getEventManager()
     {
-        if (null === $this->events) {
+        if (null === $this->eventManager) {
             $this->setEventManager(new EventManager());
         }
-        return $this->events;
+        return $this->eventManager;
     }
 
     /**
