@@ -6,4 +6,9 @@
       <code>\Zend\Form\FormElementManager::class           =&gt; FormElementManager::class</code>
     </DuplicateArrayKey>
   </file>
+  <file src="src/FormElementManager.php">
+    <ParamNameMismatch occurrences="1">
+      <code>$name</code>
+    </ParamNameMismatch>
+  </file>
 </files>

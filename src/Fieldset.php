@@ -105,9 +105,9 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return $this
      */
-    public function setFormFactory(Factory $factory)
+    public function setFormFactory(Factory $formFactory)
     {
-        $this->factory = $factory;
+        $this->factory = $formFactory;
         return $this;
     }
 

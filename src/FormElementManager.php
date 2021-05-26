@@ -368,18 +368,18 @@ class FormElementManager extends AbstractPluginManager
      *
      * Validates against `$instanceOf`.
      *
-     * @param  mixed $plugin
-     * @throws InvalidServiceException
+     * @param  mixed $instance
      * @return void
+     *@throws InvalidServiceException
      */
-    public function validate($plugin)
+    public function validate($instance)
     {
-        if (! $plugin instanceof $this->instanceOf) {
+        if (! $instance instanceof $this->instanceOf) {
             throw new InvalidServiceException(sprintf(
                 '%s can only create instances of %s; %s is invalid',
                 static::class,
                 $this->instanceOf,
-                is_object($plugin) ? get_class($plugin) : gettype($plugin)
+                is_object($instance) ? get_class($instance) : gettype($instance)
             ));
         }
     }
