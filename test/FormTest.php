@@ -1894,10 +1894,6 @@ class FormTest extends TestCase
             'elements'     => [
                 [
                     'spec' => [
-                        'name' => 'name',
-                        'type' => Element\Text::class,
-                    ],
-                    'spec' => [
                         'name'    => 'groups',
                         'type'    => Element\Collection::class,
                         'options' => [
@@ -1969,7 +1965,6 @@ class FormTest extends TestCase
                         'items'       => [
                             'type'         => CollectionInputFilter::class,
                             'input_filter' => [
-                                'type' => InputFilter::class,
                                 'id'   => [
                                     'required' => false,
                                 ],

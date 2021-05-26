@@ -372,7 +372,6 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form    = $builder->createForm($entity);
 
         $fieldset = $form->get('object');
-        /** @var Laminas\Form\Fieldset $fieldset */
 
         $this->assertInstanceOf(Fieldset::class, $fieldset);
         $this->assertInstanceOf(Entity::class, $fieldset->getObject());
