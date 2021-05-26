@@ -6,9 +6,9 @@ use Laminas\Captcha\Figlet as FigletCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\Figlet as FigletCaptchaHelper;
-use LaminasTest\Form\View\Helper\CommonTestCase;
+use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
-class FigletTest extends CommonTestCase
+class FigletTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -17,7 +17,7 @@ class FigletTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): CaptchaElement
     {
         $element = new CaptchaElement('foo');
         $element->setCaptcha($this->captcha);

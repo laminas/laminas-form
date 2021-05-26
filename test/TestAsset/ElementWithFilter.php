@@ -10,6 +10,9 @@ use Laminas\Validator\NotEmpty;
 
 class ElementWithFilter extends Element implements InputProviderInterface
 {
+    /**
+     * @return array
+     */
     public function getInputSpecification()
     {
         return [

@@ -18,9 +18,11 @@ use function mkdir;
 use function sys_get_temp_dir;
 use function unlink;
 
-class FormCaptchaTest extends CommonTestCase
+class FormCaptchaTest extends AbstractCommonTestCase
 {
+    /** @var null|string */
     protected $testDir;
+    /** @var null|string */
     protected $tmpDir;
 
     protected function setUp(): void
@@ -56,7 +58,6 @@ class FormCaptchaTest extends CommonTestCase
      * Determine system TMP directory
      *
      * @return string
-     * @throws Laminas_File_Transfer_Exception if unable to determine directory
      */
     protected function getTmpDir()
     {
@@ -67,7 +68,7 @@ class FormCaptchaTest extends CommonTestCase
         return $this->tmpDir;
     }
 
-    public function getElement()
+    public function getElement(): CaptchaElement
     {
         return new CaptchaElement('foo');
     }

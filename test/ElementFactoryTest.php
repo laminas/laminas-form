@@ -2,6 +2,7 @@
 
 namespace LaminasTest\Form;
 
+use Generator;
 use Interop\Container\ContainerInterface;
 use Laminas\Form\ElementFactory;
 use Laminas\ServiceManager\ServiceLocatorInterface;
@@ -13,7 +14,7 @@ class ElementFactoryTest extends TestCase
 {
     use ProphecyTrait;
 
-    public function validCreationOptions()
+    public function validCreationOptions(): Generator
     {
         yield 'array' => [['key' => 'value'], ['key' => 'value']];
         yield 'empty-array' => [[], []];

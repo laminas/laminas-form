@@ -6,6 +6,9 @@ use Laminas\Form\Form;
 
 class FileInputFilterProviderForm extends Form
 {
+    /**
+     * @inheritDoc
+     */
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);

@@ -7,7 +7,7 @@ use Laminas\Captcha\Image as ImageCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\Image as ImageCaptchaHelper;
-use LaminasTest\Form\View\Helper\CommonTestCase;
+use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 use function class_exists;
 use function extension_loaded;
@@ -17,16 +17,19 @@ use function mkdir;
 use function sys_get_temp_dir;
 use function unlink;
 
-class ImageTest extends CommonTestCase
+class ImageTest extends AbstractCommonTestCase
 {
+    /** @var string */
     protected $tmpDir;
+    /** @var string */
     protected $testDir;
+    /** @var ImageCaptcha */
+    protected $captcha;
 
     protected function setUp(): void
     {
         if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
-            return;
         }
         if (! function_exists('imagepng')) {
             $this->markTestSkipped('Image CAPTCHA requires PNG support');
@@ -79,7 +82,6 @@ class ImageTest extends CommonTestCase
      * Determine system TMP directory
      *
      * @return string
-     * @throws Laminas_File_Transfer_Exception if unable to determine directory
      */
     protected function getTmpDir()
     {
@@ -89,7 +91,7 @@ class ImageTest extends CommonTestCase
         return $this->tmpDir;
     }
 
-    public function getElement()
+    public function getElement(): CaptchaElement
     {
         $element = new CaptchaElement('foo');
         $element->setCaptcha($this->captcha);

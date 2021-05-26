@@ -20,7 +20,7 @@ use function sprintf;
 
 class DateTime extends Element implements InputProviderInterface
 {
-    const DATETIME_FORMAT = 'Y-m-d\TH:iP';
+    public const DATETIME_FORMAT = 'Y-m-d\TH:iP';
 
     /**
      * Seed attributes

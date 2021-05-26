@@ -7,7 +7,7 @@ use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormCheckbox as FormCheckboxHelper;
 
-class FormCheckboxTest extends CommonTestCase
+class FormCheckboxTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -15,7 +15,7 @@ class FormCheckboxTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): Element\Checkbox
     {
         $element = new Element\Checkbox('foo');
         $options = [

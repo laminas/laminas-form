@@ -10,15 +10,14 @@ use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
 use function in_array;
-use function is_null;
 use function method_exists;
 use function sprintf;
 use function strtolower;
 
 class FormRow extends AbstractHelper
 {
-    const LABEL_APPEND  = 'append';
-    const LABEL_PREPEND = 'prepend';
+    public const LABEL_APPEND  = 'append';
+    public const LABEL_PREPEND = 'prepend';
 
     /**
      * The class that is added to element that have errors
@@ -92,7 +91,7 @@ class FormRow extends AbstractHelper
             return $this;
         }
 
-        if (is_null($labelPosition)) {
+        if ($labelPosition === null) {
             $labelPosition = $this->getLabelPosition();
         }
 
@@ -124,7 +123,7 @@ class FormRow extends AbstractHelper
         $label           = $element->getLabel();
         $inputErrorClass = $this->getInputErrorClass();
 
-        if (is_null($labelPosition)) {
+        if ($labelPosition === null) {
             $labelPosition = $this->labelPosition;
         }
 

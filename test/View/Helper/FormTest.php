@@ -11,7 +11,7 @@ use LaminasTest\Form\TestAsset\CityFieldset;
 
 use function sprintf;
 
-class FormTest extends CommonTestCase
+class FormTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

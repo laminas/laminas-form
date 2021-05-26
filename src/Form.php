@@ -333,7 +333,7 @@ class Form extends Fieldset implements FormInterface
     public function bindValues(array $values = [], ?array $validationGroup = null)
     {
         if (! is_object($this->object)) {
-            if ($this->baseFieldset === null || $this->baseFieldset->allowValueBinding() == false) {
+            if ($this->baseFieldset === null || $this->baseFieldset->allowValueBinding() === false) {
                 return;
             }
         }
@@ -629,7 +629,7 @@ class Form extends Fieldset implements FormInterface
             $fieldset = $formOrFieldset->iterator->get($key);
 
             if ($fieldset instanceof Collection) {
-                if (! isset($data[$key]) && $fieldset->getCount() == 0) {
+                if (! isset($data[$key]) && $fieldset->getCount() === 0) {
                     unset($validationGroup[$key]);
                     continue;
                 }
@@ -678,7 +678,7 @@ class Form extends Fieldset implements FormInterface
     public function getInputFilter()
     {
         if ($this->object instanceof InputFilterAwareInterface) {
-            if (null == $this->baseFieldset) {
+            if (null === $this->baseFieldset) {
                 $this->filter = $this->object->getInputFilter();
             } else {
                 $name = $this->baseFieldset->getName();

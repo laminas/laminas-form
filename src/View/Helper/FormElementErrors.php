@@ -18,12 +18,12 @@ use function sprintf;
 
 class FormElementErrors extends AbstractHelper
 {
-    /** @+
-     * @var string Templates for the open/close/separators for message tags */
-    protected $messageCloseString     = '</li></ul>';
-    protected $messageOpenFormat      = '<ul%s><li>';
+    /** @var string Templates for the open/close/separators for message tags */
+    protected $messageOpenFormat = '<ul%s><li>';
+    /** @var string Templates for the open/close/separators for message tags */
+    protected $messageCloseString = '</li></ul>';
+    /** @var string Templates for the open/close/separators for message tags */
     protected $messageSeparatorString = '</li><li>';
-    /**@-*/
 
     /** @var array Default attributes for the open format tag */
     protected $attributes = [];

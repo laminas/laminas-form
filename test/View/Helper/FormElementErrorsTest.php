@@ -10,7 +10,7 @@ use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Translator\TranslatorInterface;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-class FormElementErrorsTest extends CommonTestCase
+class FormElementErrorsTest extends AbstractCommonTestCase
 {
     use ProphecyTrait;
 
@@ -29,7 +29,7 @@ class FormElementErrorsTest extends CommonTestCase
         AbstractValidator::setDefaultTranslator($this->defaultTranslator);
     }
 
-    public function getMessageList()
+    public function getMessageList(): array
     {
         return [
             'First error message',

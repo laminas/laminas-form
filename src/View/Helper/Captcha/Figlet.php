@@ -39,7 +39,7 @@ class Figlet extends AbstractWord
         $captchaInput = $this->renderCaptchaInputs($element);
 
         $pattern = '%s%s%s';
-        if ($position == self::CAPTCHA_PREPEND) {
+        if ($position === self::CAPTCHA_PREPEND) {
             return sprintf($pattern, $captchaInput, $separator, $figlet);
         }
 

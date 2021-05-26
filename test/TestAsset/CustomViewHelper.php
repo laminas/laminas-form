@@ -14,7 +14,7 @@ class CustomViewHelper extends AbstractHelper
     /** @var FormElement */
     protected $elementHelper;
 
-    public function __invoke(ElementInterface $element)
+    public function __invoke(ElementInterface $element): string
     {
         $elementHelper = $this->getElementHelper();
 

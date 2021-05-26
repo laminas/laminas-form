@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormImage as FormImageHelper;
 
 use function sprintf;
 
-class FormImageTest extends CommonTestCase
+class FormImageTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -54,7 +54,7 @@ class FormImageTest extends CommonTestCase
         $this->assertStringContainsString('src="foo.png"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -89,7 +89,7 @@ class FormImageTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -130,7 +130,7 @@ class FormImageTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

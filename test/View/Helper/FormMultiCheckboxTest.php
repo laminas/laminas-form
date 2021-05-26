@@ -12,7 +12,7 @@ use Laminas\I18n\Translator\Translator;
 use function sprintf;
 use function substr_count;
 
-class FormMultiCheckboxTest extends CommonTestCase
+class FormMultiCheckboxTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -20,7 +20,7 @@ class FormMultiCheckboxTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): MultiCheckboxElement
     {
         $element = new MultiCheckboxElement('foo');
         $options = [
@@ -32,7 +32,7 @@ class FormMultiCheckboxTest extends CommonTestCase
         return $element;
     }
 
-    public function getElementWithOptionSpec()
+    public function getElementWithOptionSpec(): MultiCheckboxElement
     {
         $element = new MultiCheckboxElement('foo');
         $options = [

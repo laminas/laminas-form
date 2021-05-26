@@ -125,7 +125,7 @@ trait LabelAwareTrait
     /**
      * Retrieve a single label option
      *
-     * @param  $key
+     * @param  string $key
      * @return mixed|null
      */
     public function getLabelOption($key)

@@ -9,7 +9,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Month extends DateTime
 {
-    const DATETIME_FORMAT = 'Y-m';
+    public const DATETIME_FORMAT = 'Y-m';
 
     /**
      * A valid format string accepted by date()

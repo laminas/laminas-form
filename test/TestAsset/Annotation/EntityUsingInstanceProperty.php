@@ -14,6 +14,7 @@ use LaminasTest\Form\TestAsset\Annotation\Entity;
 class EntityUsingInstanceProperty
 {
     /**
+     * @var null|Entity
      * @Annotation\Instance("LaminasTest\Form\TestAsset\Annotation\Entity")
      * @Annotation\Type("Laminas\Form\Fieldset")
      * @Annotation\Hydrator(

@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormDate as FormDateHelper;
 
 use function sprintf;
 
-class FormDateTest extends CommonTestCase
+class FormDateTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -44,7 +44,7 @@ class FormDateTest extends CommonTestCase
     /**
      * @return array
      */
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],
@@ -79,7 +79,7 @@ class FormDateTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -121,7 +121,7 @@ class FormDateTest extends CommonTestCase
      * @dataProvider validAttributes
      * @return void
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

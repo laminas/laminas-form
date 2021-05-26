@@ -25,7 +25,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * @param  string $requestedName
      * @param  null|array $options
      * @return AnnotationBuilder
-     * @throws ServiceNotCreatedException for invalid listener configuration.
+     * @throws ServiceNotCreatedException For invalid listener configuration.
      */
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
     {
@@ -96,8 +96,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      *
      * @param  array $config
      * @return void
-     * @throws ServiceNotCreatedException if any listener is not an event listener
-     *     aggregate.
+     * @throws ServiceNotCreatedException If any listener is not an event listener aggregate.
      */
     private function injectListeners(array $config, EventManagerInterface $events, ContainerInterface $container)
     {

@@ -9,7 +9,7 @@ use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
-class FormResetTest extends CommonTestCase
+class FormResetTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -42,7 +42,7 @@ class FormResetTest extends CommonTestCase
         $this->assertStringContainsString('type="reset"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -77,7 +77,7 @@ class FormResetTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -119,7 +119,7 @@ class FormResetTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

@@ -23,6 +23,9 @@ class HydratorStrategy extends DefaultStrategy
         $this->simulatedStorageDevice[] = new HydratorStrategyEntityB(333, 'CCC');
     }
 
+    /**
+     * @inheritDoc
+     */
     public function extract($value, ?object $object = null): array
     {
         $result = [];
@@ -32,7 +35,10 @@ class HydratorStrategy extends DefaultStrategy
         return $result;
     }
 
-    public function hydrate($value, ?array $data = null): object
+    /**
+     * @inheritDoc
+     */
+    public function hydrate($value, ?array $data = null)
     {
         $result = $value;
         if (is_array($value)) {
@@ -41,14 +47,18 @@ class HydratorStrategy extends DefaultStrategy
                 $result[] = $this->findEntity($field1);
             }
         }
-        return (object) $result;
+        return $result;
     }
 
+    /**
+     * @param mixed $field1
+     * @return mixed|null
+     */
     private function findEntity($field1)
     {
         $result = null;
         foreach ($this->simulatedStorageDevice as $entity) {
-            if ($entity->getField1() == $field1) {
+            if ($entity->getField1() === $field1) {
                 $result = $entity;
                 break;
             }

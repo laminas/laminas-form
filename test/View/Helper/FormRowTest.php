@@ -13,7 +13,7 @@ use Laminas\Validator\Date;
 use function explode;
 use function get_class;
 
-class FormRowTest extends CommonTestCase
+class FormRowTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

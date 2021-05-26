@@ -9,7 +9,7 @@ use Laminas\I18n\Translator\Translator;
 use function sprintf;
 use function substr_count;
 
-class FormRadioTest extends CommonTestCase
+class FormRadioTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -17,7 +17,7 @@ class FormRadioTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): RadioElement
     {
         $element = new RadioElement('foo');
         $options = [
@@ -29,7 +29,7 @@ class FormRadioTest extends CommonTestCase
         return $element;
     }
 
-    public function getElementWithOptionSpec()
+    public function getElementWithOptionSpec(): RadioElement
     {
         $element = new RadioElement('foo');
         $options = [

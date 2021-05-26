@@ -15,7 +15,10 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 #[Annotation\Hydrator(ClassMethodsHydrator::class, options: ["underscoreSeparatedKeys" => false])]
 class EntityWithHydratorArray
 {
-    /** @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}}) */
+    /**
+     * @var null|string
+     * @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}})
+     */
     #[Annotation\Options(["label" => "Username:", "label_attributes" => ["class" => "label"]])]
     public $username;
 }

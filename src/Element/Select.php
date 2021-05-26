@@ -331,6 +331,11 @@ class Select extends Element implements InputProviderInterface
         return $values;
     }
 
+    /**
+     * @param mixed $key
+     * @param mixed $optionSpec
+     * @return mixed
+     */
     protected function getOptionValue($key, $optionSpec)
     {
         return is_array($optionSpec) ? $optionSpec['value'] : $key;

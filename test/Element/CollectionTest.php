@@ -43,7 +43,9 @@ use function spl_object_hash;
 
 class CollectionTest extends TestCase
 {
+    /** @var FormCollection  */
     protected $form;
+    /** @var ProductFieldset  */
     protected $productFieldset;
 
     protected function setUp(): void
@@ -763,7 +765,7 @@ class CollectionTest extends TestCase
         $this->assertEmpty($myForm->getMessages());
     }
 
-    protected function prepareForExtract($collection)
+    protected function prepareForExtract(Collection $collection)
     {
         $targetElement = $collection->getTargetElement();
 
@@ -856,45 +858,45 @@ class CollectionTest extends TestCase
         $form->bind($market);
 
         //test for object binding
-        $_marketCollection = $form->get('collection');
-        $this->assertInstanceOf(Collection::class, $_marketCollection);
+        $marketCollection = $form->get('collection');
+        $this->assertInstanceOf(Collection::class, $marketCollection);
 
-        foreach ($_marketCollection as $_shopFieldset) {
-            $this->assertInstanceOf(Fieldset::class, $_shopFieldset);
-            $this->assertInstanceOf('stdClass', $_shopFieldset->getObject());
+        foreach ($marketCollection as $shopFieldset) {
+            $this->assertInstanceOf(Fieldset::class, $shopFieldset);
+            $this->assertInstanceOf('stdClass', $shopFieldset->getObject());
 
             // test for collection -> fieldset
-            $_productFieldset = $_shopFieldset->get('product');
-            $this->assertInstanceOf(ProductFieldset::class, $_productFieldset);
-            $this->assertInstanceOf(Product::class, $_productFieldset->getObject());
+            $productFieldset = $shopFieldset->get('product');
+            $this->assertInstanceOf(ProductFieldset::class, $productFieldset);
+            $this->assertInstanceOf(Product::class, $productFieldset->getObject());
 
             // test for collection -> fieldset -> fieldset
             $this->assertInstanceOf(
                 CountryFieldset::class,
-                $_productFieldset->get('made_in_country')
+                $productFieldset->get('made_in_country')
             );
             $this->assertInstanceOf(
                 Country::class,
-                $_productFieldset->get('made_in_country')->getObject()
+                $productFieldset->get('made_in_country')->getObject()
             );
 
             // test for collection -> fieldset -> collection
-            $_productCategories = $_productFieldset->get('categories');
-            $this->assertInstanceOf(Collection::class, $_productCategories);
+            $productCategories = $productFieldset->get('categories');
+            $this->assertInstanceOf(Collection::class, $productCategories);
 
             // test for collection -> fieldset -> collection -> fieldset
-            foreach ($_productCategories as $_category) {
-                $this->assertInstanceOf(CategoryFieldset::class, $_category);
-                $this->assertInstanceOf(Category::class, $_category->getObject());
+            foreach ($productCategories as $category) {
+                $this->assertInstanceOf(CategoryFieldset::class, $category);
+                $this->assertInstanceOf(Category::class, $category->getObject());
             }
         }
 
         // test for correct extract and populate form values
         // test for collection -> fieldset -> field value
-        foreach ($prices as $_k => $_price) {
+        foreach ($prices as $key => $price) {
             $this->assertEquals(
-                $_price,
-                $form->get('collection')->get($_k)
+                $price,
+                $form->get('collection')->get($key)
                     ->get('product')
                     ->get('price')
                     ->getValue()
@@ -902,10 +904,10 @@ class CollectionTest extends TestCase
         }
 
         // test for collection -> fieldset -> fieldset ->field value
-        foreach ($productCountries as $_k => $_countryName) {
+        foreach ($productCountries as $key => $countryName) {
             $this->assertEquals(
-                $_countryName,
-                $form->get('collection')->get($_k)
+                $countryName,
+                $form->get('collection')->get($key)
                     ->get('product')
                     ->get('made_in_country')
                     ->get('name')
@@ -914,10 +916,10 @@ class CollectionTest extends TestCase
         }
 
         // test collection -> fieldset -> collection -> fieldset -> field value
-        foreach ($categoryNames as $_k => $_categoryName) {
+        foreach ($categoryNames as $key => $categoryName) {
             $this->assertEquals(
-                $_categoryName,
-                $form->get('collection')->get($_k)
+                $categoryName,
+                $form->get('collection')->get($key)
                     ->get('product')
                     ->get('categories')->get(0)
                     ->get('name')->getValue()
@@ -970,7 +972,7 @@ class CollectionTest extends TestCase
         $this->assertEquals($expected, $collection->extract());
     }
 
-    protected function prepareForExtractWithCustomTraversable($collection)
+    protected function prepareForExtractWithCustomTraversable(Collection $collection)
     {
         $obj2 = new ArrayModel();
         $obj2->exchangeArray(['foo' => 'foo_value_1', 'bar' => 'bar_value_1', 'foobar' => 'foobar_value_1']);
@@ -1110,17 +1112,17 @@ class CollectionTest extends TestCase
 
         // Main fieldset has a collection 'nested'...
         $this->assertCount(1, $form->get('main')->getFieldsets());
-        foreach ($form->get('main')->getFieldsets() as $_fieldset) {
+        foreach ($form->get('main')->getFieldsets() as $fieldset) {
             // ...which contains two stdClass objects (shops)
-            $this->assertCount(2, $_fieldset->getFieldsets());
-            foreach ($_fieldset->getFieldsets() as $_nestedfieldset) {
+            $this->assertCount(2, $fieldset->getFieldsets());
+            foreach ($fieldset->getFieldsets() as $nestedfieldset) {
                 // Each shop is represented by a single fieldset
-                $this->assertCount(1, $_nestedfieldset->getFieldsets());
-                foreach ($_nestedfieldset->getFieldsets() as $_productfieldset) {
+                $this->assertCount(1, $nestedfieldset->getFieldsets());
+                foreach ($nestedfieldset->getFieldsets() as $productfieldset) {
                     // Each shop fieldset contain a collection with two products in it
-                    $this->assertCount(2, $_productfieldset->getFieldsets());
-                    foreach ($_productfieldset->getFieldsets() as $_product) {
-                        $this->assertInstanceOf(Product::class, $_product->getObject());
+                    $this->assertCount(2, $productfieldset->getFieldsets());
+                    foreach ($productfieldset->getFieldsets() as $product) {
+                        $this->assertInstanceOf(Product::class, $product->getObject());
                     }
                 }
             }
@@ -1177,18 +1179,18 @@ class CollectionTest extends TestCase
         $form->bind($customer);
 
         //test for object binding
-        foreach ($form->get('addresses')->getFieldsets() as $_fieldset) {
-            $this->assertInstanceOf(Address::class, $_fieldset->getObject());
-            foreach ($_fieldset->getFieldsets() as $_childFieldsetName => $_childFieldset) {
-                switch ($_childFieldsetName) {
+        foreach ($form->get('addresses')->getFieldsets() as $fieldset) {
+            $this->assertInstanceOf(Address::class, $fieldset->getObject());
+            foreach ($fieldset->getFieldsets() as $childFieldsetName => $childFieldset) {
+                switch ($childFieldsetName) {
                     case 'city':
-                        $this->assertInstanceOf(City::class, $_childFieldset->getObject());
+                        $this->assertInstanceOf(City::class, $childFieldset->getObject());
                         break;
                     case 'phones':
-                        foreach ($_childFieldset->getFieldsets() as $_phoneFieldset) {
+                        foreach ($childFieldset->getFieldsets() as $phoneFieldset) {
                             $this->assertInstanceOf(
                                 Phone::class,
-                                $_phoneFieldset->getObject()
+                                $phoneFieldset->getObject()
                             );
                         }
                         break;
@@ -1198,10 +1200,10 @@ class CollectionTest extends TestCase
 
         //test for correct extract and populate
         $index = 0;
-        foreach ($form->get('addresses') as $_addresses) {
-            $this->assertEquals($data[$index]['street'], $_addresses->get('street')->getValue());
+        foreach ($form->get('addresses') as $addresses) {
+            $this->assertEquals($data[$index]['street'], $addresses->get('street')->getValue());
             //assuming data has just 1 phone entry
-            foreach ($_addresses->get('phones') as $phone) {
+            foreach ($addresses->get('phones') as $phone) {
                 $this->assertEquals($data[$index]['number'], $phone->get('number')->getValue());
             }
             $index++;

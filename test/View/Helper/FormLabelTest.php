@@ -11,7 +11,7 @@ use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
-class FormLabelTest extends CommonTestCase
+class FormLabelTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

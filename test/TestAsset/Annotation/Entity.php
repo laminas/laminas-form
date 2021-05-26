@@ -7,6 +7,7 @@ use Laminas\Form\Annotation;
 class Entity
 {
     /**
+     * @var null|string
       * @Annotation\ErrorMessage("Invalid or missing username")
       * @Annotation\Required(true)
       * @Annotation\Filter("StringTrim")
@@ -21,6 +22,7 @@ class Entity
     public $username;
 
     /**
+     * @var null|string
       * @Annotation\Filter("StringTrim")
       * @Annotation\Validator("EmailAddress")
       * @Annotation\Attributes({"type":"password","label":"Enter your password"})

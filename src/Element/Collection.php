@@ -26,7 +26,7 @@ class Collection extends Fieldset
     /**
      * Default template placeholder
      */
-    const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
+    public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
 
     /**
      * Element used in the collection
@@ -294,7 +294,7 @@ class Collection extends Fieldset
     /**
      * Set the initial count of target element
      *
-     * @param $count
+     * @param int $count
      * @return $this
      */
     public function setCount($count)

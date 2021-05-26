@@ -7,6 +7,9 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class FieldsetWithDependencyFactory implements FactoryInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         $options = $options ?: [];

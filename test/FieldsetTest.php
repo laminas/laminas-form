@@ -43,7 +43,7 @@ class FieldsetTest extends TestCase
         $this->fieldset->add($subFieldset);
     }
 
-    public function getMessages()
+    public function getMessages(): array
     {
         return [
             'foo'    => [

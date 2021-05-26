@@ -12,6 +12,7 @@ use LaminasTest\Form\TestAsset\Annotation\Entity;
 class EntityComposingMultipleEntities
 {
     /**
+     * @var null|Entity
      * @Annotation\Name("composed")
      * @Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", isCollection=true)
      */

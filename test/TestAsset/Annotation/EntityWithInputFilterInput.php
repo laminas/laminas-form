@@ -7,7 +7,10 @@ use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
 
 class EntityWithInputFilterInput
 {
-    /** @Annotation\Input("LaminasTest\Form\TestAsset\Annotation\InputFilterInput") */
+    /**
+     * @var null|string
+     * @Annotation\Input("LaminasTest\Form\TestAsset\Annotation\InputFilterInput")
+     */
     #[Annotation\Input(InputFilterInput::class)]
     public $input;
 }

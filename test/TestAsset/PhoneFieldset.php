@@ -34,7 +34,7 @@ class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add($number);
     }
 
-    public function getInputFilterSpecification()
+    public function getInputFilterSpecification(): array
     {
         return [
             'number' => [

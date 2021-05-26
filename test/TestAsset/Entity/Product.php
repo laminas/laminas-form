@@ -12,14 +12,14 @@ class Product
     /** @var int */
     protected $price;
 
-    /** @var array */
+    /** @var Category[] */
     protected $categories;
 
     /** @var Country */
     protected $madeInCountry;
 
     /**
-     * @param array $categories
+     * @param Category[] $categories
      * @return $this
      */
     public function setCategories(array $categories)
@@ -29,7 +29,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return Category[]
      */
     public function getCategories()
     {
@@ -77,7 +77,7 @@ class Product
      *
      * @param int $i
      */
-    public function getCategory($i)
+    public function getCategory($i): Category
     {
         return $this->categories[$i];
     }

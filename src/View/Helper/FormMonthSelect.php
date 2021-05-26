@@ -51,7 +51,7 @@ class FormMonthSelect extends AbstractHelper
     protected $locale;
 
     /**
-     * @throws Exception\ExtensionNotLoadedException if ext/intl is not present
+     * @throws Exception\ExtensionNotLoadedException If ext/intl is not present.
      */
     public function __construct()
     {

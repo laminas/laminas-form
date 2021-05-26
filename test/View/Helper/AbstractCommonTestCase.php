@@ -15,7 +15,7 @@ use function get_class;
 /**
  * Abstract base test case for all form view helpers
  */
-abstract class CommonTestCase extends TestCase
+abstract class AbstractCommonTestCase extends TestCase
 {
     /** @var AbstractHelper */
     public $helper;

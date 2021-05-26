@@ -62,7 +62,7 @@ class FormTest extends TestCase
         $this->form                           = new Form();
     }
 
-    public function getComposedEntity()
+    private function getComposedEntity(): TestAsset\Entity\Address
     {
         $address = new TestAsset\Entity\Address();
         $address->setStreet('1 Rue des Champs Elysées');
@@ -81,7 +81,7 @@ class FormTest extends TestCase
         return $address;
     }
 
-    public function getOneToManyEntity()
+    private function getOneToManyEntity(): TestAsset\Entity\Product
     {
         $product = new TestAsset\Entity\Product();
         $product->setName('Chair');

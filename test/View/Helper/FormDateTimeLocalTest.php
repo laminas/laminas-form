@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormDateTimeLocal as FormDateTimeLocalHelper;
 
 use function sprintf;
 
-class FormDateTimeLocalTest extends CommonTestCase
+class FormDateTimeLocalTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -41,7 +41,7 @@ class FormDateTimeLocalTest extends CommonTestCase
         $this->assertStringContainsString('type="datetime-local"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],
@@ -76,7 +76,7 @@ class FormDateTimeLocalTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -117,7 +117,7 @@ class FormDateTimeLocalTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

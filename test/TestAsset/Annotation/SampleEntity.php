@@ -7,6 +7,7 @@ use Laminas\Form\Annotation;
 class SampleEntity
 {
     /**
+     * @var null|string
      * @Annotation\ErrorMessage("Invalid or missing sampleinput")
      * @Annotation\Required(true)
      * @Annotation\AllowEmpty(true)
@@ -18,7 +19,10 @@ class SampleEntity
     #[Annotation\ContinueIfEmpty(true)]
     public $sampleinput;
 
-    /** @Annotation\Attributes({"type":"text"}) */
+    /**
+     * @var null|string
+     * @Annotation\Attributes({"type":"text"})
+     */
     #[Annotation\Attributes(["type" => "text"])]
     public $anotherSampleInput;
 }

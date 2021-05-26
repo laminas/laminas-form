@@ -8,9 +8,9 @@ use Laminas\Validator\ValidatorInterface;
 
 class DateTimeLocal extends DateTime
 {
-    const DATETIME_LOCAL_FORMAT = 'Y-m-d\TH:i';
+    public const DATETIME_LOCAL_FORMAT = 'Y-m-d\TH:i';
 
-    const DATETIME_FORMAT = self::DATETIME_LOCAL_FORMAT;
+    public const DATETIME_FORMAT = self::DATETIME_LOCAL_FORMAT;
 
     /**
      * Seed attributes

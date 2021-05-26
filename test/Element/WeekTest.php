@@ -56,7 +56,7 @@ class WeekTest extends TestCase
         }
     }
 
-    public function weekValuesDataProvider()
+    public function weekValuesDataProvider(): array
     {
         return [
             //    value        expected
@@ -72,7 +72,7 @@ class WeekTest extends TestCase
     /**
      * @dataProvider weekValuesDataProvider
      */
-    public function testHTML5WeekValidation($value, $expected)
+    public function testHTML5WeekValidation(string $value, bool $expected)
     {
         $element   = new WeekElement('foo');
         $inputSpec = $element->getInputSpecification();

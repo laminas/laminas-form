@@ -192,7 +192,7 @@ class Element implements
     /**
      * Retrieve a single element attribute
      *
-     * @param  $key
+     * @param  string $key
      * @return mixed|null
      */
     public function getAttribute($key)
@@ -314,7 +314,7 @@ class Element implements
     /**
      * Set the label used for this element
      *
-     * @param $label
+     * @param null|string $label
      * @return $this
      */
     public function setLabel($label)
@@ -434,7 +434,7 @@ class Element implements
     /**
      * Retrieve a single label option
      *
-     * @param  $key
+     * @param  int|string $key
      * @return mixed|null
      */
     public function getLabelOption($key)

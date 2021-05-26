@@ -499,7 +499,7 @@ class Fieldset extends Element implements FieldsetInterface
         if (is_object($object) && $this->allowedObjectBindingClass()) {
             $objectClass       = ltrim($this->allowedObjectBindingClass(), '\\');
             $reflection        = new ReflectionClass($object);
-            $validBindingClass = $reflection->getName() == $objectClass
+            $validBindingClass = $reflection->getName() === $objectClass
                 || $reflection->isSubclassOf($this->allowedObjectBindingClass());
         }
 

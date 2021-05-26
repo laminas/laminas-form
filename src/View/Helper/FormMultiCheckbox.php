@@ -18,8 +18,8 @@ use function strtolower;
 
 class FormMultiCheckbox extends FormInput
 {
-    const LABEL_APPEND  = 'append';
-    const LABEL_PREPEND = 'prepend';
+    public const LABEL_APPEND  = 'append';
+    public const LABEL_PREPEND = 'prepend';
 
     /**
      * The attributes applied to option label
@@ -172,7 +172,7 @@ class FormMultiCheckbox extends FormInput
             $inputAttributes = $attributes;
             $labelAttributes = $globalLabelAttributes;
             $selected        = isset($inputAttributes['selected'])
-                && $inputAttributes['type'] != 'radio'
+                && $inputAttributes['type'] !== 'radio'
                 && $inputAttributes['selected'];
             $disabled        = isset($inputAttributes['disabled']) && $inputAttributes['disabled'];
 

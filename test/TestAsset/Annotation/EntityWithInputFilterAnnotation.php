@@ -12,6 +12,7 @@ use Laminas\InputFilter\InputFilter;
 class EntityWithInputFilterAnnotation
 {
     /**
+     * @var null|string
      * @Annotation\ErrorMessage("Invalid or missing username")
      * @Annotation\Required(true)
      * @Annotation\Filter("StringTrim")
@@ -26,6 +27,7 @@ class EntityWithInputFilterAnnotation
     public $username;
 
     /**
+     * @var null|string
      * @Annotation\Filter("StringTrim")
      * @Annotation\Validator("EmailAddress")
      * @Annotation\Attributes({"type":"password","label":"Enter your password"})

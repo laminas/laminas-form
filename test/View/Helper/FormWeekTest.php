@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormWeek as FormWeekHelper;
 
 use function sprintf;
 
-class FormWeekTest extends CommonTestCase
+class FormWeekTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -41,7 +41,7 @@ class FormWeekTest extends CommonTestCase
         $this->assertStringContainsString('type="week"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],
@@ -76,7 +76,7 @@ class FormWeekTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -117,7 +117,7 @@ class FormWeekTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

@@ -6,19 +6,15 @@ use function get_object_vars;
 
 class Orphan
 {
-    /**
-     * Name
-     *
-     * @var string
-     */
+    /** @var string */
     public $name;
 
-    public function getArrayCopy()
+    public function getArrayCopy(): array
     {
         return get_object_vars($this);
     }
 
-    public function exchangeArray($data = [])
+    public function exchangeArray(array $data = [])
     {
         $this->name = $data['name'];
     }

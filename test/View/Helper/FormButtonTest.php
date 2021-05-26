@@ -11,7 +11,7 @@ use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
-class FormButtonTest extends CommonTestCase
+class FormButtonTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -85,7 +85,7 @@ class FormButtonTest extends CommonTestCase
         $this->assertStringContainsString('type="button"', $markup);
     }
 
-    public function inputTypes()
+    public function inputTypes(): array
     {
         return [
             ['submit', 'assertStringContainsString'],
@@ -102,7 +102,7 @@ class FormButtonTest extends CommonTestCase
     /**
      * @dataProvider inputTypes
      */
-    public function testOpenTagOnlyAllowsValidButtonTypes($type, $assertion)
+    public function testOpenTagOnlyAllowsValidButtonTypes(string $type, string $assertion)
     {
         $element = new Element('foo');
         $element->setAttribute('type', $type);
@@ -111,7 +111,7 @@ class FormButtonTest extends CommonTestCase
         $this->$assertion($expected, $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -146,7 +146,7 @@ class FormButtonTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -187,7 +187,7 @@ class FormButtonTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $element->setLabel('{button_content}');

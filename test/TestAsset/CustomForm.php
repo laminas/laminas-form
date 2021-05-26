@@ -48,6 +48,9 @@ class CustomForm extends Form
         ]);
     }
 
+    /**
+     * @return array[]
+     */
     public function getInputFilterSpecification()
     {
         return [

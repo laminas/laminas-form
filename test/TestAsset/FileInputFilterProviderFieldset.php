@@ -8,6 +8,9 @@ use Laminas\InputFilter\InputFilterProviderInterface;
 
 class FileInputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
@@ -21,6 +24,9 @@ class FileInputFilterProviderFieldset extends Fieldset implements InputFilterPro
         ]);
     }
 
+    /**
+     * @return array[]
+     */
     public function getInputFilterSpecification()
     {
         return [

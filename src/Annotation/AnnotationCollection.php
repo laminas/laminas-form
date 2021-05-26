@@ -17,7 +17,7 @@ final class AnnotationCollection extends ArrayObject
     public function hasAnnotation(string $class): bool
     {
         foreach ($this as $annotation) {
-            if (get_class($annotation) == $class) {
+            if (get_class($annotation) === $class) {
                 return true;
             }
         }

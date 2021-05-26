@@ -12,7 +12,7 @@ use function date;
 
 class Date extends DateTimeElement
 {
-    const DATETIME_FORMAT = 'Y-m-d';
+    public const DATETIME_FORMAT = 'Y-m-d';
 
     /**
      * Seed attributes

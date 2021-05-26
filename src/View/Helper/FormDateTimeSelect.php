@@ -31,7 +31,7 @@ class FormDateTimeSelect extends FormDateSelectHelper
     protected $timeType;
 
     /**
-     * @throws Exception\ExtensionNotLoadedException if ext/intl is not present
+     * @throws Exception\ExtensionNotLoadedException If ext/intl is not present.
      */
     public function __construct()
     {

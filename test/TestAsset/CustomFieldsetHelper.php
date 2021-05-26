@@ -14,7 +14,7 @@ class CustomFieldsetHelper extends AbstractHelper
     /** @var FormCollection */
     protected $fieldsetHelper;
 
-    public function __invoke(FieldsetInterface $fieldset)
+    public function __invoke(FieldsetInterface $fieldset): string
     {
         $fieldsetHelper = $this->getFieldsetHelper();
 

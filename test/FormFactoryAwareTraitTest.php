@@ -16,6 +16,9 @@ class FormFactoryAwareTraitTest extends TestCase
         $object = new class {
             use FormFactoryAwareTrait;
 
+            /**
+             * @return null|Factory
+             */
             public function getFormFactory()
             {
                 return $this->factory;

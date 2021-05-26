@@ -8,6 +8,9 @@ use LaminasTest\Form\TestAsset\StringToArrayFilter;
 
 class ElementWithStringToArrayFilter extends Element implements InputProviderInterface
 {
+    /**
+     * @return array
+     */
     public function getInputSpecification()
     {
         return [

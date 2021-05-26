@@ -12,7 +12,7 @@ use Laminas\I18n\Translator\Translator;
  *
  * @covers \Laminas\Form\View\Helper\AbstractHelper
  */
-class AbstractHelperTest extends CommonTestCase
+class AbstractHelperTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -53,7 +53,7 @@ class AbstractHelperTest extends CommonTestCase
         );
     }
 
-    public function addAttributesData()
+    public function addAttributesData(): array
     {
         return [
             'valid'                => ['valid', 'valid="value"'],
@@ -74,8 +74,11 @@ class AbstractHelperTest extends CommonTestCase
     /**
      * @dataProvider addAttributesData
      */
-    public function testWillIncludeAdditionalAttributes($attribute, $expected = null, $exception = null)
-    {
+    public function testWillIncludeAdditionalAttributes(
+        string $attribute,
+        ?string $expected = null,
+        ?bool $exception = null
+    ) {
         if ($exception) {
             $this->expectException(InvalidArgumentException::class);
         }
@@ -88,7 +91,7 @@ class AbstractHelperTest extends CommonTestCase
         );
     }
 
-    public function addAttributesPrefixData()
+    public function addAttributesPrefixData(): array
     {
         return [
             'valid'                => ['v-', 'v-attr="value"'],
@@ -110,8 +113,11 @@ class AbstractHelperTest extends CommonTestCase
     /**
      * @dataProvider addAttributesPrefixData
      */
-    public function testWillIncludeAdditionalAttributesByPrefix($prefix, $expected = null, $exception = null)
-    {
+    public function testWillIncludeAdditionalAttributesByPrefix(
+        string $prefix,
+        ?string $expected = null,
+        ?bool $exception = null
+    ) {
         if ($exception) {
             $this->expectException(InvalidArgumentException::class);
         }

@@ -68,7 +68,7 @@ class FormElementManagerTest extends TestCase
         $this->manager->get('test');
     }
 
-    protected function getInvalidServiceException()
+    protected function getInvalidServiceException(): string
     {
         if (method_exists($this->manager, 'configure')) {
             return InvalidServiceException::class;

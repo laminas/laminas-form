@@ -17,6 +17,7 @@ use LaminasTest\Form\TestAsset\Annotation\UrlValidator;
 class ComplexEntity
 {
     /**
+     * @var null|string
      * @Annotation\ErrorMessage("Invalid or missing username")
      * @Annotation\Filter("StringTrim")
      * @Annotation\Validator("NotEmpty")
@@ -29,6 +30,7 @@ class ComplexEntity
     public $username;
 
     /**
+     * @var null|string
      * @Annotation\Attributes({"type":"password","label":"Enter your password"})
      * @Annotation\Filter("StringTrim")
      * @Annotation\Validator("StringLength", options={"min":3})
@@ -39,6 +41,7 @@ class ComplexEntity
     public $password;
 
     /**
+     * @var null|string
      * @Annotation\Flags({"priority":100})
      * @Annotation\Filter("StringTrim")
      * @Annotation\Validator("EmailAddress", options={"allow":15})
@@ -51,6 +54,7 @@ class ComplexEntity
     public $email;
 
     /**
+     * @var null|string
      * @Annotation\Name("user_image")
      * @Annotation\AllowEmpty()
      * @Annotation\Required(false)
@@ -64,7 +68,10 @@ class ComplexEntity
     #[Annotation\Validator(UrlValidator::class)]
     public $avatar;
 
-    /** @Annotation\Exclude() */
+    /**
+     * @var null|string
+     * @Annotation\Exclude()
+     */
     #[Annotation\Exclude]
     protected $someComposedObject;
 }

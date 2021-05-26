@@ -297,7 +297,7 @@ class Factory
      * @param  array|Traversable|ArrayAccess $spec
      * @param  string $method Method invoking the validator
      * @return array|ArrayAccess
-     * @throws Exception\InvalidArgumentException for invalid $spec
+     * @throws Exception\InvalidArgumentException For invalid $spec.
      */
     protected function validateSpecification($spec, $method)
     {
@@ -411,7 +411,7 @@ class Factory
      * @param  string                                  $method
      * @return void
      * @throws Exception\DomainException If $hydratorOrName is not a string, does not resolve to a known class, or
-     *                                   the class does not implement Hydrator\HydratorInterface
+     *                                   the class does not implement Hydrator\HydratorInterface.
      */
     protected function prepareAndInjectHydrator($hydratorOrName, FieldsetInterface $fieldset, $method)
     {
@@ -462,7 +462,7 @@ class Factory
      * @param  string                    $method
      * @return void
      * @throws Exception\DomainException If $factoryOrName is not a string, does not resolve to a known class, or
-     *                                   the class does not extend Form\Factory
+     *                                   the class does not extend Form\Factory.
      */
     protected function prepareAndInjectFactory($factoryOrName, FieldsetInterface $fieldset, $method)
     {
@@ -504,7 +504,7 @@ class Factory
      * @param  string|array|Traversable $spec
      * @param  string $method
      * @return void
-     * @throws Exception\DomainException for unknown InputFilter class or invalid InputFilter instance
+     * @throws Exception\DomainException For unknown InputFilter class or invalid InputFilter instance.
      */
     protected function prepareAndInjectInputFilter($spec, FormInterface $form, $method)
     {
@@ -549,7 +549,7 @@ class Factory
      * @param  string|array|Traversable $spec
      * @param  string $method
      * @return void
-     * @throws Exception\DomainException if validation group given is not an array
+     * @throws Exception\DomainException If validation group given is not an array.
      */
     protected function prepareAndInjectValidationGroup($spec, FormInterface $form, $method)
     {

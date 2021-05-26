@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormEmail as FormEmailHelper;
 
 use function sprintf;
 
-class FormEmailTest extends CommonTestCase
+class FormEmailTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -41,7 +41,7 @@ class FormEmailTest extends CommonTestCase
         $this->assertStringContainsString('type="email"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -77,7 +77,7 @@ class FormEmailTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -119,7 +119,7 @@ class FormEmailTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

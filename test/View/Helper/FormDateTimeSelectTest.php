@@ -10,7 +10,7 @@ use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 use function extension_loaded;
 use function substr;
 
-class FormDateTimeSelectTest extends CommonTestCase
+class FormDateTimeSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

@@ -118,7 +118,7 @@ class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig->configureServiceManager($formElementManager);
 
-        /** @var TestAsset\Form */
+        /** @var TestAsset\Form $form */
         $form = $formElementManager->get('MyForm');
         $this->assertSame($formElementManager, $form->elementManagerAtInit);
     }

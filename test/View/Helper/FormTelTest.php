@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormTel as FormTelHelper;
 
 use function sprintf;
 
-class FormTelTest extends CommonTestCase
+class FormTelTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -41,7 +41,7 @@ class FormTelTest extends CommonTestCase
         $this->assertStringContainsString('type="tel"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],
@@ -77,7 +77,7 @@ class FormTelTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -119,7 +119,7 @@ class FormTelTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

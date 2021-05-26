@@ -11,7 +11,6 @@ use Laminas\Stdlib\ArrayUtils;
 use function array_key_exists;
 use function array_map;
 use function array_merge;
-use function compact;
 use function implode;
 use function is_array;
 use function is_scalar;
@@ -67,6 +66,7 @@ class FormSelect extends AbstractHelper
         'label'    => true,
     ];
 
+    /** @var bool[] */
     protected $translatableAttributes = [
         'label' => true,
     ];
@@ -214,7 +214,11 @@ class FormSelect extends AbstractHelper
                 );
             }
 
-            $attributes = compact('value', 'selected', 'disabled');
+            $attributes = [
+                'value'    => $value,
+                'selected' => $selected,
+                'disabled' => $disabled,
+            ];
 
             if (isset($optionSpec['attributes']) && is_array($optionSpec['attributes'])) {
                 $attributes = array_merge($attributes, $optionSpec['attributes']);
@@ -299,6 +303,9 @@ class FormSelect extends AbstractHelper
         return $value;
     }
 
+    /**
+     * @return FormHidden|string
+     */
     protected function renderHiddenElement(ElementInterface $element)
     {
         $hiddenElement = new Hidden($element->getName());

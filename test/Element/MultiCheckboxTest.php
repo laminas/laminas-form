@@ -12,7 +12,7 @@ use function get_class;
 
 class MultiCheckboxTest extends TestCase
 {
-    public function useHiddenAttributeDataProvider()
+    public function useHiddenAttributeDataProvider(): array
     {
         return [[true], [false]];
     }
@@ -20,7 +20,7 @@ class MultiCheckboxTest extends TestCase
     /**
      * @dataProvider useHiddenAttributeDataProvider
      */
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes($useHiddenElement)
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement)
     {
         $element = new MultiCheckboxElement();
         $options = [
@@ -54,7 +54,7 @@ class MultiCheckboxTest extends TestCase
         }
     }
 
-    public function multiCheckboxOptionsDataProvider()
+    public function multiCheckboxOptionsDataProvider(): array
     {
         return [
             [
@@ -77,7 +77,7 @@ class MultiCheckboxTest extends TestCase
     /**
      * @dataProvider multiCheckboxOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions($valueTests, $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options)
     {
         $element = new MultiCheckboxElement('my-checkbox');
         $element->setAttributes([
@@ -96,7 +96,7 @@ class MultiCheckboxTest extends TestCase
      *
      * @dataProvider multiCheckboxOptionsDataProvider
      */
-    public function testInArrayValidatorHaystakIsUpdated($valueTests, $options)
+    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options)
     {
         $element          = new MultiCheckboxElement('my-checkbox');
         $inputSpec        = $element->getInputSpecification();

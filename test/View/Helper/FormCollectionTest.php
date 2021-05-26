@@ -9,7 +9,7 @@ use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
 use ReflectionMethod;
 
-class FormCollectionTest extends CommonTestCase
+class FormCollectionTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -17,7 +17,7 @@ class FormCollectionTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getForm()
+    public function getForm(): FormCollection
     {
         $form = new FormCollection();
         $form->prepare();

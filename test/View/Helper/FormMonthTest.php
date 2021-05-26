@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormMonth as FormMonthHelper;
 
 use function sprintf;
 
-class FormMonthTest extends CommonTestCase
+class FormMonthTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -41,7 +41,7 @@ class FormMonthTest extends CommonTestCase
         $this->assertStringContainsString('type="month"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],
@@ -76,7 +76,7 @@ class FormMonthTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -117,7 +117,7 @@ class FormMonthTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

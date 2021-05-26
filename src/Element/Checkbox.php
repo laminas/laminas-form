@@ -84,7 +84,7 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Set the value to use when checkbox is unchecked
      *
-     * @param $uncheckedValue
+     * @param string $uncheckedValue
      * @return $this
      */
     public function setUncheckedValue($uncheckedValue)
@@ -106,7 +106,7 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Set the value to use when checkbox is checked
      *
-     * @param $checkedValue
+     * @param string $checkedValue
      * @return $this
      */
     public function setCheckedValue($checkedValue)

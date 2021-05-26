@@ -146,10 +146,12 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             }
             unset($specification['input_filter']);
 
-            $elementSpec['spec']['type']                      = Collection::class;
-            $elementSpec['spec']['name']                      = $name;
-            $elementSpec['spec']['options']                   = new ArrayObject($this->mergeOptions($elementSpec, $annotation));
-            $elementSpec['spec']['options']['target_element'] = $specification;
+            $elementSpec['spec']['type'] = Collection::class;
+            $elementSpec['spec']['name'] = $name;
+
+            $elementSpec['spec']['options'] = new ArrayObject($this->mergeOptions($elementSpec, $annotation));
+
+            $elementSpec['spec']['options']['target_element']                                 = $specification;
             $elementSpec['spec']['options']['target_element']['options']['input_filter_spec'] = $inputFilter;
 
             if (isset($specification['hydrator'])) {

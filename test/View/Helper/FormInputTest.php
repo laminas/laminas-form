@@ -9,7 +9,7 @@ use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
-class FormInputTest extends CommonTestCase
+class FormInputTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -42,7 +42,7 @@ class FormInputTest extends CommonTestCase
         $this->assertStringContainsString('type="email"', $markup);
     }
 
-    public function inputTypes()
+    public function inputTypes(): array
     {
         return [
             ['text', 'assertStringContainsString'],
@@ -80,7 +80,7 @@ class FormInputTest extends CommonTestCase
     /**
      * @dataProvider inputTypes
      */
-    public function testOnlyAllowsValidInputTypes($type, $assertion)
+    public function testOnlyAllowsValidInputTypes(string $type, string $assertion)
     {
         $element = new Element('foo');
         $element->setAttribute('type', $type);
@@ -92,7 +92,7 @@ class FormInputTest extends CommonTestCase
     /**
      * @return array
      */
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['accept', 'assertStringContainsString'],
@@ -185,35 +185,7 @@ class FormInputTest extends CommonTestCase
         ];
     }
 
-    public function validAttributes2()
-    {
-        return [
-            ['pattern', 'assertStringContainsString'],
-            ['placeholder', 'assertStringContainsString'],
-            ['readonly', 'assertStringContainsString'],
-            ['required', 'assertStringContainsString'],
-            ['size', 'assertStringContainsString'],
-            ['spellcheck', 'assertStringContainsString'],
-            ['src', 'assertStringContainsString'],
-            ['step', 'assertStringContainsString'],
-            ['style', 'assertStringContainsString'],
-            ['tabindex', 'assertStringContainsString'],
-            ['title', 'assertStringContainsString'],
-            ['value', 'assertStringContainsString'],
-            ['width', 'assertStringContainsString'],
-            ['xml:base', 'assertStringContainsString'],
-            ['xml:lang', 'assertStringContainsString'],
-            ['xml:space', 'assertStringContainsString'],
-            ['data-some-key', 'assertStringContainsString'],
-            ['option', 'assertStringNotContainsString'],
-            ['optgroup', 'assertStringNotContainsString'],
-            ['arbitrary', 'assertStringNotContainsString'],
-            ['meta', 'assertStringNotContainsString'],
-            ['role', 'assertStringContainsString'],
-        ];
-    }
-
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -334,7 +306,7 @@ class FormInputTest extends CommonTestCase
      * @dataProvider validAttributes
      * @return       void
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
@@ -349,7 +321,7 @@ class FormInputTest extends CommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function nonXhtmlDoctypes()
+    public function nonXhtmlDoctypes(): array
     {
         return [
             ['HTML4_STRICT'],
@@ -362,7 +334,7 @@ class FormInputTest extends CommonTestCase
     /**
      * @dataProvider nonXhtmlDoctypes
      */
-    public function testRenderingOmitsClosingSlashWhenDoctypeIsNotXhtml($doctype)
+    public function testRenderingOmitsClosingSlashWhenDoctypeIsNotXhtml(string $doctype)
     {
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
@@ -370,7 +342,7 @@ class FormInputTest extends CommonTestCase
         $this->assertStringNotContainsString('/>', $markup);
     }
 
-    public function xhtmlDoctypes()
+    public function xhtmlDoctypes(): array
     {
         return [
             ['XHTML11'],
@@ -386,7 +358,7 @@ class FormInputTest extends CommonTestCase
     /**
      * @dataProvider xhtmlDoctypes
      */
-    public function testRenderingIncludesClosingSlashWhenDoctypeIsXhtml($doctype)
+    public function testRenderingIncludesClosingSlashWhenDoctypeIsXhtml(string $doctype)
     {
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
@@ -399,7 +371,7 @@ class FormInputTest extends CommonTestCase
      *
      * @return string[][]
      */
-    public function booleanAttributeTypes()
+    public function booleanAttributeTypes(): array
     {
         return [
             ['autofocus', 'autofocus', ''],
@@ -416,7 +388,7 @@ class FormInputTest extends CommonTestCase
      * @group Laminas-391
      * @dataProvider booleanAttributeTypes
      */
-    public function testBooleanAttributeTypesAreRenderedCorrectly($attribute, $on, $off)
+    public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off)
     {
         $element = new Element('foo');
         $element->setAttribute($attribute, true);
@@ -479,8 +451,11 @@ class FormInputTest extends CommonTestCase
      * @group Laminas-391
      * @dataProvider booleanAttributeTypes
      */
-    public function testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5($attribute, $on, $off)
-    {
+    public function testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5(
+        string $attribute,
+        string $on,
+        string $off
+    ) {
         $element = new Element('foo');
         $this->renderer->doctype('HTML5');
         $element->setAttribute($attribute, true);

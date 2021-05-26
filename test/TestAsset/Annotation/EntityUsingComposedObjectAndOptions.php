@@ -12,6 +12,7 @@ use LaminasTest\Form\TestAsset\Annotation\Entity;
 class EntityUsingComposedObjectAndOptions
 {
     /**
+     * @var null|Entity
      * @Annotation\Name("child")
      * @Annotation\Options({"label": "My label"})
      * @Annotation\ComposedObject(targetObject="LaminasTest\Form\TestAsset\Annotation\Entity", isCollection=true)
@@ -22,6 +23,7 @@ class EntityUsingComposedObjectAndOptions
     public $child;
 
     /**
+     * @var null|Entity
      * @Annotation\Name("childTheSecond")
      * @Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", isCollection=true)
      * @Annotation\Options({"label": "My label"})
@@ -32,6 +34,7 @@ class EntityUsingComposedObjectAndOptions
     public $childTheSecond;
 
     /**
+     * @var null|Entity
      * @Annotation\Name("childTheThird")
      * @Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity")
      * @Annotation\Options({"label": "My label"})
@@ -42,6 +45,7 @@ class EntityUsingComposedObjectAndOptions
     public $childTheThird;
 
     /**
+     * @var null|Entity
      * @Annotation\Name("childTheFourth")
      * @Annotation\Options({"label": "My label"})
      * @Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity")

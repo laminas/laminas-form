@@ -30,8 +30,8 @@ class FormCaptcha extends AbstractHelper
     /**
      * Render a form captcha for an element
      *
-     * @throws Exception\DomainException if the element does not compose a captcha, or the renderer does
-     *                                   not implement plugin()
+     * @throws Exception\DomainException If the element does not compose a captcha, or the renderer does
+     *                                   not implement plugin().
      * @return string
      */
     public function render(ElementInterface $element)

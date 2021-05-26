@@ -17,11 +17,15 @@ use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 #[Annotation\ValidationGroup(["omit", "keep"])]
 class ClassEntity
 {
-    /** @Annotation\Exclude() */
+    /**
+     * @var null|string
+     * @Annotation\Exclude()
+     */
     #[Annotation\Exclude]
     public $omit;
 
     /**
+     * @var null|string
      * @Annotation\Name("keeper")
      * @Annotation\Attributes({"type":"text"})
      */

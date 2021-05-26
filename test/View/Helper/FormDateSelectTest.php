@@ -10,7 +10,7 @@ use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
 
 use function extension_loaded;
 
-class FormDateSelectTest extends CommonTestCase
+class FormDateSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

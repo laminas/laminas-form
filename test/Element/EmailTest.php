@@ -28,7 +28,7 @@ class EmailTest extends TestCase
         }
     }
 
-    public function emailAttributesDataProvider()
+    public function emailAttributesDataProvider(): array
     {
         return [
                   // attributes               // expectedValidators
@@ -40,7 +40,7 @@ class EmailTest extends TestCase
     /**
      * @dataProvider emailAttributesDataProvider
      */
-    public function testProvidesInputSpecificationBasedOnAttributes($attributes, $expectedValidators)
+    public function testProvidesInputSpecificationBasedOnAttributes(array $attributes, array $expectedValidators)
     {
         $element = new EmailElement();
         $element->setAttributes($attributes);

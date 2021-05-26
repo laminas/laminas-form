@@ -47,7 +47,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
     public function canCreate(ContainerInterface $container, $requestedName)
     {
         // avoid infinite loops when looking up config
-        if ($requestedName == 'config') {
+        if ($requestedName === 'config') {
             return false;
         }
 

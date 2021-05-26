@@ -28,7 +28,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
     /**
      * Attach listeners
      *
-     * @return void
+     * @inheritDoc
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {

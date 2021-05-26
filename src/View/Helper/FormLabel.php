@@ -15,8 +15,8 @@ use function sprintf;
 
 class FormLabel extends AbstractHelper
 {
-    const APPEND  = 'append';
-    const PREPEND = 'prepend';
+    public const APPEND  = 'append';
+    public const PREPEND = 'prepend';
 
     /**
      * Attributes valid for the label tag

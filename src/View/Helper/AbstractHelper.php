@@ -403,7 +403,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             }
 
             // Normalize attribute key, if needed
-            if ($attribute != $key) {
+            if ($attribute !== $key) {
                 unset($attributes[$key]);
                 $attributes[$attribute] = $value;
             }
@@ -476,8 +476,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $attribute
      * @return $this
-     * @throws InvalidArgumentException for attribute names that are invalid
-     *     per the HTML specifications.
+     * @throws InvalidArgumentException For attribute names that are invalid per the HTML specifications.
      */
     public function addValidAttribute($attribute)
     {
@@ -494,8 +493,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $prefix
      * @return $this
-     * @throws InvalidArgumentException for attribute prefixes that are invalid
-     *     per the HTML specifications for attribute names.
+     * @throws InvalidArgumentException For attribute prefixes that are invalid
+     *                                  per the HTML specifications for attribute names.
      */
     public function addValidAttributePrefix($prefix)
     {

@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormSearch as FormSearchHelper;
 
 use function sprintf;
 
-class FormSearchTest extends CommonTestCase
+class FormSearchTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -41,7 +41,7 @@ class FormSearchTest extends CommonTestCase
         $this->assertStringContainsString('type="search"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             'name'           => ['name', 'assertStringContainsString'],
@@ -77,7 +77,7 @@ class FormSearchTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -119,7 +119,7 @@ class FormSearchTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

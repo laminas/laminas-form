@@ -89,7 +89,7 @@ class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) == GreaterThan::class) {
+            if (get_class($validator) === GreaterThan::class) {
                 $this->assertFalse($validator->getInclusive());
                 break;
             }
@@ -105,7 +105,7 @@ class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) == GreaterThan::class) {
+            if (get_class($validator) === GreaterThan::class) {
                 $this->assertTrue($validator->getInclusive());
                 break;
             }
@@ -118,7 +118,7 @@ class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) == Regex::class) {
+            if (get_class($validator) === Regex::class) {
                 $this->assertFalse($validator->isValid('1,000.01'));
                 $this->assertFalse($validator->isValid('-1,000.01'));
                 $this->assertTrue($validator->isValid('1000.01'));

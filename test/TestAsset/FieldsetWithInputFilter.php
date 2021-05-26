@@ -10,6 +10,9 @@ use Laminas\Validator\NotEmpty;
 
 class FieldsetWithInputFilter extends Fieldset implements InputFilterProviderInterface
 {
+    /**
+     * @return array[]
+     */
     public function getInputFilterSpecification()
     {
         return [

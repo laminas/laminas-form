@@ -116,7 +116,7 @@ interface ElementInterface
     /**
      * Set the label (if any) used for this element
      *
-     * @param  $label
+     * @param  null|string $label
      * @return $this
      */
     public function setLabel($label);

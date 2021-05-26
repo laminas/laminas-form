@@ -117,7 +117,7 @@ class FormInput extends AbstractHelper
         $type                = $this->getType($element);
         $attributes['type']  = $type;
         $attributes['value'] = $element->getValue();
-        if ('password' == $type) {
+        if ('password' === $type) {
             $attributes['value'] = '';
         }
 

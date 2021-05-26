@@ -56,7 +56,7 @@ class MonthTest extends TestCase
         }
     }
 
-    public function monthValuesDataProvider()
+    public function monthValuesDataProvider(): array
     {
         return [
             //    value         expected
@@ -73,7 +73,7 @@ class MonthTest extends TestCase
     /**
      * @dataProvider monthValuesDataProvider
      */
-    public function testHTML5MonthValidation($value, $expected)
+    public function testHTML5MonthValidation(string $value, bool $expected)
     {
         $element   = new MonthElement('foo');
         $inputSpec = $element->getInputSpecification();

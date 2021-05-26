@@ -105,7 +105,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * Creates and returns a form specification for use with a factory
      *
      * @param  string|object $entity Either an instance or a valid class name for an entity
-     * @throws Exception\InvalidArgumentException if $entity is not an object or class name
+     * @throws Exception\InvalidArgumentException If $entity is not an object or class name.
      * @return ArrayObject
      */
     public function getFormSpecification($entity)

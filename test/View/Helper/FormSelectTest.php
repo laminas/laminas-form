@@ -16,7 +16,7 @@ use function key;
 use function sprintf;
 use function substr_count;
 
-class FormSelectTest extends CommonTestCase
+class FormSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -24,7 +24,7 @@ class FormSelectTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): SelectElement
     {
         $element = new SelectElement('foo');
         $options = [
@@ -194,7 +194,7 @@ class FormSelectTest extends CommonTestCase
         $this->assertMatchesRegularExpression('#<select[^>]*?(name="foo\&\#x5B\;\&\#x5D\;")#', $markup);
     }
 
-    public function getScalarOptionsDataProvider()
+    public function getScalarOptionsDataProvider(): array
     {
         return [
             [['value' => 'string']],
@@ -214,7 +214,7 @@ class FormSelectTest extends CommonTestCase
      * @group Laminas-338
      * @dataProvider getScalarOptionsDataProvider
      */
-    public function testScalarOptionValues($options)
+    public function testScalarOptionValues(array $options)
     {
         $element = new SelectElement('foo');
         $element->setValueOptions($options);
@@ -418,7 +418,7 @@ class FormSelectTest extends CommonTestCase
         $this->helper->render($element);
     }
 
-    public function getElementWithObjectIdentifiers()
+    public function getElementWithObjectIdentifiers(): SelectElement
     {
         $element = new SelectElement('foo');
         $options = [

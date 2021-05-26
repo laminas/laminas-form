@@ -4,10 +4,14 @@ namespace LaminasTest\Form\TestAsset;
 
 class ArgumentRecorder
 {
+    /** @var array */
     public $args;
 
-    public function __construct(...$args)
+    public function __construct(string $name, array $options)
     {
-        $this->args = $args;
+        $this->args = [
+            $name,
+            $options,
+        ];
     }
 }

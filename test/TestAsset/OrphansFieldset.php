@@ -12,6 +12,9 @@ use function class_exists;
 
 class OrphansFieldset extends Fieldset implements InputFilterProviderInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
@@ -30,6 +33,9 @@ class OrphansFieldset extends Fieldset implements InputFilterProviderInterface
         ]);
     }
 
+    /**
+     * @return array[]
+     */
     public function getInputFilterSpecification()
     {
         return [

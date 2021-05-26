@@ -58,7 +58,7 @@ class MonthSelectTest extends TestCase
     /**
      * @dataProvider monthValuesDataProvider
      */
-    public function testMonthValidation($value, $expected)
+    public function testMonthValidation(string $value, bool $expected)
     {
         $element   = new MonthSelectElement('foo');
         $inputSpec = $element->getInputSpecification();

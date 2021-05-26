@@ -9,7 +9,7 @@ interface LabelAwareInterface
     /**
      * Set the label (if any) used for this element
      *
-     * @param  $label
+     * @param  null|string $label
      * @return $this
      */
     public function setLabel($label);
@@ -65,7 +65,7 @@ interface LabelAwareInterface
     /**
      * Retrieve a single label option
      *
-     * @param  $key
+     * @param  int|string $key
      * @return mixed|null
      */
     public function getLabelOption($key);

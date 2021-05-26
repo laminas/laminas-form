@@ -10,7 +10,7 @@ use function get_class;
 
 class RadioTest extends TestCase
 {
-    public function useHiddenAttributeDataProvider()
+    public function useHiddenAttributeDataProvider(): array
     {
         return [[true], [false]];
     }
@@ -18,7 +18,7 @@ class RadioTest extends TestCase
     /**
      * @dataProvider useHiddenAttributeDataProvider
      */
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes($useHiddenElement)
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement)
     {
         $element = new RadioElement();
         $options = [
@@ -44,7 +44,7 @@ class RadioTest extends TestCase
         }
     }
 
-    public function radioOptionsDataProvider()
+    public function radioOptionsDataProvider(): array
     {
         return [
             [
@@ -67,7 +67,7 @@ class RadioTest extends TestCase
     /**
      * @dataProvider radioOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions($valueTests, $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options)
     {
         $element = new RadioElement('my-radio');
         $element->setAttributes([

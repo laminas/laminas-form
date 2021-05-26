@@ -6,7 +6,7 @@ use Laminas\Form\Form as BaseForm;
 
 class Form extends BaseForm
 {
-    /** @param null|FormElementManager */
+    /** @var null|FormElementManager */
     public $elementManagerAtInit;
 
     /**

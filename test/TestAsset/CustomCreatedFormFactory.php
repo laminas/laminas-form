@@ -8,6 +8,9 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class CustomCreatedFormFactory implements FactoryInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         $options        = $options ?: [];

@@ -39,7 +39,7 @@ class FormElementTest extends TestCase
         $this->helper->setView($this->renderer);
     }
 
-    public function getInputElements()
+    public function getInputElements(): array
     {
         return [
             ['text'],
@@ -71,7 +71,7 @@ class FormElementTest extends TestCase
     /**
      * @dataProvider getInputElements
      */
-    public function testRendersExpectedInputElement($type)
+    public function testRendersExpectedInputElement(string $type)
     {
         if ($type === 'radio') {
             $element = new Element\Radio('foo');
@@ -92,7 +92,7 @@ class FormElementTest extends TestCase
         $this->assertStringContainsString('type="' . $type . '"', $markup);
     }
 
-    public function getMultiElements()
+    public function getMultiElements(): array
     {
         return [
             ['radio', 'input', 'type="radio"'],
@@ -105,7 +105,7 @@ class FormElementTest extends TestCase
      * @dataProvider getMultiElements
      * @group multi
      */
-    public function testRendersMultiElementsAsExpected($type, $inputType, $additionalMarkup)
+    public function testRendersMultiElementsAsExpected(string $type, string $inputType, string $additionalMarkup)
     {
         if ($type === 'radio') {
             $element = new Element\Radio('foo');
@@ -130,7 +130,7 @@ class FormElementTest extends TestCase
 
         $this->assertEquals(3, substr_count($markup, '<' . $inputType), $markup);
         $this->assertStringContainsString($additionalMarkup, $markup);
-        if ($type == 'select') {
+        if ($type === 'select') {
             $this->assertMatchesRegularExpression('#value="value2"[^>]*?(selected="selected")#', $markup);
         }
     }

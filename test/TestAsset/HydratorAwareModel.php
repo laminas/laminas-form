@@ -8,9 +8,11 @@ use Laminas\Hydrator\HydratorInterface;
 
 class HydratorAwareModel implements HydratorAwareInterface
 {
+    /** @var null|HydratorInterface */
     protected $hydrator;
-
+    /** @var null|string */
     protected $foo;
+    /** @var null|string */
     protected $bar;
 
     public function setHydrator(HydratorInterface $hydrator): void
@@ -26,23 +28,35 @@ class HydratorAwareModel implements HydratorAwareInterface
         return $this->hydrator;
     }
 
-    public function setFoo($value)
+    /**
+     * @return $this
+     */
+    public function setFoo(string $value)
     {
         $this->foo = $value;
         return $this;
     }
 
-    public function setBar($value)
+    /**
+     * @return $this
+     */
+    public function setBar(string $value)
     {
         $this->bar = $value;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getFoo()
     {
         return $this->foo;
     }
 
+    /**
+     * @return string|null
+     */
     public function getBar()
     {
         return $this->bar;

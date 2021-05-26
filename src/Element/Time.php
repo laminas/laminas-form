@@ -10,7 +10,7 @@ use function date;
 
 class Time extends DateTime
 {
-    const DATETIME_FORMAT = 'H:i:s';
+    public const DATETIME_FORMAT = 'H:i:s';
 
     /**
      * Seed attributes

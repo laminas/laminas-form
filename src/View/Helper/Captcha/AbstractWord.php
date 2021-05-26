@@ -16,8 +16,8 @@ use function strtolower;
 
 abstract class AbstractWord extends FormInput
 {
-    const CAPTCHA_APPEND  = 'append';
-    const CAPTCHA_PREPEND = 'prepend';
+    public const CAPTCHA_APPEND  = 'append';
+    public const CAPTCHA_PREPEND = 'prepend';
 
     /** @var FormInput */
     protected $inputHelper;

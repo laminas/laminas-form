@@ -8,11 +8,17 @@ use Laminas\Form\Fieldset;
 
 class FieldsetOrderEntity
 {
-    /** @Annotation\Type("Laminas\Form\Fieldset") */
+    /**
+     * @var null|Fieldset
+     * @Annotation\Type("Laminas\Form\Fieldset")
+     */
     #[Annotation\Type(Fieldset::class)]
     public $fieldset;
 
-    /** @Annotation\Type("Laminas\Form\Element") */
+    /**
+     * @var null|Element
+     * @Annotation\Type("Laminas\Form\Element")
+     */
     #[Annotation\Type(Element::class)]
     public $element;
 }

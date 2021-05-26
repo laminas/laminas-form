@@ -111,7 +111,7 @@ class SelectTest extends TestCase
         }
     }
 
-    public function selectOptionsDataProvider()
+    public function selectOptionsDataProvider(): array
     {
         return [
             [
@@ -134,7 +134,7 @@ class SelectTest extends TestCase
     /**
      * @dataProvider selectOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions($valueTests, $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options)
     {
         $element = new SelectElement('my-select');
         $element->setValueOptions($options);
@@ -153,7 +153,7 @@ class SelectTest extends TestCase
      *
      * @dataProvider selectOptionsDataProvider
      */
-    public function testInArrayValidatorHaystakIsUpdated($valueTests, $options)
+    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options)
     {
         $element   = new SelectElement('my-select');
         $inputSpec = $element->getInputSpecification();

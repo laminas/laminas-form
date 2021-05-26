@@ -3,11 +3,11 @@
 namespace LaminasTest\Form\View\Helper\File;
 
 use Laminas\Form\View\Helper\File\FormFileSessionProgress;
-use LaminasTest\Form\View\Helper\CommonTestCase;
+use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 use function ini_get;
 
-class FormFileSessionProgressTest extends CommonTestCase
+class FormFileSessionProgressTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

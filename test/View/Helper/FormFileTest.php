@@ -8,7 +8,7 @@ use Laminas\Form\View\Helper\FormFile as FormFileHelper;
 
 use function sprintf;
 
-class FormFileTest extends CommonTestCase
+class FormFileTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -72,7 +72,7 @@ class FormFileTest extends CommonTestCase
     /**
      * @return array
      */
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -109,7 +109,7 @@ class FormFileTest extends CommonTestCase
     /**
      * @return Element\File
      */
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element\File('foo');
         $element->setAttributes([
@@ -150,7 +150,7 @@ class FormFileTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);

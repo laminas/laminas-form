@@ -6,7 +6,7 @@ use Laminas\Stdlib\ArrayObject;
 
 class CustomCollection extends ArrayObject
 {
-    public function toArray()
+    public function toArray(): array
     {
         $ret = [];
 

@@ -10,7 +10,7 @@ use function method_exists;
 
 class FormElement extends BaseAbstractHelper
 {
-    const DEFAULT_HELPER = 'forminput';
+    public const DEFAULT_HELPER = 'forminput';
 
     /**
      * Instance map to view helper

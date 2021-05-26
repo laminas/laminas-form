@@ -7,12 +7,15 @@ use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\Captcha\Dumb as DumbCaptchaHelper;
-use LaminasTest\Form\View\Helper\CommonTestCase;
+use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 use function strrev;
 
-class DumbTest extends CommonTestCase
+class DumbTest extends AbstractCommonTestCase
 {
+    /** @var DumbCaptcha */
+    protected $captcha;
+
     protected function setUp(): void
     {
         $this->helper  = new DumbCaptchaHelper();
@@ -20,7 +23,7 @@ class DumbTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): CaptchaElement
     {
         $element = new CaptchaElement('foo');
         $element->setCaptcha($this->captcha);
