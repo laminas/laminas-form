@@ -8,7 +8,6 @@ use Laminas\Form\ElementPrepareAwareInterface;
 use Laminas\Form\FormInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Csrf as CsrfValidator;
-use Traversable;
 
 use function array_merge;
 
@@ -33,10 +32,9 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      * Accepted options for Csrf:
      * - csrf_options: an array used in the Csrf
      *
-     * @param array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 
@@ -106,10 +104,8 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      * Override: get attributes
      *
      * Seeds 'value' attribute with validator hash
-     *
-     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         $attributes          = parent::getAttributes();
         $validator           = $this->getCsrfValidator();

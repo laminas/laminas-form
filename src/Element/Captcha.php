@@ -24,10 +24,9 @@ class Captcha extends Element implements InputProviderInterface
      * Accepted options for Captcha:
      * - captcha: a valid Laminas\Captcha\AdapterInterface
      *
-     * @param array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 

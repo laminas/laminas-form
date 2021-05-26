@@ -9,7 +9,6 @@ use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
-use Traversable;
 
 use function array_key_exists;
 use function is_array;
@@ -102,11 +101,10 @@ class Select extends Element implements InputProviderInterface
      * - value_options: list of values and labels for the select options
      * - empty_option: should an empty option be prepended to the options ?
      *
-     * @param  array|Traversable $options
      * @return Select|ElementInterface
      * @throws InvalidArgumentException
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 

@@ -67,26 +67,25 @@ interface FieldsetInterface extends
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return array|Traversable
+     * @return ElementInterface[]
      */
-    public function getElements();
+    public function getElements(): array;
 
     /**
      * Retrieve all attached fieldsets
      *
      * Storage is an implementation detail of the concrete class.
      *
-     * @return FieldsetInterface[]|Traversable<array-key, FieldsetInterface>
+     * @return FieldsetInterface[]
      */
-    public function getFieldsets();
+    public function getFieldsets(): array;
 
     /**
      * Recursively populate value attributes of elements
      *
-     * @param  array|Traversable $data
      * @return void
      */
-    public function populateValues($data);
+    public function populateValues(iterable $data);
 
     /**
      * Set the object used by the hydrator

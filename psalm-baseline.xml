@@ -21,63 +21,6 @@
       <code>\Zend\Form\FormElementManager::class           =&gt; FormElementManager::class</code>
     </DuplicateArrayKey>
   </file>
-  <file src="src/Element.php">
-    <InvalidPropertyAssignmentValue occurrences="1">
-      <code>$messages</code>
-    </InvalidPropertyAssignmentValue>
-  </file>
-  <file src="src/Element/Csrf.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>$attributes</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>array</code>
-    </InvalidReturnType>
-  </file>
-  <file src="src/Element/DateSelect.php">
-    <InvalidReturnStatement occurrences="1">
-      <code>$this-&gt;dayElement-&gt;getAttributes()</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>array</code>
-    </InvalidReturnType>
-  </file>
-  <file src="src/Element/DateTimeSelect.php">
-    <InvalidReturnStatement occurrences="3">
-      <code>$this-&gt;hourElement-&gt;getAttributes()</code>
-      <code>$this-&gt;minuteElement-&gt;getAttributes()</code>
-      <code>$this-&gt;secondElement-&gt;getAttributes()</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="3">
-      <code>array</code>
-      <code>array</code>
-      <code>array</code>
-    </InvalidReturnType>
-  </file>
-  <file src="src/Element/MonthSelect.php">
-    <InvalidReturnStatement occurrences="2">
-      <code>$this-&gt;monthElement-&gt;getAttributes()</code>
-      <code>$this-&gt;yearElement-&gt;getAttributes()</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="2">
-      <code>array</code>
-      <code>array</code>
-    </InvalidReturnType>
-  </file>
-  <file src="src/Factory.php">
-    <InvalidArgument occurrences="2">
-      <code>$attributes</code>
-      <code>$options</code>
-    </InvalidArgument>
-  </file>
-  <file src="src/Fieldset.php">
-    <InvalidArgument occurrences="1">
-      <code>$data[$name]</code>
-    </InvalidArgument>
-    <InvalidReturnStatement occurrences="1">
-      <code>$element-&gt;getMessages()</code>
-    </InvalidReturnStatement>
-  </file>
   <file src="src/FormElementManager.php">
     <ParamNameMismatch occurrences="1">
       <code>$name</code>
@@ -93,34 +36,15 @@
       <code>null</code>
     </NullArgument>
   </file>
-  <file src="test/Element/CollectionTest.php">
-    <NullArgument occurrences="1">
-      <code>null</code>
-    </NullArgument>
-  </file>
-  <file src="test/ElementTest.php">
-    <NullArgument occurrences="4">
-      <code>null</code>
-      <code>null</code>
-      <code>null</code>
-      <code>null</code>
-    </NullArgument>
-  </file>
   <file src="test/FieldsetTest.php">
     <InvalidArgument occurrences="1">
       <code>'foo'</code>
     </InvalidArgument>
-    <NullArgument occurrences="3">
-      <code>null</code>
-      <code>null</code>
+    <NullArgument occurrences="1">
       <code>null</code>
     </NullArgument>
   </file>
   <file src="test/FormTest.php">
-    <InvalidArrayAccess occurrences="2">
-      <code>$fieldsets[0]</code>
-      <code>$fieldsets[1]</code>
-    </InvalidArrayAccess>
     <NullArgument occurrences="1">
       <code>null</code>
     </NullArgument>

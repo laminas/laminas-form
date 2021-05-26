@@ -137,20 +137,20 @@ class Form extends Fieldset implements FormInterface
      * Set options for a form. Accepted options are:
      * - prefer_form_input_filter: is form input filter is preferred?
      *
-     * @param  array|Traversable $options
+     * @param  iterable $options
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 
-        if (isset($options['prefer_form_input_filter'])) {
-            $this->setPreferFormInputFilter($options['prefer_form_input_filter']);
+        if (isset($this->options['prefer_form_input_filter'])) {
+            $this->setPreferFormInputFilter($this->options['prefer_form_input_filter']);
         }
 
-        if (isset($options['use_input_filter_defaults'])) {
-            $this->setUseInputFilterDefaults($options['use_input_filter_defaults']);
+        if (isset($this->options['use_input_filter_defaults'])) {
+            $this->setUseInputFilterDefaults($this->options['use_input_filter_defaults']);
         }
 
         return $this;

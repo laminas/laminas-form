@@ -3,26 +3,19 @@
 namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Fieldset;
-use Traversable;
 
 class ValueStoringFieldset extends Fieldset
 {
-    /** @var array|Traversable */
+    /** @var iterable */
     protected $storedValue;
 
-    /**
-     * @param array|Traversable $data
-     */
-    public function populateValues($data)
+    public function populateValues(iterable $data)
     {
         $this->storedValue = $data;
         parent::populateValues($data);
     }
 
-    /**
-     * @return array|Traversable
-     */
-    public function getStoredValue()
+    public function getStoredValue(): iterable
     {
         return $this->storedValue;
     }

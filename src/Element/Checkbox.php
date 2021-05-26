@@ -6,7 +6,6 @@ use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
-use Traversable;
 
 class Checkbox extends Element implements InputProviderInterface
 {
@@ -37,10 +36,9 @@ class Checkbox extends Element implements InputProviderInterface
      * - unchecked_value: value for checkbox when unchecked
      * - checked_value: value for checkbox when checked
      *
-     * @param  array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 

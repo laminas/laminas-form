@@ -2,14 +2,7 @@
 
 namespace Laminas\Form;
 
-use Traversable;
-
 use function array_key_exists;
-use function get_class;
-use function gettype;
-use function is_array;
-use function is_object;
-use function sprintf;
 
 trait LabelAwareTrait
 {
@@ -54,19 +47,11 @@ trait LabelAwareTrait
      *
      * Implementation will decide if this will overwrite or merge.
      *
-     * @param  array|Traversable $arrayOrTraversable
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setLabelOptions($arrayOrTraversable)
+    public function setLabelOptions(iterable $arrayOrTraversable)
     {
-        if (! is_array($arrayOrTraversable) && ! $arrayOrTraversable instanceof Traversable) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects an array or Traversable argument; received "%s"',
-                __METHOD__,
-                is_object($arrayOrTraversable) ? get_class($arrayOrTraversable) : gettype($arrayOrTraversable)
-            ));
-        }
         foreach ($arrayOrTraversable as $key => $value) {
             $this->setLabelOption($key, $value);
         }

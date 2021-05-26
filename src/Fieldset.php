@@ -81,11 +81,10 @@ class Fieldset extends Element implements FieldsetInterface
      * Set options for a fieldset. Accepted options are:
      * - use_as_base_fieldset: is this fieldset use as the base fieldset?
      *
-     * @param  array|Traversable $options
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 
@@ -259,10 +258,8 @@ class Fieldset extends Element implements FieldsetInterface
      * Retrieve all attached elements
      *
      * Storage is an implementation detail of the concrete class.
-     *
-     * @return array
      */
-    public function getElements()
+    public function getElements(): array
     {
         return $this->elements;
     }
@@ -271,10 +268,8 @@ class Fieldset extends Element implements FieldsetInterface
      * Retrieve all attached fieldsets
      *
      * Storage is an implementation detail of the concrete class.
-     *
-     * @return FieldsetInterface[]
      */
-    public function getFieldsets()
+    public function getFieldsets(): array
     {
         return $this->fieldsets;
     }
@@ -282,20 +277,11 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Set a hash of element names/messages to use when validation fails
      *
-     * @param  array|Traversable $messages
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setMessages($messages)
+    public function setMessages(iterable $messages)
     {
-        if (! is_array($messages) && ! $messages instanceof Traversable) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects an array or Traversable object of messages; received "%s"',
-                __METHOD__,
-                is_object($messages) ? get_class($messages) : gettype($messages)
-            ));
-        }
-
         foreach ($messages as $key => $messageSet) {
             if (! $this->has($key)) {
                 $this->messages[$key] = $messageSet;
@@ -317,10 +303,9 @@ class Fieldset extends Element implements FieldsetInterface
      * only.
      *
      * @param  null|string $elementName
-     * @return array|Traversable
      * @throws Exception\InvalidArgumentException
      */
-    public function getMessages($elementName = null)
+    public function getMessages($elementName = null): array
     {
         if (null === $elementName) {
             $messages = $this->messages;
@@ -372,20 +357,14 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Recursively populate values of attached elements and fieldsets
      *
-     * @param  array|Traversable $data
+     * @param  iterable $data
      * @return void
      * @throws Exception\InvalidArgumentException
      */
-    public function populateValues($data)
+    public function populateValues(iterable $data)
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
-        } elseif (! is_array($data)) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects an array or Traversable set of data; received "%s"',
-                __METHOD__,
-                is_object($data) ? get_class($data) : gettype($data)
-            ));
         }
 
         foreach ($this->iterator as $name => $elementOrFieldset) {

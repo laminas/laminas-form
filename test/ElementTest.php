@@ -4,7 +4,6 @@ namespace LaminasTest\Form;
 
 use ArrayObject;
 use Laminas\Form\Element;
-use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 use function array_merge;
@@ -183,14 +182,6 @@ class ElementTest extends TestCase
         $this->assertEquals('foo', $option);
     }
 
-    public function testSetOptionsWrongInputRaisesException()
-    {
-        $element = new Element('foo');
-
-        $this->expectException(InvalidArgumentException::class);
-        $element->setOptions(null);
-    }
-
     public function testSetOptionsIsTraversable()
     {
         $element = new Element('foo');
@@ -203,22 +194,6 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
         $this->assertNull($element->getOption('foo'));
-    }
-
-    public function testSetAttributesWrongInputRaisesException()
-    {
-        $element = new Element('foo');
-
-        $this->expectException(InvalidArgumentException::class);
-        $element->setAttributes(null);
-    }
-
-    public function testSetMessagesWrongInputRaisesException()
-    {
-        $element = new Element('foo');
-
-        $this->expectException(InvalidArgumentException::class);
-        $element->setMessages(null);
     }
 
     public function testLabelOptionsAreEmptyByDefault()
@@ -257,14 +232,6 @@ class ElementTest extends TestCase
         foreach ($options as $k => $v) {
             $this->assertEquals($v, $element->getLabelOption($k));
         }
-    }
-
-    public function testPassingWrongArgumentToSetLabelOptionsThrowsException()
-    {
-        $element = new Element();
-
-        $this->expectException(InvalidArgumentException::class);
-        $element->setLabelOptions(null);
     }
 
     public function testSettingLabelOptionsMerges()

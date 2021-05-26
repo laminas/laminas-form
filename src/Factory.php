@@ -101,7 +101,7 @@ class Factory
      * type is being requested; if none is provided, assumes the spec
      * represents simply an element.
      *
-     * @param  array|Traversable $spec
+     * @param  array|Traversable|ArrayAccess $spec
      * @return ElementInterface
      * @throws Exception\DomainException
      */

@@ -28,7 +28,7 @@ class Collection extends Fieldset
      */
     public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
 
-    /** @var array|Traversable */
+    /** @var array */
     protected $object;
 
     /**
@@ -110,10 +110,9 @@ class Collection extends Fieldset
      * - should_create_template: if set to true, a template is generated (inside a <span>)
      * - template_placeholder: placeholder used in the data template
      *
-     * @param array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 
@@ -188,21 +187,14 @@ class Collection extends Fieldset
     /**
      * Populate values
      *
-     * @param array|Traversable $data
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      * @return void
      */
-    public function populateValues($data)
+    public function populateValues(iterable $data)
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
-        } elseif (! is_array($data)) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects an array or Traversable set of data; received "%s"',
-                __METHOD__,
-                is_object($data) ? get_class($data) : gettype($data)
-            ));
         }
 
         if (! $this->allowRemove && count($data) < $this->count) {

@@ -9,7 +9,6 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
-use Traversable;
 
 use function array_merge;
 use function is_string;
@@ -27,10 +26,10 @@ class DateSelect extends MonthSelect
     /**
      * Constructor. Add the day select element
      *
-     * @param  null|int|string   $name    Optional name for the element
-     * @param  array|Traversable $options Optional options for the element
+     * @param  null|int|string $name    Optional name for the element
+     * @param  iterable        $options Optional options for the element
      */
-    public function __construct($name = null, $options = [])
+    public function __construct($name = null, iterable $options = [])
     {
         $this->dayElement = new Select('day');
 
@@ -41,10 +40,9 @@ class DateSelect extends MonthSelect
      * Accepted options for DateSelect (plus the ones from MonthSelect) :
      * - day_attributes: HTML attributes to be rendered with the day element
      *
-     * @param array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 

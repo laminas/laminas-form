@@ -13,7 +13,6 @@ use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\GreaterThan as GreaterThanValidator;
 use Laminas\Validator\LessThan as LessThanValidator;
-use Traversable;
 
 use function date;
 use function sprintf;
@@ -45,10 +44,9 @@ class DateTime extends Element implements InputProviderInterface
      * Accepted options for DateTime:
      * - format: A \DateTime compatible string
      *
-     * @param array|Traversable $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(iterable $options)
     {
         parent::setOptions($options);
 
