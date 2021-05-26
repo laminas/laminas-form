@@ -74,7 +74,7 @@ class FormCreatesCollectionInputFilterTest extends TestCase
     /**
      * @depends testCollectionInputFilterContainsExpectedValidators
      */
-    public function testCollectionElementDoesNotCreateDiscreteElementInInputFilter(Form $form)
+    public function testCollectionElementDoesNotCreateDiscreteElementInInputFilter(Form $form): void
     {
         $inputFilter = $form->getInputFilter();
         $this->assertFalse($inputFilter->has('date'));

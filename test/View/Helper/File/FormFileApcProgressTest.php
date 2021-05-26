@@ -18,7 +18,7 @@ class FormFileApcProgressTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testReturnsNameIdAndValueAttributes()
+    public function testReturnsNameIdAndValueAttributes(): void
     {
         $name = ini_get('apc.rfc1867_name');
         if (false === $name) {

@@ -120,7 +120,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      *
      * Also injects the factory with the InputFilterManager if present.
      */
-    private function injectFactory(Factory $factory, ContainerInterface $container)
+    private function injectFactory(Factory $factory, ContainerInterface $container): void
     {
         $factory->setFormElementManager($container->get('FormElementManager'));
 

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class FileTest extends TestCase
 {
-    public function testProvidesDefaultInputSpecification()
+    public function testProvidesDefaultInputSpecification(): void
     {
         $element = new FileElement('foo');
         $this->assertEquals('file', $element->getAttribute('type'));
@@ -21,7 +21,7 @@ class FileTest extends TestCase
         $this->assertInstanceOf(FileInput::class, $input);
     }
 
-    public function testWillAddFileEnctypeAttributeToForm()
+    public function testWillAddFileEnctypeAttributeToForm(): void
     {
         $file     = new FileElement('foo');
         $formMock = $this->createMock(Form::class);

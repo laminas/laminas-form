@@ -14,7 +14,7 @@ class Orphan
         return get_object_vars($this);
     }
 
-    public function exchangeArray(array $data = [])
+    public function exchangeArray(array $data = []): void
     {
         $this->name = $data['name'];
     }

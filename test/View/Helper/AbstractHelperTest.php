@@ -23,7 +23,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
     /**
      * @group issue-5991
      */
-    public function testWillEscapeValueAttributeValuesCorrectly()
+    public function testWillEscapeValueAttributeValuesCorrectly(): void
     {
         $this->assertSame(
             'data-value="breaking&#x20;your&#x20;HTML&#x20;like&#x20;a&#x20;boss&#x21;&#x20;&#x5C;"',
@@ -31,7 +31,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
-    public function testWillEncodeValueAttributeValuesCorrectly()
+    public function testWillEncodeValueAttributeValuesCorrectly(): void
     {
         $escaper = new Escaper('iso-8859-1');
 
@@ -43,7 +43,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
-    public function testWillNotEncodeValueAttributeValuesCorrectly()
+    public function testWillNotEncodeValueAttributeValuesCorrectly(): void
     {
         $escaper = new Escaper('iso-8859-1');
 
@@ -78,7 +78,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
         string $attribute,
         ?string $expected = null,
         ?bool $exception = null
-    ) {
+    ): void {
         if ($exception) {
             $this->expectException(InvalidArgumentException::class);
         }
@@ -117,7 +117,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
         string $prefix,
         ?string $expected = null,
         ?bool $exception = null
-    ) {
+    ): void {
         if ($exception) {
             $this->expectException(InvalidArgumentException::class);
         }
@@ -130,7 +130,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
-    public function testWillTranslateAttributeValuesCorrectly()
+    public function testWillTranslateAttributeValuesCorrectly(): void
     {
         $translator = self::getMockBuilder(Translator::class)
             ->disableOriginalConstructor()
@@ -171,7 +171,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
-    public function testWillTranslateDefaultAttributeValuesCorrectly()
+    public function testWillTranslateDefaultAttributeValuesCorrectly(): void
     {
         $translator = self::getMockBuilder(Translator::class)
             ->disableOriginalConstructor()
@@ -213,7 +213,7 @@ class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
-    public function testWillInsulateAgainstBadAttributes()
+    public function testWillInsulateAgainstBadAttributes(): void
     {
         $this->assertSame(
             'data-value=""',

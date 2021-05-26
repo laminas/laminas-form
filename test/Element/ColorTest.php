@@ -10,7 +10,7 @@ use function get_class;
 
 class ColorTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new ColorElement();
 

@@ -16,7 +16,7 @@ class FormFileUploadProgressTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testReturnsNameIdAndValueAttributes()
+    public function testReturnsNameIdAndValueAttributes(): void
     {
         $markup = $this->helper->__invoke();
         $this->assertStringContainsString('<input ', $markup);

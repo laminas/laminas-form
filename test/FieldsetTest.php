@@ -24,7 +24,7 @@ class FieldsetTest extends TestCase
         $this->fieldset = new Fieldset();
     }
 
-    public function populateFieldset()
+    public function populateFieldset(): void
     {
         $this->fieldset->add(new Element('foo'));
         $this->fieldset->add(new Element('bar'));
@@ -83,7 +83,7 @@ class FieldsetTest extends TestCase
         ];
     }
 
-    public function testExtractOnAnEmptyRelationship()
+    public function testExtractOnAnEmptyRelationship(): void
     {
         $form = new TestAsset\FormCollection();
         $form->populateValues(['fieldsets' => []]);
@@ -91,7 +91,7 @@ class FieldsetTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    public function testExtractOnAnEmptyTraversable()
+    public function testExtractOnAnEmptyTraversable(): void
     {
         $form = new TestAsset\FormCollection();
         $form->populateValues(new ArrayObject(['fieldsets' => new ArrayObject()]));
@@ -99,7 +99,7 @@ class FieldsetTest extends TestCase
         $this->addToAssertionCount(1);
     }
 
-    public function testTraversableAcceptedValueForFieldset()
+    public function testTraversableAcceptedValueForFieldset(): void
     {
         $subValue    = new ArrayObject(['field' => 'value']);
         $subFieldset = new TestAsset\ValueStoringFieldset('subFieldset');
@@ -108,18 +108,18 @@ class FieldsetTest extends TestCase
         $this->assertEquals($subValue, $subFieldset->getStoredValue());
     }
 
-    public function testFieldsetIsEmptyByDefault()
+    public function testFieldsetIsEmptyByDefault(): void
     {
         $this->assertCount(0, $this->fieldset);
     }
 
-    public function testCanAddElementsToFieldset()
+    public function testCanAddElementsToFieldset(): void
     {
         $this->fieldset->add(new Element('foo'));
         $this->assertCount(1, $this->fieldset);
     }
 
-    public function testCanSetCustomOptionFromConstructor()
+    public function testCanSetCustomOptionFromConstructor(): void
     {
         $fieldset = new Fieldset('foo', [
             'custom' => 'option',
@@ -129,55 +129,55 @@ class FieldsetTest extends TestCase
         $this->assertEquals('option', $options['custom']);
     }
 
-    public function testAddWithInvalidElementRaisesException()
+    public function testAddWithInvalidElementRaisesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->fieldset->add(null);
     }
 
-    public function testCanGrabElementByNameWhenNotProvidedWithAlias()
+    public function testCanGrabElementByNameWhenNotProvidedWithAlias(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element);
         $this->assertSame($element, $this->fieldset->get('foo'));
     }
 
-    public function testElementMayBeRetrievedByAliasProvidedWhenAdded()
+    public function testElementMayBeRetrievedByAliasProvidedWhenAdded(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element, ['name' => 'bar']);
         $this->assertSame($element, $this->fieldset->get('bar'));
     }
 
-    public function testElementNameIsChangedToAliasWhenAdded()
+    public function testElementNameIsChangedToAliasWhenAdded(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element, ['name' => 'bar']);
         $this->assertEquals('bar', $element->getName());
     }
 
-    public function testCannotRetrieveElementByItsNameWhenProvidingAnAliasDuringAddition()
+    public function testCannotRetrieveElementByItsNameWhenProvidingAnAliasDuringAddition(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element, ['name' => 'bar']);
         $this->assertFalse($this->fieldset->has('foo'));
     }
 
-    public function testAddingAnElementWithNoNameOrAliasWillRaiseException()
+    public function testAddingAnElementWithNoNameOrAliasWillRaiseException(): void
     {
         $element = new Element();
         $this->expectException(InvalidArgumentException::class);
         $this->fieldset->add($element);
     }
 
-    public function testCanAddFieldsetsToFieldset()
+    public function testCanAddFieldsetsToFieldset(): void
     {
         $fieldset = new Fieldset('foo');
         $this->fieldset->add($fieldset);
         $this->assertCount(1, $this->fieldset);
     }
 
-    public function testCanRemoveElementsByName()
+    public function testCanRemoveElementsByName(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element);
@@ -186,7 +186,7 @@ class FieldsetTest extends TestCase
         $this->assertFalse($this->fieldset->has('foo'));
     }
 
-    public function testCanRemoveFieldsetsByName()
+    public function testCanRemoveFieldsetsByName(): void
     {
         $fieldset = new Fieldset('foo');
         $this->fieldset->add($fieldset);
@@ -195,7 +195,7 @@ class FieldsetTest extends TestCase
         $this->assertFalse($this->fieldset->has('foo'));
     }
 
-    public function testCanRemoveElementsByWrongName()
+    public function testCanRemoveElementsByWrongName(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element);
@@ -214,7 +214,7 @@ class FieldsetTest extends TestCase
         $this->assertFalse($this->fieldset->has('bar'));
     }
 
-    public function testCanRetrieveAllAttachedElementsSeparateFromFieldsetsAtOnce()
+    public function testCanRetrieveAllAttachedElementsSeparateFromFieldsetsAtOnce(): void
     {
         $this->populateFieldset();
         $elements = $this->fieldset->getElements();
@@ -226,7 +226,7 @@ class FieldsetTest extends TestCase
         }
     }
 
-    public function testCanRetrieveAllAttachedFieldsetsSeparateFromElementsAtOnce()
+    public function testCanRetrieveAllAttachedFieldsetsSeparateFromElementsAtOnce(): void
     {
         $this->populateFieldset();
         $fieldsets = $this->fieldset->getFieldsets();
@@ -238,7 +238,7 @@ class FieldsetTest extends TestCase
         }
     }
 
-    public function testCanSetAndRetrieveErrorMessagesForAllElementsAndFieldsets()
+    public function testCanSetAndRetrieveErrorMessagesForAllElementsAndFieldsets(): void
     {
         $this->populateFieldset();
         $messages = $this->getMessages();
@@ -247,7 +247,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals($messages, $test);
     }
 
-    public function testOnlyElementsWithErrorsInMessages()
+    public function testOnlyElementsWithErrorsInMessages(): void
     {
         $fieldset = new TestAsset\FieldsetWithInputFilter('set');
         $fieldset->add(new Element('foo'));
@@ -264,7 +264,7 @@ class FieldsetTest extends TestCase
         $this->assertArrayNotHasKey('bar', $messages['set']);
     }
 
-    public function testCanRetrieveMessagesForSingleElementsAfterMessagesHaveBeenSet()
+    public function testCanRetrieveMessagesForSingleElementsAfterMessagesHaveBeenSet(): void
     {
         $this->populateFieldset();
         $messages = $this->getMessages();
@@ -274,7 +274,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals($messages['bar'], $test);
     }
 
-    public function testCanRetrieveMessagesForSingleFieldsetsAfterMessagesHaveBeenSet()
+    public function testCanRetrieveMessagesForSingleFieldsetsAfterMessagesHaveBeenSet(): void
     {
         $this->populateFieldset();
         $messages = $this->getMessages();
@@ -284,19 +284,19 @@ class FieldsetTest extends TestCase
         $this->assertEquals($messages['barbaz'], $test);
     }
 
-    public function testGetMessagesWithInvalidElementRaisesException()
+    public function testGetMessagesWithInvalidElementRaisesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->fieldset->getMessages('foo');
     }
 
-    public function testCountGivesCountOfAttachedElementsAndFieldsets()
+    public function testCountGivesCountOfAttachedElementsAndFieldsets(): void
     {
         $this->populateFieldset();
         $this->assertCount(5, $this->fieldset);
     }
 
-    public function testCanIterateOverElementsAndFieldsetsInOrderAttached()
+    public function testCanIterateOverElementsAndFieldsetsInOrderAttached(): void
     {
         $this->populateFieldset();
         $expected = ['foo', 'bar', 'baz', 'foobar', 'barbaz'];
@@ -307,7 +307,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals($expected, $test);
     }
 
-    public function testIteratingRespectsOrderPriorityProvidedWhenAttaching()
+    public function testIteratingRespectsOrderPriorityProvidedWhenAttaching(): void
     {
         $this->fieldset->add(new Element('foo'), ['priority' => 10]);
         $this->fieldset->add(new Element('bar'), ['priority' => 20]);
@@ -322,7 +322,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals($expected, $test);
     }
 
-    public function testIteratingRespectsOrderPriorityProvidedWhenSetLater()
+    public function testIteratingRespectsOrderPriorityProvidedWhenSetLater(): void
     {
         $this->fieldset->add(new Element('foo'), ['priority' => 10]);
         $this->fieldset->add(new Element('bar'), ['priority' => 20]);
@@ -338,7 +338,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals($expected, $test);
     }
 
-    public function testIteratingRespectsOrderPriorityWhenCloned()
+    public function testIteratingRespectsOrderPriorityWhenCloned(): void
     {
         $this->fieldset->add(new Element('foo'), ['priority' => 10]);
         $this->fieldset->add(new Element('bar'), ['priority' => 20]);
@@ -364,7 +364,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals($testOrig, $testClone);
     }
 
-    public function testCloneDeepClonesElementsAndObject()
+    public function testCloneDeepClonesElementsAndObject(): void
     {
         $this->fieldset->add(new Element('foo'));
         $this->fieldset->add(new Element('bar'));
@@ -377,7 +377,7 @@ class FieldsetTest extends TestCase
         $this->assertNotSame($this->fieldset->getObject(), $fieldsetClone->getObject());
     }
 
-    public function testSubFieldsetsBindObject()
+    public function testSubFieldsetsBindObject(): void
     {
         $form     = new Form();
         $fieldset = new Fieldset('foobar');
@@ -392,7 +392,7 @@ class FieldsetTest extends TestCase
         $this->assertSame($fieldset, $form->get('foobar'));
     }
 
-    public function testBindEmptyValue()
+    public function testBindEmptyValue(): void
     {
         $value = new ArrayObject([
             'foo' => 'abc',
@@ -418,7 +418,7 @@ class FieldsetTest extends TestCase
         $this->assertSame('ghi', $value['bar']);
     }
 
-    public function testFieldsetExposesFluentInterface()
+    public function testFieldsetExposesFluentInterface(): void
     {
         $fieldset = $this->fieldset->add(new Element('foo'));
         $this->assertSame($this->fieldset, $fieldset);
@@ -426,7 +426,7 @@ class FieldsetTest extends TestCase
         $this->assertSame($this->fieldset, $fieldset);
     }
 
-    public function testSetOptions()
+    public function testSetOptions(): void
     {
         $this->fieldset->setOptions([
             'foo' => 'bar',
@@ -436,7 +436,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals('bar', $option);
     }
 
-    public function testSetOptionsUseAsBaseFieldset()
+    public function testSetOptionsUseAsBaseFieldset(): void
     {
         $this->fieldset->setOptions([
             'use_as_base_fieldset' => 'bar',
@@ -446,7 +446,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals('bar', $option);
     }
 
-    public function testSetOptionAllowedObjectBindingClass()
+    public function testSetOptionAllowedObjectBindingClass(): void
     {
         $this->fieldset->setOptions([
             'allowed_object_binding_class' => 'bar',
@@ -456,19 +456,19 @@ class FieldsetTest extends TestCase
         $this->assertEquals('bar', $option);
     }
 
-    public function testShouldThrowExceptionWhenGetInvalidElement()
+    public function testShouldThrowExceptionWhenGetInvalidElement(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->fieldset->get('doesnt_exist');
     }
 
-    public function testBindValuesHasNoName()
+    public function testBindValuesHasNoName(): void
     {
         $bindValues = $this->fieldset->bindValues(['foo']);
         $this->assertNull($bindValues);
     }
 
-    public function testBindValuesSkipDisabled()
+    public function testBindValuesSkipDisabled(): void
     {
         $object               = new stdClass();
         $object->disabled     = 'notModified';
@@ -497,7 +497,7 @@ class FieldsetTest extends TestCase
     /**
      * @group issue-7109
      */
-    public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues()
+    public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues(): void
     {
         $object               = new stdClass();
         $object->disabled     = 'notModified';
@@ -523,13 +523,13 @@ class FieldsetTest extends TestCase
         $this->assertEquals('modified', $object->disabled);
     }
 
-    public function testSetObjectWithStringRaisesException()
+    public function testSetObjectWithStringRaisesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->fieldset->setObject('foo');
     }
 
-    public function testShouldValidateAllowObjectBindingByClassname()
+    public function testShouldValidateAllowObjectBindingByClassname(): void
     {
         $object = new stdClass();
         $this->fieldset->setAllowedObjectBindingClass('stdClass');
@@ -538,7 +538,7 @@ class FieldsetTest extends TestCase
         $this->assertTrue($allowed);
     }
 
-    public function testShouldValidateAllowObjectBindingByObject()
+    public function testShouldValidateAllowObjectBindingByObject(): void
     {
         $object = new stdClass();
         $this->fieldset->setObject($object);
@@ -551,7 +551,7 @@ class FieldsetTest extends TestCase
      * @group issue-6585
      * @group issue-6614
      */
-    public function testBindValuesPreservesNewValueAfterValidation()
+    public function testBindValuesPreservesNewValueAfterValidation(): void
     {
         $form = new Form();
         $form->add(new Element('foo'));
@@ -579,7 +579,7 @@ class FieldsetTest extends TestCase
     /**
      * Error test for https://github.com/zendframework/zend-form/issues/135
      */
-    public function testSetAndGetErrorMessagesForNonExistentElements()
+    public function testSetAndGetErrorMessagesForNonExistentElements(): void
     {
         $messages = [
             'foo' => [
@@ -596,7 +596,7 @@ class FieldsetTest extends TestCase
         $this->assertEquals($messages, $fieldset->getMessages());
     }
 
-    public function testSetNullValueWhenArrayProvided()
+    public function testSetNullValueWhenArrayProvided(): void
     {
         $subValue   = 'sub-element-value';
         $subElement = new Element('subElement');
@@ -608,7 +608,7 @@ class FieldsetTest extends TestCase
         $this->assertNull($subElement->getValue());
     }
 
-    public function testSetNullValueWhenTraversableProvided()
+    public function testSetNullValueWhenTraversableProvided(): void
     {
         $subValue   = 'sub-element-value';
         $subElement = new Element('subElement');

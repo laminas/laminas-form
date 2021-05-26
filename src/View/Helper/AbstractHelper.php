@@ -524,7 +524,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $attribute
      */
-    public static function addDefaultTranslatableAttribute($attribute)
+    public static function addDefaultTranslatableAttribute($attribute): void
     {
         self::$defaultTranslatableHtmlAttributes[$attribute] = true;
     }
@@ -547,7 +547,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $prefix
      */
-    public static function addDefaultTranslatableAttributePrefix($prefix)
+    public static function addDefaultTranslatableAttributePrefix($prefix): void
     {
         self::$defaultTranslatableHtmlAttributePrefixes[] = $prefix;
     }

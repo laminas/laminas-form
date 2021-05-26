@@ -10,26 +10,26 @@ use function array_merge;
 
 class ElementTest extends TestCase
 {
-    public function testAttributesAreEmptyByDefault()
+    public function testAttributesAreEmptyByDefault(): void
     {
         $element = new Element();
         $this->assertEquals([], $element->getAttributes());
     }
 
-    public function testLabelAttributesAreEmptyByDefault()
+    public function testLabelAttributesAreEmptyByDefault(): void
     {
         $element = new Element();
         $this->assertEquals([], $element->getLabelAttributes());
     }
 
-    public function testCanAddAttributesSingly()
+    public function testCanAddAttributesSingly(): void
     {
         $element = new Element();
         $element->setAttribute('data-foo', 'bar');
         $this->assertEquals('bar', $element->getAttribute('data-foo'));
     }
 
-    public function testCanAddManyAttributesAtOnce()
+    public function testCanAddManyAttributesAtOnce(): void
     {
         $element    = new Element();
         $attributes = [
@@ -42,7 +42,7 @@ class ElementTest extends TestCase
         $this->assertEquals($attributes, $element->getAttributes());
     }
 
-    public function testAddingAttributesMerges()
+    public function testAddingAttributesMerges(): void
     {
         $element         = new Element();
         $attributes      = [
@@ -60,7 +60,7 @@ class ElementTest extends TestCase
         $this->assertEquals($expected, $element->getAttributes());
     }
 
-    public function testCanClearAllAttributes()
+    public function testCanClearAllAttributes(): void
     {
         $element    = new Element();
         $attributes = [
@@ -73,7 +73,7 @@ class ElementTest extends TestCase
         $this->assertEquals([], $element->getAttributes());
     }
 
-    public function testCanRemoveSingleAttribute()
+    public function testCanRemoveSingleAttribute(): void
     {
         $element    = new Element();
         $attributes = [
@@ -86,7 +86,7 @@ class ElementTest extends TestCase
         $this->assertFalse($element->hasAttribute('type'));
     }
 
-    public function testCanRemoveMultipleAttributes()
+    public function testCanRemoveMultipleAttributes(): void
     {
         $element    = new Element();
         $attributes = [
@@ -100,27 +100,27 @@ class ElementTest extends TestCase
         $this->assertFalse($element->hasAttribute('class'));
     }
 
-    public function testSettingNameSetsNameAttribute()
+    public function testSettingNameSetsNameAttribute(): void
     {
         $element = new Element();
         $element->setName('foo');
         $this->assertEquals('foo', $element->getAttribute('name'));
     }
 
-    public function testSettingNameAttributeAllowsRetrievingName()
+    public function testSettingNameAttributeAllowsRetrievingName(): void
     {
         $element = new Element();
         $element->setAttribute('name', 'foo');
         $this->assertEquals('foo', $element->getName());
     }
 
-    public function testCanPassNameToConstructor()
+    public function testCanPassNameToConstructor(): void
     {
         $element = new Element('foo');
         $this->assertEquals('foo', $element->getName());
     }
 
-    public function testCanSetCustomOptionFromConstructor()
+    public function testCanSetCustomOptionFromConstructor(): void
     {
         $element = new Element('foo', [
             'custom' => 'option',
@@ -130,7 +130,7 @@ class ElementTest extends TestCase
         $this->assertEquals('option', $options['custom']);
     }
 
-    public function testCanSetCustomOptionFromMethod()
+    public function testCanSetCustomOptionFromMethod(): void
     {
         $element = new Element('foo');
         $element->setOptions([
@@ -142,7 +142,7 @@ class ElementTest extends TestCase
         $this->assertEquals('option', $options['custom']);
     }
 
-    public function testCanRetrieveSpecificOption()
+    public function testCanRetrieveSpecificOption(): void
     {
         $element = new Element('foo');
         $element->setOptions([
@@ -152,7 +152,7 @@ class ElementTest extends TestCase
         $this->assertEquals('option', $option);
     }
 
-    public function testSpecificOptionsSetLabelAttributes()
+    public function testSpecificOptionsSetLabelAttributes(): void
     {
         $element = new Element('foo');
         $element->setOptions([
@@ -163,7 +163,7 @@ class ElementTest extends TestCase
         $this->assertEquals(['bar' => 'baz'], $option);
     }
 
-    public function testLabelOptionsAccessors()
+    public function testLabelOptionsAccessors(): void
     {
         $element = new Element('foo');
         $element->setOptions([
@@ -174,7 +174,7 @@ class ElementTest extends TestCase
         $this->assertEquals(['moar' => 'foo'], $labelOptions);
     }
 
-    public function testCanSetSingleOptionForLabel()
+    public function testCanSetSingleOptionForLabel(): void
     {
         $element = new Element('foo');
         $element->setOption('label', 'foo');
@@ -182,7 +182,7 @@ class ElementTest extends TestCase
         $this->assertEquals('foo', $option);
     }
 
-    public function testSetOptionsIsTraversable()
+    public function testSetOptionsIsTraversable(): void
     {
         $element = new Element('foo');
         $element->setOptions(new ArrayObject(['foo' => 'bar']));
@@ -190,19 +190,19 @@ class ElementTest extends TestCase
         $this->assertEquals(['foo' => 'bar'], $element->getOptions());
     }
 
-    public function testGetOption()
+    public function testGetOption(): void
     {
         $element = new Element('foo');
         $this->assertNull($element->getOption('foo'));
     }
 
-    public function testLabelOptionsAreEmptyByDefault()
+    public function testLabelOptionsAreEmptyByDefault(): void
     {
         $element = new Element();
         $this->assertEquals([], $element->getLabelOptions());
     }
 
-    public function testLabelOptionsCanBeSetViaOptionsArray()
+    public function testLabelOptionsCanBeSetViaOptionsArray(): void
     {
         $element = new Element('foo');
         $element->setOptions([
@@ -212,14 +212,14 @@ class ElementTest extends TestCase
         $this->assertEquals('foo', $element->getLabelOption('moar'));
     }
 
-    public function testCanAddLabelOptionSingly()
+    public function testCanAddLabelOptionSingly(): void
     {
         $element = new Element();
         $element->setLabelOption('foo', 'bar');
         $this->assertEquals('bar', $element->getLabelOption('foo'));
     }
 
-    public function testCanAddManyLabelOptionsAtOnce()
+    public function testCanAddManyLabelOptionsAtOnce(): void
     {
         $element = new Element();
         $options = [
@@ -234,7 +234,7 @@ class ElementTest extends TestCase
         }
     }
 
-    public function testSettingLabelOptionsMerges()
+    public function testSettingLabelOptionsMerges(): void
     {
         $element      = new Element();
         $options      = [
@@ -255,7 +255,7 @@ class ElementTest extends TestCase
         }
     }
 
-    public function testCanClearAllLabelOptions()
+    public function testCanClearAllLabelOptions(): void
     {
         $element = new Element();
         $options = [
@@ -267,7 +267,7 @@ class ElementTest extends TestCase
         $this->assertEquals([], $element->getLabelOptions());
     }
 
-    public function testCanRemoveSingleLabelOption()
+    public function testCanRemoveSingleLabelOption(): void
     {
         $element = new Element();
         $options = [
@@ -279,7 +279,7 @@ class ElementTest extends TestCase
         $this->assertFalse($element->hasLabelOption('foo2'));
     }
 
-    public function testCanRemoveMultipleLabelOptions()
+    public function testCanRemoveMultipleLabelOptions(): void
     {
         $element = new Element();
         $options = [
@@ -294,7 +294,7 @@ class ElementTest extends TestCase
         $this->assertTrue($element->hasLabelOption('foo3'));
     }
 
-    public function testCanAddMultipleAriaAttributes()
+    public function testCanAddMultipleAriaAttributes(): void
     {
         $element    = new Element();
         $attributes = [
@@ -309,7 +309,7 @@ class ElementTest extends TestCase
         $this->assertTrue($element->hasAttribute('aria-orientation'));
     }
 
-    public function testCanRemoveMultipleAriaAttributes()
+    public function testCanRemoveMultipleAriaAttributes(): void
     {
         $element    = new Element();
         $attributes = [
@@ -325,14 +325,14 @@ class ElementTest extends TestCase
         $this->assertFalse($element->hasAttribute('aria-orientation'));
     }
 
-    public function testHasValueGettingSetInSetValueMethod()
+    public function testHasValueGettingSetInSetValueMethod(): void
     {
         $element = new Element();
         $element->setValue('some value');
         $this->assertTrue($element->hasValue());
     }
 
-    public function testHasValueIsFalseAtTheTimeOfCreation()
+    public function testHasValueIsFalseAtTheTimeOfCreation(): void
     {
         $element = new Element();
         $this->assertFalse($element->hasValue());

@@ -46,36 +46,36 @@ class FormAbstractServiceFactoryTest extends TestCase
         $services->addAbstractFactory($forms);
     }
 
-    public function testMissingConfigServiceIndicatesCannotCreateForm()
+    public function testMissingConfigServiceIndicatesCannotCreateForm(): void
     {
         $this->assertFalse($this->forms->canCreate($this->services, 'foo'));
     }
 
-    public function testMissingFormServicePrefixIndicatesCannotCreateForm()
+    public function testMissingFormServicePrefixIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', []);
         $this->assertFalse($this->forms->canCreate($this->services, 'foo'));
     }
 
-    public function testMissingFormManagerConfigIndicatesCannotCreateForm()
+    public function testMissingFormManagerConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', []);
         $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
-    public function testInvalidFormManagerConfigIndicatesCannotCreateForm()
+    public function testInvalidFormManagerConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', ['forms' => 'string']);
         $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
-    public function testEmptyFormManagerConfigIndicatesCannotCreateForm()
+    public function testEmptyFormManagerConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', ['forms' => []]);
         $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
-    public function testMissingFormConfigIndicatesCannotCreateForm()
+    public function testMissingFormConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', [
             'forms' => [
@@ -85,7 +85,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
-    public function testInvalidFormConfigIndicatesCannotCreateForm()
+    public function testInvalidFormConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', [
             'forms' => [
@@ -95,7 +95,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertFalse($this->forms->canCreate($this->services, 'Foo'));
     }
 
-    public function testEmptyFormConfigIndicatesCannotCreateForm()
+    public function testEmptyFormConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', [
             'forms' => [
@@ -105,7 +105,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertFalse($this->forms->canCreate($this->services, 'Foo'));
     }
 
-    public function testPopulatedFormConfigIndicatesFormCanBeCreated()
+    public function testPopulatedFormConfigIndicatesFormCanBeCreated(): void
     {
         $this->services->setService('config', [
             'forms' => [
@@ -118,7 +118,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertTrue($this->forms->canCreate($this->services, 'Foo'));
     }
 
-    public function testFormCanBeCreatedViaInteractionOfAllManagers()
+    public function testFormCanBeCreatedViaInteractionOfAllManagers(): void
     {
         $formConfig = [
             'hydrator'     => class_exists(ObjectPropertyHydrator::class)
@@ -157,7 +157,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
     }
 
-    public function testFormCanBeCreatedViaInteractionOfAllManagersExceptInputFilterManager()
+    public function testFormCanBeCreatedViaInteractionOfAllManagersExceptInputFilterManager(): void
     {
         $formConfig = [
             'hydrator'     => class_exists(ObjectPropertyHydrator::class)

@@ -34,7 +34,7 @@ class FieldsetWithDependency extends Fieldset
     /**
      * @param InputFilter $dependency
      */
-    public function setDependency($dependency)
+    public function setDependency($dependency): void
     {
         $this->dependency = $dependency;
     }

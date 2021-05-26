@@ -20,7 +20,7 @@ class FormSubmitTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -28,7 +28,7 @@ class FormSubmitTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesSubmitInputTagWithElement()
+    public function testGeneratesSubmitInputTagWithElement(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
@@ -36,7 +36,7 @@ class FormSubmitTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="submit"', $markup);
     }
 
-    public function testGeneratesSubmitInputTagRegardlessOfElementType()
+    public function testGeneratesSubmitInputTagRegardlessOfElementType(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
@@ -121,7 +121,7 @@ class FormSubmitTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion): void
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
@@ -136,7 +136,7 @@ class FormSubmitTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
@@ -145,7 +145,7 @@ class FormSubmitTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="submit"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
@@ -153,7 +153,7 @@ class FormSubmitTest extends AbstractCommonTestCase
     /**
      * @group Laminas-450
      */
-    public function testCanTranslateValue()
+    public function testCanTranslateValue(): void
     {
         $element = new Element('foo');
         $element->setValue('Submit Label');

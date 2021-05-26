@@ -103,7 +103,7 @@ class Product
     /**
      * @param Country $country
      */
-    public function setMadeInCountry($country)
+    public function setMadeInCountry($country): void
     {
         $this->madeInCountry = $country;
     }

@@ -14,7 +14,7 @@ use function get_class;
 
 class MonthTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new MonthElement('foo');
         $element->setAttributes([
@@ -73,7 +73,7 @@ class MonthTest extends TestCase
     /**
      * @dataProvider monthValuesDataProvider
      */
-    public function testHTML5MonthValidation(string $value, bool $expected)
+    public function testHTML5MonthValidation(string $value, bool $expected): void
     {
         $element   = new MonthElement('foo');
         $inputSpec = $element->getInputSpecification();

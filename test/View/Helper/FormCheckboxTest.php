@@ -29,7 +29,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element\Checkbox();
         $this->expectException(DomainException::class);
@@ -37,7 +37,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testUsesOptionsAttributeToGenerateCheckedAndUnCheckedValues()
+    public function testUsesOptionsAttributeToGenerateCheckedAndUnCheckedValues(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -48,7 +48,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
         $this->assertStringContainsString('value="unchecked"', $markup);
     }
 
-    public function testUsesElementValueToDetermineCheckboxStatus()
+    public function testUsesElementValueToDetermineCheckboxStatus(): void
     {
         $element = $this->getElement();
         $element->setValue('checked');
@@ -58,7 +58,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
         $this->assertDoesNotMatchRegularExpression('#value="unchecked"\s+checked="checked"#', $markup);
     }
 
-    public function testNoOptionsAttributeCreatesDefaultCheckedAndUncheckedValues()
+    public function testNoOptionsAttributeCreatesDefaultCheckedAndUncheckedValues(): void
     {
         $element = new Element\Checkbox('foo');
         $markup  = $this->helper->render($element);
@@ -66,7 +66,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#type="hidden"\s+name="foo"\s+value="0"#', $markup);
     }
 
-    public function testSetUseHiddenElementAttributeDoesNotRenderHiddenInput()
+    public function testSetUseHiddenElementAttributeDoesNotRenderHiddenInput(): void
     {
         $element = new Element\Checkbox('foo');
         $element->setUseHiddenElement(false);
@@ -75,7 +75,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
         $this->assertDoesNotMatchRegularExpression('#type="hidden"\s+name="foo"\s+value="0"#', $markup);
     }
 
-    public function testDoesNotThrowExceptionIfNameIsZero()
+    public function testDoesNotThrowExceptionIfNameIsZero(): void
     {
         $element = new Element\Checkbox(0);
         $markup  = $this->helper->__invoke($element);
@@ -85,7 +85,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
     /**
      * @group Laminas-457
      */
-    public function testBaseElementType()
+    public function testBaseElementType(): void
     {
         $element = new Element('foo');
         $this->expectException(InvalidArgumentException::class);
@@ -95,7 +95,7 @@ class FormCheckboxTest extends AbstractCommonTestCase
     /**
      * @group issue-7286
      */
-    public function testDisabledOptionIssetOnHiddenElement()
+    public function testDisabledOptionIssetOnHiddenElement(): void
     {
         $element = new Element\Checkbox('foo');
         $element->setUseHiddenElement(true);

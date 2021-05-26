@@ -19,7 +19,7 @@ class FormUrlTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -27,7 +27,7 @@ class FormUrlTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesUrlInputTagWithElement()
+    public function testGeneratesUrlInputTagWithElement(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
@@ -35,7 +35,7 @@ class FormUrlTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="url"', $markup);
     }
 
-    public function testGeneratesUrlInputTagRegardlessOfElementType()
+    public function testGeneratesUrlInputTagRegardlessOfElementType(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
@@ -122,7 +122,7 @@ class FormUrlTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion): void
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
@@ -137,7 +137,7 @@ class FormUrlTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
@@ -146,7 +146,7 @@ class FormUrlTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="url"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }

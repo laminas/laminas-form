@@ -23,12 +23,12 @@ class FormTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testInvokeReturnsHelper()
+    public function testInvokeReturnsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
 
-    public function testCallingOpenTagWithoutProvidingFormResultsInEmptyActionAndGetMethod()
+    public function testCallingOpenTagWithoutProvidingFormResultsInEmptyActionAndGetMethod(): void
     {
         $markup = $this->helper->openTag();
         $this->assertStringContainsString('<form', $markup);
@@ -36,13 +36,13 @@ class FormTest extends AbstractCommonTestCase
         $this->assertStringContainsString('method="get"', $markup);
     }
 
-    public function testCallingCloseTagEmitsClosingFormTag()
+    public function testCallingCloseTagEmitsClosingFormTag(): void
     {
         $markup = $this->helper->closeTag();
         $this->assertEquals('</form>', $markup);
     }
 
-    public function testCallingOpenTagWithFormUsesFormAttributes()
+    public function testCallingOpenTagWithFormUsesFormAttributes(): void
     {
         $form       = new Form();
         $attributes = [
@@ -64,7 +64,7 @@ class FormTest extends AbstractCommonTestCase
         }
     }
 
-    public function testOpenTagUsesNameAsIdIfNoIdAttributePresent()
+    public function testOpenTagUsesNameAsIdIfNoIdAttributePresent(): void
     {
         $form       = new Form();
         $attributes = [
@@ -77,7 +77,7 @@ class FormTest extends AbstractCommonTestCase
         $this->assertStringContainsString('id="login-form"', $markup);
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $form       = new Form();
         $attributes = ['name' => 'login-form'];
@@ -95,7 +95,7 @@ class FormTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</form>', $markup);
     }
 
-    public function testRenderPreparesForm()
+    public function testRenderPreparesForm(): void
     {
         $form = $this->createMock(Form::class);
         $form->expects($this->once())->method('prepare');
@@ -108,7 +108,7 @@ class FormTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</form>', $markup);
     }
 
-    public function testHtml5DoesNotAddEmptyActionAttributeToFormTag()
+    public function testHtml5DoesNotAddEmptyActionAttributeToFormTag(): void
     {
         $helper = new FormHelper();
 
@@ -124,7 +124,7 @@ class FormTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('action=""', $xhtml5Markup);
     }
 
-    public function testHtml5DoesNotSetDefaultMethodAttributeInFormTag()
+    public function testHtml5DoesNotSetDefaultMethodAttributeInFormTag(): void
     {
         $helper = new FormHelper();
 

@@ -13,7 +13,7 @@ use function get_class;
 
 class DateTimeSelectTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new DateTimeSelectElement();
 
@@ -37,7 +37,7 @@ class DateTimeSelectTest extends TestCase
         }
     }
 
-    public function testInputSpecificationFilterIfSecondNotProvided()
+    public function testInputSpecificationFilterIfSecondNotProvided(): void
     {
         $element     = new DateTimeSelectElement('test');
         $factory     = new InputFilterFactory();
@@ -56,7 +56,7 @@ class DateTimeSelectTest extends TestCase
         $this->assertTrue($inputFilter->isValid());
     }
 
-    public function testCanSetDateFromDateTime()
+    public function testCanSetDateFromDateTime(): void
     {
         $element = new DateTimeSelectElement();
         $element->setValue(new DateTime('2012-09-24 03:04:05'));
@@ -69,7 +69,7 @@ class DateTimeSelectTest extends TestCase
         $this->assertEquals('05', $element->getSecondElement()->getValue());
     }
 
-    public function testCanSetDateFromString()
+    public function testCanSetDateFromString(): void
     {
         $element = new DateTimeSelectElement();
         $element->setValue('2012-09-24 03:04:05');
@@ -82,7 +82,7 @@ class DateTimeSelectTest extends TestCase
         $this->assertEquals('05', $element->getSecondElement()->getValue());
     }
 
-    public function testCanGetValue()
+    public function testCanGetValue(): void
     {
         $element = new DateTimeSelectElement();
         $element->setValue(new DateTime('2012-09-24 03:04:05'));
@@ -90,14 +90,14 @@ class DateTimeSelectTest extends TestCase
         $this->assertEquals('2012-09-24 03:04:05', $element->getValue());
     }
 
-    public function testThrowsOnInvalidValue()
+    public function testThrowsOnInvalidValue(): void
     {
         $element = new DateTimeSelectElement();
         $this->expectException(InvalidArgumentException::class);
         $element->setValue('hello world');
     }
 
-    public function testUseDefaultValueForSecondsIfNotProvided()
+    public function testUseDefaultValueForSecondsIfNotProvided(): void
     {
         $element = new DateTimeSelectElement();
         $element->setValue([
@@ -116,7 +116,7 @@ class DateTimeSelectTest extends TestCase
         $this->assertEquals('00', $element->getSecondElement()->getValue());
     }
 
-    public function testCloningPreservesCorrectValues()
+    public function testCloningPreservesCorrectValues(): void
     {
         $element = new DateTimeSelectElement();
         $element->setValue(new DateTime('2014-01-02 03:04:05'));
@@ -131,7 +131,7 @@ class DateTimeSelectTest extends TestCase
         $this->assertEquals('05', $cloned->getSecondElement()->getValue());
     }
 
-    public function testPassingNullValueToSetValueWillUseCurrentDate()
+    public function testPassingNullValueToSetValueWillUseCurrentDate(): void
     {
         $now     = new DateTime();
         $element = new DateTimeSelectElement();

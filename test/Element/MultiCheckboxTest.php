@@ -20,7 +20,7 @@ class MultiCheckboxTest extends TestCase
     /**
      * @dataProvider useHiddenAttributeDataProvider
      */
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement)
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement): void
     {
         $element = new MultiCheckboxElement();
         $options = [
@@ -77,7 +77,7 @@ class MultiCheckboxTest extends TestCase
     /**
      * @dataProvider multiCheckboxOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions(array $valueTests, array $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new MultiCheckboxElement('my-checkbox');
         $element->setAttributes([
@@ -96,7 +96,7 @@ class MultiCheckboxTest extends TestCase
      *
      * @dataProvider multiCheckboxOptionsDataProvider
      */
-    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options)
+    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options): void
     {
         $element          = new MultiCheckboxElement('my-checkbox');
         $inputSpec        = $element->getInputSpecification();
@@ -109,7 +109,7 @@ class MultiCheckboxTest extends TestCase
         $this->assertCount(count($options), $haystack);
     }
 
-    public function testAttributeType()
+    public function testAttributeType(): void
     {
         $element    = new MultiCheckboxElement();
         $attributes = $element->getAttributes();
@@ -118,7 +118,7 @@ class MultiCheckboxTest extends TestCase
         $this->assertEquals('multi_checkbox', $attributes['type']);
     }
 
-    public function testSetOptionsOptions()
+    public function testSetOptionsOptions(): void
     {
         $element = new MultiCheckboxElement();
         $element->setOptions([
@@ -129,7 +129,7 @@ class MultiCheckboxTest extends TestCase
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
     }
 
-    public function testDisableInputSpecification()
+    public function testDisableInputSpecification(): void
     {
         $element = new MultiCheckboxElement();
         $element->setValueOptions([
@@ -143,7 +143,7 @@ class MultiCheckboxTest extends TestCase
         $this->assertArrayNotHasKey('validators', $inputSpec);
     }
 
-    public function testUnsetValueOption()
+    public function testUnsetValueOption(): void
     {
         $element = new MultiCheckboxElement();
         $element->setValueOptions([
@@ -157,7 +157,7 @@ class MultiCheckboxTest extends TestCase
         $this->assertArrayNotHasKey('Option 2', $valueOptions);
     }
 
-    public function testUnsetUndefinedValueOption()
+    public function testUnsetUndefinedValueOption(): void
     {
         $element = new MultiCheckboxElement();
         $element->setValueOptions([
@@ -171,7 +171,7 @@ class MultiCheckboxTest extends TestCase
         $this->assertArrayNotHasKey('Option Undefined', $valueOptions);
     }
 
-    public function testOptionValueinSelectedOptions()
+    public function testOptionValueinSelectedOptions(): void
     {
         $element = new MultiCheckboxElement();
         $element->setValueOptions([

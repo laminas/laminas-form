@@ -15,7 +15,7 @@ use function get_class;
 
 class TimeTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new TimeElement('foo');
         $element->setAttributes([
@@ -60,7 +60,7 @@ class TimeTest extends TestCase
         }
     }
 
-    public function testFailsWithInvalidMinSpecification()
+    public function testFailsWithInvalidMinSpecification(): void
     {
         $element = new TimeElement('foo');
         $element->setAttributes([
@@ -73,7 +73,7 @@ class TimeTest extends TestCase
         $element->getInputSpecification();
     }
 
-    public function testFailsWithInvalidMaxSpecification()
+    public function testFailsWithInvalidMaxSpecification(): void
     {
         $element = new TimeElement('foo');
         $element->setAttributes([

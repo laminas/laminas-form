@@ -14,7 +14,7 @@ use function get_class;
 
 class RangeTest extends TestCase
 {
-    public function testProvidesInputSpecificationWithDefaultAttributes()
+    public function testProvidesInputSpecificationWithDefaultAttributes(): void
     {
         if (! extension_loaded('intl')) {
             // Required by \Laminas\I18n\Validator\IsFloat
@@ -54,7 +54,7 @@ class RangeTest extends TestCase
         }
     }
 
-    public function testProvidesInputSpecificationThatIncludesValidator()
+    public function testProvidesInputSpecificationThatIncludesValidator(): void
     {
         if (! extension_loaded('intl')) {
             // Required by \Laminas\I18n\Validator\IsFloat

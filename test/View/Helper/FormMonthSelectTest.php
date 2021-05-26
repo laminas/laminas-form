@@ -25,7 +25,7 @@ class FormMonthSelectTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new MonthSelect();
         $this->expectException(DomainException::class);
@@ -33,7 +33,7 @@ class FormMonthSelectTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesTwoSelectsWithElement()
+    public function testGeneratesTwoSelectsWithElement(): void
     {
         $element = new MonthSelect('foo');
         $markup  = $this->helper->render($element);
@@ -42,7 +42,7 @@ class FormMonthSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<select name="year"', $markup);
     }
 
-    public function testCanGenerateSelectsWithEmptyOption()
+    public function testCanGenerateSelectsWithEmptyOption(): void
     {
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
@@ -53,7 +53,7 @@ class FormMonthSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<option value=""></option>', $markup);
     }
 
-    public function testCanDisableDelimiters()
+    public function testCanDisableDelimiters(): void
     {
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
@@ -65,7 +65,7 @@ class FormMonthSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</select><select', $markup);
     }
 
-    public function testCanRenderTextDelimiters()
+    public function testCanRenderTextDelimiters(): void
     {
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
@@ -76,7 +76,7 @@ class FormMonthSelectTest extends AbstractCommonTestCase
         $this->assertStringMatchesFormat('%a de %a', $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new MonthSelect('foo');
         $markup  = $this->helper->__invoke($element);
@@ -85,12 +85,12 @@ class FormMonthSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<select name="year"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
 
-    public function testMonthElementValueOptions()
+    public function testMonthElementValueOptions(): void
     {
         $element = new MonthSelect('foo');
         $this->helper->render($element);
@@ -100,7 +100,7 @@ class FormMonthSelectTest extends AbstractCommonTestCase
     /**
      * @group issue-6656
      */
-    public function testGetElements()
+    public function testGetElements(): void
     {
         $element = new MonthSelect('foo');
         $this->helper->render($element);

@@ -451,7 +451,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @param string $allowObjectBindingClass
      */
-    public function setAllowedObjectBindingClass($allowObjectBindingClass)
+    public function setAllowedObjectBindingClass($allowObjectBindingClass): void
     {
         $this->allowedObjectBindingClass = $allowObjectBindingClass;
     }

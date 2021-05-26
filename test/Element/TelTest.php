@@ -13,14 +13,14 @@ use function array_map;
 
 class TelTest extends TestCase
 {
-    public function testType()
+    public function testType(): void
     {
         $element = new Tel('test');
 
         $this->assertSame('tel', $element->getAttribute('type'));
     }
 
-    public function testInputSpecification()
+    public function testInputSpecification(): void
     {
         $name    = 'test';
         $element = new Tel($name);
@@ -38,7 +38,7 @@ class TelTest extends TestCase
      * @param string[] $expectedFilters
      * @param array $inputSpec
      */
-    private function assertInputSpecContainsFilters(array $expectedFilters, array $inputSpec)
+    private function assertInputSpecContainsFilters(array $expectedFilters, array $inputSpec): void
     {
         $actualFilters  = array_map(static function (array $filterSpec): string {
             return $filterSpec['name'];
@@ -50,7 +50,7 @@ class TelTest extends TestCase
     /**
      * @param array $inputSpec
      */
-    private function assertInputSpecContainsRegexValidator(array $inputSpec)
+    private function assertInputSpecContainsRegexValidator(array $inputSpec): void
     {
         $regexValidatorFound = false;
         foreach ($inputSpec['validators'] as $validator) {

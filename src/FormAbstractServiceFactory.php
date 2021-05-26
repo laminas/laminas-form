@@ -122,6 +122,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      *   attaches the FilterManager and ValidatorManager to it.
      *
      * @param array $config
+     * @return void
      */
     protected function marshalInputFilter(array &$config, ContainerInterface $container, Factory $formFactory)
     {

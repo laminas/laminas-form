@@ -20,7 +20,7 @@ class FormInputTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -28,7 +28,7 @@ class FormInputTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesTextInputTagWhenProvidedAnElementWithNoTypeAttribute()
+    public function testGeneratesTextInputTagWhenProvidedAnElementWithNoTypeAttribute(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
@@ -36,7 +36,7 @@ class FormInputTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="text"', $markup);
     }
 
-    public function testGeneratesInputTagWithElementsTypeAttribute()
+    public function testGeneratesInputTagWithElementsTypeAttribute(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
@@ -83,7 +83,7 @@ class FormInputTest extends AbstractCommonTestCase
     /**
      * @dataProvider inputTypes
      */
-    public function testOnlyAllowsValidInputTypes(string $type, string $assertion)
+    public function testOnlyAllowsValidInputTypes(string $type, string $assertion): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', $type);
@@ -337,7 +337,7 @@ class FormInputTest extends AbstractCommonTestCase
     /**
      * @dataProvider nonXhtmlDoctypes
      */
-    public function testRenderingOmitsClosingSlashWhenDoctypeIsNotXhtml(string $doctype)
+    public function testRenderingOmitsClosingSlashWhenDoctypeIsNotXhtml(string $doctype): void
     {
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
@@ -361,7 +361,7 @@ class FormInputTest extends AbstractCommonTestCase
     /**
      * @dataProvider xhtmlDoctypes
      */
-    public function testRenderingIncludesClosingSlashWhenDoctypeIsXhtml(string $doctype)
+    public function testRenderingIncludesClosingSlashWhenDoctypeIsXhtml(string $doctype): void
     {
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
@@ -391,7 +391,7 @@ class FormInputTest extends AbstractCommonTestCase
      * @group Laminas-391
      * @dataProvider booleanAttributeTypes
      */
-    public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off)
+    public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off): void
     {
         $element = new Element('foo');
         $element->setAttribute($attribute, true);
@@ -458,7 +458,7 @@ class FormInputTest extends AbstractCommonTestCase
         string $attribute,
         string $on,
         string $off
-    ) {
+    ): void {
         $element = new Element('foo');
         $this->renderer->doctype('HTML5');
         $element->setAttribute($attribute, true);
@@ -537,7 +537,7 @@ class FormInputTest extends AbstractCommonTestCase
         }
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
@@ -545,7 +545,7 @@ class FormInputTest extends AbstractCommonTestCase
         $this->assertStringContainsString('name="foo"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
         $this->assertSame($this->helper, $this->helper->__invoke());
@@ -554,7 +554,7 @@ class FormInputTest extends AbstractCommonTestCase
     /**
      * @group Laminas-489
      */
-    public function testCanTranslatePlaceholder()
+    public function testCanTranslatePlaceholder(): void
     {
         $element = new Element('test');
         $element->setAttribute('placeholder', 'test');
@@ -574,7 +574,7 @@ class FormInputTest extends AbstractCommonTestCase
         $this->assertStringContainsString('placeholder="translated&#x20;string"', $markup);
     }
 
-    public function testCanTranslateTitle()
+    public function testCanTranslateTitle(): void
     {
         $element = new Element('test');
         $element->setAttribute('title', 'test');
@@ -598,7 +598,7 @@ class FormInputTest extends AbstractCommonTestCase
     /**
      * @group issue-7166
      */
-    public function testPasswordValueShouldNotBeRendered()
+    public function testPasswordValueShouldNotBeRendered(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'password');

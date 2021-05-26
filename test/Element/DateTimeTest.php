@@ -17,7 +17,7 @@ use function get_class;
 
 class DateTimeTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new DateTimeElement('foo');
         $element->setAttributes([
@@ -59,7 +59,7 @@ class DateTimeTest extends TestCase
         }
     }
 
-    public function testProvidesInputSpecificationThatIncludesDateTimeFormatterBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesDateTimeFormatterBasedOnAttributes(): void
     {
         $element = new DateTimeElement('foo');
         $element->setFormat(DateTime::W3C);
@@ -80,13 +80,13 @@ class DateTimeTest extends TestCase
         }
     }
 
-    public function testUsesBrowserFormatByDefault()
+    public function testUsesBrowserFormatByDefault(): void
     {
         $element = new DateTimeElement('foo');
         $this->assertEquals(DateTimeElement::DATETIME_FORMAT, $element->getFormat());
     }
 
-    public function testSpecifyingADateTimeValueWillReturnBrowserFormattedStringByDefault()
+    public function testSpecifyingADateTimeValueWillReturnBrowserFormattedStringByDefault(): void
     {
         $date    = new DateTime();
         $element = new DateTimeElement('foo');
@@ -94,7 +94,7 @@ class DateTimeTest extends TestCase
         $this->assertEquals($date->format(DateTimeElement::DATETIME_FORMAT), $element->getValue());
     }
 
-    public function testValueIsFormattedAccordingToFormatInElement()
+    public function testValueIsFormattedAccordingToFormatInElement(): void
     {
         $date    = new DateTime();
         $element = new DateTimeElement('foo');
@@ -103,7 +103,7 @@ class DateTimeTest extends TestCase
         $this->assertEquals($date->format($date::RFC2822), $element->getValue());
     }
 
-    public function testCanRetrieveDateTimeObjectByPassingBooleanFalseToGetValue()
+    public function testCanRetrieveDateTimeObjectByPassingBooleanFalseToGetValue(): void
     {
         $date    = new DateTime();
         $element = new DateTimeElement('foo');
@@ -111,7 +111,7 @@ class DateTimeTest extends TestCase
         $this->assertSame($date, $element->getValue(false));
     }
 
-    public function testSetFormatWithOptions()
+    public function testSetFormatWithOptions(): void
     {
         $format  = 'Y-m-d';
         $element = new DateTimeElement('foo');
@@ -122,7 +122,7 @@ class DateTimeTest extends TestCase
         $this->assertSame($format, $element->getFormat());
     }
 
-    public function testFailsWithInvalidMinSpecification()
+    public function testFailsWithInvalidMinSpecification(): void
     {
         $element = new DateTimeElement('foo');
         $element->setAttributes([
@@ -135,7 +135,7 @@ class DateTimeTest extends TestCase
         $element->getInputSpecification();
     }
 
-    public function testFailsWithInvalidMaxSpecification()
+    public function testFailsWithInvalidMaxSpecification(): void
     {
         $element = new DateTimeElement('foo');
         $element->setAttributes([

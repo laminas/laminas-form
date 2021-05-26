@@ -10,7 +10,7 @@ use function get_class;
 
 class UrlTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new UrlElement();
         $element->setAttributes([

@@ -15,7 +15,7 @@ use function get_class;
 
 class DateTimeLocalTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new DateTimeLocalElement('foo');
         $element->setAttributes([
@@ -57,7 +57,7 @@ class DateTimeLocalTest extends TestCase
         }
     }
 
-    public function testFailsWithInvalidMinSpecification()
+    public function testFailsWithInvalidMinSpecification(): void
     {
         $element = new DateTimeLocalElement('foo');
         $element->setAttributes([
@@ -70,7 +70,7 @@ class DateTimeLocalTest extends TestCase
         $element->getInputSpecification();
     }
 
-    public function testFailsWithInvalidMaxSpecification()
+    public function testFailsWithInvalidMaxSpecification(): void
     {
         $element = new DateTimeLocalElement('foo');
         $element->setAttributes([

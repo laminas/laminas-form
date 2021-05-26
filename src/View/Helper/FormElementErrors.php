@@ -214,7 +214,7 @@ class FormElementErrors extends AbstractHelper
         $translator      = $this->getTranslator();
         $textDomain      = $this->getTranslatorTextDomain();
         $messagesToPrint = [];
-        $messageCallback = static function ($item) use (&$messagesToPrint, $translator, $textDomain) {
+        $messageCallback = static function ($item) use (&$messagesToPrint, $translator, $textDomain): void {
             $messagesToPrint[] = $translator->translate($item, $textDomain);
         };
         array_walk_recursive($messages, $messageCallback);

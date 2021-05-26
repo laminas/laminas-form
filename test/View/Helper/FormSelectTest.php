@@ -49,7 +49,7 @@ class FormSelectTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testCreatesSelectWithOptionsFromAttribute()
+    public function testCreatesSelectWithOptionsFromAttribute(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -69,7 +69,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#option .*?value="value3" class="test-class"#', $markup);
     }
 
-    public function testCanMarkSingleOptionAsSelected()
+    public function testCanMarkSingleOptionAsSelected(): void
     {
         $element = $this->getElement();
         $element->setAttribute('value', 'value2');
@@ -80,7 +80,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertDoesNotMatchRegularExpression('#option .*?value="value3" selected="selected"#', $markup);
     }
 
-    public function testCanOnlyMarkSingleOptionAsSelectedIfMultipleAttributeIsDisabled()
+    public function testCanOnlyMarkSingleOptionAsSelectedIfMultipleAttributeIsDisabled(): void
     {
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value2']);
@@ -90,7 +90,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $markup = $this->helper->render($element);
     }
 
-    public function testCanMarkManyOptionsAsSelectedIfMultipleAttributeIsEnabled()
+    public function testCanMarkManyOptionsAsSelectedIfMultipleAttributeIsEnabled(): void
     {
         $element = $this->getElement();
         $element->setAttribute('multiple', true);
@@ -103,7 +103,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertDoesNotMatchRegularExpression('#option .*?value="value3" selected="selected"#', $markup);
     }
 
-    public function testCanMarkOptionsAsDisabled()
+    public function testCanMarkOptionsAsDisabled(): void
     {
         $element                = $this->getElement();
         $options                = $element->getValueOptions();
@@ -114,7 +114,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#option .*?value="value2" .*?disabled="disabled"#', $markup);
     }
 
-    public function testCanMarkOptionsAsSelected()
+    public function testCanMarkOptionsAsSelected(): void
     {
         $element                = $this->getElement();
         $options                = $element->getValueOptions();
@@ -125,7 +125,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#option .*?value="value2" .*?selected="selected"#', $markup);
     }
 
-    public function testOptgroupsAreCreatedWhenAnOptionHasAnOptionsKey()
+    public function testOptgroupsAreCreatedWhenAnOptionHasAnOptionsKey(): void
     {
         $element               = $this->getElement();
         $options               = $element->getValueOptions();
@@ -143,7 +143,7 @@ class FormSelectTest extends AbstractCommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
-    public function testCanDisableAnOptgroup()
+    public function testCanDisableAnOptgroup(): void
     {
         $element                = $this->getElement();
         $options                = $element->getValueOptions();
@@ -165,7 +165,7 @@ class FormSelectTest extends AbstractCommonTestCase
     /**
      * @group Laminas-290
      */
-    public function testFalseDisabledValueWillNotRenderOptionsWithDisabledAttribute()
+    public function testFalseDisabledValueWillNotRenderOptionsWithDisabledAttribute(): void
     {
         $element = $this->getElement();
         $element->setAttribute('disabled', false);
@@ -177,7 +177,7 @@ class FormSelectTest extends AbstractCommonTestCase
     /**
      * @group Laminas-290
      */
-    public function testOmittingDisabledValueWillNotRenderOptionsWithDisabledAttribute()
+    public function testOmittingDisabledValueWillNotRenderOptionsWithDisabledAttribute(): void
     {
         $element = $this->getElement();
         $element->setAttribute('type', 'select');
@@ -186,7 +186,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('disabled', $markup);
     }
 
-    public function testNameShouldHaveArrayNotationWhenMultipleIsSpecified()
+    public function testNameShouldHaveArrayNotationWhenMultipleIsSpecified(): void
     {
         $element = $this->getElement();
         $element->setAttribute('multiple', true);
@@ -210,7 +210,7 @@ class FormSelectTest extends AbstractCommonTestCase
      * @group Laminas-338
      * @dataProvider getScalarOptionsDataProvider
      */
-    public function testScalarOptionValues(array $options)
+    public function testScalarOptionValues(array $options): void
     {
         $element = new SelectElement('foo');
         $element->setValueOptions($options);
@@ -219,13 +219,13 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression(sprintf('#option .*?value="%s"#', (string) $value), $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = $this->getElement();
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
 
-    public function testCanTranslateContent()
+    public function testCanTranslateContent(): void
     {
         $element = new SelectElement('foo');
         $element->setValueOptions([
@@ -248,7 +248,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>translated content<', $markup);
     }
 
-    public function testCanTranslateOptGroupLabel()
+    public function testCanTranslateOptGroupLabel(): void
     {
         $element = new SelectElement('test');
         $element->setValueOptions([
@@ -285,7 +285,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>translated bar<', $markup);
     }
 
-    public function testTranslatorMethods()
+    public function testTranslatorMethods(): void
     {
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
@@ -299,7 +299,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertFalse($this->helper->isTranslatorEnabled());
     }
 
-    public function testDoesNotThrowExceptionIfNameIsZero()
+    public function testDoesNotThrowExceptionIfNameIsZero(): void
     {
         $element = $this->getElement();
         $element->setName('0');
@@ -309,7 +309,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('name="0"', $markup);
     }
 
-    public function testCanCreateEmptyOption()
+    public function testCanCreateEmptyOption(): void
     {
         $element = new SelectElement('foo');
         $element->setEmptyOption('empty');
@@ -324,7 +324,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<option value="">empty</option>', $markup);
     }
 
-    public function testCanCreateEmptyOptionWithEmptyString()
+    public function testCanCreateEmptyOptionWithEmptyString(): void
     {
         $element = new SelectElement('foo');
         $element->setEmptyOption('');
@@ -339,7 +339,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<option value=""></option>', $markup);
     }
 
-    public function testDoesNotRenderEmptyOptionByDefault()
+    public function testDoesNotRenderEmptyOptionByDefault(): void
     {
         $element = new SelectElement('foo');
         $element->setValueOptions([
@@ -353,7 +353,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('<option value=""></option>', $markup);
     }
 
-    public function testNullEmptyOptionDoesNotRenderEmptyOption()
+    public function testNullEmptyOptionDoesNotRenderEmptyOption(): void
     {
         $element = new SelectElement('foo');
         $element->setEmptyOption(null);
@@ -368,7 +368,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('<option value=""></option>', $markup);
     }
 
-    public function testCanMarkOptionsAsSelectedWhenEmptyOptionOrZeroValueSelected()
+    public function testCanMarkOptionsAsSelectedWhenEmptyOptionOrZeroValueSelected(): void
     {
         $element = new SelectElement('foo');
         $element->setEmptyOption('empty');
@@ -388,7 +388,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<option value="0" selected="selected">label0</option>', $markup);
     }
 
-    public function testHiddenElementWhenAttributeMultipleIsSet()
+    public function testHiddenElementWhenAttributeMultipleIsSet(): void
     {
         $element = new SelectElement('foo');
         $element->setUseHiddenElement(true);
@@ -398,14 +398,14 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<input type="hidden" name="foo" value="empty"><select', $markup);
     }
 
-    public function testRenderInputNotSelectElementRaisesException()
+    public function testRenderInputNotSelectElementRaisesException(): void
     {
         $element = new Element\Text('foo');
         $this->expectException(InvalidArgumentException::class);
         $this->helper->render($element);
     }
 
-    public function testRenderElementWithNoNameRaisesException()
+    public function testRenderElementWithNoNameRaisesException(): void
     {
         $element = new SelectElement();
 
@@ -430,7 +430,7 @@ class FormSelectTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testRenderElementWithObjectIdentifiers()
+    public function testRenderElementWithObjectIdentifiers(): void
     {
         $element = $this->getElementWithObjectIdentifiers();
         $element->setValue(new Identifier(42));
@@ -440,7 +440,7 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertDoesNotMatchRegularExpression('#option .*?value="43" selected="selected"#', $markup);
     }
 
-    public function testComparisonOfSelectedValuesIsPerformedInStrictMode()
+    public function testComparisonOfSelectedValuesIsPerformedInStrictMode(): void
     {
         $select = new SelectElement('language');
         $select->setLabel('Which is your mother tongue?');

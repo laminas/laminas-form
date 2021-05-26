@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  */
 class FormFactoryAwareTraitTest extends TestCase
 {
-    public function testSetFormFactory()
+    public function testSetFormFactory(): void
     {
         $object = new class {
             use FormFactoryAwareTrait;

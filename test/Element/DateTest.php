@@ -45,7 +45,7 @@ class DateTest extends TestCase
         date_default_timezone_set($this->originaltimezone);
     }
 
-    public function testProvidesDefaultInputSpecification()
+    public function testProvidesDefaultInputSpecification(): void
     {
         $element = new DateElement('foo');
 
@@ -72,7 +72,7 @@ class DateTest extends TestCase
         }
     }
 
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new DateElement('foo');
         $element->setAttributes([
@@ -115,7 +115,7 @@ class DateTest extends TestCase
         }
     }
 
-    public function testValueReturnedFromComposedDateTimeIsRfc3339FullDateFormat()
+    public function testValueReturnedFromComposedDateTimeIsRfc3339FullDateFormat(): void
     {
         $element = new DateElement('foo');
         $date    = new DateTime();
@@ -124,7 +124,7 @@ class DateTest extends TestCase
         $this->assertEquals($date->format('Y-m-d'), $value);
     }
 
-    public function testCorrectFormatPassedToDateValidator()
+    public function testCorrectFormatPassedToDateValidator(): void
     {
         $element = new DateElement('foo');
         $element->setAttributes([
@@ -147,7 +147,7 @@ class DateTest extends TestCase
     /**
      * @group issue-6245
      */
-    public function testStepValidatorIgnoresDaylightSavings()
+    public function testStepValidatorIgnoresDaylightSavings(): void
     {
         date_default_timezone_set('Europe/London');
 
@@ -163,7 +163,7 @@ class DateTest extends TestCase
         }
     }
 
-    public function testFailsWithInvalidMinSpecification()
+    public function testFailsWithInvalidMinSpecification(): void
     {
         $element = new DateElement('foo');
         $element->setAttributes([
@@ -176,7 +176,7 @@ class DateTest extends TestCase
         $element->getInputSpecification();
     }
 
-    public function testFailsWithInvalidMaxSpecification()
+    public function testFailsWithInvalidMaxSpecification(): void
     {
         $element = new DateElement('foo');
         $element->setAttributes([

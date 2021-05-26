@@ -53,7 +53,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testUsesOptionsAttributeToGenerateCheckBoxes()
+    public function testUsesOptionsAttributeToGenerateCheckBoxes(): void
     {
         $element = $this->getElement();
         $options = $element->getValueOptions();
@@ -70,7 +70,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         }
     }
 
-    public function testUsesOptionsAttributeWithOptionSpecToGenerateCheckBoxes()
+    public function testUsesOptionsAttributeWithOptionSpecToGenerateCheckBoxes(): void
     {
         $element = $this->getElementWithOptionSpec();
         $options = $element->getValueOptions();
@@ -102,7 +102,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertStringContainsString(sprintf('value="%s"', 'value3'), $markup);
     }
 
-    public function testGenerateCheckBoxesAndHiddenElement()
+    public function testGenerateCheckBoxesAndHiddenElement(): void
     {
         $element = $this->getElement();
         $element->setUseHiddenElement(true);
@@ -123,7 +123,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         }
     }
 
-    public function testUsesElementValueToDetermineCheckboxStatus()
+    public function testUsesElementValueToDetermineCheckboxStatus(): void
     {
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value3']);
@@ -134,7 +134,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#value="value3"\s+checked="checked"#', $markup);
     }
 
-    public function testAllowsSpecifyingSeparator()
+    public function testAllowsSpecifyingSeparator(): void
     {
         $element = $this->getElement();
         $this->helper->setSeparator('<br />');
@@ -142,7 +142,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertEquals(2, substr_count($markup, '<br />'));
     }
 
-    public function testAllowsSpecifyingLabelPosition()
+    public function testAllowsSpecifyingLabelPosition(): void
     {
         $element = $this->getElement();
         $options = $element->getValueOptions();
@@ -159,7 +159,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         }
     }
 
-    public function testAllowsSpecifyingLabelAttributes()
+    public function testAllowsSpecifyingLabelAttributes(): void
     {
         $element = $this->getElement();
 
@@ -170,7 +170,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label class="checkbox"'));
     }
 
-    public function testAllowsSpecifyingLabelAttributesInElementAttributes()
+    public function testAllowsSpecifyingLabelAttributesInElementAttributes(): void
     {
         $element = $this->getElement();
         $element->setLabelAttributes(['class' => 'checkbox']);
@@ -179,7 +179,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label class="checkbox"'));
     }
 
-    public function testIdShouldNotBeRenderedForEachRadio()
+    public function testIdShouldNotBeRenderedForEachRadio(): void
     {
         $element = $this->getElement();
         $element->setAttribute('id', 'foo');
@@ -187,7 +187,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertLessThanOrEqual(1, substr_count($markup, 'id="foo"'));
     }
 
-    public function testIdShouldBeRenderedOnceIfProvided()
+    public function testIdShouldBeRenderedOnceIfProvided(): void
     {
         $element = $this->getElement();
         $element->setAttribute('id', 'foo');
@@ -195,20 +195,20 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertEquals(1, substr_count($markup, 'id="foo"'));
     }
 
-    public function testNameShouldHaveBracketsAppended()
+    public function testNameShouldHaveBracketsAppended(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
         $this->assertStringContainsString('foo&#x5B;&#x5D;', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = $this->getElement();
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
 
-    public function testEnsureUseHiddenElementMethodExists()
+    public function testEnsureUseHiddenElementMethodExists(): void
     {
         $element = new MultiCheckboxElement();
         $element->setName('codeType');
@@ -228,7 +228,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         // Lack of error also indicates this test passes
     }
 
-    public function testCanTranslateContent()
+    public function testCanTranslateContent(): void
     {
         $element = new MultiCheckboxElement('foo');
         $element->setValueOptions([
@@ -251,7 +251,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>translated content<', $markup);
     }
 
-    public function testTranslatorMethods()
+    public function testTranslatorMethods(): void
     {
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
@@ -265,14 +265,14 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertFalse($this->helper->isTranslatorEnabled());
     }
 
-    public function testRenderInputNotSelectElementRaisesException()
+    public function testRenderInputNotSelectElementRaisesException(): void
     {
         $element = new Element\Text('foo');
         $this->expectException(InvalidArgumentException::class);
         $this->helper->render($element);
     }
 
-    public function testRenderElementWithNoNameRaisesException()
+    public function testRenderElementWithNoNameRaisesException(): void
     {
         $element = new MultiCheckboxElement(null);
 
@@ -280,7 +280,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testCanMarkSingleOptionAsSelected()
+    public function testCanMarkSingleOptionAsSelected(): void
     {
         $element = new MultiCheckboxElement('foo');
         $options = [
@@ -303,7 +303,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertDoesNotMatchRegularExpression('#class="input-class" value="value3" checked="checked"#', $markup);
     }
 
-    public function testInvokeSetLabelPositionToAppend()
+    public function testInvokeSetLabelPositionToAppend(): void
     {
         $element = new MultiCheckboxElement('foo');
         $element->setValueOptions([
@@ -317,59 +317,59 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertSame('append', $this->helper->getLabelPosition());
     }
 
-    public function testSetLabelPositionInputNullRaisesException()
+    public function testSetLabelPositionInputNullRaisesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->helper->setLabelPosition(null);
     }
 
-    public function testSetLabelAttributes()
+    public function testSetLabelAttributes(): void
     {
         $this->helper->setLabelAttributes(['foo', 'bar']);
         $this->assertEquals([0 => 'foo', 1 => 'bar'], $this->helper->getLabelAttributes());
     }
 
-    public function testGetUseHiddenElementReturnsDefaultFalse()
+    public function testGetUseHiddenElementReturnsDefaultFalse(): void
     {
         $hiddenElement = $this->helper->getUseHiddenElement();
         $this->assertFalse($hiddenElement);
     }
 
-    public function testGetUseHiddenElementSetToTrue()
+    public function testGetUseHiddenElementSetToTrue(): void
     {
         $this->helper->setUseHiddenElement(true);
         $hiddenElement = $this->helper->getUseHiddenElement();
         $this->assertTrue($hiddenElement);
     }
 
-    public function testGetUncheckedValueReturnsDefaultEmptyString()
+    public function testGetUncheckedValueReturnsDefaultEmptyString(): void
     {
         $uncheckedValue = $this->helper->getUncheckedValue();
         $this->assertSame('', $uncheckedValue);
     }
 
-    public function testGetUncheckedValueSetToFoo()
+    public function testGetUncheckedValueSetToFoo(): void
     {
         $this->helper->setUncheckedValue('foo');
         $uncheckedValue = $this->helper->getUncheckedValue();
         $this->assertSame('foo', $uncheckedValue);
     }
 
-    public function testGetDisableAttributeReturnTrue()
+    public function testGetDisableAttributeReturnTrue(): void
     {
         $element = new MultiCheckboxElement('foo');
         $element->setAttribute('disabled', 'true');
         $this->assertSame('true', $element->getAttribute('disabled'));
     }
 
-    public function testGetSelectedAttributeReturnTrue()
+    public function testGetSelectedAttributeReturnTrue(): void
     {
         $element = new MultiCheckboxElement('foo');
         $element->setAttribute('selected', 'true');
         $this->assertSame('true', $element->getAttribute('selected'));
     }
 
-    public function testGetDisableAttributeForGroupReturnTrue()
+    public function testGetDisableAttributeForGroupReturnTrue(): void
     {
         $element = new MultiCheckboxElement('foo');
         $element->setAttribute('disabled', 'true');
@@ -383,7 +383,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#disabled="disabled" value="value1"#', $markup);
     }
 
-    public function testGetSelectedAttributeForGroupReturnTrue()
+    public function testGetSelectedAttributeForGroupReturnTrue(): void
     {
         $element = new MultiCheckboxElement('foo');
         $element->setAttribute('selected', 'true');
@@ -397,7 +397,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#value="value1" checked="checked"#', $markup);
     }
 
-    public function testDisableEscapeHtmlHelper()
+    public function testDisableEscapeHtmlHelper(): void
     {
         $element = new MultiCheckboxElement('foo');
         $element->setLabelOptions([
@@ -417,7 +417,7 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
      * @group issue-6649
      * @group issue-6655
      */
-    public function testRenderWithoutValueOptions()
+    public function testRenderWithoutValueOptions(): void
     {
         $element = new MultiCheckboxElement('foo');
 

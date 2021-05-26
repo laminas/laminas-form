@@ -19,7 +19,7 @@ class FormPasswordTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -27,7 +27,7 @@ class FormPasswordTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesPasswordInputTagWithElement()
+    public function testGeneratesPasswordInputTagWithElement(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
@@ -35,7 +35,7 @@ class FormPasswordTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="password"', $markup);
     }
 
-    public function testGeneratesPasswordInputTagRegardlessOfElementType()
+    public function testGeneratesPasswordInputTagRegardlessOfElementType(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
@@ -122,7 +122,7 @@ class FormPasswordTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion): void
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
@@ -138,7 +138,7 @@ class FormPasswordTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
@@ -147,7 +147,7 @@ class FormPasswordTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="password"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }

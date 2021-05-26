@@ -3,6 +3,7 @@
 namespace Laminas\Form;
 
 use ArrayAccess;
+use ArrayObject;
 use Laminas\Form\Element\Collection;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\InputFilter\CollectionInputFilter;
@@ -618,7 +619,7 @@ class Form extends Fieldset implements FormInterface
      * @param array $data
      * @param array $validationGroup
      */
-    protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup)
+    protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup): void
     {
         foreach ($validationGroup as $key => &$value) {
             if (! $formOrFieldset->has($key)) {
@@ -943,6 +944,7 @@ class Form extends Fieldset implements FormInterface
      * {@inheritDoc}
      *
      * @param bool $onlyBase
+     * @param ArrayObject|array $data
      */
     public function populateValues($data, $onlyBase = false)
     {

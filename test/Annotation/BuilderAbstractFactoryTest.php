@@ -21,7 +21,7 @@ class BuilderAbstractFactoryTest extends TestCase
 {
     use ProphecyTrait;
 
-    public function testFactoryReturnsAnnotationBuilder()
+    public function testFactoryReturnsAnnotationBuilder(): void
     {
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);
@@ -47,7 +47,7 @@ class BuilderAbstractFactoryTest extends TestCase
         );
     }
 
-    public function testFactoryReturnsAttributeBuilderForPhp8()
+    public function testFactoryReturnsAttributeBuilderForPhp8(): void
     {
         if (PHP_MAJOR_VERSION < 8) {
             $this->markTestSkipped('Can only create attribute builder for PHP >= 8.0.');
@@ -77,7 +77,7 @@ class BuilderAbstractFactoryTest extends TestCase
         );
     }
 
-    public function testFactoryReturnsNoAttributeBuilderForPhp7()
+    public function testFactoryReturnsNoAttributeBuilderForPhp7(): void
     {
         if (PHP_MAJOR_VERSION >= 8) {
             $this->markTestSkipped('Should only throw exceptions when creating attribute builder in PHP < 8.0.');
@@ -98,7 +98,7 @@ class BuilderAbstractFactoryTest extends TestCase
         $factory($container->reveal(), 'FormAttributeBuilder');
     }
 
-    public function testFactoryCanSetPreserveDefinedOrderFlagFromConfiguration()
+    public function testFactoryCanSetPreserveDefinedOrderFlagFromConfiguration(): void
     {
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);
@@ -120,7 +120,7 @@ class BuilderAbstractFactoryTest extends TestCase
         $this->assertTrue($builder->preserveDefinedOrder(), 'Preserve defined order was not set correctly');
     }
 
-    public function testFactoryAllowsAttachingListenersFromConfiguration()
+    public function testFactoryAllowsAttachingListenersFromConfiguration(): void
     {
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);
@@ -147,7 +147,7 @@ class BuilderAbstractFactoryTest extends TestCase
         $factory($container->reveal(), AnnotationBuilder::class);
     }
 
-    public function testFactoryThrowsExceptionWhenAttachingInvalidListeners()
+    public function testFactoryThrowsExceptionWhenAttachingInvalidListeners(): void
     {
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);

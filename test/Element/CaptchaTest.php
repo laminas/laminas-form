@@ -16,13 +16,13 @@ use function array_shift;
 
 class CaptchaTest extends TestCase
 {
-    public function testCaptchaIsUndefinedByDefault()
+    public function testCaptchaIsUndefinedByDefault(): void
     {
         $element = new CaptchaElement();
         $this->assertNull($element->getCaptcha());
     }
 
-    public function testCaptchaIsMutable()
+    public function testCaptchaIsMutable(): void
     {
         $element = new CaptchaElement();
 
@@ -46,14 +46,14 @@ class CaptchaTest extends TestCase
         $this->assertInstanceOf(Dumb::class, $element->getCaptcha());
     }
 
-    public function testCaptchaWithNullRaisesException()
+    public function testCaptchaWithNullRaisesException(): void
     {
         $element = new CaptchaElement();
         $this->expectException(InvalidArgumentException::class);
         $element->setCaptcha(null);
     }
 
-    public function testSettingCaptchaSetsCaptchaAttribute()
+    public function testSettingCaptchaSetsCaptchaAttribute(): void
     {
         $element = new CaptchaElement();
         $captcha = new Captcha\Dumb();
@@ -61,7 +61,7 @@ class CaptchaTest extends TestCase
         $this->assertSame($captcha, $element->getCaptcha());
     }
 
-    public function testCreatingCaptchaElementViaFormFactoryWillCreateCaptcha()
+    public function testCreatingCaptchaElementViaFormFactoryWillCreateCaptcha(): void
     {
         $factory = new Factory();
         $element = $factory->createElement([
@@ -78,7 +78,7 @@ class CaptchaTest extends TestCase
         $this->assertInstanceOf(Dumb::class, $captcha);
     }
 
-    public function testProvidesInputSpecificationThatIncludesCaptchaAsValidator()
+    public function testProvidesInputSpecificationThatIncludesCaptchaAsValidator(): void
     {
         $element = new CaptchaElement();
         $captcha = new Captcha\Dumb();
@@ -94,7 +94,7 @@ class CaptchaTest extends TestCase
     /**
      * @group issue-3446
      */
-    public function testAllowsPassingTraversableOptionsToConstructor()
+    public function testAllowsPassingTraversableOptionsToConstructor(): void
     {
         $options = new TestAsset\IteratorAggregate(new ArrayIterator([
             'captcha' => [

@@ -11,7 +11,7 @@ use function get_class;
 
 class MonthSelectTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new MonthSelectElement();
 
@@ -58,7 +58,7 @@ class MonthSelectTest extends TestCase
     /**
      * @dataProvider monthValuesDataProvider
      */
-    public function testMonthValidation(string $value, bool $expected)
+    public function testMonthValidation(string $value, bool $expected): void
     {
         $element   = new MonthSelectElement('foo');
         $inputSpec = $element->getInputSpecification();
@@ -67,7 +67,7 @@ class MonthSelectTest extends TestCase
         $this->assertEquals($expected, $monthValidator->isValid($value));
     }
 
-    public function testCanSetMonthFromDateTime()
+    public function testCanSetMonthFromDateTime(): void
     {
         $element = new MonthSelectElement();
         $element->setValue(new DateTime('2012-09'));
@@ -76,7 +76,7 @@ class MonthSelectTest extends TestCase
         $this->assertEquals('09', $element->getMonthElement()->getValue());
     }
 
-    public function testCanGetValue()
+    public function testCanGetValue(): void
     {
         $element = new MonthSelectElement();
         $element->setValue(new DateTime('2012-09'));

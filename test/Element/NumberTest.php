@@ -13,7 +13,7 @@ use function get_class;
 
 class NumberTest extends TestCase
 {
-    public function testProvidesInputSpecificationWithDefaultAttributes()
+    public function testProvidesInputSpecificationWithDefaultAttributes(): void
     {
         $element = new NumberElement();
 
@@ -38,7 +38,7 @@ class NumberTest extends TestCase
         }
     }
 
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new NumberElement();
         $element->setAttributes([
@@ -79,7 +79,7 @@ class NumberTest extends TestCase
         }
     }
 
-    public function testFalseInclusiveValidatorBasedOnAttributes()
+    public function testFalseInclusiveValidatorBasedOnAttributes(): void
     {
         $element = new NumberElement();
         $element->setAttributes([
@@ -96,7 +96,7 @@ class NumberTest extends TestCase
         }
     }
 
-    public function testDefaultInclusiveTrueatValidatorWhenInclusiveIsNotSetOnAttributes()
+    public function testDefaultInclusiveTrueatValidatorWhenInclusiveIsNotSetOnAttributes(): void
     {
         $element = new NumberElement();
         $element->setAttributes([
@@ -112,7 +112,7 @@ class NumberTest extends TestCase
         }
     }
 
-    public function testOnlyCastableDecimalsAreAccepted()
+    public function testOnlyCastableDecimalsAreAccepted(): void
     {
         $element = new NumberElement();
 

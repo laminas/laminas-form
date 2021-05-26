@@ -18,7 +18,7 @@ class FormFileSessionProgressTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testReturnsNameIdAndValueAttributes()
+    public function testReturnsNameIdAndValueAttributes(): void
     {
         $name = ini_get('session.upload_progress.name');
         if (false === $name) {
