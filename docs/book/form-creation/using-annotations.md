@@ -14,7 +14,7 @@ For new projects, PHP8 attributes are recommended.
 
 General information on PHP attributes are available in the
 [PHP documentation](https://www.php.net/manual/en/language.attributes.overview.php).
-Besides the obvious requirement of PHP 8.0 or newer, there no further dependencies
+Besides the obvious requirement of PHP 8.0 or newer, there are no further dependencies
 for using PHP attributes for form creation.
 
 To use attributes, add them to your class and/or properties. The attribute names
@@ -61,7 +61,7 @@ form element itself will have an attribute "autofocus", and a label "Username:".
 The "email" element will be of type `Laminas\Form\Element\Email`, and have the label
 "Your email address:".
 
-To use the above, we need `Laminas\Form\Annotation\AttributeBuilder`:
+To use the above, we need an object of `Laminas\Form\Annotation\AttributeBuilder`:
 
 ```php
 use Laminas\Form\Annotation\AttributeBuilder;
@@ -73,8 +73,8 @@ $form    = $builder->createForm(User::class);
 ## Using DocBlock Annotations
 
 Besides PHP8-only attributes, laminas-form continues to support traditional
-DocBlock annotations with v3, which have been supported with v2 already. Using
-these is suitable for legacy projects or if you need support for PHP 7.
+DocBlock annotations with v3, as they have been supported with v2 already. Using
+them is suitable for legacy projects or if you need support for PHP 7.
 
 To use DocBlock annotations, include them in your class and/or property docblocks.
 Annotation names will be resolved according to the import statements in your
@@ -186,18 +186,19 @@ protected $myProperty;
 > This annotation is deprecated, please add a `NotEmpty` validator instead.
 
 Indicate whether the element can be submitted when it is empty. A boolean
-value is expected. If `@Required` is set to `false`, this needs to be set
-to `true` to allow the field to be empty.
+value is expected, defaulting to `true`. If `@Required` is set to `false`,
+`@ContinueIfEmpty(true)` or simply `@ContinueIfEmpty()`needs to be specified
+to allow the field to be empty.
 
 ```php
 /**
- * @ContinueIfEmpty(true)
+ * @ContinueIfEmpty()
  */
 protected $myProperty;
 ```
 
 ```php
-#[ContinueIfEmpty(true)]
+#[ContinueIfEmpty()]
 protected $myProperty;
 ```
 
@@ -206,8 +207,8 @@ protected $myProperty;
 Specify another object with annotations to parse. Typically, this is used if a
 property references another object, which will then be added to your form as an
 additional fieldset. Expects a string value indicating the class for the object
-being composed. To compose a collection, `isCollection` needs to be set to
-`true` and additional `options` can be passed into the collection. `options`
+being composed. To compose a collection, the `isCollection` parameter needs to be
+set to `true` and additional `options` can be passed into the collection. `options`
 must be an associative array, for DocBlock annotations encoded as JSON.
 
 ```php

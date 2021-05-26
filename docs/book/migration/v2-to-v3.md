@@ -12,17 +12,17 @@ not have any side effects, however, you must ensure that you install
 doctrine/annotations with at least version 1.12.0:
 
 ```bash
-compose require doctrine/annotations
+composer require doctrine/annotations
 ```
 
 ## Support for PHP8 Attributes
 
-laminas-form v3 supports native PHP8 attributes as an alternative to PHPDoc
+laminas-form v3 supports native PHP8 attributes as an alternative to DocBlock
 annotations. While for new projects it is recommended to use PHP8 attributes, there
-is no need to migrate PHPDoc annotations to PHP8 attributes, as laminas-form
-will continue to support PHPDoc annotations.
+is no need to migrate DocBlock annotations to PHP8 attributes, as laminas-form
+will continue to support DocBlock annotations.
 
-In case you still want to migrate from PHPDoc annotations to PHP8 attributes,
+In case you still want to migrate from DocBlock annotations to PHP8 attributes,
 please have a look at the [annotations chapter](../form-creation/using-annotations.md),
 which provides a side-by-side comparison of these annotations.
 
