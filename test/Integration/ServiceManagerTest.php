@@ -10,8 +10,8 @@ use Laminas\ServiceManager\InitializerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
-
 use Prophecy\PhpUnit\ProphecyTrait;
+
 use function method_exists;
 
 class ServiceManagerTest extends TestCase
@@ -33,14 +33,14 @@ class ServiceManagerTest extends TestCase
         $formElementManager = $serviceManager->get('FormElementManager');
 
         $test = 0;
-        $spy = function () use (&$test) {
+        $spy  = function () use (&$test) {
             TestCase::assertEquals(1, $test);
         };
 
         $element = $this->prophesize(Element::class);
         $element->init()->will($spy);
 
-        $initializer = $this->prophesize(InitializerInterface::class);
+        $initializer   = $this->prophesize(InitializerInterface::class);
         $incrementTest = function () use (&$test) {
             $test += 1;
         };
@@ -58,7 +58,7 @@ class ServiceManagerTest extends TestCase
         }
 
         $formElementManagerConfig = new Config([
-            'factories' => [
+            'factories'    => [
                 'InitializableElement' => function () use ($element) {
                     return $element->reveal();
                 },
@@ -87,7 +87,7 @@ class ServiceManagerTest extends TestCase
 
         $formElementManager = $serviceManager->get('FormElementManager');
 
-        $initializer = $this->prophesize(InitializerInterface::class);
+        $initializer                 = $this->prophesize(InitializerInterface::class);
         $formElementManagerAssertion = function ($form) use ($formElementManager) {
             TestCase::assertInstanceOf(Form::class, $form);
             TestCase::assertSame($formElementManager, $form->getFormFactory()->getFormElementManager());
@@ -106,7 +106,7 @@ class ServiceManagerTest extends TestCase
         }
 
         $formElementManagerConfig = new Config([
-            'factories' => [
+            'factories'    => [
                 'MyForm' => function () {
                     return new TestAsset\Form();
                 },
@@ -118,7 +118,7 @@ class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig->configureServiceManager($formElementManager);
 
-        /** @var TestAsset\Form */
+        /** @var TestAsset\Form $form */
         $form = $formElementManager->get('MyForm');
         $this->assertSame($formElementManager, $form->elementManagerAtInit);
     }

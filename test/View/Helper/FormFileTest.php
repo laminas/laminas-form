@@ -3,15 +3,13 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormFile as FormFileHelper;
 
 use function sprintf;
 
-class FormFileTest extends CommonTestCase
+class FormFileTest extends AbstractCommonTestCase
 {
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         $this->helper = new FormFileHelper();
@@ -24,7 +22,7 @@ class FormFileTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element\File();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -47,7 +45,7 @@ class FormFileTest extends CommonTestCase
     {
         $element = new Element\File('foo');
         $element->setAttribute('type', 'email');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="file"', $markup);
     }
@@ -65,7 +63,7 @@ class FormFileTest extends CommonTestCase
             'size'     => 200,
             'error'    => 2,
         ]);
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="file"', $markup);
         $this->assertStringNotContainsString('value="', $markup);
@@ -74,7 +72,7 @@ class FormFileTest extends CommonTestCase
     /**
      * @return array
      */
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -111,39 +109,39 @@ class FormFileTest extends CommonTestCase
     /**
      * @return Element\File
      */
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element\File('foo');
         $element->setAttributes([
-            'accept'             => 'value',
-            'alt'                => 'value',
-            'autocomplete'       => 'on',
-            'autofocus'          => 'autofocus',
-            'checked'            => 'checked',
-            'dirname'            => 'value',
-            'disabled'           => 'disabled',
-            'form'               => 'value',
-            'formaction'         => 'value',
-            'formenctype'        => 'value',
-            'formmethod'         => 'value',
-            'formnovalidate'     => 'value',
-            'formtarget'         => 'value',
-            'height'             => 'value',
-            'id'                 => 'value',
-            'list'               => 'value',
-            'max'                => 'value',
-            'maxlength'          => 'value',
-            'min'                => 'value',
-            'multiple'           => false,
-            'name'               => 'value',
-            'pattern'            => 'value',
-            'placeholder'        => 'value',
-            'readonly'           => 'readonly',
-            'required'           => 'required',
-            'size'               => 'value',
-            'src'                => 'value',
-            'step'               => 'value',
-            'width'              => 'value',
+            'accept'         => 'value',
+            'alt'            => 'value',
+            'autocomplete'   => 'on',
+            'autofocus'      => 'autofocus',
+            'checked'        => 'checked',
+            'dirname'        => 'value',
+            'disabled'       => 'disabled',
+            'form'           => 'value',
+            'formaction'     => 'value',
+            'formenctype'    => 'value',
+            'formmethod'     => 'value',
+            'formnovalidate' => 'value',
+            'formtarget'     => 'value',
+            'height'         => 'value',
+            'id'             => 'value',
+            'list'           => 'value',
+            'max'            => 'value',
+            'maxlength'      => 'value',
+            'min'            => 'value',
+            'multiple'       => false,
+            'name'           => 'value',
+            'pattern'        => 'value',
+            'placeholder'    => 'value',
+            'readonly'       => 'readonly',
+            'required'       => 'required',
+            'size'           => 'value',
+            'src'            => 'value',
+            'step'           => 'value',
+            'width'          => 'value',
         ]);
         $element->setValue('value');
         return $element;
@@ -152,16 +150,16 @@ class FormFileTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
         switch ($attribute) {
             case 'value':
-                $expect  = sprintf('%s="%s"', $attribute, $element->getValue());
+                $expect = sprintf('%s="%s"', $attribute, $element->getValue());
                 break;
             default:
-                $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+                $expect = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
                 break;
         }
         $this->$assertion($expect, $markup);

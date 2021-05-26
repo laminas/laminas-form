@@ -11,7 +11,7 @@ use LaminasTest\Form\TestAsset\CityFieldset;
 
 use function sprintf;
 
-class FormTest extends CommonTestCase
+class FormTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -40,7 +40,7 @@ class FormTest extends CommonTestCase
 
     public function testCallingOpenTagWithFormUsesFormAttributes()
     {
-        $form = new Form();
+        $form       = new Form();
         $attributes = [
             'method'  => 'post',
             'action'  => 'http://localhost/endpoint',
@@ -61,9 +61,9 @@ class FormTest extends CommonTestCase
 
     public function testOpenTagUsesNameAsIdIfNoIdAttributePresent()
     {
-        $form = new Form();
+        $form       = new Form();
         $attributes = [
-            'name'  => 'login-form',
+            'name' => 'login-form',
         ];
         $form->setAttributes($attributes);
 
@@ -74,8 +74,8 @@ class FormTest extends CommonTestCase
 
     public function testRender()
     {
-        $form = new Form();
-        $attributes = ['name'  => 'login-form'];
+        $form       = new Form();
+        $attributes = ['name' => 'login-form'];
         $form->setAttributes($attributes);
         $form->add(new CityFieldset());
         $form->add(new Submit('send'));
@@ -92,7 +92,7 @@ class FormTest extends CommonTestCase
 
     public function testRenderPreparesForm()
     {
-        $form = $this->createMock('Laminas\\Form\\Form');
+        $form = $this->createMock(Form::class);
         $form->expects($this->once())->method('prepare');
         $form->method('getAttributes')->willReturn([]);
         $form->method('getIterator')->willReturn(new ArrayIterator([]));

@@ -4,13 +4,14 @@ namespace LaminasTest\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\ReCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\ReCaptcha as ReCaptchaHelper;
-use LaminasTest\Form\View\Helper\CommonTestCase;
+use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 use function class_exists;
 use function getenv;
 
-class ReCaptchaTest extends CommonTestCase
+class ReCaptchaTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -32,7 +33,7 @@ class ReCaptchaTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): CaptchaElement
     {
         $element = new CaptchaElement('foo');
         $element->setCaptcha($this->captcha);
@@ -43,7 +44,7 @@ class ReCaptchaTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->helper->render($element);
     }
 
@@ -59,7 +60,7 @@ class ReCaptchaTest extends CommonTestCase
     {
         $element = $this->getElement();
         $element->setName('g-recaptcha-response');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringNotContainsString('type="hidden"', $markup);
     }
 

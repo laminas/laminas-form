@@ -6,6 +6,12 @@ use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 
+use function is_array;
+use function sprintf;
+use function trigger_error;
+
+use const E_USER_DEPRECATED;
+
 /**
  * Hydrator annotation
  *
@@ -19,14 +25,10 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 class Hydrator
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $type;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $options;
 
     /**
@@ -42,13 +44,13 @@ class Hydrator
             trigger_error(sprintf(
                 'Passing a single array to the constructor of %s is deprecated since 3.0.0,'
                 . ' please use separate parameters.',
-                get_class($this)
+                static::class
             ), E_USER_DEPRECATED);
 
-            $this->type = $type['type'] ?? null;
+            $this->type    = $type['type'] ?? null;
             $this->options = $type['options'] ?? $options;
         } else {
-            $this->type = $type;
+            $this->type    = $type;
             $this->options = $options;
         }
     }

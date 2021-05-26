@@ -3,11 +3,15 @@
 namespace LaminasTest\Form;
 
 use Laminas\Filter\FilterPluginManager;
+use Laminas\Form\Element\Email;
+use Laminas\Form\Form;
 use Laminas\Form\FormAbstractServiceFactory;
 use Laminas\Form\FormElementManager;
 use Laminas\Hydrator\HydratorPluginManager;
 use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
+use Laminas\InputFilter\Factory;
+use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\ValidatorPluginManager;
@@ -23,7 +27,7 @@ class FormAbstractServiceFactoryTest extends TestCase
             ? ObjectPropertyHydrator::class
             : ObjectProperty::class;
 
-        $services     = $this->services = new ServiceManager;
+        $services     = $this->services = new ServiceManager();
         $elements     = new FormElementManager($services);
         $filters      = new FilterPluginManager($services);
         $hydrators    = new HydratorPluginManager($services);
@@ -36,7 +40,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $services->setService('InputFilterManager', $inputFilters);
         $services->setService('ValidatorManager', $validators);
 
-        $inputFilters->setInvokableClass('FooInputFilter', 'Laminas\InputFilter\InputFilter');
+        $inputFilters->setInvokableClass('FooInputFilter', InputFilter::class);
 
         $forms = $this->forms = new FormAbstractServiceFactory($services);
         $services->addAbstractFactory($forms);
@@ -106,7 +110,7 @@ class FormAbstractServiceFactoryTest extends TestCase
         $this->services->setService('config', [
             'forms' => [
                 'Foo' => [
-                    'type'     => 'Laminas\Form\Form',
+                    'type'     => Form::class,
                     'elements' => [],
                 ],
             ],
@@ -117,15 +121,15 @@ class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagers()
     {
         $formConfig = [
-            'hydrator' => class_exists(ObjectPropertyHydrator::class)
+            'hydrator'     => class_exists(ObjectPropertyHydrator::class)
                 ? 'ObjectPropertyHydrator'
                 : 'ObjectProperty',
-            'type'     => 'Laminas\Form\Form',
-            'elements' => [
+            'type'         => Form::class,
+            'elements'     => [
                 [
                     'spec' => [
-                        'type' => 'Laminas\Form\Element\Email',
-                        'name' => 'email',
+                        'type'    => Email::class,
+                        'name'    => 'email',
                         'options' => [
                             'label' => 'Your email address',
                         ],
@@ -134,21 +138,21 @@ class FormAbstractServiceFactoryTest extends TestCase
             ],
             'input_filter' => 'FooInputFilter',
         ];
-        $config = ['forms' => ['Foo' => $formConfig]];
+        $config     = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('config', $config);
         $form = $this->forms->__invoke($this->services, 'Foo');
-        $this->assertInstanceOf('Laminas\Form\Form', $form);
+        $this->assertInstanceOf(Form::class, $form);
 
         $hydrator = $form->getHydrator();
         $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilter', $inputFilter);
+        $this->assertInstanceOf(InputFilter::class, $inputFilter);
 
         $inputFactory = $inputFilter->getFactory();
-        $this->assertInstanceOf('Laminas\InputFilter\Factory', $inputFactory);
-        $filters      = $this->services->get('FilterManager');
-        $validators   = $this->services->get('ValidatorManager');
+        $this->assertInstanceOf(Factory::class, $inputFactory);
+        $filters    = $this->services->get('FilterManager');
+        $validators = $this->services->get('ValidatorManager');
         $this->assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
         $this->assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
     }
@@ -156,15 +160,15 @@ class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagersExceptInputFilterManager()
     {
         $formConfig = [
-            'hydrator' => class_exists(ObjectPropertyHydrator::class)
+            'hydrator'     => class_exists(ObjectPropertyHydrator::class)
                 ? 'ObjectPropertyHydrator'
                 : 'ObjectProperty',
-            'type'     => 'Laminas\Form\Form',
-            'elements' => [
+            'type'         => Form::class,
+            'elements'     => [
                 [
                     'spec' => [
-                        'type' => 'Laminas\Form\Element\Email',
-                        'name' => 'email',
+                        'type'    => Email::class,
+                        'name'    => 'email',
                         'options' => [
                             'label' => 'Your email address',
                         ],
@@ -187,16 +191,16 @@ class FormAbstractServiceFactoryTest extends TestCase
                 ],
             ],
         ];
-        $config = ['forms' => ['Foo' => $formConfig]];
+        $config     = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('config', $config);
         $form = $this->forms->__invoke($this->services, 'Foo');
-        $this->assertInstanceOf('Laminas\Form\Form', $form);
+        $this->assertInstanceOf(Form::class, $form);
 
         $hydrator = $form->getHydrator();
         $this->assertInstanceOf($this->objectPropertyHydratorClass, $hydrator);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilter', $inputFilter);
+        $this->assertInstanceOf(InputFilter::class, $inputFilter);
 
         $inputFactory = $inputFilter->getFactory();
         $filters      = $this->services->get('FilterManager');

@@ -3,13 +3,14 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Radio as RadioElement;
+use Laminas\Validator\InArray;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
 class RadioTest extends TestCase
 {
-    public function useHiddenAttributeDataProvider()
+    public function useHiddenAttributeDataProvider(): array
     {
         return [[true], [false]];
     }
@@ -17,7 +18,7 @@ class RadioTest extends TestCase
     /**
      * @dataProvider useHiddenAttributeDataProvider
      */
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes($useHiddenElement)
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement)
     {
         $element = new RadioElement();
         $options = [
@@ -35,7 +36,7 @@ class RadioTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\InArray',
+            InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
@@ -43,7 +44,7 @@ class RadioTest extends TestCase
         }
     }
 
-    public function radioOptionsDataProvider()
+    public function radioOptionsDataProvider(): array
     {
         return [
             [
@@ -66,7 +67,7 @@ class RadioTest extends TestCase
     /**
      * @dataProvider radioOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions($valueTests, $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options)
     {
         $element = new RadioElement('my-radio');
         $element->setAttributes([
@@ -75,7 +76,7 @@ class RadioTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
+        $this->assertInstanceOf(InArray::class, $inArrayValidator);
         foreach ($valueTests as $valueToTest) {
             $this->assertTrue($inArrayValidator->isValid($valueToTest));
         }

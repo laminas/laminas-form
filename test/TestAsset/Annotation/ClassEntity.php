@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
+use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 
 /**
  * @Annotation\Name("some_name")
@@ -12,17 +13,19 @@ use Laminas\Form\Annotation;
  */
 #[Annotation\Name("some_name")]
 #[Annotation\Attributes(["legend" => "Some Fieldset"])]
-#[Annotation\InputFilter("LaminasTest\Form\TestAsset\Annotation\InputFilter")]
+#[Annotation\InputFilter(InputFilter::class)]
 #[Annotation\ValidationGroup(["omit", "keep"])]
 class ClassEntity
 {
     /**
+     * @var null|string
      * @Annotation\Exclude()
      */
     #[Annotation\Exclude]
     public $omit;
 
     /**
+     * @var null|string
      * @Annotation\Name("keeper")
      * @Annotation\Attributes({"type":"text"})
      */

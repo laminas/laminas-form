@@ -11,6 +11,7 @@ use Laminas\Form\Annotation;
 class ExtendedEntity extends Entity
 {
     /**
+     * @var null|string
       * @Annotation\Filter("StringTrim")
       * @Annotation\Validator("EmailAddress")
       * @Annotation\Attributes({"type":"password","label":"Enter your email"})

@@ -37,10 +37,9 @@ class FormTextarea extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
      * @return string|FormTextarea
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null)
     {
         if (! $element) {
             return $this;
@@ -52,13 +51,12 @@ class FormTextarea extends AbstractHelper
     /**
      * Render a form <textarea> element from the provided $element
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
     {
-        $name   = $element->getName();
+        $name = $element->getName();
         if (empty($name) && $name !== 0) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has an assigned name; none discovered',

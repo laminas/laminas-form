@@ -19,15 +19,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 class Type
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $type;
 
     /**
      * Receive and process the contents of an annotation
-     *
-     * @param string $type
      */
     public function __construct(string $type)
     {
@@ -36,8 +32,6 @@ class Type
 
     /**
      * Retrieve the class type
-     *
-     * @return string
      */
     public function getType(): string
     {

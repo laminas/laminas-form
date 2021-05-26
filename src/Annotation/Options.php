@@ -20,9 +20,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 class Options
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $options;
 
     /**

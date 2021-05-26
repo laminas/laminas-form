@@ -4,14 +4,10 @@ namespace LaminasTest\Form\TestAsset\Entity;
 
 class Category
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
     /**

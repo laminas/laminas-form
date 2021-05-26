@@ -4,23 +4,17 @@ namespace LaminasTest\Form\TestAsset\Entity;
 
 class Address
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $street;
 
-    /**
-     * @var City
-     */
+    /** @var City */
     protected $city;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $phones = [];
 
     /**
-     * @param $street
+     * @param string $street
      * @return $this
      */
     public function setStreet($street)
@@ -38,7 +32,6 @@ class Address
     }
 
     /**
-     * @param City $city
      * @return $this
      */
     public function setCity(City $city)

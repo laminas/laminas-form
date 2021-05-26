@@ -2,12 +2,23 @@
 
 namespace LaminasTest\Form\Annotation;
 
+use Generator;
 use Laminas\Form\Annotation;
+use Laminas\Form\Element;
+use Laminas\Form\Element\Collection;
+use Laminas\Form\Fieldset;
+use Laminas\Form\FieldsetInterface;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
+use Laminas\InputFilter\InputFilterInterface;
+use Laminas\InputFilter\InputInterface;
 use LaminasTest\Form\TestAsset;
+use LaminasTest\Form\TestAsset\Annotation\Entity;
+use LaminasTest\Form\TestAsset\Annotation\Form;
+use LaminasTest\Form\TestAsset\Annotation\InputFilter;
+use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
 use PHPUnit\Framework\TestCase;
 
 use function class_exists;
@@ -48,11 +59,11 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertTrue($form->has('password'));
 
         $username = $form->get('username');
-        $this->assertInstanceOf('Laminas\Form\Element', $username);
+        $this->assertInstanceOf(Element::class, $username);
         $this->assertEquals('required', $username->getAttribute('required'));
 
         $password = $form->get('password');
-        $this->assertInstanceOf('Laminas\Form\Element', $password);
+        $this->assertInstanceOf(Element::class, $password);
         $attributes = $password->getAttributes();
         $this->assertEquals(
             ['type' => 'password', 'label' => 'Enter your password', 'name' => 'password'],
@@ -91,7 +102,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertEquals('Some Fieldset', $attributes['legend']);
 
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\InputFilter', $filter);
+        $this->assertInstanceOf(InputFilter::class, $filter);
 
         $keeper     = $form->get('keeper');
         $attributes = $keeper->getAttributes();
@@ -122,7 +133,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $test  = $form->getIterator()->getIterator()->current();
         $this->assertSame($email, $test, 'Test is element ' . $test->getName());
 
-        $test  = $form->getIterator()->current();
+        $test = $form->getIterator()->current();
         $this->assertSame($email, $test, 'Test is element ' . $test->getName());
 
         $hydrator = $form->getHydrator();
@@ -136,7 +147,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form    = $builder->createForm($entity);
 
         $element = $form->get('element');
-        $first  = $form->getIterator()->getIterator()->current();
+        $first   = $form->getIterator()->getIterator()->current();
         $this->assertSame($element, $first, 'Test is element ' . $first->getName());
     }
 
@@ -145,10 +156,10 @@ abstract class AbstractBuilderTestCase extends TestCase
         $entity  = new TestAsset\Annotation\FieldsetOrderEntity();
         $builder = $this->createBuilder();
         $builder->setPreserveDefinedOrder(true);
-        $form    = $builder->createForm($entity);
+        $form = $builder->createForm($entity);
 
         $fieldset = $form->get('fieldset');
-        $first  = $form->getIterator()->getIterator()->current();
+        $first    = $form->getIterator()->getIterator()->current();
         $this->assertSame($fieldset, $first, 'Test is element ' . $first->getName());
     }
 
@@ -185,9 +196,9 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Form', $form);
+        $this->assertInstanceOf(Form::class, $form);
         $element = $form->get('typed_element');
-        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Element', $element);
+        $this->assertInstanceOf(\LaminasTest\Form\TestAsset\Annotation\Element::class, $element);
     }
 
     public function testAllowsComposingChildEntities()
@@ -198,14 +209,14 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $this->assertTrue($form->has('composed'));
         $composed = $form->get('composed');
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $composed);
+        $this->assertInstanceOf(FieldsetInterface::class, $composed);
         $this->assertTrue($composed->has('username'));
         $this->assertTrue($composed->has('password'));
 
         $filter = $form->getInputFilter();
         $this->assertTrue($filter->has('composed'));
         $composed = $filter->get('composed');
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $composed);
+        $this->assertInstanceOf(InputFilterInterface::class, $composed);
         $this->assertTrue($composed->has('username'));
         $this->assertTrue($composed->has('password'));
     }
@@ -219,9 +230,9 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertTrue($form->has('composed'));
         $composed = $form->get('composed');
 
-        $this->assertInstanceOf('Laminas\Form\Element\Collection', $composed);
+        $this->assertInstanceOf(Collection::class, $composed);
         $target = $composed->getTargetElement();
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $target);
+        $this->assertInstanceOf(FieldsetInterface::class, $target);
         $this->assertTrue($target->has('username'));
         $this->assertTrue($target->has('password'));
     }
@@ -229,7 +240,6 @@ abstract class AbstractBuilderTestCase extends TestCase
     /**
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotation
      * @param string $childName
-     *
      * @group issue-7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotation($childName)
@@ -241,14 +251,14 @@ abstract class AbstractBuilderTestCase extends TestCase
         $child = $form->get($childName);
 
         $target = $child->getTargetElement();
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $target);
+        $this->assertInstanceOf(FieldsetInterface::class, $target);
         $this->assertEquals('My label', $child->getLabel());
     }
 
     /**
      * Data provider
      *
-     * @return \Generator
+     * @return Generator
      */
     public function provideOptionsAnnotationAndComposedObjectAnnotation()
     {
@@ -259,7 +269,6 @@ abstract class AbstractBuilderTestCase extends TestCase
     /**
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection
      * @param string $childName
-     *
      * @group issue-7108
      */
     public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($childName)
@@ -270,14 +279,14 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $child = $form->get($childName);
 
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $child);
+        $this->assertInstanceOf(FieldsetInterface::class, $child);
         $this->assertEquals('My label', $child->getLabel());
     }
 
     /**
      * Data provider
      *
-     * @return \Generator
+     * @return Generator
      */
     public function provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection()
     {
@@ -296,7 +305,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertTrue($form->has('username'));
 
         $username = $form->get('username');
-        $this->assertInstanceOf('Laminas\Form\Element', $username);
+        $this->assertInstanceOf(Element::class, $username);
 
         $this->assertEquals('Username:', $username->getLabel());
         $this->assertEquals(['class' => 'label'], $username->getLabelAttributes());
@@ -319,9 +328,9 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertInstanceOf('Laminas\Form\Form', $form);
+        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $element = $form->get('type');
-        $this->assertInstanceOf('Laminas\Form\Element', $element);
+        $this->assertInstanceOf(Element::class, $element);
     }
 
     public function testAllowEmptyInput()
@@ -348,9 +357,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     public function testInputNotRequiredByDefault()
     {
-        $entity = new TestAsset\Annotation\SampleEntity();
-        $builder = $this->createBuilder();
-        $form = $builder->createForm($entity);
+        $entity      = new TestAsset\Annotation\SampleEntity();
+        $builder     = $this->createBuilder();
+        $form        = $builder->createForm($entity);
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('anotherSampleInput');
         $this->assertFalse($sampleinput->isRequired());
@@ -358,30 +367,30 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     public function testInstanceElementAnnotation()
     {
-        $entity = new TestAsset\Annotation\EntityUsingInstanceProperty();
+        $entity  = new TestAsset\Annotation\EntityUsingInstanceProperty();
         $builder = $this->createBuilder();
-        $form = $builder->createForm($entity);
+        $form    = $builder->createForm($entity);
 
         $fieldset = $form->get('object');
-        /* @var $fieldset Laminas\Form\Fieldset */
+        /** @var Laminas\Form\Fieldset $fieldset */
 
-        $this->assertInstanceOf('Laminas\Form\Fieldset', $fieldset);
-        $this->assertInstanceOf('LaminasTest\Form\TestAsset\Annotation\Entity', $fieldset->getObject());
+        $this->assertInstanceOf(Fieldset::class, $fieldset);
+        $this->assertInstanceOf(Entity::class, $fieldset->getObject());
         $this->assertInstanceOf($this->classMethodsHydratorClass, $fieldset->getHydrator());
         $this->assertFalse($fieldset->getHydrator()->getUnderscoreSeparatedKeys());
     }
 
     public function testInputFilterInputAnnotation()
     {
-        $entity = new TestAsset\Annotation\EntityWithInputFilterInput();
-        $builder = $this->createBuilder();
-        $form = $builder->createForm($entity);
+        $entity      = new TestAsset\Annotation\EntityWithInputFilterInput();
+        $builder     = $this->createBuilder();
+        $form        = $builder->createForm($entity);
         $inputFilter = $form->getInputFilter();
 
         $this->assertTrue($inputFilter->has('input'));
         $expected = [
-            'Laminas\InputFilter\InputInterface',
-            'LaminasTest\Form\TestAsset\Annotation\InputFilterInput',
+            InputInterface::class,
+            InputFilterInput::class,
         ];
         foreach ($expected as $expectedInstance) {
             $this->assertInstanceOf($expectedInstance, $inputFilter->get('input'));
@@ -393,9 +402,9 @@ abstract class AbstractBuilderTestCase extends TestCase
      */
     public function testInputFilterAnnotationAllowsComposition()
     {
-        $entity = new TestAsset\Annotation\EntityWithInputFilterAnnotation();
-        $builder = $this->createBuilder();
-        $form = $builder->createForm($entity);
+        $entity      = new TestAsset\Annotation\EntityWithInputFilterAnnotation();
+        $builder     = $this->createBuilder();
+        $form        = $builder->createForm($entity);
         $inputFilter = $form->getInputFilter();
         $this->assertCount(2, $inputFilter->get('username')->getValidatorChain());
     }
@@ -413,26 +422,26 @@ abstract class AbstractBuilderTestCase extends TestCase
     {
         $this->expectDeprecation();
         $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
-        $entity = new TestAsset\Annotation\LegacyFilterAnnotation();
+        $entity  = new TestAsset\Annotation\LegacyFilterAnnotation();
         $builder = $this->createBuilder();
-        $form = $builder->createForm($entity);
+        $form    = $builder->createForm($entity);
     }
 
     public function testLegacyStyleHydratorAnnotations()
     {
         $this->expectDeprecation();
         $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
-        $entity = new TestAsset\Annotation\LegacyHydratorAnnotation();
+        $entity  = new TestAsset\Annotation\LegacyHydratorAnnotation();
         $builder = $this->createBuilder();
-        $form = $builder->createForm($entity);
+        $form    = $builder->createForm($entity);
     }
 
     public function testLegacyStyleValidatorAnnotations()
     {
         $this->expectDeprecation();
         $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
-        $entity = new TestAsset\Annotation\LegacyValidatorAnnotation();
+        $entity  = new TestAsset\Annotation\LegacyValidatorAnnotation();
         $builder = $this->createBuilder();
-        $form = $builder->createForm($entity);
+        $form    = $builder->createForm($entity);
     }
 }

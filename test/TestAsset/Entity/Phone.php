@@ -4,9 +4,7 @@ namespace LaminasTest\Form\TestAsset\Entity;
 
 class Phone
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $number;
 
     /**

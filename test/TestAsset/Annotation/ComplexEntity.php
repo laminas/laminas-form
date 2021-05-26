@@ -3,6 +3,8 @@
 namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
+use Laminas\Hydrator\ObjectPropertyHydrator;
+use LaminasTest\Form\TestAsset\Annotation\UrlValidator;
 
 /**
  * @Annotation\Name("user")
@@ -11,10 +13,11 @@ use Laminas\Form\Annotation;
  */
 #[Annotation\Name("user")]
 #[Annotation\Attributes(["legend" => "Register"])]
-#[Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")]
+#[Annotation\Hydrator(ObjectPropertyHydrator::class)]
 class ComplexEntity
 {
     /**
+     * @var null|string
      * @Annotation\ErrorMessage("Invalid or missing username")
      * @Annotation\Filter("StringTrim")
      * @Annotation\Validator("NotEmpty")
@@ -23,10 +26,11 @@ class ComplexEntity
     #[Annotation\ErrorMessage("Invalid or missing username")]
     #[Annotation\Filter("StringTrim")]
     #[Annotation\Validator("NotEmpty")]
-    #[Annotation\Validator("StringLength", options: ["min" => 3,"max" => 25])]
+    #[Annotation\Validator("StringLength", options: ["min" => 3, "max" => 25])]
     public $username;
 
     /**
+     * @var null|string
      * @Annotation\Attributes({"type":"password","label":"Enter your password"})
      * @Annotation\Filter("StringTrim")
      * @Annotation\Validator("StringLength", options={"min":3})
@@ -37,6 +41,7 @@ class ComplexEntity
     public $password;
 
     /**
+     * @var null|string
      * @Annotation\Flags({"priority":100})
      * @Annotation\Filter("StringTrim")
      * @Annotation\Validator("EmailAddress", options={"allow":15})
@@ -49,6 +54,7 @@ class ComplexEntity
     public $email;
 
     /**
+     * @var null|string
      * @Annotation\Name("user_image")
      * @Annotation\AllowEmpty()
      * @Annotation\Required(false)
@@ -59,10 +65,11 @@ class ComplexEntity
     #[Annotation\AllowEmpty()]
     #[Annotation\Required(false)]
     #[Annotation\Attributes(["type" => "text", "label" => "Provide a URL for your avatar (optional):"])]
-    #[Annotation\Validator("LaminasTest\Form\TestAsset\Annotation\UrlValidator")]
+    #[Annotation\Validator(UrlValidator::class)]
     public $avatar;
 
     /**
+     * @var null|string
      * @Annotation\Exclude()
      */
     #[Annotation\Exclude]

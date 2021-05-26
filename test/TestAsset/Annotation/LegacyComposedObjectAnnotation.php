@@ -11,6 +11,7 @@ use Laminas\Form\Annotation;
 class LegacyComposedObjectAnnotation
 {
     /**
+     * @var null|Entity
      * @Annotation\Name("composed")
      * @Annotation\ComposedObject({"target_object":"LaminasTest\Form\TestAsset\Annotation\Entity", "is_collection":"true"})
      */

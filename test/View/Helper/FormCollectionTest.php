@@ -3,12 +3,13 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
+use Laminas\I18n\Translator\Translator;
 use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
 use ReflectionMethod;
 
-class FormCollectionTest extends CommonTestCase
+class FormCollectionTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -16,7 +17,7 @@ class FormCollectionTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getForm()
+    public function getForm(): FormCollection
     {
         $form = new FormCollection();
         $form->prepare();
@@ -31,7 +32,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCanGenerateTemplate()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setShouldCreateTemplate(true);
 
@@ -42,7 +43,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testDoesNotGenerateTemplateByDefault()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setShouldCreateTemplate(false);
 
@@ -52,7 +53,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCorrectlyIndexElementsInCollection()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
 
         $markup = $this->helper->render($collection);
@@ -62,7 +63,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCorrectlyIndexNestedElementsInCollection()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('fieldsets');
 
         $markup = $this->helper->render($collection);
@@ -151,7 +152,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCanRenderTemplateAlone()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setShouldCreateTemplate(true);
 
@@ -162,12 +163,12 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCanTranslateLegend()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setLabel('untranslated legend');
         $this->helper->setShouldWrap(true);
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->once())
                        ->method('translate')
                        ->willReturn('translated legend');
@@ -182,7 +183,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testShouldWrapWithoutLabel()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setLabel('');
         $this->helper->setShouldWrap(true);
@@ -193,7 +194,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testRenderCollectionAttributes()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setLabel('label');
         $this->helper->setShouldWrap(true);
@@ -242,7 +243,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionIsWrappedByFieldsetWithoutLegend()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $this->helper->setShouldWrap(true);
 
@@ -255,7 +256,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionIsWrappedByFieldsetWithLabel()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setLabel('foo');
         $this->helper->setShouldWrap(true);
@@ -269,7 +270,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionIsWrappedByCustomElement()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $this->helper->setShouldWrap(true);
         $this->helper->setWrapper('<div>%2$s%1$s%3$s</div>');
@@ -283,7 +284,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionContainsTemplateAtPos3()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setShouldCreateTemplate(true);
         $this->helper->setShouldWrap(true);
@@ -298,7 +299,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionRendersLabelCorrectly()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setLabel('foo');
         $this->helper->setShouldWrap(true);
@@ -312,7 +313,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionCollectionRendersTemplateCorrectly()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setShouldCreateTemplate(true);
         $this->helper->setTemplateWrapper('<div class="foo">%s</div>');
@@ -325,7 +326,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionRendersTemplateWithoutWrapper()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setShouldCreateTemplate(true);
         $this->helper->setShouldWrap(false);
@@ -339,7 +340,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCollectionRendersFieldsetCorrectly()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('fieldsets');
         $collection->setShouldCreateTemplate(true);
         $this->helper->setShouldWrap(true);
@@ -367,7 +368,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testLabelIsEscapedByDefault()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setLabel('<strong>Some label</strong>');
         $markup = $this->helper->render($collection);
@@ -379,7 +380,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testCanDisableLabelHtmlEscape()
     {
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setLabel('<strong>Some label</strong>');
         $collection->setLabelOptions(['disable_html_escape' => true]);
@@ -392,7 +393,7 @@ class FormCollectionTest extends CommonTestCase
 
     public function testForElementHelperNotInstanceOfHelperInterface()
     {
-        $method = new ReflectionMethod('Laminas\Form\View\Helper\FormCollection', 'getElementHelper');
+        $method = new ReflectionMethod(FormCollectionHelper::class, 'getElementHelper');
         $method->setAccessible(true);
 
         $this->expectException('RuntimeException');
@@ -400,7 +401,6 @@ class FormCollectionTest extends CommonTestCase
             'Invalid element helper set in FormCollection.'
             . ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'
         );
-
 
         $method->invokeArgs(new FormCollectionHelper(), []);
     }

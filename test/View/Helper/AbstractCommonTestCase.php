@@ -15,25 +15,21 @@ use function get_class;
 /**
  * Abstract base test case for all form view helpers
  */
-abstract class CommonTestCase extends TestCase
+abstract class AbstractCommonTestCase extends TestCase
 {
-    /**
-     * @var AbstractHelper
-     */
+    /** @var AbstractHelper */
     public $helper;
 
-    /**
-     * @var RendererInterface
-     */
+    /** @var RendererInterface */
     public $renderer;
 
     protected function setUp(): void
     {
         Doctype::unsetDoctypeRegistry();
 
-        $this->renderer = new PhpRenderer;
+        $this->renderer      = new PhpRenderer();
         $helperPluginManager = $this->renderer->getHelperPluginManager();
-        $viewHelperConfig = (new ConfigProvider())->getViewHelperConfig();
+        $viewHelperConfig    = (new ConfigProvider())->getViewHelperConfig();
         $helperPluginManager->configure($viewHelperConfig);
         $this->renderer->setHelperPluginManager($helperPluginManager);
 
@@ -88,7 +84,7 @@ abstract class CommonTestCase extends TestCase
         }
 
         $helperClass = get_class($this->helper);
-        $helper = new $helperClass();
+        $helper      = new $helperClass();
         $this->assertEquals(Doctype::HTML4_LOOSE, $helper->getDoctype());
     }
 

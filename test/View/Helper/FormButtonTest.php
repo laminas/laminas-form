@@ -4,11 +4,14 @@ namespace LaminasTest\Form\View\Helper;
 
 use ArrayObject;
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormButton as FormButtonHelper;
+use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
-class FormButtonTest extends CommonTestCase
+class FormButtonTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -29,7 +32,7 @@ class FormButtonTest extends CommonTestCase
             'class' => 'email-button',
             'type'  => 'button',
         ];
-        $markup = $this->helper->openTag($attributes);
+        $markup     = $this->helper->openTag($attributes);
 
         foreach ($attributes as $key => $value) {
             $this->assertStringContainsString(sprintf('%s="%s"', $key, $value), $markup);
@@ -45,14 +48,14 @@ class FormButtonTest extends CommonTestCase
     public function testPassingElementToOpenTagWillUseNameAttribute()
     {
         $element = new Element('foo');
-        $markup = $this->helper->openTag($element);
+        $markup  = $this->helper->openTag($element);
         $this->assertStringContainsString('name="foo"', $markup);
     }
 
     public function testRaisesExceptionWhenNameIsNotPresentInElementWhenPassedToOpenTag()
     {
         $element = new Element();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->openTag($element);
     }
@@ -60,7 +63,7 @@ class FormButtonTest extends CommonTestCase
     public function testOpenTagWithWrongElementRaisesException()
     {
         $element = new ArrayObject();
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('ArrayObject');
         $this->helper->openTag($element);
     }
@@ -77,12 +80,12 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'button');
-        $markup  = $this->helper->openTag($element);
+        $markup = $this->helper->openTag($element);
         $this->assertStringContainsString('<button ', $markup);
         $this->assertStringContainsString('type="button"', $markup);
     }
 
-    public function inputTypes()
+    public function inputTypes(): array
     {
         return [
             ['submit', 'assertStringContainsString'],
@@ -99,7 +102,7 @@ class FormButtonTest extends CommonTestCase
     /**
      * @dataProvider inputTypes
      */
-    public function testOpenTagOnlyAllowsValidButtonTypes($type, $assertion)
+    public function testOpenTagOnlyAllowsValidButtonTypes(string $type, string $assertion)
     {
         $element = new Element('foo');
         $element->setAttribute('type', $type);
@@ -108,7 +111,7 @@ class FormButtonTest extends CommonTestCase
         $this->$assertion($expected, $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -143,39 +146,39 @@ class FormButtonTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
-            'accept'             => 'value',
-            'alt'                => 'value',
-            'autocomplete'       => 'on',
-            'autofocus'          => 'autofocus',
-            'checked'            => 'checked',
-            'dirname'            => 'value',
-            'disabled'           => 'disabled',
-            'form'               => 'value',
-            'formaction'         => 'value',
-            'formenctype'        => 'value',
-            'formmethod'         => 'value',
-            'formnovalidate'     => 'value',
-            'formtarget'         => 'value',
-            'height'             => 'value',
-            'id'                 => 'value',
-            'list'               => 'value',
-            'max'                => 'value',
-            'maxlength'          => 'value',
-            'min'                => 'value',
-            'multiple'           => 'multiple',
-            'name'               => 'value',
-            'pattern'            => 'value',
-            'placeholder'        => 'value',
-            'readonly'           => 'readonly',
-            'required'           => 'required',
-            'size'               => 'value',
-            'src'                => 'value',
-            'step'               => 'value',
-            'width'              => 'value',
+            'accept'         => 'value',
+            'alt'            => 'value',
+            'autocomplete'   => 'on',
+            'autofocus'      => 'autofocus',
+            'checked'        => 'checked',
+            'dirname'        => 'value',
+            'disabled'       => 'disabled',
+            'form'           => 'value',
+            'formaction'     => 'value',
+            'formenctype'    => 'value',
+            'formmethod'     => 'value',
+            'formnovalidate' => 'value',
+            'formtarget'     => 'value',
+            'height'         => 'value',
+            'id'             => 'value',
+            'list'           => 'value',
+            'max'            => 'value',
+            'maxlength'      => 'value',
+            'min'            => 'value',
+            'multiple'       => 'multiple',
+            'name'           => 'value',
+            'pattern'        => 'value',
+            'placeholder'    => 'value',
+            'readonly'       => 'readonly',
+            'required'       => 'required',
+            'size'           => 'value',
+            'src'            => 'value',
+            'step'           => 'value',
+            'width'          => 'value',
         ]);
         $element->setValue('value');
         return $element;
@@ -184,17 +187,17 @@ class FormButtonTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $element->setLabel('{button_content}');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         switch ($attribute) {
             case 'value':
-                $expect  = sprintf('%s="%s"', $attribute, $element->getValue());
+                $expect = sprintf('%s="%s"', $attribute, $element->getValue());
                 break;
             default:
-                $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+                $expect = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
                 break;
         }
         $this->$assertion($expect, $markup);
@@ -203,7 +206,7 @@ class FormButtonTest extends CommonTestCase
     public function testRaisesExceptionWhenLabelAttributeIsNotPresentInElement()
     {
         $element = new Element('foo');
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('label');
         $markup = $this->helper->render($element);
     }
@@ -222,7 +225,7 @@ class FormButtonTest extends CommonTestCase
     public function testPassingElementAndContentToRenderUsesContent()
     {
         $element = new Element('foo');
-        $markup = $this->helper->render($element, '{button_content}');
+        $markup  = $this->helper->render($element, '{button_content}');
         $this->assertStringContainsString('>{button_content}<', $markup);
         $this->assertStringContainsString('name="foo"', $markup);
         $this->assertStringContainsString('<button', $markup);
@@ -256,7 +259,7 @@ class FormButtonTest extends CommonTestCase
     public function testDoesNotThrowExceptionIfNameIsZero()
     {
         $element = new Element(0);
-        $markup = $this->helper->__invoke($element, '{button_content}');
+        $markup  = $this->helper->__invoke($element, '{button_content}');
         $this->assertStringContainsString('name="0"', $markup);
     }
 
@@ -265,7 +268,7 @@ class FormButtonTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->once())
             ->method('translate')
             ->willReturn('translated content');
@@ -281,7 +284,7 @@ class FormButtonTest extends CommonTestCase
     {
         $element = new Element('foo');
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->once())
             ->method('translate')
             ->willReturn('translated content');
@@ -295,7 +298,7 @@ class FormButtonTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->createMock('Laminas\I18n\Translator\Translator');
+        $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());

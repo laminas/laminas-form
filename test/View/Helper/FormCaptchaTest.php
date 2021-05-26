@@ -5,22 +5,25 @@ namespace LaminasTest\Form\View\Helper;
 use DirectoryIterator;
 use Laminas\Captcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Exception\ExceptionInterface;
 use Laminas\Form\View\Helper\FormCaptcha as FormCaptchaHelper;
 
 use function class_exists;
 use function extension_loaded;
 use function function_exists;
 use function getenv;
+use function html_entity_decode;
 use function is_dir;
 use function mkdir;
-use function str_replace;
 use function sys_get_temp_dir;
 use function unlink;
 
-class FormCaptchaTest extends CommonTestCase
+class FormCaptchaTest extends AbstractCommonTestCase
 {
-    protected $testDir    = null;
-    protected $tmpDir     = null;
+    /** @var null|string */
+    protected $testDir;
+    /** @var null|string */
+    protected $tmpDir;
 
     protected function setUp(): void
     {
@@ -38,8 +41,6 @@ class FormCaptchaTest extends CommonTestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     protected function tearDown(): void
     {
@@ -57,7 +58,6 @@ class FormCaptchaTest extends CommonTestCase
      * Determine system TMP directory
      *
      * @return string
-     * @throws Laminas_File_Transfer_Exception if unable to determine directory
      */
     protected function getTmpDir()
     {
@@ -68,17 +68,15 @@ class FormCaptchaTest extends CommonTestCase
         return $this->tmpDir;
     }
 
-    public function getElement()
+    public function getElement(): CaptchaElement
     {
-        $element = new CaptchaElement('foo');
-
-        return $element;
+        return new CaptchaElement('foo');
     }
 
     public function testRaisesExceptionIfElementHasNoCaptcha()
     {
         $element = $this->getElement();
-        $this->expectException('Laminas\Form\Exception\ExceptionInterface');
+        $this->expectException(ExceptionInterface::class);
         $this->expectExceptionMessage('captcha');
         $this->helper->render($element);
     }
@@ -126,8 +124,6 @@ class FormCaptchaTest extends CommonTestCase
     {
         if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
-
-            return;
         }
         if (! function_exists('imagepng')) {
             $this->markTestSkipped('Image CAPTCHA requires PNG support');
@@ -142,8 +138,8 @@ class FormCaptchaTest extends CommonTestCase
         }
 
         $captcha = new Captcha\Image([
-            'imgDir'       => $this->testDir,
-            'font'         => __DIR__. '/Captcha/_files/Vera.ttf',
+            'imgDir' => $this->testDir,
+            'font'   => __DIR__ . '/Captcha/_files/Vera.ttf',
         ]);
         $element = $this->getElement();
         $element->setCaptcha($captcha);

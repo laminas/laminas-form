@@ -13,7 +13,6 @@ class FormCheckbox extends FormInput
     /**
      * Render a form <input> element from the provided $element
      *
-     * @param  ElementInterface $element
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      * @return string
@@ -35,11 +34,11 @@ class FormCheckbox extends FormInput
             ));
         }
 
-        $attributes            = $element->getAttributes();
-        $attributes['name']    = $name;
-        $attributes['type']    = $this->getInputType();
-        $attributes['value']   = $element->getCheckedValue();
-        $closingBracket        = $this->getInlineClosingBracket();
+        $attributes          = $element->getAttributes();
+        $attributes['name']  = $name;
+        $attributes['type']  = $this->getInputType();
+        $attributes['value'] = $element->getCheckedValue();
+        $closingBracket      = $this->getInlineClosingBracket();
 
         if ($element->isChecked()) {
             $attributes['checked'] = 'checked';
@@ -53,7 +52,7 @@ class FormCheckbox extends FormInput
 
         if ($element->useHiddenElement()) {
             $hiddenAttributes = [
-                'disabled' => isset($attributes['disabled']) ? $attributes['disabled'] : false,
+                'disabled' => $attributes['disabled'] ?? false,
                 'name'     => $attributes['name'],
                 'value'    => $element->getUncheckedValue(),
             ];

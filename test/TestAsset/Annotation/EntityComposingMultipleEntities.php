@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
+use LaminasTest\Form\TestAsset\Annotation\Entity;
 
 /**
  * @Annotation\Name("hierarchical")
@@ -11,10 +12,11 @@ use Laminas\Form\Annotation;
 class EntityComposingMultipleEntities
 {
     /**
+     * @var null|Entity
      * @Annotation\Name("composed")
      * @Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", isCollection=true)
      */
     #[Annotation\Name("composed")]
-    #[Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\Entity", isCollection: true)]
+    #[Annotation\ComposedObject(Entity::class, isCollection: true)]
     public $child;
 }

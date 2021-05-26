@@ -12,7 +12,7 @@ use function date;
 
 class Date extends DateTimeElement
 {
-    const DATETIME_FORMAT = 'Y-m-d';
+    public const DATETIME_FORMAT = 'Y-m-d';
 
     /**
      * Seed attributes
@@ -39,9 +39,9 @@ class Date extends DateTimeElement
     protected function getStepValidator()
     {
         $format    = $this->getFormat();
-        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Days
+        $stepValue = $this->attributes['step'] ?? 1; // Days
 
-        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : date($format, 0);
+        $baseValue = $this->attributes['min'] ?? date($format, 0);
 
         return new DateStepValidator([
             'format'    => $format,

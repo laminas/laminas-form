@@ -7,18 +7,24 @@ use Laminas\InputFilter\InputFilterProviderInterface;
 
 class InputFilterProvider extends Form implements InputFilterProviderInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
 
         $this->add([
-            'name' => 'foo',
+            'name'    => 'foo',
             'options' => [
                 'label' => 'Foo',
             ],
         ]);
     }
 
+    /**
+     * @return array[]
+     */
     public function getInputFilterSpecification()
     {
         return [

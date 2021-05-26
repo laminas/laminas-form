@@ -8,15 +8,11 @@ use Laminas\InputFilter\InputFilterInterface;
 
 class Cat implements InputFilterAwareInterface
 {
-    /**
-     * @var string
-     */
-    protected $name = null;
+    /** @var string */
+    protected $name;
 
-    /**
-     * @var InputFilterInterface
-     */
-    protected $inputFilter = null;
+    /** @var InputFilterInterface */
+    protected $inputFilter;
 
     /**
      * @param string $name
@@ -39,7 +35,6 @@ class Cat implements InputFilterAwareInterface
     /**
      * Set input filter
      *
-     * @param  InputFilterInterface $inputFilter
      * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter)

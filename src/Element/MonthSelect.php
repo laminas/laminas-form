@@ -60,9 +60,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      */
     protected $renderDelimiters = true;
 
-    /**
-     * @var ValidatorInterface
-     */
+    /** @var ValidatorInterface */
     protected $validator;
 
     /**
@@ -77,7 +75,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         $this->maxYear = date('Y');
 
         $this->monthElement = new Select('month');
-        $this->yearElement = new Select('year');
+        $this->yearElement  = new Select('year');
 
         parent::__construct($name, $options);
     }
@@ -301,7 +299,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Prepare the form element (mostly used for rendering purposes)
      *
-     * @param  FormInterface $form
      * @return void
      */
     public function prepareElement(FormInterface $form)
@@ -330,9 +327,9 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => false,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => false,
+            'filters'    => [
                 ['name' => 'MonthSelect'],
             ],
             'validators' => [

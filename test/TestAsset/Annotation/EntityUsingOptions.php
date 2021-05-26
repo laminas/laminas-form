@@ -11,8 +11,9 @@ use Laminas\Form\Annotation;
 class EntityUsingOptions
 {
     /**
-      * @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}})
-      */
+     * @var null|string
+     * @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}})
+     */
     #[Annotation\Options(["label" => "Username:", "label_attributes" => ["class" => "label"]])]
     public $username;
 }

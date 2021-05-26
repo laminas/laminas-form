@@ -9,7 +9,6 @@ class FormWeek extends FormDateTime
     /**
      * Determine input type to use
      *
-     * @param  ElementInterface $element
      * @return string
      */
     protected function getType(ElementInterface $element)

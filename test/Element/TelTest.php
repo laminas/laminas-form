@@ -22,7 +22,7 @@ class TelTest extends TestCase
 
     public function testInputSpecification()
     {
-        $name = 'test';
+        $name    = 'test';
         $element = new Tel($name);
 
         $inputSpec = $element->getInputSpecification();
@@ -34,18 +34,15 @@ class TelTest extends TestCase
         $this->assertInputSpecContainsRegexValidator($inputSpec);
     }
 
-    private function getFilterName(array $filterSpec)
-    {
-        return $filterSpec['name'];
-    }
-
     /**
      * @param string[] $expectedFilters
      * @param array $inputSpec
      */
     private function assertInputSpecContainsFilters(array $expectedFilters, array $inputSpec)
     {
-        $actualFilters = array_map([$this, 'getFilterName'], $inputSpec['filters']);
+        $actualFilters  = array_map(static function (array $filterSpec): string {
+            return $filterSpec['name'];
+        }, $inputSpec['filters']);
         $missingFilters = array_diff($expectedFilters, $actualFilters);
         $this->assertCount(0, $missingFilters);
     }

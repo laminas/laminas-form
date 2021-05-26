@@ -13,12 +13,12 @@ class FormReset extends FormInput
      * @var array
      */
     protected $validTagAttributes = [
-        'name'           => true,
-        'autofocus'      => true,
-        'disabled'       => true,
-        'form'           => true,
-        'type'           => true,
-        'value'          => true,
+        'name'      => true,
+        'autofocus' => true,
+        'disabled'  => true,
+        'form'      => true,
+        'type'      => true,
+        'value'     => true,
     ];
 
     /**
@@ -33,7 +33,6 @@ class FormReset extends FormInput
     /**
      * Determine input type to use
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */

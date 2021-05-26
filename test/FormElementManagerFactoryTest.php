@@ -11,8 +11,6 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-use function method_exists;
-
 class FormElementManagerFactoryTest extends TestCase
 {
     use ProphecyTrait;
@@ -20,7 +18,7 @@ class FormElementManagerFactoryTest extends TestCase
     public function testFactoryReturnsPluginManager()
     {
         $container = $this->prophesize(ContainerInterface::class)->reveal();
-        $factory = new FormElementManagerFactory();
+        $factory   = new FormElementManagerFactory();
 
         $elements = $factory($container, FormElementManager::class);
         $this->assertInstanceOf(FormElementManager::class, $elements);
@@ -34,9 +32,9 @@ class FormElementManagerFactoryTest extends TestCase
     public function testFactoryConfiguresPluginManagerUnderContainerInterop()
     {
         $container = $this->prophesize(ContainerInterface::class)->reveal();
-        $element = $this->prophesize(ElementInterface::class)->reveal();
+        $element   = $this->prophesize(ElementInterface::class)->reveal();
 
-        $factory = new FormElementManagerFactory();
+        $factory  = new FormElementManagerFactory();
         $elements = $factory($container, FormElementManager::class, [
             'services' => [
                 'test' => $element,
@@ -48,9 +46,9 @@ class FormElementManagerFactoryTest extends TestCase
     public function testConfiguresFormElementsServicesWhenFound()
     {
         $element = $this->prophesize(ElementInterface::class)->reveal();
-        $config = [
+        $config  = [
             'form_elements' => [
-                'aliases' => [
+                'aliases'   => [
                     'test' => Number::class,
                 ],
                 'factories' => [
@@ -68,7 +66,7 @@ class FormElementManagerFactoryTest extends TestCase
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn($config);
 
-        $factory = new FormElementManagerFactory();
+        $factory  = new FormElementManagerFactory();
         $elements = $factory($container->reveal(), 'FormElementManager');
 
         $this->assertInstanceOf(FormElementManager::class, $elements);
@@ -81,9 +79,9 @@ class FormElementManagerFactoryTest extends TestCase
     public function testDoesNotConfigureFormElementsServicesWhenServiceListenerPresent()
     {
         $element = $this->prophesize(ElementInterface::class)->reveal();
-        $config = [
+        $config  = [
             'form_elements' => [
-                'aliases' => [
+                'aliases'   => [
                     'test' => Number::class,
                 ],
                 'factories' => [
@@ -101,7 +99,7 @@ class FormElementManagerFactoryTest extends TestCase
         $container->has('config')->shouldNotBeCalled();
         $container->get('config')->shouldNotBeCalled();
 
-        $factory = new FormElementManagerFactory();
+        $factory  = new FormElementManagerFactory();
         $elements = $factory($container->reveal(), 'FormElementManager');
 
         $this->assertInstanceOf(FormElementManager::class, $elements);
@@ -118,7 +116,7 @@ class FormElementManagerFactoryTest extends TestCase
         $container->has('config')->willReturn(false);
         $container->get('config')->shouldNotBeCalled();
 
-        $factory = new FormElementManagerFactory();
+        $factory  = new FormElementManagerFactory();
         $elements = $factory($container->reveal(), 'FormElementManager');
 
         $this->assertInstanceOf(FormElementManager::class, $elements);
@@ -134,7 +132,7 @@ class FormElementManagerFactoryTest extends TestCase
         $container->get('config')->willReturn(['foo' => 'bar']);
         $container->has('MvcTranslator')->willReturn(false); // necessary due to default initializers
 
-        $factory = new FormElementManagerFactory();
+        $factory  = new FormElementManagerFactory();
         $elements = $factory($container->reveal(), 'FormElementManager');
 
         $this->assertInstanceOf(FormElementManager::class, $elements);

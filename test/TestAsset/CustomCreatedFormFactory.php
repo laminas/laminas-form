@@ -8,9 +8,12 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class CustomCreatedFormFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    /**
+     * @inheritDoc
+     */
+    public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
-        $options = $options ?: [];
+        $options        = $options ?: [];
         $creationString = 'now';
 
         if (isset($options['created'])) {
@@ -26,7 +29,6 @@ class CustomCreatedFormFactory implements FactoryInterface
             unset($options['name']);
         }
 
-        $form = new CustomCreatedForm($created, $name, $options);
-        return $form;
+        return new CustomCreatedForm($created, $name, $options);
     }
 }

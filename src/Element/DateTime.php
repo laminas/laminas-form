@@ -20,7 +20,7 @@ use function sprintf;
 
 class DateTime extends Element implements InputProviderInterface
 {
-    const DATETIME_FORMAT = 'Y-m-d\TH:iP';
+    public const DATETIME_FORMAT = 'Y-m-d\TH:iP';
 
     /**
      * Seed attributes
@@ -38,9 +38,7 @@ class DateTime extends Element implements InputProviderInterface
      */
     protected $format = self::DATETIME_FORMAT;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $validators;
 
     /**
@@ -117,17 +115,19 @@ class DateTime extends Element implements InputProviderInterface
             return $this->validators;
         }
 
-        $validators = [];
+        $validators   = [];
         $validators[] = $this->getDateValidator();
 
-        if (isset($this->attributes['min'])
+        if (
+            isset($this->attributes['min'])
             && $this->valueIsValidDateTimeFormat($this->attributes['min'])
         ) {
             $validators[] = new GreaterThanValidator([
-                'min' => $this->attributes['min'],
+                'min'       => $this->attributes['min'],
                 'inclusive' => true,
             ]);
-        } elseif (isset($this->attributes['min'])
+        } elseif (
+            isset($this->attributes['min'])
             && ! $this->valueIsValidDateTimeFormat($this->attributes['min'])
         ) {
             throw new InvalidArgumentException(sprintf(
@@ -138,14 +138,16 @@ class DateTime extends Element implements InputProviderInterface
             ));
         }
 
-        if (isset($this->attributes['max'])
+        if (
+            isset($this->attributes['max'])
             && $this->valueIsValidDateTimeFormat($this->attributes['max'])
         ) {
             $validators[] = new LessThanValidator([
-                'max' => $this->attributes['max'],
+                'max'       => $this->attributes['max'],
                 'inclusive' => true,
             ]);
-        } elseif (isset($this->attributes['max'])
+        } elseif (
+            isset($this->attributes['max'])
             && ! $this->valueIsValidDateTimeFormat($this->attributes['max'])
         ) {
             throw new InvalidArgumentException(sprintf(
@@ -155,7 +157,8 @@ class DateTime extends Element implements InputProviderInterface
                 $this->attributes['max']
             ));
         }
-        if (! isset($this->attributes['step'])
+        if (
+            ! isset($this->attributes['step'])
             || 'any' !== $this->attributes['step']
         ) {
             $validators[] = $this->getStepValidator();
@@ -183,9 +186,9 @@ class DateTime extends Element implements InputProviderInterface
     protected function getStepValidator()
     {
         $format    = $this->getFormat();
-        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Minutes
+        $stepValue = $this->attributes['step'] ?? 1; // Minutes
 
-        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : date($format, 0);
+        $baseValue = $this->attributes['min'] ?? date($format, 0);
 
         return new DateStepValidator([
             'format'    => $format,
@@ -204,9 +207,9 @@ class DateTime extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => true,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => true,
+            'filters'    => [
                 ['name' => StringTrim::class],
             ],
             'validators' => $this->getValidators(),

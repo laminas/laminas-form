@@ -7,12 +7,15 @@ use Laminas\InputFilter\InputFilterProviderInterface;
 
 class InputFilterProviderWithFieldset extends Form implements InputFilterProviderInterface
 {
+    /**
+     * @inheritDoc
+     */
     public function __construct($name = null, $options = [])
     {
         parent::__construct($name, $options);
 
         $this->add([
-            'name' => 'foo',
+            'name'    => 'foo',
             'options' => [
                 'label' => 'Foo',
             ],
@@ -21,6 +24,9 @@ class InputFilterProviderWithFieldset extends Form implements InputFilterProvide
         $this->add(new BasicFieldset());
     }
 
+    /**
+     * @return array[]
+     */
     public function getInputFilterSpecification()
     {
         return [

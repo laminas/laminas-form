@@ -3,6 +3,10 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Number as NumberElement;
+use Laminas\Validator\GreaterThan;
+use Laminas\Validator\LessThan;
+use Laminas\Validator\Regex;
+use Laminas\Validator\Step;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -18,14 +22,14 @@ class NumberTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Regex',
-            'Laminas\Validator\Step',
+            Regex::class,
+            Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Step':
+                case Step::class:
                     $this->assertEquals(1, $validator->getStep());
                     break;
                 default:
@@ -49,24 +53,24 @@ class NumberTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\GreaterThan',
-            'Laminas\Validator\LessThan',
-            'Laminas\Validator\Regex',
-            'Laminas\Validator\Step',
+            GreaterThan::class,
+            LessThan::class,
+            Regex::class,
+            Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\GreaterThan':
+                case GreaterThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals(5, $validator->getMin());
                     break;
-                case 'Laminas\Validator\LessThan':
+                case LessThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals(10, $validator->getMax());
                     break;
-                case 'Laminas\Validator\Step':
+                case Step::class:
                     $this->assertEquals(1, $validator->getStep());
                     break;
                 default:
@@ -85,7 +89,7 @@ class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) == 'Laminas\Validator\GreaterThan') {
+            if (get_class($validator) === GreaterThan::class) {
                 $this->assertFalse($validator->getInclusive());
                 break;
             }
@@ -96,12 +100,12 @@ class NumberTest extends TestCase
     {
         $element = new NumberElement();
         $element->setAttributes([
-            'min'       => 5,
+            'min' => 5,
         ]);
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) == 'Laminas\Validator\GreaterThan') {
+            if (get_class($validator) === GreaterThan::class) {
                 $this->assertTrue($validator->getInclusive());
                 break;
             }
@@ -114,7 +118,7 @@ class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) == 'Laminas\Validator\Regex') {
+            if (get_class($validator) === Regex::class) {
                 $this->assertFalse($validator->isValid('1,000.01'));
                 $this->assertFalse($validator->isValid('-1,000.01'));
                 $this->assertTrue($validator->isValid('1000.01'));

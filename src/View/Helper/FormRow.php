@@ -10,15 +10,14 @@ use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
 use function in_array;
-use function is_null;
 use function method_exists;
 use function sprintf;
 use function strtolower;
 
 class FormRow extends AbstractHelper
 {
-    const LABEL_APPEND  = 'append';
-    const LABEL_PREPEND = 'prepend';
+    public const LABEL_APPEND  = 'append';
+    public const LABEL_PREPEND = 'prepend';
 
     /**
      * The class that is added to element that have errors
@@ -69,9 +68,7 @@ class FormRow extends AbstractHelper
      */
     protected $elementErrorsHelper;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $partial;
 
     /**
@@ -79,14 +76,13 @@ class FormRow extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|ElementInterface $element
      * @param  null|string           $labelPosition
      * @param  bool                  $renderErrors
      * @param  string|null           $partial
      * @return string|FormRow
      */
     public function __invoke(
-        ElementInterface $element = null,
+        ?ElementInterface $element = null,
         $labelPosition = null,
         $renderErrors = null,
         $partial = null
@@ -95,7 +91,7 @@ class FormRow extends AbstractHelper
             return $this;
         }
 
-        if (is_null($labelPosition)) {
+        if ($labelPosition === null) {
             $labelPosition = $this->getLabelPosition();
         }
 
@@ -113,7 +109,6 @@ class FormRow extends AbstractHelper
     /**
      * Utility form helper that renders a label (if it exists), an element and errors
      *
-     * @param  ElementInterface $element
      * @param  null|string      $labelPosition
      * @throws Exception\DomainException
      * @return string
@@ -128,7 +123,7 @@ class FormRow extends AbstractHelper
         $label           = $element->getLabel();
         $inputErrorClass = $this->getInputErrorClass();
 
-        if (is_null($labelPosition)) {
+        if ($labelPosition === null) {
             $labelPosition = $this->labelPosition;
         }
 
@@ -141,19 +136,19 @@ class FormRow extends AbstractHelper
 
         // Does this element have errors ?
         if ($element->getMessages() && $inputErrorClass) {
-            $classAttributes = $element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '';
-            $classAttributes = $classAttributes . $inputErrorClass;
+            $classAttributes  = $element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '';
+            $classAttributes .= $inputErrorClass;
 
             $element->setAttribute('class', $classAttributes);
         }
 
         if ($this->partial) {
             $vars = [
-                'element'           => $element,
-                'label'             => $label,
-                'labelAttributes'   => $this->labelAttributes,
-                'labelPosition'     => $labelPosition,
-                'renderErrors'      => $this->renderErrors,
+                'element'         => $element,
+                'label'           => $label,
+                'labelAttributes' => $this->labelAttributes,
+                'labelPosition'   => $labelPosition,
+                'renderErrors'    => $this->renderErrors,
             ];
 
             return $this->view->render($this->partial, $vars);
@@ -184,7 +179,8 @@ class FormRow extends AbstractHelper
 
             // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
             // labels. The semantic way is to group them inside a fieldset
-            if ($type === 'multi_checkbox'
+            if (
+                $type === 'multi_checkbox'
                 || $type === 'radio'
                 || $element instanceof MonthSelect
                 || $element instanceof Captcha
@@ -197,18 +193,20 @@ class FormRow extends AbstractHelper
             } else {
                 // Ensure element and label will be separated if element has an `id`-attribute.
                 // If element has label option `always_wrap` it will be nested in any case.
-                if ($element->hasAttribute('id')
+                if (
+                    $element->hasAttribute('id')
                     && ($element instanceof LabelAwareInterface && ! $element->getLabelOption('always_wrap'))
                 ) {
-                    $labelOpen = '';
+                    $labelOpen  = '';
                     $labelClose = '';
-                    $label = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
+                    $label      = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
                 } else {
                     $labelOpen  = $labelHelper->openTag($labelAttributes);
                     $labelClose = $labelHelper->closeTag();
                 }
 
-                if ($label !== '' && (! $element->hasAttribute('id'))
+                if (
+                    $label !== '' && (! $element->hasAttribute('id'))
                     || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
                 ) {
                     $label = '<span>' . $label . '</span>';
@@ -306,8 +304,8 @@ class FormRow extends AbstractHelper
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
                 __METHOD__,
-                __CLASS__,
-                __CLASS__,
+                self::class,
+                self::class,
                 (string) $labelPosition
             ));
         }

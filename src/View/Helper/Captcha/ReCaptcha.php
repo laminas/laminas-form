@@ -16,10 +16,9 @@ class ReCaptcha extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface $element
      * @return string
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null)
     {
         if (! $element) {
             return $this;
@@ -31,14 +30,13 @@ class ReCaptcha extends FormInput
     /**
      * Render ReCaptcha form elements
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
     {
         $attributes = $element->getAttributes();
-        $captcha = $element->getCaptcha();
+        $captcha    = $element->getCaptcha();
 
         if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
@@ -82,8 +80,7 @@ class ReCaptcha extends FormInput
             'name'  => $name,
             'value' => 'g-recaptcha-response',
         ]);
-        $challenge = sprintf($pattern, $attributes, $closingBracket);
-        return $challenge;
+        return sprintf($pattern, $attributes, $closingBracket);
     }
 
     /**

@@ -17,7 +17,6 @@ class FormDateSelect extends FormMonthSelectHelper
     /**
      * Render a date element that is composed of three selects
      *
-     * @param  ElementInterface $element
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      * @return string
@@ -56,7 +55,7 @@ class FormDateSelect extends FormMonthSelectHelper
             $monthElement->setEmptyOption('');
         }
 
-        $data = [];
+        $data                    = [];
         $data[$pattern['day']]   = $selectHelper->render($dayElement);
         $data[$pattern['month']] = $selectHelper->render($monthElement);
         $data[$pattern['year']]  = $selectHelper->render($yearElement);
@@ -88,8 +87,8 @@ class FormDateSelect extends FormMonthSelectHelper
 
         $result = [];
         for ($day = 1; $day <= 31; $day++) {
-            $key   = $keyFormatter->format($date->getTimestamp());
-            $value = $valueFormatter->format($date->getTimestamp());
+            $key          = $keyFormatter->format($date->getTimestamp());
+            $value        = $valueFormatter->format($date->getTimestamp());
             $result[$key] = $value;
 
             $date->modify('+1 day');

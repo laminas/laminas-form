@@ -28,7 +28,7 @@ class NewProductForm extends Form
         $this->add($fieldset);
 
         $this->add([
-            'name' => 'submit',
+            'name'       => 'submit',
             'attributes' => [
                 'type' => 'submit',
             ],

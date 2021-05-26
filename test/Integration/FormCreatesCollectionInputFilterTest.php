@@ -8,35 +8,33 @@ use Laminas\Validator;
 use PHPUnit\Framework\TestCase;
 
 use function sprintf;
-use function var_export;
 
 class FormCreatesCollectionInputFilterTest extends TestCase
 {
-    public static function assertValidatorFound($class, array $validators, $message = null)
+    public static function assertValidatorFound(string $class, array $validators, ?string $message = null): void
     {
         $message = $message ?: sprintf('Failed to find validator of type %s in validator list', $class);
         foreach ($validators as $instance) {
             $validator = $instance['instance'];
             if ($validator instanceof $class) {
-                return true;
+                return;
             }
         }
-        var_export($validators);
         self::fail($message);
     }
 
     /**
      * @see https://github.com/zendframework/zend-form/issues/78
      */
-    public function testCollectionInputFilterContainsExpectedValidators()
+    public function testCollectionInputFilterContainsExpectedValidators(): Form
     {
-        $form = new Form;
+        $form = new Form();
         $form->add([
-            'name' => 'collection',
-            'type' => 'collection',
+            'name'    => 'collection',
+            'type'    => 'collection',
             'options' => [
                 'target_element' => [
-                    'type' => InputFilterProviderFieldset::class,
+                    'type'     => InputFilterProviderFieldset::class,
                     'elements' => [
                         [
                             'spec' => [
@@ -45,10 +43,10 @@ class FormCreatesCollectionInputFilterTest extends TestCase
                             ],
                         ],
                     ],
-                    'options' => [
+                    'options'  => [
                         'input_filter_spec' => [
                             'date' => [
-                                'required' => false,
+                                'required'   => false,
                                 'validators' => [
                                     ['name' => 'StringLength'],
                                 ],
@@ -59,7 +57,7 @@ class FormCreatesCollectionInputFilterTest extends TestCase
             ],
         ]);
         $inputFilter = $form->getInputFilter();
-        $filter = $inputFilter->get('collection')->getInputFilter()->get('date');
+        $filter      = $inputFilter->get('collection')->getInputFilter()->get('date');
 
         $validators = $filter->getValidatorChain()->getValidators();
         $this->assertCount(3, $validators);

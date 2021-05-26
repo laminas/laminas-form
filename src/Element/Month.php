@@ -9,7 +9,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Month extends DateTime
 {
-    const DATETIME_FORMAT = 'Y-m';
+    public const DATETIME_FORMAT = 'Y-m';
 
     /**
      * A valid format string accepted by date()
@@ -44,9 +44,9 @@ class Month extends DateTime
      */
     protected function getStepValidator()
     {
-        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Months
+        $stepValue = $this->attributes['step'] ?? 1; // Months
 
-        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : '1970-01';
+        $baseValue = $this->attributes['min'] ?? '1970-01';
 
         return new DateStepValidator([
             'format'    => 'Y-m',

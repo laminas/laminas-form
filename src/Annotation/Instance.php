@@ -6,6 +6,11 @@ use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 
+use function sprintf;
+use function trigger_error;
+
+use const E_USER_DEPRECATED;
+
 /**
  * Instance (formerly "object") annotation
  *
@@ -14,21 +19,15 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  *
  * @Annotation
  * @NamedArgumentConstructor
- * @copyright  Copyright (c) 2005-2015 Laminas (https://www.zend.com)
- * @license    https://getlaminas.org/license/new-bsd     New BSD License
  */
 #[Attribute]
 class Instance
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $instance;
 
     /**
      * Receive and process the contents of an annotation
-     *
-     * @param string $instance
      */
     public function __construct(string $instance)
     {
@@ -37,8 +36,6 @@ class Instance
 
     /**
      * Retrieve the instance
-     *
-     * @return string
      */
     public function getInstance(): string
     {
@@ -48,14 +45,13 @@ class Instance
     /**
      * Retrieve the instance
      *
-     * @return string
      * @deprecated 3.0.0 Use getInstance() instead
      */
     public function getObject(): string
     {
         trigger_error(sprintf(
             'Calling %s::%s is deprecated since 3.0.0, use getInstance() instead.',
-            get_class($this),
+            static::class,
             __METHOD__
         ), E_USER_DEPRECATED);
 

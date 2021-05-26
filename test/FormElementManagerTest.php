@@ -2,6 +2,7 @@
 
 namespace LaminasTest\Form;
 
+use Laminas\Form\Element;
 use Laminas\Form\ElementFactory;
 use Laminas\Form\Exception\InvalidElementException;
 use Laminas\Form\Factory;
@@ -16,7 +17,6 @@ use ReflectionProperty;
 use function array_pop;
 use function array_shift;
 use function count;
-use function get_class;
 use function method_exists;
 use function strtoupper;
 
@@ -25,9 +25,7 @@ use function strtoupper;
  */
 class FormElementManagerTest extends TestCase
 {
-    /**
-     * @var FormElementManager
-     */
+    /** @var FormElementManager */
     protected $manager;
 
     protected function setUp(): void
@@ -65,12 +63,12 @@ class FormElementManagerTest extends TestCase
 
     public function testLoadingInvalidElementRaisesException()
     {
-        $this->manager->setInvokableClass('test', get_class($this));
+        $this->manager->setInvokableClass('test', static::class);
         $this->expectException($this->getInvalidServiceException());
         $this->manager->get('test');
     }
 
-    protected function getInvalidServiceException()
+    protected function getInvalidServiceException(): string
     {
         if (method_exists($this->manager, 'configure')) {
             return InvalidServiceException::class;
@@ -80,8 +78,8 @@ class FormElementManagerTest extends TestCase
 
     public function testArrayCreationOptions()
     {
-        $args = [
-            'name' => 'foo',
+        $args    = [
+            'name'    => 'foo',
             'options' => [
                 'label' => 'bar',
             ],
@@ -93,7 +91,7 @@ class FormElementManagerTest extends TestCase
 
     public function testOptionsCreationOptions()
     {
-        $args = [
+        $args    = [
             'label' => 'bar',
         ];
         $element = $this->manager->get('element', $args);
@@ -103,7 +101,7 @@ class FormElementManagerTest extends TestCase
 
     public function testArrayOptionsCreationOptions()
     {
-        $args = [
+        $args    = [
             'options' => [
                 'label' => 'bar',
             ],
@@ -118,7 +116,7 @@ class FormElementManagerTest extends TestCase
      */
     public function testSharedFormElementsAreNotInitializedMultipleTimes()
     {
-        $element = $this->getMockBuilder('Laminas\Form\Element')
+        $element = $this->getMockBuilder(Element::class)
             ->setMethods(['init'])
             ->getMock();
 

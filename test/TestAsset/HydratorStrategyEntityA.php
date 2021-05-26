@@ -11,29 +11,35 @@ use function get_object_vars;
 
 class HydratorStrategyEntityA implements InputFilterAwareInterface
 {
-    public $entities; // public to make testing easier!
+    /** @var HydratorStrategyEntityB[]  */
+    public $entities = []; // public to make testing easier!
+    /** @var null|InputFilterInterface */
     private $inputFilter; // used to test forms
-
-    public function __construct()
-    {
-        $this->entities = [];
-    }
 
     public function addEntity(HydratorStrategyEntityB $entity)
     {
         $this->entities[] = $entity;
     }
 
-    public function getEntities()
+    /**
+     * @return HydratorStrategyEntityB[]
+     */
+    public function getEntities(): array
     {
         return $this->entities;
     }
 
-    public function setEntities($entities)
+    /**
+     * @param HydratorStrategyEntityB[] $entities
+     */
+    public function setEntities(array $entities): void
     {
         $this->entities = $entities;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getInputFilter()
     {
         if (! $this->inputFilter) {
@@ -53,14 +59,18 @@ class HydratorStrategyEntityA implements InputFilterAwareInterface
         $this->inputFilter = $inputFilter;
     }
 
-    // Add the getArrayCopy method so we can test the ArraySerializable hydrator:
-    public function getArrayCopy()
+    /**
+     * Add the getArrayCopy method so we can test the ArraySerializable hydrator
+     */
+    public function getArrayCopy(): array
     {
         return get_object_vars($this);
     }
 
-    // Add the populate method so we can test the ArraySerializable hydrator:
-    public function populate($data)
+    /**
+     * Add the populate method so we can test the ArraySerializable hydrator
+     */
+    public function populate(array $data): void
     {
         foreach ($data as $name => $value) {
             $this->$name = $value;

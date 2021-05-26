@@ -4,6 +4,10 @@ namespace LaminasTest\Form\Element;
 
 use DateInterval;
 use Laminas\Form\Element\Month as MonthElement;
+use Laminas\Validator\DateStep;
+use Laminas\Validator\GreaterThan;
+use Laminas\Validator\LessThan;
+use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -25,24 +29,24 @@ class MonthTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Regex',
-            'Laminas\Validator\GreaterThan',
-            'Laminas\Validator\LessThan',
-            'Laminas\Validator\DateStep',
+            Regex::class,
+            GreaterThan::class,
+            LessThan::class,
+            DateStep::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\GreaterThan':
+                case GreaterThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2000-01', $validator->getMin());
                     break;
-                case 'Laminas\Validator\LessThan':
+                case LessThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2001-01', $validator->getMax());
                     break;
-                case 'Laminas\Validator\DateStep':
+                case DateStep::class:
                     $dateInterval = new DateInterval('P1M');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;
@@ -52,7 +56,7 @@ class MonthTest extends TestCase
         }
     }
 
-    public function monthValuesDataProvider()
+    public function monthValuesDataProvider(): array
     {
         return [
             //    value         expected
@@ -69,9 +73,9 @@ class MonthTest extends TestCase
     /**
      * @dataProvider monthValuesDataProvider
      */
-    public function testHTML5MonthValidation($value, $expected)
+    public function testHTML5MonthValidation(string $value, bool $expected)
     {
-        $element = new MonthElement('foo');
+        $element   = new MonthElement('foo');
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $monthValidator = $inputSpec['validators'][0];

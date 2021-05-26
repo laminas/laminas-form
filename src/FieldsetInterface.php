@@ -91,7 +91,7 @@ interface FieldsetInterface extends
     /**
      * Set the object used by the hydrator
      *
-     * @param  $object
+     * @param  mixed $object
      * @return $this
      */
     public function setObject($object);
@@ -106,7 +106,7 @@ interface FieldsetInterface extends
     /**
      * Checks if the object can be set in this fieldset
      *
-     * @param $object
+     * @param object $object
      * @return bool
      */
     public function allowObjectBinding($object);
@@ -114,7 +114,6 @@ interface FieldsetInterface extends
     /**
      * Set the hydrator to use when binding an object to the element
      *
-     * @param  HydratorInterface $hydrator
      * @return $this
      */
     public function setHydrator(HydratorInterface $hydrator);

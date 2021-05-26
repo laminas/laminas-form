@@ -7,6 +7,7 @@ use Laminas\Form\Annotation;
 class LegacyFilterAnnotation
 {
     /**
+     * @var null|string
      * @Annotation\Required(true)
      * @Annotation\Filter({"name":"StringTrim"})
      */

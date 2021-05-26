@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
 use stdClass;
 
 use function class_exists;
-use function count;
 
 class FieldsetTest extends TestCase
 {
@@ -44,17 +43,17 @@ class FieldsetTest extends TestCase
         $this->fieldset->add($subFieldset);
     }
 
-    public function getMessages()
+    public function getMessages(): array
     {
         return [
-            'foo' => [
+            'foo'    => [
                 'Foo message 1',
             ],
-            'bar' => [
+            'bar'    => [
                 'Bar message 1',
                 'Bar message 2',
             ],
-            'baz' => [
+            'baz'    => [
                 'Baz message 1',
             ],
             'foobar' => [
@@ -102,7 +101,7 @@ class FieldsetTest extends TestCase
 
     public function testTraversableAcceptedValueForFieldset()
     {
-        $subValue = new ArrayObject(['field' => 'value']);
+        $subValue    = new ArrayObject(['field' => 'value']);
         $subFieldset = new TestAsset\ValueStoringFieldset('subFieldset');
         $this->fieldset->add($subFieldset);
         $this->fieldset->populateValues(['subFieldset' => $subValue]);
@@ -111,7 +110,7 @@ class FieldsetTest extends TestCase
 
     public function testPopulateValuesWithInvalidElementRaisesException()
     {
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->fieldset->populateValues(null);
     }
 
@@ -131,14 +130,14 @@ class FieldsetTest extends TestCase
         $fieldset = new Fieldset('foo', [
             'custom' => 'option',
         ]);
-        $options = $fieldset->getOptions();
+        $options  = $fieldset->getOptions();
         $this->assertArrayHasKey('custom', $options);
         $this->assertEquals('option', $options['custom']);
     }
 
     public function testAddWithInvalidElementRaisesException()
     {
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->fieldset->add(null);
     }
 
@@ -173,7 +172,7 @@ class FieldsetTest extends TestCase
     public function testAddingAnElementWithNoNameOrAliasWillRaiseException()
     {
         $element = new Element();
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->fieldset->add($element);
     }
 
@@ -256,7 +255,7 @@ class FieldsetTest extends TestCase
 
     public function testSetMessagesWithInvalidElementRaisesException()
     {
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->fieldset->setMessages(null);
     }
 
@@ -299,7 +298,7 @@ class FieldsetTest extends TestCase
 
     public function testGetMessagesWithInvalidElementRaisesException()
     {
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->fieldset->getMessages('foo');
     }
 
@@ -381,7 +380,7 @@ class FieldsetTest extends TestCase
     {
         $this->fieldset->add(new Element('foo'));
         $this->fieldset->add(new Element('bar'));
-        $this->fieldset->setObject(new stdClass);
+        $this->fieldset->setObject(new stdClass());
 
         $fieldsetClone = clone $this->fieldset;
 
@@ -392,10 +391,10 @@ class FieldsetTest extends TestCase
 
     public function testSubFieldsetsBindObject()
     {
-        $form = new Form();
+        $form     = new Form();
         $fieldset = new Fieldset('foobar');
         $form->add($fieldset);
-        $value = new ArrayObject([
+        $value           = new ArrayObject([
             'foobar' => 'abc',
         ]);
         $value['foobar'] = new ArrayObject([
@@ -483,11 +482,11 @@ class FieldsetTest extends TestCase
 
     public function testBindValuesSkipDisabled()
     {
-        $object = new stdClass();
-        $object->disabled = 'notModified';
+        $object               = new stdClass();
+        $object->disabled     = 'notModified';
         $object->not_disabled = 'notModified';
 
-        $textInput = new Element\Text('not_disabled');
+        $textInput     = new Element\Text('not_disabled');
         $disabledInput = new Element\Text('disabled');
         $disabledInput->setAttribute('disabled', 'disabled');
 
@@ -512,11 +511,11 @@ class FieldsetTest extends TestCase
      */
     public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues()
     {
-        $object = new stdClass();
-        $object->disabled = 'notModified';
+        $object               = new stdClass();
+        $object->disabled     = 'notModified';
         $object->not_disabled = 'notModified';
 
-        $textInput = new Element\Text('not_disabled');
+        $textInput     = new Element\Text('not_disabled');
         $disabledInput = new Element\Text('disabled');
         $disabledInput->setAttribute('disabled', '');
 
@@ -538,7 +537,7 @@ class FieldsetTest extends TestCase
 
     public function testSetObjectWithStringRaisesException()
     {
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->fieldset->setObject('foo');
     }
 
@@ -611,7 +610,7 @@ class FieldsetTest extends TestCase
 
     public function testSetNullValueWhenArrayProvided()
     {
-        $subValue = 'sub-element-value';
+        $subValue   = 'sub-element-value';
         $subElement = new Element('subElement');
         $this->fieldset->add($subElement);
         $this->fieldset->populateValues(['subElement' => $subValue]);
@@ -623,7 +622,7 @@ class FieldsetTest extends TestCase
 
     public function testSetNullValueWhenTraversableProvided()
     {
-        $subValue = 'sub-element-value';
+        $subValue   = 'sub-element-value';
         $subElement = new Element('subElement');
         $this->fieldset->add($subElement);
         $this->fieldset->populateValues(new TestAsset\CustomTraversable(['subElement' => $subValue]));

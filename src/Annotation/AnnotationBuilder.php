@@ -6,6 +6,7 @@ use ArrayObject;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use ReflectionClass;
+use ReflectionException;
 
 /**
  * Parses the properties of a class for annotations in order to create a form
@@ -26,16 +27,16 @@ final class AnnotationBuilder extends AbstractBuilder
      * Derive a form specification from doctrine annotations for a given entity
      *
      * @param  object|string $entity
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @return array
      */
     protected function getFormSpecificationInternal($entity): array
     {
-        $formSpec     = new ArrayObject();
-        $filterSpec   = new ArrayObject();
+        $formSpec   = new ArrayObject();
+        $filterSpec = new ArrayObject();
 
-        $reflection   = new ReflectionClass($entity);
-        $reader       = new AnnotationReader();
+        $reflection = new ReflectionClass($entity);
+        $reader     = new AnnotationReader();
 
         $annotations = new AnnotationCollection($reader->getClassAnnotations($reflection));
         $this->configureForm($annotations, $reflection, $formSpec, $filterSpec);

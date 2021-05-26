@@ -11,13 +11,11 @@ use Laminas\Form\Annotation\BuilderAbstractFactory;
 use Laminas\Form\Exception\IncompatiblePhpVersionException;
 use Laminas\Form\FormElementManager;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use PhpParser\Node\Attribute;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use ReflectionProperty;
 use stdClass;
 
-use function get_class;
+use const PHP_MAJOR_VERSION;
 
 class BuilderAbstractFactoryTest extends TestCase
 {
@@ -26,7 +24,7 @@ class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryReturnsAnnotationBuilder()
     {
         $container = $this->prophesize(ContainerInterface::class);
-        $events = $this->prophesize(EventManagerInterface::class);
+        $events    = $this->prophesize(EventManagerInterface::class);
 
         $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
@@ -56,7 +54,7 @@ class BuilderAbstractFactoryTest extends TestCase
         }
 
         $container = $this->prophesize(ContainerInterface::class);
-        $events = $this->prophesize(EventManagerInterface::class);
+        $events    = $this->prophesize(EventManagerInterface::class);
 
         $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
@@ -86,7 +84,7 @@ class BuilderAbstractFactoryTest extends TestCase
         }
 
         $container = $this->prophesize(ContainerInterface::class);
-        $events = $this->prophesize(EventManagerInterface::class);
+        $events    = $this->prophesize(EventManagerInterface::class);
 
         $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
@@ -103,7 +101,7 @@ class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryCanSetPreserveDefinedOrderFlagFromConfiguration()
     {
         $container = $this->prophesize(ContainerInterface::class);
-        $events = $this->prophesize(EventManagerInterface::class);
+        $events    = $this->prophesize(EventManagerInterface::class);
 
         $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
@@ -125,7 +123,7 @@ class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryAllowsAttachingListenersFromConfiguration()
     {
         $container = $this->prophesize(ContainerInterface::class);
-        $events = $this->prophesize(EventManagerInterface::class);
+        $events    = $this->prophesize(EventManagerInterface::class);
 
         $listener = $this->prophesize(ListenerAggregateInterface::class);
         $listener->attach($events->reveal())->shouldBeCalled();
@@ -152,8 +150,8 @@ class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryThrowsExceptionWhenAttachingInvalidListeners()
     {
         $container = $this->prophesize(ContainerInterface::class);
-        $events = $this->prophesize(EventManagerInterface::class);
-        $listener = $this->prophesize(stdClass::class);
+        $events    = $this->prophesize(EventManagerInterface::class);
+        $listener  = $this->prophesize(stdClass::class);
 
         $elements = $this->prophesize(FormElementManager::class);
 

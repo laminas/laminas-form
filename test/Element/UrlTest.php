@@ -3,6 +3,7 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Url as UrlElement;
+use Laminas\Validator\Uri;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -22,13 +23,13 @@ class UrlTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Uri',
+            Uri::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Uri':
+                case Uri::class:
                     $this->assertEquals(true, $validator->getAllowAbsolute());
                     $this->assertEquals(false, $validator->getAllowRelative());
                     break;

@@ -7,6 +7,7 @@ use Laminas\Form\Annotation;
 class EntityWithTypeAsElementName
 {
     /**
+     * @var null|string
       * @Annotation\Required(true)
       * @Annotation\Filter("StringTrim")
       * @Annotation\Name("type")

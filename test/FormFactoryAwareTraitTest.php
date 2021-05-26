@@ -16,6 +16,9 @@ class FormFactoryAwareTraitTest extends TestCase
         $object = new class {
             use FormFactoryAwareTrait;
 
+            /**
+             * @return null|Factory
+             */
             public function getFormFactory()
             {
                 return $this->factory;
@@ -24,7 +27,7 @@ class FormFactoryAwareTraitTest extends TestCase
 
         $this->assertNull($object->getFormFactory());
 
-        $factory = new Factory;
+        $factory = new Factory();
 
         $object->setFormFactory($factory);
 

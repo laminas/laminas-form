@@ -4,7 +4,7 @@ namespace LaminasTest\Form\TestAsset;
 
 class ArrayModel extends Model
 {
-    public function toArray()
+    public function toArray(): array
     {
         return $this->getArrayCopy();
     }

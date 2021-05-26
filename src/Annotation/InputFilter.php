@@ -7,6 +7,11 @@ use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 use Laminas\Form\Exception;
 
+use function gettype;
+use function is_array;
+use function is_string;
+use function sprintf;
+
 /**
  * InputFilter annotation
  *
@@ -20,9 +25,7 @@ use Laminas\Form\Exception;
 #[Attribute]
 class InputFilter
 {
-    /**
-     * @var string|array
-     */
+    /** @var string|array */
     protected $inputFilter;
 
     /**
@@ -35,13 +38,14 @@ class InputFilter
         if (! is_array($inputFilter) && ! is_string($inputFilter)) {
             throw new Exception\DomainException(sprintf(
                 '%s expects the annotation to define an array or string; received "%s"',
-                get_class($this),
+                static::class,
                 gettype($inputFilter)
             ));
         }
 
         $this->inputFilter = $inputFilter;
     }
+
     /**
      * Retrieve the input filter class
      *

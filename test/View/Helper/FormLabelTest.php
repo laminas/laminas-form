@@ -4,11 +4,14 @@ namespace LaminasTest\Form\View\Helper;
 
 use ArrayObject;
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormLabel as FormLabelHelper;
+use Laminas\I18n\Translator\Translator;
 
 use function sprintf;
 
-class FormLabelTest extends CommonTestCase
+class FormLabelTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -25,7 +28,7 @@ class FormLabelTest extends CommonTestCase
     public function testOpenTagWithWrongElementRaisesException()
     {
         $element = new ArrayObject();
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('ArrayObject');
         $this->helper->openTag($element);
     }
@@ -36,7 +39,7 @@ class FormLabelTest extends CommonTestCase
             'class'     => 'email-label',
             'data-type' => 'label',
         ];
-        $markup = $this->helper->openTag($attributes);
+        $markup     = $this->helper->openTag($attributes);
 
         foreach ($attributes as $key => $value) {
             $this->assertStringContainsString(sprintf('%s="%s"', $key, $value), $markup);
@@ -52,7 +55,7 @@ class FormLabelTest extends CommonTestCase
     public function testPassingElementToOpenTagWillUseNameInForAttributeIfNoIdPresent()
     {
         $element = new Element('foo');
-        $markup = $this->helper->openTag($element);
+        $markup  = $this->helper->openTag($element);
         $this->assertStringContainsString('for="foo"', $markup);
     }
 
@@ -67,7 +70,7 @@ class FormLabelTest extends CommonTestCase
     public function testPassingElementToInvokeWillRaiseExceptionIfNoNameOrIdAttributePresent()
     {
         $element = new Element();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('id');
         $markup = $this->helper->__invoke($element);
     }
@@ -75,7 +78,7 @@ class FormLabelTest extends CommonTestCase
     public function testPassingElementToInvokeWillRaiseExceptionIfNoLabelAttributePresent()
     {
         $element = new Element('foo');
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('label');
         $markup = $this->helper->__invoke($element);
     }
@@ -94,7 +97,7 @@ class FormLabelTest extends CommonTestCase
     public function testPassingElementAndContentToInvokeUsesContentForLabel()
     {
         $element = new Element('foo');
-        $markup = $this->helper->__invoke($element, 'The value for foo:');
+        $markup  = $this->helper->__invoke($element, 'The value for foo:');
         $this->assertStringContainsString('>The value for foo:<', $markup);
         $this->assertStringContainsString('for="foo"', $markup);
         $this->assertStringContainsString('<label', $markup);
@@ -139,7 +142,7 @@ class FormLabelTest extends CommonTestCase
     public function testPassingElementAndContextAndFlagToInvokeRaisesExceptionForMissingLabelAttribute()
     {
         $element = new Element('foo');
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('label');
         $markup = $this->helper->__invoke($element, '<input type="text" id="foo" />', FormLabelHelper::APPEND);
     }
@@ -158,7 +161,7 @@ class FormLabelTest extends CommonTestCase
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
 
-        $mockTranslator = $this->createMock('Laminas\I18n\Translator\Translator');
+        $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->once())
                        ->method('translate')
                        ->willReturn('translated content');
@@ -172,7 +175,7 @@ class FormLabelTest extends CommonTestCase
 
     public function testTranslatorMethods()
     {
-        $translatorMock = $this->createMock('Laminas\I18n\Translator\Translator');
+        $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
         $this->assertEquals($translatorMock, $this->helper->getTranslator());

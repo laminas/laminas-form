@@ -85,10 +85,9 @@ class FormInput extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
      * @return string|FormInput
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null)
     {
         if (! $element) {
             return $this;
@@ -100,7 +99,6 @@ class FormInput extends AbstractHelper
     /**
      * Render a form <input> element from the provided $element
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */
@@ -119,7 +117,7 @@ class FormInput extends AbstractHelper
         $type                = $this->getType($element);
         $attributes['type']  = $type;
         $attributes['value'] = $element->getValue();
-        if ('password' == $type) {
+        if ('password' === $type) {
             $attributes['value'] = '';
         }
 
@@ -133,7 +131,6 @@ class FormInput extends AbstractHelper
     /**
      * Determine input type to use
      *
-     * @param  ElementInterface $element
      * @return string
      */
     protected function getType(ElementInterface $element)

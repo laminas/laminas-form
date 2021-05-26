@@ -22,9 +22,7 @@ class Number extends Element implements InputProviderInterface
         'type' => 'number',
     ];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $validators;
 
     /**
@@ -52,23 +50,24 @@ class Number extends Element implements InputProviderInterface
 
         if (isset($this->attributes['min'])) {
             $validators[] = new GreaterThanValidator([
-                'min' => $this->attributes['min'],
+                'min'       => $this->attributes['min'],
                 'inclusive' => $inclusive,
             ]);
         }
         if (isset($this->attributes['max'])) {
             $validators[] = new LessThanValidator([
-                'max' => $this->attributes['max'],
+                'max'       => $this->attributes['max'],
                 'inclusive' => $inclusive,
             ]);
         }
 
-        if (! isset($this->attributes['step'])
+        if (
+            ! isset($this->attributes['step'])
             || 'any' !== $this->attributes['step']
         ) {
             $validators[] = new StepValidator([
-                'baseValue' => isset($this->attributes['min']) ? $this->attributes['min'] : 0,
-                'step'      => isset($this->attributes['step']) ? $this->attributes['step'] : 1,
+                'baseValue' => $this->attributes['min'] ?? 0,
+                'step'      => $this->attributes['step'] ?? 1,
             ]);
         }
 
@@ -86,9 +85,9 @@ class Number extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => true,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => true,
+            'filters'    => [
                 ['name' => StringTrim::class],
             ],
             'validators' => $this->getValidators(),

@@ -3,11 +3,12 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormPassword as FormPasswordHelper;
 
 use function sprintf;
 
-class FormPasswordTest extends CommonTestCase
+class FormPasswordTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -18,7 +19,7 @@ class FormPasswordTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -35,12 +36,12 @@ class FormPasswordTest extends CommonTestCase
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="password"', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
@@ -76,40 +77,40 @@ class FormPasswordTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
-            'accept'             => 'value',
-            'alt'                => 'value',
-            'autocomplete'       => 'on',
-            'autofocus'          => 'autofocus',
-            'checked'            => 'checked',
-            'dirname'            => 'value',
-            'disabled'           => 'disabled',
-            'form'               => 'value',
-            'formaction'         => 'value',
-            'formenctype'        => 'value',
-            'formmethod'         => 'value',
-            'formnovalidate'     => 'value',
-            'formtarget'         => 'value',
-            'height'             => 'value',
-            'id'                 => 'value',
-            'list'               => 'value',
-            'max'                => 'value',
-            'maxlength'          => 'value',
-            'min'                => 'value',
-            'minlength'          => 'value',
-            'multiple'           => 'multiple',
-            'name'               => 'value',
-            'pattern'            => 'value',
-            'placeholder'        => 'value',
-            'readonly'           => 'readonly',
-            'required'           => 'required',
-            'size'               => 'value',
-            'src'                => 'value',
-            'step'               => 'value',
-            'width'              => 'value',
+            'accept'         => 'value',
+            'alt'            => 'value',
+            'autocomplete'   => 'on',
+            'autofocus'      => 'autofocus',
+            'checked'        => 'checked',
+            'dirname'        => 'value',
+            'disabled'       => 'disabled',
+            'form'           => 'value',
+            'formaction'     => 'value',
+            'formenctype'    => 'value',
+            'formmethod'     => 'value',
+            'formnovalidate' => 'value',
+            'formtarget'     => 'value',
+            'height'         => 'value',
+            'id'             => 'value',
+            'list'           => 'value',
+            'max'            => 'value',
+            'maxlength'      => 'value',
+            'min'            => 'value',
+            'minlength'      => 'value',
+            'multiple'       => 'multiple',
+            'name'           => 'value',
+            'pattern'        => 'value',
+            'placeholder'    => 'value',
+            'readonly'       => 'readonly',
+            'required'       => 'required',
+            'size'           => 'value',
+            'src'            => 'value',
+            'step'           => 'value',
+            'width'          => 'value',
         ]);
         $element->setValue('value');
         return $element;
@@ -118,17 +119,17 @@ class FormPasswordTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
         switch ($attribute) {
             case 'value':
                 // Password value should never be rendered, see 7166
-                $expect  = sprintf('%s=""', $attribute);
+                $expect = sprintf('%s=""', $attribute);
                 break;
             default:
-                $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+                $expect = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
                 break;
         }
         $this->$assertion($expect, $markup);

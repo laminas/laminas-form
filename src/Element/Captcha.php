@@ -17,9 +17,7 @@ use function sprintf;
 
 class Captcha extends Element implements InputProviderInterface
 {
-    /**
-     * @var LaminasCaptcha\AdapterInterface
-     */
+    /** @var LaminasCaptcha\AdapterInterface */
     protected $captcha;
 
     /**
@@ -84,9 +82,9 @@ class Captcha extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         $spec = [
-            'name' => $this->getName(),
+            'name'     => $this->getName(),
             'required' => true,
-            'filters' => [
+            'filters'  => [
                 ['name' => StringTrim::class],
             ],
         ];

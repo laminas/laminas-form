@@ -26,7 +26,7 @@ class Collection extends Fieldset
     /**
      * Default template placeholder
      */
-    const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
+    public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
 
     /**
      * Element used in the collection
@@ -206,7 +206,7 @@ class Collection extends Fieldset
             throw new Exception\DomainException(sprintf(
                 'There are fewer elements than specified in the collection (%s). Either set the allow_remove option '
                 . 'to true, or re-submit the form.',
-                get_class($this)
+                static::class
             ));
         }
 
@@ -220,7 +220,7 @@ class Collection extends Fieldset
             if (! $this->allowRemove) {
                 throw new Exception\DomainException(sprintf(
                     'Elements have been removed from the collection (%s) but the allow_remove option is not true.',
-                    get_class($this)
+                    static::class
                 ));
             }
 
@@ -273,10 +273,9 @@ class Collection extends Fieldset
      *
      * @param array $values
      * @param array $validationGroup
-     *
      * @return array|mixed|void
      */
-    public function bindValues(array $values = [], array $validationGroup = null)
+    public function bindValues(array $values = [], ?array $validationGroup = null)
     {
         $collection = [];
         foreach ($values as $name => $value) {
@@ -295,7 +294,7 @@ class Collection extends Fieldset
     /**
      * Set the initial count of target element
      *
-     * @param $count
+     * @param int $count
      * @return $this
      */
     public function setCount($count)
@@ -323,10 +322,11 @@ class Collection extends Fieldset
      */
     public function setTargetElement($elementOrFieldset)
     {
-        if (is_array($elementOrFieldset)
+        if (
+            is_array($elementOrFieldset)
             || ($elementOrFieldset instanceof Traversable && ! $elementOrFieldset instanceof ElementInterface)
         ) {
-            $factory = $this->getFormFactory();
+            $factory           = $this->getFormFactory();
             $elementOrFieldset = $factory->create($elementOrFieldset);
         }
 
@@ -478,7 +478,6 @@ class Collection extends Fieldset
     /**
      * Prepare the collection by adding a dummy template element if the user want one
      *
-     * @param  FormInterface $form
      * @return mixed|void
      */
     public function prepareElement(FormInterface $form)
@@ -588,7 +587,7 @@ class Collection extends Fieldset
             throw new Exception\DomainException(sprintf(
                 'There are more elements than specified in the collection (%s). Either set the allow_add option '
                 . 'to true, or re-submit the form.',
-                get_class($this)
+                static::class
             ));
         }
 

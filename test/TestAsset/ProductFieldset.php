@@ -2,10 +2,14 @@
 
 namespace LaminasTest\Form\TestAsset;
 
+use Laminas\Form\Element\Collection;
 use Laminas\Form\Fieldset;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
+use LaminasTest\Form\TestAsset\CategoryFieldset;
+use LaminasTest\Form\TestAsset\CountryFieldset;
+use LaminasTest\Form\TestAsset\Entity\Country;
 use LaminasTest\Form\TestAsset\Entity\Product;
 
 use function class_exists;
@@ -24,8 +28,8 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
             ->setObject(new Product());
 
         $this->add([
-            'name' => 'name',
-            'options' => [
+            'name'       => 'name',
+            'options'    => [
                 'label' => 'Name of the product',
             ],
             'attributes' => [
@@ -34,8 +38,8 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
         ]);
 
         $this->add([
-            'name' => 'price',
-            'options' => [
+            'name'       => 'price',
+            'options'    => [
                 'label' => 'Price of the product',
             ],
             'attributes' => [
@@ -44,25 +48,25 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
         ]);
 
         $this->add([
-            'type' => 'Laminas\Form\Element\Collection',
-            'name' => 'categories',
+            'type'    => Collection::class,
+            'name'    => 'categories',
             'options' => [
-                'label' => 'Please choose categories for this product',
-                'count' => 2,
+                'label'          => 'Please choose categories for this product',
+                'count'          => 2,
                 'target_element' => [
-                    'type' => 'LaminasTest\Form\TestAsset\CategoryFieldset',
+                    'type' => CategoryFieldset::class,
                 ],
             ],
         ]);
 
         $this->add([
-            'type' => 'LaminasTest\Form\TestAsset\CountryFieldset',
-            'name' => 'made_in_country',
-            'object' => 'LaminasTest\Form\TestAsset\Entity\Country',
+            'type'     => CountryFieldset::class,
+            'name'     => 'made_in_country',
+            'object'   => Country::class,
             'hydrator' => class_exists(ClassMethodsHydrator::class)
                 ? ClassMethodsHydrator::class
                 : ClassMethods::class,
-            'options' => [
+            'options'  => [
                 'label' => 'Please choose the country',
             ],
         ]);
@@ -77,11 +81,11 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return [
-            'name' => [
+            'name'            => [
                 'required' => true,
             ],
-            'price' => [
-                'required' => true,
+            'price'           => [
+                'required'   => true,
                 'validators' => [
                     [
                         'name' => 'IsFloat',

@@ -4,12 +4,13 @@ namespace LaminasTest\Form\View\Helper;
 
 use IntlDateFormatter;
 use Laminas\Form\Element\MonthSelect;
+use Laminas\Form\Element\Select;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
-use function count;
 use function extension_loaded;
 
-class FormMonthSelectTest extends CommonTestCase
+class FormMonthSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -24,7 +25,7 @@ class FormMonthSelectTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new MonthSelect();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -42,7 +43,7 @@ class FormMonthSelectTest extends CommonTestCase
     {
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
         $this->assertStringNotContainsString('<select name="day"', $markup);
         $this->assertStringContainsString('<select name="month"', $markup);
         $this->assertStringContainsString('<select name="year"', $markup);
@@ -104,7 +105,7 @@ class FormMonthSelectTest extends CommonTestCase
         $this->assertCount(2, $elements);
 
         foreach ($elements as $subElement) {
-            $this->assertInstanceOf('Laminas\Form\Element\Select', $subElement);
+            $this->assertInstanceOf(Select::class, $subElement);
         }
 
         $this->assertCount(12, $elements[0]->getValueOptions());

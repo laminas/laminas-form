@@ -4,6 +4,8 @@ namespace LaminasTest\Form\Annotation;
 
 use Laminas\Form\Annotation;
 
+use const PHP_MAJOR_VERSION;
+
 class AttributeBuilderTest extends AbstractBuilderTestCase
 {
     public function setUp(): void

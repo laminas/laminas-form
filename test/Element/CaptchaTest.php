@@ -5,7 +5,9 @@ namespace LaminasTest\Form\Element;
 use ArrayIterator;
 use ArrayObject;
 use Laminas\Captcha;
+use Laminas\Captcha\Dumb;
 use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\Factory;
 use LaminasTest\Form\TestAsset;
 use PHPUnit\Framework\TestCase;
@@ -31,23 +33,23 @@ class CaptchaTest extends TestCase
 
         // by array
         $captcha = [
-            'class'   => 'dumb',
+            'class' => 'dumb',
         ];
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf('Laminas\Captcha\Dumb', $element->getCaptcha());
+        $this->assertInstanceOf(Dumb::class, $element->getCaptcha());
 
         // by traversable
         $captcha = new ArrayObject([
-            'class'   => 'dumb',
+            'class' => 'dumb',
         ]);
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf('Laminas\Captcha\Dumb', $element->getCaptcha());
+        $this->assertInstanceOf(Dumb::class, $element->getCaptcha());
     }
 
     public function testCaptchaWithNullRaisesException()
     {
         $element = new CaptchaElement();
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $element->setCaptcha(null);
     }
 
@@ -63,17 +65,17 @@ class CaptchaTest extends TestCase
     {
         $factory = new Factory();
         $element = $factory->createElement([
-            'type'       => 'Laminas\Form\Element\Captcha',
-            'name'       => 'foo',
-            'options'    => [
+            'type'    => CaptchaElement::class,
+            'name'    => 'foo',
+            'options' => [
                 'captcha' => [
-                    'class'   => 'dumb',
+                    'class' => 'dumb',
                 ],
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\Element\Captcha', $element);
+        $this->assertInstanceOf(CaptchaElement::class, $element);
         $captcha = $element->getCaptcha();
-        $this->assertInstanceOf('Laminas\Captcha\Dumb', $captcha);
+        $this->assertInstanceOf(Dumb::class, $captcha);
     }
 
     public function testProvidesInputSpecificationThatIncludesCaptchaAsValidator()
@@ -96,11 +98,11 @@ class CaptchaTest extends TestCase
     {
         $options = new TestAsset\IteratorAggregate(new ArrayIterator([
             'captcha' => [
-                'class'   => 'dumb',
+                'class' => 'dumb',
             ],
         ]));
         $element = new CaptchaElement('captcha', $options);
         $captcha = $element->getCaptcha();
-        $this->assertInstanceOf('Laminas\Captcha\Dumb', $captcha);
+        $this->assertInstanceOf(Dumb::class, $captcha);
     }
 }

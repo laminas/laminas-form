@@ -23,29 +23,19 @@ use function sprintf;
 
 class Fieldset extends Element implements FieldsetInterface
 {
-    /**
-     * @var Factory
-     */
+    /** @var Factory */
     protected $factory;
 
-    /**
-     * @var array
-     */
-    protected $elements  = [];
+    /** @var array */
+    protected $elements = [];
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $fieldsets = [];
 
-    /**
-     * @var array
-     */
-    protected $messages  = [];
+    /** @var array */
+    protected $messages = [];
 
-    /**
-     * @var PriorityList
-     */
+    /** @var PriorityList */
     protected $iterator;
 
     /**
@@ -113,7 +103,6 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Compose a form factory to use when calling add() with a non-element/fieldset
      *
-     * @param  Factory $factory
      * @return $this
      */
     public function setFormFactory(Factory $factory)
@@ -152,10 +141,11 @@ class Fieldset extends Element implements FieldsetInterface
      */
     public function add($elementOrFieldset, array $flags = [])
     {
-        if (is_array($elementOrFieldset)
+        if (
+            is_array($elementOrFieldset)
             || ($elementOrFieldset instanceof Traversable && ! $elementOrFieldset instanceof ElementInterface)
         ) {
-            $factory = $this->getFormFactory();
+            $factory           = $this->getFormFactory();
             $elementOrFieldset = $factory->create($elementOrFieldset);
         }
 
@@ -169,7 +159,8 @@ class Fieldset extends Element implements FieldsetInterface
         }
 
         $name = $elementOrFieldset->getName();
-        if ((null === $name || '' === $name)
+        if (
+            (null === $name || '' === $name)
             && (! array_key_exists('name', $flags) || $flags['name'] === '')
         ) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -335,7 +326,8 @@ class Fieldset extends Element implements FieldsetInterface
             $messages = $this->messages;
             foreach ($this->iterator as $name => $element) {
                 $messageSet = $element->getMessages();
-                if (empty($messageSet)
+                if (
+                    empty($messageSet)
                     || (! is_array($messageSet) && ! $messageSet instanceof Traversable)
                 ) {
                     continue;
@@ -361,7 +353,6 @@ class Fieldset extends Element implements FieldsetInterface
      * Ensures state is ready for use. Here, we append the name of the fieldsets to every elements in order to avoid
      * name clashes if the same fieldset is used multiple times
      *
-     * @param  FormInterface $form
      * @return void
      */
     public function prepareElement(FormInterface $form)
@@ -506,9 +497,9 @@ class Fieldset extends Element implements FieldsetInterface
     {
         $validBindingClass = false;
         if (is_object($object) && $this->allowedObjectBindingClass()) {
-            $objectClass = ltrim($this->allowedObjectBindingClass(), '\\');
-            $reflection = new ReflectionClass($object);
-            $validBindingClass = $reflection->getName() == $objectClass
+            $objectClass       = ltrim($this->allowedObjectBindingClass(), '\\');
+            $reflection        = new ReflectionClass($object);
+            $validBindingClass = $reflection->getName() === $objectClass
                 || $reflection->isSubclassOf($this->allowedObjectBindingClass());
         }
 
@@ -518,7 +509,6 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Set the hydrator to use when binding an object to the element
      *
-     * @param  HydratorInterface $hydrator
      * @return $this
      */
     public function setHydrator(HydratorInterface $hydrator)
@@ -570,14 +560,15 @@ class Fieldset extends Element implements FieldsetInterface
      * @param  array|null $validationGroup
      * @return mixed
      */
-    public function bindValues(array $values = [], array $validationGroup = null)
+    public function bindValues(array $values = [], ?array $validationGroup = null)
     {
-        $objectData = $this->extract();
-        $hydrator = $this->getHydrator();
+        $objectData     = $this->extract();
+        $hydrator       = $this->getHydrator();
         $hydratableData = [];
 
         foreach ($this->iterator as $name => $element) {
-            if ($validationGroup
+            if (
+                $validationGroup
                 && (! array_key_exists($name, $validationGroup) && ! in_array($name, $validationGroup))
             ) {
                 continue;

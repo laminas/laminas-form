@@ -34,7 +34,6 @@ class FormImage extends FormInput
     /**
      * Render a form <input> element from the provided $element
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */
@@ -54,7 +53,6 @@ class FormImage extends FormInput
     /**
      * Determine input type to use
      *
-     * @param  ElementInterface $element
      * @return string
      */
     protected function getType(ElementInterface $element)

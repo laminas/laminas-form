@@ -3,9 +3,9 @@
 namespace LaminasTest\Form\View\Helper\File;
 
 use Laminas\Form\View\Helper\File\FormFileUploadProgress;
-use LaminasTest\Form\View\Helper\CommonTestCase;
+use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
-class FormFileUploadProgressTest extends CommonTestCase
+class FormFileUploadProgressTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -15,7 +15,7 @@ class FormFileUploadProgressTest extends CommonTestCase
 
     public function testReturnsNameIdAndValueAttributes()
     {
-        $markup  = $this->helper->__invoke();
+        $markup = $this->helper->__invoke();
         $this->assertStringContainsString('<input ', $markup);
         $this->assertStringContainsString('type="hidden"', $markup);
         $this->assertStringContainsString('id="progress_key"', $markup);

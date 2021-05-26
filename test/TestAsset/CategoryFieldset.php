@@ -24,8 +24,8 @@ class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
             ->setObject(new Category());
 
         $this->add([
-            'name' => 'name',
-            'options' => [
+            'name'       => 'name',
+            'options'    => [
                 'label' => 'Name of the category',
             ],
             'attributes' => [

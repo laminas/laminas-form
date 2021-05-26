@@ -8,9 +8,9 @@ use Laminas\Validator\ValidatorInterface;
 
 class DateTimeLocal extends DateTime
 {
-    const DATETIME_LOCAL_FORMAT = 'Y-m-d\TH:i';
+    public const DATETIME_LOCAL_FORMAT = 'Y-m-d\TH:i';
 
-    const DATETIME_FORMAT = self::DATETIME_LOCAL_FORMAT;
+    public const DATETIME_FORMAT = self::DATETIME_LOCAL_FORMAT;
 
     /**
      * Seed attributes
@@ -33,9 +33,9 @@ class DateTimeLocal extends DateTime
      */
     protected function getStepValidator()
     {
-        $stepValue = isset($this->attributes['step']) ? $this->attributes['step'] : 1; // Minutes
+        $stepValue = $this->attributes['step'] ?? 1; // Minutes
 
-        $baseValue = isset($this->attributes['min']) ? $this->attributes['min'] : '1970-01-01T00:00';
+        $baseValue = $this->attributes['min'] ?? '1970-01-01T00:00';
 
         return new DateStepValidator([
             'format'    => $this->format,

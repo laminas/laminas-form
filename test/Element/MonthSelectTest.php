@@ -4,6 +4,7 @@ namespace LaminasTest\Form\Element;
 
 use DateTime;
 use Laminas\Form\Element\MonthSelect as MonthSelectElement;
+use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -19,13 +20,13 @@ class MonthSelectTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Regex',
+            Regex::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Regex':
+                case Regex::class:
                     $this->assertEquals('/^[0-9]{4}\-(0?[1-9]|1[012])$/', $validator->getPattern());
                     break;
                 default:
@@ -57,9 +58,9 @@ class MonthSelectTest extends TestCase
     /**
      * @dataProvider monthValuesDataProvider
      */
-    public function testMonthValidation($value, $expected)
+    public function testMonthValidation(string $value, bool $expected)
     {
-        $element = new MonthSelectElement('foo');
+        $element   = new MonthSelectElement('foo');
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $monthValidator = $inputSpec['validators'][0];
@@ -68,7 +69,7 @@ class MonthSelectTest extends TestCase
 
     public function testCanSetMonthFromDateTime()
     {
-        $element  = new MonthSelectElement();
+        $element = new MonthSelectElement();
         $element->setValue(new DateTime('2012-09'));
 
         $this->assertEquals('2012', $element->getYearElement()->getValue());
@@ -77,7 +78,7 @@ class MonthSelectTest extends TestCase
 
     public function testCanGetValue()
     {
-        $element  = new MonthSelectElement();
+        $element = new MonthSelectElement();
         $element->setValue(new DateTime('2012-09'));
         $this->assertEquals('2012-09', $element->getValue());
     }

@@ -19,15 +19,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 class Input
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $input;
 
     /**
      * Receive and process the contents of an annotation
-     *
-     * @param string $input
      */
     public function __construct(string $input)
     {
@@ -36,8 +32,6 @@ class Input
 
     /**
      * Retrieve the input class
-     *
-     * @return string
      */
     public function getInput(): string
     {

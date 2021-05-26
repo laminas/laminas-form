@@ -16,17 +16,13 @@ use function strtolower;
 
 abstract class AbstractWord extends FormInput
 {
-    const CAPTCHA_APPEND  = 'append';
-    const CAPTCHA_PREPEND = 'prepend';
+    public const CAPTCHA_APPEND  = 'append';
+    public const CAPTCHA_PREPEND = 'prepend';
 
-    /**
-     * @var FormInput
-     */
+    /** @var FormInput */
     protected $inputHelper;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $captchaPosition = self::CAPTCHA_APPEND;
 
     /**
@@ -41,10 +37,9 @@ abstract class AbstractWord extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface $element
      * @return string
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null)
     {
         if (! $element) {
             return $this;
@@ -62,7 +57,6 @@ abstract class AbstractWord extends FormInput
      *
      * More specific renderers will consume this and render it.
      *
-     * @param  ElementInterface $element
      * @throws Exception\DomainException
      * @return string
      */
@@ -77,7 +71,7 @@ abstract class AbstractWord extends FormInput
         }
 
         $attributes = $element->getAttributes();
-        $captcha = $element->getCaptcha();
+        $captcha    = $element->getCaptcha();
 
         if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
@@ -96,7 +90,6 @@ abstract class AbstractWord extends FormInput
     /**
      * Render the hidden input with the captcha identifier
      *
-     * @param  CaptchaAdapter $captcha
      * @param  array          $attributes
      * @return string
      */
@@ -116,20 +109,17 @@ abstract class AbstractWord extends FormInput
                 $attributes['value'] = $attributes['value']['id'];
             }
         }
-        $closingBracket      = $this->getInlineClosingBracket();
-        $hidden              = sprintf(
+        $closingBracket = $this->getInlineClosingBracket();
+        return sprintf(
             '<input %s%s',
             $this->createAttributesString($attributes),
             $closingBracket
         );
-
-        return $hidden;
     }
 
     /**
      * Render the input for capturing the captcha value from the client
      *
-     * @param  CaptchaAdapter $captcha
      * @param  array          $attributes
      * @return string
      */
@@ -140,14 +130,12 @@ abstract class AbstractWord extends FormInput
         if (array_key_exists('value', $attributes)) {
             unset($attributes['value']);
         }
-        $closingBracket      = $this->getInlineClosingBracket();
-        $input               = sprintf(
+        $closingBracket = $this->getInlineClosingBracket();
+        return sprintf(
             '<input %s%s',
             $this->createAttributesString($attributes),
             $closingBracket
         );
-
-        return $input;
     }
 
     /**
@@ -164,8 +152,8 @@ abstract class AbstractWord extends FormInput
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects either %s::CAPTCHA_APPEND or %s::CAPTCHA_PREPEND; received "%s"',
                 __METHOD__,
-                __CLASS__,
-                __CLASS__,
+                self::class,
+                self::class,
                 (string) $captchaPosition
             ));
         }

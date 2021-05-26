@@ -3,40 +3,45 @@
 namespace LaminasTest\Form;
 
 use Laminas\Form;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Factory as FormFactory;
+use Laminas\Form\Fieldset;
+use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormElementManager;
+use Laminas\Form\FormInterface;
 use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorPluginManager;
 use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\Factory;
+use Laminas\InputFilter\Input;
+use Laminas\InputFilter\InputFilterInterface;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\Digits;
 use Laminas\Validator\ValidatorChain;
+use Laminas\Validator\ValidatorInterface;
 use Laminas\Validator\ValidatorPluginManager;
+use LaminasTest\Form\TestAsset\InputFilter;
+use LaminasTest\Form\TestAsset\Model;
 use PHPUnit\Framework\TestCase;
 
 use function class_exists;
-use function count;
 
 class FactoryTest extends TestCase
 {
-    /**
-     * @var FormFactory
-     */
+    /** @var FormFactory */
     protected $factory;
 
-    /**
-     * @var ServiceManager
-     */
+    /** @var ServiceManager */
     protected $services;
 
     protected function setUp(): void
     {
         $this->services = new ServiceManager();
         $elementManager = new FormElementManager($this->services);
-        $this->factory = new FormFactory($elementManager);
+        $this->factory  = new FormFactory($elementManager);
     }
 
     public function testCanCreateElements()
@@ -49,7 +54,7 @@ class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.text',
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\ElementInterface', $element);
+        $this->assertInstanceOf(ElementInterface::class, $element);
         $this->assertEquals('foo', $element->getName());
         $this->assertEquals('text', $element->getAttribute('type'));
         $this->assertEquals('foo-class', $element->getAttribute('class'));
@@ -60,31 +65,31 @@ class FactoryTest extends TestCase
     {
         $fieldset = $this->factory->createFieldset([
             'name'       => 'foo',
-            'object'     => 'LaminasTest\Form\TestAsset\Model',
+            'object'     => Model::class,
             'attributes' => [
                 'type'         => 'fieldset',
                 'class'        => 'foo-class',
                 'data-js-type' => 'my.form.fieldset',
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
         $this->assertEquals('foo', $fieldset->getName());
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
         $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
-        $this->assertEquals(new TestAsset\Model, $fieldset->getObject());
+        $this->assertEquals(new Model(), $fieldset->getObject());
     }
 
     public function testCanCreateFieldsetsWithElements()
     {
         $fieldset = $this->factory->createFieldset([
-            'name'       => 'foo',
+            'name'     => 'foo',
             'elements' => [
                 [
                     'flags' => [
                         'name' => 'bar',
                     ],
-                    'spec' => [
+                    'spec'  => [
                         'attributes' => [
                             'type' => 'text',
                         ],
@@ -94,9 +99,9 @@ class FactoryTest extends TestCase
                     'flags' => [
                         'name' => 'baz',
                     ],
-                    'spec' => [
+                    'spec'  => [
                         'attributes' => [
-                            'type' => 'radio',
+                            'type'    => 'radio',
                             'options' => [
                                 'foo' => 'Foo Bar',
                                 'bar' => 'Bar Baz',
@@ -108,17 +113,17 @@ class FactoryTest extends TestCase
                     'flags' => [
                         'priority' => 10,
                     ],
-                    'spec' => [
+                    'spec'  => [
                         'name'       => 'bat',
                         'attributes' => [
-                            'type' => 'textarea',
+                            'type'    => 'textarea',
                             'content' => 'Type here...',
                         ],
                     ],
                 ],
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
         $elements = $fieldset->getElements();
         $this->assertCount(3, $elements);
         $this->assertTrue($fieldset->has('bar'));
@@ -151,8 +156,8 @@ class FactoryTest extends TestCase
     public function testCanCreateNestedFieldsets()
     {
         $masterFieldset = $this->factory->createFieldset([
-            'name'       => 'foo',
-            'fieldsets'  => [
+            'name'      => 'foo',
+            'fieldsets' => [
                 [
                     'flags' => ['name' => 'bar'],
                     'spec'  => [
@@ -161,7 +166,7 @@ class FactoryTest extends TestCase
                                 'flags' => [
                                     'name' => 'bar',
                                 ],
-                                'spec' => [
+                                'spec'  => [
                                     'attributes' => [
                                         'type' => 'text',
                                     ],
@@ -171,9 +176,9 @@ class FactoryTest extends TestCase
                                 'flags' => [
                                     'name' => 'baz',
                                 ],
-                                'spec' => [
+                                'spec'  => [
                                     'attributes' => [
-                                        'type' => 'radio',
+                                        'type'    => 'radio',
                                         'options' => [
                                             'foo' => 'Foo Bar',
                                             'bar' => 'Bar Baz',
@@ -185,10 +190,10 @@ class FactoryTest extends TestCase
                                 'flags' => [
                                     'priority' => 10,
                                 ],
-                                'spec' => [
+                                'spec'  => [
                                     'name'       => 'bat',
                                     'attributes' => [
-                                        'type' => 'textarea',
+                                        'type'    => 'textarea',
                                         'content' => 'Type here...',
                                     ],
                                 ],
@@ -198,13 +203,13 @@ class FactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $masterFieldset);
+        $this->assertInstanceOf(FieldsetInterface::class, $masterFieldset);
         $fieldsets = $masterFieldset->getFieldsets();
         $this->assertCount(1, $fieldsets);
         $this->assertTrue($masterFieldset->has('bar'));
 
         $fieldset = $masterFieldset->get('bar');
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
 
         $element = $fieldset->get('bar');
         $this->assertEquals('text', $element->getAttribute('type'));
@@ -233,26 +238,26 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm([
             'name'       => 'foo',
-            'object'     => 'LaminasTest\Form\TestAsset\Model',
+            'object'     => Model::class,
             'attributes' => [
                 'method' => 'get',
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $this->assertEquals('foo', $form->getName());
         $this->assertEquals('get', $form->getAttribute('method'));
-        $this->assertEquals(new TestAsset\Model, $form->getObject());
+        $this->assertEquals(new Model(), $form->getObject());
     }
 
     public function testCanCreateFormsWithNamedInputFilters()
     {
         $form = $this->factory->createForm([
             'name'         => 'foo',
-            'input_filter' => 'LaminasTest\Form\TestAsset\InputFilter',
+            'input_filter' => InputFilter::class,
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('LaminasTest\Form\TestAsset\InputFilter', $filter);
+        $this->assertInstanceOf(InputFilter::class, $filter);
     }
 
     public function testCanCreateFormsWithInputFilterSpecifications()
@@ -268,7 +273,7 @@ class FactoryTest extends TestCase
                             'name' => 'NotEmpty',
                         ],
                         [
-                            'name' => 'StringLength',
+                            'name'    => 'StringLength',
                             'options' => [
                                 'min' => 3,
                                 'max' => 5,
@@ -283,7 +288,7 @@ class FactoryTest extends TestCase
                             'name' => 'StringTrim',
                         ],
                         [
-                            'name' => 'StringToLower',
+                            'name'    => 'StringToLower',
                             'options' => [
                                 'encoding' => 'ISO-8859-1',
                             ],
@@ -292,21 +297,21 @@ class FactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $filter);
+        $this->assertInstanceOf(InputFilterInterface::class, $filter);
         $this->assertCount(2, $filter);
         foreach (['foo', 'bar'] as $name) {
             $input = $filter->get($name);
 
             switch ($name) {
                 case 'foo':
-                    $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
+                    $this->assertInstanceOf(Input::class, $input);
                     $this->assertFalse($input->isRequired());
                     $this->assertCount(2, $input->getValidatorChain());
                     break;
                 case 'bar':
-                    $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
+                    $this->assertInstanceOf(Input::class, $input);
                     $this->assertTrue($input->allowEmpty());
                     $this->assertCount(2, $input->getFilterChain());
                     break;
@@ -318,12 +323,12 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormsWithInputFilterInstances()
     {
-        $filter = new TestAsset\InputFilter();
-        $form = $this->factory->createForm([
+        $filter = new InputFilter();
+        $form   = $this->factory->createForm([
             'name'         => 'foo',
             'input_filter' => $filter,
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $test = $form->getInputFilter();
         $this->assertSame($filter, $test);
     }
@@ -338,7 +343,7 @@ class FactoryTest extends TestCase
             'name'     => 'foo',
             'hydrator' => $hydratorType,
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
         $this->assertInstanceOf($hydratorType, $hydrator);
     }
@@ -359,7 +364,7 @@ class FactoryTest extends TestCase
             'name'     => 'foo',
             'hydrator' => $hydratorShortName,
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
         $this->assertInstanceOf($hydratorType, $hydrator);
     }
@@ -371,14 +376,14 @@ class FactoryTest extends TestCase
             : ClassMethods::class;
 
         $form = $this->factory->createForm([
-            'name' => 'foo',
+            'name'     => 'foo',
             'hydrator' => [
-                'type' => $hydratorType,
+                'type'    => $hydratorType,
                 'options' => ['underscoreSeparatedKeys' => false],
             ],
         ]);
 
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
 
         $this->assertInstanceOf($hydratorType, $hydrator);
@@ -392,11 +397,11 @@ class FactoryTest extends TestCase
             : ObjectProperty::class;
 
         $form = $this->factory->createForm([
-            'name' => 'foo',
+            'name'     => 'foo',
             'hydrator' => new $hydratorType(),
         ]);
 
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
         $this->assertInstanceOf($hydratorType, $hydrator);
     }
@@ -405,11 +410,11 @@ class FactoryTest extends TestCase
     {
         $form = $this->factory->createForm([
             'name'    => 'foo',
-            'factory' => 'Laminas\Form\Factory',
+            'factory' => FormFactory::class,
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $factory = $form->getFormFactory();
-        $this->assertInstanceOf('Laminas\Form\Factory', $factory);
+        $this->assertInstanceOf(FormFactory::class, $factory);
     }
 
     public function testCanCreateFactoryFromArray()
@@ -417,24 +422,24 @@ class FactoryTest extends TestCase
         $form = $this->factory->createForm([
             'name'    => 'foo',
             'factory' => [
-                'type' => 'Laminas\Form\Factory',
+                'type' => FormFactory::class,
             ],
         ]);
 
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $factory = $form->getFormFactory();
-        $this->assertInstanceOf('Laminas\Form\Factory', $factory);
+        $this->assertInstanceOf(FormFactory::class, $factory);
     }
 
     public function testCanCreateFactoryFromConcreteClass()
     {
         $factory = new FormFactory();
-        $form = $this->factory->createForm([
+        $form    = $this->factory->createForm([
             'name'    => 'foo',
             'factory' => $factory,
         ]);
 
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $test = $form->getFormFactory();
         $this->assertSame($factory, $test);
     }
@@ -442,7 +447,7 @@ class FactoryTest extends TestCase
     public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByName()
     {
         $validatorManager = new ValidatorPluginManager($this->services);
-        $validatorManager->setInvokableClass('baz', 'Laminas\Validator\Digits');
+        $validatorManager->setInvokableClass('baz', Digits::class);
 
         $defaultValidatorChain = new ValidatorChain();
         $defaultValidatorChain->setPluginManager($validatorManager);
@@ -469,22 +474,22 @@ class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $inputFilter);
+        $this->assertInstanceOf(InputFilterInterface::class, $inputFilter);
 
         $input = $inputFilter->get('bar');
-        $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
+        $this->assertInstanceOf(Input::class, $input);
 
         $validatorChain = $input->getValidatorChain();
-        $this->assertInstanceOf('Laminas\Validator\ValidatorChain', $validatorChain);
+        $this->assertInstanceOf(ValidatorChain::class, $validatorChain);
 
         $validatorArray = $validatorChain->getValidators();
-        $found = false;
+        $found          = false;
         foreach ($validatorArray as $validator) {
             $validatorInstance = $validator['instance'];
-            $this->assertInstanceOf('Laminas\Validator\ValidatorInterface', $validatorInstance);
+            $this->assertInstanceOf(ValidatorInterface::class, $validatorInstance);
 
             if ($validatorInstance instanceof Digits) {
                 $found = true;
@@ -497,7 +502,7 @@ class FactoryTest extends TestCase
     public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor()
     {
         $validatorManager = new ValidatorPluginManager($this->services);
-        $validatorManager->setInvokableClass('baz', 'Laminas\Validator\Digits');
+        $validatorManager->setInvokableClass('baz', Digits::class);
 
         $defaultValidatorChain = new ValidatorChain();
         $defaultValidatorChain->setPluginManager($validatorManager);
@@ -523,22 +528,22 @@ class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf('Laminas\InputFilter\InputFilterInterface', $inputFilter);
+        $this->assertInstanceOf(InputFilterInterface::class, $inputFilter);
 
         $input = $inputFilter->get('bar');
-        $this->assertInstanceOf('Laminas\InputFilter\Input', $input);
+        $this->assertInstanceOf(Input::class, $input);
 
         $validatorChain = $input->getValidatorChain();
-        $this->assertInstanceOf('Laminas\Validator\ValidatorChain', $validatorChain);
+        $this->assertInstanceOf(ValidatorChain::class, $validatorChain);
 
         $validatorArray = $validatorChain->getValidators();
-        $found = false;
+        $found          = false;
         foreach ($validatorArray as $validator) {
             $validatorInstance = $validator['instance'];
-            $this->assertInstanceOf('Laminas\Validator\ValidatorInterface', $validatorInstance);
+            $this->assertInstanceOf(ValidatorInterface::class, $validatorInstance);
 
             if ($validatorInstance instanceof Digits) {
                 $found = true;
@@ -555,13 +560,13 @@ class FactoryTest extends TestCase
             : ObjectProperty::class;
 
         $form = $this->factory->createForm([
-            'name'       => 'foo',
-            'elements' => [
+            'name'         => 'foo',
+            'elements'     => [
                 [
                     'flags' => [
                         'name' => 'bar',
                     ],
-                    'spec' => [
+                    'spec'  => [
                         'attributes' => [
                             'type' => 'text',
                         ],
@@ -571,9 +576,9 @@ class FactoryTest extends TestCase
                     'flags' => [
                         'name' => 'baz',
                     ],
-                    'spec' => [
+                    'spec'  => [
                         'attributes' => [
-                            'type' => 'radio',
+                            'type'    => 'radio',
                             'options' => [
                                 'foo' => 'Foo Bar',
                                 'bar' => 'Bar Baz',
@@ -585,16 +590,16 @@ class FactoryTest extends TestCase
                     'flags' => [
                         'priority' => 10,
                     ],
-                    'spec' => [
+                    'spec'  => [
                         'name'       => 'bat',
                         'attributes' => [
-                            'type' => 'textarea',
+                            'type'    => 'textarea',
                             'content' => 'Type here...',
                         ],
                     ],
                 ],
             ],
-            'fieldsets'  => [
+            'fieldsets'    => [
                 [
                     'flags' => ['name' => 'foobar'],
                     'spec'  => [
@@ -603,7 +608,7 @@ class FactoryTest extends TestCase
                                 'flags' => [
                                     'name' => 'bar',
                                 ],
-                                'spec' => [
+                                'spec'  => [
                                     'attributes' => [
                                         'type' => 'text',
                                     ],
@@ -613,9 +618,9 @@ class FactoryTest extends TestCase
                                 'flags' => [
                                     'name' => 'baz',
                                 ],
-                                'spec' => [
+                                'spec'  => [
                                     'attributes' => [
-                                        'type' => 'radio',
+                                        'type'    => 'radio',
                                         'options' => [
                                             'foo' => 'Foo Bar',
                                             'bar' => 'Bar Baz',
@@ -627,10 +632,10 @@ class FactoryTest extends TestCase
                                 'flags' => [
                                     'priority' => 10,
                                 ],
-                                'spec' => [
+                                'spec'  => [
                                     'name'       => 'bat',
                                     'attributes' => [
-                                        'type' => 'textarea',
+                                        'type'    => 'textarea',
                                         'content' => 'Type here...',
                                     ],
                                 ],
@@ -639,10 +644,10 @@ class FactoryTest extends TestCase
                     ],
                 ],
             ],
-            'input_filter' => 'LaminasTest\Form\TestAsset\InputFilter',
+            'input_filter' => InputFilter::class,
             'hydrator'     => $hydratorType,
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
 
         $elements = $form->getElements();
         $this->assertCount(3, $elements);
@@ -678,7 +683,7 @@ class FactoryTest extends TestCase
         $this->assertTrue($form->has('foobar'));
 
         $fieldset = $form->get('foobar');
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
 
         $element = $fieldset->get('bar');
         $this->assertEquals('text', $element->getAttribute('type'));
@@ -704,7 +709,7 @@ class FactoryTest extends TestCase
 
         // input filter
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf('LaminasTest\Form\TestAsset\InputFilter', $filter);
+        $this->assertInstanceOf(InputFilter::class, $filter);
 
         // hydrator
         $hydrator = $form->getHydrator();
@@ -714,13 +719,13 @@ class FactoryTest extends TestCase
     public function testCanCreateFormUsingCreate()
     {
         $form = $this->factory->create([
-            'type'       => 'Laminas\Form\Form',
+            'type'       => \Laminas\Form\Form::class,
             'name'       => 'foo',
             'attributes' => [
                 'method' => 'get',
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
         $this->assertEquals('foo', $form->getName());
         $this->assertEquals('get', $form->getAttribute('method'));
     }
@@ -728,7 +733,7 @@ class FactoryTest extends TestCase
     public function testCanCreateFieldsetUsingCreate()
     {
         $fieldset = $this->factory->create([
-            'type'       => 'Laminas\Form\Fieldset',
+            'type'       => Fieldset::class,
             'name'       => 'foo',
             'attributes' => [
                 'type'         => 'fieldset',
@@ -736,7 +741,7 @@ class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.fieldset',
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FieldsetInterface', $fieldset);
+        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
         $this->assertEquals('foo', $fieldset->getName());
         $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
         $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
@@ -753,7 +758,7 @@ class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.text',
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\ElementInterface', $element);
+        $this->assertInstanceOf(ElementInterface::class, $element);
         $this->assertEquals('foo', $element->getName());
         $this->assertEquals('text', $element->getAttribute('type'));
         $this->assertEquals('foo-class', $element->getAttribute('class'));
@@ -763,14 +768,14 @@ class FactoryTest extends TestCase
     public function testAutomaticallyAddFieldsetTypeWhenCreateFieldset()
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
-        $this->assertInstanceOf('Laminas\Form\Fieldset', $fieldset);
+        $this->assertInstanceOf(Fieldset::class, $fieldset);
         $this->assertEquals('myFieldset', $fieldset->getName());
     }
 
     public function testAutomaticallyAddFormTypeWhenCreateForm()
     {
         $form = $this->factory->createForm(['name' => 'myForm']);
-        $this->assertInstanceOf('Laminas\Form\Form', $form);
+        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $this->assertEquals('myForm', $form->getName());
     }
 
@@ -784,7 +789,7 @@ class FactoryTest extends TestCase
 
         $fieldset = $this->factory->createFieldset([
             'hydrator' => 'MyHydrator',
-            'name' => 'fieldset',
+            'name'     => 'fieldset',
             'elements' => [
                 [
                     'flags' => [
@@ -813,14 +818,14 @@ class FactoryTest extends TestCase
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
 
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->factory->configureFieldset($fieldset, ['hydrator' => 0]);
     }
 
     public function testCanCreateFormWithNullElements()
     {
         $form = $this->factory->createForm([
-            'name' => 'foo',
+            'name'     => 'foo',
             'elements' => [
                 'bar' => [
                     'spec' => [
@@ -835,7 +840,7 @@ class FactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf('Laminas\Form\FormInterface', $form);
+        $this->assertInstanceOf(FormInterface::class, $form);
 
         $elements = $form->getElements();
         $this->assertCount(2, $elements);
@@ -853,8 +858,8 @@ class FactoryTest extends TestCase
         );
 
         $collection = $this->factory->create([
-            'type' => Form\Element\Collection::class,
-            'name' => 'my_fieldset_collection',
+            'type'    => Form\Element\Collection::class,
+            'name'    => 'my_fieldset_collection',
             'options' => [
                 'target_element' => [
                     'type' => TestAsset\FieldsetWithDependency::class,
@@ -867,6 +872,6 @@ class FactoryTest extends TestCase
         $targetElement = $collection->getTargetElement();
 
         $this->assertInstanceOf(TestAsset\FieldsetWithDependency::class, $targetElement);
-        $this->assertInstanceOf(TestAsset\InputFilter::class, $targetElement->getDependency());
+        $this->assertInstanceOf(InputFilter::class, $targetElement->getDependency());
     }
 }

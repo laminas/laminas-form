@@ -3,11 +3,12 @@
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
+use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormTextarea as FormTextareaHelper;
 
 use function sprintf;
 
-class FormTextareaTest extends CommonTestCase
+class FormTextareaTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
@@ -18,7 +19,7 @@ class FormTextareaTest extends CommonTestCase
     public function testRaisesExceptionWhenNameIsNotPresentInElement()
     {
         $element = new Element();
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->expectExceptionMessage('name');
         $this->helper->render($element);
     }
@@ -30,7 +31,7 @@ class FormTextareaTest extends CommonTestCase
         $this->assertMatchesRegularExpression('#<textarea.*?></textarea>#', $markup);
     }
 
-    public function validAttributes()
+    public function validAttributes(): array
     {
         return [
             ['accesskey', 'assertStringContainsString'],
@@ -130,7 +131,7 @@ class FormTextareaTest extends CommonTestCase
         ];
     }
 
-    public function getCompleteElement()
+    public function getCompleteElement(): Element
     {
         $element = new Element('foo');
         $element->setAttributes([
@@ -235,7 +236,7 @@ class FormTextareaTest extends CommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered($attribute, $assertion)
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
@@ -243,7 +244,7 @@ class FormTextareaTest extends CommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function booleanAttributeTypes()
+    public function booleanAttributeTypes(): array
     {
         return [
             ['autofocus', 'autofocus', ''],
@@ -257,7 +258,7 @@ class FormTextareaTest extends CommonTestCase
     /**
      * @dataProvider booleanAttributeTypes
      */
-    public function testBooleanAttributeTypesAreRenderedCorrectly($attribute, $on, $off)
+    public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off)
     {
         $element = new Element('foo');
         $element->setAttribute($attribute, true);
@@ -318,8 +319,11 @@ class FormTextareaTest extends CommonTestCase
     /**
      * @dataProvider booleanAttributeTypes
      */
-    public function testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5($attribute, $on, $off)
-    {
+    public function testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5(
+        string $attribute,
+        string $on,
+        string $off
+    ) {
         $element = new Element('foo');
         $this->renderer->doctype('HTML5');
         $element->setAttribute($attribute, true);

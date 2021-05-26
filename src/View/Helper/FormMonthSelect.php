@@ -51,7 +51,7 @@ class FormMonthSelect extends AbstractHelper
     protected $locale;
 
     /**
-     * @throws Exception\ExtensionNotLoadedException if ext/intl is not present
+     * @throws Exception\ExtensionNotLoadedException If ext/intl is not present.
      */
     public function __construct()
     {
@@ -71,12 +71,11 @@ class FormMonthSelect extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface $element
      * @param  int              $dateType
      * @param  null|string      $locale
      * @return FormDateSelect
      */
-    public function __invoke(ElementInterface $element = null, $dateType = IntlDateFormatter::LONG, $locale = null)
+    public function __invoke(?ElementInterface $element = null, $dateType = IntlDateFormatter::LONG, $locale = null)
     {
         if (! $element) {
             return $this;
@@ -94,7 +93,6 @@ class FormMonthSelect extends AbstractHelper
     /**
      * Render a month element that is composed of two selects
      *
-     * @param  ElementInterface $element
      * @return string
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
@@ -134,7 +132,7 @@ class FormMonthSelect extends AbstractHelper
             $yearElement->setEmptyOption('');
         }
 
-        $data = [];
+        $data                    = [];
         $data[$pattern['month']] = $selectHelper->render($monthElement);
         $data[$pattern['year']]  = $selectHelper->render($yearElement);
 
@@ -191,8 +189,8 @@ class FormMonthSelect extends AbstractHelper
     public function getPattern()
     {
         if (null === $this->pattern) {
-            $intl           = new IntlDateFormatter($this->getLocale(), $this->dateType, IntlDateFormatter::NONE);
-            $this->pattern  = $intl->getPattern();
+            $intl          = new IntlDateFormatter($this->getLocale(), $this->dateType, IntlDateFormatter::NONE);
+            $this->pattern = $intl->getPattern();
         }
 
         return $this->pattern;
@@ -266,8 +264,8 @@ class FormMonthSelect extends AbstractHelper
 
         $result = [];
         for ($month = 1; $month <= 12; $month++) {
-            $key   = $keyFormatter->format($date->getTimestamp());
-            $value = $valueFormatter->format($date->getTimestamp());
+            $key          = $keyFormatter->format($date->getTimestamp());
+            $value        = $valueFormatter->format($date->getTimestamp());
             $result[$key] = $value;
 
             $date->modify('+1 month');

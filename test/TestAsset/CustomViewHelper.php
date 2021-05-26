@@ -11,20 +11,16 @@ use function preg_replace;
 
 class CustomViewHelper extends AbstractHelper
 {
-    /**
-     * @var FormElement
-     */
+    /** @var FormElement */
     protected $elementHelper;
 
-    public function __invoke(ElementInterface $element)
+    public function __invoke(ElementInterface $element): string
     {
         $elementHelper = $this->getElementHelper();
 
         $name = preg_replace('/[^a-z0-9_-]+/', '', $element->getName());
 
-        $result = '<div id="custom' . $name . '">' . $elementHelper($element) . '</div>';
-
-        return $result;
+        return '<div id="custom' . $name . '">' . $elementHelper($element) . '</div>';
     }
 
     /**

@@ -12,6 +12,7 @@ use Laminas\InputFilter\InputFilter;
 use Laminas\Stdlib\ArrayObject;
 
 use function array_merge;
+use function assert;
 use function is_array;
 
 /**
@@ -79,7 +80,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $inputSpec = $e->getParam('inputSpec');
+        $inputSpec                = $e->getParam('inputSpec');
         $inputSpec['allow_empty'] = true;
     }
 
@@ -147,8 +148,10 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
 
             $elementSpec['spec']['type'] = Collection::class;
             $elementSpec['spec']['name'] = $name;
+
             $elementSpec['spec']['options'] = new ArrayObject($this->mergeOptions($elementSpec, $annotation));
-            $elementSpec['spec']['options']['target_element'] = $specification;
+
+            $elementSpec['spec']['options']['target_element']                                 = $specification;
             $elementSpec['spec']['options']['target_element']['options']['input_filter_spec'] = $inputFilter;
 
             if (isset($specification['hydrator'])) {
@@ -169,13 +172,13 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             }
 
             if (isset($elementSpec['spec']['options'])) {
-                $specification['options'] = isset($specification['options']) ? $specification['options'] : [];
+                $specification['options'] = $specification['options'] ?? [];
                 $specification['options'] = array_merge($elementSpec['spec']['options'], $specification['options']);
             }
 
             // Add element spec:
-            $elementSpec['spec'] = $specification;
-            $elementSpec['spec']['name'] = $name;
+            $elementSpec['spec']            = $specification;
+            $elementSpec['spec']['name']    = $name;
             $elementSpec['spec']['options'] = new ArrayObject($this->mergeOptions($elementSpec, $annotation));
         }
     }
@@ -195,7 +198,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $inputSpec = $e->getParam('inputSpec');
+        $inputSpec                      = $e->getParam('inputSpec');
         $inputSpec['continue_if_empty'] = true;
     }
 
@@ -214,7 +217,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $inputSpec = $e->getParam('inputSpec');
+        $inputSpec                  = $e->getParam('inputSpec');
         $inputSpec['error_message'] = $annotation->getMessage();
     }
 
@@ -273,7 +276,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $elementSpec = $e->getParam('elementSpec');
+        $elementSpec          = $e->getParam('elementSpec');
         $elementSpec['flags'] = $annotation->getFlags();
     }
 
@@ -292,7 +295,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $elementSpec = $e->getParam('elementSpec');
+        $elementSpec                     = $e->getParam('elementSpec');
         $elementSpec['spec']['hydrator'] = $annotation->getHydratorSpecification();
     }
 
@@ -312,7 +315,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $inputSpec = $e->getParam('inputSpec');
+        $inputSpec         = $e->getParam('inputSpec');
         $inputSpec['type'] = $annotation->getInput();
     }
 
@@ -328,7 +331,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $elementSpec = $e->getParam('elementSpec');
+        $elementSpec                   = $e->getParam('elementSpec');
         $elementSpec['spec']['object'] = $annotation->getInstance();
     }
 
@@ -347,7 +350,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $elementSpec = $e->getParam('elementSpec');
+        $elementSpec                    = $e->getParam('elementSpec');
         $elementSpec['spec']['options'] = $this->mergeOptions($elementSpec, $annotation);
     }
 
@@ -366,8 +369,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $required  = (bool) $annotation->getRequired();
-        $inputSpec = $e->getParam('inputSpec');
+        $required              = (bool) $annotation->getRequired();
+        $inputSpec             = $e->getParam('inputSpec');
         $inputSpec['required'] = $required;
 
         if ($required) {
@@ -395,7 +398,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $elementSpec = $e->getParam('elementSpec');
+        $elementSpec                 = $e->getParam('elementSpec');
         $elementSpec['spec']['type'] = $annotation->getType();
     }
 
@@ -424,7 +427,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
     /**
      * @param array|ArrayAccess      $elementSpec
      * @param ComposedObject|Options $annotation
-     *
      * @return array
      */
     private function mergeOptions($elementSpec, $annotation)

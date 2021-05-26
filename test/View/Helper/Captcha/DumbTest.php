@@ -4,13 +4,18 @@ namespace LaminasTest\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\Dumb as DumbCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
+use Laminas\Form\Exception\DomainException;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\Captcha\Dumb as DumbCaptchaHelper;
-use LaminasTest\Form\View\Helper\CommonTestCase;
+use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 use function strrev;
 
-class DumbTest extends CommonTestCase
+class DumbTest extends AbstractCommonTestCase
 {
+    /** @var DumbCaptcha */
+    protected $captcha;
+
     protected function setUp(): void
     {
         $this->helper  = new DumbCaptchaHelper();
@@ -18,7 +23,7 @@ class DumbTest extends CommonTestCase
         parent::setUp();
     }
 
-    public function getElement()
+    public function getElement(): CaptchaElement
     {
         $element = new CaptchaElement('foo');
         $element->setCaptcha($this->captcha);
@@ -29,7 +34,7 @@ class DumbTest extends CommonTestCase
     {
         $element = new CaptchaElement('foo');
 
-        $this->expectException('Laminas\Form\Exception\DomainException');
+        $this->expectException(DomainException::class);
         $this->helper->render($element);
     }
 
@@ -84,7 +89,7 @@ class DumbTest extends CommonTestCase
 
     public function testSetCaptchaPositionWithNullRaisesException()
     {
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->helper->setCaptchaPosition(null);
     }
 
@@ -102,7 +107,7 @@ class DumbTest extends CommonTestCase
     {
         $element = $this->getElement();
         $this->helper->setSeparator('<br />');
-        $markup  = $this->helper->render($element);
+        $markup = $this->helper->render($element);
 
         $this->assertStringContainsString(
             $this->captcha->getLabel() . ' <b>' . strrev($this->captcha->getWord())

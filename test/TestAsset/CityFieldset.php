@@ -29,7 +29,7 @@ class CityFieldset extends Fieldset implements InputFilterProviderInterface
         $zipCode = new Element('zipCode', ['label' => 'ZipCode of the city']);
         $zipCode->setAttribute('type', 'text');
 
-        $country = new CountryFieldset;
+        $country = new CountryFieldset();
         $country->setLabel('Country');
 
         $this->add($name);
@@ -46,7 +46,7 @@ class CityFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return [
-            'name' => [
+            'name'    => [
                 'required' => true,
             ],
             'zipCode' => [

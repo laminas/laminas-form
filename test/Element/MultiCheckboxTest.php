@@ -3,6 +3,8 @@
 namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
+use Laminas\Validator\Explode;
+use Laminas\Validator\InArray;
 use PHPUnit\Framework\TestCase;
 
 use function count;
@@ -10,7 +12,7 @@ use function get_class;
 
 class MultiCheckboxTest extends TestCase
 {
-    public function useHiddenAttributeDataProvider()
+    public function useHiddenAttributeDataProvider(): array
     {
         return [[true], [false]];
     }
@@ -18,7 +20,7 @@ class MultiCheckboxTest extends TestCase
     /**
      * @dataProvider useHiddenAttributeDataProvider
      */
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes($useHiddenElement)
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement)
     {
         $element = new MultiCheckboxElement();
         $options = [
@@ -36,15 +38,15 @@ class MultiCheckboxTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Explode',
+            Explode::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\Explode':
+                case Explode::class:
                     $inArrayValidator = $validator->getValidator();
-                    $this->assertInstanceOf('Laminas\Validator\InArray', $inArrayValidator);
+                    $this->assertInstanceOf(InArray::class, $inArrayValidator);
                     break;
                 default:
                     break;
@@ -52,7 +54,7 @@ class MultiCheckboxTest extends TestCase
         }
     }
 
-    public function multiCheckboxOptionsDataProvider()
+    public function multiCheckboxOptionsDataProvider(): array
     {
         return [
             [
@@ -75,7 +77,7 @@ class MultiCheckboxTest extends TestCase
     /**
      * @dataProvider multiCheckboxOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions($valueTests, $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options)
     {
         $element = new MultiCheckboxElement('my-checkbox');
         $element->setAttributes([
@@ -84,7 +86,7 @@ class MultiCheckboxTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         $this->assertArrayHasKey('validators', $inputSpec);
         $explodeValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf('Laminas\Validator\Explode', $explodeValidator);
+        $this->assertInstanceOf(Explode::class, $explodeValidator);
         $this->assertTrue($explodeValidator->isValid($valueTests));
     }
 
@@ -94,10 +96,10 @@ class MultiCheckboxTest extends TestCase
      *
      * @dataProvider multiCheckboxOptionsDataProvider
      */
-    public function testInArrayValidatorHaystakIsUpdated($valueTests, $options)
+    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options)
     {
-        $element = new MultiCheckboxElement('my-checkbox');
-        $inputSpec = $element->getInputSpecification();
+        $element          = new MultiCheckboxElement('my-checkbox');
+        $inputSpec        = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0]->getValidator();
 
         $element->setAttributes([
@@ -109,7 +111,7 @@ class MultiCheckboxTest extends TestCase
 
     public function testAttributeType()
     {
-        $element = new MultiCheckboxElement();
+        $element    = new MultiCheckboxElement();
         $attributes = $element->getAttributes();
 
         $this->assertArrayHasKey('type', $attributes);
@@ -121,7 +123,7 @@ class MultiCheckboxTest extends TestCase
         $element = new MultiCheckboxElement();
         $element->setOptions([
             'value_options' => ['bar' => 'baz'],
-            'options' => ['foo' => 'bar'],
+            'options'       => ['foo' => 'bar'],
         ]);
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
@@ -178,7 +180,7 @@ class MultiCheckboxTest extends TestCase
             'Option 3' => 'option3',
         ]);
 
-        $optionValue = 'option3';
+        $optionValue     = 'option3';
         $selectedOptions = ['option1', 'option3'];
         $element->setValue($selectedOptions);
         $this->assertContains($optionValue, $element->getValue());

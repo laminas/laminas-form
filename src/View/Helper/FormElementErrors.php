@@ -18,22 +18,17 @@ use function sprintf;
 
 class FormElementErrors extends AbstractHelper
 {
-    /**@+
-     * @var string Templates for the open/close/separators for message tags
-     */
-    protected $messageCloseString     = '</li></ul>';
-    protected $messageOpenFormat      = '<ul%s><li>';
+    /** @var string Templates for the open/close/separators for message tags */
+    protected $messageOpenFormat = '<ul%s><li>';
+    /** @var string Templates for the open/close/separators for message tags */
+    protected $messageCloseString = '</li></ul>';
+    /** @var string Templates for the open/close/separators for message tags */
     protected $messageSeparatorString = '</li><li>';
-    /**@-*/
 
-    /**
-     * @var array Default attributes for the open format tag
-     */
+    /** @var array Default attributes for the open format tag */
     protected $attributes = [];
 
-    /**
-     * @var bool Whether or not to translate error messages during render.
-     */
+    /** @var bool Whether or not to translate error messages during render. */
     protected $translateErrorMessages = true;
 
     /**
@@ -41,11 +36,10 @@ class FormElementErrors extends AbstractHelper
      *
      * Proxies to {@link render()} if an element is passed.
      *
-     * @param  ElementInterface $element
      * @param  array            $attributes
      * @return string|FormElementErrors
      */
-    public function __invoke(ElementInterface $element = null, array $attributes = [])
+    public function __invoke(?ElementInterface $element = null, array $attributes = [])
     {
         if (! $element) {
             return $this;
@@ -61,7 +55,6 @@ class FormElementErrors extends AbstractHelper
      * composed, messages retrieved from the element will be translated; if
      * either is not the case, they will not.
      *
-     * @param  ElementInterface $element
      * @param  array $attributes
      * @throws Exception\DomainException
      * @return string

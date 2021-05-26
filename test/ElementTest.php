@@ -32,11 +32,11 @@ class ElementTest extends TestCase
 
     public function testCanAddManyAttributesAtOnce()
     {
-        $element = new Element();
+        $element    = new Element();
         $attributes = [
-            'type'     => 'text',
-            'class'    => 'text-element',
-            'data-foo' => 'bar',
+            'type'               => 'text',
+            'class'              => 'text-element',
+            'data-foo'           => 'bar',
             'x-autocompletetype' => 'email',
         ];
         $element->setAttributes($attributes);
@@ -45,8 +45,8 @@ class ElementTest extends TestCase
 
     public function testAddingAttributesMerges()
     {
-        $element = new Element();
-        $attributes = [
+        $element         = new Element();
+        $attributes      = [
             'type'     => 'text',
             'class'    => 'text-element',
             'data-foo' => 'bar',
@@ -63,7 +63,7 @@ class ElementTest extends TestCase
 
     public function testCanClearAllAttributes()
     {
-        $element = new Element();
+        $element    = new Element();
         $attributes = [
             'type'     => 'text',
             'class'    => 'text-element',
@@ -76,7 +76,7 @@ class ElementTest extends TestCase
 
     public function testCanRemoveSingleAttribute()
     {
-        $element = new Element();
+        $element    = new Element();
         $attributes = [
             'type'     => 'text',
             'class'    => 'text-element',
@@ -89,7 +89,7 @@ class ElementTest extends TestCase
 
     public function testCanRemoveMultipleAttributes()
     {
-        $element = new Element();
+        $element    = new Element();
         $attributes = [
             'type'     => 'text',
             'class'    => 'text-element',
@@ -157,7 +157,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
         $element->setOptions([
-            'label' => 'foo',
+            'label'            => 'foo',
             'label_attributes' => ['bar' => 'baz'],
         ]);
         $option = $element->getOption('label_attributes');
@@ -187,7 +187,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $element->setOptions(null);
     }
 
@@ -209,7 +209,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $element->setAttributes(null);
     }
 
@@ -217,7 +217,7 @@ class ElementTest extends TestCase
     {
         $element = new Element('foo');
 
-        $this->expectException('Laminas\Form\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $element->setMessages(null);
     }
 
@@ -248,8 +248,8 @@ class ElementTest extends TestCase
     {
         $element = new Element();
         $options = [
-            'foo'     => 'bar',
-            'foo2'    => 'baz',
+            'foo'  => 'bar',
+            'foo2' => 'baz',
         ];
         $element->setLabelOptions($options);
 
@@ -269,14 +269,14 @@ class ElementTest extends TestCase
 
     public function testSettingLabelOptionsMerges()
     {
-        $element = new Element();
-        $options = [
-            'foo'     => 'bar',
-            'foo2'    => 'baz',
+        $element      = new Element();
+        $options      = [
+            'foo'  => 'bar',
+            'foo2' => 'baz',
         ];
         $optionsExtra = [
-            'foo3'    => 'bar2',
-            'foo2'    => 'baz2',
+            'foo3' => 'bar2',
+            'foo2' => 'baz2',
         ];
         $element->setLabelOptions($options);
         $element->setLabelOptions($optionsExtra);
@@ -292,8 +292,8 @@ class ElementTest extends TestCase
     {
         $element = new Element();
         $options = [
-            'foo'     => 'bar',
-            'foo2'    => 'baz',
+            'foo'  => 'bar',
+            'foo2' => 'baz',
         ];
         $element->setLabelOptions($options);
         $element->clearLabelOptions();
@@ -304,8 +304,8 @@ class ElementTest extends TestCase
     {
         $element = new Element();
         $options = [
-            'foo'     => 'bar',
-            'foo2'    => 'baz',
+            'foo'  => 'bar',
+            'foo2' => 'baz',
         ];
         $element->setLabelOptions($options);
         $element->removeLabelOption('foo2');
@@ -316,9 +316,9 @@ class ElementTest extends TestCase
     {
         $element = new Element();
         $options = [
-            'foo'     => 'bar',
-            'foo2'    => 'baz',
-            'foo3'    => 'bar2',
+            'foo'  => 'bar',
+            'foo2' => 'baz',
+            'foo3' => 'bar2',
         ];
         $element->setLabelOptions($options);
         $element->removeLabelOptions(['foo', 'foo2']);
@@ -329,7 +329,7 @@ class ElementTest extends TestCase
 
     public function testCanAddMultipleAriaAttributes()
     {
-        $element = new Element();
+        $element    = new Element();
         $attributes = [
             'type'             => 'text',
             'aria-label'       => 'alb',
@@ -344,7 +344,7 @@ class ElementTest extends TestCase
 
     public function testCanRemoveMultipleAriaAttributes()
     {
-        $element = new Element();
+        $element    = new Element();
         $attributes = [
             'type'             => 'text',
             'aria-label'       => 'alb',

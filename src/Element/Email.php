@@ -20,14 +20,10 @@ class Email extends Element implements InputProviderInterface
         'type' => 'email',
     ];
 
-    /**
-     * @var ValidatorInterface
-     */
+    /** @var ValidatorInterface */
     protected $validator;
 
-    /**
-     * @var ValidatorInterface
-     */
+    /** @var ValidatorInterface */
     protected $emailValidator;
 
     /**
@@ -40,7 +36,7 @@ class Email extends Element implements InputProviderInterface
         if (null === $this->validator) {
             $emailValidator = $this->getEmailValidator();
 
-            $multiple = isset($this->attributes['multiple']) ? $this->attributes['multiple'] : null;
+            $multiple = $this->attributes['multiple'] ?? null;
 
             if (true === $multiple || 'multiple' === $multiple) {
                 $this->validator = new ExplodeValidator([
@@ -57,7 +53,6 @@ class Email extends Element implements InputProviderInterface
     /**
      * Sets the primary validator to use for this element
      *
-     * @param  ValidatorInterface $validator
      * @return $this
      */
     public function setValidator(ValidatorInterface $validator)
@@ -100,7 +95,6 @@ class Email extends Element implements InputProviderInterface
      * Sets the email validator to use for multiple or single
      * email addresses.
      *
-     * @param  ValidatorInterface $validator
      * @return $this
      */
     public function setEmailValidator(ValidatorInterface $validator)
@@ -119,9 +113,9 @@ class Email extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => true,
-            'filters' => [
+            'name'       => $this->getName(),
+            'required'   => true,
+            'filters'    => [
                 ['name' => StringTrim::class],
             ],
             'validators' => [

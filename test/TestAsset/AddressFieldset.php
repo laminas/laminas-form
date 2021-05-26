@@ -26,7 +26,7 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         $street = new Element('street', ['label' => 'Street']);
         $street->setAttribute('type', 'text');
 
-        $city = new CityFieldset;
+        $city = new CityFieldset();
         $city->setLabel('City');
 
         $this->add($street);

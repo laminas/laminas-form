@@ -28,7 +28,7 @@ class CreateAddressForm extends Form
         $this->add($address);
 
         $this->add([
-            'name' => 'submit',
+            'name'       => 'submit',
             'attributes' => [
                 'type' => 'submit',
             ],

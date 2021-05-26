@@ -25,14 +25,10 @@ class Select extends Element implements InputProviderInterface
         'type' => 'select',
     ];
 
-    /**
-     * @var ValidatorInterface
-     */
+    /** @var ValidatorInterface */
     protected $validator;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $disableInArrayValidator = false;
 
     /**
@@ -40,21 +36,15 @@ class Select extends Element implements InputProviderInterface
      *
      * @var bool
      */
-    protected $emptyOption = null;
+    protected $emptyOption;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $valueOptions = [];
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $useHiddenElement = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $unselectedValue = '';
 
     /**
@@ -78,7 +68,8 @@ class Select extends Element implements InputProviderInterface
             if ($this->validator instanceof InArrayValidator) {
                 $validator = $this->validator;
             }
-            if ($this->validator instanceof ExplodeValidator
+            if (
+                $this->validator instanceof ExplodeValidator
                 && $this->validator->getValidator() instanceof InArrayValidator
             ) {
                 $validator = $this->validator->getValidator();
@@ -285,16 +276,16 @@ class Select extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         $spec = [
-            'name' => $this->getName(),
+            'name'     => $this->getName(),
             'required' => true,
         ];
 
         if ($this->useHiddenElement() && $this->isMultiple()) {
             $unselectedValue = $this->getUnselectedValue();
 
-            $spec['allow_empty'] = true;
+            $spec['allow_empty']       = true;
             $spec['continue_if_empty'] = true;
-            $spec['filters'] = [
+            $spec['filters']           = [
                 [
                     'name'    => 'Callback',
                     'options' => [
@@ -340,6 +331,11 @@ class Select extends Element implements InputProviderInterface
         return $values;
     }
 
+    /**
+     * @param mixed $key
+     * @param mixed $optionSpec
+     * @return mixed
+     */
     protected function getOptionValue($key, $optionSpec)
     {
         return is_array($optionSpec) ? $optionSpec['value'] : $key;

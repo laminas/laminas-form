@@ -4,8 +4,13 @@ namespace LaminasTest\Form\Element;
 
 use DateInterval;
 use DateTime;
+use Laminas\Filter\DateTimeFormatter;
 use Laminas\Form\Element\DateTime as DateTimeElement;
 use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\Validator\Date;
+use Laminas\Validator\DateStep;
+use Laminas\Validator\GreaterThan;
+use Laminas\Validator\LessThan;
 use PHPUnit\Framework\TestCase;
 
 use function get_class;
@@ -27,24 +32,24 @@ class DateTimeTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
-            'Laminas\Validator\Date',
-            'Laminas\Validator\GreaterThan',
-            'Laminas\Validator\LessThan',
-            'Laminas\Validator\DateStep',
+            Date::class,
+            GreaterThan::class,
+            LessThan::class,
+            DateStep::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = get_class($validator);
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
-                case 'Laminas\Validator\GreaterThan':
+                case GreaterThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2000-01-01T00:00Z', $validator->getMin());
                     break;
-                case 'Laminas\Validator\LessThan':
+                case LessThan::class:
                     $this->assertTrue($validator->getInclusive());
                     $this->assertEquals('2001-01-01T00:00Z', $validator->getMax());
                     break;
-                case 'Laminas\Validator\DateStep':
+                case DateStep::class:
                     $dateInterval = new DateInterval('PT1M');
                     $this->assertEquals($dateInterval, $validator->getStep());
                     break;
@@ -65,7 +70,7 @@ class DateTimeTest extends TestCase
 
         foreach ($inputSpec['filters'] as $filter) {
             switch ($filter['name']) {
-                case 'Laminas\Filter\DateTimeFormatter':
+                case DateTimeFormatter::class:
                     $this->assertEquals($filter['options']['format'], DateTime::W3C);
                     $this->assertEquals($filter['options']['format'], $element->getFormat());
                     break;
@@ -83,7 +88,7 @@ class DateTimeTest extends TestCase
 
     public function testSpecifyingADateTimeValueWillReturnBrowserFormattedStringByDefault()
     {
-        $date = new DateTime();
+        $date    = new DateTime();
         $element = new DateTimeElement('foo');
         $element->setValue($date);
         $this->assertEquals($date->format(DateTimeElement::DATETIME_FORMAT), $element->getValue());
@@ -91,7 +96,7 @@ class DateTimeTest extends TestCase
 
     public function testValueIsFormattedAccordingToFormatInElement()
     {
-        $date = new DateTime();
+        $date    = new DateTime();
         $element = new DateTimeElement('foo');
         $element->setFormat($date::RFC2822);
         $element->setValue($date);
@@ -100,7 +105,7 @@ class DateTimeTest extends TestCase
 
     public function testCanRetrieveDateTimeObjectByPassingBooleanFalseToGetValue()
     {
-        $date = new DateTime();
+        $date    = new DateTime();
         $element = new DateTimeElement('foo');
         $element->setValue($date);
         $this->assertSame($date, $element->getValue(false));
@@ -108,7 +113,7 @@ class DateTimeTest extends TestCase
 
     public function testSetFormatWithOptions()
     {
-        $format = 'Y-m-d';
+        $format  = 'Y-m-d';
         $element = new DateTimeElement('foo');
         $element->setOptions([
             'format' => $format,

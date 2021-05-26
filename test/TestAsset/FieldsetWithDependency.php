@@ -6,11 +6,12 @@ use Laminas\Form\Fieldset;
 
 class FieldsetWithDependency extends Fieldset
 {
-    /**
-     * @var InputFilter
-     */
+    /** @var InputFilter */
     private $dependency;
 
+    /**
+     * @inheritDoc
+     */
     public function __construct($name = null, $options = [])
     {
         parent::__construct('fieldset_with_dependency', $options);

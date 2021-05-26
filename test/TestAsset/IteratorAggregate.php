@@ -7,6 +7,7 @@ use Traversable;
 
 class IteratorAggregate implements IteratorAggregateInterface
 {
+    /** @var Traversable  */
     protected $iterator;
 
     public function __construct(Traversable $iterator)
@@ -14,6 +15,9 @@ class IteratorAggregate implements IteratorAggregateInterface
         $this->iterator = $iterator;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getIterator()
     {
         return $this->iterator;
