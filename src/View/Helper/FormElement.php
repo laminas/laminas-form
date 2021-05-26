@@ -5,7 +5,10 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\ElementInterface;
 use Laminas\View\Helper\AbstractHelper as BaseAbstractHelper;
+use Laminas\View\Renderer\PhpRenderer;
 
+use function assert;
+use function is_callable;
 use function method_exists;
 
 class FormElement extends BaseAbstractHelper
@@ -163,7 +166,10 @@ class FormElement extends BaseAbstractHelper
      */
     protected function renderHelper($name, ElementInterface $element)
     {
-        $helper = $this->getView()->plugin($name);
+        $renderer = $this->getView();
+        assert($renderer instanceof PhpRenderer);
+        $helper = $renderer->plugin($name);
+        assert(is_callable($helper));
         return $helper($element);
     }
 

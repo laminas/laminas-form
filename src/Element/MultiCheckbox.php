@@ -2,12 +2,12 @@
 
 namespace Laminas\Form\Element;
 
-use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
 
+use function assert;
 use function is_array;
 
 class MultiCheckbox extends Checkbox
@@ -52,6 +52,7 @@ class MultiCheckbox extends Checkbox
         // Update Explode validator haystack
         if ($this->validator instanceof ExplodeValidator) {
             $validator = $this->validator->getValidator();
+            assert($validator instanceof InArrayValidator);
             $validator->setHaystack($this->getValueOptionsValues());
         }
 
@@ -77,7 +78,7 @@ class MultiCheckbox extends Checkbox
      * - label_attributes: attributes to use when the label is rendered
      * - value_options: list of values and labels for the select options
      *
-     * @return MultiCheckbox|ElementInterface
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setOptions(iterable $options)

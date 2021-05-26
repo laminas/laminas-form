@@ -9,6 +9,7 @@ use Laminas\Form\View\Helper\FormRow as FormRowHelper;
 use Laminas\I18n\Translator\Translator;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Validator\Date;
+use Laminas\View\Resolver\TemplatePathStack;
 
 use function explode;
 use function get_class;
@@ -428,7 +429,9 @@ class FormRowTest extends AbstractCommonTestCase
         $element->setLabel('foolabel');
         $partial = 'formrow-partial.phtml';
 
-        $this->renderer->resolver()->addPath(__DIR__ . '/_templates');
+        $resolver = $this->renderer->resolver();
+        $this->assertInstanceOf(TemplatePathStack::class, $resolver);
+        $resolver->addPath(__DIR__ . '/_templates');
         $markup = $this->helper->__invoke($element, null, null, $partial);
         $this->assertStringContainsString('fooname', $markup);
         $this->assertStringContainsString('foolabel', $markup);

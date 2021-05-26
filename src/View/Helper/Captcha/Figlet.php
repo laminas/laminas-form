@@ -3,9 +3,11 @@
 namespace Laminas\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\Figlet as CaptchaAdapter;
+use Laminas\Form\Element\Captcha;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function assert;
 use function sprintf;
 
 class Figlet extends AbstractWord
@@ -18,6 +20,7 @@ class Figlet extends AbstractWord
      */
     public function render(ElementInterface $element)
     {
+        assert($element instanceof Captcha);
         $captcha = $element->getCaptcha();
 
         if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {

@@ -3,10 +3,12 @@
 namespace Laminas\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\ReCaptcha as CaptchaAdapter;
+use Laminas\Form\Element\Captcha;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\View\Helper\FormInput;
 
+use function assert;
 use function sprintf;
 
 class ReCaptcha extends FormInput
@@ -35,8 +37,8 @@ class ReCaptcha extends FormInput
      */
     public function render(ElementInterface $element)
     {
-        $attributes = $element->getAttributes();
-        $captcha    = $element->getCaptcha();
+        assert($element instanceof Captcha);
+        $captcha = $element->getCaptcha();
 
         if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(

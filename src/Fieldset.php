@@ -634,7 +634,7 @@ class Fieldset extends Element implements FieldsetInterface
             if (isset($values[$name])) {
                 $object = $values[$name];
 
-                if ($fieldset->allowObjectBinding($object)) {
+                if ($fieldset instanceof Fieldset && $fieldset->allowObjectBinding($object)) {
                     $fieldset->setObject($object);
                     $values[$name] = $fieldset->extract();
                 }

@@ -10,7 +10,6 @@ use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormElementManager;
 use Laminas\Form\FormInterface;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorPluginManager;
 use Laminas\Hydrator\ObjectProperty;
@@ -369,22 +368,18 @@ class FactoryTest extends TestCase
 
     public function testCanCreateHydratorFromArray()
     {
-        $hydratorType = class_exists(ClassMethodsHydrator::class)
-            ? ClassMethodsHydrator::class
-            : ClassMethods::class;
-
         $form = $this->factory->createForm([
             'name'     => 'foo',
             'hydrator' => [
-                'type'    => $hydratorType,
+                'type'    => ClassMethodsHydrator::class,
                 'options' => ['underscoreSeparatedKeys' => false],
             ],
         ]);
 
-        $this->assertInstanceOf(FormInterface::class, $form);
+        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $hydrator = $form->getHydrator();
 
-        $this->assertInstanceOf($hydratorType, $hydrator);
+        $this->assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
@@ -410,7 +405,7 @@ class FactoryTest extends TestCase
             'name'    => 'foo',
             'factory' => FormFactory::class,
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $factory = $form->getFormFactory();
         $this->assertInstanceOf(FormFactory::class, $factory);
     }
@@ -424,7 +419,7 @@ class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(FormInterface::class, $form);
+        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $factory = $form->getFormFactory();
         $this->assertInstanceOf(FormFactory::class, $factory);
     }
@@ -437,7 +432,7 @@ class FactoryTest extends TestCase
             'factory' => $factory,
         ]);
 
-        $this->assertInstanceOf(FormInterface::class, $form);
+        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $test = $form->getFormFactory();
         $this->assertSame($factory, $test);
     }
@@ -803,6 +798,7 @@ class FactoryTest extends TestCase
     public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected()
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
+        $this->assertInstanceOf(Fieldset::class, $fieldset);
         $this->assertSame(
             $fieldset->getFormFactory()->getFormElementManager(),
             $this->factory->getFormElementManager()

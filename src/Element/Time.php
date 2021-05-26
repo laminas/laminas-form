@@ -30,10 +30,8 @@ class Time extends DateTime
 
     /**
      * Retrieves a DateStepValidator configured for a Date Input type
-     *
-     * @return ValidatorInterface
      */
-    protected function getStepValidator()
+    protected function getStepValidator(): ValidatorInterface
     {
         $format    = $this->getFormat();
         $stepValue = $this->attributes['step'] ?? 60; // Seconds

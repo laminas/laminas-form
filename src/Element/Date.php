@@ -33,10 +33,8 @@ class Date extends DateTimeElement
 
     /**
      * Retrieves a DateStep Validator configured for a Date Input type
-     *
-     * @return ValidatorInterface
      */
-    protected function getStepValidator()
+    protected function getStepValidator(): ValidatorInterface
     {
         $format    = $this->getFormat();
         $stepValue = $this->attributes['step'] ?? 1; // Days

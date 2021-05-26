@@ -8,6 +8,7 @@ use Laminas\Form\Element\Collection;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\Fieldset;
+use Laminas\Form\FieldsetInterface;
 use Laminas\Form\Form;
 use Laminas\Hydrator\ArraySerializable;
 use Laminas\Hydrator\ArraySerializableHydrator;
@@ -58,13 +59,16 @@ class CollectionTest extends TestCase
 
     public function testCanRetrieveDefaultPlaceholder()
     {
-        $placeholder = $this->form->get('colors')->getTemplatePlaceholder();
+        $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
+        $placeholder = $collection->getTemplatePlaceholder();
         $this->assertEquals('__index__', $placeholder);
     }
 
     public function testCannotAllowNewElementsIfAllowAddIsFalse()
     {
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
 
         $this->assertTrue($collection->allowAdd());
         $collection->setAllowAdd(false);
@@ -86,6 +90,7 @@ class CollectionTest extends TestCase
     public function testCanAddNewElementsIfAllowAddIsTrue()
     {
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowAdd(true);
         $this->assertTrue($collection->allowAdd());
 
@@ -105,6 +110,7 @@ class CollectionTest extends TestCase
     public function testCanRemoveElementsIfAllowRemoveIsTrue()
     {
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
         $this->assertTrue($collection->allowRemove());
 
@@ -124,6 +130,7 @@ class CollectionTest extends TestCase
     public function testCanReplaceElementsIfAllowAddAndAllowRemoveIsTrue()
     {
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowAdd(true);
         $collection->setAllowRemove(true);
 
@@ -227,6 +234,7 @@ class CollectionTest extends TestCase
     public function testCanValidateFormWithCollectionWithTemplate()
     {
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
 
         $this->assertFalse($collection->shouldCreateTemplate());
         $collection->setShouldCreateTemplate(true);
@@ -263,6 +271,7 @@ class CollectionTest extends TestCase
         $this->expectException(DomainException::class);
 
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(false);
 
         $this->form->setData([
@@ -291,6 +300,7 @@ class CollectionTest extends TestCase
     public function testCanValidateLessThanSpecifiedCount()
     {
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
 
         $this->form->setData([
@@ -368,6 +378,7 @@ class CollectionTest extends TestCase
     public function testSetTargetElementNullRaisesException()
     {
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $this->expectException(InvalidArgumentException::class);
         $collection->setTargetElement(null);
     }
@@ -375,7 +386,8 @@ class CollectionTest extends TestCase
     public function testGetTargetElement()
     {
         $collection = $this->form->get('colors');
-        $element    = new Element('foo');
+        $this->assertInstanceOf(Collection::class, $collection);
+        $element = new Element('foo');
         $collection->setTargetElement($element);
 
         $this->assertInstanceOf(Element::class, $collection->getTargetElement());
@@ -392,8 +404,12 @@ class CollectionTest extends TestCase
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
+        $categories = $this->productFieldset->get('categories');
+        $this->assertInstanceOf(Collection::class, $categories);
+        $targetElement = $categories->getTargetElement();
+        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
         $originalObjectHash = spl_object_hash(
-            $this->productFieldset->get('categories')->getTargetElement()->getObject()
+            $targetElement->getObject()
         );
 
         $product = new Product();
@@ -420,7 +436,7 @@ class CollectionTest extends TestCase
         ]);
 
         $objectAfterExtractHash = spl_object_hash(
-            $this->productFieldset->get('categories')->getTargetElement()->getObject()
+            $targetElement->getObject()
         );
 
         $this->assertSame($originalObjectHash, $objectAfterExtractHash);
@@ -659,12 +675,14 @@ class CollectionTest extends TestCase
     public function testExtractDefaultIsEmptyArray()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
         $this->assertEquals([], $collection->extract());
     }
 
     public function testExtractThroughTargetElementHydrator()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
         $expected = [
@@ -678,13 +696,16 @@ class CollectionTest extends TestCase
     public function testExtractMaintainsTargetElementObject()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
-        $expected = $collection->getTargetElement()->getObject();
+        $targetElement = $collection->getTargetElement();
+        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
+        $expected = $targetElement->getObject();
 
         $collection->extract();
 
-        $test = $collection->getTargetElement()->getObject();
+        $test = $targetElement->getObject();
 
         $this->assertSame($expected, $test);
     }
@@ -692,6 +713,7 @@ class CollectionTest extends TestCase
     public function testExtractThroughCustomHydrator()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
         $mockHydrator = $this->createMock(HydratorInterface::class);
@@ -714,6 +736,7 @@ class CollectionTest extends TestCase
     public function testExtractFromTraversable()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
         $traversable = new ArrayObject($collection->getObject());
@@ -761,6 +784,7 @@ class CollectionTest extends TestCase
     protected function prepareForExtract(Collection $collection)
     {
         $targetElement = $collection->getTargetElement();
+        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
 
         $obj1 = new stdClass();
 
@@ -923,13 +947,10 @@ class CollectionTest extends TestCase
     public function testExtractFromTraversableImplementingToArrayThroughCollectionHydrator()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
 
         // this test is using a hydrator set on the collection
-        $collection->setHydrator(
-            class_exists(ArraySerializableHydrator::class)
-                ? new ArraySerializableHydrator()
-                : new ArraySerializable()
-        );
+        $collection->setHydrator(new ArraySerializableHydrator());
 
         $this->prepareForExtractWithCustomTraversable($collection);
 
@@ -944,9 +965,11 @@ class CollectionTest extends TestCase
     public function testExtractFromTraversableImplementingToArrayThroughTargetElementHydrator()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
 
         // this test is using a hydrator set on the target element of the collection
         $targetElement = $collection->getTargetElement();
+        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
         $targetElement->setHydrator(
             class_exists(ArraySerializableHydrator::class)
                 ? new ArraySerializableHydrator()
@@ -1013,10 +1036,8 @@ class CollectionTest extends TestCase
 
     public function testCanRemoveAllElementsIfAllowRemoveIsTrue()
     {
-        /**
-         * @var Collection $collection
-         */
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
         $collection->setCount(0);
 
@@ -1261,6 +1282,7 @@ class CollectionTest extends TestCase
         ];
 
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setCount(3);
         $collection->setObject($arrayCollection);
         $this->assertEquals(3, $collection->getCount());
@@ -1367,10 +1389,8 @@ class CollectionTest extends TestCase
 
     public function testCanRemoveMultipleElements()
     {
-        /**
-         * @var Collection $collection
-         */
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
         $collection->setCount(0);
 
@@ -1461,6 +1481,7 @@ class CollectionTest extends TestCase
         $data = new CustomTraversable(['blue', 'green']);
 
         $collection = $this->form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(false);
         $collection->populateValues($data);
 
@@ -1470,14 +1491,12 @@ class CollectionTest extends TestCase
     public function testSetObjectTraversable()
     {
         $collection = $this->form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
 
         // this test is using a hydrator set on the target element of the collection
         $targetElement = $collection->getTargetElement();
-        $targetElement->setHydrator(
-            class_exists(ArraySerializableHydrator::class)
-                ? new ArraySerializableHydrator()
-                : new ArraySerializable()
-        );
+        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
+        $targetElement->setHydrator(new ArraySerializableHydrator());
         $obj1 = new ArrayModel();
         $targetElement->setObject($obj1);
 

@@ -212,7 +212,7 @@ class Form extends Fieldset implements FormInterface
             $this->prepareElement($this);
         } else {
             foreach ($this->getIterator() as $elementOrFieldset) {
-                if ($elementOrFieldset instanceof FormInterface) {
+                if ($elementOrFieldset instanceof Form) {
                     $elementOrFieldset->prepare();
                 } elseif ($elementOrFieldset instanceof ElementPrepareAwareInterface) {
                     $elementOrFieldset->prepareElement($this);
@@ -235,7 +235,7 @@ class Form extends Fieldset implements FormInterface
         $name = $this->getName();
 
         foreach ($this->iterator as $elementOrFieldset) {
-            if ($form->wrapElements()) {
+            if ($form instanceof Form && $form->wrapElements()) {
                 $elementOrFieldset->setName($name . '[' . $elementOrFieldset->getName() . ']');
             }
 
@@ -764,8 +764,11 @@ class Form extends Fieldset implements FormInterface
         $formFactory  = $this->getFormFactory();
         $inputFactory = $formFactory->getInputFilterFactory();
 
-        if ($fieldset instanceof Collection && $fieldset->getTargetElement() instanceof FieldsetInterface) {
-            $elements = $fieldset->getTargetElement()->getElements();
+        if (
+            $fieldset instanceof Collection
+            && ($targetElement = $fieldset->getTargetElement()) instanceof FieldsetInterface
+        ) {
+            $elements = $targetElement->getElements();
         } else {
             $elements = $fieldset->getElements();
         }
@@ -840,12 +843,13 @@ class Form extends Fieldset implements FormInterface
                         // Add input filter for collections via getInputFilterSpecification()
                         if (
                             $childFieldset instanceof Collection
-                            && $childFieldset->getTargetElement() instanceof InputFilterProviderInterface
-                            && $childFieldset->getTargetElement()->getInputFilterSpecification()
+                            && null !== ($targetElement = $childFieldset->getTargetElement())
+                            && $targetElement instanceof InputFilterProviderInterface
+                            && [] !== $targetElement->getInputFilterSpecification()
                         ) {
                             $collectionContainerFilter = new CollectionInputFilter();
 
-                            $spec   = $childFieldset->getTargetElement()->getInputFilterSpecification();
+                            $spec   = $targetElement->getInputFilterSpecification();
                             $filter = $inputFactory->createInputFilter($spec);
 
                             $collectionContainerFilter->setInputFilter($filter);
@@ -858,7 +862,7 @@ class Form extends Fieldset implements FormInterface
                             }
 
                             // Add child elements from target element
-                            $childFieldset = $childFieldset->getTargetElement();
+                            $childFieldset = $targetElement;
                         } else {
                             $inputFilter->add(new InputFilter(), $name);
                         }
@@ -960,7 +964,7 @@ class Form extends Fieldset implements FormInterface
      */
     protected function extract()
     {
-        if (null !== $this->baseFieldset) {
+        if ($this->baseFieldset instanceof Fieldset) {
             $name          = $this->baseFieldset->getName();
             $values[$name] = $this->baseFieldset->extract();
         } else {

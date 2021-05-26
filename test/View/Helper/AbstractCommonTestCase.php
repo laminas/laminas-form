@@ -5,8 +5,9 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\ConfigProvider;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\View\Helper\Doctype;
+use Laminas\View\Helper\EscapeHtml;
+use Laminas\View\Helper\EscapeHtmlAttr;
 use Laminas\View\Renderer\PhpRenderer;
-use Laminas\View\Renderer\RendererInterface;
 use PHPUnit\Framework\TestCase;
 
 use function extension_loaded;
@@ -20,7 +21,7 @@ abstract class AbstractCommonTestCase extends TestCase
     /** @var AbstractHelper */
     public $helper;
 
-    /** @var RendererInterface */
+    /** @var PhpRenderer */
     public $renderer;
 
     protected function setUp(): void
@@ -62,6 +63,7 @@ abstract class AbstractCommonTestCase extends TestCase
         }
 
         $escape = $this->renderer->plugin('escapehtml');
+        $this->assertInstanceOf(EscapeHtml::class, $escape);
         $this->helper->setEncoding('iso-8859-1');
         $this->assertEquals('iso-8859-1', $escape->getEncoding());
     }
@@ -73,6 +75,7 @@ abstract class AbstractCommonTestCase extends TestCase
         }
 
         $escape = $this->renderer->plugin('escapehtmlattr');
+        $this->assertInstanceOf(EscapeHtmlAttr::class, $escape);
         $this->helper->setEncoding('iso-8859-1');
         $this->assertEquals('iso-8859-1', $escape->getEncoding());
     }

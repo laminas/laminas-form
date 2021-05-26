@@ -84,7 +84,7 @@ class Element implements
     /**
      * Get value for name
      *
-     * @return string|int
+     * @return null|string
      */
     public function getName()
     {
@@ -188,7 +188,7 @@ class Element implements
     public function getAttribute($key)
     {
         if (! isset($this->attributes[$key])) {
-            return;
+            return null;
         }
 
         return $this->attributes[$key];

@@ -3,11 +3,13 @@
 namespace Laminas\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
+use Laminas\Form\Element\Captcha;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\View\Helper\FormInput;
 
 use function array_key_exists;
+use function assert;
 use function in_array;
 use function is_array;
 use function method_exists;
@@ -70,8 +72,8 @@ abstract class AbstractWord extends FormInput
             ));
         }
 
-        $attributes = $element->getAttributes();
-        $captcha    = $element->getCaptcha();
+        assert($element instanceof Captcha);
+        $captcha = $element->getCaptcha();
 
         if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
             throw new Exception\DomainException(sprintf(
@@ -81,8 +83,9 @@ abstract class AbstractWord extends FormInput
             ));
         }
 
-        $hidden = $this->renderCaptchaHidden($captcha, $attributes);
-        $input  = $this->renderCaptchaInput($captcha, $attributes);
+        $attributes = $element->getAttributes();
+        $hidden     = $this->renderCaptchaHidden($captcha, $attributes);
+        $input      = $this->renderCaptchaInput($captcha, $attributes);
 
         return $hidden . $input;
     }

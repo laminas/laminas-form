@@ -28,10 +28,8 @@ class DateTimeLocal extends DateTime
 
     /**
      * Retrieves a DateStepValidator configured for a Date Input type
-     *
-     * @return ValidatorInterface
      */
-    protected function getStepValidator()
+    protected function getStepValidator(): ValidatorInterface
     {
         $stepValue = $this->attributes['step'] ?? 1; // Minutes
 

@@ -1384,8 +1384,9 @@ class FormTest extends TestCase
 
         $this->form->setInputFilter($inputFilter);
 
-        $this->assertInstanceOf(CollectionInputFilter::class, $this->form->getInputFilter()->get('items'));
-        $this->assertCount(1, $this->form->getInputFilter()->get('items')->getInputFilter()->getInputs());
+        $itemsInputFilter = $this->form->getInputFilter()->get('items');
+        $this->assertInstanceOf(CollectionInputFilter::class, $itemsInputFilter);
+        $this->assertCount(1, $itemsInputFilter->getInputFilter()->getInputs());
     }
 
     public function testFormValidationCanHandleNonConsecutiveKeysOfCollectionInData()
@@ -1793,11 +1794,12 @@ class FormTest extends TestCase
             ],
         ];
 
-        $factory    = new Factory();
-        $this->form = $factory->createForm($spec);
-        $this->form->setPreferFormInputFilter(true);
+        $factory = new Factory();
+        $form    = $factory->createForm($spec);
+        $this->assertInstanceOf(Form::class, $form);
+        $form->setPreferFormInputFilter(true);
         $this->assertFalse(
-            $this->form->getInputFilter()->get('element')->isRequired()
+            $form->getInputFilter()->get('element')->isRequired()
         );
     }
 
@@ -1826,6 +1828,7 @@ class FormTest extends TestCase
                     'prefer_form_input_filter' => $flag,
                 ],
             ]);
+            $this->assertInstanceOf(Form::class, $form);
             $this->assertSame($flag, $form->getPreferFormInputFilter());
         }
     }
@@ -2015,13 +2018,10 @@ class FormTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(
-            Input::class,
-            $this->form->getInputFilter()
-                ->get('nested_fieldset_with_input_filter_provider')
-                ->getInputFilter()
-                ->get('foo')
-        );
+        $nestedInputFilter = $this->form->getInputFilter()
+            ->get('nested_fieldset_with_input_filter_provider');
+        $this->assertInstanceOf(CollectionInputFilter::class, $nestedInputFilter);
+        $this->assertInstanceOf(Input::class, $nestedInputFilter->getInputFilter()->get('foo'));
     }
 
     public function testFormElementValidatorsMergeIntoAppliedInputFilter()
@@ -2157,9 +2157,10 @@ class FormTest extends TestCase
             ],
         ];
 
-        $factory    = new Factory();
-        $this->form = $factory->createForm($spec);
-        $this->assertFalse($this->form->useInputFilterDefaults());
+        $factory = new Factory();
+        $form    = $factory->createForm($spec);
+        $this->assertInstanceOf(Form::class, $form);
+        $this->assertFalse($form->useInputFilterDefaults());
     }
 
     /**
@@ -2265,6 +2266,7 @@ class FormTest extends TestCase
     {
         $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
         $inputFilter        = $this->form->getInputFilter();
+        $this->assertInstanceOf(InputFilter::class, $inputFilter);
         $this->assertSame($inputFilterFactory, $inputFilter->getFactory());
     }
 
@@ -2278,6 +2280,7 @@ class FormTest extends TestCase
         $this->form->bind(new TestAsset\Entity\Cat());
         $inputFilterFactory = $this->form->getFormFactory()->getInputFilterFactory();
         $inputFilter        = $this->form->getInputFilter();
+        $this->assertInstanceOf(InputFilter::class, $inputFilter);
         $this->assertSame($inputFilterFactory, $inputFilter->getFactory());
     }
 

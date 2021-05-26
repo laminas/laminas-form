@@ -3,7 +3,7 @@
 namespace Laminas\Form\View\Helper;
 
 use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
-use Laminas\Form\ElementInterface;
+use Laminas\Form\Element\Captcha;
 use Laminas\Form\Exception;
 
 use function method_exists;
@@ -18,7 +18,7 @@ class FormCaptcha extends AbstractHelper
      *
      * @return string|FormCaptcha
      */
-    public function __invoke(?ElementInterface $element = null)
+    public function __invoke(?Captcha $element = null)
     {
         if (! $element) {
             return $this;
@@ -34,7 +34,7 @@ class FormCaptcha extends AbstractHelper
      *                                   not implement plugin().
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(Captcha $element)
     {
         $captcha = $element->getCaptcha();
 

@@ -311,7 +311,7 @@ class FormElementManager extends AbstractPluginManager
      */
     public function injectFactory(ContainerInterface $container, $instance)
     {
-        if (! $instance instanceof FormFactoryAwareInterface) {
+        if (! $instance instanceof Fieldset) {
             return;
         }
 
@@ -420,10 +420,9 @@ class FormElementManager extends AbstractPluginManager
      * constructor if not null and a non-empty array.
      *
      * @param  string $name
-     * @param  string|array<string, mixed> $options
      * @return mixed
      */
-    public function get($name, $options = [])
+    public function get($name, ?array $options = null)
     {
         if (is_string($options)) {
             $options = ['name' => $options];

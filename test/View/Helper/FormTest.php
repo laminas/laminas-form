@@ -7,6 +7,7 @@ use Laminas\Form\Element\Submit;
 use Laminas\Form\Form;
 use Laminas\Form\View\Helper\Form as FormHelper;
 use Laminas\View\Helper\Doctype;
+use Laminas\View\Helper\EscapeHtmlAttr;
 use LaminasTest\Form\TestAsset\CityFieldset;
 
 use function sprintf;
@@ -57,6 +58,7 @@ class FormTest extends AbstractCommonTestCase
         $markup = $this->helper->openTag($form);
 
         $escape = $this->renderer->plugin('escapehtmlattr');
+        $this->assertInstanceOf(EscapeHtmlAttr::class, $escape);
         foreach ($attributes as $attribute => $value) {
             $this->assertStringContainsString(sprintf('%s="%s"', $attribute, $escape($value)), $markup);
         }

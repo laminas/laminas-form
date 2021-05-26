@@ -2,6 +2,7 @@
 
 namespace LaminasTest\Form\View\Helper;
 
+use Laminas\Form\Element\Collection;
 use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
 use Laminas\I18n\Translator\Translator;
 use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
@@ -37,6 +38,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(true);
 
         $markup = $this->helper->render($collection);
@@ -48,6 +50,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(false);
 
         $markup = $this->helper->render($collection);
@@ -83,6 +86,7 @@ class FormCollectionTest extends AbstractCommonTestCase
         $form = $this->getForm();
 
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(false);
 
         $elementHelper = new CustomViewHelper();
@@ -157,6 +161,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(true);
 
         $markup = $this->helper->renderTemplate($collection);
@@ -289,6 +294,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(true);
         $this->helper->setShouldWrap(true);
         $this->helper->setWrapper('<div>%3$s%2$s%1$s</div>');
@@ -318,6 +324,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(true);
         $this->helper->setTemplateWrapper('<div class="foo">%s</div>');
 
@@ -331,6 +338,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(true);
         $this->helper->setShouldWrap(false);
         $this->helper->setTemplateWrapper('<div class="foo">%s</div>');
@@ -345,6 +353,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('fieldsets');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setShouldCreateTemplate(true);
         $this->helper->setShouldWrap(true);
         $this->helper->setWrapper('<div>%2$s%1$s%3$s</div>');
@@ -385,6 +394,7 @@ class FormCollectionTest extends AbstractCommonTestCase
     {
         $form       = $this->getForm();
         $collection = $form->get('colors');
+        $this->assertInstanceOf(Collection::class, $collection);
         $collection->setLabel('<strong>Some label</strong>');
         $collection->setLabelOptions(['disable_html_escape' => true]);
         $markup = $this->helper->render($collection);
