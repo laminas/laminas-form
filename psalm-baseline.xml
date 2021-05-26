@@ -85,9 +85,6 @@
       <code>$allowEmpty</code>
       <code>$this-&gt;allowEmpty</code>
     </MixedAssignment>
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -134,11 +131,6 @@
       <code>getAttributes</code>
     </UndefinedMethod>
   </file>
-  <file src="src/Annotation/Attributes.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
       <code>new $requestedName()</code>
@@ -182,18 +174,12 @@
       <code>$this-&gt;options</code>
       <code>$this-&gt;targetObject</code>
     </MixedAssignment>
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/ContinueIfEmpty.php">
     <MixedAssignment occurrences="2">
       <code>$continueIfEmpty</code>
       <code>$this-&gt;continueIfEmpty</code>
     </MixedAssignment>
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/ElementAnnotationsListener.php">
     <MixedArgument occurrences="7">
@@ -305,27 +291,12 @@
       <code>(bool) $annotation-&gt;getRequired()</code>
     </RedundantCast>
   </file>
-  <file src="src/Annotation/ErrorMessage.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Exclude.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
   <file src="src/Annotation/Filter.php">
     <MixedAssignment occurrences="3">
       <code>$this-&gt;name</code>
       <code>$this-&gt;options</code>
       <code>$this-&gt;priority</code>
     </MixedAssignment>
-  </file>
-  <file src="src/Annotation/Flags.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/FormAnnotationsListener.php">
     <MixedArrayAssignment occurrences="8">
@@ -354,56 +325,17 @@
       <code>$this-&gt;options</code>
       <code>$this-&gt;type</code>
     </MixedAssignment>
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Input.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/InputFilter.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
     </DocblockTypeContradiction>
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Instance.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Name.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Options.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/Required.php">
     <MixedAssignment occurrences="2">
       <code>$required</code>
       <code>$this-&gt;required</code>
     </MixedAssignment>
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Type.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/ValidationGroup.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/Validator.php">
     <MixedAssignment occurrences="4">
@@ -4311,128 +4243,6 @@
       <code>AddressFieldset</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="test/TestAsset/Annotation/ClassEntity.php">
-    <InvalidAttribute occurrences="7">
-      <code>Annotation\Attributes</code>
-      <code>Annotation\Attributes</code>
-      <code>Annotation\Exclude</code>
-      <code>Annotation\InputFilter</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\ValidationGroup</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/ComplexEntity.php">
-    <DeprecatedClass occurrences="1">
-      <code>Annotation\AllowEmpty()</code>
-    </DeprecatedClass>
-    <InvalidAttribute occurrences="12">
-      <code>Annotation\AllowEmpty</code>
-      <code>Annotation\Attributes</code>
-      <code>Annotation\Attributes</code>
-      <code>Annotation\Attributes</code>
-      <code>Annotation\Attributes</code>
-      <code>Annotation\ErrorMessage</code>
-      <code>Annotation\Exclude</code>
-      <code>Annotation\Flags</code>
-      <code>Annotation\Hydrator</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Required</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/Entity.php">
-    <InvalidAttribute occurrences="3">
-      <code>Annotation\Attributes</code>
-      <code>Annotation\ErrorMessage</code>
-      <code>Annotation\Required</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityComposingAnEntity.php">
-    <InvalidAttribute occurrences="3">
-      <code>Annotation\ComposedObject</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityComposingMultipleEntities.php">
-    <InvalidAttribute occurrences="3">
-      <code>Annotation\ComposedObject</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityUsingComposedObjectAndOptions.php">
-    <InvalidAttribute occurrences="13">
-      <code>Annotation\ComposedObject</code>
-      <code>Annotation\ComposedObject</code>
-      <code>Annotation\ComposedObject</code>
-      <code>Annotation\ComposedObject</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Options</code>
-      <code>Annotation\Options</code>
-      <code>Annotation\Options</code>
-      <code>Annotation\Options</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityUsingInstanceProperty.php">
-    <InvalidAttribute occurrences="4">
-      <code>Annotation\Hydrator</code>
-      <code>Annotation\Instance</code>
-      <code>Annotation\Options</code>
-      <code>Annotation\Type</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityUsingOptions.php">
-    <InvalidAttribute occurrences="2">
-      <code>Annotation\Options</code>
-      <code>Annotation\Options</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityWithHydratorArray.php">
-    <InvalidAttribute occurrences="4">
-      <code>Annotation\Attributes</code>
-      <code>Annotation\Hydrator</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Options</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityWithInputFilterAnnotation.php">
-    <InvalidAttribute occurrences="4">
-      <code>Annotation\Attributes</code>
-      <code>Annotation\ErrorMessage</code>
-      <code>Annotation\InputFilter</code>
-      <code>Annotation\Required</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityWithInputFilterInput.php">
-    <InvalidAttribute occurrences="1">
-      <code>Annotation\Input</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/EntityWithTypeAsElementName.php">
-    <InvalidAttribute occurrences="2">
-      <code>Annotation\Name</code>
-      <code>Annotation\Required</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/ExtendedEntity.php">
-    <InvalidAttribute occurrences="3">
-      <code>Annotation\Attributes</code>
-      <code>Annotation\Flags</code>
-      <code>Annotation\Name</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/FieldsetOrderEntity.php">
-    <InvalidAttribute occurrences="2">
-      <code>Annotation\Type</code>
-      <code>Annotation\Type</code>
-    </InvalidAttribute>
-  </file>
   <file src="test/TestAsset/Annotation/Form.php">
     <PropertyNotSetInConstructor occurrences="4">
       <code>Form</code>
@@ -4450,52 +4260,10 @@
       <code>InputFilterInput</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="test/TestAsset/Annotation/LegacyComposedObjectAnnotation.php">
-    <InvalidAttribute occurrences="3">
-      <code>Annotation\ComposedObject</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Name</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/LegacyFilterAnnotation.php">
-    <InvalidAttribute occurrences="1">
-      <code>Annotation\Required</code>
-    </InvalidAttribute>
-  </file>
   <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
-    <InvalidAttribute occurrences="3">
-      <code>Annotation\Hydrator</code>
-      <code>Annotation\Name</code>
-      <code>Annotation\Options</code>
-    </InvalidAttribute>
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/LegacyValidatorAnnotation.php">
-    <InvalidAttribute occurrences="1">
-      <code>Annotation\Required</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/SampleEntity.php">
-    <DeprecatedClass occurrences="2">
-      <code>Annotation\AllowEmpty(true)</code>
-      <code>Annotation\ContinueIfEmpty(true)</code>
-    </DeprecatedClass>
-    <InvalidAttribute occurrences="5">
-      <code>Annotation\AllowEmpty</code>
-      <code>Annotation\Attributes</code>
-      <code>Annotation\ContinueIfEmpty</code>
-      <code>Annotation\ErrorMessage</code>
-      <code>Annotation\Required</code>
-    </InvalidAttribute>
-  </file>
-  <file src="test/TestAsset/Annotation/TypedEntity.php">
-    <InvalidAttribute occurrences="3">
-      <code>Annotation\Name</code>
-      <code>Annotation\Type</code>
-      <code>Annotation\Type</code>
-    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/Annotation/UrlValidator.php">
     <InvalidReturnType occurrences="2">
@@ -5365,16 +5133,14 @@
       <code>$markup</code>
       <code>$markup</code>
     </MixedArgument>
-    <MixedAssignment occurrences="4">
+    <MixedAssignment occurrences="5">
+      <code>$element</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
     </MixedAssignment>
-    <MixedOperand occurrences="7">
-      <code>$element-&gt;getAttribute('id')</code>
-      <code>$element-&gt;getAttribute('id')</code>
-      <code>$element-&gt;getAttribute('id')</code>
+    <MixedOperand occurrences="4">
       <code>$element-&gt;getAttribute('id')</code>
       <code>$element-&gt;getAttribute('id')</code>
       <code>$element-&gt;getAttribute('id')</code>
@@ -5387,8 +5153,7 @@
     <PossiblyFalseOperand occurrences="1">
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
     </PossiblyFalseOperand>
-    <UndefinedMethod occurrences="5">
-      <code>render</code>
+    <UndefinedMethod occurrences="4">
       <code>render</code>
       <code>render</code>
       <code>render</code>
