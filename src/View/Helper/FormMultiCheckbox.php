@@ -118,12 +118,8 @@ class FormMultiCheckbox extends FormInput
         $rendered = $this->renderOptions($element, $options, $selectedOptions, $attributes);
 
         // Render hidden element
-        $useHiddenElement = method_exists($element, 'useHiddenElement') && $element->useHiddenElement()
-            ? $element->useHiddenElement()
-            : $this->useHiddenElement;
-
-        if ($useHiddenElement) {
-            $rendered = $this->renderHiddenElement($element, $attributes) . $rendered;
+        if ($element->useHiddenElement()) {
+            $rendered = $this->renderHiddenElement($element) . $rendered;
         }
 
         return $rendered;
@@ -250,16 +246,13 @@ class FormMultiCheckbox extends FormInput
     /**
      * Render a hidden element for empty/unchecked value
      *
-     * @param  array                $attributes
      * @return string
      */
-    protected function renderHiddenElement(MultiCheckboxElement $element, array $attributes)
+    protected function renderHiddenElement(MultiCheckboxElement $element)
     {
         $closingBracket = $this->getInlineClosingBracket();
 
-        $uncheckedValue = $element->getUncheckedValue()
-            ? $element->getUncheckedValue()
-            : $this->uncheckedValue;
+        $uncheckedValue = $element->getUncheckedValue() ?: $this->uncheckedValue;
 
         $hiddenAttributes = [
             'name'  => $element->getName(),

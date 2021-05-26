@@ -79,11 +79,11 @@ class CheckboxTest extends TestCase
     public function testIntegerCheckedValue()
     {
         $element = new CheckboxElement();
-        $element->setCheckedValue(123);
+        $element->setCheckedValue('123');
 
         $this->assertEquals(false, $element->isChecked());
 
-        $element->setAttribute('value', 123);
+        $element->setAttribute('value', '123');
         $this->assertEquals(true, $element->isChecked());
     }
 

@@ -25,21 +25,48 @@
     <MoreSpecificImplementedParamType occurrences="1">
       <code>$object</code>
     </MoreSpecificImplementedParamType>
+    <TooManyArguments occurrences="1">
+      <code>bindValues</code>
+    </TooManyArguments>
   </file>
   <file src="src/Element/DateSelect.php">
     <MoreSpecificImplementedParamType occurrences="1">
       <code>$value</code>
     </MoreSpecificImplementedParamType>
   </file>
+  <file src="src/Factory.php">
+    <TooManyArguments occurrences="1">
+      <code>setValidationGroup</code>
+    </TooManyArguments>
+  </file>
   <file src="src/Fieldset.php">
     <MoreSpecificImplementedParamType occurrences="1">
       <code>$object</code>
     </MoreSpecificImplementedParamType>
+    <TooManyArguments occurrences="1">
+      <code>bindValues</code>
+    </TooManyArguments>
+  </file>
+  <file src="src/Form.php">
+    <TooManyArguments occurrences="1">
+      <code>bindValues</code>
+    </TooManyArguments>
   </file>
   <file src="src/FormElementManager.php">
     <ParamNameMismatch occurrences="1">
       <code>$name</code>
     </ParamNameMismatch>
+  </file>
+  <file src="src/View/Helper/Form.php">
+    <UndefinedMagicMethod occurrences="2">
+      <code>formCollection</code>
+      <code>formRow</code>
+    </UndefinedMagicMethod>
+  </file>
+  <file src="src/View/Helper/FormDateTimeSelect.php">
+    <ImplementedParamTypeMismatch occurrences="1">
+      <code>$timeType</code>
+    </ImplementedParamTypeMismatch>
   </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">

@@ -124,7 +124,7 @@ class FormDateTimeSelectTest extends AbstractCommonTestCase
         ]);
 
         $element->setShouldShowSeconds(false);
-        $element->shouldRenderDelimiters(true);
+        $element->setShouldRenderDelimiters(true);
         $markup = $this->helper->__invoke($element);
 
         // the last $markup char should be the '>' of the minutes  html select

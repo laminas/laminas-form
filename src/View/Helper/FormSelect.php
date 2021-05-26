@@ -11,7 +11,6 @@ use Laminas\Stdlib\ArrayUtils;
 use function array_key_exists;
 use function array_map;
 use function array_merge;
-use function assert;
 use function implode;
 use function is_array;
 use function is_scalar;
@@ -108,7 +107,7 @@ class FormSelect extends AbstractHelper
         }
 
         $name = $element->getName();
-        if (empty($name) && $name !== 0) {
+        if ($name === null || $name === '') {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has an assigned name; none discovered',
                 __METHOD__
@@ -137,11 +136,7 @@ class FormSelect extends AbstractHelper
         );
 
         // Render hidden element
-        $useHiddenElement = method_exists($element, 'useHiddenElement')
-            && method_exists($element, 'getUnselectedValue')
-            && $element->useHiddenElement();
-
-        if ($useHiddenElement) {
+        if ($element->useHiddenElement()) {
             $rendered = $this->renderHiddenElement($element) . $rendered;
         }
 
@@ -307,10 +302,9 @@ class FormSelect extends AbstractHelper
     /**
      * @return FormHidden|string
      */
-    protected function renderHiddenElement(ElementInterface $element)
+    protected function renderHiddenElement(SelectElement $element)
     {
         $hiddenElement = new Hidden($element->getName());
-        assert(method_exists($element, 'getUnselectedValue'));
         $hiddenElement->setValue($element->getUnselectedValue());
 
         return $this->getFormHiddenHelper()->__invoke($hiddenElement);

@@ -131,7 +131,7 @@ class FormButton extends FormInput
 
         $element = $attributesOrElement;
         $name    = $element->getName();
-        if (empty($name) && $name !== 0) {
+        if ($name === null || $name === '') {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has an assigned name; none discovered',
                 __METHOD__

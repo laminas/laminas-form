@@ -67,12 +67,6 @@ class ImageTest extends AbstractCommonTestCase
      */
     protected function tearDown(): void
     {
-        // remove captcha images
-        if (! isset($this->testDir)) {
-            parent::tearDown();
-            return;
-        }
-
         foreach (new DirectoryIterator($this->testDir) as $file) {
             if (! $file->isDot() && ! $file->isDir()) {
                 unlink($file->getPathname());

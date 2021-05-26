@@ -18,6 +18,7 @@ use Traversable;
 use function array_key_exists;
 use function array_keys;
 use function array_shift;
+use function assert;
 use function func_get_args;
 use function func_num_args;
 use function get_class;
@@ -363,9 +364,7 @@ class Form extends Fieldset implements FormInterface
 
         // If there is a base fieldset, only hydrate beginning from the base fieldset
         if ($this->baseFieldset !== null) {
-            $data         = array_key_exists($this->baseFieldset->getName(), $data)
-                ? $data[$this->baseFieldset->getName()]
-                : [];
+            $data         = $data[$this->baseFieldset->getName()] ?? [];
             $this->object = $this->baseFieldset->bindValues(
                 $data,
                 $validationGroup[$this->baseFieldset->getName()] ?? []
@@ -616,10 +615,10 @@ class Form extends Fieldset implements FormInterface
      * Prepare the validation group in case Collection elements were used (this function also handle
      * the case where elements could have been dynamically added or removed from a collection using JavaScript)
      *
-     * @param array             $data
-     * @param array             $validationGroup
+     * @param array $data
+     * @param array $validationGroup
      */
-    protected function prepareValidationGroup(FieldsetInterface $formOrFieldset, array $data, array &$validationGroup)
+    protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup)
     {
         foreach ($validationGroup as $key => &$value) {
             if (! $formOrFieldset->has($key)) {
@@ -964,7 +963,8 @@ class Form extends Fieldset implements FormInterface
      */
     protected function extract()
     {
-        if ($this->baseFieldset instanceof Fieldset) {
+        if ($this->baseFieldset !== null) {
+            assert($this->baseFieldset instanceof Fieldset);
             $name          = $this->baseFieldset->getName();
             $values[$name] = $this->baseFieldset->extract();
         } else {

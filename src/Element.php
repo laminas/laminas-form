@@ -51,7 +51,7 @@ class Element implements
     public function __construct($name = null, iterable $options = [])
     {
         if (null !== $name) {
-            $this->setName($name);
+            $this->setName((string) $name);
         }
 
         if (! empty($options)) {

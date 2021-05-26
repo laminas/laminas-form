@@ -369,7 +369,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $required              = (bool) $annotation->getRequired();
+        $required              = $annotation->getRequired();
         $inputSpec             = $e->getParam('inputSpec');
         $inputSpec['required'] = $required;
 

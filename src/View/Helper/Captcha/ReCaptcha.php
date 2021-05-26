@@ -50,7 +50,7 @@ class ReCaptcha extends FormInput
 
         $name = $element->getName();
 
-        $markup = $captcha->getService()->getHtml($name);
+        $markup = $captcha->getService()->getHtml();
         $hidden = $this->renderHiddenInput($name);
 
         return $hidden . $markup;

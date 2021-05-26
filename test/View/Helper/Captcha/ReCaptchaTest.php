@@ -74,6 +74,6 @@ class ReCaptchaTest extends AbstractCommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString($this->captcha->getService()->getHtml($element->getName()), $markup);
+        $this->assertStringContainsString($this->captcha->getService()->getHtml(), $markup);
     }
 }

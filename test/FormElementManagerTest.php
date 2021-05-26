@@ -208,13 +208,8 @@ class FormElementManagerTest extends TestCase
         $r->setAccessible(true);
         $factories = $r->getValue($this->manager);
 
-        if (method_exists($this->manager, 'configure')) {
-            $this->assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
-            $this->assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
-        } else {
-            $this->assertArrayHasKey('laminastestformtestassetelementwithfilter', $factories);
-            $this->assertEquals(ElementFactory::class, $factories['laminastestformtestassetelementwithfilter']);
-        }
+        $this->assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
+        $this->assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
     }
 
     public function testAllAliasesShouldBeCanonicalized()
