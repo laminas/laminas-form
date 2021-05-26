@@ -944,10 +944,13 @@ class Form extends Fieldset implements FormInterface
      * {@inheritDoc}
      *
      * @param bool $onlyBase
-     * @param ArrayObject|array $data
      */
-    public function populateValues($data, $onlyBase = false)
+    public function populateValues(iterable $data, $onlyBase = false)
     {
+        if ($data instanceof Traversable) {
+            $data = ArrayUtils::iteratorToArray($data);
+        }
+
         if ($onlyBase && $this->baseFieldset !== null) {
             $name = $this->baseFieldset->getName();
             if (array_key_exists($name, $data)) {
