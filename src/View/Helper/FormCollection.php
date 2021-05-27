@@ -8,6 +8,7 @@ use Laminas\Form\Element\Collection as CollectionElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\LabelAwareInterface;
+use Laminas\View\Helper\Doctype;
 use Laminas\View\Helper\HelperInterface;
 use RuntimeException;
 
@@ -18,6 +19,15 @@ use function sprintf;
 
 class FormCollection extends AbstractHelper
 {
+    /**
+     * Attributes valid for this tag (form)
+     *
+     * @var array
+     */
+    protected $validTagAttributes = [
+        'name' => true,
+    ];
+
     /**
      * If set to true, collections are automatically wrapped around a fieldset
      *
@@ -66,6 +76,12 @@ class FormCollection extends AbstractHelper
      * @var HelperInterface
      */
     protected $fieldsetHelper;
+
+    /** @var array */
+    private $doctypesAllowedToHaveNameAttribute = [
+        Doctype::HTML5  => true,
+        Doctype::XHTML5 => true,
+    ];
 
     /**
      * Invoke helper as function
@@ -118,8 +134,10 @@ class FormCollection extends AbstractHelper
         // Every collection is wrapped by a fieldset if needed
         if ($this->shouldWrap) {
             $attributes = $element->getAttributes();
-            unset($attributes['name']);
-            $attributesString = $attributes ? ' ' . $this->createAttributesString($attributes) : '';
+            if (! isset($this->doctypesAllowedToHaveNameAttribute[$this->getDoctype()])) {
+                unset($attributes['name']);
+            }
+            $attributesString = $attributes !== [] ? ' ' . $this->createAttributesString($attributes) : '';
 
             $label  = $element->getLabel();
             $legend = '';

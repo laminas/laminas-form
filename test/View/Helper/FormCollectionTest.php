@@ -421,27 +421,44 @@ class FormCollectionTest extends AbstractCommonTestCase
         $method->invokeArgs(new FormCollectionHelper(), []);
     }
 
-    public function testRenderCollectionWithNameAttributeAndDoctypeHtml5()
-    {
-        $this->helper->setDoctype(Doctype::HTML5);
+    /**
+     * @dataProvider provideDoctypesAndPermitFlagForNameAttribute
+     */
+    public function testRenderCollectionWithNameAttributeAndDoctypeHtml5(
+        string $doctype,
+        bool $allowsNameAttribute
+    ): void {
+        $this->helper->setDoctype($doctype);
 
-        $form = $this->getForm();
+        $form       = $this->getForm();
         $collection = $form->get('colors');
         $collection->setAttribute('name', 'foo');
 
         $markup = $this->helper->render($collection);
-        $this->assertStringContainsString('<fieldset name="foo">', $markup);
+        if ($allowsNameAttribute) {
+            $this->assertStringContainsString('<fieldset name="foo">', $markup);
+        } else {
+            $this->assertStringContainsString('<fieldset>', $markup);
+        }
     }
 
-    public function testRenderCollectionWithNameAttributeAndDoctypeXhtml1()
+    public function provideDoctypesAndPermitFlagForNameAttribute(): array
     {
-        $this->helper->setDoctype(Doctype::XHTML1_STRICT);
-
-        $form = $this->getForm();
-        $collection = $form->get('colors');
-        $collection->setAttribute('name', 'foo');
-
-        $markup = $this->helper->render($collection);
-        $this->assertStringContainsString('<fieldset>', $markup);
+        return [
+            [Doctype::XHTML11,             false],
+            [Doctype::XHTML1_STRICT,       false],
+            [Doctype::XHTML1_TRANSITIONAL, false],
+            [Doctype::XHTML1_FRAMESET,     false],
+            [Doctype::XHTML1_RDFA,         false],
+            [Doctype::XHTML1_RDFA11,       false],
+            [Doctype::XHTML_BASIC1,        false],
+            [Doctype::XHTML5,              true],
+            [Doctype::HTML4_STRICT,        false],
+            [Doctype::HTML4_LOOSE,         false],
+            [Doctype::HTML4_FRAMESET,      false],
+            [Doctype::HTML5,               true],
+            [Doctype::CUSTOM_XHTML,        false],
+            [Doctype::CUSTOM,              false],
+        ];
     }
 }
