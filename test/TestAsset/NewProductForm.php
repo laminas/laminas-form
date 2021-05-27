@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Form;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
-
-use function class_exists;
 
 class NewProductForm extends Form
 {
@@ -18,11 +15,7 @@ class NewProductForm extends Form
 
         $this
             ->setAttribute('method', 'post')
-            ->setHydrator(
-                class_exists(ClassMethodsHydrator::class)
-                    ? new ClassMethodsHydrator()
-                    : new ClassMethods()
-            )
+            ->setHydrator(new ClassMethodsHydrator())
             ->setInputFilter(new InputFilter());
 
         $fieldset = new ProductFieldset();

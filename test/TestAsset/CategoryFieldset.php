@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Fieldset;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Category;
-
-use function class_exists;
 
 class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -18,11 +15,7 @@ class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
     {
         parent::__construct('category');
         $this
-            ->setHydrator(
-                class_exists(ClassMethodsHydrator::class)
-                    ? new ClassMethodsHydrator()
-                    : new ClassMethods()
-            )
+            ->setHydrator(new ClassMethodsHydrator())
             ->setObject(new Category());
 
         $this->add([

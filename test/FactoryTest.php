@@ -14,7 +14,6 @@ use Laminas\Form\FormElementManager;
 use Laminas\Form\FormInterface;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorPluginManager;
-use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\Factory;
 use Laminas\InputFilter\Input;
@@ -27,8 +26,6 @@ use Laminas\Validator\ValidatorPluginManager;
 use LaminasTest\Form\TestAsset\InputFilter;
 use LaminasTest\Form\TestAsset\Model;
 use PHPUnit\Framework\TestCase;
-
-use function class_exists;
 
 class FactoryTest extends TestCase
 {
@@ -334,28 +331,19 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormsAndSpecifyHydrator(): void
     {
-        $hydratorType = class_exists(ObjectPropertyHydrator::class)
-            ? ObjectPropertyHydrator::class
-            : ObjectProperty::class;
-
         $form = $this->factory->createForm([
             'name'     => 'foo',
-            'hydrator' => $hydratorType,
+            'hydrator' => ObjectPropertyHydrator::class,
         ]);
         $this->assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($hydratorType, $hydrator);
+        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testCanCreateFormsAndSpecifyHydratorManagedByHydratorManager(): void
     {
-        if (class_exists(ObjectPropertyHydrator::class)) {
-            $hydratorShortName = 'ObjectPropertyHydrator';
-            $hydratorType      = ObjectPropertyHydrator::class;
-        } else {
-            $hydratorShortName = 'ObjectProperty';
-            $hydratorType      = ObjectProperty::class;
-        }
+        $hydratorShortName = 'ObjectPropertyHydrator';
+        $hydratorType      = ObjectPropertyHydrator::class;
 
         $this->services->setService('HydratorManager', new HydratorPluginManager($this->services));
 
@@ -387,18 +375,14 @@ class FactoryTest extends TestCase
 
     public function testCanCreateHydratorFromConcreteClass(): void
     {
-        $hydratorType = class_exists(ObjectPropertyHydrator::class)
-            ? ObjectPropertyHydrator::class
-            : ObjectProperty::class;
-
         $form = $this->factory->createForm([
             'name'     => 'foo',
-            'hydrator' => new $hydratorType(),
+            'hydrator' => new ObjectPropertyHydrator(),
         ]);
 
         $this->assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($hydratorType, $hydrator);
+        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testCanCreateFormsAndSpecifyFactory(): void
@@ -551,10 +535,6 @@ class FactoryTest extends TestCase
 
     public function testCanCreateFormWithHydratorAndInputFilterAndElementsAndFieldsets(): void
     {
-        $hydratorType = class_exists(ObjectPropertyHydrator::class)
-            ? ObjectPropertyHydrator::class
-            : ObjectProperty::class;
-
         $form = $this->factory->createForm([
             'name'         => 'foo',
             'elements'     => [
@@ -641,7 +621,7 @@ class FactoryTest extends TestCase
                 ],
             ],
             'input_filter' => InputFilter::class,
-            'hydrator'     => $hydratorType,
+            'hydrator'     => ObjectPropertyHydrator::class,
         ]);
         $this->assertInstanceOf(FormInterface::class, $form);
 
@@ -709,7 +689,7 @@ class FactoryTest extends TestCase
 
         // hydrator
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($hydratorType, $hydrator);
+        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testCanCreateFormUsingCreate(): void
@@ -777,11 +757,7 @@ class FactoryTest extends TestCase
 
     public function testCanPullHydratorThroughServiceManager(): void
     {
-        $hydratorType = class_exists(ObjectPropertyHydrator::class)
-            ? ObjectPropertyHydrator::class
-            : ObjectProperty::class;
-
-        $this->services->setInvokableClass('MyHydrator', $hydratorType);
+        $this->services->setInvokableClass('MyHydrator', ObjectPropertyHydrator::class);
 
         $fieldset = $this->factory->createFieldset([
             'hydrator' => 'MyHydrator',
@@ -795,7 +771,7 @@ class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf($hydratorType, $fieldset->getHydrator());
+        $this->assertInstanceOf(ObjectPropertyHydrator::class, $fieldset->getHydrator());
     }
 
     public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected(): void

@@ -6,7 +6,6 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Element\Collection;
 use Laminas\Form\Fieldset;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\CategoryFieldset;
@@ -14,19 +13,13 @@ use LaminasTest\Form\TestAsset\CountryFieldset;
 use LaminasTest\Form\TestAsset\Entity\Country;
 use LaminasTest\Form\TestAsset\Entity\Product;
 
-use function class_exists;
-
 class ProductFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {
         parent::__construct('product');
         $this
-            ->setHydrator(
-                class_exists(ClassMethodsHydrator::class)
-                    ? new ClassMethodsHydrator()
-                    : new ClassMethods()
-            )
+            ->setHydrator(new ClassMethodsHydrator())
             ->setObject(new Product());
 
         $this->add([
@@ -65,9 +58,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
             'type'     => CountryFieldset::class,
             'name'     => 'made_in_country',
             'object'   => Country::class,
-            'hydrator' => class_exists(ClassMethodsHydrator::class)
-                ? ClassMethodsHydrator::class
-                : ClassMethods::class,
+            'hydrator' => ClassMethodsHydrator::class,
             'options'  => [
                 'label' => 'Please choose the country',
             ],

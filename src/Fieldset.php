@@ -14,7 +14,6 @@ use ReflectionClass;
 use Traversable;
 
 use function array_key_exists;
-use function class_exists;
 use function get_class;
 use function gettype;
 use function in_array;
@@ -490,11 +489,7 @@ class Fieldset extends Element implements FieldsetInterface
             if ($this->object instanceof HydratorAwareInterface) {
                 $this->setHydrator($this->object->getHydrator());
             } else {
-                $this->setHydrator(
-                    class_exists(Hydrator\ArraySerializableHydrator::class)
-                        ? new Hydrator\ArraySerializableHydrator()
-                        : new Hydrator\ArraySerializable()
-                );
+                $this->setHydrator(new Hydrator\ArraySerializableHydrator());
             }
         }
         return $this->hydrator;

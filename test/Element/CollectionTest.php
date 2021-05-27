@@ -12,12 +12,9 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\Form;
-use Laminas\Hydrator\ArraySerializable;
 use Laminas\Hydrator\ArraySerializableHydrator;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorInterface;
-use Laminas\Hydrator\ObjectProperty;
 use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\ArrayInput;
 use LaminasTest\Form\TestAsset\AddressFieldset;
@@ -38,7 +35,6 @@ use LaminasTest\Form\TestAsset\ProductFieldset;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-use function class_exists;
 use function count;
 use function extension_loaded;
 use function iterator_count;
@@ -398,11 +394,7 @@ class CollectionTest extends TestCase
     public function testExtractFromObjectDoesntTouchOriginalObject(): void
     {
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
-        );
+        $form->setHydrator(new ClassMethodsHydrator());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
@@ -452,11 +444,7 @@ class CollectionTest extends TestCase
         }
 
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
-        );
+        $form->setHydrator(new ClassMethodsHydrator());
         $this->productFieldset->setUseAsBaseFieldset(true);
         $form->add($this->productFieldset);
 
@@ -503,11 +491,7 @@ class CollectionTest extends TestCase
         ]);
 
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
-        );
+        $form->setHydrator(new ClassMethodsHydrator());
         $form->add($this->productFieldset);
 
         $product = new Product();
@@ -546,11 +530,7 @@ class CollectionTest extends TestCase
     public function testAddingCollectionElementAfterBind(): void
     {
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $form->setHydrator(new ObjectPropertyHydrator());
 
         $phone = new PhoneFieldset();
 
@@ -589,19 +569,11 @@ class CollectionTest extends TestCase
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections(): void
     {
         $addressesFieldset = new AddressFieldset();
-        $addressesFieldset->setHydrator(
-            class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
-        );
+        $addressesFieldset->setHydrator(new ClassMethodsHydrator());
         $addressesFieldset->remove('city');
 
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $form->setHydrator(new ObjectPropertyHydrator());
         $form->add([
             'name'    => 'addresses',
             'type'    => 'Collection',
@@ -643,17 +615,9 @@ class CollectionTest extends TestCase
     public function testDoNotCreateExtraFieldsetOnMultipleBind(): void
     {
         $form = new Form();
-        $this->productFieldset->setHydrator(
-            class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
-        );
+        $this->productFieldset->setHydrator(new ClassMethodsHydrator());
         $form->add($this->productFieldset);
-        $form->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $form->setHydrator(new ObjectPropertyHydrator());
 
         $product            = new Product();
         $categoriesFieldset = [
@@ -795,11 +759,7 @@ class CollectionTest extends TestCase
         $obj1 = new stdClass();
 
         $targetElement
-            ->setHydrator(
-                class_exists(ObjectPropertyHydrator::class)
-                    ? new ObjectPropertyHydrator()
-                    : new ObjectProperty()
-            )
+            ->setHydrator(new ObjectPropertyHydrator())
             ->setObject($obj1);
 
         $obj2        = new stdClass();
@@ -817,27 +777,15 @@ class CollectionTest extends TestCase
     public function testCollectionCanBindObjectAndPopulateAndExtractNestedFieldsets(): void
     {
         $productFieldset = new ProductFieldset();
-        $productFieldset->setHydrator(
-            class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
-        );
+        $productFieldset->setHydrator(new ClassMethodsHydrator());
 
         $mainFieldset = new Fieldset();
         $mainFieldset->setObject(new stdClass());
-        $mainFieldset->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $mainFieldset->setHydrator(new ObjectPropertyHydrator());
         $mainFieldset->add($productFieldset);
 
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $form->setHydrator(new ObjectPropertyHydrator());
         $form->add([
             'name'    => 'collection',
             'type'    => 'Collection',
@@ -985,11 +933,7 @@ class CollectionTest extends TestCase
         // this test is using a hydrator set on the target element of the collection
         $targetElement = $collection->getTargetElement();
         $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
-        $targetElement->setHydrator(
-            class_exists(ArraySerializableHydrator::class)
-                ? new ArraySerializableHydrator()
-                : new ArraySerializable()
-        );
+        $targetElement->setHydrator(new ArraySerializableHydrator());
         $obj1 = new ArrayModel();
         $targetElement->setObject($obj1);
 
@@ -1072,19 +1016,11 @@ class CollectionTest extends TestCase
     public function testCanBindObjectMultipleNestedFieldsets(): void
     {
         $productFieldset = new ProductFieldset();
-        $productFieldset->setHydrator(
-            class_exists(ArraySerializableHydrator::class)
-                ? new ArraySerializableHydrator()
-                : new ArraySerializable()
-        );
+        $productFieldset->setHydrator(new ArraySerializableHydrator());
         $productFieldset->setObject(new Product());
 
         $nestedFieldset = new Fieldset('nested');
-        $nestedFieldset->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $nestedFieldset->setHydrator(new ObjectPropertyHydrator());
         $nestedFieldset->setObject(new stdClass());
         $nestedFieldset->add([
             'name'    => 'products',
@@ -1097,11 +1033,7 @@ class CollectionTest extends TestCase
 
         $mainFieldset = new Fieldset('main');
         $mainFieldset->setUseAsBaseFieldset(true);
-        $mainFieldset->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $mainFieldset->setHydrator(new ObjectPropertyHydrator());
         $mainFieldset->setObject(new stdClass());
         $mainFieldset->add([
             'name'    => 'nested',
@@ -1113,11 +1045,7 @@ class CollectionTest extends TestCase
         ]);
 
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $form->setHydrator(new ObjectPropertyHydrator());
         $form->add($mainFieldset);
 
         $market = new stdClass();
@@ -1165,18 +1093,10 @@ class CollectionTest extends TestCase
     {
         // @see https://github.com/zendframework/zf2/issues/5640
         $addressesFieldeset = new AddressFieldset();
-        $addressesFieldeset->setHydrator(
-            class_exists(ClassMethodsHydrator::class)
-                ? new ClassMethodsHydrator()
-                : new ClassMethods()
-        );
+        $addressesFieldeset->setHydrator(new ClassMethodsHydrator());
 
         $form = new Form();
-        $form->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $form->setHydrator(new ObjectPropertyHydrator());
         $form->add([
             'name'    => 'addresses',
             'type'    => 'Collection',
@@ -1355,19 +1275,11 @@ class CollectionTest extends TestCase
         $mainFieldset = new Fieldset();
         $mainFieldset->add(new Element\Text('test'));
         $mainFieldset->setObject(new ArrayObject());
-        $mainFieldset->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $mainFieldset->setHydrator(new ObjectPropertyHydrator());
 
         $form = new Form();
         $form->setObject(new stdClass());
-        $form->setHydrator(
-            class_exists(ObjectPropertyHydrator::class)
-                ? new ObjectPropertyHydrator()
-                : new ObjectProperty()
-        );
+        $form->setHydrator(new ObjectPropertyHydrator());
         $form->add([
             'name'    => 'collection',
             'type'    => 'Collection',
