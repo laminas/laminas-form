@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element\Collection;
 use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
 use Laminas\I18n\Translator\Translator;
+use Laminas\View\Helper\Doctype;
 use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
@@ -418,5 +419,29 @@ class FormCollectionTest extends AbstractCommonTestCase
         );
 
         $method->invokeArgs(new FormCollectionHelper(), []);
+    }
+
+    public function testRenderCollectionWithNameAttributeAndDoctypeHtml5()
+    {
+        $this->helper->setDoctype(Doctype::HTML5);
+
+        $form = $this->getForm();
+        $collection = $form->get('colors');
+        $collection->setAttribute('name', 'foo');
+
+        $markup = $this->helper->render($collection);
+        $this->assertStringContainsString('<fieldset name="foo">', $markup);
+    }
+
+    public function testRenderCollectionWithNameAttributeAndDoctypeXhtml1()
+    {
+        $this->helper->setDoctype(Doctype::XHTML1_STRICT);
+
+        $form = $this->getForm();
+        $collection = $form->get('colors');
+        $collection->setAttribute('name', 'foo');
+
+        $markup = $this->helper->render($collection);
+        $this->assertStringContainsString('<fieldset>', $markup);
     }
 }
