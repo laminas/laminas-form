@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Laminas\Form\Element;
 
-use ArrayAccess;
 use DateTime as PhpDateTime;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
@@ -94,8 +93,8 @@ class DateSelect extends MonthSelect
     }
 
     /**
-     * @param  string|array|ArrayAccess|PhpDateTime|null $value
-     * @return $this Provides a fluent interface
+     * @param  PhpDateTime|iterable|string|null|mixed $value
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setValue($value)
@@ -133,7 +132,7 @@ class DateSelect extends MonthSelect
         return $this;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         $year  = $this->getYearElement()->getValue();
         $month = $this->getMonthElement()->getValue();

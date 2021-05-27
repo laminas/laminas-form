@@ -194,7 +194,7 @@ class DateTimeSelect extends DateSelect
     }
 
     /**
-     * @param mixed $value
+     * @param  PhpDateTime|iterable|string|null|mixed $value
      * @return $this
      * @throws InvalidArgumentException
      */
@@ -242,7 +242,7 @@ class DateTimeSelect extends DateSelect
         return $this;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         $year   = $this->getYearElement()->getValue();
         $month  = $this->getMonthElement()->getValue();
