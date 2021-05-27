@@ -18,8 +18,6 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
 
-use function class_exists;
-
 class FormAbstractServiceFactoryTest extends TestCase
 {
     /** @var ServiceManager */
@@ -123,9 +121,7 @@ class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagers(): void
     {
         $formConfig = [
-            'hydrator'     => class_exists(ObjectPropertyHydrator::class)
-                ? 'ObjectPropertyHydrator'
-                : 'ObjectProperty',
+            'hydrator'     => 'ObjectPropertyHydrator',
             'type'         => Form::class,
             'elements'     => [
                 [
@@ -162,9 +158,7 @@ class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagersExceptInputFilterManager(): void
     {
         $formConfig = [
-            'hydrator'     => class_exists(ObjectPropertyHydrator::class)
-                ? 'ObjectPropertyHydrator'
-                : 'ObjectProperty',
+            'hydrator'     => 'ObjectPropertyHydrator',
             'type'         => Form::class,
             'elements'     => [
                 [

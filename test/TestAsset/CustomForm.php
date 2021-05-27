@@ -8,11 +8,8 @@ use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\Form\Element\Csrf;
 use Laminas\Form\Form;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Validator;
-
-use function class_exists;
 
 class CustomForm extends Form
 {
@@ -22,11 +19,7 @@ class CustomForm extends Form
 
         $this
             ->setAttribute('method', 'post')
-            ->setHydrator(
-                class_exists(ClassMethodsHydrator::class)
-                    ? new ClassMethodsHydrator()
-                    : new ClassMethods()
-            );
+            ->setHydrator(new ClassMethodsHydrator());
 
         $field1 = new Element('name', ['label' => 'Name']);
         $field1->setAttribute('type', 'text');

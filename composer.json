@@ -9,7 +9,7 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": "^7.3 || ~8.0.0",
-        "laminas/laminas-hydrator": "^3.2.0 || ^4.1.0",
+        "laminas/laminas-hydrator": "^4.1.0",
         "laminas/laminas-inputfilter": "^2.12.0",
         "laminas/laminas-stdlib": "^3.3.1"
     },

@@ -6,12 +6,9 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Phone;
-
-use function class_exists;
 
 class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
 {
@@ -20,11 +17,7 @@ class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
         parent::__construct('phones');
 
         $this
-            ->setHydrator(
-                class_exists(ClassMethodsHydrator::class)
-                    ? new ClassMethodsHydrator()
-                    : new ClassMethods()
-            )
+            ->setHydrator(new ClassMethodsHydrator())
              ->setObject(new Phone());
 
         $id = new Element\Hidden('id');

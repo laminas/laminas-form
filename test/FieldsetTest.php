@@ -14,8 +14,6 @@ use Laminas\InputFilter\InputFilter;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-use function class_exists;
-
 class FieldsetTest extends TestCase
 {
     /** @var Fieldset */
@@ -483,11 +481,7 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(
-            class_exists(Hydrator\ObjectPropertyHydrator::class)
-                ? new Hydrator\ObjectPropertyHydrator()
-                : new Hydrator\ObjectProperty()
-        );
+        $form->setHydrator(new Hydrator\ObjectPropertyHydrator());
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -512,11 +506,7 @@ class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(
-            class_exists(Hydrator\ObjectPropertyHydrator::class)
-                ? new Hydrator\ObjectPropertyHydrator()
-                : new Hydrator\ObjectProperty()
-        );
+        $form->setHydrator(new Hydrator\ObjectPropertyHydrator());
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -555,11 +545,7 @@ class FieldsetTest extends TestCase
     {
         $form = new Form();
         $form->add(new Element('foo'));
-        $form->setHydrator(
-            class_exists(Hydrator\ObjectPropertyHydrator::class)
-                ? new Hydrator\ObjectPropertyHydrator()
-                : new Hydrator\ObjectProperty()
-        );
+        $form->setHydrator(new Hydrator\ObjectPropertyHydrator());
 
         $object      = new stdClass();
         $object->foo = 'Initial value';

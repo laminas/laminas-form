@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Form;
-use Laminas\Hydrator\ClassMethods;
 use Laminas\Hydrator\ClassMethodsHydrator;
-
-use function class_exists;
 
 class CreateAddressForm extends Form
 {
@@ -18,11 +15,7 @@ class CreateAddressForm extends Form
 
         $this
             ->setAttribute('method', 'post')
-            ->setHydrator(
-                class_exists(ClassMethodsHydrator::class)
-                    ? new ClassMethodsHydrator(false)
-                    : new ClassMethods(false)
-            )
+            ->setHydrator(new ClassMethodsHydrator(false))
             ->setInputFilter(new InputFilter());
 
         $address = new AddressFieldset();
