@@ -26,7 +26,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * @param  null|array $options
      * @throws ServiceNotCreatedException For invalid listener configuration.
      */
-    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AnnotationBuilder
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AbstractBuilder
     {
         // resolve aliases used in laminas servicemanager
         if (isset($this->aliases[$requestedName])) {
