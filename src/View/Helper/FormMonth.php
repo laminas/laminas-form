@@ -11,7 +11,7 @@ class FormMonth extends FormDateTime
      *
      * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         return 'month';
     }

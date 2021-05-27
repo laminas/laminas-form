@@ -34,7 +34,7 @@ class FormFile extends FormInput
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $name = $element->getName();
         if ($name === null || $name === '') {
@@ -70,7 +70,7 @@ class FormFile extends FormInput
      *
      * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         return 'file';
     }

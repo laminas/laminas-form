@@ -73,7 +73,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleAllowEmptyAnnotation($e)
+    public function handleAllowEmptyAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof AllowEmpty) {
@@ -92,7 +92,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleAttributesAnnotation($e)
+    public function handleAttributesAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Attributes) {
@@ -117,7 +117,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleComposedObjectAnnotation($e)
+    public function handleComposedObjectAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ComposedObject) {
@@ -191,7 +191,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleContinueIfEmptyAnnotation($e)
+    public function handleContinueIfEmptyAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ContinueIfEmpty) {
@@ -210,7 +210,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleErrorMessageAnnotation($e)
+    public function handleErrorMessageAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ErrorMessage) {
@@ -227,7 +227,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return bool
      */
-    public function handleExcludeAnnotation($e)
+    public function handleExcludeAnnotation($e): bool
     {
         $annotations = $e->getParam('annotations');
         assert($annotations instanceof AnnotationCollection);
@@ -246,7 +246,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleFilterAnnotation($e)
+    public function handleFilterAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Filter) {
@@ -269,7 +269,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleFlagsAnnotation($e)
+    public function handleFlagsAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Flags) {
@@ -288,7 +288,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleHydratorAnnotation($e)
+    public function handleHydratorAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Hydrator) {
@@ -308,7 +308,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleInputAnnotation($e)
+    public function handleInputAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Input) {
@@ -343,7 +343,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleOptionsAnnotation($e)
+    public function handleOptionsAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Options) {
@@ -362,7 +362,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleRequiredAnnotation($e)
+    public function handleRequiredAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Required) {
@@ -391,7 +391,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleTypeAnnotation($e)
+    public function handleTypeAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Type) {
@@ -410,7 +410,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleValidatorAnnotation($e)
+    public function handleValidatorAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Validator) {
@@ -429,7 +429,7 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * @param ComposedObject|Options $annotation
      * @return array
      */
-    private function mergeOptions($elementSpec, $annotation)
+    private function mergeOptions($elementSpec, $annotation): array
     {
         if (isset($elementSpec['spec']['options'])) {
             if (is_array($elementSpec['spec']['options'])) {

@@ -96,7 +96,7 @@ class FormLabel extends AbstractHelper
      * @throws Exception\DomainException
      * @return string
      */
-    public function openTag($attributesOrElement = null)
+    public function openTag($attributesOrElement = null): string
     {
         if (null === $attributesOrElement) {
             return '<label>';
@@ -143,7 +143,7 @@ class FormLabel extends AbstractHelper
      *
      * @return string
      */
-    public function closeTag()
+    public function closeTag(): string
     {
         return '</label>';
     }

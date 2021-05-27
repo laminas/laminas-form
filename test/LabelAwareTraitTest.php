@@ -22,7 +22,7 @@ class LabelAwareTraitTest extends TestCase
             use LabelAwareTrait;
         };
 
-        $this->assertNull($object->getLabelAttributes());
+        $this->assertEmpty($object->getLabelAttributes());
 
         $labelAttributes = [
             'test',
@@ -40,9 +40,7 @@ class LabelAwareTraitTest extends TestCase
             use LabelAwareTrait;
         };
 
-        $labelAttributes = $object->getLabelAttributes();
-
-        $this->assertEquals(null, $labelAttributes);
+        $this->assertEmpty($object->getLabelAttributes());
     }
 
     public function testGetLabelAttributes(): void

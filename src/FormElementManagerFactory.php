@@ -16,7 +16,7 @@ class FormElementManagerFactory implements FactoryInterface
      *
      * @return AbstractPluginManager
      */
-    public function __invoke(ContainerInterface $container, $name, ?array $options = null)
+    public function __invoke(ContainerInterface $container, $name, ?array $options = null): AbstractPluginManager
     {
         $pluginManager = new FormElementManager($container, $options ?: []);
 

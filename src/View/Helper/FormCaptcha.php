@@ -34,7 +34,7 @@ class FormCaptcha extends AbstractHelper
      *                                   not implement plugin().
      * @return string
      */
-    public function render(Captcha $element)
+    public function render(Captcha $element): string
     {
         $captcha = $element->getCaptcha();
 

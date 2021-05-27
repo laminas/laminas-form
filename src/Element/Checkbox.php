@@ -74,7 +74,7 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * @return bool
      */
-    public function useHiddenElement()
+    public function useHiddenElement(): bool
     {
         return $this->useHiddenElement;
     }
@@ -96,7 +96,7 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * @return string
      */
-    public function getUncheckedValue()
+    public function getUncheckedValue(): string
     {
         return $this->uncheckedValue;
     }
@@ -118,7 +118,7 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * @return string
      */
-    public function getCheckedValue()
+    public function getCheckedValue(): string
     {
         return $this->checkedValue;
     }
@@ -128,7 +128,7 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ?ValidatorInterface
     {
         if (null === $this->validator) {
             $this->validator = new InArrayValidator([
@@ -146,7 +146,7 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         $spec = [
             'name'     => $this->getName(),
@@ -167,7 +167,7 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * @return bool
      */
-    public function isChecked()
+    public function isChecked(): bool
     {
         return $this->value === $this->getCheckedValue();
     }

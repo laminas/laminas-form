@@ -11,7 +11,7 @@ class FormRadio extends FormMultiCheckbox
      *
      * @return string
      */
-    protected function getInputType()
+    protected function getInputType(): string
     {
         return 'radio';
     }
@@ -21,7 +21,7 @@ class FormRadio extends FormMultiCheckbox
      *
      * @return string
      */
-    protected static function getName(ElementInterface $element)
+    protected static function getName(ElementInterface $element): string
     {
         return (string) $element->getName();
     }

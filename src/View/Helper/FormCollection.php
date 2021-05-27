@@ -89,7 +89,7 @@ class FormCollection extends AbstractHelper
      *
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $renderer = $this->getView();
         if (! method_exists($renderer, 'plugin')) {
@@ -163,7 +163,7 @@ class FormCollection extends AbstractHelper
      *
      * @return string
      */
-    public function renderTemplate(CollectionElement $collection)
+    public function renderTemplate(CollectionElement $collection): string
     {
         $elementHelper = $this->getElementHelper();
         assert(is_callable($elementHelper));
@@ -205,7 +205,7 @@ class FormCollection extends AbstractHelper
      *
      * @return bool
      */
-    public function shouldWrap()
+    public function shouldWrap(): bool
     {
         return $this->shouldWrap;
     }
@@ -227,7 +227,7 @@ class FormCollection extends AbstractHelper
      *
      * @return string
      */
-    public function getDefaultElementHelper()
+    public function getDefaultElementHelper(): string
     {
         return $this->defaultElementHelper;
     }
@@ -250,7 +250,7 @@ class FormCollection extends AbstractHelper
      * @return HelperInterface
      * @throws RuntimeException
      */
-    protected function getElementHelper()
+    protected function getElementHelper(): HelperInterface
     {
         if ($this->elementHelper) {
             return $this->elementHelper;
@@ -287,7 +287,7 @@ class FormCollection extends AbstractHelper
      *
      * @return FormCollection
      */
-    protected function getFieldsetHelper()
+    protected function getFieldsetHelper(): HelperInterface
     {
         if ($this->fieldsetHelper) {
             return $this->fieldsetHelper;
@@ -301,7 +301,7 @@ class FormCollection extends AbstractHelper
      *
      * @return string
      */
-    public function getWrapper()
+    public function getWrapper(): string
     {
         return $this->wrapper;
     }
@@ -350,7 +350,7 @@ class FormCollection extends AbstractHelper
      *
      * @return string
      */
-    public function getLabelWrapper()
+    public function getLabelWrapper(): string
     {
         return $this->labelWrapper;
     }
@@ -360,7 +360,7 @@ class FormCollection extends AbstractHelper
      *
      * @return string
      */
-    public function getTemplateWrapper()
+    public function getTemplateWrapper(): string
     {
         return $this->templateWrapper;
     }

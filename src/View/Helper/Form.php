@@ -53,7 +53,7 @@ class Form extends AbstractHelper
      *
      * @return string
      */
-    public function render(FormInterface $form)
+    public function render(FormInterface $form): string
     {
         if (method_exists($form, 'prepare')) {
             $form->prepare();
@@ -79,7 +79,7 @@ class Form extends AbstractHelper
      *
      * @return string
      */
-    public function openTag(?FormInterface $form = null)
+    public function openTag(?FormInterface $form = null): string
     {
         $doctype    = $this->getDoctype();
         $attributes = [];
@@ -111,7 +111,7 @@ class Form extends AbstractHelper
      *
      * @return string
      */
-    public function closeTag()
+    public function closeTag(): string
     {
         return '</form>';
     }

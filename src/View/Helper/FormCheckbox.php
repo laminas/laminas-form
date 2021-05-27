@@ -17,7 +17,7 @@ class FormCheckbox extends FormInput
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         if (! $element instanceof CheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -72,7 +72,7 @@ class FormCheckbox extends FormInput
      *
      * @return string
      */
-    protected function getInputType()
+    protected function getInputType(): string
     {
         return 'checkbox';
     }

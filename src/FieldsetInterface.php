@@ -35,7 +35,7 @@ interface FieldsetInterface extends
      * @param  string $elementOrFieldset
      * @return bool
      */
-    public function has($elementOrFieldset);
+    public function has($elementOrFieldset): bool;
 
     /**
      * Retrieve a named element or fieldset
@@ -43,7 +43,7 @@ interface FieldsetInterface extends
      * @param  string $elementOrFieldset
      * @return ElementInterface
      */
-    public function get($elementOrFieldset);
+    public function get($elementOrFieldset): ElementInterface;
 
     /**
      * Remove a named element or fieldset
@@ -85,7 +85,7 @@ interface FieldsetInterface extends
      *
      * @return void
      */
-    public function populateValues(iterable $data);
+    public function populateValues(iterable $data): void;
 
     /**
      * Set the object used by the hydrator
@@ -108,7 +108,7 @@ interface FieldsetInterface extends
      * @param object $object
      * @return bool
      */
-    public function allowObjectBinding($object);
+    public function allowObjectBinding($object): bool;
 
     /**
      * Set the hydrator to use when binding an object to the element
@@ -122,7 +122,7 @@ interface FieldsetInterface extends
      *
      * @return null|HydratorInterface
      */
-    public function getHydrator();
+    public function getHydrator(): ?HydratorInterface;
 
     /**
      * Bind values to the bound object
@@ -137,5 +137,5 @@ interface FieldsetInterface extends
      *
      * @return bool
      */
-    public function allowValueBinding();
+    public function allowValueBinding(): bool;
 }

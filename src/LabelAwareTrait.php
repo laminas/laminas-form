@@ -11,7 +11,7 @@ trait LabelAwareTrait
      *
      * @var array
      */
-    protected $labelAttributes;
+    protected $labelAttributes = [];
 
     /**
      * Label specific options
@@ -37,7 +37,7 @@ trait LabelAwareTrait
      *
      * @return array
      */
-    public function getLabelAttributes()
+    public function getLabelAttributes(): array
     {
         return $this->labelAttributes;
     }
@@ -63,7 +63,7 @@ trait LabelAwareTrait
      *
      * @return array
      */
-    public function getLabelOptions()
+    public function getLabelOptions(): array
     {
         return $this->labelOptions;
     }
@@ -139,7 +139,7 @@ trait LabelAwareTrait
      * @param  string $key
      * @return bool
      */
-    public function hasLabelOption($key)
+    public function hasLabelOption($key): bool
     {
         return array_key_exists($key, $this->labelOptions);
     }

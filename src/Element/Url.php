@@ -27,7 +27,7 @@ class Url extends Element implements InputProviderInterface
      *
      * @return ValidatorInterface
      */
-    public function getValidator()
+    public function getValidator(): ValidatorInterface
     {
         if (null === $this->validator) {
             $this->validator = new UriValidator([
@@ -45,7 +45,7 @@ class Url extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

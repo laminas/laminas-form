@@ -117,7 +117,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return Factory
      */
-    public function getFormFactory()
+    public function getFormFactory(): Factory
     {
         if (null === $this->factory) {
             $this->setFormFactory(new Factory());
@@ -196,7 +196,7 @@ class Fieldset extends Element implements FieldsetInterface
      * @param  string $elementOrFieldset
      * @return bool
      */
-    public function has($elementOrFieldset)
+    public function has($elementOrFieldset): bool
     {
         return $this->iterator->get($elementOrFieldset) !== null;
     }
@@ -205,9 +205,8 @@ class Fieldset extends Element implements FieldsetInterface
      * Retrieve a named element or fieldset
      *
      * @param  string $elementOrFieldset
-     * @return ElementInterface|FieldsetInterface
      */
-    public function get($elementOrFieldset)
+    public function get($elementOrFieldset): ElementInterface
     {
         if (! $this->has($elementOrFieldset)) {
             throw new Exception\InvalidElementException(sprintf(
@@ -340,7 +339,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         $name = $this->getName();
 
@@ -361,7 +360,7 @@ class Fieldset extends Element implements FieldsetInterface
      * @return void
      * @throws Exception\InvalidArgumentException
      */
-    public function populateValues(iterable $data)
+    public function populateValues(iterable $data): void
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
@@ -400,7 +399,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->iterator->count();
     }
@@ -410,7 +409,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return PriorityList
      */
-    public function getIterator()
+    public function getIterator(): PriorityList
     {
         return $this->iterator;
     }
@@ -461,7 +460,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return string
      */
-    public function allowedObjectBindingClass()
+    public function allowedObjectBindingClass(): ?string
     {
         return $this->allowedObjectBindingClass;
     }
@@ -472,7 +471,7 @@ class Fieldset extends Element implements FieldsetInterface
      * @param object $object
      * @return bool
      */
-    public function allowObjectBinding($object)
+    public function allowObjectBinding($object): bool
     {
         $validBindingClass = false;
         if (is_object($object) && $this->allowedObjectBindingClass()) {
@@ -506,7 +505,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return HydratorInterface
      */
-    public function getHydrator()
+    public function getHydrator(): HydratorInterface
     {
         if (! $this->hydrator instanceof HydratorInterface) {
             if ($this->object instanceof HydratorAwareInterface) {
@@ -527,7 +526,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return bool
      */
-    public function allowValueBinding()
+    public function allowValueBinding(): bool
     {
         return is_object($this->object);
     }
@@ -599,7 +598,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return bool
      */
-    public function useAsBaseFieldset()
+    public function useAsBaseFieldset(): bool
     {
         return $this->useAsBaseFieldset;
     }
@@ -609,7 +608,7 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return array
      */
-    protected function extract()
+    protected function extract(): array
     {
         if (! is_object($this->object)) {
             return [];

@@ -102,7 +102,7 @@ class FormInput extends AbstractHelper
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $name = $element->getName();
         if ($name === null || $name === '') {
@@ -133,7 +133,7 @@ class FormInput extends AbstractHelper
      *
      * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         $type = $element->getAttribute('type');
         if (empty($type)) {

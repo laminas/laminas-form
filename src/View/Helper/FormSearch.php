@@ -19,7 +19,7 @@ class FormSearch extends FormText
      *
      * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         return 'search';
     }

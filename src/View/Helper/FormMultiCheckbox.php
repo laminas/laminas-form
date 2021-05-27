@@ -97,7 +97,7 @@ class FormMultiCheckbox extends FormInput
      * @throws Exception\InvalidArgumentException
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         if (! $element instanceof MultiCheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -138,7 +138,7 @@ class FormMultiCheckbox extends FormInput
         array $options,
         array $selectedOptions,
         array $attributes
-    ) {
+    ): string {
         $escapeHtmlHelper      = $this->getEscapeHtmlHelper();
         $labelHelper           = $this->getLabelHelper();
         $labelClose            = $labelHelper->closeTag();
@@ -248,7 +248,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return string
      */
-    protected function renderHiddenElement(MultiCheckboxElement $element)
+    protected function renderHiddenElement(MultiCheckboxElement $element): string
     {
         $closingBracket = $this->getInlineClosingBracket();
 
@@ -283,7 +283,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return array|null
      */
-    public function getLabelAttributes()
+    public function getLabelAttributes(): ?array
     {
         return $this->labelAttributes;
     }
@@ -317,7 +317,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return string
      */
-    public function getLabelPosition()
+    public function getLabelPosition(): string
     {
         return $this->labelPosition;
     }
@@ -339,7 +339,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return string
      */
-    public function getSeparator()
+    public function getSeparator(): string
     {
         return $this->separator;
     }
@@ -363,7 +363,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return bool
      */
-    public function getUseHiddenElement()
+    public function getUseHiddenElement(): bool
     {
         return $this->useHiddenElement;
     }
@@ -385,7 +385,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return string
      */
-    public function getUncheckedValue()
+    public function getUncheckedValue(): string
     {
         return $this->uncheckedValue;
     }
@@ -395,7 +395,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return string
      */
-    protected function getInputType()
+    protected function getInputType(): string
     {
         return 'checkbox';
     }
@@ -406,7 +406,7 @@ class FormMultiCheckbox extends FormInput
      * @throws Exception\DomainException
      * @return string
      */
-    protected static function getName(ElementInterface $element)
+    protected static function getName(ElementInterface $element): string
     {
         $name = $element->getName();
         if ($name === null || $name === '') {
@@ -423,7 +423,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return FormInput
      */
-    protected function getInputHelper()
+    protected function getInputHelper(): FormInput
     {
         if ($this->inputHelper) {
             return $this->inputHelper;
@@ -445,7 +445,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return FormLabel
      */
-    protected function getLabelHelper()
+    protected function getLabelHelper(): FormLabel
     {
         if ($this->labelHelper) {
             return $this->labelHelper;

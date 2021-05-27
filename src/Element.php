@@ -65,7 +65,7 @@ class Element implements
      *
      * @return void
      */
-    public function init()
+    public function init(): void
     {
     }
 
@@ -86,7 +86,7 @@ class Element implements
      *
      * @return null|string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->getAttribute('name');
     }
@@ -128,7 +128,7 @@ class Element implements
      *
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -212,7 +212,7 @@ class Element implements
      * @param  string $key
      * @return bool
      */
-    public function hasAttribute($key)
+    public function hasAttribute($key): bool
     {
         return array_key_exists($key, $this->attributes);
     }
@@ -311,7 +311,7 @@ class Element implements
      *
      * @return null|string
      */
-    public function getLabel()
+    public function getLabel(): ?string
     {
         return $this->label;
     }
@@ -333,7 +333,7 @@ class Element implements
      *
      * @return array
      */
-    public function getLabelAttributes()
+    public function getLabelAttributes(): array
     {
         return $this->labelAttributes;
     }
@@ -359,7 +359,7 @@ class Element implements
      *
      * @return array
      */
-    public function getLabelOptions()
+    public function getLabelOptions(): array
     {
         return $this->labelOptions;
     }
@@ -436,7 +436,7 @@ class Element implements
      * @param  string $key
      * @return bool
      */
-    public function hasLabelOption($key)
+    public function hasLabelOption($key): bool
     {
         return array_key_exists($key, $this->labelOptions);
     }
@@ -469,7 +469,7 @@ class Element implements
     /**
      * @return boolean
      */
-    public function hasValue()
+    public function hasValue(): bool
     {
         return $this->hasValue;
     }

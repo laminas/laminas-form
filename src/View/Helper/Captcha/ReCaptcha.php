@@ -35,7 +35,7 @@ class ReCaptcha extends FormInput
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         assert($element instanceof Captcha);
         $captcha = $element->getCaptcha();
@@ -69,7 +69,7 @@ class ReCaptcha extends FormInput
      * @param  string $responseId @deprecated
      * @return string
      */
-    protected function renderHiddenInput($name, $challengeId = '', $responseName = '', $responseId = '')
+    protected function renderHiddenInput($name, $challengeId = '', $responseName = '', $responseId = ''): string
     {
         if ($name === 'g-recaptcha-response') {
             return '';
@@ -94,7 +94,7 @@ class ReCaptcha extends FormInput
      * @param  string $responseId
      * @return string
      */
-    protected function renderJsEvents($challengeId, $responseId)
+    protected function renderJsEvents($challengeId, $responseId): string
     {
         return '';
     }

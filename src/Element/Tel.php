@@ -28,7 +28,7 @@ class Tel extends Element implements InputProviderInterface
      *
      * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ValidatorInterface
     {
         if (null === $this->validator) {
             $this->validator = new RegexValidator("/^[^\r\n]*$/");
@@ -41,7 +41,7 @@ class Tel extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

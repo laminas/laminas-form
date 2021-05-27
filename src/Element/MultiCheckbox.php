@@ -36,7 +36,7 @@ class MultiCheckbox extends Checkbox
     /**
      * @return array
      */
-    public function getValueOptions()
+    public function getValueOptions(): array
     {
         return $this->valueOptions;
     }
@@ -134,7 +134,7 @@ class MultiCheckbox extends Checkbox
      *
      * @return bool
      */
-    public function disableInArrayValidator()
+    public function disableInArrayValidator(): bool
     {
         return $this->disableInArrayValidator;
     }
@@ -144,7 +144,7 @@ class MultiCheckbox extends Checkbox
      *
      * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ?ValidatorInterface
     {
         if (null === $this->validator && ! $this->disableInArrayValidator()) {
             $inArrayValidator = new InArrayValidator([
@@ -164,7 +164,7 @@ class MultiCheckbox extends Checkbox
      *
      * @return array
      */
-    protected function getValueOptionsValues()
+    protected function getValueOptionsValues(): array
     {
         $values  = [];
         $options = $this->getValueOptions();

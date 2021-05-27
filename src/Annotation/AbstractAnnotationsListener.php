@@ -51,7 +51,7 @@ abstract class AbstractAnnotationsListener extends AbstractListenerAggregate
      * @param  EventInterface $e
      * @return string
      */
-    public function discoverFallbackName($e)
+    public function discoverFallbackName($e): string
     {
         $reflection = $e->getParam('reflection');
         if ($reflection instanceof ReflectionClass) {

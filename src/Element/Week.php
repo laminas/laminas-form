@@ -49,7 +49,7 @@ class Week extends DateTime
      *
      * @return array
      */
-    protected function getValidators()
+    protected function getValidators(): array
     {
         if ($this->validators) {
             return $this->validators;

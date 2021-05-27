@@ -98,7 +98,7 @@ class DateTime extends Element implements InputProviderInterface
      *
      * @return string
      */
-    public function getFormat()
+    public function getFormat(): string
     {
         return $this->format;
     }
@@ -108,7 +108,7 @@ class DateTime extends Element implements InputProviderInterface
      *
      * @return array
      */
-    protected function getValidators()
+    protected function getValidators(): array
     {
         if ($this->validators) {
             return $this->validators;
@@ -199,7 +199,7 @@ class DateTime extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),
@@ -217,7 +217,7 @@ class DateTime extends Element implements InputProviderInterface
      * @param string $value
      * @return bool
      */
-    private function valueIsValidDateTimeFormat($value)
+    private function valueIsValidDateTimeFormat($value): bool
     {
         return PhpDateTime::createFromFormat(
             $this->format,

@@ -53,7 +53,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleAttributesAnnotation($e)
+    public function handleAttributesAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Attributes) {
@@ -72,7 +72,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleFlagsAnnotation($e)
+    public function handleFlagsAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Flags) {
@@ -91,7 +91,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleHydratorAnnotation($e)
+    public function handleHydratorAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Hydrator) {
@@ -110,7 +110,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleInputFilterAnnotation($e)
+    public function handleInputFilterAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof InputFilter) {
@@ -145,7 +145,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleOptionsAnnotation($e)
+    public function handleOptionsAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Options) {
@@ -164,7 +164,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleTypeAnnotation($e)
+    public function handleTypeAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Type) {
@@ -183,7 +183,7 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * @param  EventInterface $e
      * @return void
      */
-    public function handleValidationGroupAnnotation($e)
+    public function handleValidationGroupAnnotation($e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ValidationGroup) {

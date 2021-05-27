@@ -10,10 +10,7 @@ use function ini_get;
  */
 class FormFileApcProgress extends FormFileUploadProgress
 {
-    /**
-     * @return string
-     */
-    protected function getName()
+    protected function getName(): string
     {
         return ini_get('apc.rfc1867_name');
     }

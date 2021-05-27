@@ -13,7 +13,7 @@ class Form extends BaseForm
     /**
      * {@inheritDoc}
      */
-    public function init()
+    public function init(): void
     {
         $this->elementManagerAtInit = $this->getFormFactory()->getFormElementManager();
     }

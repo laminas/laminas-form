@@ -17,7 +17,7 @@ class FieldsetWithDependency extends Fieldset
         parent::__construct('fieldset_with_dependency', $options);
     }
 
-    public function init()
+    public function init(): void
     {
         // should not fail
         $this->dependency->getValues();

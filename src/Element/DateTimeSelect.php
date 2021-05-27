@@ -95,7 +95,7 @@ class DateTimeSelect extends DateSelect
     /**
      * @return Select
      */
-    public function getHourElement()
+    public function getHourElement(): Select
     {
         return $this->hourElement;
     }
@@ -103,7 +103,7 @@ class DateTimeSelect extends DateSelect
     /**
      * @return Select
      */
-    public function getMinuteElement()
+    public function getMinuteElement(): Select
     {
         return $this->minuteElement;
     }
@@ -111,7 +111,7 @@ class DateTimeSelect extends DateSelect
     /**
      * @return Select
      */
-    public function getSecondElement()
+    public function getSecondElement(): Select
     {
         return $this->secondElement;
     }
@@ -133,7 +133,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getHourAttributes()
+    public function getHourAttributes(): array
     {
         return $this->hourElement->getAttributes();
     }
@@ -155,7 +155,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getMinuteAttributes()
+    public function getMinuteAttributes(): array
     {
         return $this->minuteElement->getAttributes();
     }
@@ -177,7 +177,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getSecondAttributes()
+    public function getSecondAttributes(): array
     {
         return $this->secondElement->getAttributes();
     }
@@ -198,7 +198,7 @@ class DateTimeSelect extends DateSelect
     /**
      * @return bool
      */
-    public function shouldShowSeconds()
+    public function shouldShowSeconds(): bool
     {
         return $this->shouldShowSeconds;
     }
@@ -250,7 +250,7 @@ class DateTimeSelect extends DateSelect
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return sprintf(
             '%s-%s-%s %s:%s:%s',
@@ -268,7 +268,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         parent::prepareElement($form);
 
@@ -283,7 +283,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ValidatorInterface
     {
         if (null === $this->validator) {
             $this->validator = new DateValidator(['format' => 'Y-m-d H:i:s']);
@@ -298,7 +298,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

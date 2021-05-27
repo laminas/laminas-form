@@ -27,7 +27,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * @return AnnotationBuilder
      * @throws ServiceNotCreatedException For invalid listener configuration.
      */
-    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AnnotationBuilder
     {
         // resolve aliases used in laminas servicemanager
         if (isset($this->aliases[$requestedName])) {
@@ -55,7 +55,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * @param  string $requestedName
      * @return bool
      */
-    public function canCreate(ContainerInterface $container, $requestedName)
+    public function canCreate(ContainerInterface $container, $requestedName): bool
     {
         return isset($this->aliases[$requestedName]) || is_subclass_of($requestedName, AbstractBuilder::class);
     }
@@ -73,7 +73,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      *
      * @return array
      */
-    private function marshalConfig(ContainerInterface $container)
+    private function marshalConfig(ContainerInterface $container): array
     {
         if (! $container->has('config')) {
             return [];
@@ -98,7 +98,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * @return void
      * @throws ServiceNotCreatedException If any listener is not an event listener aggregate.
      */
-    private function injectListeners(array $config, EventManagerInterface $events, ContainerInterface $container)
+    private function injectListeners(array $config, EventManagerInterface $events, ContainerInterface $container): void
     {
         if (! isset($config['listeners'])) {
             return;

@@ -59,7 +59,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @return void
      */
-    public function setEventManager(EventManagerInterface $eventManager)
+    public function setEventManager(EventManagerInterface $eventManager): void
     {
         $eventManager->setIdentifiers([
             self::class,
@@ -77,7 +77,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @return Factory
      */
-    public function getFormFactory()
+    public function getFormFactory(): Factory
     {
         if ($this->formFactory) {
             return $this->formFactory;
@@ -92,7 +92,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @return EventManagerInterface
      */
-    public function getEventManager()
+    public function getEventManager(): EventManagerInterface
     {
         if (null === $this->eventManager) {
             $this->setEventManager(new EventManager());
@@ -107,7 +107,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @throws Exception\InvalidArgumentException If $entity is not an object or class name.
      * @return ArrayObject
      */
-    public function getFormSpecification($entity)
+    public function getFormSpecification($entity): ArrayObject
     {
         if (! is_object($entity)) {
             if (
@@ -151,7 +151,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @param  string|object $entity
      * @return FormInterface
      */
-    public function createForm($entity)
+    public function createForm($entity): FormInterface
     {
         $formSpec    = ArrayUtils::iteratorToArray($this->getFormSpecification($entity));
         $formFactory = $this->getFormFactory();
@@ -163,7 +163,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @return object
      */
-    public function getEntity()
+    public function getEntity(): object
     {
         return $this->entity;
     }
@@ -179,7 +179,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @triggers discoverName
      * @triggers configureForm
      */
-    protected function configureForm($annotations, $reflection, $formSpec, $filterSpec)
+    protected function configureForm($annotations, $reflection, $formSpec, $filterSpec): void
     {
         $name                   = $this->discoverName($annotations, $reflection);
         $formSpec['name']       = $name;
@@ -210,7 +210,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @triggers discoverName
      * @triggers configureElement
      */
-    protected function configureElement($annotations, $reflection, $formSpec, $filterSpec)
+    protected function configureElement($annotations, $reflection, $formSpec, $filterSpec): void
     {
         // If the element is marked as exclude, return early
         if ($this->checkForExclude($annotations)) {
@@ -283,7 +283,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * @return bool
      */
-    public function preserveDefinedOrder()
+    public function preserveDefinedOrder(): bool
     {
         return $this->preserveDefinedOrder;
     }
@@ -295,7 +295,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @param  Reflector $reflection
      * @return string
      */
-    protected function discoverName($annotations, $reflection)
+    protected function discoverName($annotations, $reflection): string
     {
         $event = new Event();
         $event->setName(__FUNCTION__);
@@ -323,7 +323,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @param  AnnotationCollection $annotations
      * @return true|false
      */
-    protected function checkForExclude($annotations)
+    protected function checkForExclude($annotations): bool
     {
         $event = new Event();
         $event->setName(__FUNCTION__);

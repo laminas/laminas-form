@@ -55,7 +55,7 @@ interface FormInterface extends FieldsetInterface
      *
      * @return InputFilterInterface
      */
-    public function getInputFilter();
+    public function getInputFilter(): InputFilterInterface;
 
     /**
      * Validate the form
@@ -64,7 +64,7 @@ interface FormInterface extends FieldsetInterface
      *
      * @return bool
      */
-    public function isValid();
+    public function isValid(): bool;
 
     /**
      * Retrieve the validated data

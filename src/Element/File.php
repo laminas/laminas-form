@@ -24,7 +24,7 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
      *
      * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         // Ensure the form is using correct enctype
         $form->setAttribute('enctype', 'multipart/form-data');
@@ -36,7 +36,7 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'type'     => FileInput::class,

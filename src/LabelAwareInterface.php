@@ -17,7 +17,7 @@ interface LabelAwareInterface
      *
      * @return null|string
      */
-    public function getLabel();
+    public function getLabel(): ?string;
 
     /**
      * Set the attributes to use with the label
@@ -32,7 +32,7 @@ interface LabelAwareInterface
      *
      * @return array
      */
-    public function getLabelAttributes();
+    public function getLabelAttributes(): array;
 
     /**
      * Set many label options at once
@@ -48,7 +48,7 @@ interface LabelAwareInterface
      *
      * @return array
      */
-    public function getLabelOptions();
+    public function getLabelOptions(): array;
 
     /**
      * Set a single label optionn
@@ -81,7 +81,7 @@ interface LabelAwareInterface
      * @param  string $key
      * @return bool
      */
-    public function hasLabelOption($key);
+    public function hasLabelOption($key): bool;
 
     /**
      * Remove many attributes at once

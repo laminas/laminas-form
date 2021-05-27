@@ -202,7 +202,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @return string
      */
-    public function getDoctype()
+    public function getDoctype(): string
     {
         return $this->getDoctypeHelper()->getDoctype();
     }
@@ -225,7 +225,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @return string
      */
-    public function getEncoding()
+    public function getEncoding(): string
     {
         return $this->getEscapeHtmlHelper()->getEncoding();
     }
@@ -238,7 +238,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @param  array $attributes
      * @return string
      */
-    public function createAttributesString(array $attributes)
+    public function createAttributesString(array $attributes): string
     {
         $attributes    = $this->prepareAttributes($attributes);
         $escape        = $this->getEscapeHtmlHelper();
@@ -285,7 +285,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @return null|string
      */
-    public function getId(ElementInterface $element)
+    public function getId(ElementInterface $element): ?string
     {
         $id = $element->getAttribute('id');
         if (null !== $id) {
@@ -302,7 +302,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @return string
      */
-    public function getInlineClosingBracket()
+    public function getInlineClosingBracket(): string
     {
         $doctypeHelper = $this->getDoctypeHelper();
         if ($doctypeHelper->isXhtml()) {
@@ -316,7 +316,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @return Doctype
      */
-    protected function getDoctypeHelper()
+    protected function getDoctypeHelper(): Doctype
     {
         if ($this->doctypeHelper) {
             return $this->doctypeHelper;
@@ -338,7 +338,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @return EscapeHtml
      */
-    protected function getEscapeHtmlHelper()
+    protected function getEscapeHtmlHelper(): EscapeHtml
     {
         if ($this->escapeHtmlHelper) {
             return $this->escapeHtmlHelper;
@@ -360,7 +360,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @return EscapeHtmlAttr
      */
-    protected function getEscapeHtmlAttrHelper()
+    protected function getEscapeHtmlAttrHelper(): EscapeHtmlAttr
     {
         if ($this->escapeHtmlAttrHelper) {
             return $this->escapeHtmlAttrHelper;
@@ -388,7 +388,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @param  array $attributes
      * @return array
      */
-    protected function prepareAttributes(array $attributes)
+    protected function prepareAttributes(array $attributes): array
     {
         foreach ($attributes as $key => $value) {
             $attribute = strtolower($key);
@@ -426,7 +426,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @param  mixed $value
      * @return string
      */
-    protected function prepareBooleanAttributeValue($attribute, $value)
+    protected function prepareBooleanAttributeValue($attribute, $value): string
     {
         if (! is_bool($value) && in_array($value, $this->booleanAttributes[$attribute])) {
             return $value;
@@ -443,9 +443,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param string $key
      * @param string $value
-     * @return string
      */
-    protected function translateHtmlAttributeValue($key, $value)
+    protected function translateHtmlAttributeValue($key, $value): ?string
     {
         if (empty($value) || ($this->getTranslator() === null)) {
             return $value;
@@ -561,7 +560,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @param string  $attribute
      * @return bool
      */
-    protected function isValidAttributeName($attribute)
+    protected function isValidAttributeName($attribute): bool
     {
         return (bool) preg_match('/^[^\t\n\f \/>"\'=]+$/', $attribute);
     }
@@ -572,7 +571,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @param string  $attribute
      * @return bool
      */
-    protected function hasAllowedPrefix($attribute)
+    protected function hasAllowedPrefix($attribute): bool
     {
         foreach ($this->validTagAttributePrefixes as $prefix) {
             if (substr($attribute, 0, strlen($prefix)) === $prefix) {

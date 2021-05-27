@@ -25,7 +25,7 @@ class Range extends NumberElement
      *
      * @return ValidatorInterface[]
      */
-    protected function getValidators()
+    protected function getValidators(): array
     {
         if ($this->validators) {
             return $this->validators;

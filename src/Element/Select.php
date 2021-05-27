@@ -48,7 +48,7 @@ class Select extends Element implements InputProviderInterface
     /**
      * @return array
      */
-    public function getValueOptions()
+    public function getValueOptions(): array
     {
         return $this->valueOptions;
     }
@@ -169,7 +169,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return bool
      */
-    public function disableInArrayValidator()
+    public function disableInArrayValidator(): bool
     {
         return $this->disableInArrayValidator;
     }
@@ -191,7 +191,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return string|null
      */
-    public function getEmptyOption()
+    public function getEmptyOption(): ?string
     {
         return $this->emptyOption;
     }
@@ -201,7 +201,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ?ValidatorInterface
     {
         if (null === $this->validator && ! $this->disableInArrayValidator()) {
             $validator = new InArrayValidator([
@@ -238,7 +238,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return bool
      */
-    public function useHiddenElement()
+    public function useHiddenElement(): bool
     {
         return $this->useHiddenElement;
     }
@@ -260,7 +260,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return string
      */
-    public function getUnselectedValue()
+    public function getUnselectedValue(): string
     {
         return $this->unselectedValue;
     }
@@ -270,7 +270,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         $spec = [
             'name'     => $this->getName(),
@@ -311,7 +311,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return array
      */
-    protected function getValueOptionsValues()
+    protected function getValueOptionsValues(): array
     {
         $values  = [];
         $options = $this->getValueOptions();
@@ -343,7 +343,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return bool
      */
-    public function isMultiple()
+    public function isMultiple(): bool
     {
         return isset($this->attributes['multiple'])
             && ($this->attributes['multiple'] === true || $this->attributes['multiple'] === 'multiple');

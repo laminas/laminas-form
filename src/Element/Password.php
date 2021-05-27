@@ -22,7 +22,7 @@ class Password extends Element implements ElementPrepareAwareInterface
      *
      * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         $this->setValue('');
     }

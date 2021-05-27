@@ -309,7 +309,7 @@ class FormElementManager extends AbstractPluginManager
      * @param mixed $instance Instance to inspect and optionally inject.
      * @return void
      */
-    public function injectFactory(ContainerInterface $container, $instance)
+    public function injectFactory(ContainerInterface $container, $instance): void
     {
         if (! $instance instanceof Fieldset) {
             return;
@@ -348,7 +348,7 @@ class FormElementManager extends AbstractPluginManager
      * @param null|string $class
      * @return void
      */
-    public function setInvokableClass($name, $class = null)
+    public function setInvokableClass($name, $class = null): void
     {
         $class = $class ?: $name;
 
@@ -372,7 +372,7 @@ class FormElementManager extends AbstractPluginManager
      * @return void
      * @throws InvalidServiceException
      */
-    public function validate($instance)
+    public function validate($instance): void
     {
         if (! $instance instanceof $this->instanceOf) {
             throw new InvalidServiceException(sprintf(

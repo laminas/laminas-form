@@ -70,7 +70,7 @@ class FormButton extends FormInput
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element, $buttonContent = null)
+    public function render(ElementInterface $element, $buttonContent = null): string
     {
         $openTag = $this->openTag($element);
 
@@ -110,7 +110,7 @@ class FormButton extends FormInput
      * @throws Exception\DomainException
      * @return string
      */
-    public function openTag($attributesOrElement = null)
+    public function openTag($attributesOrElement = null): string
     {
         if (null === $attributesOrElement) {
             return '<button>';
@@ -154,7 +154,7 @@ class FormButton extends FormInput
      *
      * @return string
      */
-    public function closeTag()
+    public function closeTag(): string
     {
         return '</button>';
     }
@@ -164,7 +164,7 @@ class FormButton extends FormInput
      *
      * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         $type = $element->getAttribute('type');
         if (empty($type)) {

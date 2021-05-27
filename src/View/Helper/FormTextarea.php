@@ -54,7 +54,7 @@ class FormTextarea extends AbstractHelper
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $name = $element->getName();
         if (empty($name) && $name !== 0) {

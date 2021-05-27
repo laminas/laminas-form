@@ -61,7 +61,7 @@ class Factory
      *
      * @return InputFilterFactory
      */
-    public function getInputFilterFactory()
+    public function getInputFilterFactory(): InputFilterFactory
     {
         if (null === $this->inputFilterFactory) {
             $this->setInputFilterFactory(new InputFilterFactory());
@@ -85,7 +85,7 @@ class Factory
      *
      * @return FormElementManager
      */
-    public function getFormElementManager()
+    public function getFormElementManager(): FormElementManager
     {
         if ($this->formElementManager === null) {
             $this->setFormElementManager(new FormElementManager(new ServiceManager()));
@@ -105,7 +105,7 @@ class Factory
      * @return ElementInterface
      * @throws Exception\DomainException
      */
-    public function create($spec)
+    public function create($spec): ElementInterface
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
         $type = $spec['type'] ?? Element::class;
@@ -140,7 +140,7 @@ class Factory
      * @param  array $spec
      * @return ElementInterface
      */
-    public function createElement($spec)
+    public function createElement($spec): ElementInterface
     {
         if (! isset($spec['type'])) {
             $spec['type'] = Element::class;
@@ -155,7 +155,7 @@ class Factory
      * @param  array $spec
      * @return FieldsetInterface
      */
-    public function createFieldset($spec)
+    public function createFieldset($spec): FieldsetInterface
     {
         if (! isset($spec['type'])) {
             $spec['type'] = Fieldset::class;
@@ -170,7 +170,7 @@ class Factory
      * @param  array $spec
      * @return FormInterface
      */
-    public function createForm($spec)
+    public function createForm($spec): FormInterface
     {
         if (! isset($spec['type'])) {
             $spec['type'] = Form::class;
@@ -192,7 +192,7 @@ class Factory
      * @return ElementInterface
      * @throws Exception\DomainException
      */
-    public function configureElement(ElementInterface $element, $spec)
+    public function configureElement(ElementInterface $element, $spec): ElementInterface
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
 
@@ -233,7 +233,7 @@ class Factory
      * @return FieldsetInterface
      * @throws Exception\DomainException
      */
-    public function configureFieldset(FieldsetInterface $fieldset, $spec)
+    public function configureFieldset(FieldsetInterface $fieldset, $spec): FieldsetInterface
     {
         $spec     = $this->validateSpecification($spec, __METHOD__);
         $fieldset = $this->configureElement($fieldset, $spec);
@@ -273,7 +273,7 @@ class Factory
      * @param  array|Traversable|ArrayAccess  $spec
      * @return FormInterface
      */
-    public function configureForm(FormInterface $form, $spec)
+    public function configureForm(FormInterface $form, $spec): FormInterface
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
         $form = $this->configureFieldset($form, $spec);
@@ -328,7 +328,7 @@ class Factory
      * @param  string $method Method invoking this one (for exception messages)
      * @return void
      */
-    protected function prepareAndInjectElements($elements, FieldsetInterface $fieldset, $method)
+    protected function prepareAndInjectElements($elements, FieldsetInterface $fieldset, $method): void
     {
         $elements = $this->validateSpecification($elements, $method);
 
@@ -356,7 +356,7 @@ class Factory
      * @param  string $method Method invoking this one (for exception messages)
      * @return void
      */
-    public function prepareAndInjectFieldsets($fieldsets, FieldsetInterface $masterFieldset, $method)
+    public function prepareAndInjectFieldsets($fieldsets, FieldsetInterface $masterFieldset, $method): void
     {
         $fieldsets = $this->validateSpecification($fieldsets, $method);
 
@@ -380,7 +380,7 @@ class Factory
      * @throws Exception\DomainException
      * @return void
      */
-    protected function prepareAndInjectObject($objectName, FieldsetInterface $fieldset, $method)
+    protected function prepareAndInjectObject($objectName, FieldsetInterface $fieldset, $method): void
     {
         if (! is_string($objectName)) {
             throw new Exception\DomainException(sprintf(
@@ -413,7 +413,7 @@ class Factory
      * @throws Exception\DomainException If $hydratorOrName is not a string, does not resolve to a known class, or
      *                                   the class does not implement Hydrator\HydratorInterface.
      */
-    protected function prepareAndInjectHydrator($hydratorOrName, FieldsetInterface $fieldset, $method)
+    protected function prepareAndInjectHydrator($hydratorOrName, FieldsetInterface $fieldset, $method): void
     {
         if ($hydratorOrName instanceof Hydrator\HydratorInterface) {
             $fieldset->setHydrator($hydratorOrName);
@@ -464,7 +464,7 @@ class Factory
      * @throws Exception\DomainException If $factoryOrName is not a string, does not resolve to a known class, or
      *                                   the class does not extend Form\Factory.
      */
-    protected function prepareAndInjectFactory($factoryOrName, FieldsetInterface $fieldset, $method)
+    protected function prepareAndInjectFactory($factoryOrName, FieldsetInterface $fieldset, $method): void
     {
         if (is_array($factoryOrName)) {
             if (! isset($factoryOrName['type'])) {
@@ -506,7 +506,7 @@ class Factory
      * @return void
      * @throws Exception\DomainException For unknown InputFilter class or invalid InputFilter instance.
      */
-    protected function prepareAndInjectInputFilter($spec, FormInterface $form, $method)
+    protected function prepareAndInjectInputFilter($spec, FormInterface $form, $method): void
     {
         if ($spec instanceof InputFilterInterface) {
             $form->setInputFilter($spec);
@@ -551,7 +551,7 @@ class Factory
      * @return void
      * @throws Exception\DomainException If validation group given is not an array.
      */
-    protected function prepareAndInjectValidationGroup($spec, FormInterface $form, $method)
+    protected function prepareAndInjectValidationGroup($spec, FormInterface $form, $method): void
     {
         if (! is_array($spec)) {
             if (! class_exists($spec)) {

@@ -28,7 +28,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * @param array|null $options
      * @return FormInterface
      */
-    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): FormInterface
     {
         $config  = $this->getConfig($container);
         $config  = $config[$requestedName];
@@ -44,7 +44,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * @param  string             $requestedName
      * @return bool
      */
-    public function canCreate(ContainerInterface $container, $requestedName)
+    public function canCreate(ContainerInterface $container, $requestedName): bool
     {
         // avoid infinite loops when looking up config
         if ($requestedName === 'config') {
@@ -67,7 +67,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * @param  ServiceLocatorInterface $container
      * @return array
      */
-    protected function getConfig(ContainerInterface $container)
+    protected function getConfig(ContainerInterface $container): array
     {
         if ($this->config !== null) {
             return $this->config;
@@ -97,7 +97,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * @param  ContainerInterface $services
      * @return Factory
      */
-    protected function getFormFactory(ContainerInterface $container)
+    protected function getFormFactory(ContainerInterface $container): Factory
     {
         if ($this->factory instanceof Factory) {
             return $this->factory;
@@ -124,7 +124,7 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * @param array $config
      * @return void
      */
-    protected function marshalInputFilter(array &$config, ContainerInterface $container, Factory $formFactory)
+    protected function marshalInputFilter(array &$config, ContainerInterface $container, Factory $formFactory): void
     {
         if (! isset($config['input_filter'])) {
             return;

@@ -6,6 +6,7 @@ use ArrayIterator;
 use Laminas\Form\Element\Submit;
 use Laminas\Form\Form;
 use Laminas\Form\View\Helper\Form as FormHelper;
+use Laminas\Stdlib\PriorityList;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Helper\EscapeHtmlAttr;
 use LaminasTest\Form\TestAsset\CityFieldset;
@@ -100,7 +101,7 @@ class FormTest extends AbstractCommonTestCase
         $form = $this->createMock(Form::class);
         $form->expects($this->once())->method('prepare');
         $form->method('getAttributes')->willReturn([]);
-        $form->method('getIterator')->willReturn(new ArrayIterator([]));
+        $form->method('getIterator')->willReturn(new PriorityList());
 
         $markup = $this->helper->__invoke($form);
 

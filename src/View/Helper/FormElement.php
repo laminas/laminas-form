@@ -94,7 +94,7 @@ class FormElement extends BaseAbstractHelper
      *
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $renderer = $this->getView();
         if ($renderer === null || ! method_exists($renderer, 'plugin')) {
@@ -164,7 +164,7 @@ class FormElement extends BaseAbstractHelper
      * @param string $name
      * @return string
      */
-    protected function renderHelper($name, ElementInterface $element)
+    protected function renderHelper($name, ElementInterface $element): string
     {
         $renderer = $this->getView();
         assert($renderer instanceof PhpRenderer);
@@ -178,7 +178,7 @@ class FormElement extends BaseAbstractHelper
      *
      * @return string|null
      */
-    protected function renderInstance(ElementInterface $element)
+    protected function renderInstance(ElementInterface $element): ?string
     {
         foreach ($this->classMap as $class => $pluginName) {
             if ($element instanceof $class) {
@@ -194,7 +194,7 @@ class FormElement extends BaseAbstractHelper
      *
      * @return string|null
      */
-    protected function renderType(ElementInterface $element)
+    protected function renderType(ElementInterface $element): ?string
     {
         $type = $element->getAttribute('type');
 

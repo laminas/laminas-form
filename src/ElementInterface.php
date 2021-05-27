@@ -20,7 +20,7 @@ interface ElementInterface
      *
      * @return null|string
      */
-    public function getName();
+    public function getName(): ?string;
 
     /**
      * Set options for an element
@@ -43,7 +43,7 @@ interface ElementInterface
      *
      * @return array
      */
-    public function getOptions();
+    public function getOptions(): array;
 
     /**
      * return the specified option
@@ -76,7 +76,7 @@ interface ElementInterface
      * @param  string $key
      * @return bool
      */
-    public function hasAttribute($key);
+    public function hasAttribute($key): bool;
 
     /**
      * Set many attributes at once
@@ -120,7 +120,7 @@ interface ElementInterface
      *
      * @return null|string
      */
-    public function getLabel();
+    public function getLabel(): ?string;
 
     /**
      * Set a list of messages to report when validation fails

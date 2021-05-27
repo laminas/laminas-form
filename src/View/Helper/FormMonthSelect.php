@@ -97,7 +97,7 @@ class FormMonthSelect extends AbstractHelper
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         if (! $element instanceof MonthSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -155,7 +155,7 @@ class FormMonthSelect extends AbstractHelper
      * @param  bool $renderDelimiters
      * @return array
      */
-    protected function parsePattern($renderDelimiters = true)
+    protected function parsePattern($renderDelimiters = true): array
     {
         $pattern    = $this->getPattern();
         $pregResult = preg_split(
@@ -186,7 +186,7 @@ class FormMonthSelect extends AbstractHelper
      *
      * @return string
      */
-    public function getPattern()
+    public function getPattern(): string
     {
         if (null === $this->pattern) {
             $intl          = new IntlDateFormatter($this->getLocale(), $this->dateType, IntlDateFormatter::NONE);
@@ -219,7 +219,7 @@ class FormMonthSelect extends AbstractHelper
      *
      * @return int
      */
-    public function getDateType()
+    public function getDateType(): int
     {
         return $this->dateType;
     }
@@ -241,7 +241,7 @@ class FormMonthSelect extends AbstractHelper
      *
      * @return string
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         if (null === $this->locale) {
             $this->locale = Locale::getDefault();
@@ -256,7 +256,7 @@ class FormMonthSelect extends AbstractHelper
      * @param string $pattern Pattern to use for months
      * @return array
      */
-    protected function getMonthsOptions($pattern)
+    protected function getMonthsOptions($pattern): array
     {
         $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'MM');
         $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);
@@ -283,7 +283,7 @@ class FormMonthSelect extends AbstractHelper
      * @param int $maxYear
      * @return array
      */
-    protected function getYearsOptions($minYear, $maxYear)
+    protected function getYearsOptions($minYear, $maxYear): array
     {
         $result = [];
         for ($i = $maxYear; $i >= $minYear; --$i) {
@@ -298,7 +298,7 @@ class FormMonthSelect extends AbstractHelper
      *
      * @return FormSelect
      */
-    protected function getSelectElementHelper()
+    protected function getSelectElementHelper(): FormSelect
     {
         if ($this->selectHelper) {
             return $this->selectHelper;

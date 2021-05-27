@@ -62,7 +62,7 @@ abstract class AbstractWord extends FormInput
      * @throws Exception\DomainException
      * @return string
      */
-    protected function renderCaptchaInputs(ElementInterface $element)
+    protected function renderCaptchaInputs(ElementInterface $element): string
     {
         $name = $element->getName();
         if ($name === null || $name === '') {
@@ -96,7 +96,7 @@ abstract class AbstractWord extends FormInput
      * @param  array          $attributes
      * @return string
      */
-    protected function renderCaptchaHidden(CaptchaAdapter $captcha, array $attributes)
+    protected function renderCaptchaHidden(CaptchaAdapter $captcha, array $attributes): string
     {
         $attributes['type']  = 'hidden';
         $attributes['name'] .= '[id]';
@@ -126,7 +126,7 @@ abstract class AbstractWord extends FormInput
      * @param  array          $attributes
      * @return string
      */
-    protected function renderCaptchaInput(CaptchaAdapter $captcha, array $attributes)
+    protected function renderCaptchaInput(CaptchaAdapter $captcha, array $attributes): string
     {
         $attributes['type']  = 'text';
         $attributes['name'] .= '[input]';
@@ -170,7 +170,7 @@ abstract class AbstractWord extends FormInput
      *
      * @return string
      */
-    public function getCaptchaPosition()
+    public function getCaptchaPosition(): string
     {
         return $this->captchaPosition;
     }
@@ -192,7 +192,7 @@ abstract class AbstractWord extends FormInput
      *
      * @return string
      */
-    public function getSeparator()
+    public function getSeparator(): string
     {
         return $this->separator;
     }

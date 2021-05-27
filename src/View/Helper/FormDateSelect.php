@@ -21,7 +21,7 @@ class FormDateSelect extends FormMonthSelectHelper
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         if (! $element instanceof DateSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -79,7 +79,7 @@ class FormDateSelect extends FormMonthSelectHelper
      * @param  string $pattern Pattern to use for days
      * @return array
      */
-    protected function getDaysOptions($pattern)
+    protected function getDaysOptions($pattern): array
     {
         $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'dd');
         $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);

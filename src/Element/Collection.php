@@ -154,7 +154,7 @@ class Collection extends Fieldset
      * @param object $object
      * @return bool
      */
-    public function allowObjectBinding($object)
+    public function allowObjectBinding($object): bool
     {
         return true;
     }
@@ -192,7 +192,7 @@ class Collection extends Fieldset
      * @throws Exception\DomainException
      * @return void
      */
-    public function populateValues(iterable $data)
+    public function populateValues(iterable $data): void
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
@@ -259,7 +259,7 @@ class Collection extends Fieldset
      *
      * @return bool
      */
-    public function allowValueBinding()
+    public function allowValueBinding(): bool
     {
         return true;
     }
@@ -304,7 +304,7 @@ class Collection extends Fieldset
      *
      * @return int
      */
-    public function getCount()
+    public function getCount(): int
     {
         return $this->count;
     }
@@ -345,7 +345,7 @@ class Collection extends Fieldset
      *
      * @return ElementInterface|null
      */
-    public function getTargetElement()
+    public function getTargetElement(): ?ElementInterface
     {
         return $this->targetElement;
     }
@@ -367,7 +367,7 @@ class Collection extends Fieldset
      *
      * @return bool
      */
-    public function allowAdd()
+    public function allowAdd(): bool
     {
         return $this->allowAdd;
     }
@@ -385,7 +385,7 @@ class Collection extends Fieldset
     /**
      * @return bool
      */
-    public function allowRemove()
+    public function allowRemove(): bool
     {
         return $this->allowRemove;
     }
@@ -409,7 +409,7 @@ class Collection extends Fieldset
      *
      * @return bool
      */
-    public function shouldCreateTemplate()
+    public function shouldCreateTemplate(): bool
     {
         return $this->shouldCreateTemplate;
     }
@@ -434,7 +434,7 @@ class Collection extends Fieldset
      *
      * @return string
      */
-    public function getTemplatePlaceholder()
+    public function getTemplatePlaceholder(): string
     {
         return $this->templatePlaceholder;
     }
@@ -452,7 +452,7 @@ class Collection extends Fieldset
     /**
      * @return bool
      */
-    public function createNewObjects()
+    public function createNewObjects(): bool
     {
         return $this->createNewObjects;
     }
@@ -476,7 +476,7 @@ class Collection extends Fieldset
      *
      * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         if (true === $this->shouldCreateChildrenOnPrepareElement) {
             if ($this->targetElement !== null && $this->count > 0) {
@@ -508,7 +508,7 @@ class Collection extends Fieldset
      * @throws Exception\DomainException
      * @throws Exception\InvalidElementException
      */
-    public function extract()
+    public function extract(): array
     {
         if ($this->object instanceof Traversable) {
             $this->object = ArrayUtils::iteratorToArray($this->object, false);
@@ -559,7 +559,7 @@ class Collection extends Fieldset
      *
      * @return ElementInterface
      */
-    protected function createNewTargetElementInstance()
+    protected function createNewTargetElementInstance(): ElementInterface
     {
         return clone $this->targetElement;
     }
@@ -571,7 +571,7 @@ class Collection extends Fieldset
      * @return ElementInterface
      * @throws Exception\DomainException
      */
-    protected function addNewTargetElementInstance($name)
+    protected function addNewTargetElementInstance($name): ElementInterface
     {
         $this->shouldCreateChildrenOnPrepareElement = false;
 
@@ -618,7 +618,7 @@ class Collection extends Fieldset
      *
      * @return void
      */
-    protected function replaceTemplateObjects()
+    protected function replaceTemplateObjects(): void
     {
         $fieldsets = $this->getFieldsets();
 

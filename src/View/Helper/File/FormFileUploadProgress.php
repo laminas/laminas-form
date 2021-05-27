@@ -21,7 +21,7 @@ class FormFileUploadProgress extends FormInput
      *
      * @return string
      */
-    public function __invoke(?ElementInterface $element = null)
+    public function __invoke(?ElementInterface $element = null): string
     {
         return $this->renderHiddenId();
     }
@@ -31,7 +31,7 @@ class FormFileUploadProgress extends FormInput
      *
      * @return string
      */
-    public function renderHiddenId()
+    public function renderHiddenId(): string
     {
         $attributes = [
             'id'    => 'progress_key',
@@ -50,7 +50,7 @@ class FormFileUploadProgress extends FormInput
     /**
      * @return string
      */
-    protected function getName()
+    protected function getName(): string
     {
         return 'UPLOAD_IDENTIFIER';
     }
@@ -58,7 +58,7 @@ class FormFileUploadProgress extends FormInput
     /**
      * @return string
      */
-    protected function getValue()
+    protected function getValue(): string
     {
         return uniqid();
     }

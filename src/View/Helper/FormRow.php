@@ -113,7 +113,7 @@ class FormRow extends AbstractHelper
      * @throws Exception\DomainException
      * @return string
      */
-    public function render(ElementInterface $element, $labelPosition = null)
+    public function render(ElementInterface $element, $labelPosition = null): string
     {
         $escapeHtmlHelper    = $this->getEscapeHtmlHelper();
         $labelHelper         = $this->getLabelHelper();
@@ -263,7 +263,7 @@ class FormRow extends AbstractHelper
      *
      * @return string
      */
-    public function getInputErrorClass()
+    public function getInputErrorClass(): string
     {
         return $this->inputErrorClass;
     }
@@ -285,7 +285,7 @@ class FormRow extends AbstractHelper
      *
      * @return array
      */
-    public function getLabelAttributes()
+    public function getLabelAttributes(): array
     {
         return $this->labelAttributes;
     }
@@ -319,7 +319,7 @@ class FormRow extends AbstractHelper
      *
      * @return string
      */
-    public function getLabelPosition()
+    public function getLabelPosition(): string
     {
         return $this->labelPosition;
     }
@@ -341,7 +341,7 @@ class FormRow extends AbstractHelper
      *
      * @return bool
      */
-    public function getRenderErrors()
+    public function getRenderErrors(): bool
     {
         return $this->renderErrors;
     }
@@ -363,7 +363,7 @@ class FormRow extends AbstractHelper
      *
      * @return null|string
      */
-    public function getPartial()
+    public function getPartial(): ?string
     {
         return $this->partial;
     }
@@ -373,7 +373,7 @@ class FormRow extends AbstractHelper
      *
      * @return FormLabel
      */
-    protected function getLabelHelper()
+    protected function getLabelHelper(): FormLabel
     {
         if ($this->labelHelper) {
             return $this->labelHelper;
@@ -402,7 +402,7 @@ class FormRow extends AbstractHelper
      *
      * @return FormElement
      */
-    protected function getElementHelper()
+    protected function getElementHelper(): FormElement
     {
         if ($this->elementHelper) {
             return $this->elementHelper;
@@ -424,7 +424,7 @@ class FormRow extends AbstractHelper
      *
      * @return FormElementErrors
      */
-    protected function getElementErrorsHelper()
+    protected function getElementErrorsHelper(): FormElementErrors
     {
         if ($this->elementErrorsHelper) {
             return $this->elementErrorsHelper;
