@@ -463,4 +463,23 @@ class FormSelectTest extends AbstractCommonTestCase
         $this->assertDoesNotMatchRegularExpression('{value="1.10" selected="selected"}i', $markup);
         $this->assertDoesNotMatchRegularExpression('{value="1.20" selected="selected"}i', $markup);
     }
+
+    public function testArrayEmptyOptionRendersOption(): void
+    {
+        $element = new SelectElement('foo');
+        $element->setEmptyOption([
+            'value'    => null,
+            'label'    => 'Select...',
+            'disabled' => 'disabled',
+        ]);
+        $element->setValueOptions([
+            [
+                'label' => 'label1',
+                'value' => 'value1',
+            ],
+        ]);
+        $markup = $this->helper->render($element);
+
+        $this->assertStringContainsString('<option value="" disabled="disabled">Select...</option>', $markup);
+    }
 }
