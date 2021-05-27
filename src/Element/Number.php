@@ -30,7 +30,7 @@ class Number extends Element implements InputProviderInterface
      *
      * @return ValidatorInterface[]
      */
-    protected function getValidators()
+    protected function getValidators(): array
     {
         if ($this->validators) {
             return $this->validators;
@@ -82,7 +82,7 @@ class Number extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

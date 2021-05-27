@@ -50,10 +50,9 @@ class FormButton extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|string           $buttonContent
      * @return string|FormButton
      */
-    public function __invoke(?ElementInterface $element = null, $buttonContent = null)
+    public function __invoke(?ElementInterface $element = null, ?string $buttonContent = null)
     {
         if (! $element) {
             return $this;
@@ -66,11 +65,9 @@ class FormButton extends FormInput
      * Render a form <button> element from the provided $element,
      * using content from $buttonContent or the element's "label" attribute
      *
-     * @param  null|string $buttonContent
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element, $buttonContent = null)
+    public function render(ElementInterface $element, ?string $buttonContent = null): string
     {
         $openTag = $this->openTag($element);
 
@@ -108,9 +105,8 @@ class FormButton extends FormInput
      * @param  null|array|ElementInterface $attributesOrElement
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
-    public function openTag($attributesOrElement = null)
+    public function openTag($attributesOrElement = null): string
     {
         if (null === $attributesOrElement) {
             return '<button>';
@@ -151,20 +147,16 @@ class FormButton extends FormInput
 
     /**
      * Return a closing button tag
-     *
-     * @return string
      */
-    public function closeTag()
+    public function closeTag(): string
     {
         return '</button>';
     }
 
     /**
      * Determine button type to use
-     *
-     * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         $type = $element->getAttribute('type');
         if (empty($type)) {

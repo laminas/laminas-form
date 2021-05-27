@@ -37,7 +37,7 @@ abstract class AbstractCommonTestCase extends TestCase
         $this->helper->setView($this->renderer);
     }
 
-    public function testUsesUtf8ByDefault()
+    public function testUsesUtf8ByDefault(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
@@ -46,7 +46,7 @@ abstract class AbstractCommonTestCase extends TestCase
         $this->assertEquals('UTF-8', $this->helper->getEncoding());
     }
 
-    public function testCanInjectEncoding()
+    public function testCanInjectEncoding(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
@@ -56,7 +56,7 @@ abstract class AbstractCommonTestCase extends TestCase
         $this->assertEquals('iso-8859-1', $this->helper->getEncoding());
     }
 
-    public function testInjectingEncodingProxiesToEscapeHelper()
+    public function testInjectingEncodingProxiesToEscapeHelper(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
@@ -68,7 +68,7 @@ abstract class AbstractCommonTestCase extends TestCase
         $this->assertEquals('iso-8859-1', $escape->getEncoding());
     }
 
-    public function testInjectingEncodingProxiesToAttrEscapeHelper()
+    public function testInjectingEncodingProxiesToAttrEscapeHelper(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
@@ -80,7 +80,7 @@ abstract class AbstractCommonTestCase extends TestCase
         $this->assertEquals('iso-8859-1', $escape->getEncoding());
     }
 
-    public function testAssumesHtml4LooseDoctypeByDefault()
+    public function testAssumesHtml4LooseDoctypeByDefault(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
@@ -91,7 +91,7 @@ abstract class AbstractCommonTestCase extends TestCase
         $this->assertEquals(Doctype::HTML4_LOOSE, $helper->getDoctype());
     }
 
-    public function testCanInjectDoctype()
+    public function testCanInjectDoctype(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');
@@ -101,7 +101,7 @@ abstract class AbstractCommonTestCase extends TestCase
         $this->assertEquals(Doctype::HTML5, $this->helper->getDoctype());
     }
 
-    public function testCanGetDoctypeFromDoctypeHelper()
+    public function testCanGetDoctypeFromDoctypeHelper(): void
     {
         if (! extension_loaded('intl')) {
             $this->markTestSkipped('ext/intl not enabled');

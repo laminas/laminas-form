@@ -32,9 +32,8 @@ class FormFile extends FormInput
      * Render a form <input> element from the provided $element
      *
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $name = $element->getName();
         if ($name === null || $name === '') {
@@ -67,10 +66,8 @@ class FormFile extends FormInput
 
     /**
      * Determine input type to use
-     *
-     * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         return 'file';
     }

@@ -20,7 +20,7 @@ class InputFilterProviderFieldset extends Fieldset implements InputFilterProvide
         return $this->filterSpec;
     }
 
-    public function setInputFilterSpecification(iterable $filterSpec)
+    public function setInputFilterSpecification(iterable $filterSpec): void
     {
         if ($filterSpec instanceof Traversable) {
             $filterSpec = ArrayUtils::iteratorToArray($filterSpec);

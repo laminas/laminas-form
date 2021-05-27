@@ -43,7 +43,7 @@ class FactoryTest extends TestCase
         $this->factory  = new FormFactory($elementManager);
     }
 
-    public function testCanCreateElements()
+    public function testCanCreateElements(): void
     {
         $element = $this->factory->createElement([
             'name'       => 'foo',
@@ -60,7 +60,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('my.form.text', $element->getAttribute('data-js-type'));
     }
 
-    public function testCanCreateFieldsets()
+    public function testCanCreateFieldsets(): void
     {
         $fieldset = $this->factory->createFieldset([
             'name'       => 'foo',
@@ -79,7 +79,7 @@ class FactoryTest extends TestCase
         $this->assertEquals(new Model(), $fieldset->getObject());
     }
 
-    public function testCanCreateFieldsetsWithElements()
+    public function testCanCreateFieldsetsWithElements(): void
     {
         $fieldset = $this->factory->createFieldset([
             'name'     => 'foo',
@@ -152,7 +152,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('bat', $test);
     }
 
-    public function testCanCreateNestedFieldsets()
+    public function testCanCreateNestedFieldsets(): void
     {
         $masterFieldset = $this->factory->createFieldset([
             'name'      => 'foo',
@@ -233,7 +233,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('bat', $test);
     }
 
-    public function testCanCreateForms()
+    public function testCanCreateForms(): void
     {
         $form = $this->factory->createForm([
             'name'       => 'foo',
@@ -248,7 +248,7 @@ class FactoryTest extends TestCase
         $this->assertEquals(new Model(), $form->getObject());
     }
 
-    public function testCanCreateFormsWithNamedInputFilters()
+    public function testCanCreateFormsWithNamedInputFilters(): void
     {
         $form = $this->factory->createForm([
             'name'         => 'foo',
@@ -259,7 +259,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(InputFilter::class, $filter);
     }
 
-    public function testCanCreateFormsWithInputFilterSpecifications()
+    public function testCanCreateFormsWithInputFilterSpecifications(): void
     {
         $form = $this->factory->createForm([
             'name'         => 'foo',
@@ -318,7 +318,7 @@ class FactoryTest extends TestCase
         }
     }
 
-    public function testCanCreateFormsWithInputFilterInstances()
+    public function testCanCreateFormsWithInputFilterInstances(): void
     {
         $filter = new InputFilter();
         $form   = $this->factory->createForm([
@@ -330,7 +330,7 @@ class FactoryTest extends TestCase
         $this->assertSame($filter, $test);
     }
 
-    public function testCanCreateFormsAndSpecifyHydrator()
+    public function testCanCreateFormsAndSpecifyHydrator(): void
     {
         $hydratorType = class_exists(ObjectPropertyHydrator::class)
             ? ObjectPropertyHydrator::class
@@ -345,7 +345,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf($hydratorType, $hydrator);
     }
 
-    public function testCanCreateFormsAndSpecifyHydratorManagedByHydratorManager()
+    public function testCanCreateFormsAndSpecifyHydratorManagedByHydratorManager(): void
     {
         if (class_exists(ObjectPropertyHydrator::class)) {
             $hydratorShortName = 'ObjectPropertyHydrator';
@@ -366,7 +366,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf($hydratorType, $hydrator);
     }
 
-    public function testCanCreateHydratorFromArray()
+    public function testCanCreateHydratorFromArray(): void
     {
         $form = $this->factory->createForm([
             'name'     => 'foo',
@@ -383,7 +383,7 @@ class FactoryTest extends TestCase
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
-    public function testCanCreateHydratorFromConcreteClass()
+    public function testCanCreateHydratorFromConcreteClass(): void
     {
         $hydratorType = class_exists(ObjectPropertyHydrator::class)
             ? ObjectPropertyHydrator::class
@@ -399,7 +399,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf($hydratorType, $hydrator);
     }
 
-    public function testCanCreateFormsAndSpecifyFactory()
+    public function testCanCreateFormsAndSpecifyFactory(): void
     {
         $form = $this->factory->createForm([
             'name'    => 'foo',
@@ -410,7 +410,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(FormFactory::class, $factory);
     }
 
-    public function testCanCreateFactoryFromArray()
+    public function testCanCreateFactoryFromArray(): void
     {
         $form = $this->factory->createForm([
             'name'    => 'foo',
@@ -424,7 +424,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(FormFactory::class, $factory);
     }
 
-    public function testCanCreateFactoryFromConcreteClass()
+    public function testCanCreateFactoryFromConcreteClass(): void
     {
         $factory = new FormFactory();
         $form    = $this->factory->createForm([
@@ -437,7 +437,7 @@ class FactoryTest extends TestCase
         $this->assertSame($factory, $test);
     }
 
-    public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByName()
+    public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByName(): void
     {
         $validatorManager = new ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', Digits::class);
@@ -492,7 +492,8 @@ class FactoryTest extends TestCase
         $this->assertTrue($found);
     }
 
-    public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor()
+    // @codingStandardsIgnoreLine
+    public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor(): void
     {
         $validatorManager = new ValidatorPluginManager($this->services);
         $validatorManager->setInvokableClass('baz', Digits::class);
@@ -546,7 +547,7 @@ class FactoryTest extends TestCase
         $this->assertTrue($found);
     }
 
-    public function testCanCreateFormWithHydratorAndInputFilterAndElementsAndFieldsets()
+    public function testCanCreateFormWithHydratorAndInputFilterAndElementsAndFieldsets(): void
     {
         $hydratorType = class_exists(ObjectPropertyHydrator::class)
             ? ObjectPropertyHydrator::class
@@ -709,7 +710,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf($hydratorType, $hydrator);
     }
 
-    public function testCanCreateFormUsingCreate()
+    public function testCanCreateFormUsingCreate(): void
     {
         $form = $this->factory->create([
             'type'       => \Laminas\Form\Form::class,
@@ -723,7 +724,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('get', $form->getAttribute('method'));
     }
 
-    public function testCanCreateFieldsetUsingCreate()
+    public function testCanCreateFieldsetUsingCreate(): void
     {
         $fieldset = $this->factory->create([
             'type'       => Fieldset::class,
@@ -741,7 +742,7 @@ class FactoryTest extends TestCase
         $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
     }
 
-    public function testCanCreateElementUsingCreate()
+    public function testCanCreateElementUsingCreate(): void
     {
         $element = $this->factory->create([
             'name'       => 'foo',
@@ -758,21 +759,21 @@ class FactoryTest extends TestCase
         $this->assertEquals('my.form.text', $element->getAttribute('data-js-type'));
     }
 
-    public function testAutomaticallyAddFieldsetTypeWhenCreateFieldset()
+    public function testAutomaticallyAddFieldsetTypeWhenCreateFieldset(): void
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
         $this->assertInstanceOf(Fieldset::class, $fieldset);
         $this->assertEquals('myFieldset', $fieldset->getName());
     }
 
-    public function testAutomaticallyAddFormTypeWhenCreateForm()
+    public function testAutomaticallyAddFormTypeWhenCreateForm(): void
     {
         $form = $this->factory->createForm(['name' => 'myForm']);
         $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
         $this->assertEquals('myForm', $form->getName());
     }
 
-    public function testCanPullHydratorThroughServiceManager()
+    public function testCanPullHydratorThroughServiceManager(): void
     {
         $hydratorType = class_exists(ObjectPropertyHydrator::class)
             ? ObjectPropertyHydrator::class
@@ -795,7 +796,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf($hydratorType, $fieldset->getHydrator());
     }
 
-    public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected()
+    public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected(): void
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
         $this->assertInstanceOf(Fieldset::class, $fieldset);
@@ -808,7 +809,7 @@ class FactoryTest extends TestCase
     /**
      * @group issue-6949
      */
-    public function testPrepareAndInjectWillThrowAndException()
+    public function testPrepareAndInjectWillThrowAndException(): void
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
 
@@ -816,7 +817,7 @@ class FactoryTest extends TestCase
         $this->factory->configureFieldset($fieldset, ['hydrator' => 0]);
     }
 
-    public function testCanCreateFormWithNullElements()
+    public function testCanCreateFormWithNullElements(): void
     {
         $form = $this->factory->createForm([
             'name'     => 'foo',
@@ -843,7 +844,7 @@ class FactoryTest extends TestCase
         $this->assertTrue($form->has('bat'));
     }
 
-    public function testCanCreateWithConstructionLogicInOptions()
+    public function testCanCreateWithConstructionLogicInOptions(): void
     {
         $formManager = $this->factory->getFormElementManager();
         $formManager->setFactory(

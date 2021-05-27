@@ -95,9 +95,8 @@ class FormSelect extends AbstractHelper
      *
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         if (! $element instanceof SelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -159,9 +158,8 @@ class FormSelect extends AbstractHelper
      *
      * @param  array $options
      * @param  array $selectedOptions Option values that should be marked as selected
-     * @return string
      */
-    public function renderOptions(array $options, array $selectedOptions = [])
+    public function renderOptions(array $options, array $selectedOptions = []): string
     {
         $template      = '<option %s>%s</option>';
         $optionStrings = [];
@@ -240,9 +238,8 @@ class FormSelect extends AbstractHelper
      *
      * @param  array $optgroup
      * @param  array $selectedOptions
-     * @return string
      */
-    public function renderOptgroup(array $optgroup, array $selectedOptions = [])
+    public function renderOptgroup(array $optgroup, array $selectedOptions = []): string
     {
         $template = '<optgroup%s>%s</optgroup>';
 
@@ -278,7 +275,7 @@ class FormSelect extends AbstractHelper
      * @return array
      * @throws Exception\DomainException
      */
-    protected function validateMultiValue($value, array $attributes)
+    protected function validateMultiValue($value, array $attributes): array
     {
         if (null === $value) {
             return [];
@@ -310,10 +307,7 @@ class FormSelect extends AbstractHelper
         return $this->getFormHiddenHelper()->__invoke($hiddenElement);
     }
 
-    /**
-     * @return FormHidden
-     */
-    protected function getFormHiddenHelper()
+    protected function getFormHiddenHelper(): FormHidden
     {
         if (! $this->formHiddenHelper) {
             if (method_exists($this->view, 'plugin')) {

@@ -76,16 +76,13 @@ class FormRow extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|string           $labelPosition
-     * @param  bool                  $renderErrors
-     * @param  string|null           $partial
      * @return string|FormRow
      */
     public function __invoke(
         ?ElementInterface $element = null,
-        $labelPosition = null,
-        $renderErrors = null,
-        $partial = null
+        ?string $labelPosition = null,
+        ?bool $renderErrors = null,
+        ?string $partial = null
     ) {
         if (! $element) {
             return $this;
@@ -109,11 +106,9 @@ class FormRow extends AbstractHelper
     /**
      * Utility form helper that renders a label (if it exists), an element and errors
      *
-     * @param  null|string      $labelPosition
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element, $labelPosition = null)
+    public function render(ElementInterface $element, ?string $labelPosition = null): string
     {
         $escapeHtmlHelper    = $this->getEscapeHtmlHelper();
         $labelHelper         = $this->getLabelHelper();
@@ -249,10 +244,9 @@ class FormRow extends AbstractHelper
     /**
      * Set the class that is added to element that have errors
      *
-     * @param  string $inputErrorClass
      * @return $this
      */
-    public function setInputErrorClass($inputErrorClass)
+    public function setInputErrorClass(string $inputErrorClass)
     {
         $this->inputErrorClass = $inputErrorClass;
         return $this;
@@ -260,10 +254,8 @@ class FormRow extends AbstractHelper
 
     /**
      * Get the class that is added to element that have errors
-     *
-     * @return string
      */
-    public function getInputErrorClass()
+    public function getInputErrorClass(): string
     {
         return $this->inputErrorClass;
     }
@@ -274,7 +266,7 @@ class FormRow extends AbstractHelper
      * @param  array $labelAttributes
      * @return $this
      */
-    public function setLabelAttributes($labelAttributes)
+    public function setLabelAttributes(array $labelAttributes)
     {
         $this->labelAttributes = $labelAttributes;
         return $this;
@@ -285,7 +277,7 @@ class FormRow extends AbstractHelper
      *
      * @return array
      */
-    public function getLabelAttributes()
+    public function getLabelAttributes(): array
     {
         return $this->labelAttributes;
     }
@@ -293,11 +285,10 @@ class FormRow extends AbstractHelper
     /**
      * Set the label position
      *
-     * @param  string $labelPosition
      * @throws Exception\InvalidArgumentException
      * @return $this
      */
-    public function setLabelPosition($labelPosition)
+    public function setLabelPosition(string $labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
         if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
@@ -316,10 +307,8 @@ class FormRow extends AbstractHelper
 
     /**
      * Get the label position
-     *
-     * @return string
      */
-    public function getLabelPosition()
+    public function getLabelPosition(): string
     {
         return $this->labelPosition;
     }
@@ -327,21 +316,18 @@ class FormRow extends AbstractHelper
     /**
      * Set if the errors are rendered by this helper
      *
-     * @param  bool $renderErrors
      * @return $this
      */
-    public function setRenderErrors($renderErrors)
+    public function setRenderErrors(bool $renderErrors)
     {
-        $this->renderErrors = (bool) $renderErrors;
+        $this->renderErrors = $renderErrors;
         return $this;
     }
 
     /**
      * Retrieve if the errors are rendered by this helper
-     *
-     * @return bool
      */
-    public function getRenderErrors()
+    public function getRenderErrors(): bool
     {
         return $this->renderErrors;
     }
@@ -349,10 +335,9 @@ class FormRow extends AbstractHelper
     /**
      * Set a partial view script to use for rendering the row
      *
-     * @param null|string $partial
      * @return $this
      */
-    public function setPartial($partial)
+    public function setPartial(?string $partial)
     {
         $this->partial = $partial;
         return $this;
@@ -360,20 +345,16 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve current partial
-     *
-     * @return null|string
      */
-    public function getPartial()
+    public function getPartial(): ?string
     {
         return $this->partial;
     }
 
     /**
      * Retrieve the FormLabel helper
-     *
-     * @return FormLabel
      */
-    protected function getLabelHelper()
+    protected function getLabelHelper(): FormLabel
     {
         if ($this->labelHelper) {
             return $this->labelHelper;
@@ -399,10 +380,8 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve the FormElement helper
-     *
-     * @return FormElement
      */
-    protected function getElementHelper()
+    protected function getElementHelper(): FormElement
     {
         if ($this->elementHelper) {
             return $this->elementHelper;
@@ -421,10 +400,8 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve the FormElementErrors helper
-     *
-     * @return FormElementErrors
      */
-    protected function getElementErrorsHelper()
+    protected function getElementErrorsHelper(): FormElementErrors
     {
         if ($this->elementErrorsHelper) {
             return $this->elementErrorsHelper;

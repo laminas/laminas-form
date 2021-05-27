@@ -63,10 +63,8 @@ class Captcha extends Element implements InputProviderInterface
 
     /**
      * Retrieve captcha (if any)
-     *
-     * @return null|LaminasCaptcha\AdapterInterface
      */
-    public function getCaptcha()
+    public function getCaptcha(): ?LaminasCaptcha\AdapterInterface
     {
         return $this->captcha;
     }
@@ -78,7 +76,7 @@ class Captcha extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         $spec = [
             'name'     => $this->getName(),

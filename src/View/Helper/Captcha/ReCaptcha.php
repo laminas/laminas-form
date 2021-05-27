@@ -33,9 +33,8 @@ class ReCaptcha extends FormInput
      * Render ReCaptcha form elements
      *
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         assert($element instanceof Captcha);
         $captcha = $element->getCaptcha();
@@ -59,17 +58,8 @@ class ReCaptcha extends FormInput
     /**
      * Render hidden input element if the element's name is not 'g-recaptcha-response'
      * so that required validation works
-     *
-     * Note that only the first parameter is needed, the other three parameters
-     * are deprecated.
-     *
-     * @param  string $name
-     * @param  string $challengeId @deprecated
-     * @param  string $responseName @deprecated
-     * @param  string $responseId @deprecated
-     * @return string
      */
-    protected function renderHiddenInput($name, $challengeId = '', $responseName = '', $responseId = '')
+    protected function renderHiddenInput(string $name): string
     {
         if ($name === 'g-recaptcha-response') {
             return '';
@@ -89,12 +79,8 @@ class ReCaptcha extends FormInput
      * No longer used with v2 of Recaptcha API
      *
      * @deprecated
-     *
-     * @param  string $challengeId
-     * @param  string $responseId
-     * @return string
      */
-    protected function renderJsEvents($challengeId, $responseId)
+    protected function renderJsEvents(string $challengeId, string $responseId): string
     {
         return '';
     }

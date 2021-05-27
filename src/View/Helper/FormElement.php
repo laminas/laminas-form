@@ -91,10 +91,8 @@ class FormElement extends BaseAbstractHelper
      *
      * Introspects the element type and attributes to determine which
      * helper to utilize when rendering.
-     *
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $renderer = $this->getView();
         if ($renderer === null || ! method_exists($renderer, 'plugin')) {
@@ -120,10 +118,9 @@ class FormElement extends BaseAbstractHelper
     /**
      * Set default helper name
      *
-     * @param string $name
      * @return $this
      */
-    public function setDefaultHelper($name)
+    public function setDefaultHelper(string $name)
     {
         $this->defaultHelper = $name;
 
@@ -133,11 +130,9 @@ class FormElement extends BaseAbstractHelper
     /**
      * Add form element type to plugin map
      *
-     * @param string $type
-     * @param string $plugin
      * @return $this
      */
-    public function addType($type, $plugin)
+    public function addType(string $type, string $plugin)
     {
         $this->typeMap[$type] = $plugin;
 
@@ -147,11 +142,9 @@ class FormElement extends BaseAbstractHelper
     /**
      * Add instance class to plugin map
      *
-     * @param string $class
-     * @param string $plugin
      * @return $this
      */
-    public function addClass($class, $plugin)
+    public function addClass(string $class, string $plugin)
     {
         $this->classMap[$class] = $plugin;
 
@@ -160,11 +153,8 @@ class FormElement extends BaseAbstractHelper
 
     /**
      * Render element by helper name
-     *
-     * @param string $name
-     * @return string
      */
-    protected function renderHelper($name, ElementInterface $element)
+    protected function renderHelper(string $name, ElementInterface $element): string
     {
         $renderer = $this->getView();
         assert($renderer instanceof PhpRenderer);
@@ -175,10 +165,8 @@ class FormElement extends BaseAbstractHelper
 
     /**
      * Render element by instance map
-     *
-     * @return string|null
      */
-    protected function renderInstance(ElementInterface $element)
+    protected function renderInstance(ElementInterface $element): ?string
     {
         foreach ($this->classMap as $class => $pluginName) {
             if ($element instanceof $class) {
@@ -191,10 +179,8 @@ class FormElement extends BaseAbstractHelper
 
     /**
      * Render element by type map
-     *
-     * @return string|null
      */
-    protected function renderType(ElementInterface $element)
+    protected function renderType(ElementInterface $element): ?string
     {
         $type = $element->getAttribute('type');
 

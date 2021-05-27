@@ -22,13 +22,13 @@ class FormLabelTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testCanEmitStartTagOnly()
+    public function testCanEmitStartTagOnly(): void
     {
         $markup = $this->helper->openTag();
         $this->assertEquals('<label>', $markup);
     }
 
-    public function testOpenTagWithWrongElementRaisesException()
+    public function testOpenTagWithWrongElementRaisesException(): void
     {
         $element = new ArrayObject();
         $this->expectException(InvalidArgumentException::class);
@@ -36,7 +36,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->helper->openTag($element);
     }
 
-    public function testPassingArrayToOpenTagRendersAttributes()
+    public function testPassingArrayToOpenTagRendersAttributes(): void
     {
         $attributes = [
             'class'     => 'email-label',
@@ -49,20 +49,20 @@ class FormLabelTest extends AbstractCommonTestCase
         }
     }
 
-    public function testCanEmitCloseTagOnly()
+    public function testCanEmitCloseTagOnly(): void
     {
         $markup = $this->helper->closeTag();
         $this->assertEquals('</label>', $markup);
     }
 
-    public function testPassingElementToOpenTagWillUseNameInForAttributeIfNoIdPresent()
+    public function testPassingElementToOpenTagWillUseNameInForAttributeIfNoIdPresent(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->openTag($element);
         $this->assertStringContainsString('for="foo"', $markup);
     }
 
-    public function testPassingElementToOpenTagWillUseIdInForAttributeWhenPresent()
+    public function testPassingElementToOpenTagWillUseIdInForAttributeWhenPresent(): void
     {
         $element = new Element('foo');
         $element->setAttribute('id', 'bar');
@@ -70,7 +70,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('for="bar"', $markup);
     }
 
-    public function testPassingElementToInvokeWillRaiseExceptionIfNoNameOrIdAttributePresent()
+    public function testPassingElementToInvokeWillRaiseExceptionIfNoNameOrIdAttributePresent(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -78,7 +78,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $markup = $this->helper->__invoke($element);
     }
 
-    public function testPassingElementToInvokeWillRaiseExceptionIfNoLabelAttributePresent()
+    public function testPassingElementToInvokeWillRaiseExceptionIfNoLabelAttributePresent(): void
     {
         $element = new Element('foo');
         $this->expectException(DomainException::class);
@@ -86,7 +86,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $markup = $this->helper->__invoke($element);
     }
 
-    public function testPassingElementToInvokeGeneratesLabelMarkup()
+    public function testPassingElementToInvokeGeneratesLabelMarkup(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -97,7 +97,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testPassingElementAndContentToInvokeUsesContentForLabel()
+    public function testPassingElementAndContentToInvokeUsesContentForLabel(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element, 'The value for foo:');
@@ -107,7 +107,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testPassingElementAndContentAndFlagToInvokeUsesLabelAttribute()
+    public function testPassingElementAndContentAndFlagToInvokeUsesLabelAttribute(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -119,7 +119,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<input type="text" id="foo" />', $markup);
     }
 
-    public function testCanAppendLabelContentUsingFlagToInvoke()
+    public function testCanAppendLabelContentUsingFlagToInvoke(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -130,7 +130,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('><input type="text" id="foo" />', $markup);
     }
 
-    public function testsetLabelAttributes()
+    public function testsetLabelAttributes(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -142,7 +142,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('><input type="text" id="foo" />', $markup);
     }
 
-    public function testPassingElementAndContextAndFlagToInvokeRaisesExceptionForMissingLabelAttribute()
+    public function testPassingElementAndContextAndFlagToInvokeRaisesExceptionForMissingLabelAttribute(): void
     {
         $element = new Element('foo');
         $this->expectException(DomainException::class);
@@ -150,7 +150,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $markup = $this->helper->__invoke($element, '<input type="text" id="foo" />', FormLabelHelper::APPEND);
     }
 
-    public function testCallingFromViewHelperCanHandleOpenTagAndCloseTag()
+    public function testCallingFromViewHelperCanHandleOpenTagAndCloseTag(): void
     {
         $helper = $this->helper;
         $markup = $helper()->openTag();
@@ -159,7 +159,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertEquals('</label>', $markup);
     }
 
-    public function testCanTranslateContent()
+    public function testCanTranslateContent(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -176,7 +176,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>translated content<', $markup);
     }
 
-    public function testTranslatorMethods()
+    public function testTranslatorMethods(): void
     {
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
@@ -190,7 +190,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertFalse($this->helper->isTranslatorEnabled());
     }
 
-    public function testLabelIsEscapedByDefault()
+    public function testLabelIsEscapedByDefault(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value <a>for</a> foo:');
@@ -198,7 +198,7 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('<a>for</a>', $markup);
     }
 
-    public function testCanDisableLabelHtmlEscape()
+    public function testCanDisableLabelHtmlEscape(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value <a>for</a> foo:');
@@ -207,13 +207,13 @@ class FormLabelTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<a>for</a>', $markup);
     }
 
-    public function testAlwaysWrapIsDisabledByDefault()
+    public function testAlwaysWrapIsDisabledByDefault(): void
     {
         $element = new Element('foo');
         $this->assertEmpty($element->getLabelOption('always_wrap'));
     }
 
-    public function testCanSetAlwaysWrap()
+    public function testCanSetAlwaysWrap(): void
     {
         $element = new Element('foo');
         $element->setLabelOption('always_wrap', true);

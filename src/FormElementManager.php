@@ -308,7 +308,7 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param mixed $instance Instance to inspect and optionally inject.
      */
-    public function injectFactory(ContainerInterface $container, $instance)
+    public function injectFactory(ContainerInterface $container, $instance): void
     {
         if (! $instance instanceof Fieldset) {
             return;
@@ -328,7 +328,7 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param mixed $instance Instance to inspect and optionally initialize.
      */
-    public function callElementInit(ContainerInterface $container, $instance)
+    public function callElementInit(ContainerInterface $container, $instance): void
     {
         if ($instance instanceof InitializableInterface) {
             $instance->init();
@@ -345,9 +345,8 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param string $name
      * @param null|string $class
-     * @return void
      */
-    public function setInvokableClass($name, $class = null)
+    public function setInvokableClass($name, $class = null): void
     {
         $class = $class ?: $name;
 
@@ -368,10 +367,9 @@ class FormElementManager extends AbstractPluginManager
      * Validates against `$instanceOf`.
      *
      * @param  mixed $instance
-     * @return void
      * @throws InvalidServiceException
      */
-    public function validate($instance)
+    public function validate($instance): void
     {
         if (! $instance instanceof $this->instanceOf) {
             throw new InvalidServiceException(sprintf(
@@ -442,11 +440,10 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Try to pull hydrator from the creation context, or instantiates it from its name
      *
-     * @param  string $hydratorName
      * @return mixed
      * @throws Exception\DomainException
      */
-    public function getHydratorFromName($hydratorName)
+    public function getHydratorFromName(string $hydratorName)
     {
         $services = $this->creationContext;
 
@@ -474,11 +471,10 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Try to pull factory from the creation context, or instantiates it from its name
      *
-     * @param  string $factoryName
      * @return mixed
      * @throws Exception\DomainException
      */
-    public function getFactoryFromName($factoryName)
+    public function getFactoryFromName(string $factoryName)
     {
         $services = $this->creationContext;
 

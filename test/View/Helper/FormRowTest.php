@@ -26,7 +26,7 @@ class FormRowTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testCanGenerateLabel()
+    public function testCanGenerateLabel(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -36,7 +36,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testCanCreateLabelValueBeforeInput()
+    public function testCanCreateLabelValueBeforeInput(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -46,7 +46,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testCanCreateLabelValueAfterInput()
+    public function testCanCreateLabelValueAfterInput(): void
     {
         $element = new Element('foo');
         $element->setOptions([
@@ -58,7 +58,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testCanOverrideLabelPosition()
+    public function testCanOverrideLabelPosition(): void
     {
         $fooElement = new Element('foo');
         $fooElement->setOptions([
@@ -84,7 +84,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<span>The value for bar:</span></label>', $barMarkup);
     }
 
-    public function testCanRenderRowLabelAttributes()
+    public function testCanRenderRowLabelAttributes(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -94,7 +94,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<label class="bar">', $markup);
     }
 
-    public function testCanCreateMarkupWithoutLabel()
+    public function testCanCreateMarkupWithoutLabel(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'text');
@@ -102,7 +102,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('/<input name="foo" type="text"[^\/>]*\/?>/', $markup);
     }
 
-    public function testIgnoreLabelForHidden()
+    public function testIgnoreLabelForHidden(): void
     {
         $element = new Element\Hidden('foo');
         $element->setLabel('My label');
@@ -110,7 +110,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('/<input type="hidden" name="foo" value=""[^\/>]*\/?>/', $markup);
     }
 
-    public function testCanHandleMultiCheckboxesCorrectly()
+    public function testCanHandleMultiCheckboxesCorrectly(): void
     {
         $options = [
             'This is the first label'  => 'value1',
@@ -128,7 +128,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<label>', $markup);
     }
 
-    public function testRenderAttributeId()
+    public function testRenderAttributeId(): void
     {
         $element = new Element\Text('foo');
         $element->setAttribute('type', 'text');
@@ -139,7 +139,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<input type="text" name="foo" id="textId"', $markup);
     }
 
-    public function testCanRenderErrors()
+    public function testCanRenderErrors(): void
     {
         $element = new Element('foo');
         $element->setMessages([
@@ -154,7 +154,7 @@ class FormRowTest extends AbstractCommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
-    public function testDoesNotRenderErrorsListIfSetToFalse()
+    public function testDoesNotRenderErrorsListIfSetToFalse(): void
     {
         $element = new Element('foo');
         $element->setMessages([
@@ -170,7 +170,7 @@ class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    public function testCanModifyDefaultErrorClass()
+    public function testCanModifyDefaultErrorClass(): void
     {
         $element = new Element('foo');
         $element->setMessages([
@@ -184,7 +184,7 @@ class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    public function testDoesNotOverrideClassesIfAlreadyPresentWhenThereAreErrors()
+    public function testDoesNotOverrideClassesIfAlreadyPresentWhenThereAreErrors(): void
     {
         $element = new Element('foo');
         $element->setMessages([
@@ -199,12 +199,12 @@ class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
 
-    public function testLabelWillBeTranslated()
+    public function testLabelWillBeTranslated(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -230,7 +230,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testTranslatorMethods()
+    public function testTranslatorMethods(): void
     {
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
@@ -244,7 +244,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertFalse($this->helper->isTranslatorEnabled());
     }
 
-    public function testLabelWillBeTranslatedOnceWithoutId()
+    public function testLabelWillBeTranslatedOnceWithoutId(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -263,7 +263,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testLabelWillBeTranslatedOnceWithId()
+    public function testLabelWillBeTranslatedOnceWithId(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -283,45 +283,45 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</label>', $markup);
     }
 
-    public function testSetLabelPositionInputRandomRaisesException()
+    public function testSetLabelPositionInputRandomRaisesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->helper->setLabelPosition(uniqid('non_existant_'));
     }
 
-    public function testGetLabelPositionReturnsDefaultPrepend()
+    public function testGetLabelPositionReturnsDefaultPrepend(): void
     {
         $labelPosition = $this->helper->getLabelPosition();
         $this->assertEquals('prepend', $labelPosition);
     }
 
-    public function testGetLabelPositionReturnsAppend()
+    public function testGetLabelPositionReturnsAppend(): void
     {
         $this->helper->setLabelPosition('append');
         $labelPosition = $this->helper->getLabelPosition();
         $this->assertEquals('append', $labelPosition);
     }
 
-    public function testGetRenderErrorsReturnsDefaultTrue()
+    public function testGetRenderErrorsReturnsDefaultTrue(): void
     {
         $renderErrors = $this->helper->getRenderErrors();
         $this->assertTrue($renderErrors);
     }
 
-    public function testGetRenderErrorsSetToFalse()
+    public function testGetRenderErrorsSetToFalse(): void
     {
         $this->helper->setRenderErrors(false);
         $renderErrors = $this->helper->getRenderErrors();
         $this->assertFalse($renderErrors);
     }
 
-    public function testSetLabelAttributes()
+    public function testSetLabelAttributes(): void
     {
         $this->helper->setLabelAttributes(['foo', 'bar']);
         $this->assertEquals([0 => 'foo', 1 => 'bar'], $this->helper->getLabelAttributes());
     }
 
-    public function testWhenUsingIdAndLabelBecomesEmptyRemoveSpan()
+    public function testWhenUsingIdAndLabelBecomesEmptyRemoveSpan(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -337,7 +337,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('</span>', $markup);
     }
 
-    public function testShowErrorInMultiCheckbox()
+    public function testShowErrorInMultiCheckbox(): void
     {
         $element = new Element\MultiCheckbox('hobby');
         $element->setLabel('Hobby');
@@ -353,7 +353,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<ul><li>Error message</li></ul>', $markup);
     }
 
-    public function testShowErrorInRadio()
+    public function testShowErrorInRadio(): void
     {
         $element = new Element\Radio('direction');
         $element->setLabel('Direction');
@@ -369,7 +369,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString('<ul><li>Error message</li></ul>', $markup);
     }
 
-    public function testErrorShowTwice()
+    public function testErrorShowTwice(): void
     {
         $element = new Element\Date('birth');
         $element->setFormat('Y-m-d');
@@ -386,7 +386,7 @@ class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    public function testInvokeWithNoRenderErrors()
+    public function testInvokeWithNoRenderErrors(): void
     {
         $mock = $this->getMockBuilder(get_class($this->helper))
             ->setMethods(['setRenderErrors'])
@@ -397,7 +397,7 @@ class FormRowTest extends AbstractCommonTestCase
         $mock->__invoke(new Element('foo'));
     }
 
-    public function testInvokeWithRenderErrorsTrue()
+    public function testInvokeWithRenderErrorsTrue(): void
     {
         $mock = $this->getMockBuilder(get_class($this->helper))
             ->setMethods(['setRenderErrors'])
@@ -409,7 +409,7 @@ class FormRowTest extends AbstractCommonTestCase
         $mock->__invoke(new Element('foo'), null, true);
     }
 
-    public function testAppendLabelEvenIfElementHasId()
+    public function testAppendLabelEvenIfElementHasId(): void
     {
         $element = new Element('foo');
         $element->setAttribute('id', 'bar');
@@ -423,7 +423,7 @@ class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    public function testUsePartialView()
+    public function testUsePartialView(): void
     {
         $element = new Element('fooname');
         $element->setLabel('foolabel');
@@ -439,7 +439,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertSame($partial, $this->helper->getPartial());
     }
 
-    public function testAssertButtonElementDoesNotRenderLabelTwice()
+    public function testAssertButtonElementDoesNotRenderLabelTwice(): void
     {
         $element = new Element\Button('button');
         $element->setLabel('foo');
@@ -451,7 +451,7 @@ class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    public function testAssertLabelHtmlEscapeIsOnByDefault()
+    public function testAssertLabelHtmlEscapeIsOnByDefault(): void
     {
         $element      = new Element('fooname');
         $escapeHelper = $this->renderer->getHelperPluginManager()->get('escapeHtml');
@@ -464,7 +464,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString($escapeHelper->__invoke($label), $markup);
     }
 
-    public function testCanDisableLabelHtmlEscape()
+    public function testCanDisableLabelHtmlEscape(): void
     {
         $label   = '<span>foo</span>';
         $element = new Element('fooname');
@@ -476,7 +476,7 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertStringContainsString($label, $markup);
     }
 
-    public function testCanSetLabelPositionBeforeInvoke()
+    public function testCanSetLabelPositionBeforeInvoke(): void
     {
         $element = new Element('foo');
 
@@ -489,7 +489,7 @@ class FormRowTest extends AbstractCommonTestCase
     /**
      * @covers \Laminas\Form\View\Helper\FormRow::render
      */
-    public function testCanSetLabelPositionViaRender()
+    public function testCanSetLabelPositionViaRender(): void
     {
         $element = new Element('foo');
         $element->setAttribute('id', 'bar');
@@ -508,7 +508,7 @@ class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    public function testSetLabelPositionViaRenderIsNotCached()
+    public function testSetLabelPositionViaRenderIsNotCached(): void
     {
         $labelPositionBeforeRender = $this->helper->getLabelPosition();
         $element                   = new Element('foo');
@@ -523,7 +523,7 @@ class FormRowTest extends AbstractCommonTestCase
     /**
      * @covers \Laminas\Form\View\Helper\FormRow::__invoke
      */
-    public function testCanSetLabelPositionViaInvoke()
+    public function testCanSetLabelPositionViaInvoke(): void
     {
         $element = new Element('foo');
         $element->setAttribute('id', 'bar');
@@ -545,7 +545,7 @@ class FormRowTest extends AbstractCommonTestCase
     /**
      * @covers \Laminas\Form\View\Helper\FormRow::__invoke
      */
-    public function testSetLabelPositionViaInvokeIsNotCached()
+    public function testSetLabelPositionViaInvokeIsNotCached(): void
     {
         $labelPositionBeforeRender = $this->helper->getLabelPosition();
         $element                   = new Element('foo');
@@ -557,13 +557,13 @@ class FormRowTest extends AbstractCommonTestCase
         $this->assertSame($labelPositionBeforeRender, $this->helper->getLabelPosition());
     }
 
-    public function testLabelOptionAlwaysWrapDefaultsToFalse()
+    public function testLabelOptionAlwaysWrapDefaultsToFalse(): void
     {
         $element = new Element('foo');
         $this->assertEmpty($element->getLabelOption('always_wrap'));
     }
 
-    public function testCanSetOptionToWrapElementInLabel()
+    public function testCanSetOptionToWrapElementInLabel(): void
     {
         $element = new Element('foo', [
             'label_options' => [
@@ -583,7 +583,7 @@ class FormRowTest extends AbstractCommonTestCase
     /**
      * @group issue-7030
      */
-    public function testWrapFieldsetAroundCaptchaWithLabel()
+    public function testWrapFieldsetAroundCaptchaWithLabel(): void
     {
         $this->assertMatchesRegularExpression(
             '#^<fieldset><legend>baz<\/legend>'

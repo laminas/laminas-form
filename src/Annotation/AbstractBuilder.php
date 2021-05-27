@@ -56,10 +56,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Set event manager instance
-     *
-     * @return void
      */
-    public function setEventManager(EventManagerInterface $eventManager)
+    public function setEventManager(EventManagerInterface $eventManager): void
     {
         $eventManager->setIdentifiers([
             self::class,
@@ -74,10 +72,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * Retrieve form factory
      *
      * Lazy-loads the default form factory if none is currently set.
-     *
-     * @return Factory
      */
-    public function getFormFactory()
+    public function getFormFactory(): Factory
     {
         if ($this->formFactory) {
             return $this->formFactory;
@@ -89,10 +85,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Get event manager
-     *
-     * @return EventManagerInterface
      */
-    public function getEventManager()
+    public function getEventManager(): EventManagerInterface
     {
         if (null === $this->eventManager) {
             $this->setEventManager(new EventManager());
@@ -105,9 +99,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @param  string|object $entity Either an instance or a valid class name for an entity
      * @throws Exception\InvalidArgumentException If $entity is not an object or class name.
-     * @return ArrayObject
      */
-    public function getFormSpecification($entity)
+    public function getFormSpecification($entity): ArrayObject
     {
         if (! is_object($entity)) {
             if (
@@ -149,9 +142,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * Create a form from an object.
      *
      * @param  string|object $entity
-     * @return FormInterface
      */
-    public function createForm($entity)
+    public function createForm($entity): FormInterface
     {
         $formSpec    = ArrayUtils::iteratorToArray($this->getFormSpecification($entity));
         $formFactory = $this->getFormFactory();
@@ -160,10 +152,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Get the entity used to construct the form.
-     *
-     * @return object
      */
-    public function getEntity()
+    public function getEntity(): object
     {
         return $this->entity;
     }
@@ -171,16 +161,15 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Configure the form specification from annotations
      *
-     * @param  AnnotationCollection $annotations
-     * @param  ReflectionClass $reflection
-     * @param  ArrayObject $formSpec
-     * @param  ArrayObject $filterSpec
-     * @return void
      * @triggers discoverName
      * @triggers configureForm
      */
-    protected function configureForm($annotations, $reflection, $formSpec, $filterSpec)
-    {
+    protected function configureForm(
+        AnnotationCollection $annotations,
+        ReflectionClass $reflection,
+        ArrayObject $formSpec,
+        ArrayObject $filterSpec
+    ): void {
         $name                   = $this->discoverName($annotations, $reflection);
         $formSpec['name']       = $name;
         $formSpec['attributes'] = [];
@@ -201,17 +190,16 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Configure an element from annotations
      *
-     * @param  AnnotationCollection $annotations
-     * @param  ReflectionProperty $reflection
-     * @param  ArrayObject $formSpec
-     * @param  ArrayObject $filterSpec
-     * @return void
      * @triggers checkForExclude
      * @triggers discoverName
      * @triggers configureElement
      */
-    protected function configureElement($annotations, $reflection, $formSpec, $filterSpec)
-    {
+    protected function configureElement(
+        AnnotationCollection $annotations,
+        ReflectionProperty $reflection,
+        ArrayObject $formSpec,
+        ArrayObject $filterSpec
+    ): void {
         // If the element is marked as exclude, return early
         if ($this->checkForExclude($annotations)) {
             return;
@@ -271,31 +259,23 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     }
 
     /**
-     * @param bool $preserveDefinedOrder
      * @return $this
      */
-    public function setPreserveDefinedOrder($preserveDefinedOrder)
+    public function setPreserveDefinedOrder(bool $preserveDefinedOrder)
     {
-        $this->preserveDefinedOrder = (bool) $preserveDefinedOrder;
+        $this->preserveDefinedOrder = $preserveDefinedOrder;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function preserveDefinedOrder()
+    public function preserveDefinedOrder(): bool
     {
         return $this->preserveDefinedOrder;
     }
 
     /**
      * Discover the name of the given form or element
-     *
-     * @param  AnnotationCollection $annotations
-     * @param  Reflector $reflection
-     * @return string
      */
-    protected function discoverName($annotations, $reflection)
+    protected function discoverName(AnnotationCollection $annotations, Reflector $reflection): string
     {
         $event = new Event();
         $event->setName(__FUNCTION__);
@@ -320,10 +300,9 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Determine if an element is marked to exclude from the definitions
      *
-     * @param  AnnotationCollection $annotations
      * @return true|false
      */
-    protected function checkForExclude($annotations)
+    protected function checkForExclude(AnnotationCollection $annotations): bool
     {
         $event = new Event();
         $event->setName(__FUNCTION__);

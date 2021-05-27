@@ -20,7 +20,7 @@ class FormResetTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -28,7 +28,7 @@ class FormResetTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesResetInputTagWithElement()
+    public function testGeneratesResetInputTagWithElement(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
@@ -36,7 +36,7 @@ class FormResetTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="reset"', $markup);
     }
 
-    public function testGeneratesResetInputTagRegardlessOfElementType()
+    public function testGeneratesResetInputTagRegardlessOfElementType(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
@@ -122,8 +122,10 @@ class FormResetTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
-    {
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
+        string $attribute,
+        string $assertion
+    ): void {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
         switch ($attribute) {
@@ -137,7 +139,7 @@ class FormResetTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
@@ -146,7 +148,7 @@ class FormResetTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="reset"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
@@ -154,7 +156,7 @@ class FormResetTest extends AbstractCommonTestCase
     /**
      * @group Laminas-489
      */
-    public function testCanTranslateValue()
+    public function testCanTranslateValue(): void
     {
         $element = new Element('foo');
         $element->setValue('Reset Label');

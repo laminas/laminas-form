@@ -16,7 +16,7 @@ class HydratorStrategyEntityA implements InputFilterAwareInterface
     /** @var null|InputFilterInterface */
     private $inputFilter; // used to test forms
 
-    public function addEntity(HydratorStrategyEntityB $entity)
+    public function addEntity(HydratorStrategyEntityB $entity): void
     {
         $this->entities[] = $entity;
     }

@@ -17,7 +17,6 @@ use function get_class;
 use function gettype;
 use function is_array;
 use function is_object;
-use function is_string;
 use function iterator_to_array;
 use function max;
 use function sprintf;
@@ -151,10 +150,9 @@ class Collection extends Fieldset
     /**
      * Checks if the object can be set in this fieldset
      *
-     * @param object $object
-     * @return bool
+     * @param object|array $object
      */
-    public function allowObjectBinding($object)
+    public function allowObjectBinding($object): bool
     {
         return true;
     }
@@ -163,7 +161,7 @@ class Collection extends Fieldset
      * Set the object used by the hydrator
      * In this case the "object" is a collection of objects
      *
-     * @param  array|Traversable $object
+     * @param  iterable $object
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
@@ -190,9 +188,8 @@ class Collection extends Fieldset
      *
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return void
      */
-    public function populateValues(iterable $data)
+    public function populateValues(iterable $data): void
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
@@ -256,10 +253,8 @@ class Collection extends Fieldset
 
     /**
      * Checks if this fieldset can bind data
-     *
-     * @return bool
      */
-    public function allowValueBinding()
+    public function allowValueBinding(): bool
     {
         return true;
     }
@@ -290,10 +285,9 @@ class Collection extends Fieldset
     /**
      * Set the initial count of target element
      *
-     * @param int $count
      * @return $this
      */
-    public function setCount($count)
+    public function setCount(int $count)
     {
         $this->count = $count > 0 ? $count : 0;
         return $this;
@@ -301,10 +295,8 @@ class Collection extends Fieldset
 
     /**
      * Get the initial count of target element
-     *
-     * @return int
      */
-    public function getCount()
+    public function getCount(): int
     {
         return $this->count;
     }
@@ -342,10 +334,8 @@ class Collection extends Fieldset
 
     /**
      * Get target element
-     *
-     * @return ElementInterface|null
      */
-    public function getTargetElement()
+    public function getTargetElement(): ?ElementInterface
     {
         return $this->targetElement;
     }
@@ -353,39 +343,32 @@ class Collection extends Fieldset
     /**
      * Get allow add
      *
-     * @param bool $allowAdd
      * @return $this
      */
-    public function setAllowAdd($allowAdd)
+    public function setAllowAdd(bool $allowAdd)
     {
-        $this->allowAdd = (bool) $allowAdd;
+        $this->allowAdd = $allowAdd;
         return $this;
     }
 
     /**
      * Get allow add
-     *
-     * @return bool
      */
-    public function allowAdd()
+    public function allowAdd(): bool
     {
         return $this->allowAdd;
     }
 
     /**
-     * @param bool $allowRemove
      * @return $this
      */
-    public function setAllowRemove($allowRemove)
+    public function setAllowRemove(bool $allowRemove)
     {
-        $this->allowRemove = (bool) $allowRemove;
+        $this->allowRemove = $allowRemove;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function allowRemove()
+    public function allowRemove(): bool
     {
         return $this->allowRemove;
     }
@@ -394,22 +377,19 @@ class Collection extends Fieldset
      * If set to true, a template prototype is automatically added to the form
      * to ease the creation of dynamic elements through JavaScript
      *
-     * @param bool $shouldCreateTemplate
      * @return $this
      */
-    public function setShouldCreateTemplate($shouldCreateTemplate)
+    public function setShouldCreateTemplate(bool $shouldCreateTemplate)
     {
-        $this->shouldCreateTemplate = (bool) $shouldCreateTemplate;
+        $this->shouldCreateTemplate = $shouldCreateTemplate;
 
         return $this;
     }
 
     /**
      * Get if the collection should create a template
-     *
-     * @return bool
      */
-    public function shouldCreateTemplate()
+    public function shouldCreateTemplate(): bool
     {
         return $this->shouldCreateTemplate;
     }
@@ -417,42 +397,33 @@ class Collection extends Fieldset
     /**
      * Set the placeholder used in the template generated to help create new elements in JavaScript
      *
-     * @param string $templatePlaceholder
      * @return $this
      */
-    public function setTemplatePlaceholder($templatePlaceholder)
+    public function setTemplatePlaceholder(string $templatePlaceholder)
     {
-        if (is_string($templatePlaceholder)) {
-            $this->templatePlaceholder = $templatePlaceholder;
-        }
+        $this->templatePlaceholder = $templatePlaceholder;
 
         return $this;
     }
 
     /**
      * Get the template placeholder
-     *
-     * @return string
      */
-    public function getTemplatePlaceholder()
+    public function getTemplatePlaceholder(): string
     {
         return $this->templatePlaceholder;
     }
 
     /**
-     * @param bool $createNewObjects
      * @return $this
      */
-    public function setCreateNewObjects($createNewObjects)
+    public function setCreateNewObjects(bool $createNewObjects)
     {
-        $this->createNewObjects = (bool) $createNewObjects;
+        $this->createNewObjects = $createNewObjects;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function createNewObjects()
+    public function createNewObjects(): bool
     {
         return $this->createNewObjects;
     }
@@ -473,10 +444,8 @@ class Collection extends Fieldset
 
     /**
      * Prepare the collection by adding a dummy template element if the user want one
-     *
-     * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         if (true === $this->shouldCreateChildrenOnPrepareElement) {
             if ($this->targetElement !== null && $this->count > 0) {
@@ -508,7 +477,7 @@ class Collection extends Fieldset
      * @throws Exception\DomainException
      * @throws Exception\InvalidElementException
      */
-    public function extract()
+    public function extract(): array
     {
         if ($this->object instanceof Traversable) {
             $this->object = ArrayUtils::iteratorToArray($this->object, false);
@@ -536,7 +505,9 @@ class Collection extends Fieldset
                 $targetElement->setObject($value);
                 $values[$key] = $targetElement->extract();
                 if (! $this->createNewObjects() && $this->has($key)) {
-                    $this->get($key)->setObject($value);
+                    $fieldset = $this->get($key);
+                    assert($fieldset instanceof FieldsetInterface);
+                    $fieldset->setObject($value);
                 }
                 continue;
             }
@@ -556,10 +527,8 @@ class Collection extends Fieldset
 
     /**
      * Create a new instance of the target element
-     *
-     * @return ElementInterface
      */
-    protected function createNewTargetElementInstance()
+    protected function createNewTargetElementInstance(): ElementInterface
     {
         return clone $this->targetElement;
     }
@@ -567,11 +536,9 @@ class Collection extends Fieldset
     /**
      * Add a new instance of the target element
      *
-     * @param string $name
-     * @return ElementInterface
      * @throws Exception\DomainException
      */
-    protected function addNewTargetElementInstance($name)
+    protected function addNewTargetElementInstance(string $name): ElementInterface
     {
         $this->shouldCreateChildrenOnPrepareElement = false;
 
@@ -615,10 +582,8 @@ class Collection extends Fieldset
     /**
      * Replaces the default template object of a sub element with the corresponding
      * real entity so that all properties are preserved.
-     *
-     * @return void
      */
-    protected function replaceTemplateObjects()
+    protected function replaceTemplateObjects(): void
     {
         $fieldsets = $this->getFieldsets();
 

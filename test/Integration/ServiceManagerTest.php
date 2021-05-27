@@ -16,7 +16,7 @@ class ServiceManagerTest extends TestCase
 {
     use ProphecyTrait;
 
-    public function testInitInitializerShouldBeCalledAfterAllOtherInitializers()
+    public function testInitInitializerShouldBeCalledAfterAllOtherInitializers(): void
     {
         // Reproducing the behaviour of a full stack MVC + ModuleManager
         $serviceManagerConfig = new Config([
@@ -31,7 +31,7 @@ class ServiceManagerTest extends TestCase
         $formElementManager = $serviceManager->get('FormElementManager');
 
         $test = 0;
-        $spy  = function () use (&$test) {
+        $spy  = function () use (&$test): void {
             TestCase::assertEquals(1, $test);
         };
 
@@ -39,7 +39,7 @@ class ServiceManagerTest extends TestCase
         $element->init()->will($spy);
 
         $initializer   = $this->prophesize(InitializerInterface::class);
-        $incrementTest = function () use (&$test) {
+        $incrementTest = function () use (&$test): void {
             $test += 1;
         };
 
@@ -64,7 +64,7 @@ class ServiceManagerTest extends TestCase
         $formElementManager->get('InitializableElement');
     }
 
-    public function testInjectFactoryInitializerShouldTriggerBeforeInitInitializer()
+    public function testInjectFactoryInitializerShouldTriggerBeforeInitInitializer(): void
     {
         // Reproducing the behaviour of a full stack MVC + ModuleManager
         $serviceManagerConfig = new Config([
@@ -79,7 +79,10 @@ class ServiceManagerTest extends TestCase
         $formElementManager = $serviceManager->get('FormElementManager');
 
         $initializer                 = $this->prophesize(InitializerInterface::class);
-        $formElementManagerAssertion = function ($form) use ($formElementManager) {
+        $formElementManagerAssertion = /**
+         * @return true
+         */
+        function ($form) use ($formElementManager): bool {
             TestCase::assertInstanceOf(Form::class, $form);
             TestCase::assertSame($formElementManager, $form->getFormFactory()->getFormElementManager());
             return true;

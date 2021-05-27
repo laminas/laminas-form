@@ -11,14 +11,14 @@ use function get_class;
 
 class CheckboxTest extends TestCase
 {
-    public function testProvidesValidDefaultValues()
+    public function testProvidesValidDefaultValues(): void
     {
         $element = new CheckboxElement();
         $this->assertEquals('1', $element->getCheckedValue());
         $this->assertEquals('0', $element->getUncheckedValue());
     }
 
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new CheckboxElement();
 
@@ -45,13 +45,13 @@ class CheckboxTest extends TestCase
         }
     }
 
-    public function testIsChecked()
+    public function testIsChecked(): void
     {
         $element = new CheckboxElement();
         $this->assertEquals(false, $element->isChecked());
     }
 
-    public function testSetAttributeValue()
+    public function testSetAttributeValue(): void
     {
         $element = new CheckboxElement();
         $this->assertEquals(false, $element->isChecked());
@@ -76,7 +76,7 @@ class CheckboxTest extends TestCase
         $this->assertEquals(false, $element->isChecked());
     }
 
-    public function testIntegerCheckedValue()
+    public function testIntegerCheckedValue(): void
     {
         $element = new CheckboxElement();
         $element->setCheckedValue('123');
@@ -87,7 +87,7 @@ class CheckboxTest extends TestCase
         $this->assertEquals(true, $element->isChecked());
     }
 
-    public function testSetChecked()
+    public function testSetChecked(): void
     {
         $element = new CheckboxElement();
         $this->assertEquals(false, $element->isChecked());
@@ -99,7 +99,7 @@ class CheckboxTest extends TestCase
         $this->assertEquals(false, $element->isChecked());
     }
 
-    public function testCheckWithCheckedValue()
+    public function testCheckWithCheckedValue(): void
     {
         $element = new CheckboxElement();
         $this->assertEquals(false, $element->isChecked());
@@ -108,7 +108,7 @@ class CheckboxTest extends TestCase
         $this->assertEquals(true, $element->isChecked());
     }
 
-    public function testSetOptions()
+    public function testSetOptions(): void
     {
         $element = new CheckboxElement();
         $element->setOptions([
@@ -121,7 +121,7 @@ class CheckboxTest extends TestCase
         $this->assertEquals('bar', $element->getOption('checked_value'));
     }
 
-    public function testSetOptionsTraversable()
+    public function testSetOptionsTraversable(): void
     {
         $element = new CheckboxElement();
         $element->setOptions(new CustomTraversable([

@@ -70,10 +70,9 @@ class FormCollection extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  bool                  $wrap
      * @return string|FormCollection
      */
-    public function __invoke(?ElementInterface $element = null, $wrap = true)
+    public function __invoke(?ElementInterface $element = null, bool $wrap = true)
     {
         if (! $element) {
             return $this;
@@ -86,10 +85,8 @@ class FormCollection extends AbstractHelper
 
     /**
      * Render a collection by iterating through all fieldsets and elements
-     *
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $renderer = $this->getView();
         if (! method_exists($renderer, 'plugin')) {
@@ -160,16 +157,13 @@ class FormCollection extends AbstractHelper
 
     /**
      * Only render a template
-     *
-     * @return string
      */
-    public function renderTemplate(CollectionElement $collection)
+    public function renderTemplate(CollectionElement $collection): string
     {
         $elementHelper = $this->getElementHelper();
         assert(is_callable($elementHelper));
         $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
-        assert(is_callable($escapeHtmlAttribHelper));
-        $fieldsetHelper = $this->getFieldsetHelper();
+        $fieldsetHelper         = $this->getFieldsetHelper();
         assert(is_callable($fieldsetHelper));
 
         $templateMarkup = '';
@@ -191,21 +185,18 @@ class FormCollection extends AbstractHelper
     /**
      * If set to true, collections are automatically wrapped around a fieldset
      *
-     * @param  bool $wrap
      * @return $this
      */
-    public function setShouldWrap($wrap)
+    public function setShouldWrap(bool $wrap)
     {
-        $this->shouldWrap = (bool) $wrap;
+        $this->shouldWrap = $wrap;
         return $this;
     }
 
     /**
      * Get wrapped
-     *
-     * @return bool
      */
-    public function shouldWrap()
+    public function shouldWrap(): bool
     {
         return $this->shouldWrap;
     }
@@ -216,7 +207,7 @@ class FormCollection extends AbstractHelper
      * @param  string $defaultSubHelper The name of the view helper to set.
      * @return $this
      */
-    public function setDefaultElementHelper($defaultSubHelper)
+    public function setDefaultElementHelper(string $defaultSubHelper)
     {
         $this->defaultElementHelper = $defaultSubHelper;
         return $this;
@@ -224,10 +215,8 @@ class FormCollection extends AbstractHelper
 
     /**
      * Gets the name of the view helper that should be used to render sub elements.
-     *
-     * @return string
      */
-    public function getDefaultElementHelper()
+    public function getDefaultElementHelper(): string
     {
         return $this->defaultElementHelper;
     }
@@ -247,10 +236,10 @@ class FormCollection extends AbstractHelper
     /**
      * Retrieve the element helper.
      *
-     * @return HelperInterface
+     * @return FormRow
      * @throws RuntimeException
      */
-    protected function getElementHelper()
+    protected function getElementHelper(): HelperInterface
     {
         if ($this->elementHelper) {
             return $this->elementHelper;
@@ -287,7 +276,7 @@ class FormCollection extends AbstractHelper
      *
      * @return FormCollection
      */
-    protected function getFieldsetHelper()
+    protected function getFieldsetHelper(): HelperInterface
     {
         if ($this->fieldsetHelper) {
             return $this->fieldsetHelper;
@@ -298,10 +287,8 @@ class FormCollection extends AbstractHelper
 
     /**
      * Get the wrapper for the collection
-     *
-     * @return string
      */
-    public function getWrapper()
+    public function getWrapper(): string
     {
         return $this->wrapper;
     }
@@ -319,10 +306,9 @@ class FormCollection extends AbstractHelper
      *
      * The preset default is <pre><fieldset>%2$s%1$s%3$s</fieldset></pre>
      *
-     * @param string $wrapper
      * @return $this
      */
-    public function setWrapper($wrapper)
+    public function setWrapper(string $wrapper)
     {
         $this->wrapper = $wrapper;
 
@@ -335,10 +321,9 @@ class FormCollection extends AbstractHelper
      * parameter
      * This defaults to '<legend>%s</legend>'
      *
-     * @param string $labelWrapper
      * @return $this
      */
-    public function setLabelWrapper($labelWrapper)
+    public function setLabelWrapper(string $labelWrapper)
     {
         $this->labelWrapper = $labelWrapper;
 
@@ -347,20 +332,16 @@ class FormCollection extends AbstractHelper
 
     /**
      * Get the wrapper for the label
-     *
-     * @return string
      */
-    public function getLabelWrapper()
+    public function getLabelWrapper(): string
     {
         return $this->labelWrapper;
     }
 
     /**
      * Ge the wrapper for the template
-     *
-     * @return string
      */
-    public function getTemplateWrapper()
+    public function getTemplateWrapper(): string
     {
         return $this->templateWrapper;
     }
@@ -373,10 +354,9 @@ class FormCollection extends AbstractHelper
      *
      * THis defaults to '<span data-template="%s"></span>'
      *
-     * @param string $templateWrapper
      * @return $this
      */
-    public function setTemplateWrapper($templateWrapper)
+    public function setTemplateWrapper(string $templateWrapper)
     {
         $this->templateWrapper = $templateWrapper;
 

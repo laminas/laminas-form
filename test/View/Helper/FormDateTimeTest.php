@@ -19,7 +19,7 @@ class FormDateTimeTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -27,7 +27,7 @@ class FormDateTimeTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesInputTagWithElement()
+    public function testGeneratesInputTagWithElement(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
@@ -35,7 +35,7 @@ class FormDateTimeTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="datetime"', $markup);
     }
 
-    public function testGeneratesInputTagRegardlessOfElementType()
+    public function testGeneratesInputTagRegardlessOfElementType(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
@@ -120,8 +120,10 @@ class FormDateTimeTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
-    {
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
+        string $attribute,
+        string $assertion
+    ): void {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
         switch ($attribute) {
@@ -135,7 +137,7 @@ class FormDateTimeTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
@@ -144,7 +146,7 @@ class FormDateTimeTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="datetime"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $this->assertSame($this->helper, $this->helper->__invoke());
     }

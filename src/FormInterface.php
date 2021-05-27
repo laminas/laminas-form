@@ -2,7 +2,6 @@
 
 namespace Laminas\Form;
 
-use ArrayAccess;
 use Laminas\InputFilter\InputFilterInterface;
 
 interface FormInterface extends FieldsetInterface
@@ -19,29 +18,25 @@ interface FormInterface extends FieldsetInterface
      *
      * Typically, also passes data on to the composed input filter.
      *
-     * @param  array|ArrayAccess $data
      * @return $this
      */
-    public function setData($data);
+    public function setData(iterable $data);
 
     /**
      * Bind an object to the element
      *
      * Allows populating the object with validated values.
      *
-     * @param  object $object
-     * @param  int $flags
      * @return mixed
      */
-    public function bind($object, $flags = FormInterface::VALUES_NORMALIZED);
+    public function bind(object $object, int $flags = FormInterface::VALUES_NORMALIZED);
 
     /**
      * Whether or not to bind values to the bound object when validation succeeds
      *
-     * @param  int $bindOnValidateFlag
      * @return $this
      */
-    public function setBindOnValidate($bindOnValidateFlag);
+    public function setBindOnValidate(int $bindOnValidateFlag);
 
     /**
      * Set input filter
@@ -52,19 +47,15 @@ interface FormInterface extends FieldsetInterface
 
     /**
      * Retrieve input filter
-     *
-     * @return InputFilterInterface
      */
-    public function getInputFilter();
+    public function getInputFilter(): InputFilterInterface;
 
     /**
      * Validate the form
      *
      * Typically, will proxy to the composed input filter.
-     *
-     * @return bool
      */
-    public function isValid();
+    public function isValid(): bool;
 
     /**
      * Retrieve the validated data
@@ -72,10 +63,9 @@ interface FormInterface extends FieldsetInterface
      * By default, retrieves normalized values; pass one of the VALUES_*
      * constants to shape the behavior.
      *
-     * @param  int $flag
      * @return array|object
      */
-    public function getData($flag = FormInterface::VALUES_NORMALIZED);
+    public function getData(int $flag = FormInterface::VALUES_NORMALIZED);
 
     /**
      * Set the validation group (set of values to validate)

@@ -41,14 +41,14 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         ];
     }
 
-    public function testLackOfMessagesResultsInEmptyMarkup()
+    public function testLackOfMessagesResultsInEmptyMarkup(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
         $this->assertEquals('', $markup);
     }
 
-    public function testRendersErrorMessagesUsingUnorderedListByDefault()
+    public function testRendersErrorMessagesUsingUnorderedListByDefault(): void
     {
         $messages = $this->getMessageList();
         $element  = new Element('foo');
@@ -60,7 +60,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
-    public function testRendersErrorMessagesUsingUnorderedListTranslated()
+    public function testRendersErrorMessagesUsingUnorderedListTranslated(): void
     {
         $mockTranslator = $this->createMock(Translator::class);
         $mockTranslator->expects($this->exactly(3))
@@ -86,7 +86,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
-    public function testRendersErrorMessagesWithoutDoubleTranslation()
+    public function testRendersErrorMessagesWithoutDoubleTranslation(): void
     {
         $form = new Form('test_form');
         $form->add([
@@ -133,7 +133,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#^<ul>\s*<li>TRANSLATED#s', $markup);
     }
 
-    public function testCanSpecifyAttributesForOpeningTag()
+    public function testCanSpecifyAttributesForOpeningTag(): void
     {
         $messages = $this->getMessageList();
         $element  = new Element('foo');
@@ -143,7 +143,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         $this->assertStringContainsString('ul class="error"', $markup);
     }
 
-    public function testCanSpecifyAttributesForOpeningTagUsingInvoke()
+    public function testCanSpecifyAttributesForOpeningTagUsingInvoke(): void
     {
         $helper   = $this->helper;
         $messages = $this->getMessageList();
@@ -154,7 +154,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         $this->assertStringContainsString('ul class="error"', $markup);
     }
 
-    public function testCanSpecifyAlternateMarkupStringsViaSetters()
+    public function testCanSpecifyAlternateMarkupStringsViaSetters(): void
     {
         $messages = $this->getMessageList();
         $element  = new Element('foo');
@@ -171,7 +171,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
-    public function testSpecifiedAttributesOverrideDefaults()
+    public function testSpecifiedAttributesOverrideDefaults(): void
     {
         $messages = $this->getMessageList();
         $element  = new Element('foo');
@@ -182,7 +182,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         $this->assertStringContainsString('ul class="error"', $markup);
     }
 
-    public function testGetAttributes()
+    public function testGetAttributes(): void
     {
         $messages = $this->getMessageList();
         $element  = new Element('foo');
@@ -195,7 +195,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         $this->assertEquals(['class' => 'error'], $this->helper->getAttributes());
     }
 
-    public function testRendersNestedMessageSetsAsAFlatList()
+    public function testRendersNestedMessageSetsAsAFlatList(): void
     {
         $messages = [
             [
@@ -215,7 +215,7 @@ class FormElementErrorsTest extends AbstractCommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
-    public function testCallingTheHelperToRenderInvokeCanReturnObject()
+    public function testCallingTheHelperToRenderInvokeCanReturnObject(): void
     {
         $helper = $this->helper;
         $this->assertEquals($helper(), $helper);

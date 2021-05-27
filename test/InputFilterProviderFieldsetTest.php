@@ -15,7 +15,7 @@ class InputFilterProviderFieldsetTest extends TestCase
         $this->fieldset = new InputFilterProviderFieldset();
     }
 
-    public function testCanSetInputFilterSpec()
+    public function testCanSetInputFilterSpec(): void
     {
         $filterSpec = ['filter' => ['filter_options']];
 
@@ -23,7 +23,7 @@ class InputFilterProviderFieldsetTest extends TestCase
         $this->assertEquals($filterSpec, $this->fieldset->getInputFilterSpecification());
     }
 
-    public function testCanSetInputFilterSpecViaOptions()
+    public function testCanSetInputFilterSpecViaOptions(): void
     {
         $filterSpec = ['filter' => ['filter_options']];
 
@@ -31,7 +31,7 @@ class InputFilterProviderFieldsetTest extends TestCase
         $this->assertEquals($filterSpec, $this->fieldset->getInputFilterSpecification());
     }
 
-    public function testFilterSpecIsInitiallyEmpty()
+    public function testFilterSpecIsInitiallyEmpty(): void
     {
         $this->assertEmpty($this->fieldset->getInputFilterSpecification());
     }

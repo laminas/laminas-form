@@ -24,10 +24,9 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
     /**
      * @param  string $requestedName
      * @param  null|array $options
-     * @return AnnotationBuilder
      * @throws ServiceNotCreatedException For invalid listener configuration.
      */
-    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AbstractBuilder
     {
         // resolve aliases used in laminas servicemanager
         if (isset($this->aliases[$requestedName])) {
@@ -53,9 +52,8 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
 
     /**
      * @param  string $requestedName
-     * @return bool
      */
-    public function canCreate(ContainerInterface $container, $requestedName)
+    public function canCreate(ContainerInterface $container, $requestedName): bool
     {
         return isset($this->aliases[$requestedName]) || is_subclass_of($requestedName, AbstractBuilder::class);
     }
@@ -73,7 +71,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      *
      * @return array
      */
-    private function marshalConfig(ContainerInterface $container)
+    private function marshalConfig(ContainerInterface $container): array
     {
         if (! $container->has('config')) {
             return [];
@@ -95,10 +93,9 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      * - otherwise attaches it to the event manager
      *
      * @param  array $config
-     * @return void
      * @throws ServiceNotCreatedException If any listener is not an event listener aggregate.
      */
-    private function injectListeners(array $config, EventManagerInterface $events, ContainerInterface $container)
+    private function injectListeners(array $config, EventManagerInterface $events, ContainerInterface $container): void
     {
         if (! isset($config['listeners'])) {
             return;
@@ -120,7 +117,7 @@ class BuilderAbstractFactory implements AbstractFactoryInterface
      *
      * Also injects the factory with the InputFilterManager if present.
      */
-    private function injectFactory(Factory $factory, ContainerInterface $container)
+    private function injectFactory(Factory $factory, ContainerInterface $container): void
     {
         $factory->setFormElementManager($container->get('FormElementManager'));
 

@@ -34,9 +34,8 @@ class FormReset extends FormInput
      * Determine input type to use
      *
      * @throws Exception\DomainException
-     * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         return 'reset';
     }

@@ -30,7 +30,7 @@ class FigletTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testMissingCaptchaAttributeThrowsDomainException()
+    public function testMissingCaptchaAttributeThrowsDomainException(): void
     {
         $element = new CaptchaElement('foo');
 
@@ -38,7 +38,7 @@ class FigletTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testRendersHiddenInputForId()
+    public function testRendersHiddenInputForId(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -52,7 +52,7 @@ class FigletTest extends AbstractCommonTestCase
         );
     }
 
-    public function testRendersTextInputForInput()
+    public function testRendersTextInputForInput(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -62,7 +62,7 @@ class FigletTest extends AbstractCommonTestCase
         );
     }
 
-    public function testRendersFigletPriorToInputByDefault()
+    public function testRendersFigletPriorToInputByDefault(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -73,7 +73,7 @@ class FigletTest extends AbstractCommonTestCase
         );
     }
 
-    public function testCanRenderFigletFollowingInput()
+    public function testCanRenderFigletFollowingInput(): void
     {
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();

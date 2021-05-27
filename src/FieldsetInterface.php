@@ -31,36 +31,27 @@ interface FieldsetInterface extends
 
     /**
      * Does the fieldset have an element/fieldset by the given name?
-     *
-     * @param  string $elementOrFieldset
-     * @return bool
      */
-    public function has($elementOrFieldset);
+    public function has(string $elementOrFieldset): bool;
 
     /**
      * Retrieve a named element or fieldset
-     *
-     * @param  string $elementOrFieldset
-     * @return ElementInterface
      */
-    public function get($elementOrFieldset);
+    public function get(string $elementOrFieldset): ElementInterface;
 
     /**
      * Remove a named element or fieldset
      *
-     * @param  string $elementOrFieldset
      * @return $this
      */
-    public function remove($elementOrFieldset);
+    public function remove(string $elementOrFieldset);
 
     /**
      * Set/change the priority of an element or fieldset
      *
-     * @param  string $elementOrFieldset
-     * @param  int    $priority
      * @return $this
      */
-    public function setPriority($elementOrFieldset, $priority);
+    public function setPriority(string $elementOrFieldset, int $priority);
 
     /**
      * Retrieve all attached elements
@@ -82,10 +73,8 @@ interface FieldsetInterface extends
 
     /**
      * Recursively populate value attributes of elements
-     *
-     * @return void
      */
-    public function populateValues(iterable $data);
+    public function populateValues(iterable $data): void;
 
     /**
      * Set the object used by the hydrator
@@ -104,11 +93,8 @@ interface FieldsetInterface extends
 
     /**
      * Checks if the object can be set in this fieldset
-     *
-     * @param object $object
-     * @return bool
      */
-    public function allowObjectBinding($object);
+    public function allowObjectBinding(object $object): bool;
 
     /**
      * Set the hydrator to use when binding an object to the element
@@ -119,23 +105,18 @@ interface FieldsetInterface extends
 
     /**
      * Get the hydrator used when binding an object to the element
-     *
-     * @return null|HydratorInterface
      */
-    public function getHydrator();
+    public function getHydrator(): ?HydratorInterface;
 
     /**
      * Bind values to the bound object
      *
-     * @param  array $values
      * @return mixed
      */
     public function bindValues(array $values = []);
 
     /**
      * Checks if this fieldset can bind data
-     *
-     * @return bool
      */
-    public function allowValueBinding();
+    public function allowValueBinding(): bool;
 }

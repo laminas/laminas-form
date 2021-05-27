@@ -26,7 +26,7 @@ class ElementFactoryTest extends TestCase
      * @param mixed $creationOptions
      * @param array $expectedValue
      */
-    public function testValidCreationOptions($creationOptions, array $expectedValue)
+    public function testValidCreationOptions($creationOptions, array $expectedValue): void
     {
         $container = $this->prophesize(ServiceLocatorInterface::class)
             ->willImplement(ContainerInterface::class)

@@ -48,7 +48,7 @@ class DateTimeSelect extends DateSelect
      * @param  null|int|string  $name    Optional name for the element
      * @param  array            $options Optional options for the element
      */
-    public function __construct($name = null, $options = [])
+    public function __construct($name = null, array $options = [])
     {
         parent::__construct($name, $options);
 
@@ -92,26 +92,17 @@ class DateTimeSelect extends DateSelect
         return $this;
     }
 
-    /**
-     * @return Select
-     */
-    public function getHourElement()
+    public function getHourElement(): Select
     {
         return $this->hourElement;
     }
 
-    /**
-     * @return Select
-     */
-    public function getMinuteElement()
+    public function getMinuteElement(): Select
     {
         return $this->minuteElement;
     }
 
-    /**
-     * @return Select
-     */
-    public function getSecondElement()
+    public function getSecondElement(): Select
     {
         return $this->secondElement;
     }
@@ -133,7 +124,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getHourAttributes()
+    public function getHourAttributes(): array
     {
         return $this->hourElement->getAttributes();
     }
@@ -155,7 +146,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getMinuteAttributes()
+    public function getMinuteAttributes(): array
     {
         return $this->minuteElement->getAttributes();
     }
@@ -177,7 +168,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getSecondAttributes()
+    public function getSecondAttributes(): array
     {
         return $this->secondElement->getAttributes();
     }
@@ -186,19 +177,15 @@ class DateTimeSelect extends DateSelect
      * If set to true, this indicate that the second select is shown. If set to true, the seconds will be
      * assumed to always be 00
      *
-     * @param  bool $shouldShowSeconds
      * @return $this
      */
-    public function setShouldShowSeconds($shouldShowSeconds)
+    public function setShouldShowSeconds(bool $shouldShowSeconds)
     {
-        $this->shouldShowSeconds = (bool) $shouldShowSeconds;
+        $this->shouldShowSeconds = $shouldShowSeconds;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function shouldShowSeconds()
+    public function shouldShowSeconds(): bool
     {
         return $this->shouldShowSeconds;
     }
@@ -247,10 +234,7 @@ class DateTimeSelect extends DateSelect
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getValue()
+    public function getValue(): string
     {
         return sprintf(
             '%s-%s-%s %s:%s:%s',
@@ -265,10 +249,8 @@ class DateTimeSelect extends DateSelect
 
     /**
      * Prepare the form element (mostly used for rendering purposes)
-     *
-     * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         parent::prepareElement($form);
 
@@ -280,10 +262,8 @@ class DateTimeSelect extends DateSelect
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ValidatorInterface
     {
         if (null === $this->validator) {
             $this->validator = new DateValidator(['format' => 'Y-m-d H:i:s']);
@@ -298,7 +278,7 @@ class DateTimeSelect extends DateSelect
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

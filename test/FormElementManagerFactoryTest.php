@@ -15,7 +15,7 @@ class FormElementManagerFactoryTest extends TestCase
 {
     use ProphecyTrait;
 
-    public function testFactoryReturnsPluginManager()
+    public function testFactoryReturnsPluginManager(): void
     {
         $container = $this->prophesize(ContainerInterface::class)->reveal();
         $factory   = new FormElementManagerFactory();
@@ -29,7 +29,7 @@ class FormElementManagerFactoryTest extends TestCase
     /**
      * @depends testFactoryReturnsPluginManager
      */
-    public function testFactoryConfiguresPluginManagerUnderContainerInterop()
+    public function testFactoryConfiguresPluginManagerUnderContainerInterop(): void
     {
         $container = $this->prophesize(ContainerInterface::class)->reveal();
         $element   = $this->prophesize(ElementInterface::class)->reveal();
@@ -43,7 +43,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertSame($element, $elements->get('test'));
     }
 
-    public function testConfiguresFormElementsServicesWhenFound()
+    public function testConfiguresFormElementsServicesWhenFound(): void
     {
         $element = $this->prophesize(ElementInterface::class)->reveal();
         $config  = [
@@ -52,7 +52,7 @@ class FormElementManagerFactoryTest extends TestCase
                     'test' => Number::class,
                 ],
                 'factories' => [
-                    'test-too' => function ($container) use ($element) {
+                    'test-too' => function ($container) use ($element): ElementInterface {
                         return $element;
                     },
                 ],
@@ -76,7 +76,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertSame($element, $elements->get('test-too'));
     }
 
-    public function testDoesNotConfigureFormElementsServicesWhenServiceListenerPresent()
+    public function testDoesNotConfigureFormElementsServicesWhenServiceListenerPresent(): void
     {
         $element = $this->prophesize(ElementInterface::class)->reveal();
         $config  = [
@@ -85,7 +85,7 @@ class FormElementManagerFactoryTest extends TestCase
                     'test' => Number::class,
                 ],
                 'factories' => [
-                    'test-too' => function ($container) use ($element) {
+                    'test-too' => function ($container) use ($element): ElementInterface {
                         return $element;
                     },
                 ],
@@ -107,7 +107,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertFalse($elements->has('test-too'));
     }
 
-    public function testDoesNotConfigureFormElementsServicesWhenConfigServiceNotPresent()
+    public function testDoesNotConfigureFormElementsServicesWhenConfigServiceNotPresent(): void
     {
         $container = $this->prophesize(ServiceLocatorInterface::class);
         $container->willImplement(ContainerInterface::class);
@@ -122,7 +122,7 @@ class FormElementManagerFactoryTest extends TestCase
         $this->assertInstanceOf(FormElementManager::class, $elements);
     }
 
-    public function testDoesNotConfigureFormElementServicesWhenConfigServiceDoesNotContainFormElementsConfig()
+    public function testDoesNotConfigureFormElementServicesWhenConfigServiceDoesNotContainFormElementsConfig(): void
     {
         $container = $this->prophesize(ServiceLocatorInterface::class);
         $container->willImplement(ContainerInterface::class);

@@ -122,18 +122,12 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return Select
-     */
-    public function getMonthElement()
+    public function getMonthElement(): Select
     {
         return $this->monthElement;
     }
 
-    /**
-     * @return Select
-     */
-    public function getYearElement()
+    public function getYearElement(): Select
     {
         return $this->yearElement;
     }
@@ -143,7 +137,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      *
      * @return array
      */
-    public function getElements()
+    public function getElements(): array
     {
         return [$this->monthElement, $this->yearElement];
     }
@@ -165,7 +159,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      *
      * @return array
      */
-    public function getMonthAttributes()
+    public function getMonthAttributes(): array
     {
         return $this->monthElement->getAttributes();
     }
@@ -187,79 +181,63 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      *
      * @return array
      */
-    public function getYearAttributes()
+    public function getYearAttributes(): array
     {
         return $this->yearElement->getAttributes();
     }
 
     /**
-     * @param  int $minYear
      * @return $this
      */
-    public function setMinYear($minYear)
+    public function setMinYear(int $minYear)
     {
         $this->minYear = $minYear;
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getMinYear()
+    public function getMinYear(): int
     {
         return $this->minYear;
     }
 
     /**
-     * @param  int $maxYear
      * @return $this
      */
-    public function setMaxYear($maxYear)
+    public function setMaxYear(int $maxYear)
     {
         $this->maxYear = $maxYear;
         return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getMaxYear()
+    public function getMaxYear(): int
     {
         return $this->maxYear;
     }
 
     /**
-     * @param  bool $createEmptyOption
      * @return $this
      */
-    public function setShouldCreateEmptyOption($createEmptyOption)
+    public function setShouldCreateEmptyOption(bool $createEmptyOption)
     {
-        $this->createEmptyOption = (bool) $createEmptyOption;
+        $this->createEmptyOption = $createEmptyOption;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function shouldCreateEmptyOption()
+    public function shouldCreateEmptyOption(): bool
     {
         return $this->createEmptyOption;
     }
 
     /**
-     * @param  bool $renderDelimiters
      * @return $this
      */
-    public function setShouldRenderDelimiters($renderDelimiters)
+    public function setShouldRenderDelimiters(bool $renderDelimiters)
     {
-        $this->renderDelimiters = (bool) $renderDelimiters;
+        $this->renderDelimiters = $renderDelimiters;
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function shouldRenderDelimiters()
+    public function shouldRenderDelimiters(): bool
     {
         return $this->renderDelimiters;
     }
@@ -282,10 +260,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getValue()
+    public function getValue(): string
     {
         return sprintf(
             '%s-%s',
@@ -296,10 +271,8 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * Prepare the form element (mostly used for rendering purposes)
-     *
-     * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         $name = $this->getName();
         $this->monthElement->setName($name . '[month]');
@@ -308,10 +281,8 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ValidatorInterface
     {
         return new RegexValidator('/^[0-9]{4}\-(0?[1-9]|1[012])$/');
     }
@@ -322,7 +293,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

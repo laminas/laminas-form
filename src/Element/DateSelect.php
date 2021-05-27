@@ -53,10 +53,7 @@ class DateSelect extends MonthSelect
         return $this;
     }
 
-    /**
-     * @return Select
-     */
-    public function getDayElement()
+    public function getDayElement(): Select
     {
         return $this->dayElement;
     }
@@ -66,7 +63,7 @@ class DateSelect extends MonthSelect
      *
      * @return array
      */
-    public function getElements()
+    public function getElements(): array
     {
         return array_merge([$this->dayElement], parent::getElements());
     }
@@ -88,7 +85,7 @@ class DateSelect extends MonthSelect
      *
      * @return array
      */
-    public function getDayAttributes()
+    public function getDayAttributes(): array
     {
         return $this->dayElement->getAttributes();
     }
@@ -123,10 +120,7 @@ class DateSelect extends MonthSelect
         return $this;
     }
 
-    /**
-     * @return String
-     */
-    public function getValue()
+    public function getValue(): string
     {
         return sprintf(
             '%s-%s-%s',
@@ -138,10 +132,8 @@ class DateSelect extends MonthSelect
 
     /**
      * Prepare the form element (mostly used for rendering purposes)
-     *
-     * @return void
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         parent::prepareElement($form);
 
@@ -151,10 +143,8 @@ class DateSelect extends MonthSelect
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ValidatorInterface
     {
         if (null === $this->validator) {
             $this->validator = new DateValidator(['format' => 'Y-m-d']);
@@ -169,7 +159,7 @@ class DateSelect extends MonthSelect
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

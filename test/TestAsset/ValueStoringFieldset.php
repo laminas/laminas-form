@@ -9,7 +9,7 @@ class ValueStoringFieldset extends Fieldset
     /** @var iterable */
     protected $storedValue;
 
-    public function populateValues(iterable $data)
+    public function populateValues(iterable $data): void
     {
         $this->storedValue = $data;
         parent::populateValues($data);

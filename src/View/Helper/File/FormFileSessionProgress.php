@@ -10,10 +10,7 @@ use function ini_get;
  */
 class FormFileSessionProgress extends FormFileUploadProgress
 {
-    /**
-     * @return string
-     */
-    protected function getName()
+    protected function getName(): string
     {
         return ini_get('session.upload_progress.name');
     }

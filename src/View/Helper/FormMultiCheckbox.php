@@ -75,10 +75,9 @@ class FormMultiCheckbox extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|string           $labelPosition
      * @return string|FormMultiCheckbox
      */
-    public function __invoke(?ElementInterface $element = null, $labelPosition = null)
+    public function __invoke(?ElementInterface $element = null, ?string $labelPosition = null)
     {
         if (! $element) {
             return $this;
@@ -95,9 +94,8 @@ class FormMultiCheckbox extends FormInput
      * Render a form <input> element from the provided $element
      *
      * @throws Exception\InvalidArgumentException
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         if (! $element instanceof MultiCheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -131,14 +129,13 @@ class FormMultiCheckbox extends FormInput
      * @param  array                $options
      * @param  array                $selectedOptions
      * @param  array                $attributes
-     * @return string
      */
     protected function renderOptions(
         MultiCheckboxElement $element,
         array $options,
         array $selectedOptions,
         array $attributes
-    ) {
+    ): string {
         $escapeHtmlHelper      = $this->getEscapeHtmlHelper();
         $labelHelper           = $this->getLabelHelper();
         $labelClose            = $labelHelper->closeTag();
@@ -245,10 +242,8 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Render a hidden element for empty/unchecked value
-     *
-     * @return string
      */
-    protected function renderHiddenElement(MultiCheckboxElement $element)
+    protected function renderHiddenElement(MultiCheckboxElement $element): string
     {
         $closingBracket = $this->getInlineClosingBracket();
 
@@ -272,7 +267,7 @@ class FormMultiCheckbox extends FormInput
      * @param  array|null $attributes
      * @return $this
      */
-    public function setLabelAttributes($attributes)
+    public function setLabelAttributes(?array $attributes)
     {
         $this->labelAttributes = $attributes;
         return $this;
@@ -283,7 +278,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return array|null
      */
-    public function getLabelAttributes()
+    public function getLabelAttributes(): ?array
     {
         return $this->labelAttributes;
     }
@@ -314,10 +309,8 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Get position of label
-     *
-     * @return string
      */
-    public function getLabelPosition()
+    public function getLabelPosition(): string
     {
         return $this->labelPosition;
     }
@@ -325,21 +318,18 @@ class FormMultiCheckbox extends FormInput
     /**
      * Set separator string for checkbox elements
      *
-     * @param  string $separator
      * @return $this
      */
-    public function setSeparator($separator)
+    public function setSeparator(string $separator)
     {
-        $this->separator = (string) $separator;
+        $this->separator = $separator;
         return $this;
     }
 
     /**
      * Get separator for checkbox elements
-     *
-     * @return string
      */
-    public function getSeparator()
+    public function getSeparator(): string
     {
         return $this->separator;
     }
@@ -348,22 +338,19 @@ class FormMultiCheckbox extends FormInput
      * Sets the option for prefixing the element with a hidden element
      * for the unset value.
      *
-     * @param  bool $useHiddenElement
      * @return $this
      */
-    public function setUseHiddenElement($useHiddenElement)
+    public function setUseHiddenElement(bool $useHiddenElement)
     {
-        $this->useHiddenElement = (bool) $useHiddenElement;
+        $this->useHiddenElement = $useHiddenElement;
         return $this;
     }
 
     /**
      * Returns the option for prefixing the element with a hidden element
      * for the unset value.
-     *
-     * @return bool
      */
-    public function getUseHiddenElement()
+    public function getUseHiddenElement(): bool
     {
         return $this->useHiddenElement;
     }
@@ -371,10 +358,9 @@ class FormMultiCheckbox extends FormInput
     /**
      * Sets the unchecked value used when "UseHiddenElement" is turned on.
      *
-     * @param  string $value
      * @return $this
      */
-    public function setUncheckedValue($value)
+    public function setUncheckedValue(string $value)
     {
         $this->uncheckedValue = $value;
         return $this;
@@ -382,20 +368,16 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Returns the unchecked value used when "UseHiddenElement" is turned on.
-     *
-     * @return string
      */
-    public function getUncheckedValue()
+    public function getUncheckedValue(): string
     {
         return $this->uncheckedValue;
     }
 
     /**
      * Return input type
-     *
-     * @return string
      */
-    protected function getInputType()
+    protected function getInputType(): string
     {
         return 'checkbox';
     }
@@ -404,9 +386,8 @@ class FormMultiCheckbox extends FormInput
      * Get element name
      *
      * @throws Exception\DomainException
-     * @return string
      */
-    protected static function getName(ElementInterface $element)
+    protected static function getName(ElementInterface $element): string
     {
         $name = $element->getName();
         if ($name === null || $name === '') {
@@ -420,10 +401,8 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Retrieve the FormInput helper
-     *
-     * @return FormInput
      */
-    protected function getInputHelper()
+    protected function getInputHelper(): FormInput
     {
         if ($this->inputHelper) {
             return $this->inputHelper;
@@ -442,10 +421,8 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Retrieve the FormLabel helper
-     *
-     * @return FormLabel
      */
-    protected function getLabelHelper()
+    protected function getLabelHelper(): FormLabel
     {
         if ($this->labelHelper) {
             return $this->labelHelper;

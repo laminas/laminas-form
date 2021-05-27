@@ -76,7 +76,7 @@ class FormCaptchaTest extends AbstractCommonTestCase
         return new CaptchaElement('foo');
     }
 
-    public function testRaisesExceptionIfElementHasNoCaptcha()
+    public function testRaisesExceptionIfElementHasNoCaptcha(): void
     {
         $element = $this->getElement();
         $this->expectException(DomainException::class);
@@ -84,7 +84,7 @@ class FormCaptchaTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testPassingElementWithDumbCaptchaRendersCorrectly()
+    public function testPassingElementWithDumbCaptchaRendersCorrectly(): void
     {
         $captcha = new Captcha\Dumb();
         $element = $this->getElement();
@@ -102,7 +102,7 @@ class FormCaptchaTest extends AbstractCommonTestCase
         );
     }
 
-    public function testPassingElementWithFigletCaptchaRendersCorrectly()
+    public function testPassingElementWithFigletCaptchaRendersCorrectly(): void
     {
         $captcha = new Captcha\Figlet();
         $element = $this->getElement();
@@ -123,7 +123,7 @@ class FormCaptchaTest extends AbstractCommonTestCase
         );
     }
 
-    public function testPassingElementWithImageCaptchaRendersCorrectly()
+    public function testPassingElementWithImageCaptchaRendersCorrectly(): void
     {
         if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
@@ -167,7 +167,7 @@ class FormCaptchaTest extends AbstractCommonTestCase
         );
     }
 
-    public function testPassingElementWithReCaptchaRendersCorrectly()
+    public function testPassingElementWithReCaptchaRendersCorrectly(): void
     {
         if (! getenv('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT to test PDF render');

@@ -34,7 +34,7 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     abstract protected function createBuilder(): Annotation\AbstractBuilder;
 
-    public function testCanCreateFormFromStandardEntity()
+    public function testCanCreateFormFromStandardEntity(): void
     {
         $entity  = new TestAsset\Annotation\Entity();
         $builder = $this->createBuilder();
@@ -71,7 +71,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertCount(1, $password->getValidatorChain());
     }
 
-    public function testCanCreateFormWithClassAnnotations()
+    public function testCanCreateFormWithClassAnnotations(): void
     {
         $entity  = new TestAsset\Annotation\ClassEntity();
         $builder = $this->createBuilder();
@@ -98,7 +98,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertSame(['omit', 'keep'], $form->getValidationGroup());
     }
 
-    public function testComplexEntityCreationWithPriorities()
+    public function testComplexEntityCreationWithPriorities(): void
     {
         $entity  = new TestAsset\Annotation\ComplexEntity();
         $builder = $this->createBuilder();
@@ -128,7 +128,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
-    public function testFieldsetOrder()
+    public function testFieldsetOrder(): void
     {
         $entity  = new TestAsset\Annotation\FieldsetOrderEntity();
         $builder = $this->createBuilder();
@@ -141,7 +141,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertSame($element, $first, 'Test is element ' . $first->getName());
     }
 
-    public function testFieldsetOrderWithPreserve()
+    public function testFieldsetOrderWithPreserve(): void
     {
         $entity  = new TestAsset\Annotation\FieldsetOrderEntity();
         $builder = $this->createBuilder();
@@ -155,7 +155,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertSame($fieldset, $first, 'Test is element ' . $first->getName());
     }
 
-    public function testCanRetrieveOnlyFormSpecification()
+    public function testCanRetrieveOnlyFormSpecification(): void
     {
         $entity  = new TestAsset\Annotation\ComplexEntity();
         $builder = $this->createBuilder();
@@ -163,7 +163,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertInstanceOf('ArrayObject', $spec);
     }
 
-    public function testAllowsExtensionOfEntities()
+    public function testAllowsExtensionOfEntities(): void
     {
         $entity  = new TestAsset\Annotation\ExtendedEntity();
         $builder = $this->createBuilder();
@@ -182,7 +182,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertEquals($expected, $test);
     }
 
-    public function testAllowsSpecifyingFormAndElementTypes()
+    public function testAllowsSpecifyingFormAndElementTypes(): void
     {
         $entity  = new TestAsset\Annotation\TypedEntity();
         $builder = $this->createBuilder();
@@ -193,7 +193,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertInstanceOf(\LaminasTest\Form\TestAsset\Annotation\Element::class, $element);
     }
 
-    public function testAllowsComposingChildEntities()
+    public function testAllowsComposingChildEntities(): void
     {
         $entity  = new TestAsset\Annotation\EntityComposingAnEntity();
         $builder = $this->createBuilder();
@@ -213,7 +213,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertTrue($composed->has('password'));
     }
 
-    public function testAllowsComposingMultipleChildEntities()
+    public function testAllowsComposingMultipleChildEntities(): void
     {
         $entity  = new TestAsset\Annotation\EntityComposingMultipleEntities();
         $builder = $this->createBuilder();
@@ -231,10 +231,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     /**
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotation
-     * @param string $childName
      * @group issue-7108
      */
-    public function testOptionsAnnotationAndComposedObjectAnnotation($childName)
+    public function testOptionsAnnotationAndComposedObjectAnnotation(string $childName): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
         $builder = $this->createBuilder();
@@ -261,10 +260,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     /**
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection
-     * @param string $childName
      * @group issue-7108
      */
-    public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($childName)
+    public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection(string $childName): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
         $builder = $this->createBuilder();
@@ -287,7 +285,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         yield ['childTheFourth'];
     }
 
-    public function testCanHandleOptionsAnnotation()
+    public function testCanHandleOptionsAnnotation(): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingOptions();
         $builder = $this->createBuilder();
@@ -305,7 +303,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertEquals(['class' => 'label'], $username->getLabelAttributes());
     }
 
-    public function testCanHandleHydratorArrayAnnotation()
+    public function testCanHandleHydratorArrayAnnotation(): void
     {
         $entity  = new TestAsset\Annotation\EntityWithHydratorArray();
         $builder = $this->createBuilder();
@@ -316,7 +314,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
-    public function testAllowTypeAsElementNameInInputFilter()
+    public function testAllowTypeAsElementNameInInputFilter(): void
     {
         $entity  = new TestAsset\Annotation\EntityWithTypeAsElementName();
         $builder = $this->createBuilder();
@@ -327,7 +325,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertInstanceOf(Element::class, $element);
     }
 
-    public function testAllowEmptyInput()
+    public function testAllowEmptyInput(): void
     {
         $entity  = new TestAsset\Annotation\SampleEntity();
         $builder = $this->createBuilder();
@@ -338,7 +336,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertTrue($sampleinput->allowEmpty());
     }
 
-    public function testContinueIfEmptyInput()
+    public function testContinueIfEmptyInput(): void
     {
         $entity  = new TestAsset\Annotation\SampleEntity();
         $builder = $this->createBuilder();
@@ -350,7 +348,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertTrue($sampleinput->continueIfEmpty());
     }
 
-    public function testInputNotRequiredByDefault()
+    public function testInputNotRequiredByDefault(): void
     {
         $entity      = new TestAsset\Annotation\SampleEntity();
         $builder     = $this->createBuilder();
@@ -360,7 +358,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertFalse($sampleinput->isRequired());
     }
 
-    public function testInstanceElementAnnotation()
+    public function testInstanceElementAnnotation(): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingInstanceProperty();
         $builder = $this->createBuilder();
@@ -375,7 +373,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
-    public function testInputFilterInputAnnotation()
+    public function testInputFilterInputAnnotation(): void
     {
         $entity      = new TestAsset\Annotation\EntityWithInputFilterInput();
         $builder     = $this->createBuilder();
@@ -395,7 +393,7 @@ abstract class AbstractBuilderTestCase extends TestCase
     /**
      * @group issue-6753
      */
-    public function testInputFilterAnnotationAllowsComposition()
+    public function testInputFilterAnnotationAllowsComposition(): void
     {
         $entity      = new TestAsset\Annotation\EntityWithInputFilterAnnotation();
         $builder     = $this->createBuilder();
@@ -404,7 +402,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $this->assertCount(2, $inputFilter->get('username')->getValidatorChain());
     }
 
-    public function testLegacyComposedObjectAnnotation()
+    public function testLegacyComposedObjectAnnotation(): void
     {
         $this->expectDeprecation();
         $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
@@ -413,7 +411,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form    = $builder->createForm($entity);
     }
 
-    public function testLegacyStyleFilterAnnotations()
+    public function testLegacyStyleFilterAnnotations(): void
     {
         $this->expectDeprecation();
         $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
@@ -422,7 +420,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form    = $builder->createForm($entity);
     }
 
-    public function testLegacyStyleHydratorAnnotations()
+    public function testLegacyStyleHydratorAnnotations(): void
     {
         $this->expectDeprecation();
         $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
@@ -431,7 +429,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form    = $builder->createForm($entity);
     }
 
-    public function testLegacyStyleValidatorAnnotations()
+    public function testLegacyStyleValidatorAnnotations(): void
     {
         $this->expectDeprecation();
         $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');

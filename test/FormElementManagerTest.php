@@ -33,7 +33,7 @@ class FormElementManagerTest extends TestCase
         $this->manager = new FormElementManager(new ServiceManager());
     }
 
-    public function testInjectToFormFactoryAware()
+    public function testInjectToFormFactoryAware(): void
     {
         $form = $this->manager->get('Form');
         $this->assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
@@ -42,7 +42,7 @@ class FormElementManagerTest extends TestCase
     /**
      * @group issue-3735
      */
-    public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement()
+    public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement(): void
     {
         $factory = new Factory();
         $this->manager->setFactory('my-form', function ($elements) use ($factory) {
@@ -55,13 +55,13 @@ class FormElementManagerTest extends TestCase
         $this->assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }
 
-    public function testRegisteringInvalidElementRaisesException()
+    public function testRegisteringInvalidElementRaisesException(): void
     {
         $this->expectException($this->getInvalidServiceException());
         $this->manager->setService('test', $this);
     }
 
-    public function testLoadingInvalidElementRaisesException()
+    public function testLoadingInvalidElementRaisesException(): void
     {
         $this->manager->setInvokableClass('test', static::class);
         $this->expectException($this->getInvalidServiceException());
@@ -76,7 +76,7 @@ class FormElementManagerTest extends TestCase
         return InvalidElementException::class;
     }
 
-    public function testArrayCreationOptions()
+    public function testArrayCreationOptions(): void
     {
         $args    = [
             'name'    => 'foo',
@@ -89,7 +89,7 @@ class FormElementManagerTest extends TestCase
         $this->assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
     }
 
-    public function testOptionsCreationOptions()
+    public function testOptionsCreationOptions(): void
     {
         $args    = [
             'label' => 'bar',
@@ -99,7 +99,7 @@ class FormElementManagerTest extends TestCase
         $this->assertEquals('bar', $element->getLabel(), 'Specified options in array');
     }
 
-    public function testArrayOptionsCreationOptions()
+    public function testArrayOptionsCreationOptions(): void
     {
         $args    = [
             'options' => [
@@ -114,7 +114,7 @@ class FormElementManagerTest extends TestCase
     /**
      * @group issue-6132
      */
-    public function testSharedFormElementsAreNotInitializedMultipleTimes()
+    public function testSharedFormElementsAreNotInitializedMultipleTimes(): void
     {
         $element = $this->getMockBuilder(Element::class)
             ->setMethods(['init'])
@@ -132,7 +132,7 @@ class FormElementManagerTest extends TestCase
         $this->manager->get('sharedElement');
     }
 
-    public function testWillInstantiateFormFromInvokable()
+    public function testWillInstantiateFormFromInvokable(): void
     {
         $form = $this->manager->get('form');
         $this->assertInstanceof(Form::class, $form);
@@ -142,12 +142,12 @@ class FormElementManagerTest extends TestCase
      * @group issue-58
      * @group issue-64
      */
-    public function testInjectFactoryInitializerShouldBeRegisteredFirst()
+    public function testInjectFactoryInitializerShouldBeRegisteredFirst(): void
     {
         // @codingStandardsIgnoreStart
         $initializers = [
-            function () {},
-            function () {},
+            function (): void {},
+            function (): void {},
         ];
         // @codingStandardsIgnoreEnd
 
@@ -168,12 +168,12 @@ class FormElementManagerTest extends TestCase
      * @group issue-58
      * @group issue-64
      */
-    public function testCallElementInitInitializerShouldBeRegisteredLast()
+    public function testCallElementInitInitializerShouldBeRegisteredLast(): void
     {
         // @codingStandardsIgnoreStart
         $initializers = [
-            function () {},
-            function () {},
+            function (): void {},
+            function (): void {},
         ];
         // @codingStandardsIgnoreEnd
 
@@ -193,7 +193,7 @@ class FormElementManagerTest extends TestCase
     /**
      * @group issue-62
      */
-    public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory()
+    public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory(): void
     {
         $this->manager->setInvokableClass('foo', TestAsset\ElementWithFilter::class);
 
@@ -212,7 +212,7 @@ class FormElementManagerTest extends TestCase
         $this->assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
     }
 
-    public function testAllAliasesShouldBeCanonicalized()
+    public function testAllAliasesShouldBeCanonicalized(): void
     {
         if (method_exists($this->manager, 'configure')) {
             $this->markTestSkipped('Check canonicalized makes sense only on v2');

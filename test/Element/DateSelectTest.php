@@ -13,7 +13,7 @@ use function get_class;
 
 class DateSelectTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new DateSelectElement();
 
@@ -37,7 +37,7 @@ class DateSelectTest extends TestCase
         }
     }
 
-    public function testCanSetDateFromDateTime()
+    public function testCanSetDateFromDateTime(): void
     {
         $element = new DateSelectElement();
         $element->setValue(new DateTime('2012-09-24'));
@@ -47,7 +47,7 @@ class DateSelectTest extends TestCase
         $this->assertEquals('24', $element->getDayElement()->getValue());
     }
 
-    public function testCanSetDateFromString()
+    public function testCanSetDateFromString(): void
     {
         $element = new DateSelectElement();
         $element->setValue('2012-09-24');
@@ -57,7 +57,7 @@ class DateSelectTest extends TestCase
         $this->assertEquals('24', $element->getDayElement()->getValue());
     }
 
-    public function testCanGetValue()
+    public function testCanGetValue(): void
     {
         $element = new DateSelectElement();
         $element->setValue(new DateTime('2012-09-24'));
@@ -65,21 +65,21 @@ class DateSelectTest extends TestCase
         $this->assertEquals('2012-09-24', $element->getValue());
     }
 
-    public function testThrowsOnInvalidValue()
+    public function testThrowsOnInvalidValue(): void
     {
         $element = new DateSelectElement();
         $this->expectException(InvalidArgumentException::class);
         $element->setValue('hello world');
     }
 
-    public function testConstructAcceptsDayAttributes()
+    public function testConstructAcceptsDayAttributes(): void
     {
         $sut           = new DateSelectElement('dateSelect', ['day_attributes' => ['class' => 'test']]);
         $dayAttributes = $sut->getDayAttributes();
         $this->assertEquals('test', $dayAttributes['class']);
     }
 
-    public function testConstructAcceptsTraversableOptions()
+    public function testConstructAcceptsTraversableOptions(): void
     {
         $options = new CustomTraversable([
             'day_attributes' => ['class' => 'test'],
@@ -89,7 +89,7 @@ class DateSelectTest extends TestCase
         $this->assertSame('test', $sut->getDayAttributes()['class']);
     }
 
-    public function testSetOptionsAcceptsTraversableObject()
+    public function testSetOptionsAcceptsTraversableObject(): void
     {
         $options = new CustomTraversable([
             'day_attributes' => ['class' => 'test'],
@@ -103,7 +103,7 @@ class DateSelectTest extends TestCase
     /**
      * @group issue-7114
      */
-    public function testValueSetterReturnsSameObjectType()
+    public function testValueSetterReturnsSameObjectType(): void
     {
         $element = new DateSelectElement();
 

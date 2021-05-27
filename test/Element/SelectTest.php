@@ -13,7 +13,7 @@ use function get_class;
 
 class SelectTest extends TestCase
 {
-    public function testProvidesInputSpecificationForSingleSelect()
+    public function testProvidesInputSpecificationForSingleSelect(): void
     {
         $element = new SelectElement();
         $element->setValueOptions([
@@ -35,7 +35,7 @@ class SelectTest extends TestCase
         }
     }
 
-    public function testValidateWorksForNestedSelectElementWithSimpleNaming()
+    public function testValidateWorksForNestedSelectElementWithSimpleNaming(): void
     {
         $element = new SelectElement();
         $element->setValueOptions([
@@ -56,7 +56,7 @@ class SelectTest extends TestCase
         $this->assertFalse($inArrayValidator->isValid('Option 5'));
     }
 
-    public function testValidateWorksForNestedSelectElementWithExplicitNaming()
+    public function testValidateWorksForNestedSelectElementWithExplicitNaming(): void
     {
         $element = new SelectElement();
         $element->setValueOptions([
@@ -79,7 +79,7 @@ class SelectTest extends TestCase
         $this->assertFalse($inArrayValidator->isValid('Option 5'));
     }
 
-    public function testProvidesInputSpecificationForMultipleSelect()
+    public function testProvidesInputSpecificationForMultipleSelect(): void
     {
         $element = new SelectElement();
         $element->setAttributes([
@@ -134,7 +134,7 @@ class SelectTest extends TestCase
     /**
      * @dataProvider selectOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions(array $valueTests, array $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new SelectElement('my-select');
         $element->setValueOptions($options);
@@ -153,7 +153,7 @@ class SelectTest extends TestCase
      *
      * @dataProvider selectOptionsDataProvider
      */
-    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options)
+    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options): void
     {
         $element   = new SelectElement('my-select');
         $inputSpec = $element->getInputSpecification();
@@ -166,13 +166,13 @@ class SelectTest extends TestCase
         $this->assertCount(count($options), $haystack);
     }
 
-    public function testOptionsHasArrayOnConstruct()
+    public function testOptionsHasArrayOnConstruct(): void
     {
         $element = new SelectElement();
         $this->assertIsArray($element->getValueOptions());
     }
 
-    public function testDeprecateOptionsInAttributes()
+    public function testDeprecateOptionsInAttributes(): void
     {
         $element      = new SelectElement();
         $valueOptions = [
@@ -187,33 +187,33 @@ class SelectTest extends TestCase
         $this->assertEquals($valueOptions, $element->getValueOptions());
     }
 
-    public function testSetOptionsArray()
+    public function testSetOptionsArray(): void
     {
         $element = new SelectElement();
         $element->setOptions([
             'value_options' => ['bar' => 'baz'],
             'options'       => ['foo' => 'bar'],
-            'empty_option'  => ['baz' => 'foo'],
+            'empty_option'  => 'xye',
         ]);
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
-        $this->assertEquals(['baz' => 'foo'], $element->getOption('empty_option'));
+        $this->assertEquals('xye', $element->getOption('empty_option'));
     }
 
-    public function testSetOptionsTraversable()
+    public function testSetOptionsTraversable(): void
     {
         $element = new SelectElement();
         $element->setOptions(new CustomTraversable([
             'value_options' => ['bar' => 'baz'],
             'options'       => ['foo' => 'bar'],
-            'empty_option'  => ['baz' => 'foo'],
+            'empty_option'  => 'xye',
         ]));
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
-        $this->assertEquals(['baz' => 'foo'], $element->getOption('empty_option'));
+        $this->assertEquals('xye', $element->getOption('empty_option'));
     }
 
-    public function testDisableInputSpecification()
+    public function testDisableInputSpecification(): void
     {
         $element = new SelectElement();
         $element->setValueOptions([
@@ -227,7 +227,7 @@ class SelectTest extends TestCase
         $this->assertArrayNotHasKey('validators', $inputSpec);
     }
 
-    public function testUnsetValueOption()
+    public function testUnsetValueOption(): void
     {
         $element = new SelectElement();
         $element->setValueOptions([
@@ -241,7 +241,7 @@ class SelectTest extends TestCase
         $this->assertArrayNotHasKey('Option 2', $valueOptions);
     }
 
-    public function testUnsetUndefinedValueOption()
+    public function testUnsetUndefinedValueOption(): void
     {
         $element = new SelectElement();
         $element->setValueOptions([
@@ -255,7 +255,7 @@ class SelectTest extends TestCase
         $this->assertArrayNotHasKey('Option Undefined', $valueOptions);
     }
 
-    public function testSetOptionsToSelectMultiple()
+    public function testSetOptionsToSelectMultiple(): void
     {
         $element = new SelectElement(null, [
             'label'              => 'Importance',
@@ -273,7 +273,7 @@ class SelectTest extends TestCase
         $this->assertEquals('empty', $element->getUnselectedValue());
     }
 
-    public function testProvidesInputSpecificationForMultipleSelectWithUseHiddenElement()
+    public function testProvidesInputSpecificationForMultipleSelectWithUseHiddenElement(): void
     {
         $element = new SelectElement();
         $element

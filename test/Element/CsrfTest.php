@@ -11,7 +11,7 @@ use function get_class;
 
 class CsrfTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new CsrfElement('foo');
 
@@ -35,7 +35,7 @@ class CsrfTest extends TestCase
         }
     }
 
-    public function testAllowSettingCustomCsrfValidator()
+    public function testAllowSettingCustomCsrfValidator(): void
     {
         $element       = new CsrfElement('foo');
         $validatorMock = $this->createMock(Csrf::class);
@@ -43,7 +43,7 @@ class CsrfTest extends TestCase
         $this->assertEquals($validatorMock, $element->getCsrfValidator());
     }
 
-    public function testAllowSettingCsrfValidatorOptions()
+    public function testAllowSettingCsrfValidatorOptions(): void
     {
         $element = new CsrfElement('foo');
         $element->setCsrfValidatorOptions(['timeout' => 777]);
@@ -52,7 +52,7 @@ class CsrfTest extends TestCase
         $this->assertEquals(777, $validator->getTimeout());
     }
 
-    public function testAllowSettingCsrfOptions()
+    public function testAllowSettingCsrfOptions(): void
     {
         $element = new CsrfElement('foo');
         $element->setOptions([
@@ -67,7 +67,7 @@ class CsrfTest extends TestCase
         $this->assertEquals('MySalt', $validator->getSalt());
     }
 
-    public function testSetOptionsTraversable()
+    public function testSetOptionsTraversable(): void
     {
         $element = new CsrfElement('foo');
         $element->setOptions(new CustomTraversable([

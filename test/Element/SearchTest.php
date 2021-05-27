@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class SearchTest extends TestCase
 {
-    public function testType()
+    public function testType(): void
     {
         $element = new Search('test');
 

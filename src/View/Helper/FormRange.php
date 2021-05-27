@@ -28,10 +28,8 @@ class FormRange extends FormInput
 
     /**
      * Determine input type to use
-     *
-     * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         return 'range';
     }

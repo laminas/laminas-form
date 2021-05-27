@@ -46,7 +46,7 @@ class ReCaptchaTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testMissingCaptchaAttributeThrowsDomainException()
+    public function testMissingCaptchaAttributeThrowsDomainException(): void
     {
         $element = new CaptchaElement('foo');
 
@@ -54,7 +54,7 @@ class ReCaptchaTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testRendersHiddenInputWhenNameIsNotRecaptchaDefault()
+    public function testRendersHiddenInputWhenNameIsNotRecaptchaDefault(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -62,7 +62,7 @@ class ReCaptchaTest extends AbstractCommonTestCase
         $this->assertStringContainsString('value="g-recaptcha-response"', $markup);
     }
 
-    public function testDoesNotRenderHiddenInputWhenNameIsRecaptchaDefault()
+    public function testDoesNotRenderHiddenInputWhenNameIsRecaptchaDefault(): void
     {
         $element = $this->getElement();
         $element->setName('g-recaptcha-response');
@@ -70,7 +70,7 @@ class ReCaptchaTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('type="hidden"', $markup);
     }
 
-    public function testRendersReCaptchaMarkup()
+    public function testRendersReCaptchaMarkup(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);

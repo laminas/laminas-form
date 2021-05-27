@@ -11,10 +11,9 @@ class Category
     protected $name;
 
     /**
-     * @param  string $name
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
         return $this;
@@ -29,10 +28,9 @@ class Category
     }
 
     /**
-     * @param  int $id
      * @return $this
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
         return $this;

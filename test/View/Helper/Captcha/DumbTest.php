@@ -33,7 +33,7 @@ class DumbTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testMissingCaptchaAttributeThrowsDomainException()
+    public function testMissingCaptchaAttributeThrowsDomainException(): void
     {
         $element = new CaptchaElement('foo');
 
@@ -41,7 +41,7 @@ class DumbTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testRendersHiddenInputForId()
+    public function testRendersHiddenInputForId(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -56,7 +56,7 @@ class DumbTest extends AbstractCommonTestCase
         );
     }
 
-    public function testRendersTextInputForInput()
+    public function testRendersTextInputForInput(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -67,7 +67,7 @@ class DumbTest extends AbstractCommonTestCase
         );
     }
 
-    public function testRendersLabelPriorToInputByDefault()
+    public function testRendersLabelPriorToInputByDefault(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -78,7 +78,7 @@ class DumbTest extends AbstractCommonTestCase
         );
     }
 
-    public function testCanRenderLabelFollowingInput()
+    public function testCanRenderLabelFollowingInput(): void
     {
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();
@@ -90,13 +90,13 @@ class DumbTest extends AbstractCommonTestCase
         );
     }
 
-    public function testSetCaptchaPositionWithNullRaisesException()
+    public function testSetCaptchaPositionWithNullRaisesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->helper->setCaptchaPosition(null);
     }
 
-    public function testSetSeparator()
+    public function testSetSeparator(): void
     {
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();
@@ -106,7 +106,7 @@ class DumbTest extends AbstractCommonTestCase
         $this->assertEquals('-', $this->helper->getSeparator());
     }
 
-    public function testRenderSeparatorOneTimeAfterText()
+    public function testRenderSeparatorOneTimeAfterText(): void
     {
         $element = $this->getElement();
         $this->helper->setSeparator('<br />');

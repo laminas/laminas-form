@@ -60,9 +60,8 @@ abstract class AbstractWord extends FormInput
      * More specific renderers will consume this and render it.
      *
      * @throws Exception\DomainException
-     * @return string
      */
-    protected function renderCaptchaInputs(ElementInterface $element)
+    protected function renderCaptchaInputs(ElementInterface $element): string
     {
         $name = $element->getName();
         if ($name === null || $name === '') {
@@ -75,7 +74,7 @@ abstract class AbstractWord extends FormInput
         assert($element instanceof Captcha);
         $captcha = $element->getCaptcha();
 
-        if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
+        if ($captcha === null) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has a "captcha" attribute implementing Laminas\Captcha\AdapterInterface; '
                 . 'none found',
@@ -94,9 +93,8 @@ abstract class AbstractWord extends FormInput
      * Render the hidden input with the captcha identifier
      *
      * @param  array          $attributes
-     * @return string
      */
-    protected function renderCaptchaHidden(CaptchaAdapter $captcha, array $attributes)
+    protected function renderCaptchaHidden(CaptchaAdapter $captcha, array $attributes): string
     {
         $attributes['type']  = 'hidden';
         $attributes['name'] .= '[id]';
@@ -124,9 +122,8 @@ abstract class AbstractWord extends FormInput
      * Render the input for capturing the captcha value from the client
      *
      * @param  array          $attributes
-     * @return string
      */
-    protected function renderCaptchaInput(CaptchaAdapter $captcha, array $attributes)
+    protected function renderCaptchaInput(CaptchaAdapter $captcha, array $attributes): string
     {
         $attributes['type']  = 'text';
         $attributes['name'] .= '[input]';
@@ -167,10 +164,8 @@ abstract class AbstractWord extends FormInput
 
     /**
      * Get position of captcha
-     *
-     * @return string
      */
-    public function getCaptchaPosition()
+    public function getCaptchaPosition(): string
     {
         return $this->captchaPosition;
     }
@@ -178,21 +173,18 @@ abstract class AbstractWord extends FormInput
     /**
      * Set separator string for captcha and inputs
      *
-     * @param  string $separator
      * @return $this
      */
-    public function setSeparator($separator)
+    public function setSeparator(string $separator)
     {
-        $this->separator = (string) $separator;
+        $this->separator = $separator;
         return $this;
     }
 
     /**
      * Get separator for captcha and inputs
-     *
-     * @return string
      */
-    public function getSeparator()
+    public function getSeparator(): string
     {
         return $this->separator;
     }

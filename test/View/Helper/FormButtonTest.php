@@ -22,13 +22,13 @@ class FormButtonTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testCanEmitStartTagOnly()
+    public function testCanEmitStartTagOnly(): void
     {
         $markup = $this->helper->openTag();
         $this->assertEquals('<button>', $markup);
     }
 
-    public function testPassingArrayToOpenTagRendersAttributes()
+    public function testPassingArrayToOpenTagRendersAttributes(): void
     {
         $attributes = [
             'name'  => 'my-button',
@@ -42,20 +42,20 @@ class FormButtonTest extends AbstractCommonTestCase
         }
     }
 
-    public function testCanEmitCloseTagOnly()
+    public function testCanEmitCloseTagOnly(): void
     {
         $markup = $this->helper->closeTag();
         $this->assertEquals('</button>', $markup);
     }
 
-    public function testPassingElementToOpenTagWillUseNameAttribute()
+    public function testPassingElementToOpenTagWillUseNameAttribute(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->openTag($element);
         $this->assertStringContainsString('name="foo"', $markup);
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElementWhenPassedToOpenTag()
+    public function testRaisesExceptionWhenNameIsNotPresentInElementWhenPassedToOpenTag(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -63,7 +63,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->helper->openTag($element);
     }
 
-    public function testOpenTagWithWrongElementRaisesException()
+    public function testOpenTagWithWrongElementRaisesException(): void
     {
         $element = new ArrayObject();
         $this->expectException(InvalidArgumentException::class);
@@ -71,7 +71,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->helper->openTag($element);
     }
 
-    public function testGeneratesSubmitTypeWhenProvidedAnElementWithNoTypeAttribute()
+    public function testGeneratesSubmitTypeWhenProvidedAnElementWithNoTypeAttribute(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->openTag($element);
@@ -79,7 +79,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertStringContainsString('type="submit"', $markup);
     }
 
-    public function testGeneratesButtonTagWithElementsTypeAttribute()
+    public function testGeneratesButtonTagWithElementsTypeAttribute(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'button');
@@ -105,7 +105,7 @@ class FormButtonTest extends AbstractCommonTestCase
     /**
      * @dataProvider inputTypes
      */
-    public function testOpenTagOnlyAllowsValidButtonTypes(string $type, string $assertion)
+    public function testOpenTagOnlyAllowsValidButtonTypes(string $type, string $assertion): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', $type);
@@ -190,8 +190,10 @@ class FormButtonTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
-    {
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
+        string $attribute,
+        string $assertion
+    ): void {
         $element = $this->getCompleteElement();
         $element->setLabel('{button_content}');
         $markup = $this->helper->render($element);
@@ -206,7 +208,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function testRaisesExceptionWhenLabelAttributeIsNotPresentInElement()
+    public function testRaisesExceptionWhenLabelAttributeIsNotPresentInElement(): void
     {
         $element = new Element('foo');
         $this->expectException(DomainException::class);
@@ -214,7 +216,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $markup = $this->helper->render($element);
     }
 
-    public function testPassingElementToRenderGeneratesButtonMarkup()
+    public function testPassingElementToRenderGeneratesButtonMarkup(): void
     {
         $element = new Element('foo');
         $element->setLabel('{button_content}');
@@ -225,7 +227,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</button>', $markup);
     }
 
-    public function testPassingElementAndContentToRenderUsesContent()
+    public function testPassingElementAndContentToRenderUsesContent(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element, '{button_content}');
@@ -235,7 +237,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertStringContainsString('</button>', $markup);
     }
 
-    public function testCallingFromViewHelperCanHandleOpenTagAndCloseTag()
+    public function testCallingFromViewHelperCanHandleOpenTagAndCloseTag(): void
     {
         $helper = $this->helper;
         $markup = $helper()->openTag();
@@ -244,7 +246,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertEquals('</button>', $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element, '{button_content}');
@@ -253,20 +255,20 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>{button_content}<', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
         $this->assertSame($this->helper, $this->helper->__invoke());
     }
 
-    public function testDoesNotThrowExceptionIfNameIsZero()
+    public function testDoesNotThrowExceptionIfNameIsZero(): void
     {
         $element = new Element(0);
         $markup  = $this->helper->__invoke($element, '{button_content}');
         $this->assertStringContainsString('name="0"', $markup);
     }
 
-    public function testCanTranslateContent()
+    public function testCanTranslateContent(): void
     {
         $element = new Element('foo');
         $element->setLabel('The value for foo:');
@@ -283,7 +285,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>translated content<', $markup);
     }
 
-    public function testCanTranslateButtonContentParameter()
+    public function testCanTranslateButtonContentParameter(): void
     {
         $element = new Element('foo');
 
@@ -299,7 +301,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>translated content<', $markup);
     }
 
-    public function testTranslatorMethods()
+    public function testTranslatorMethods(): void
     {
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
@@ -313,7 +315,7 @@ class FormButtonTest extends AbstractCommonTestCase
         $this->assertFalse($this->helper->isTranslatorEnabled());
     }
 
-    public function testLabelIsEscapedByDefault()
+    public function testLabelIsEscapedByDefault(): void
     {
         $element = new Element('foo');
         $element->setLabel('<strong>Click me</strong>');
@@ -324,7 +326,7 @@ class FormButtonTest extends AbstractCommonTestCase
         );
     }
 
-    public function testCanDisableLabelHtmlEscape()
+    public function testCanDisableLabelHtmlEscape(): void
     {
         $element = new Element('foo');
         $element->setLabel('<strong>Click me</strong>');

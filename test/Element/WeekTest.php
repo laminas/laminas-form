@@ -14,7 +14,7 @@ use function get_class;
 
 class WeekTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes()
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {
         $element = new WeekElement('foo');
         $element->setAttributes([
@@ -72,7 +72,7 @@ class WeekTest extends TestCase
     /**
      * @dataProvider weekValuesDataProvider
      */
-    public function testHTML5WeekValidation(string $value, bool $expected)
+    public function testHTML5WeekValidation(string $value, bool $expected): void
     {
         $element   = new WeekElement('foo');
         $inputSpec = $element->getInputSpecification();

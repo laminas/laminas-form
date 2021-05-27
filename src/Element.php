@@ -72,10 +72,9 @@ class Element implements
     /**
      * Set value for name
      *
-     * @param  string $name
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->setAttribute('name', $name);
         return $this;
@@ -83,10 +82,8 @@ class Element implements
 
     /**
      * Get value for name
-     *
-     * @return null|string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->getAttribute('name');
     }
@@ -128,7 +125,7 @@ class Element implements
      *
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -136,10 +133,9 @@ class Element implements
     /**
      * Return the specified option
      *
-     * @param string $option
      * @return null|mixed
      */
-    public function getOption($option)
+    public function getOption(string $option)
     {
         if (! isset($this->options[$option])) {
             return null;
@@ -151,11 +147,10 @@ class Element implements
     /**
      * Set a single option for an element
      *
-     * @param  string $key
      * @param  mixed $value
      * @return $this
      */
-    public function setOption($key, $value)
+    public function setOption(string $key, $value)
     {
         $this->options[$key] = $value;
         return $this;
@@ -164,11 +159,10 @@ class Element implements
     /**
      * Set a single element attribute
      *
-     * @param  string $key
      * @param  mixed  $value
      * @return $this
      */
-    public function setAttribute($key, $value)
+    public function setAttribute(string $key, $value)
     {
         // Do not include the value in the list of attributes
         if ($key === 'value') {
@@ -182,10 +176,9 @@ class Element implements
     /**
      * Retrieve a single element attribute
      *
-     * @param  string $key
      * @return mixed|null
      */
-    public function getAttribute($key)
+    public function getAttribute(string $key)
     {
         if (! isset($this->attributes[$key])) {
             return null;
@@ -197,10 +190,9 @@ class Element implements
     /**
      * Remove a single attribute
      *
-     * @param  string $key
      * @return $this
      */
-    public function removeAttribute($key)
+    public function removeAttribute(string $key)
     {
         unset($this->attributes[$key]);
         return $this;
@@ -208,11 +200,8 @@ class Element implements
 
     /**
      * Does the element has a specific attribute ?
-     *
-     * @param  string $key
-     * @return bool
      */
-    public function hasAttribute($key)
+    public function hasAttribute(string $key): bool
     {
         return array_key_exists($key, $this->attributes);
     }
@@ -294,10 +283,9 @@ class Element implements
     /**
      * Set the label used for this element
      *
-     * @param null|string $label
      * @return $this
      */
-    public function setLabel($label)
+    public function setLabel(?string $label)
     {
         if (is_string($label)) {
             $this->label = $label;
@@ -308,10 +296,8 @@ class Element implements
 
     /**
      * Retrieve the label used for this element
-     *
-     * @return null|string
      */
-    public function getLabel()
+    public function getLabel(): ?string
     {
         return $this->label;
     }
@@ -333,7 +319,7 @@ class Element implements
      *
      * @return array
      */
-    public function getLabelAttributes()
+    public function getLabelAttributes(): array
     {
         return $this->labelAttributes;
     }
@@ -359,7 +345,7 @@ class Element implements
      *
      * @return array
      */
-    public function getLabelOptions()
+    public function getLabelOptions(): array
     {
         return $this->labelOptions;
     }
@@ -393,11 +379,10 @@ class Element implements
     /**
      * Set a single label optionn
      *
-     * @param  string $key
      * @param  mixed  $value
      * @return $this
      */
-    public function setLabelOption($key, $value)
+    public function setLabelOption(string $key, $value)
     {
         $this->labelOptions[$key] = $value;
         return $this;
@@ -421,10 +406,9 @@ class Element implements
     /**
      * Remove a single label option
      *
-     * @param string $key
      * @return $this
      */
-    public function removeLabelOption($key)
+    public function removeLabelOption(string $key)
     {
         unset($this->labelOptions[$key]);
         return $this;
@@ -432,11 +416,8 @@ class Element implements
 
     /**
      * Does the element has a specific label option ?
-     *
-     * @param  string $key
-     * @return bool
      */
-    public function hasLabelOption($key)
+    public function hasLabelOption(string $key): bool
     {
         return array_key_exists($key, $this->labelOptions);
     }
@@ -466,10 +447,7 @@ class Element implements
         return $this->messages;
     }
 
-    /**
-     * @return boolean
-     */
-    public function hasValue()
+    public function hasValue(): bool
     {
         return $this->hasValue;
     }

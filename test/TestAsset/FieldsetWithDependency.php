@@ -17,7 +17,7 @@ class FieldsetWithDependency extends Fieldset
         parent::__construct('fieldset_with_dependency', $options);
     }
 
-    public function init()
+    public function init(): void
     {
         // should not fail
         $this->dependency->getValues();
@@ -31,10 +31,7 @@ class FieldsetWithDependency extends Fieldset
         return $this->dependency;
     }
 
-    /**
-     * @param InputFilter $dependency
-     */
-    public function setDependency($dependency)
+    public function setDependency(InputFilter $dependency): void
     {
         $this->dependency = $dependency;
     }

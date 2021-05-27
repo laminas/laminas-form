@@ -35,9 +35,8 @@ class FormImage extends FormInput
      * Render a form <input> element from the provided $element
      *
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         $src = $element->getAttribute('src');
         if (empty($src)) {
@@ -52,10 +51,8 @@ class FormImage extends FormInput
 
     /**
      * Determine input type to use
-     *
-     * @return string
      */
-    protected function getType(ElementInterface $element)
+    protected function getType(ElementInterface $element): string
     {
         return 'image';
     }

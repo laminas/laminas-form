@@ -16,9 +16,8 @@ class Image extends AbstractWord
      * Render the captcha
      *
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         assert($element instanceof Captcha);
         $captcha = $element->getCaptcha();

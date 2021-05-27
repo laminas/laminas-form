@@ -36,7 +36,7 @@ class MultiCheckbox extends Checkbox
     /**
      * @return array
      */
-    public function getValueOptions()
+    public function getValueOptions(): array
     {
         return $this->valueOptions;
     }
@@ -60,10 +60,9 @@ class MultiCheckbox extends Checkbox
     }
 
     /**
-     * @param string $key
      * @return $this
      */
-    public function unsetValueOption($key)
+    public function unsetValueOption(string $key)
     {
         if (isset($this->valueOptions[$key])) {
             unset($this->valueOptions[$key]);
@@ -102,11 +101,10 @@ class MultiCheckbox extends Checkbox
     /**
      * Set a single element attribute
      *
-     * @param  string $key
      * @param  mixed  $value
      * @return $this
      */
-    public function setAttribute($key, $value)
+    public function setAttribute(string $key, $value)
     {
         // Do not include the options in the list of attributes
         // TODO: Deprecate this
@@ -120,31 +118,26 @@ class MultiCheckbox extends Checkbox
     /**
      * Set the flag to allow for disabling the automatic addition of an InArray validator.
      *
-     * @param  bool $disableOption
      * @return $this
      */
-    public function setDisableInArrayValidator($disableOption)
+    public function setDisableInArrayValidator(bool $disableOption)
     {
-        $this->disableInArrayValidator = (bool) $disableOption;
+        $this->disableInArrayValidator = $disableOption;
         return $this;
     }
 
     /**
      * Get the disable in array validator flag.
-     *
-     * @return bool
      */
-    public function disableInArrayValidator()
+    public function disableInArrayValidator(): bool
     {
         return $this->disableInArrayValidator;
     }
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ?ValidatorInterface
     {
         if (null === $this->validator && ! $this->disableInArrayValidator()) {
             $inArrayValidator = new InArrayValidator([
@@ -164,7 +157,7 @@ class MultiCheckbox extends Checkbox
      *
      * @return array
      */
-    protected function getValueOptionsValues()
+    protected function getValueOptionsValues(): array
     {
         $values  = [];
         $options = $this->getValueOptions();

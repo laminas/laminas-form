@@ -48,7 +48,7 @@ class Select extends Element implements InputProviderInterface
     /**
      * @return array
      */
-    public function getValueOptions()
+    public function getValueOptions(): array
     {
         return $this->valueOptions;
     }
@@ -81,10 +81,9 @@ class Select extends Element implements InputProviderInterface
     }
 
     /**
-     * @param string $key
      * @return $this
      */
-    public function unsetValueOption($key)
+    public function unsetValueOption(string $key)
     {
         if (isset($this->valueOptions[$key])) {
             unset($this->valueOptions[$key]);
@@ -137,11 +136,10 @@ class Select extends Element implements InputProviderInterface
     /**
      * Set a single element attribute
      *
-     * @param  string $key
      * @param  mixed  $value
      * @return $this
      */
-    public function setAttribute($key, $value)
+    public function setAttribute(string $key, $value)
     {
         // Do not include the options in the list of attributes
         // TODO: Deprecate this
@@ -155,21 +153,18 @@ class Select extends Element implements InputProviderInterface
     /**
      * Set the flag to allow for disabling the automatic addition of an InArray validator.
      *
-     * @param bool $disableOption
      * @return $this
      */
-    public function setDisableInArrayValidator($disableOption)
+    public function setDisableInArrayValidator(bool $disableOption)
     {
-        $this->disableInArrayValidator = (bool) $disableOption;
+        $this->disableInArrayValidator = $disableOption;
         return $this;
     }
 
     /**
      * Get the disable in array validator flag.
-     *
-     * @return bool
      */
-    public function disableInArrayValidator()
+    public function disableInArrayValidator(): bool
     {
         return $this->disableInArrayValidator;
     }
@@ -177,10 +172,9 @@ class Select extends Element implements InputProviderInterface
     /**
      * Set the string for an empty option (can be empty string). If set to null, no option will be added
      *
-     * @param  string|null $emptyOption
      * @return $this
      */
-    public function setEmptyOption($emptyOption)
+    public function setEmptyOption(?string $emptyOption)
     {
         $this->emptyOption = $emptyOption;
         return $this;
@@ -188,20 +182,16 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Return the string for the empty option (null if none)
-     *
-     * @return string|null
      */
-    public function getEmptyOption()
+    public function getEmptyOption(): ?string
     {
         return $this->emptyOption;
     }
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
-    protected function getValidator()
+    protected function getValidator(): ?ValidatorInterface
     {
         if (null === $this->validator && ! $this->disableInArrayValidator()) {
             $validator = new InArrayValidator([
@@ -224,21 +214,18 @@ class Select extends Element implements InputProviderInterface
     /**
      * Do we render hidden element?
      *
-     * @param  bool $useHiddenElement
      * @return $this
      */
-    public function setUseHiddenElement($useHiddenElement)
+    public function setUseHiddenElement(bool $useHiddenElement)
     {
-        $this->useHiddenElement = (bool) $useHiddenElement;
+        $this->useHiddenElement = $useHiddenElement;
         return $this;
     }
 
     /**
      * Do we render hidden element?
-     *
-     * @return bool
      */
-    public function useHiddenElement()
+    public function useHiddenElement(): bool
     {
         return $this->useHiddenElement;
     }
@@ -246,21 +233,18 @@ class Select extends Element implements InputProviderInterface
     /**
      * Set the value if the select is not selected
      *
-     * @param string $unselectedValue
      * @return $this
      */
-    public function setUnselectedValue($unselectedValue)
+    public function setUnselectedValue(string $unselectedValue)
     {
-        $this->unselectedValue = (string) $unselectedValue;
+        $this->unselectedValue = $unselectedValue;
         return $this;
     }
 
     /**
      * Get the value when the select is not selected
-     *
-     * @return string
      */
-    public function getUnselectedValue()
+    public function getUnselectedValue(): string
     {
         return $this->unselectedValue;
     }
@@ -270,7 +254,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         $spec = [
             'name'     => $this->getName(),
@@ -311,7 +295,7 @@ class Select extends Element implements InputProviderInterface
      *
      * @return array
      */
-    protected function getValueOptionsValues()
+    protected function getValueOptionsValues(): array
     {
         $values  = [];
         $options = $this->getValueOptions();
@@ -340,10 +324,8 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Element has the multiple attribute
-     *
-     * @return bool
      */
-    public function isMultiple()
+    public function isMultiple(): bool
     {
         return isset($this->attributes['multiple'])
             && ($this->attributes['multiple'] === true || $this->attributes['multiple'] === 'multiple');

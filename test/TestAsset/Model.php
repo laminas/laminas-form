@@ -17,19 +17,17 @@ class Model implements ArraySerializableInterface
     protected $foobar;
 
     /**
-     * @param string $name
      * @param mixed $value
      */
-    public function __set($name, $value)
+    public function __set(string $name, $value)
     {
         throw new DomainException('Overloading to set values is not allowed');
     }
 
     /**
-     * @param string $name
      * @return mixed
      */
-    public function __get($name)
+    public function __get(string $name)
     {
         if (property_exists($this, $name)) {
             return $this->$name;

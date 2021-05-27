@@ -11,7 +11,7 @@ use function get_class;
 
 class EmailTest extends TestCase
 {
-    public function testProvidesInputSpecificationThatIncludesDefaultValidators()
+    public function testProvidesInputSpecificationThatIncludesDefaultValidators(): void
     {
         $element = new EmailElement();
 
@@ -40,7 +40,7 @@ class EmailTest extends TestCase
     /**
      * @dataProvider emailAttributesDataProvider
      */
-    public function testProvidesInputSpecificationBasedOnAttributes(array $attributes, array $expectedValidators)
+    public function testProvidesInputSpecificationBasedOnAttributes(array $attributes, array $expectedValidators): void
     {
         $element = new EmailElement();
         $element->setAttributes($attributes);

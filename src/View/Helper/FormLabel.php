@@ -34,12 +34,10 @@ class FormLabel extends AbstractHelper
      * Always generates a "for" statement, as we cannot assume the form input
      * will be provided in the $labelContent.
      *
-     * @param  null|string      $labelContent
-     * @param  string           $position
      * @throws Exception\DomainException
      * @return string|FormLabel
      */
-    public function __invoke(?ElementInterface $element = null, $labelContent = null, $position = null)
+    public function __invoke(?ElementInterface $element = null, ?string $labelContent = null, ?string $position = null)
     {
         if (! $element) {
             return $this;
@@ -94,9 +92,8 @@ class FormLabel extends AbstractHelper
      * @param  null|array|ElementInterface $attributesOrElement
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
-    public function openTag($attributesOrElement = null)
+    public function openTag($attributesOrElement = null): string
     {
         if (null === $attributesOrElement) {
             return '<label>';
@@ -140,10 +137,8 @@ class FormLabel extends AbstractHelper
 
     /**
      * Return a closing label tag
-     *
-     * @return string
      */
-    public function closeTag()
+    public function closeTag(): string
     {
         return '</label>';
     }

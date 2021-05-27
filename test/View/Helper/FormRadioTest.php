@@ -50,7 +50,7 @@ class FormRadioTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testUsesOptionsAttributeToGenerateRadioOptions()
+    public function testUsesOptionsAttributeToGenerateRadioOptions(): void
     {
         $element = $this->getElement();
         $options = $element->getValueOptions();
@@ -67,7 +67,7 @@ class FormRadioTest extends AbstractCommonTestCase
         }
     }
 
-    public function testUsesOptionsAttributeWithOptionSpecToGenerateRadioOptions()
+    public function testUsesOptionsAttributeWithOptionSpecToGenerateRadioOptions(): void
     {
         $element = $this->getElementWithOptionSpec();
         $options = $element->getValueOptions();
@@ -99,7 +99,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertStringContainsString(sprintf('value="%s"', 'value3'), $markup);
     }
 
-    public function testGenerateRadioOptionsAndHiddenElement()
+    public function testGenerateRadioOptionsAndHiddenElement(): void
     {
         $element = $this->getElement();
         $element->setUseHiddenElement(true);
@@ -120,7 +120,7 @@ class FormRadioTest extends AbstractCommonTestCase
         }
     }
 
-    public function testUsesElementValueToDetermineRadioStatus()
+    public function testUsesElementValueToDetermineRadioStatus(): void
     {
         $element = $this->getElement();
         $element->setAttribute('value', ['value1', 'value3']);
@@ -131,7 +131,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertMatchesRegularExpression('#value="value3"\s+checked="checked"#', $markup);
     }
 
-    public function testAllowsSpecifyingSeparator()
+    public function testAllowsSpecifyingSeparator(): void
     {
         $element = $this->getElement();
         $this->helper->setSeparator('<br />');
@@ -139,7 +139,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertEquals(2, substr_count($markup, '<br />'));
     }
 
-    public function testAllowsSpecifyingLabelPosition()
+    public function testAllowsSpecifyingLabelPosition(): void
     {
         $element = $this->getElement();
         $options = $element->getValueOptions();
@@ -156,7 +156,7 @@ class FormRadioTest extends AbstractCommonTestCase
         }
     }
 
-    public function testDoesNotRenderCheckedAttributeIfNotPassed()
+    public function testDoesNotRenderCheckedAttributeIfNotPassed(): void
     {
         $element = $this->getElement();
         $options = $element->getValueOptions();
@@ -165,7 +165,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertStringNotContainsString('checked', $markup);
     }
 
-    public function testAllowsSpecifyingLabelAttributes()
+    public function testAllowsSpecifyingLabelAttributes(): void
     {
         $element = $this->getElement();
 
@@ -176,7 +176,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label class="radio"'));
     }
 
-    public function testAllowsSpecifyingLabelAttributesInElementAttributes()
+    public function testAllowsSpecifyingLabelAttributesInElementAttributes(): void
     {
         $element = $this->getElement();
         $element->setLabelAttributes(['class' => 'radio']);
@@ -186,7 +186,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertEquals(3, substr_count($markup, '<label class="radio"'));
     }
 
-    public function testIdShouldNotBeRenderedForEachRadio()
+    public function testIdShouldNotBeRenderedForEachRadio(): void
     {
         $element = $this->getElement();
         $element->setAttribute('id', 'foo');
@@ -194,7 +194,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertLessThanOrEqual(1, substr_count($markup, 'id="foo"'));
     }
 
-    public function testIdShouldBeRenderedOnceIfProvided()
+    public function testIdShouldBeRenderedOnceIfProvided(): void
     {
         $element = $this->getElement();
         $element->setAttribute('id', 'foo');
@@ -202,14 +202,14 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertEquals(1, substr_count($markup, 'id="foo"'));
     }
 
-    public function testNameShouldNotHaveBracketsAppended()
+    public function testNameShouldNotHaveBracketsAppended(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
         $this->assertStringNotContainsString('foo[]', $markup);
     }
 
-    public function testCanTranslateContent()
+    public function testCanTranslateContent(): void
     {
         $element = new RadioElement('foo');
         $element->setValueOptions([
@@ -232,7 +232,7 @@ class FormRadioTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>translated content<', $markup);
     }
 
-    public function testTranslatorMethods()
+    public function testTranslatorMethods(): void
     {
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');

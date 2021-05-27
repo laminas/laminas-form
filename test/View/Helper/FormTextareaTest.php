@@ -19,7 +19,7 @@ class FormTextareaTest extends AbstractCommonTestCase
         parent::setUp();
     }
 
-    public function testRaisesExceptionWhenNameIsNotPresentInElement()
+    public function testRaisesExceptionWhenNameIsNotPresentInElement(): void
     {
         $element = new Element();
         $this->expectException(DomainException::class);
@@ -27,7 +27,7 @@ class FormTextareaTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testGeneratesEmptyTextareaWhenNoValueAttributePresent()
+    public function testGeneratesEmptyTextareaWhenNoValueAttributePresent(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
@@ -239,8 +239,10 @@ class FormTextareaTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
-    {
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
+        string $attribute,
+        string $assertion
+    ): void {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
         $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
@@ -261,7 +263,7 @@ class FormTextareaTest extends AbstractCommonTestCase
     /**
      * @dataProvider booleanAttributeTypes
      */
-    public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off)
+    public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off): void
     {
         $element = new Element('foo');
         $element->setAttribute($attribute, true);
@@ -326,7 +328,7 @@ class FormTextareaTest extends AbstractCommonTestCase
         string $attribute,
         string $on,
         string $off
-    ) {
+    ): void {
         $element = new Element('foo');
         $this->renderer->doctype('HTML5');
         $element->setAttribute($attribute, true);
@@ -407,7 +409,7 @@ class FormTextareaTest extends AbstractCommonTestCase
         }
     }
 
-    public function testRendersValueAttributeAsTextareaContent()
+    public function testRendersValueAttributeAsTextareaContent(): void
     {
         $element = new Element('foo');
         $element->setAttribute('value', 'Initial content');
@@ -415,7 +417,7 @@ class FormTextareaTest extends AbstractCommonTestCase
         $this->assertStringContainsString('>Initial content</textarea>', $markup);
     }
 
-    public function testInvokeProxiesToRender()
+    public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
@@ -423,7 +425,7 @@ class FormTextareaTest extends AbstractCommonTestCase
         $this->assertStringContainsString('name="foo"', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
         $this->assertSame($this->helper, $this->helper->__invoke());

@@ -48,7 +48,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
     /**
      * @return array
      */
-    public function getCsrfValidatorOptions()
+    public function getCsrfValidatorOptions(): array
     {
         return $this->csrfValidatorOptions;
     }
@@ -65,10 +65,8 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
 
     /**
      * Get CSRF validator
-     *
-     * @return CsrfValidator
      */
-    public function getCsrfValidator()
+    public function getCsrfValidator(): CsrfValidator
     {
         if (null === $this->csrfValidator) {
             $csrfOptions = $this->getCsrfValidatorOptions();
@@ -91,10 +89,8 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      * Retrieve value
      *
      * Retrieves the hash from the validator
-     *
-     * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         $validator = $this->getCsrfValidator();
         return $validator->getHash();
@@ -120,7 +116,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),
@@ -137,7 +133,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
     /**
      * Prepare the form element
      */
-    public function prepareElement(FormInterface $form)
+    public function prepareElement(FormInterface $form): void
     {
         $this->getCsrfValidator()->getHash(true);
     }

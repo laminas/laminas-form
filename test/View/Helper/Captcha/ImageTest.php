@@ -95,7 +95,7 @@ class ImageTest extends AbstractCommonTestCase
         return $element;
     }
 
-    public function testMissingCaptchaAttributeThrowsDomainException()
+    public function testMissingCaptchaAttributeThrowsDomainException(): void
     {
         $element = new CaptchaElement('foo');
 
@@ -103,7 +103,7 @@ class ImageTest extends AbstractCommonTestCase
         $this->helper->render($element);
     }
 
-    public function testRendersHiddenInputForId()
+    public function testRendersHiddenInputForId(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -117,7 +117,7 @@ class ImageTest extends AbstractCommonTestCase
         );
     }
 
-    public function testRendersTextInputForInput()
+    public function testRendersTextInputForInput(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
@@ -127,14 +127,14 @@ class ImageTest extends AbstractCommonTestCase
         );
     }
 
-    public function testRendersImageTagPriorToInputByDefault()
+    public function testRendersImageTagPriorToInputByDefault(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
         $this->assertMatchesRegularExpression('#<img[^>]+><input#', $markup);
     }
 
-    public function testCanRenderImageTagFollowingInput()
+    public function testCanRenderImageTagFollowingInput(): void
     {
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();

@@ -70,7 +70,7 @@ class FormElementTest extends TestCase
     /**
      * @dataProvider getInputElements
      */
-    public function testRendersExpectedInputElement(string $type)
+    public function testRendersExpectedInputElement(string $type): void
     {
         if ($type === 'radio') {
             $element = new Element\Radio('foo');
@@ -104,7 +104,7 @@ class FormElementTest extends TestCase
      * @dataProvider getMultiElements
      * @group multi
      */
-    public function testRendersMultiElementsAsExpected(string $type, string $inputType, string $additionalMarkup)
+    public function testRendersMultiElementsAsExpected(string $type, string $inputType, string $additionalMarkup): void
     {
         if ($type === 'radio') {
             $element = new Element\Radio('foo');
@@ -136,7 +136,7 @@ class FormElementTest extends TestCase
         }
     }
 
-    public function testRendersCaptchaAsExpected()
+    public function testRendersCaptchaAsExpected(): void
     {
         $captcha = new Captcha\Dumb();
         $element = new Element\Captcha('foo');
@@ -146,7 +146,7 @@ class FormElementTest extends TestCase
         $this->assertStringContainsString($captcha->getLabel(), $markup);
     }
 
-    public function testRendersCsrfAsExpected()
+    public function testRendersCsrfAsExpected(): void
     {
         $element   = new Element\Csrf('foo');
         $inputSpec = $element->getInputSpecification();
@@ -169,7 +169,7 @@ class FormElementTest extends TestCase
         $this->assertMatchesRegularExpression('#<input[^>]*(value="' . $hash . '")#', $markup);
     }
 
-    public function testRendersTextareaAsExpected()
+    public function testRendersTextareaAsExpected(): void
     {
         $element = new Element('foo');
         $element->setAttribute('type', 'textarea');
@@ -180,7 +180,7 @@ class FormElementTest extends TestCase
         $this->assertStringContainsString('>Initial content<', $markup);
     }
 
-    public function testRendersCollectionAsExpected()
+    public function testRendersCollectionAsExpected(): void
     {
         $element = new Element\Collection();
         $element->setLabel('foo');
@@ -189,7 +189,7 @@ class FormElementTest extends TestCase
         $this->assertStringContainsString('<legend>foo</legend>', $markup);
     }
 
-    public function testRendersButtonAsExpected()
+    public function testRendersButtonAsExpected(): void
     {
         $element = new Element\Button('foo');
         $element->setLabel('My Button');
@@ -199,7 +199,7 @@ class FormElementTest extends TestCase
         $this->assertStringContainsString('>My Button<', $markup);
     }
 
-    public function testInvokeWithNoElementChainsHelper()
+    public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
         $this->assertSame($this->helper, $this->helper->__invoke());

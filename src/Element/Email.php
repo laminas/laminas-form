@@ -28,10 +28,8 @@ class Email extends Element implements InputProviderInterface
 
     /**
      * Get primary validator
-     *
-     * @return ValidatorInterface
      */
-    public function getValidator()
+    public function getValidator(): ValidatorInterface
     {
         if (null === $this->validator) {
             $emailValidator = $this->getEmailValidator();
@@ -78,10 +76,8 @@ class Email extends Element implements InputProviderInterface
      * browser validation, but you are free to set a different
      * (more strict) email validator such as Laminas\Validator\Email
      * if you wish.
-     *
-     * @return ValidatorInterface
      */
-    public function getEmailValidator()
+    public function getEmailValidator(): ValidatorInterface
     {
         if (null === $this->emailValidator) {
             $this->emailValidator = new RegexValidator(
@@ -110,7 +106,7 @@ class Email extends Element implements InputProviderInterface
      *
      * @return array
      */
-    public function getInputSpecification()
+    public function getInputSpecification(): array
     {
         return [
             'name'       => $this->getName(),

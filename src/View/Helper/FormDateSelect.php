@@ -7,21 +7,44 @@ use IntlDateFormatter;
 use Laminas\Form\Element\DateSelect as DateSelectElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
-use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
 
 use function is_numeric;
 use function sprintf;
 
-class FormDateSelect extends FormMonthSelectHelper
+class FormDateSelect extends AbstractFormDateSelect
 {
+    /**
+     * Invoke helper as function
+     *
+     * Proxies to {@link render()}.
+     *
+     * @return string|self
+     */
+    public function __invoke(
+        ?ElementInterface $element = null,
+        int $dateType = IntlDateFormatter::LONG,
+        ?string $locale = null
+    ) {
+        if (! $element) {
+            return $this;
+        }
+
+        $this->setDateType($dateType);
+
+        if ($locale !== null) {
+            $this->setLocale($locale);
+        }
+
+        return $this->render($element);
+    }
+
     /**
      * Render a date element that is composed of three selects
      *
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element): string
     {
         if (! $element instanceof DateSelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -79,7 +102,7 @@ class FormDateSelect extends FormMonthSelectHelper
      * @param  string $pattern Pattern to use for days
      * @return array
      */
-    protected function getDaysOptions($pattern)
+    protected function getDaysOptions(string $pattern): array
     {
         $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'dd');
         $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);

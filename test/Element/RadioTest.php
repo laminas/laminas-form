@@ -18,7 +18,7 @@ class RadioTest extends TestCase
     /**
      * @dataProvider useHiddenAttributeDataProvider
      */
-    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement)
+    public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement): void
     {
         $element = new RadioElement();
         $options = [
@@ -67,7 +67,7 @@ class RadioTest extends TestCase
     /**
      * @dataProvider radioOptionsDataProvider
      */
-    public function testInArrayValidationOfOptions(array $valueTests, array $options)
+    public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new RadioElement('my-radio');
         $element->setAttributes([
@@ -82,7 +82,7 @@ class RadioTest extends TestCase
         }
     }
 
-    public function testDisableInputSpecification()
+    public function testDisableInputSpecification(): void
     {
         $element = new RadioElement();
         $element->setValueOptions([
