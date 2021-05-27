@@ -142,7 +142,7 @@ class DateSelect extends MonthSelect
             return null;
         }
 
-        return sprintf('%s-%s-%s', $year, $month, $day);
+        return sprintf('%04d-%02d-%02d', $year, $month, $day);
     }
 
     /**

@@ -293,11 +293,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
             return null;
         }
 
-        return sprintf(
-            '%s-%s',
-            $this->getYearElement()->getValue(),
-            $this->getMonthElement()->getValue()
-        );
+        return sprintf('%04d-%02d', $year, $month);
     }
 
     /**

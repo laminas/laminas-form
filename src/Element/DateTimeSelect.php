@@ -271,7 +271,7 @@ class DateTimeSelect extends DateSelect
             $day   = $now->format('d');
         }
 
-        // if date is give, but time is null, use 00:00:00 instead
+        // if date is given, but time is null, use 00:00:00 instead
         if (
             $this->shouldCreateEmptyOption()
             && null === $hour && null === $minute && (null === $second || '00' === $second)
@@ -282,7 +282,7 @@ class DateTimeSelect extends DateSelect
         }
 
         return sprintf(
-            '%s-%s-%s %s:%s:%s',
+            '%04d-%02d-%02d %02d:%02d:%02d',
             $year,
             $month,
             $day,
