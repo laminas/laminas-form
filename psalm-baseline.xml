@@ -15,12 +15,6 @@
       <code>getAttributes</code>
     </UndefinedMethod>
   </file>
-  <file src="src/ConfigProvider.php">
-    <DuplicateArrayKey occurrences="2">
-      <code>\Zend\Form\Annotation\AnnotationBuilder::class =&gt; Annotation\AnnotationBuilder::class</code>
-      <code>\Zend\Form\FormElementManager::class           =&gt; FormElementManager::class</code>
-    </DuplicateArrayKey>
-  </file>
   <file src="src/Element/Collection.php">
     <ImplementedParamTypeMismatch occurrences="1">
       <code>$object</code>
