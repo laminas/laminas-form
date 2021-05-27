@@ -28,9 +28,7 @@ final class FieldsetTest extends TestCase
     protected function setUp(): void
     {
         $this->fieldset = new Fieldset();
-        $this->hydrator = class_exists(Hydrator\ObjectPropertyHydrator::class)
-            ? new Hydrator\ObjectPropertyHydrator()
-            : new Hydrator\ObjectProperty();
+        $this->hydrator = new Hydrator\ObjectPropertyHydrator();
     }
 
     public function populateFieldset(): void

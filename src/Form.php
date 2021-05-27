@@ -925,4 +925,13 @@ class Form extends Fieldset implements FormInterface
 
         return $values;
     }
+
+    public function setInputFilterByName(string $inputFilterName): void
+    {
+        $inputFilter = $this->getFormFactory()
+            ->getInputFilterFactory()
+            ->getInputFilterManager()
+            ->get($inputFilterName);
+        $this->setInputFilter($inputFilter);
+    }
 }
