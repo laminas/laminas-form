@@ -86,8 +86,6 @@ class FormCollection extends AbstractHelper
 
     /**
      * Render a collection by iterating through all fieldsets and elements
-     *
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
@@ -160,16 +158,13 @@ class FormCollection extends AbstractHelper
 
     /**
      * Only render a template
-     *
-     * @return string
      */
     public function renderTemplate(CollectionElement $collection): string
     {
         $elementHelper = $this->getElementHelper();
         assert(is_callable($elementHelper));
         $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
-        assert(is_callable($escapeHtmlAttribHelper));
-        $fieldsetHelper = $this->getFieldsetHelper();
+        $fieldsetHelper         = $this->getFieldsetHelper();
         assert(is_callable($fieldsetHelper));
 
         $templateMarkup = '';
@@ -202,8 +197,6 @@ class FormCollection extends AbstractHelper
 
     /**
      * Get wrapped
-     *
-     * @return bool
      */
     public function shouldWrap(): bool
     {
@@ -224,8 +217,6 @@ class FormCollection extends AbstractHelper
 
     /**
      * Gets the name of the view helper that should be used to render sub elements.
-     *
-     * @return string
      */
     public function getDefaultElementHelper(): string
     {
@@ -247,7 +238,7 @@ class FormCollection extends AbstractHelper
     /**
      * Retrieve the element helper.
      *
-     * @return HelperInterface
+     * @return FormRow
      * @throws RuntimeException
      */
     protected function getElementHelper(): HelperInterface
@@ -298,8 +289,6 @@ class FormCollection extends AbstractHelper
 
     /**
      * Get the wrapper for the collection
-     *
-     * @return string
      */
     public function getWrapper(): string
     {
@@ -347,8 +336,6 @@ class FormCollection extends AbstractHelper
 
     /**
      * Get the wrapper for the label
-     *
-     * @return string
      */
     public function getLabelWrapper(): string
     {
@@ -357,8 +344,6 @@ class FormCollection extends AbstractHelper
 
     /**
      * Ge the wrapper for the template
-     *
-     * @return string
      */
     public function getTemplateWrapper(): string
     {

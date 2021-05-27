@@ -190,8 +190,10 @@ class FormButtonTest extends AbstractCommonTestCase
     /**
      * @dataProvider validAttributes
      */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion): void
-    {
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
+        string $attribute,
+        string $assertion
+    ): void {
         $element = $this->getCompleteElement();
         $element->setLabel('{button_content}');
         $markup = $this->helper->render($element);

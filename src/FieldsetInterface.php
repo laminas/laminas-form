@@ -33,7 +33,6 @@ interface FieldsetInterface extends
      * Does the fieldset have an element/fieldset by the given name?
      *
      * @param  string $elementOrFieldset
-     * @return bool
      */
     public function has($elementOrFieldset): bool;
 
@@ -41,7 +40,6 @@ interface FieldsetInterface extends
      * Retrieve a named element or fieldset
      *
      * @param  string $elementOrFieldset
-     * @return ElementInterface
      */
     public function get($elementOrFieldset): ElementInterface;
 
@@ -82,8 +80,6 @@ interface FieldsetInterface extends
 
     /**
      * Recursively populate value attributes of elements
-     *
-     * @return void
      */
     public function populateValues(iterable $data): void;
 
@@ -106,7 +102,6 @@ interface FieldsetInterface extends
      * Checks if the object can be set in this fieldset
      *
      * @param object $object
-     * @return bool
      */
     public function allowObjectBinding($object): bool;
 
@@ -119,8 +114,6 @@ interface FieldsetInterface extends
 
     /**
      * Get the hydrator used when binding an object to the element
-     *
-     * @return null|HydratorInterface
      */
     public function getHydrator(): ?HydratorInterface;
 
@@ -134,8 +127,6 @@ interface FieldsetInterface extends
 
     /**
      * Checks if this fieldset can bind data
-     *
-     * @return bool
      */
     public function allowValueBinding(): bool;
 }

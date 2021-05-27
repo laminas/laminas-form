@@ -95,8 +95,6 @@ class DateTime extends Element implements InputProviderInterface
 
     /**
      * Retrieve the DateTime format to use for the value
-     *
-     * @return string
      */
     public function getFormat(): string
     {
@@ -215,7 +213,6 @@ class DateTime extends Element implements InputProviderInterface
      * Indicate whether or not a value represents a valid DateTime format.
      *
      * @param string $value
-     * @return bool
      */
     private function valueIsValidDateTimeFormat($value): bool
     {

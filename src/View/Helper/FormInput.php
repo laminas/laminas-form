@@ -100,7 +100,6 @@ class FormInput extends AbstractHelper
      * Render a form <input> element from the provided $element
      *
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
@@ -130,8 +129,6 @@ class FormInput extends AbstractHelper
 
     /**
      * Determine input type to use
-     *
-     * @return string
      */
     protected function getType(ElementInterface $element): string
     {

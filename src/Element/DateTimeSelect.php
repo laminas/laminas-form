@@ -92,25 +92,16 @@ class DateTimeSelect extends DateSelect
         return $this;
     }
 
-    /**
-     * @return Select
-     */
     public function getHourElement(): Select
     {
         return $this->hourElement;
     }
 
-    /**
-     * @return Select
-     */
     public function getMinuteElement(): Select
     {
         return $this->minuteElement;
     }
 
-    /**
-     * @return Select
-     */
     public function getSecondElement(): Select
     {
         return $this->secondElement;
@@ -195,9 +186,6 @@ class DateTimeSelect extends DateSelect
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function shouldShowSeconds(): bool
     {
         return $this->shouldShowSeconds;
@@ -247,9 +235,6 @@ class DateTimeSelect extends DateSelect
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return sprintf(
@@ -265,8 +250,6 @@ class DateTimeSelect extends DateSelect
 
     /**
      * Prepare the form element (mostly used for rendering purposes)
-     *
-     * @return void
      */
     public function prepareElement(FormInterface $form): void
     {
@@ -280,8 +263,6 @@ class DateTimeSelect extends DateSelect
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     protected function getValidator(): ValidatorInterface
     {

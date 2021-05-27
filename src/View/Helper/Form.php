@@ -50,8 +50,6 @@ class Form extends AbstractHelper
 
     /**
      * Render a form from the provided $form,
-     *
-     * @return string
      */
     public function render(FormInterface $form): string
     {
@@ -76,8 +74,6 @@ class Form extends AbstractHelper
 
     /**
      * Generate an opening form tag
-     *
-     * @return string
      */
     public function openTag(?FormInterface $form = null): string
     {
@@ -108,8 +104,6 @@ class Form extends AbstractHelper
 
     /**
      * Generate a closing form tag
-     *
-     * @return string
      */
     public function closeTag(): string
     {

@@ -71,7 +71,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the allow_empty flag on the input specification array.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleAllowEmptyAnnotation($e): void
     {
@@ -90,7 +89,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the attributes array of the element specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleAttributesAnnotation($e): void
     {
@@ -115,7 +113,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Allow creating fieldsets from composed entity properties
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleComposedObjectAnnotation($e): void
     {
@@ -189,7 +186,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the continue_if_empty flag on the input specification array.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleContinueIfEmptyAnnotation($e): void
     {
@@ -208,7 +204,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the error_message of the input specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleErrorMessageAnnotation($e): void
     {
@@ -225,7 +220,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Determine if the element has been marked to exclude from the definition
      *
      * @param  EventInterface $e
-     * @return bool
      */
     public function handleExcludeAnnotation($e): bool
     {
@@ -244,7 +238,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Adds a filter to the filter chain specification for the input.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleFilterAnnotation($e): void
     {
@@ -267,7 +260,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * priority).
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleFlagsAnnotation($e): void
     {
@@ -286,7 +278,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the hydrator class to use in the fieldset specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleHydratorAnnotation($e): void
     {
@@ -306,7 +297,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * input class name.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleInputAnnotation($e): void
     {
@@ -341,7 +331,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the element options in the specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleOptionsAnnotation($e): void
     {
@@ -360,7 +349,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the required flag on the input based on the annotation value.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleRequiredAnnotation($e): void
     {
@@ -389,7 +377,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Sets the element class type to use in the element specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleTypeAnnotation($e): void
     {
@@ -408,7 +395,6 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Adds a validator to the validator chain of the input specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleValidatorAnnotation($e): void
     {

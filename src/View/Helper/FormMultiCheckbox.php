@@ -95,7 +95,6 @@ class FormMultiCheckbox extends FormInput
      * Render a form <input> element from the provided $element
      *
      * @throws Exception\InvalidArgumentException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
@@ -131,7 +130,6 @@ class FormMultiCheckbox extends FormInput
      * @param  array                $options
      * @param  array                $selectedOptions
      * @param  array                $attributes
-     * @return string
      */
     protected function renderOptions(
         MultiCheckboxElement $element,
@@ -245,8 +243,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Render a hidden element for empty/unchecked value
-     *
-     * @return string
      */
     protected function renderHiddenElement(MultiCheckboxElement $element): string
     {
@@ -314,8 +310,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Get position of label
-     *
-     * @return string
      */
     public function getLabelPosition(): string
     {
@@ -336,8 +330,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Get separator for checkbox elements
-     *
-     * @return string
      */
     public function getSeparator(): string
     {
@@ -360,8 +352,6 @@ class FormMultiCheckbox extends FormInput
     /**
      * Returns the option for prefixing the element with a hidden element
      * for the unset value.
-     *
-     * @return bool
      */
     public function getUseHiddenElement(): bool
     {
@@ -382,8 +372,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Returns the unchecked value used when "UseHiddenElement" is turned on.
-     *
-     * @return string
      */
     public function getUncheckedValue(): string
     {
@@ -392,8 +380,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Return input type
-     *
-     * @return string
      */
     protected function getInputType(): string
     {
@@ -404,7 +390,6 @@ class FormMultiCheckbox extends FormInput
      * Get element name
      *
      * @throws Exception\DomainException
-     * @return string
      */
     protected static function getName(ElementInterface $element): string
     {
@@ -420,8 +405,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Retrieve the FormInput helper
-     *
-     * @return FormInput
      */
     protected function getInputHelper(): FormInput
     {
@@ -442,8 +425,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Retrieve the FormLabel helper
-     *
-     * @return FormLabel
      */
     protected function getLabelHelper(): FormLabel
     {

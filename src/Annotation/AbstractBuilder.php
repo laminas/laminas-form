@@ -56,8 +56,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Set event manager instance
-     *
-     * @return void
      */
     public function setEventManager(EventManagerInterface $eventManager): void
     {
@@ -74,8 +72,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * Retrieve form factory
      *
      * Lazy-loads the default form factory if none is currently set.
-     *
-     * @return Factory
      */
     public function getFormFactory(): Factory
     {
@@ -89,8 +85,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Get event manager
-     *
-     * @return EventManagerInterface
      */
     public function getEventManager(): EventManagerInterface
     {
@@ -105,7 +99,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @param  string|object $entity Either an instance or a valid class name for an entity
      * @throws Exception\InvalidArgumentException If $entity is not an object or class name.
-     * @return ArrayObject
      */
     public function getFormSpecification($entity): ArrayObject
     {
@@ -149,7 +142,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * Create a form from an object.
      *
      * @param  string|object $entity
-     * @return FormInterface
      */
     public function createForm($entity): FormInterface
     {
@@ -160,8 +152,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Get the entity used to construct the form.
-     *
-     * @return object
      */
     public function getEntity(): object
     {
@@ -175,7 +165,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @param  ReflectionClass $reflection
      * @param  ArrayObject $formSpec
      * @param  ArrayObject $filterSpec
-     * @return void
      * @triggers discoverName
      * @triggers configureForm
      */
@@ -205,7 +194,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * @param  ReflectionProperty $reflection
      * @param  ArrayObject $formSpec
      * @param  ArrayObject $filterSpec
-     * @return void
      * @triggers checkForExclude
      * @triggers discoverName
      * @triggers configureElement
@@ -280,9 +268,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function preserveDefinedOrder(): bool
     {
         return $this->preserveDefinedOrder;
@@ -293,7 +278,6 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      *
      * @param  AnnotationCollection $annotations
      * @param  Reflector $reflection
-     * @return string
      */
     protected function discoverName($annotations, $reflection): string
     {

@@ -131,8 +131,6 @@ class MultiCheckbox extends Checkbox
 
     /**
      * Get the disable in array validator flag.
-     *
-     * @return bool
      */
     public function disableInArrayValidator(): bool
     {
@@ -141,8 +139,6 @@ class MultiCheckbox extends Checkbox
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     protected function getValidator(): ?ValidatorInterface
     {

@@ -16,8 +16,6 @@ class FormSearch extends FormText
 {
     /**
      * Determine input type to use
-     *
-     * @return string
      */
     protected function getType(ElementInterface $element): string
     {

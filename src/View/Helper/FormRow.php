@@ -111,7 +111,6 @@ class FormRow extends AbstractHelper
      *
      * @param  null|string      $labelPosition
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element, $labelPosition = null): string
     {
@@ -260,8 +259,6 @@ class FormRow extends AbstractHelper
 
     /**
      * Get the class that is added to element that have errors
-     *
-     * @return string
      */
     public function getInputErrorClass(): string
     {
@@ -316,8 +313,6 @@ class FormRow extends AbstractHelper
 
     /**
      * Get the label position
-     *
-     * @return string
      */
     public function getLabelPosition(): string
     {
@@ -338,8 +333,6 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve if the errors are rendered by this helper
-     *
-     * @return bool
      */
     public function getRenderErrors(): bool
     {
@@ -360,8 +353,6 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve current partial
-     *
-     * @return null|string
      */
     public function getPartial(): ?string
     {
@@ -370,8 +361,6 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve the FormLabel helper
-     *
-     * @return FormLabel
      */
     protected function getLabelHelper(): FormLabel
     {
@@ -399,8 +388,6 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve the FormElement helper
-     *
-     * @return FormElement
      */
     protected function getElementHelper(): FormElement
     {
@@ -421,8 +408,6 @@ class FormRow extends AbstractHelper
 
     /**
      * Retrieve the FormElementErrors helper
-     *
-     * @return FormElementErrors
      */
     protected function getElementErrorsHelper(): FormElementErrors
     {

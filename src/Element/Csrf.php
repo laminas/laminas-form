@@ -65,8 +65,6 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
 
     /**
      * Get CSRF validator
-     *
-     * @return CsrfValidator
      */
     public function getCsrfValidator(): CsrfValidator
     {
@@ -91,8 +89,6 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      * Retrieve value
      *
      * Retrieves the hash from the validator
-     *
-     * @return string
      */
     public function getValue(): string
     {

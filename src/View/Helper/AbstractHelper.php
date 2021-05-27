@@ -199,8 +199,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Get value for doctype
-     *
-     * @return string
      */
     public function getDoctype(): string
     {
@@ -222,8 +220,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Get character encoding
-     *
-     * @return string
      */
     public function getEncoding(): string
     {
@@ -236,7 +232,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Escapes all attribute values
      *
      * @param  array $attributes
-     * @return string
      */
     public function createAttributesString(array $attributes): string
     {
@@ -282,8 +277,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * If no ID attribute present, attempts to use the name attribute.
      * If no name attribute is present, either, returns null.
-     *
-     * @return null|string
      */
     public function getId(ElementInterface $element): ?string
     {
@@ -299,8 +292,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Get the closing bracket for an inline tag
      *
      * Closes as either "/>" for XHTML doctypes or ">" otherwise.
-     *
-     * @return string
      */
     public function getInlineClosingBracket(): string
     {
@@ -313,8 +304,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Retrieve the doctype helper
-     *
-     * @return Doctype
      */
     protected function getDoctypeHelper(): Doctype
     {
@@ -335,8 +324,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Retrieve the escapeHtml helper
-     *
-     * @return EscapeHtml
      */
     protected function getEscapeHtmlHelper(): EscapeHtml
     {
@@ -357,8 +344,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Retrieve the escapeHtmlAttr helper
-     *
-     * @return EscapeHtmlAttr
      */
     protected function getEscapeHtmlAttrHelper(): EscapeHtmlAttr
     {
@@ -424,7 +409,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @param  string $attribute
      * @param  mixed $value
-     * @return string
      */
     protected function prepareBooleanAttributeValue($attribute, $value): string
     {
@@ -558,7 +542,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *     Description of valid attributes
      *
      * @param string  $attribute
-     * @return bool
      */
     protected function isValidAttributeName($attribute): bool
     {
@@ -569,7 +552,6 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Whether the passed attribute has a valid prefix or not
      *
      * @param string  $attribute
-     * @return bool
      */
     protected function hasAllowedPrefix($attribute): bool
     {

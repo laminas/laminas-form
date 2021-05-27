@@ -74,7 +74,6 @@ class FormDateTimeSelect extends FormDateSelectHelper
     /**
      * Render a date element that is composed of six selects
      *
-     * @return string
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      */
@@ -167,9 +166,6 @@ class FormDateTimeSelect extends FormDateSelectHelper
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTimeType(): int
     {
         return $this->timeType;
@@ -177,8 +173,6 @@ class FormDateTimeSelect extends FormDateSelectHelper
 
     /**
      * Override to also get time part
-     *
-     * @return string
      */
     public function getPattern(): string
     {

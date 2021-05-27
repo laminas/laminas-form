@@ -687,6 +687,7 @@ class FormTest extends TestCase
         $this->form->setData($data);
 
         $fieldset = $this->form->get('foobar');
+        $this->assertInstanceOf(Fieldset::class, $fieldset);
         foreach (['foo', 'bar'] as $name) {
             $element = $this->form->get($name);
             $this->assertEquals($data[$name], $element->getValue());
@@ -1079,9 +1080,11 @@ class FormTest extends TestCase
         $this->assertEquals('foo', $this->form->get('foo')->getName());
 
         $basicFieldset = $this->form->get('basic_fieldset');
+        $this->assertInstanceOf(Fieldset::class, $basicFieldset);
         $this->assertEquals('basic_fieldset[field]', $basicFieldset->get('field')->getName());
 
         $nestedFieldset = $basicFieldset->get('nested_fieldset');
+        $this->assertInstanceOf(Fieldset::class, $nestedFieldset);
         $this->assertEquals(
             'basic_fieldset[nested_fieldset][anotherField]',
             $nestedFieldset->get('anotherField')->getName()
@@ -1248,8 +1251,14 @@ class FormTest extends TestCase
         $form = new TestAsset\FormCollection();
         $form->prepare();
 
-        $this->assertEquals('colors[0]', $form->get('colors')->get('0')->getName());
-        $this->assertEquals('fieldsets[0][field]', $form->get('fieldsets')->get('0')->get('field')->getName());
+        $colors = $form->get('colors');
+        $this->assertInstanceOf(Fieldset::class, $colors);
+        $this->assertEquals('colors[0]', $colors->get('0')->getName());
+        $fieldsets = $form->get('fieldsets');
+        $this->assertInstanceOf(Fieldset::class, $fieldsets);
+        $zeroFieldset = $fieldsets->get('0');
+        $this->assertInstanceOf(Fieldset::class, $zeroFieldset);
+        $this->assertEquals('fieldsets[0][field]', $zeroFieldset->get('field')->getName());
     }
 
     public function testAssertElementsNamesCanBeWrappedAroundFormName(): void
@@ -1259,8 +1268,14 @@ class FormTest extends TestCase
         $form->setName('foo');
         $form->prepare();
 
-        $this->assertEquals('foo[colors][0]', $form->get('colors')->get('0')->getName());
-        $this->assertEquals('foo[fieldsets][0][field]', $form->get('fieldsets')->get('0')->get('field')->getName());
+        $colors = $form->get('colors');
+        $this->assertInstanceOf(Fieldset::class, $colors);
+        $this->assertEquals('foo[colors][0]', $colors->get('0')->getName());
+        $fieldsets = $form->get('fieldsets');
+        $this->assertInstanceOf(Fieldset::class, $fieldsets);
+        $zeroFieldset = $fieldsets->get('0');
+        $this->assertInstanceOf(Fieldset::class, $zeroFieldset);
+        $this->assertEquals('foo[fieldsets][0][field]', $zeroFieldset->get('field')->getName());
     }
 
     public function testUnsetValuesNotBound(): void
@@ -1314,7 +1329,9 @@ class FormTest extends TestCase
         $emptyData = [];
 
         $this->populateForm();
-        $this->form->get('foobar')->add([
+        $foobarFieldset = $this->form->get('foobar');
+        $this->assertInstanceOf(Fieldset::class, $foobarFieldset);
+        $foobarFieldset->add([
             'type'    => Element\Collection::class,
             'name'    => 'categories',
             'options' => [
@@ -1509,7 +1526,9 @@ class FormTest extends TestCase
         $this->form->add($fieldset);
         $this->form->setHydrator(new ArraySerializableHydrator());
 
-        $baseHydrator = $this->form->get('foobar')->getHydrator();
+        $foobarFieldset = $this->form->get('foobar');
+        $this->assertInstanceOf(Fieldset::class, $foobarFieldset);
+        $baseHydrator = $foobarFieldset->getHydrator();
         $this->assertInstanceOf(ArraySerializableHydrator::class, $baseHydrator);
     }
 

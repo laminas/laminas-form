@@ -15,7 +15,6 @@ class FormCheckbox extends FormInput
      *
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
@@ -69,8 +68,6 @@ class FormCheckbox extends FormInput
 
     /**
      * Return input type
-     *
-     * @return string
      */
     protected function getInputType(): string
     {

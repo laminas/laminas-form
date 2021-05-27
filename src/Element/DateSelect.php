@@ -53,9 +53,6 @@ class DateSelect extends MonthSelect
         return $this;
     }
 
-    /**
-     * @return Select
-     */
     public function getDayElement(): Select
     {
         return $this->dayElement;
@@ -123,10 +120,7 @@ class DateSelect extends MonthSelect
         return $this;
     }
 
-    /**
-     * @return String
-     */
-    public function getValue(): String
+    public function getValue(): string
     {
         return sprintf(
             '%s-%s-%s',
@@ -138,8 +132,6 @@ class DateSelect extends MonthSelect
 
     /**
      * Prepare the form element (mostly used for rendering purposes)
-     *
-     * @return void
      */
     public function prepareElement(FormInterface $form): void
     {
@@ -151,8 +143,6 @@ class DateSelect extends MonthSelect
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     protected function getValidator(): ValidatorInterface
     {

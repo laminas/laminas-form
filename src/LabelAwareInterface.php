@@ -14,8 +14,6 @@ interface LabelAwareInterface
 
     /**
      * Retrieve the label (if any) used for this element
-     *
-     * @return null|string
      */
     public function getLabel(): ?string;
 
@@ -79,7 +77,6 @@ interface LabelAwareInterface
      * Does the element has a specific label option ?
      *
      * @param  string $key
-     * @return bool
      */
     public function hasLabelOption($key): bool;
 

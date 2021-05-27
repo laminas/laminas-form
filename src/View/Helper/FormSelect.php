@@ -95,7 +95,6 @@ class FormSelect extends AbstractHelper
      *
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
@@ -159,7 +158,6 @@ class FormSelect extends AbstractHelper
      *
      * @param  array $options
      * @param  array $selectedOptions Option values that should be marked as selected
-     * @return string
      */
     public function renderOptions(array $options, array $selectedOptions = []): string
     {
@@ -240,7 +238,6 @@ class FormSelect extends AbstractHelper
      *
      * @param  array $optgroup
      * @param  array $selectedOptions
-     * @return string
      */
     public function renderOptgroup(array $optgroup, array $selectedOptions = []): string
     {
@@ -310,9 +307,6 @@ class FormSelect extends AbstractHelper
         return $this->getFormHiddenHelper()->__invoke($hiddenElement);
     }
 
-    /**
-     * @return FormHidden
-     */
     protected function getFormHiddenHelper(): FormHidden
     {
         if (! $this->formHiddenHelper) {

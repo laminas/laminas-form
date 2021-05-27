@@ -122,17 +122,11 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return Select
-     */
     public function getMonthElement(): Select
     {
         return $this->monthElement;
     }
 
-    /**
-     * @return Select
-     */
     public function getYearElement(): Select
     {
         return $this->yearElement;
@@ -202,9 +196,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getMinYear(): int
     {
         return $this->minYear;
@@ -220,9 +211,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getMaxYear(): int
     {
         return $this->maxYear;
@@ -238,9 +226,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function shouldCreateEmptyOption(): bool
     {
         return $this->createEmptyOption;
@@ -256,9 +241,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function shouldRenderDelimiters(): bool
     {
         return $this->renderDelimiters;
@@ -282,9 +264,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return sprintf(
@@ -296,8 +275,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * Prepare the form element (mostly used for rendering purposes)
-     *
-     * @return void
      */
     public function prepareElement(FormInterface $form): void
     {
@@ -308,8 +285,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     protected function getValidator(): ValidatorInterface
     {

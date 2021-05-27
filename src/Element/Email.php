@@ -28,8 +28,6 @@ class Email extends Element implements InputProviderInterface
 
     /**
      * Get primary validator
-     *
-     * @return ValidatorInterface
      */
     public function getValidator(): ValidatorInterface
     {
@@ -78,8 +76,6 @@ class Email extends Element implements InputProviderInterface
      * browser validation, but you are free to set a different
      * (more strict) email validator such as Laminas\Validator\Email
      * if you wish.
-     *
-     * @return ValidatorInterface
      */
     public function getEmailValidator(): ValidatorInterface
     {

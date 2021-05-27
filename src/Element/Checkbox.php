@@ -71,8 +71,6 @@ class Checkbox extends Element implements InputProviderInterface
 
     /**
      * Do we render hidden element?
-     *
-     * @return bool
      */
     public function useHiddenElement(): bool
     {
@@ -93,8 +91,6 @@ class Checkbox extends Element implements InputProviderInterface
 
     /**
      * Get the value to use when checkbox is unchecked
-     *
-     * @return string
      */
     public function getUncheckedValue(): string
     {
@@ -115,8 +111,6 @@ class Checkbox extends Element implements InputProviderInterface
 
     /**
      * Get the value to use when checkbox is checked
-     *
-     * @return string
      */
     public function getCheckedValue(): string
     {
@@ -125,8 +119,6 @@ class Checkbox extends Element implements InputProviderInterface
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     protected function getValidator(): ?ValidatorInterface
     {
@@ -164,8 +156,6 @@ class Checkbox extends Element implements InputProviderInterface
 
     /**
      * Checks if this checkbox is checked.
-     *
-     * @return bool
      */
     public function isChecked(): bool
     {
@@ -193,7 +183,7 @@ class Checkbox extends Element implements InputProviderInterface
     public function setValue($value)
     {
         // Cast to strings because POST data comes in string form
-        $checked     = (string) $value === (string) $this->getCheckedValue();
+        $checked     = (string) $value === $this->getCheckedValue();
         $this->value = $checked ? $this->getCheckedValue() : $this->getUncheckedValue();
         return $this;
     }

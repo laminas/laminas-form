@@ -24,8 +24,6 @@ class Url extends Element implements InputProviderInterface
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     public function getValidator(): ValidatorInterface
     {

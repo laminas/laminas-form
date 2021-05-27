@@ -51,7 +51,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Sets the attributes key of the form specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleAttributesAnnotation($e): void
     {
@@ -70,7 +69,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Sets the flags key of the form specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleFlagsAnnotation($e): void
     {
@@ -89,7 +87,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Sets the hydrator class to use in the form specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleHydratorAnnotation($e): void
     {
@@ -108,7 +105,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Sets the input filter class to use in the form specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleInputFilterAnnotation($e): void
     {
@@ -143,7 +139,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Sets the options key of the form specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleOptionsAnnotation($e): void
     {
@@ -162,7 +157,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Sets the form class to use in the form specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleTypeAnnotation($e): void
     {
@@ -181,7 +175,6 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Sets the validation group to use in the form specification.
      *
      * @param  EventInterface $e
-     * @return void
      */
     public function handleValidationGroupAnnotation($e): void
     {

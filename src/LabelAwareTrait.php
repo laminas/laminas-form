@@ -137,7 +137,6 @@ trait LabelAwareTrait
      * Does the element has a specific label option ?
      *
      * @param  string $key
-     * @return bool
      */
     public function hasLabelOption($key): bool
     {

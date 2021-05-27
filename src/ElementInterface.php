@@ -17,8 +17,6 @@ interface ElementInterface
 
     /**
      * Retrieve the element name
-     *
-     * @return null|string
      */
     public function getName(): ?string;
 
@@ -74,7 +72,6 @@ interface ElementInterface
      * Return true if a specific attribute is set
      *
      * @param  string $key
-     * @return bool
      */
     public function hasAttribute($key): bool;
 
@@ -117,8 +114,6 @@ interface ElementInterface
 
     /**
      * Retrieve the label (if any) used for this element
-     *
-     * @return null|string
      */
     public function getLabel(): ?string;
 

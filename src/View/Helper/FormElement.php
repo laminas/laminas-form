@@ -91,8 +91,6 @@ class FormElement extends BaseAbstractHelper
      *
      * Introspects the element type and attributes to determine which
      * helper to utilize when rendering.
-     *
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
@@ -162,7 +160,6 @@ class FormElement extends BaseAbstractHelper
      * Render element by helper name
      *
      * @param string $name
-     * @return string
      */
     protected function renderHelper($name, ElementInterface $element): string
     {
@@ -175,8 +172,6 @@ class FormElement extends BaseAbstractHelper
 
     /**
      * Render element by instance map
-     *
-     * @return string|null
      */
     protected function renderInstance(ElementInterface $element): ?string
     {
@@ -191,8 +186,6 @@ class FormElement extends BaseAbstractHelper
 
     /**
      * Render element by type map
-     *
-     * @return string|null
      */
     protected function renderType(ElementInterface $element): ?string
     {

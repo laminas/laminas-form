@@ -307,7 +307,6 @@ class FormElementManager extends AbstractPluginManager
      * Inject the factory to any element that implements FormFactoryAwareInterface
      *
      * @param mixed $instance Instance to inspect and optionally inject.
-     * @return void
      */
     public function injectFactory(ContainerInterface $container, $instance): void
     {
@@ -346,7 +345,6 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param string $name
      * @param null|string $class
-     * @return void
      */
     public function setInvokableClass($name, $class = null): void
     {
@@ -369,7 +367,6 @@ class FormElementManager extends AbstractPluginManager
      * Validates against `$instanceOf`.
      *
      * @param  mixed $instance
-     * @return void
      * @throws InvalidServiceException
      */
     public function validate($instance): void

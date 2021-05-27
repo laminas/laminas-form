@@ -492,6 +492,7 @@ class FactoryTest extends TestCase
         $this->assertTrue($found);
     }
 
+    // @codingStandardsIgnoreLine
     public function testCanCreateFormFromConcreteClassWithCustomValidatorByNameAndInputFilterFactoryInConstructor(): void
     {
         $validatorManager = new ValidatorPluginManager($this->services);

@@ -62,8 +62,6 @@ class Element implements
     /**
      * This function is automatically called when creating element with factory. It
      * allows to perform various operations (add elements...)
-     *
-     * @return void
      */
     public function init(): void
     {
@@ -83,8 +81,6 @@ class Element implements
 
     /**
      * Get value for name
-     *
-     * @return null|string
      */
     public function getName(): ?string
     {
@@ -210,7 +206,6 @@ class Element implements
      * Does the element has a specific attribute ?
      *
      * @param  string $key
-     * @return bool
      */
     public function hasAttribute($key): bool
     {
@@ -308,8 +303,6 @@ class Element implements
 
     /**
      * Retrieve the label used for this element
-     *
-     * @return null|string
      */
     public function getLabel(): ?string
     {
@@ -434,7 +427,6 @@ class Element implements
      * Does the element has a specific label option ?
      *
      * @param  string $key
-     * @return bool
      */
     public function hasLabelOption($key): bool
     {
@@ -466,9 +458,6 @@ class Element implements
         return $this->messages;
     }
 
-    /**
-     * @return boolean
-     */
     public function hasValue(): bool
     {
         return $this->hasValue;

@@ -94,7 +94,6 @@ class FormLabel extends AbstractHelper
      * @param  null|array|ElementInterface $attributesOrElement
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
     public function openTag($attributesOrElement = null): string
     {
@@ -140,8 +139,6 @@ class FormLabel extends AbstractHelper
 
     /**
      * Return a closing label tag
-     *
-     * @return string
      */
     public function closeTag(): string
     {

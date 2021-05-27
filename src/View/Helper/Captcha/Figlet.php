@@ -16,7 +16,6 @@ class Figlet extends AbstractWord
      * Render the captcha
      *
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {

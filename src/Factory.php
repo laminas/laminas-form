@@ -58,8 +58,6 @@ class Factory
      * Get current input filter factory
      *
      * If none provided, uses an unconfigured instance.
-     *
-     * @return InputFilterFactory
      */
     public function getInputFilterFactory(): InputFilterFactory
     {
@@ -82,8 +80,6 @@ class Factory
 
     /**
      * Get form element manager
-     *
-     * @return FormElementManager
      */
     public function getFormElementManager(): FormElementManager
     {
@@ -102,7 +98,6 @@ class Factory
      * represents simply an element.
      *
      * @param  array|Traversable|ArrayAccess $spec
-     * @return ElementInterface
      * @throws Exception\DomainException
      */
     public function create($spec): ElementInterface
@@ -138,7 +133,6 @@ class Factory
      * Create an element
      *
      * @param  array $spec
-     * @return ElementInterface
      */
     public function createElement($spec): ElementInterface
     {
@@ -153,7 +147,6 @@ class Factory
      * Create a fieldset
      *
      * @param  array $spec
-     * @return FieldsetInterface
      */
     public function createFieldset($spec): FieldsetInterface
     {
@@ -168,7 +161,6 @@ class Factory
      * Create a form
      *
      * @param  array $spec
-     * @return FormInterface
      */
     public function createForm($spec): FormInterface
     {
@@ -189,7 +181,6 @@ class Factory
      * - attributes: an array or Traversable object of element attributes to assign
      *
      * @param  array|Traversable|ArrayAccess $spec
-     * @return ElementInterface
      * @throws Exception\DomainException
      */
     public function configureElement(ElementInterface $element, $spec): ElementInterface
@@ -230,7 +221,6 @@ class Factory
      *   - spec: the actual element specification, per {@link configureElement()}
      *
      * @param  array|Traversable|ArrayAccess $spec
-     * @return FieldsetInterface
      * @throws Exception\DomainException
      */
     public function configureFieldset(FieldsetInterface $fieldset, $spec): FieldsetInterface
@@ -271,7 +261,6 @@ class Factory
      * - hydrator: hydrator instance or named hydrator class
      *
      * @param  array|Traversable|ArrayAccess  $spec
-     * @return FormInterface
      */
     public function configureForm(FormInterface $form, $spec): FormInterface
     {
@@ -326,7 +315,6 @@ class Factory
      *
      * @param  array|Traversable|ArrayAccess $elements
      * @param  string $method Method invoking this one (for exception messages)
-     * @return void
      */
     protected function prepareAndInjectElements($elements, FieldsetInterface $fieldset, $method): void
     {
@@ -354,7 +342,6 @@ class Factory
      *
      * @param  array|Traversable|ArrayAccess $fieldsets
      * @param  string $method Method invoking this one (for exception messages)
-     * @return void
      */
     public function prepareAndInjectFieldsets($fieldsets, FieldsetInterface $masterFieldset, $method): void
     {
@@ -378,7 +365,6 @@ class Factory
      * @param  string            $objectName
      * @param  string            $method
      * @throws Exception\DomainException
-     * @return void
      */
     protected function prepareAndInjectObject($objectName, FieldsetInterface $fieldset, $method): void
     {
@@ -409,7 +395,6 @@ class Factory
      *
      * @param  string|array|Hydrator\HydratorInterface $hydratorOrName
      * @param  string                                  $method
-     * @return void
      * @throws Exception\DomainException If $hydratorOrName is not a string, does not resolve to a known class, or
      *                                   the class does not implement Hydrator\HydratorInterface.
      */
@@ -460,7 +445,6 @@ class Factory
      *
      * @param  string|array|Factory      $factoryOrName
      * @param  string                    $method
-     * @return void
      * @throws Exception\DomainException If $factoryOrName is not a string, does not resolve to a known class, or
      *                                   the class does not extend Form\Factory.
      */
@@ -503,7 +487,6 @@ class Factory
      *
      * @param  string|array|Traversable $spec
      * @param  string $method
-     * @return void
      * @throws Exception\DomainException For unknown InputFilter class or invalid InputFilter instance.
      */
     protected function prepareAndInjectInputFilter($spec, FormInterface $form, $method): void
@@ -548,7 +531,6 @@ class Factory
      *
      * @param  string|array|Traversable $spec
      * @param  string $method
-     * @return void
      * @throws Exception\DomainException If validation group given is not an array.
      */
     protected function prepareAndInjectValidationGroup($spec, FormInterface $form, $method): void

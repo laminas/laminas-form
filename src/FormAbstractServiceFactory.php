@@ -26,7 +26,6 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      *
      * @param string $requestedName
      * @param array|null $options
-     * @return FormInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): FormInterface
     {
@@ -42,7 +41,6 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * Can we create the requested service? (v3)
      *
      * @param  string             $requestedName
-     * @return bool
      */
     public function canCreate(ContainerInterface $container, $requestedName): bool
     {
@@ -95,7 +93,6 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      * Retrieve the form factory, creating it if necessary
      *
      * @param  ContainerInterface $services
-     * @return Factory
      */
     protected function getFormFactory(ContainerInterface $container): Factory
     {
@@ -122,7 +119,6 @@ class FormAbstractServiceFactory implements AbstractFactoryInterface
      *   attaches the FilterManager and ValidatorManager to it.
      *
      * @param array $config
-     * @return void
      */
     protected function marshalInputFilter(array &$config, ContainerInterface $container, Factory $formFactory): void
     {

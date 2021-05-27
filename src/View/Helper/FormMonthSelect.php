@@ -93,7 +93,6 @@ class FormMonthSelect extends AbstractHelper
     /**
      * Render a month element that is composed of two selects
      *
-     * @return string
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      */
@@ -183,8 +182,6 @@ class FormMonthSelect extends AbstractHelper
 
     /**
      * Retrieve pattern to use for Date rendering
-     *
-     * @return string
      */
     public function getPattern(): string
     {
@@ -216,8 +213,6 @@ class FormMonthSelect extends AbstractHelper
 
     /**
      * Get date formatter
-     *
-     * @return int
      */
     public function getDateType(): int
     {
@@ -238,8 +233,6 @@ class FormMonthSelect extends AbstractHelper
 
     /**
      * Get locale
-     *
-     * @return string
      */
     public function getLocale(): string
     {
@@ -295,8 +288,6 @@ class FormMonthSelect extends AbstractHelper
 
     /**
      * Retrieve the FormSelect helper
-     *
-     * @return FormSelect
      */
     protected function getSelectElementHelper(): FormSelect
     {

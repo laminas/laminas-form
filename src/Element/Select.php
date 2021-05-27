@@ -166,8 +166,6 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Get the disable in array validator flag.
-     *
-     * @return bool
      */
     public function disableInArrayValidator(): bool
     {
@@ -188,8 +186,6 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Return the string for the empty option (null if none)
-     *
-     * @return string|null
      */
     public function getEmptyOption(): ?string
     {
@@ -198,8 +194,6 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     protected function getValidator(): ?ValidatorInterface
     {
@@ -235,8 +229,6 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Do we render hidden element?
-     *
-     * @return bool
      */
     public function useHiddenElement(): bool
     {
@@ -257,8 +249,6 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Get the value when the select is not selected
-     *
-     * @return string
      */
     public function getUnselectedValue(): string
     {
@@ -340,8 +330,6 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Element has the multiple attribute
-     *
-     * @return bool
      */
     public function isMultiple(): bool
     {

@@ -24,8 +24,6 @@ class FormColor extends FormInput
 
     /**
      * Determine input type to use
-     *
-     * @return string
      */
     protected function getType(ElementInterface $element): string
     {

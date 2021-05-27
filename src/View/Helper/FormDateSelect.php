@@ -19,7 +19,6 @@ class FormDateSelect extends FormMonthSelectHelper
      *
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {

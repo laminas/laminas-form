@@ -51,7 +51,6 @@ class FormElementErrors extends AbstractHelper
      *
      * @param  array $attributes
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element, array $attributes = []): string
     {
@@ -117,8 +116,6 @@ class FormElementErrors extends AbstractHelper
 
     /**
      * Get the string used to close message representation
-     *
-     * @return string
      */
     public function getMessageCloseString(): string
     {
@@ -139,8 +136,6 @@ class FormElementErrors extends AbstractHelper
 
     /**
      * Get the formatted string used to open message representation
-     *
-     * @return string
      */
     public function getMessageOpenFormat(): string
     {
@@ -161,8 +156,6 @@ class FormElementErrors extends AbstractHelper
 
     /**
      * Get the string used to separate messages
-     *
-     * @return string
      */
     public function getMessageSeparatorString(): string
     {

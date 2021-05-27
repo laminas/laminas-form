@@ -52,12 +52,11 @@ class FormTextarea extends AbstractHelper
      * Render a form <textarea> element from the provided $element
      *
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
         $name = $element->getName();
-        if (empty($name) && $name !== 0) {
+        if ($name === null || $name === '') {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has an assigned name; none discovered',
                 __METHOD__

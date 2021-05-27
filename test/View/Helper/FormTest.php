@@ -2,7 +2,6 @@
 
 namespace LaminasTest\Form\View\Helper;
 
-use ArrayIterator;
 use Laminas\Form\Element\Submit;
 use Laminas\Form\Form;
 use Laminas\Form\View\Helper\Form as FormHelper;

@@ -33,7 +33,6 @@ class ReCaptcha extends FormInput
      * Render ReCaptcha form elements
      *
      * @throws Exception\DomainException
-     * @return string
      */
     public function render(ElementInterface $element): string
     {
@@ -67,7 +66,6 @@ class ReCaptcha extends FormInput
      * @param  string $challengeId @deprecated
      * @param  string $responseName @deprecated
      * @param  string $responseId @deprecated
-     * @return string
      */
     protected function renderHiddenInput($name, $challengeId = '', $responseName = '', $responseId = ''): string
     {
@@ -92,7 +90,6 @@ class ReCaptcha extends FormInput
      *
      * @param  string $challengeId
      * @param  string $responseId
-     * @return string
      */
     protected function renderJsEvents($challengeId, $responseId): string
     {

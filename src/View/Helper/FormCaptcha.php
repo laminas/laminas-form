@@ -2,7 +2,6 @@
 
 namespace Laminas\Form\View\Helper;
 
-use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
 use Laminas\Form\Element\Captcha;
 use Laminas\Form\Exception;
 
@@ -32,13 +31,12 @@ class FormCaptcha extends AbstractHelper
      *
      * @throws Exception\DomainException If the element does not compose a captcha, or the renderer does
      *                                   not implement plugin().
-     * @return string
      */
     public function render(Captcha $element): string
     {
         $captcha = $element->getCaptcha();
 
-        if ($captcha === null || ! $captcha instanceof CaptchaAdapter) {
+        if ($captcha === null) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has a "captcha" attribute implementing Laminas\Captcha\AdapterInterface; '
                 . 'none found',

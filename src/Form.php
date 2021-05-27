@@ -3,7 +3,6 @@
 namespace Laminas\Form;
 
 use ArrayAccess;
-use ArrayObject;
 use Laminas\Form\Element\Collection;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\InputFilter\CollectionInputFilter;
@@ -229,8 +228,6 @@ class Form extends Fieldset implements FormInterface
     /**
      * Ensures state is ready for use. Here, we append the name of the fieldsets to every elements in order to avoid
      * name clashes if the same fieldset is used multiple times
-     *
-     * @return void
      */
     public function prepareElement(FormInterface $form): void
     {
@@ -330,7 +327,6 @@ class Form extends Fieldset implements FormInterface
      * Bind values to the bound object
      *
      * @param  array $values
-     * @return void
      */
     public function bindValues(array $values = [], ?array $validationGroup = null): void
     {
@@ -424,8 +420,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Will we bind values to the bound object on successful validation?
-     *
-     * @return bool
      */
     public function bindOnValidate(): bool
     {
@@ -446,8 +440,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Get the base fieldset to use when hydrating
-     *
-     * @return FieldsetInterface
      */
     public function getBaseFieldset(): FieldsetInterface
     {
@@ -456,8 +448,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Check if the form has been validated
-     *
-     * @return bool
      */
     public function hasValidated(): bool
     {
@@ -469,7 +459,6 @@ class Form extends Fieldset implements FormInterface
      *
      * Typically, will proxy to the composed input filter.
      *
-     * @return bool
      * @throws Exception\DomainException
      */
     public function isValid(): bool
@@ -490,23 +479,10 @@ class Form extends Fieldset implements FormInterface
         if (! is_array($this->data)) {
             $data = $this->extract();
             $this->populateValues($data, true);
-            if (! is_array($data)) {
-                throw new Exception\DomainException(sprintf(
-                    '%s is unable to validate as there is no data currently set',
-                    __METHOD__
-                ));
-            }
             $this->data = $data;
         }
 
         $filter = $this->getInputFilter();
-        if (! $filter instanceof InputFilterInterface) {
-            throw new Exception\DomainException(sprintf(
-                '%s is unable to validate as there is no input filter present',
-                __METHOD__
-            ));
-        }
-
         $filter->setData($this->data);
         $filter->setValidationGroup(InputFilterInterface::VALIDATE_ALL);
 
@@ -672,8 +648,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Retrieve input filter used by this form
-     *
-     * @return InputFilterInterface
      */
     public function getInputFilter(): InputFilterInterface
     {
@@ -722,8 +696,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Should we use input filter defaults from elements and fieldsets?
-     *
-     * @return bool
      */
     public function useInputFilterDefaults(): bool
     {
@@ -745,8 +717,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Should we use form input filter over element input filter defaults from elements and fieldsets?
-     *
-     * @return bool
      */
     public function getPreferFormInputFilter(): bool
     {
@@ -757,7 +727,6 @@ class Form extends Fieldset implements FormInterface
      * Attach defaults provided by the elements to the input filter
      *
      * @param  FieldsetInterface $fieldset Fieldset to traverse when looking for default inputs
-     * @return void
      */
     public function attachInputFilterDefaults(InputFilterInterface $inputFilter, FieldsetInterface $fieldset): void
     {
@@ -904,8 +873,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Add inputs to CollectionInputFilter
-     *
-     * @return CollectionInputFilter
      */
     private function addInputsToCollectionInputFilter(CollectionInputFilter $inputFilter): CollectionInputFilter
     {
@@ -932,8 +899,6 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * If true, form elements/fieldsets name's are wrapped around the form name itself
-     *
-     * @return bool
      */
     public function wrapElements(): bool
     {

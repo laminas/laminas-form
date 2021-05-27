@@ -63,8 +63,6 @@ class Captcha extends Element implements InputProviderInterface
 
     /**
      * Retrieve captcha (if any)
-     *
-     * @return null|LaminasCaptcha\AdapterInterface
      */
     public function getCaptcha(): ?LaminasCaptcha\AdapterInterface
     {

@@ -152,7 +152,6 @@ class Collection extends Fieldset
      * Checks if the object can be set in this fieldset
      *
      * @param object $object
-     * @return bool
      */
     public function allowObjectBinding($object): bool
     {
@@ -190,7 +189,6 @@ class Collection extends Fieldset
      *
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
-     * @return void
      */
     public function populateValues(iterable $data): void
     {
@@ -256,8 +254,6 @@ class Collection extends Fieldset
 
     /**
      * Checks if this fieldset can bind data
-     *
-     * @return bool
      */
     public function allowValueBinding(): bool
     {
@@ -301,8 +297,6 @@ class Collection extends Fieldset
 
     /**
      * Get the initial count of target element
-     *
-     * @return int
      */
     public function getCount(): int
     {
@@ -342,8 +336,6 @@ class Collection extends Fieldset
 
     /**
      * Get target element
-     *
-     * @return ElementInterface|null
      */
     public function getTargetElement(): ?ElementInterface
     {
@@ -364,8 +356,6 @@ class Collection extends Fieldset
 
     /**
      * Get allow add
-     *
-     * @return bool
      */
     public function allowAdd(): bool
     {
@@ -382,9 +372,6 @@ class Collection extends Fieldset
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function allowRemove(): bool
     {
         return $this->allowRemove;
@@ -406,8 +393,6 @@ class Collection extends Fieldset
 
     /**
      * Get if the collection should create a template
-     *
-     * @return bool
      */
     public function shouldCreateTemplate(): bool
     {
@@ -431,8 +416,6 @@ class Collection extends Fieldset
 
     /**
      * Get the template placeholder
-     *
-     * @return string
      */
     public function getTemplatePlaceholder(): string
     {
@@ -449,9 +432,6 @@ class Collection extends Fieldset
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function createNewObjects(): bool
     {
         return $this->createNewObjects;
@@ -473,8 +453,6 @@ class Collection extends Fieldset
 
     /**
      * Prepare the collection by adding a dummy template element if the user want one
-     *
-     * @return void
      */
     public function prepareElement(FormInterface $form): void
     {
@@ -536,7 +514,9 @@ class Collection extends Fieldset
                 $targetElement->setObject($value);
                 $values[$key] = $targetElement->extract();
                 if (! $this->createNewObjects() && $this->has($key)) {
-                    $this->get($key)->setObject($value);
+                    $fieldset = $this->get($key);
+                    assert($fieldset instanceof FieldsetInterface);
+                    $fieldset->setObject($value);
                 }
                 continue;
             }
@@ -556,8 +536,6 @@ class Collection extends Fieldset
 
     /**
      * Create a new instance of the target element
-     *
-     * @return ElementInterface
      */
     protected function createNewTargetElementInstance(): ElementInterface
     {
@@ -568,7 +546,6 @@ class Collection extends Fieldset
      * Add a new instance of the target element
      *
      * @param string $name
-     * @return ElementInterface
      * @throws Exception\DomainException
      */
     protected function addNewTargetElementInstance($name): ElementInterface
@@ -615,8 +592,6 @@ class Collection extends Fieldset
     /**
      * Replaces the default template object of a sub element with the corresponding
      * real entity so that all properties are preserved.
-     *
-     * @return void
      */
     protected function replaceTemplateObjects(): void
     {

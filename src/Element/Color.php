@@ -25,8 +25,6 @@ class Color extends Element implements InputProviderInterface
 
     /**
      * Get validator
-     *
-     * @return ValidatorInterface
      */
     protected function getValidator(): ValidatorInterface
     {

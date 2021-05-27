@@ -114,8 +114,6 @@ class Fieldset extends Element implements FieldsetInterface
      * Retrieve composed form factory
      *
      * Lazy-loads one if none present.
-     *
-     * @return Factory
      */
     public function getFormFactory(): Factory
     {
@@ -194,7 +192,6 @@ class Fieldset extends Element implements FieldsetInterface
      * Does the fieldset have an element/fieldset by the given name?
      *
      * @param  string $elementOrFieldset
-     * @return bool
      */
     public function has($elementOrFieldset): bool
     {
@@ -205,6 +202,7 @@ class Fieldset extends Element implements FieldsetInterface
      * Retrieve a named element or fieldset
      *
      * @param  string $elementOrFieldset
+     * @return FieldsetInterface|ElementInterface
      */
     public function get($elementOrFieldset): ElementInterface
     {
@@ -336,8 +334,6 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Ensures state is ready for use. Here, we append the name of the fieldsets to every elements in order to avoid
      * name clashes if the same fieldset is used multiple times
-     *
-     * @return void
      */
     public function prepareElement(FormInterface $form): void
     {
@@ -357,7 +353,6 @@ class Fieldset extends Element implements FieldsetInterface
      * Recursively populate values of attached elements and fieldsets
      *
      * @param  iterable $data
-     * @return void
      * @throws Exception\InvalidArgumentException
      */
     public function populateValues(iterable $data): void
@@ -396,8 +391,6 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Countable: return count of attached elements/fieldsets
-     *
-     * @return int
      */
     public function count(): int
     {
@@ -406,8 +399,6 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * IteratorAggregate: return internal iterator
-     *
-     * @return PriorityList
      */
     public function getIterator(): PriorityList
     {
@@ -457,8 +448,6 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Get The class or interface of objects that can be bound to this fieldset.
-     *
-     * @return string
      */
     public function allowedObjectBindingClass(): ?string
     {
@@ -469,7 +458,6 @@ class Fieldset extends Element implements FieldsetInterface
      * Checks if the object can be set in this fieldset
      *
      * @param object $object
-     * @return bool
      */
     public function allowObjectBinding($object): bool
     {
@@ -502,8 +490,6 @@ class Fieldset extends Element implements FieldsetInterface
      * hydrator will be retrieved from the object.
      *
      * Will lazy-load Hydrator\ArraySerializable if none is present.
-     *
-     * @return HydratorInterface
      */
     public function getHydrator(): HydratorInterface
     {
@@ -523,8 +509,6 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Checks if this fieldset can bind data
-     *
-     * @return bool
      */
     public function allowValueBinding(): bool
     {
@@ -595,8 +579,6 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Is this fieldset use as a base fieldset for a form ?
-     *
-     * @return bool
      */
     public function useAsBaseFieldset(): bool
     {
@@ -614,12 +596,7 @@ class Fieldset extends Element implements FieldsetInterface
             return [];
         }
 
-        $hydrator = $this->getHydrator();
-        if (! $hydrator instanceof Hydrator\HydratorInterface) {
-            return [];
-        }
-
-        $values = $hydrator->extract($this->object);
+        $values = $this->getHydrator()->extract($this->object);
 
         // Recursively extract and populate values for nested fieldsets
         foreach ($this->fieldsets as $fieldset) {

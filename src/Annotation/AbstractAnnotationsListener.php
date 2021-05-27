@@ -49,7 +49,6 @@ abstract class AbstractAnnotationsListener extends AbstractListenerAggregate
      * Discover the fallback name via reflection
      *
      * @param  EventInterface $e
-     * @return string
      */
     public function discoverFallbackName($e): string
     {

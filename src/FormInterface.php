@@ -52,8 +52,6 @@ interface FormInterface extends FieldsetInterface
 
     /**
      * Retrieve input filter
-     *
-     * @return InputFilterInterface
      */
     public function getInputFilter(): InputFilterInterface;
 
@@ -61,8 +59,6 @@ interface FormInterface extends FieldsetInterface
      * Validate the form
      *
      * Typically, will proxy to the composed input filter.
-     *
-     * @return bool
      */
     public function isValid(): bool;
 

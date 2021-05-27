@@ -8,8 +8,6 @@ class FormRadio extends FormMultiCheckbox
 {
     /**
      * Return input type
-     *
-     * @return string
      */
     protected function getInputType(): string
     {
@@ -18,8 +16,6 @@ class FormRadio extends FormMultiCheckbox
 
     /**
      * Get element name
-     *
-     * @return string
      */
     protected static function getName(ElementInterface $element): string
     {

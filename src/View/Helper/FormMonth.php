@@ -8,8 +8,6 @@ class FormMonth extends FormDateTime
 {
     /**
      * Determine input type to use
-     *
-     * @return string
      */
     protected function getType(ElementInterface $element): string
     {

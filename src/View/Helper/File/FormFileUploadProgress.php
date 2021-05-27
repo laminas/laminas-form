@@ -18,8 +18,6 @@ class FormFileUploadProgress extends FormInput
      * Invoke helper as functor
      *
      * Proxies to {@link render()}.
-     *
-     * @return string
      */
     public function __invoke(?ElementInterface $element = null): string
     {
@@ -28,8 +26,6 @@ class FormFileUploadProgress extends FormInput
 
     /**
      * Render a hidden form <input> element with the progress id
-     *
-     * @return string
      */
     public function renderHiddenId(): string
     {
@@ -47,17 +43,11 @@ class FormFileUploadProgress extends FormInput
         );
     }
 
-    /**
-     * @return string
-     */
     protected function getName(): string
     {
         return 'UPLOAD_IDENTIFIER';
     }
 
-    /**
-     * @return string
-     */
     protected function getValue(): string
     {
         return uniqid();
