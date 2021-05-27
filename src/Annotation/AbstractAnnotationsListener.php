@@ -23,10 +23,9 @@ abstract class AbstractAnnotationsListener extends AbstractListenerAggregate
     /**
      * Attempt to discover a name set via annotation
      *
-     * @param  EventInterface $e
      * @return false|string
      */
-    public function handleNameAnnotation($e)
+    public function handleNameAnnotation(EventInterface $e)
     {
         $annotations = $e->getParam('annotations');
         assert($annotations instanceof AnnotationCollection);
@@ -47,10 +46,8 @@ abstract class AbstractAnnotationsListener extends AbstractListenerAggregate
 
     /**
      * Discover the fallback name via reflection
-     *
-     * @param  EventInterface $e
      */
-    public function discoverFallbackName($e): string
+    public function discoverFallbackName(EventInterface $e): string
     {
         $reflection = $e->getParam('reflection');
         if ($reflection instanceof ReflectionClass) {

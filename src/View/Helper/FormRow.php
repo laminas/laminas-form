@@ -76,16 +76,13 @@ class FormRow extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|string           $labelPosition
-     * @param  bool                  $renderErrors
-     * @param  string|null           $partial
      * @return string|FormRow
      */
     public function __invoke(
         ?ElementInterface $element = null,
-        $labelPosition = null,
-        $renderErrors = null,
-        $partial = null
+        ?string $labelPosition = null,
+        ?bool $renderErrors = null,
+        ?string $partial = null
     ) {
         if (! $element) {
             return $this;
@@ -109,10 +106,9 @@ class FormRow extends AbstractHelper
     /**
      * Utility form helper that renders a label (if it exists), an element and errors
      *
-     * @param  null|string      $labelPosition
      * @throws Exception\DomainException
      */
-    public function render(ElementInterface $element, $labelPosition = null): string
+    public function render(ElementInterface $element, ?string $labelPosition = null): string
     {
         $escapeHtmlHelper    = $this->getEscapeHtmlHelper();
         $labelHelper         = $this->getLabelHelper();
@@ -248,10 +244,9 @@ class FormRow extends AbstractHelper
     /**
      * Set the class that is added to element that have errors
      *
-     * @param  string $inputErrorClass
      * @return $this
      */
-    public function setInputErrorClass($inputErrorClass)
+    public function setInputErrorClass(string $inputErrorClass)
     {
         $this->inputErrorClass = $inputErrorClass;
         return $this;
@@ -271,7 +266,7 @@ class FormRow extends AbstractHelper
      * @param  array $labelAttributes
      * @return $this
      */
-    public function setLabelAttributes($labelAttributes)
+    public function setLabelAttributes(array $labelAttributes)
     {
         $this->labelAttributes = $labelAttributes;
         return $this;
@@ -290,11 +285,10 @@ class FormRow extends AbstractHelper
     /**
      * Set the label position
      *
-     * @param  string $labelPosition
      * @throws Exception\InvalidArgumentException
      * @return $this
      */
-    public function setLabelPosition($labelPosition)
+    public function setLabelPosition(string $labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
         if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {
@@ -322,12 +316,11 @@ class FormRow extends AbstractHelper
     /**
      * Set if the errors are rendered by this helper
      *
-     * @param  bool $renderErrors
      * @return $this
      */
-    public function setRenderErrors($renderErrors)
+    public function setRenderErrors(bool $renderErrors)
     {
-        $this->renderErrors = (bool) $renderErrors;
+        $this->renderErrors = $renderErrors;
         return $this;
     }
 
@@ -342,10 +335,9 @@ class FormRow extends AbstractHelper
     /**
      * Set a partial view script to use for rendering the row
      *
-     * @param null|string $partial
      * @return $this
      */
-    public function setPartial($partial)
+    public function setPartial(?string $partial)
     {
         $this->partial = $partial;
         return $this;

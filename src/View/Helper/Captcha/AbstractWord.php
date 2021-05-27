@@ -173,12 +173,11 @@ abstract class AbstractWord extends FormInput
     /**
      * Set separator string for captcha and inputs
      *
-     * @param  string $separator
      * @return $this
      */
-    public function setSeparator($separator)
+    public function setSeparator(string $separator)
     {
-        $this->separator = (string) $separator;
+        $this->separator = $separator;
         return $this;
     }
 

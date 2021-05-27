@@ -31,34 +31,27 @@ interface FieldsetInterface extends
 
     /**
      * Does the fieldset have an element/fieldset by the given name?
-     *
-     * @param  string $elementOrFieldset
      */
-    public function has($elementOrFieldset): bool;
+    public function has(string $elementOrFieldset): bool;
 
     /**
      * Retrieve a named element or fieldset
-     *
-     * @param  string $elementOrFieldset
      */
-    public function get($elementOrFieldset): ElementInterface;
+    public function get(string $elementOrFieldset): ElementInterface;
 
     /**
      * Remove a named element or fieldset
      *
-     * @param  string $elementOrFieldset
      * @return $this
      */
-    public function remove($elementOrFieldset);
+    public function remove(string $elementOrFieldset);
 
     /**
      * Set/change the priority of an element or fieldset
      *
-     * @param  string $elementOrFieldset
-     * @param  int    $priority
      * @return $this
      */
-    public function setPriority($elementOrFieldset, $priority);
+    public function setPriority(string $elementOrFieldset, int $priority);
 
     /**
      * Retrieve all attached elements
@@ -100,10 +93,8 @@ interface FieldsetInterface extends
 
     /**
      * Checks if the object can be set in this fieldset
-     *
-     * @param object $object
      */
-    public function allowObjectBinding($object): bool;
+    public function allowObjectBinding(object $object): bool;
 
     /**
      * Set the hydrator to use when binding an object to the element

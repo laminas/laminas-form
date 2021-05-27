@@ -97,11 +97,10 @@ trait LabelAwareTrait
     /**
      * Set a single label optionn
      *
-     * @param  string $key
      * @param  mixed  $value
      * @return $this
      */
-    public function setLabelOption($key, $value)
+    public function setLabelOption(string $key, $value)
     {
         $this->labelOptions[$key] = $value;
         return $this;
@@ -110,10 +109,9 @@ trait LabelAwareTrait
     /**
      * Retrieve a single label option
      *
-     * @param  string $key
      * @return mixed|null
      */
-    public function getLabelOption($key)
+    public function getLabelOption(string $key)
     {
         if (! array_key_exists($key, $this->labelOptions)) {
             return null;
@@ -124,10 +122,9 @@ trait LabelAwareTrait
     /**
      * Remove a single label option
      *
-     * @param string $key
      * @return $this
      */
-    public function removeLabelOption($key)
+    public function removeLabelOption(string $key)
     {
         unset($this->labelOptions[$key]);
         return $this;
@@ -135,10 +132,8 @@ trait LabelAwareTrait
 
     /**
      * Does the element has a specific label option ?
-     *
-     * @param  string $key
      */
-    public function hasLabelOption($key): bool
+    public function hasLabelOption(string $key): bool
     {
         return array_key_exists($key, $this->labelOptions);
     }

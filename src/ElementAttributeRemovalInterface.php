@@ -7,10 +7,9 @@ interface ElementAttributeRemovalInterface
     /**
      * Remove a single element attribute
      *
-     * @param  string $key
      * @return $this
      */
-    public function removeAttribute($key);
+    public function removeAttribute(string $key);
 
     /**
      * Remove many attributes at once

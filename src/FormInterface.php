@@ -29,19 +29,16 @@ interface FormInterface extends FieldsetInterface
      *
      * Allows populating the object with validated values.
      *
-     * @param  object $object
-     * @param  int $flags
      * @return mixed
      */
-    public function bind($object, $flags = FormInterface::VALUES_NORMALIZED);
+    public function bind(object $object, int $flags = FormInterface::VALUES_NORMALIZED);
 
     /**
      * Whether or not to bind values to the bound object when validation succeeds
      *
-     * @param  int $bindOnValidateFlag
      * @return $this
      */
-    public function setBindOnValidate($bindOnValidateFlag);
+    public function setBindOnValidate(int $bindOnValidateFlag);
 
     /**
      * Set input filter
@@ -68,10 +65,9 @@ interface FormInterface extends FieldsetInterface
      * By default, retrieves normalized values; pass one of the VALUES_*
      * constants to shape the behavior.
      *
-     * @param  int $flag
      * @return array|object
      */
-    public function getData($flag = FormInterface::VALUES_NORMALIZED);
+    public function getData(int $flag = FormInterface::VALUES_NORMALIZED);
 
     /**
      * Set the validation group (set of values to validate)

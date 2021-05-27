@@ -7,10 +7,9 @@ interface LabelAwareInterface
     /**
      * Set the label (if any) used for this element
      *
-     * @param  null|string $label
      * @return $this
      */
-    public function setLabel($label);
+    public function setLabel(?string $label);
 
     /**
      * Retrieve the label (if any) used for this element
@@ -51,11 +50,10 @@ interface LabelAwareInterface
     /**
      * Set a single label optionn
      *
-     * @param  string $key
      * @param  mixed  $value
      * @return $this
      */
-    public function setLabelOption($key, $value);
+    public function setLabelOption(string $key, $value);
 
     /**
      * Retrieve a single label option
@@ -68,17 +66,14 @@ interface LabelAwareInterface
     /**
      * Remove a single label option
      *
-     * @param  string $key
      * @return $this
      */
-    public function removeLabelOption($key);
+    public function removeLabelOption(string $key);
 
     /**
      * Does the element has a specific label option ?
-     *
-     * @param  string $key
      */
-    public function hasLabelOption($key): bool;
+    public function hasLabelOption(string $key): bool;
 
     /**
      * Remove many attributes at once

@@ -8,10 +8,9 @@ class Phone
     protected $number;
 
     /**
-     * @param string $number
      * @return $this
      */
-    public function setNumber($number)
+    public function setNumber(string $number)
     {
         $this->number = $number;
         return $this;

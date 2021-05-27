@@ -105,12 +105,11 @@ class FormElementErrors extends AbstractHelper
     /**
      * Set the string used to close message representation
      *
-     * @param  string $messageCloseString
      * @return $this
      */
-    public function setMessageCloseString($messageCloseString)
+    public function setMessageCloseString(string $messageCloseString)
     {
-        $this->messageCloseString = (string) $messageCloseString;
+        $this->messageCloseString = $messageCloseString;
         return $this;
     }
 
@@ -125,12 +124,11 @@ class FormElementErrors extends AbstractHelper
     /**
      * Set the formatted string used to open message representation
      *
-     * @param  string $messageOpenFormat
      * @return $this
      */
-    public function setMessageOpenFormat($messageOpenFormat)
+    public function setMessageOpenFormat(string $messageOpenFormat)
     {
-        $this->messageOpenFormat = (string) $messageOpenFormat;
+        $this->messageOpenFormat = $messageOpenFormat;
         return $this;
     }
 
@@ -145,12 +143,11 @@ class FormElementErrors extends AbstractHelper
     /**
      * Set the string used to separate messages
      *
-     * @param  string $messageSeparatorString
      * @return $this
      */
-    public function setMessageSeparatorString($messageSeparatorString)
+    public function setMessageSeparatorString(string $messageSeparatorString)
     {
-        $this->messageSeparatorString = (string) $messageSeparatorString;
+        $this->messageSeparatorString = $messageSeparatorString;
         return $this;
     }
 
@@ -165,12 +162,11 @@ class FormElementErrors extends AbstractHelper
     /**
      * Set the flag detailing whether or not to translate error messages.
      *
-     * @param bool $flag
      * @return $this
      */
-    public function setTranslateMessages($flag)
+    public function setTranslateMessages(bool $flag)
     {
-        $this->translateErrorMessages = (bool) $flag;
+        $this->translateErrorMessages = $flag;
         return $this;
     }
 

@@ -188,10 +188,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Set value for doctype
      *
-     * @param  string $doctype
      * @return $this
      */
-    public function setDoctype($doctype)
+    public function setDoctype(string $doctype)
     {
         $this->getDoctypeHelper()->setDoctype($doctype);
         return $this;
@@ -208,10 +207,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Set value for character encoding
      *
-     * @param  string $encoding
      * @return $this
      */
-    public function setEncoding($encoding)
+    public function setEncoding(string $encoding)
     {
         $this->getEscapeHtmlHelper()->setEncoding($encoding);
         $this->getEscapeHtmlAttrHelper()->setEncoding($encoding);
@@ -407,10 +405,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * Prepares the expected representation for the boolean attribute specified.
      *
-     * @param  string $attribute
      * @param  mixed $value
      */
-    protected function prepareBooleanAttributeValue($attribute, $value): string
+    protected function prepareBooleanAttributeValue(string $attribute, $value): string
     {
         if (! is_bool($value) && in_array($value, $this->booleanAttributes[$attribute])) {
             return $value;
@@ -424,11 +421,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Translates the value of the HTML attribute if it should be translated and this view helper has a translator
-     *
-     * @param string $key
-     * @param string $value
      */
-    protected function translateHtmlAttributeValue($key, $value): ?string
+    protected function translateHtmlAttributeValue(string $key, ?string $value): ?string
     {
         if (empty($value) || ($this->getTranslator() === null)) {
             return $value;
@@ -457,11 +451,10 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Adds an HTML attribute to the list of valid attributes
      *
-     * @param string $attribute
      * @return $this
      * @throws InvalidArgumentException For attribute names that are invalid per the HTML specifications.
      */
-    public function addValidAttribute($attribute)
+    public function addValidAttribute(string $attribute)
     {
         if (! $this->isValidAttributeName($attribute)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid attribute name', $attribute));
@@ -474,12 +467,11 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Adds a prefix to the list of valid attribute prefixes
      *
-     * @param string $prefix
      * @return $this
      * @throws InvalidArgumentException For attribute prefixes that are invalid
      *                                  per the HTML specifications for attribute names.
      */
-    public function addValidAttributePrefix($prefix)
+    public function addValidAttributePrefix(string $prefix)
     {
         if (! $this->isValidAttributeName($prefix)) {
             throw new InvalidArgumentException(sprintf('%s is not a valid attribute prefix', $prefix));
@@ -492,10 +484,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Adds an HTML attribute to the list of translatable attributes
      *
-     * @param string $attribute
      * @return $this
      */
-    public function addTranslatableAttribute($attribute)
+    public function addTranslatableAttribute(string $attribute)
     {
         $this->translatableAttributes[$attribute] = true;
 
@@ -504,10 +495,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Adds an HTML attribute to the list of the default translatable attributes
-     *
-     * @param string $attribute
      */
-    public static function addDefaultTranslatableAttribute($attribute): void
+    public static function addDefaultTranslatableAttribute(string $attribute): void
     {
         self::$defaultTranslatableHtmlAttributes[$attribute] = true;
     }
@@ -515,10 +504,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Adds an HTML attribute to the list of translatable attributes
      *
-     * @param string $prefix
      * @return $this
      */
-    public function addTranslatableAttributePrefix($prefix)
+    public function addTranslatableAttributePrefix(string $prefix)
     {
         $this->translatableAttributePrefixes[] = $prefix;
 
@@ -527,10 +515,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * Adds an HTML attribute to the list of translatable attributes
-     *
-     * @param string $prefix
      */
-    public static function addDefaultTranslatableAttributePrefix($prefix): void
+    public static function addDefaultTranslatableAttributePrefix(string $prefix): void
     {
         self::$defaultTranslatableHtmlAttributePrefixes[] = $prefix;
     }
@@ -540,20 +526,16 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @see https://html.spec.whatwg.org/multipage/syntax.html#attributes-2
      *     Description of valid attributes
-     *
-     * @param string  $attribute
      */
-    protected function isValidAttributeName($attribute): bool
+    protected function isValidAttributeName(string $attribute): bool
     {
         return (bool) preg_match('/^[^\t\n\f \/>"\'=]+$/', $attribute);
     }
 
     /**
      * Whether the passed attribute has a valid prefix or not
-     *
-     * @param string  $attribute
      */
-    protected function hasAllowedPrefix($attribute): bool
+    protected function hasAllowedPrefix(string $attribute): bool
     {
         foreach ($this->validTagAttributePrefixes as $prefix) {
             if (substr($attribute, 0, strlen($prefix)) === $prefix) {

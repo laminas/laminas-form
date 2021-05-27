@@ -440,11 +440,10 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Try to pull hydrator from the creation context, or instantiates it from its name
      *
-     * @param  string $hydratorName
      * @return mixed
      * @throws Exception\DomainException
      */
-    public function getHydratorFromName($hydratorName)
+    public function getHydratorFromName(string $hydratorName)
     {
         $services = $this->creationContext;
 
@@ -472,11 +471,10 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Try to pull factory from the creation context, or instantiates it from its name
      *
-     * @param  string $factoryName
      * @return mixed
      * @throws Exception\DomainException
      */
-    public function getFactoryFromName($factoryName)
+    public function getFactoryFromName(string $factoryName)
     {
         $services = $this->creationContext;
 

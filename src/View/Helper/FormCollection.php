@@ -70,10 +70,9 @@ class FormCollection extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
-     * @param  bool                  $wrap
      * @return string|FormCollection
      */
-    public function __invoke(?ElementInterface $element = null, $wrap = true)
+    public function __invoke(?ElementInterface $element = null, bool $wrap = true)
     {
         if (! $element) {
             return $this;
@@ -186,12 +185,11 @@ class FormCollection extends AbstractHelper
     /**
      * If set to true, collections are automatically wrapped around a fieldset
      *
-     * @param  bool $wrap
      * @return $this
      */
-    public function setShouldWrap($wrap)
+    public function setShouldWrap(bool $wrap)
     {
-        $this->shouldWrap = (bool) $wrap;
+        $this->shouldWrap = $wrap;
         return $this;
     }
 
@@ -209,7 +207,7 @@ class FormCollection extends AbstractHelper
      * @param  string $defaultSubHelper The name of the view helper to set.
      * @return $this
      */
-    public function setDefaultElementHelper($defaultSubHelper)
+    public function setDefaultElementHelper(string $defaultSubHelper)
     {
         $this->defaultElementHelper = $defaultSubHelper;
         return $this;
@@ -308,10 +306,9 @@ class FormCollection extends AbstractHelper
      *
      * The preset default is <pre><fieldset>%2$s%1$s%3$s</fieldset></pre>
      *
-     * @param string $wrapper
      * @return $this
      */
-    public function setWrapper($wrapper)
+    public function setWrapper(string $wrapper)
     {
         $this->wrapper = $wrapper;
 
@@ -324,10 +321,9 @@ class FormCollection extends AbstractHelper
      * parameter
      * This defaults to '<legend>%s</legend>'
      *
-     * @param string $labelWrapper
      * @return $this
      */
-    public function setLabelWrapper($labelWrapper)
+    public function setLabelWrapper(string $labelWrapper)
     {
         $this->labelWrapper = $labelWrapper;
 
@@ -358,10 +354,9 @@ class FormCollection extends AbstractHelper
      *
      * THis defaults to '<span data-template="%s"></span>'
      *
-     * @param string $templateWrapper
      * @return $this
      */
-    public function setTemplateWrapper($templateWrapper)
+    public function setTemplateWrapper(string $templateWrapper)
     {
         $this->templateWrapper = $templateWrapper;
 

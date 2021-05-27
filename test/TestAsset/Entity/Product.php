@@ -37,10 +37,9 @@ class Product
     }
 
     /**
-     * @param string $name
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
         return $this;
@@ -55,10 +54,9 @@ class Product
     }
 
     /**
-     * @param int $price
      * @return $this
      */
-    public function setPrice($price)
+    public function setPrice(int $price)
     {
         $this->price = $price;
         return $this;
@@ -74,10 +72,8 @@ class Product
 
     /**
      * Return category from index
-     *
-     * @param int $i
      */
-    public function getCategory($i): Category
+    public function getCategory(int $i): Category
     {
         return $this->categories[$i];
     }
@@ -100,10 +96,7 @@ class Product
         return $this->madeInCountry;
     }
 
-    /**
-     * @param Country $country
-     */
-    public function setMadeInCountry($country): void
+    public function setMadeInCountry(Country $country): void
     {
         $this->madeInCountry = $country;
     }

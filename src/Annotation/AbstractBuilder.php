@@ -161,15 +161,15 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Configure the form specification from annotations
      *
-     * @param  AnnotationCollection $annotations
-     * @param  ReflectionClass $reflection
-     * @param  ArrayObject $formSpec
-     * @param  ArrayObject $filterSpec
      * @triggers discoverName
      * @triggers configureForm
      */
-    protected function configureForm($annotations, $reflection, $formSpec, $filterSpec): void
-    {
+    protected function configureForm(
+        AnnotationCollection $annotations,
+        ReflectionClass $reflection,
+        ArrayObject $formSpec,
+        ArrayObject $filterSpec
+    ): void {
         $name                   = $this->discoverName($annotations, $reflection);
         $formSpec['name']       = $name;
         $formSpec['attributes'] = [];
@@ -190,16 +190,16 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Configure an element from annotations
      *
-     * @param  AnnotationCollection $annotations
-     * @param  ReflectionProperty $reflection
-     * @param  ArrayObject $formSpec
-     * @param  ArrayObject $filterSpec
      * @triggers checkForExclude
      * @triggers discoverName
      * @triggers configureElement
      */
-    protected function configureElement($annotations, $reflection, $formSpec, $filterSpec): void
-    {
+    protected function configureElement(
+        AnnotationCollection $annotations,
+        ReflectionProperty $reflection,
+        ArrayObject $formSpec,
+        ArrayObject $filterSpec
+    ): void {
         // If the element is marked as exclude, return early
         if ($this->checkForExclude($annotations)) {
             return;
@@ -259,12 +259,11 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     }
 
     /**
-     * @param bool $preserveDefinedOrder
      * @return $this
      */
-    public function setPreserveDefinedOrder($preserveDefinedOrder)
+    public function setPreserveDefinedOrder(bool $preserveDefinedOrder)
     {
-        $this->preserveDefinedOrder = (bool) $preserveDefinedOrder;
+        $this->preserveDefinedOrder = $preserveDefinedOrder;
         return $this;
     }
 
@@ -275,11 +274,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Discover the name of the given form or element
-     *
-     * @param  AnnotationCollection $annotations
-     * @param  Reflector $reflection
      */
-    protected function discoverName($annotations, $reflection): string
+    protected function discoverName(AnnotationCollection $annotations, Reflector $reflection): string
     {
         $event = new Event();
         $event->setName(__FUNCTION__);
@@ -304,10 +300,9 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Determine if an element is marked to exclude from the definitions
      *
-     * @param  AnnotationCollection $annotations
      * @return true|false
      */
-    protected function checkForExclude($annotations): bool
+    protected function checkForExclude(AnnotationCollection $annotations): bool
     {
         $event = new Event();
         $event->setName(__FUNCTION__);

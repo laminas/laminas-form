@@ -278,12 +278,10 @@ class Form extends Fieldset implements FormInterface
      *
      * Ensures the object is populated with validated values.
      *
-     * @param  object $object
-     * @param  int $flags
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function bind($object, $flags = FormInterface::VALUES_NORMALIZED)
+    public function bind(object $object, int $flags = FormInterface::VALUES_NORMALIZED)
     {
         if (! in_array($flags, [FormInterface::VALUES_NORMALIZED, FormInterface::VALUES_RAW])) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -398,11 +396,10 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set flag indicating whether or not to bind values on successful validation
      *
-     * @param  int $bindOnValidateFlag
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setBindOnValidate($bindOnValidateFlag)
+    public function setBindOnValidate(int $bindOnValidateFlag)
     {
         if (! in_array($bindOnValidateFlag, [self::BIND_ON_VALIDATE, self::BIND_MANUAL])) {
             throw new Exception\InvalidArgumentException(sprintf(
@@ -512,11 +509,10 @@ class Form extends Fieldset implements FormInterface
      * By default, retrieves normalized values; pass one of the
      * FormInterface::VALUES_* constants to shape the behavior.
      *
-     * @param  int $flag
      * @return array|object
      * @throws Exception\DomainException
      */
-    public function getData($flag = FormInterface::VALUES_NORMALIZED)
+    public function getData(int $flag = FormInterface::VALUES_NORMALIZED)
     {
         if (! $this->hasValidated) {
             throw new Exception\DomainException(sprintf(
@@ -685,12 +681,11 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set flag indicating whether or not to scan elements and fieldsets for defaults
      *
-     * @param  bool $useInputFilterDefaults
      * @return $this
      */
-    public function setUseInputFilterDefaults($useInputFilterDefaults)
+    public function setUseInputFilterDefaults(bool $useInputFilterDefaults)
     {
-        $this->useInputFilterDefaults = (bool) $useInputFilterDefaults;
+        $this->useInputFilterDefaults = $useInputFilterDefaults;
         return $this;
     }
 
@@ -705,12 +700,11 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set flag indicating whether or not to prefer the form input filter over element and fieldset defaults
      *
-     * @param  bool $preferFormInputFilter
      * @return $this
      */
-    public function setPreferFormInputFilter($preferFormInputFilter)
+    public function setPreferFormInputFilter(bool $preferFormInputFilter)
     {
-        $this->preferFormInputFilter       = (bool) $preferFormInputFilter;
+        $this->preferFormInputFilter       = $preferFormInputFilter;
         $this->hasSetPreferFormInputFilter = true;
         return $this;
     }
@@ -888,12 +882,11 @@ class Form extends Fieldset implements FormInterface
     /**
      * Are the form elements/fieldsets names wrapped by the form name ?
      *
-     * @param  bool $wrapElements
      * @return $this
      */
-    public function setWrapElements($wrapElements)
+    public function setWrapElements(bool $wrapElements)
     {
-        $this->wrapElements = (bool) $wrapElements;
+        $this->wrapElements = $wrapElements;
         return $this;
     }
 
@@ -910,7 +903,7 @@ class Form extends Fieldset implements FormInterface
      *
      * @param bool $onlyBase
      */
-    public function populateValues(iterable $data, $onlyBase = false): void
+    public function populateValues(iterable $data, bool $onlyBase = false): void
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);

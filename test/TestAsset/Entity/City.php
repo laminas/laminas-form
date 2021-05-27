@@ -31,10 +31,9 @@ class City
     }
 
     /**
-     * @param string $name
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
         return $this;
@@ -49,10 +48,9 @@ class City
     }
 
     /**
-     * @param string $zipCode
      * @return $this
      */
-    public function setZipCode($zipCode)
+    public function setZipCode(string $zipCode)
     {
         $this->zipCode = $zipCode;
         return $this;

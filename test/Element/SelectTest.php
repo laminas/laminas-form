@@ -193,11 +193,11 @@ class SelectTest extends TestCase
         $element->setOptions([
             'value_options' => ['bar' => 'baz'],
             'options'       => ['foo' => 'bar'],
-            'empty_option'  => ['baz' => 'foo'],
+            'empty_option'  => 'xye',
         ]);
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
-        $this->assertEquals(['baz' => 'foo'], $element->getOption('empty_option'));
+        $this->assertEquals('xye', $element->getOption('empty_option'));
     }
 
     public function testSetOptionsTraversable(): void
@@ -206,11 +206,11 @@ class SelectTest extends TestCase
         $element->setOptions(new CustomTraversable([
             'value_options' => ['bar' => 'baz'],
             'options'       => ['foo' => 'bar'],
-            'empty_option'  => ['baz' => 'foo'],
+            'empty_option'  => 'xye',
         ]));
         $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
         $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
-        $this->assertEquals(['baz' => 'foo'], $element->getOption('empty_option'));
+        $this->assertEquals('xye', $element->getOption('empty_option'));
     }
 
     public function testDisableInputSpecification(): void

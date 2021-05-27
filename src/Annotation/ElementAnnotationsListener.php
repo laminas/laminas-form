@@ -69,10 +69,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the AllowEmpty annotation
      *
      * Sets the allow_empty flag on the input specification array.
-     *
-     * @param  EventInterface $e
      */
-    public function handleAllowEmptyAnnotation($e): void
+    public function handleAllowEmptyAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof AllowEmpty) {
@@ -87,10 +85,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Attributes annotation
      *
      * Sets the attributes array of the element specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleAttributesAnnotation($e): void
+    public function handleAttributesAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Attributes) {
@@ -111,10 +107,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
 
     /**
      * Allow creating fieldsets from composed entity properties
-     *
-     * @param  EventInterface $e
      */
-    public function handleComposedObjectAnnotation($e): void
+    public function handleComposedObjectAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ComposedObject) {
@@ -184,10 +178,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the ContinueIfEmpty annotation
      *
      * Sets the continue_if_empty flag on the input specification array.
-     *
-     * @param  EventInterface $e
      */
-    public function handleContinueIfEmptyAnnotation($e): void
+    public function handleContinueIfEmptyAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ContinueIfEmpty) {
@@ -202,10 +194,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the ErrorMessage annotation
      *
      * Sets the error_message of the input specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleErrorMessageAnnotation($e): void
+    public function handleErrorMessageAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ErrorMessage) {
@@ -218,10 +208,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
 
     /**
      * Determine if the element has been marked to exclude from the definition
-     *
-     * @param  EventInterface $e
      */
-    public function handleExcludeAnnotation($e): bool
+    public function handleExcludeAnnotation(EventInterface $e): bool
     {
         $annotations = $e->getParam('annotations');
         assert($annotations instanceof AnnotationCollection);
@@ -236,10 +224,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Filter annotation
      *
      * Adds a filter to the filter chain specification for the input.
-     *
-     * @param  EventInterface $e
      */
-    public function handleFilterAnnotation($e): void
+    public function handleFilterAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Filter) {
@@ -258,10 +244,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the element flags in the specification (used typically for setting
      * priority).
-     *
-     * @param  EventInterface $e
      */
-    public function handleFlagsAnnotation($e): void
+    public function handleFlagsAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Flags) {
@@ -276,10 +260,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Hydrator annotation
      *
      * Sets the hydrator class to use in the fieldset specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleHydratorAnnotation($e): void
+    public function handleHydratorAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Hydrator) {
@@ -295,10 +277,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      *
      * Sets the filter specification for the current element to the specified
      * input class name.
-     *
-     * @param  EventInterface $e
      */
-    public function handleInputAnnotation($e): void
+    public function handleInputAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Input) {
@@ -329,10 +309,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Options annotation
      *
      * Sets the element options in the specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleOptionsAnnotation($e): void
+    public function handleOptionsAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Options) {
@@ -347,10 +325,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Required annotation
      *
      * Sets the required flag on the input based on the annotation value.
-     *
-     * @param  EventInterface $e
      */
-    public function handleRequiredAnnotation($e): void
+    public function handleRequiredAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Required) {
@@ -375,10 +351,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Type annotation
      *
      * Sets the element class type to use in the element specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleTypeAnnotation($e): void
+    public function handleTypeAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Type) {
@@ -393,10 +367,8 @@ class ElementAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Validator annotation
      *
      * Adds a validator to the validator chain of the input specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleValidatorAnnotation($e): void
+    public function handleValidatorAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Validator) {

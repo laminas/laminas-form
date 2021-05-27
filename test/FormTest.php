@@ -749,7 +749,7 @@ class FormTest extends TestCase
 
     public function testCanDisableBindOnValidateFunctionality(): void
     {
-        $this->form->setBindOnValidate(false);
+        $this->form->setBindOnValidate(Form::BIND_MANUAL);
         $this->assertFalse($this->form->bindOnValidate());
     }
 
@@ -766,7 +766,7 @@ class FormTest extends TestCase
         ];
         $this->populateForm();
         $this->form->setHydrator(new ObjectPropertyHydrator());
-        $this->form->setBindOnValidate(false);
+        $this->form->setBindOnValidate(Form::BIND_MANUAL);
         $this->form->bind($model);
         $this->form->setData($validSet);
         $this->form->isValid();
@@ -2088,19 +2088,16 @@ class FormTest extends TestCase
     }
 
     /**
-     * @param bool $expectedIsValid
      * @param array $expectedFormData
      * @param array $data
-     * @param string $unselectedValue
-     * @param bool $useHiddenElement
      * @dataProvider formWithSelectMultipleAndEmptyUnselectedValueDataProvider
      */
     public function testFormWithSelectMultipleAndEmptyUnselectedValue(
-        $expectedIsValid,
+        bool $expectedIsValid,
         array $expectedFormData,
         array $data,
-        $unselectedValue,
-        $useHiddenElement
+        string $unselectedValue,
+        bool $useHiddenElement
     ): void {
         $this->form->add([
             'name'       => 'multipleSelect',

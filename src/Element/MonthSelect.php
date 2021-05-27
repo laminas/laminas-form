@@ -187,10 +187,9 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @param  int $minYear
      * @return $this
      */
-    public function setMinYear($minYear)
+    public function setMinYear(int $minYear)
     {
         $this->minYear = $minYear;
         return $this;
@@ -202,10 +201,9 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @param  int $maxYear
      * @return $this
      */
-    public function setMaxYear($maxYear)
+    public function setMaxYear(int $maxYear)
     {
         $this->maxYear = $maxYear;
         return $this;
@@ -217,12 +215,11 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @param  bool $createEmptyOption
      * @return $this
      */
-    public function setShouldCreateEmptyOption($createEmptyOption)
+    public function setShouldCreateEmptyOption(bool $createEmptyOption)
     {
-        $this->createEmptyOption = (bool) $createEmptyOption;
+        $this->createEmptyOption = $createEmptyOption;
         return $this;
     }
 
@@ -232,12 +229,11 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @param  bool $renderDelimiters
      * @return $this
      */
-    public function setShouldRenderDelimiters($renderDelimiters)
+    public function setShouldRenderDelimiters(bool $renderDelimiters)
     {
-        $this->renderDelimiters = (bool) $renderDelimiters;
+        $this->renderDelimiters = $renderDelimiters;
         return $this;
     }
 

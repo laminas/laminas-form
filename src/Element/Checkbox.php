@@ -60,12 +60,11 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Do we render hidden element?
      *
-     * @param  bool $useHiddenElement
      * @return $this
      */
-    public function setUseHiddenElement($useHiddenElement)
+    public function setUseHiddenElement(bool $useHiddenElement)
     {
-        $this->useHiddenElement = (bool) $useHiddenElement;
+        $this->useHiddenElement = $useHiddenElement;
         return $this;
     }
 
@@ -80,10 +79,9 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Set the value to use when checkbox is unchecked
      *
-     * @param string $uncheckedValue
      * @return $this
      */
-    public function setUncheckedValue($uncheckedValue)
+    public function setUncheckedValue(string $uncheckedValue)
     {
         $this->uncheckedValue = $uncheckedValue;
         return $this;
@@ -100,10 +98,9 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Set the value to use when checkbox is checked
      *
-     * @param string $checkedValue
      * @return $this
      */
-    public function setCheckedValue($checkedValue)
+    public function setCheckedValue(string $checkedValue)
     {
         $this->checkedValue = $checkedValue;
         return $this;
@@ -168,7 +165,7 @@ class Checkbox extends Element implements InputProviderInterface
      * @param bool $value The flag to set.
      * @return $this
      */
-    public function setChecked($value)
+    public function setChecked(bool $value)
     {
         $this->value = $value ? $this->getCheckedValue() : $this->getUncheckedValue();
         return $this;

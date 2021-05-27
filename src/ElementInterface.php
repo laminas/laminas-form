@@ -10,10 +10,9 @@ interface ElementInterface
      * In most cases, this will proxy to the attributes for storage, but is
      * present to indicate that elements are generally named.
      *
-     * @param  string $name
      * @return $this
      */
-    public function setName($name);
+    public function setName(string $name);
 
     /**
      * Retrieve the element name
@@ -30,11 +29,10 @@ interface ElementInterface
     /**
      * Set a single option for an element
      *
-     * @param  string $key
      * @param  mixed $value
      * @return $this
      */
-    public function setOption($key, $value);
+    public function setOption(string $key, $value);
 
     /**
      * get the defined options
@@ -46,34 +44,29 @@ interface ElementInterface
     /**
      * return the specified option
      *
-     * @param string $option
      * @return null|mixed
      */
-    public function getOption($option);
+    public function getOption(string $option);
 
     /**
      * Set a single element attribute
      *
-     * @param  string $key
      * @param  mixed $value
      * @return $this
      */
-    public function setAttribute($key, $value);
+    public function setAttribute(string $key, $value);
 
     /**
      * Retrieve a single element attribute
      *
-     * @param  string $key
      * @return mixed
      */
-    public function getAttribute($key);
+    public function getAttribute(string $key);
 
     /**
      * Return true if a specific attribute is set
-     *
-     * @param  string $key
      */
-    public function hasAttribute($key): bool;
+    public function hasAttribute(string $key): bool;
 
     /**
      * Set many attributes at once
@@ -107,10 +100,9 @@ interface ElementInterface
     /**
      * Set the label (if any) used for this element
      *
-     * @param  null|string $label
      * @return $this
      */
-    public function setLabel($label);
+    public function setLabel(?string $label);
 
     /**
      * Retrieve the label (if any) used for this element

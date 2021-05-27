@@ -48,7 +48,7 @@ class DateTimeSelect extends DateSelect
      * @param  null|int|string  $name    Optional name for the element
      * @param  array            $options Optional options for the element
      */
-    public function __construct($name = null, $options = [])
+    public function __construct($name = null, array $options = [])
     {
         parent::__construct($name, $options);
 
@@ -177,12 +177,11 @@ class DateTimeSelect extends DateSelect
      * If set to true, this indicate that the second select is shown. If set to true, the seconds will be
      * assumed to always be 00
      *
-     * @param  bool $shouldShowSeconds
      * @return $this
      */
-    public function setShouldShowSeconds($shouldShowSeconds)
+    public function setShouldShowSeconds(bool $shouldShowSeconds)
     {
-        $this->shouldShowSeconds = (bool) $shouldShowSeconds;
+        $this->shouldShowSeconds = $shouldShowSeconds;
         return $this;
     }
 

@@ -23,10 +23,8 @@ class Module
 
     /**
      * Register a specification for the FormElementManager with the ServiceListener.
-     *
-     * @param ModuleManager $moduleManager
      */
-    public function init($moduleManager): void
+    public function init(ModuleManager $moduleManager): void
     {
         $event           = $moduleManager->getEvent();
         $container       = $event->getParam('ServiceManager');

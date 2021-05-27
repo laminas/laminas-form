@@ -11,10 +11,9 @@ class Country
     protected $continent;
 
     /**
-     * @param string $name
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
         return $this;
@@ -29,10 +28,9 @@ class Country
     }
 
     /**
-     * @param string $continent
      * @return $this
      */
-    public function setContinent($continent)
+    public function setContinent(string $continent)
     {
         $this->continent = $continent;
         return $this;

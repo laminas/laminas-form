@@ -49,10 +49,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Attributes annotation
      *
      * Sets the attributes key of the form specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleAttributesAnnotation($e): void
+    public function handleAttributesAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Attributes) {
@@ -67,10 +65,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Flags annotation
      *
      * Sets the flags key of the form specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleFlagsAnnotation($e): void
+    public function handleFlagsAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Flags) {
@@ -85,10 +81,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Hydrator annotation
      *
      * Sets the hydrator class to use in the form specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleHydratorAnnotation($e): void
+    public function handleHydratorAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Hydrator) {
@@ -103,10 +97,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the InputFilter annotation
      *
      * Sets the input filter class to use in the form specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleInputFilterAnnotation($e): void
+    public function handleInputFilterAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof InputFilter) {
@@ -137,10 +129,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Options annotation
      *
      * Sets the options key of the form specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleOptionsAnnotation($e): void
+    public function handleOptionsAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Options) {
@@ -155,10 +145,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the Type annotation
      *
      * Sets the form class to use in the form specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleTypeAnnotation($e): void
+    public function handleTypeAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof Type) {
@@ -173,10 +161,8 @@ class FormAnnotationsListener extends AbstractAnnotationsListener
      * Handle the ValidationGroup annotation
      *
      * Sets the validation group to use in the form specification.
-     *
-     * @param  EventInterface $e
      */
-    public function handleValidationGroupAnnotation($e): void
+    public function handleValidationGroupAnnotation(EventInterface $e): void
     {
         $annotation = $e->getParam('annotation');
         if (! $annotation instanceof ValidationGroup) {

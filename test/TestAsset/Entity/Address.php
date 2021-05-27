@@ -14,10 +14,9 @@ class Address
     protected $phones = [];
 
     /**
-     * @param string $street
      * @return $this
      */
-    public function setStreet($street)
+    public function setStreet(string $street)
     {
         $this->street = $street;
         return $this;

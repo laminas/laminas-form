@@ -58,16 +58,8 @@ class ReCaptcha extends FormInput
     /**
      * Render hidden input element if the element's name is not 'g-recaptcha-response'
      * so that required validation works
-     *
-     * Note that only the first parameter is needed, the other three parameters
-     * are deprecated.
-     *
-     * @param  string $name
-     * @param  string $challengeId @deprecated
-     * @param  string $responseName @deprecated
-     * @param  string $responseId @deprecated
      */
-    protected function renderHiddenInput($name, $challengeId = '', $responseName = '', $responseId = ''): string
+    protected function renderHiddenInput(string $name): string
     {
         if ($name === 'g-recaptcha-response') {
             return '';
@@ -87,11 +79,8 @@ class ReCaptcha extends FormInput
      * No longer used with v2 of Recaptcha API
      *
      * @deprecated
-     *
-     * @param  string $challengeId
-     * @param  string $responseId
      */
-    protected function renderJsEvents($challengeId, $responseId): string
+    protected function renderJsEvents(string $challengeId, string $responseId): string
     {
         return '';
     }

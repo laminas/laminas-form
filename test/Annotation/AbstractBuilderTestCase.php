@@ -231,10 +231,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     /**
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotation
-     * @param string $childName
      * @group issue-7108
      */
-    public function testOptionsAnnotationAndComposedObjectAnnotation($childName): void
+    public function testOptionsAnnotationAndComposedObjectAnnotation(string $childName): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
         $builder = $this->createBuilder();
@@ -261,10 +260,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     /**
      * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection
-     * @param string $childName
      * @group issue-7108
      */
-    public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection($childName): void
+    public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection(string $childName): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
         $builder = $this->createBuilder();

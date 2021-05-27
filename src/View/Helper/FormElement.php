@@ -118,10 +118,9 @@ class FormElement extends BaseAbstractHelper
     /**
      * Set default helper name
      *
-     * @param string $name
      * @return $this
      */
-    public function setDefaultHelper($name)
+    public function setDefaultHelper(string $name)
     {
         $this->defaultHelper = $name;
 
@@ -131,11 +130,9 @@ class FormElement extends BaseAbstractHelper
     /**
      * Add form element type to plugin map
      *
-     * @param string $type
-     * @param string $plugin
      * @return $this
      */
-    public function addType($type, $plugin)
+    public function addType(string $type, string $plugin)
     {
         $this->typeMap[$type] = $plugin;
 
@@ -145,11 +142,9 @@ class FormElement extends BaseAbstractHelper
     /**
      * Add instance class to plugin map
      *
-     * @param string $class
-     * @param string $plugin
      * @return $this
      */
-    public function addClass($class, $plugin)
+    public function addClass(string $class, string $plugin)
     {
         $this->classMap[$class] = $plugin;
 
@@ -158,10 +153,8 @@ class FormElement extends BaseAbstractHelper
 
     /**
      * Render element by helper name
-     *
-     * @param string $name
      */
-    protected function renderHelper($name, ElementInterface $element): string
+    protected function renderHelper(string $name, ElementInterface $element): string
     {
         $renderer = $this->getView();
         assert($renderer instanceof PhpRenderer);

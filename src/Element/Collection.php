@@ -17,7 +17,6 @@ use function get_class;
 use function gettype;
 use function is_array;
 use function is_object;
-use function is_string;
 use function iterator_to_array;
 use function max;
 use function sprintf;
@@ -151,7 +150,7 @@ class Collection extends Fieldset
     /**
      * Checks if the object can be set in this fieldset
      *
-     * @param object $object
+     * @param object|array $object
      */
     public function allowObjectBinding($object): bool
     {
@@ -162,7 +161,7 @@ class Collection extends Fieldset
      * Set the object used by the hydrator
      * In this case the "object" is a collection of objects
      *
-     * @param  array|Traversable $object
+     * @param  iterable $object
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
@@ -286,10 +285,9 @@ class Collection extends Fieldset
     /**
      * Set the initial count of target element
      *
-     * @param int $count
      * @return $this
      */
-    public function setCount($count)
+    public function setCount(int $count)
     {
         $this->count = $count > 0 ? $count : 0;
         return $this;
@@ -345,12 +343,11 @@ class Collection extends Fieldset
     /**
      * Get allow add
      *
-     * @param bool $allowAdd
      * @return $this
      */
-    public function setAllowAdd($allowAdd)
+    public function setAllowAdd(bool $allowAdd)
     {
-        $this->allowAdd = (bool) $allowAdd;
+        $this->allowAdd = $allowAdd;
         return $this;
     }
 
@@ -363,12 +360,11 @@ class Collection extends Fieldset
     }
 
     /**
-     * @param bool $allowRemove
      * @return $this
      */
-    public function setAllowRemove($allowRemove)
+    public function setAllowRemove(bool $allowRemove)
     {
-        $this->allowRemove = (bool) $allowRemove;
+        $this->allowRemove = $allowRemove;
         return $this;
     }
 
@@ -381,12 +377,11 @@ class Collection extends Fieldset
      * If set to true, a template prototype is automatically added to the form
      * to ease the creation of dynamic elements through JavaScript
      *
-     * @param bool $shouldCreateTemplate
      * @return $this
      */
-    public function setShouldCreateTemplate($shouldCreateTemplate)
+    public function setShouldCreateTemplate(bool $shouldCreateTemplate)
     {
-        $this->shouldCreateTemplate = (bool) $shouldCreateTemplate;
+        $this->shouldCreateTemplate = $shouldCreateTemplate;
 
         return $this;
     }
@@ -402,14 +397,11 @@ class Collection extends Fieldset
     /**
      * Set the placeholder used in the template generated to help create new elements in JavaScript
      *
-     * @param string $templatePlaceholder
      * @return $this
      */
-    public function setTemplatePlaceholder($templatePlaceholder)
+    public function setTemplatePlaceholder(string $templatePlaceholder)
     {
-        if (is_string($templatePlaceholder)) {
-            $this->templatePlaceholder = $templatePlaceholder;
-        }
+        $this->templatePlaceholder = $templatePlaceholder;
 
         return $this;
     }
@@ -423,12 +415,11 @@ class Collection extends Fieldset
     }
 
     /**
-     * @param bool $createNewObjects
      * @return $this
      */
-    public function setCreateNewObjects($createNewObjects)
+    public function setCreateNewObjects(bool $createNewObjects)
     {
-        $this->createNewObjects = (bool) $createNewObjects;
+        $this->createNewObjects = $createNewObjects;
         return $this;
     }
 
@@ -545,10 +536,9 @@ class Collection extends Fieldset
     /**
      * Add a new instance of the target element
      *
-     * @param string $name
      * @throws Exception\DomainException
      */
-    protected function addNewTargetElementInstance($name): ElementInterface
+    protected function addNewTargetElementInstance(string $name): ElementInterface
     {
         $this->shouldCreateChildrenOnPrepareElement = false;
 

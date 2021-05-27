@@ -50,10 +50,9 @@ class FormButton extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|string           $buttonContent
      * @return string|FormButton
      */
-    public function __invoke(?ElementInterface $element = null, $buttonContent = null)
+    public function __invoke(?ElementInterface $element = null, ?string $buttonContent = null)
     {
         if (! $element) {
             return $this;
@@ -66,10 +65,9 @@ class FormButton extends FormInput
      * Render a form <button> element from the provided $element,
      * using content from $buttonContent or the element's "label" attribute
      *
-     * @param  null|string $buttonContent
      * @throws Exception\DomainException
      */
-    public function render(ElementInterface $element, $buttonContent = null): string
+    public function render(ElementInterface $element, ?string $buttonContent = null): string
     {
         $openTag = $this->openTag($element);
 

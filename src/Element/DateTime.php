@@ -68,10 +68,9 @@ class DateTime extends Element implements InputProviderInterface
      * If $returnFormattedValue is false, the original value will be
      * returned, regardless of type.
      *
-     * @param  bool $returnFormattedValue
      * @return mixed
      */
-    public function getValue($returnFormattedValue = true)
+    public function getValue(bool $returnFormattedValue = true)
     {
         $value = parent::getValue();
         if (! $value instanceof DateTimeInterface || ! $returnFormattedValue) {
@@ -84,12 +83,11 @@ class DateTime extends Element implements InputProviderInterface
     /**
      * Set value for format
      *
-     * @param  string $format
      * @return $this
      */
-    public function setFormat($format)
+    public function setFormat(string $format)
     {
-        $this->format = (string) $format;
+        $this->format = $format;
         return $this;
     }
 
@@ -211,10 +209,8 @@ class DateTime extends Element implements InputProviderInterface
 
     /**
      * Indicate whether or not a value represents a valid DateTime format.
-     *
-     * @param string $value
      */
-    private function valueIsValidDateTimeFormat($value): bool
+    private function valueIsValidDateTimeFormat(string $value): bool
     {
         return PhpDateTime::createFromFormat(
             $this->format,

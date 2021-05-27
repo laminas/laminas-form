@@ -134,7 +134,7 @@ class Factory
      *
      * @param  array $spec
      */
-    public function createElement($spec): ElementInterface
+    public function createElement(array $spec): ElementInterface
     {
         if (! isset($spec['type'])) {
             $spec['type'] = Element::class;
@@ -148,7 +148,7 @@ class Factory
      *
      * @param  array $spec
      */
-    public function createFieldset($spec): FieldsetInterface
+    public function createFieldset(array $spec): FieldsetInterface
     {
         if (! isset($spec['type'])) {
             $spec['type'] = Fieldset::class;
@@ -162,7 +162,7 @@ class Factory
      *
      * @param  array $spec
      */
-    public function createForm($spec): FormInterface
+    public function createForm(array $spec): FormInterface
     {
         if (! isset($spec['type'])) {
             $spec['type'] = Form::class;
@@ -288,7 +288,7 @@ class Factory
      * @return array|ArrayAccess
      * @throws Exception\InvalidArgumentException For invalid $spec.
      */
-    protected function validateSpecification($spec, $method)
+    protected function validateSpecification($spec, string $method)
     {
         if (is_array($spec)) {
             return $spec;
@@ -316,7 +316,7 @@ class Factory
      * @param  array|Traversable|ArrayAccess $elements
      * @param  string $method Method invoking this one (for exception messages)
      */
-    protected function prepareAndInjectElements($elements, FieldsetInterface $fieldset, $method): void
+    protected function prepareAndInjectElements($elements, FieldsetInterface $fieldset, string $method): void
     {
         $elements = $this->validateSpecification($elements, $method);
 
@@ -343,7 +343,7 @@ class Factory
      * @param  array|Traversable|ArrayAccess $fieldsets
      * @param  string $method Method invoking this one (for exception messages)
      */
-    public function prepareAndInjectFieldsets($fieldsets, FieldsetInterface $masterFieldset, $method): void
+    public function prepareAndInjectFieldsets($fieldsets, FieldsetInterface $masterFieldset, string $method): void
     {
         $fieldsets = $this->validateSpecification($fieldsets, $method);
 
@@ -362,20 +362,10 @@ class Factory
      * Takes a string indicating a class name, instantiates the class
      * by that name, and injects the class instance as the bound object.
      *
-     * @param  string            $objectName
-     * @param  string            $method
      * @throws Exception\DomainException
      */
-    protected function prepareAndInjectObject($objectName, FieldsetInterface $fieldset, $method): void
+    protected function prepareAndInjectObject(string $objectName, FieldsetInterface $fieldset, string $method): void
     {
-        if (! is_string($objectName)) {
-            throw new Exception\DomainException(sprintf(
-                '%s expects string class name; received "%s"',
-                $method,
-                is_object($objectName) ? get_class($objectName) : gettype($objectName)
-            ));
-        }
-
         if (! class_exists($objectName)) {
             throw new Exception\DomainException(sprintf(
                 '%s expects string class name to be a valid class name; received "%s"',
@@ -394,11 +384,10 @@ class Factory
      * by pulling it from service manager, and injects the hydrator instance into the form.
      *
      * @param  string|array|Hydrator\HydratorInterface $hydratorOrName
-     * @param  string                                  $method
      * @throws Exception\DomainException If $hydratorOrName is not a string, does not resolve to a known class, or
      *                                   the class does not implement Hydrator\HydratorInterface.
      */
-    protected function prepareAndInjectHydrator($hydratorOrName, FieldsetInterface $fieldset, $method): void
+    protected function prepareAndInjectHydrator($hydratorOrName, FieldsetInterface $fieldset, string $method): void
     {
         if ($hydratorOrName instanceof Hydrator\HydratorInterface) {
             $fieldset->setHydrator($hydratorOrName);
@@ -444,11 +433,10 @@ class Factory
      * by pulling it from service manager, and injects the factory instance into the fieldset.
      *
      * @param  string|array|Factory      $factoryOrName
-     * @param  string                    $method
      * @throws Exception\DomainException If $factoryOrName is not a string, does not resolve to a known class, or
      *                                   the class does not extend Form\Factory.
      */
-    protected function prepareAndInjectFactory($factoryOrName, FieldsetInterface $fieldset, $method): void
+    protected function prepareAndInjectFactory($factoryOrName, FieldsetInterface $fieldset, string $method): void
     {
         if (is_array($factoryOrName)) {
             if (! isset($factoryOrName['type'])) {
@@ -486,10 +474,9 @@ class Factory
      * instance in order to create the input filter.
      *
      * @param  string|array|Traversable $spec
-     * @param  string $method
      * @throws Exception\DomainException For unknown InputFilter class or invalid InputFilter instance.
      */
-    protected function prepareAndInjectInputFilter($spec, FormInterface $form, $method): void
+    protected function prepareAndInjectInputFilter($spec, FormInterface $form, string $method): void
     {
         if ($spec instanceof InputFilterInterface) {
             $form->setInputFilter($spec);
@@ -530,10 +517,9 @@ class Factory
      * Takes an array of elements names
      *
      * @param  string|array|Traversable $spec
-     * @param  string $method
      * @throws Exception\DomainException If validation group given is not an array.
      */
-    protected function prepareAndInjectValidationGroup($spec, FormInterface $form, $method): void
+    protected function prepareAndInjectValidationGroup($spec, FormInterface $form, string $method): void
     {
         if (! is_array($spec)) {
             if (! class_exists($spec)) {
@@ -553,11 +539,10 @@ class Factory
      *
      * @deprecated 3.0.0 Please use FormElementManager::getHydratorFromName() instead
      *
-     * @param  string $hydratorName
      * @return mixed
      * @throws Exception\DomainException
      */
-    protected function getHydratorFromName($hydratorName)
+    protected function getHydratorFromName(string $hydratorName)
     {
         trigger_error(sprintf(
             'Usage of %s is deprecated since v3.0.0; please use FormElementManager::getHydratorFromName() instead',
@@ -572,11 +557,10 @@ class Factory
      *
      * @deprecated 3.0.0 Please use FormElementManager::getFactoryFromName() instead
      *
-     * @param  string $factoryName
      * @return mixed
      * @throws Exception\DomainException
      */
-    protected function getFactoryFromName($factoryName)
+    protected function getFactoryFromName(string $factoryName)
     {
         trigger_error(sprintf(
             'Usage of %s is deprecated since v3.0.0; please use FormElementManager::getFactoryFromName() instead',

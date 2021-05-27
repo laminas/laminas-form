@@ -70,7 +70,7 @@ class Fieldset extends Element implements FieldsetInterface
      * @param  null|int|string  $name    Optional name for the element
      * @param  array            $options Optional options for the element
      */
-    public function __construct($name = null, $options = [])
+    public function __construct($name = null, array $options = [])
     {
         $this->iterator = new PriorityList();
         $this->iterator->isLIFO(false);
@@ -190,10 +190,8 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Does the fieldset have an element/fieldset by the given name?
-     *
-     * @param  string $elementOrFieldset
      */
-    public function has($elementOrFieldset): bool
+    public function has(string $elementOrFieldset): bool
     {
         return $this->iterator->get($elementOrFieldset) !== null;
     }
@@ -201,10 +199,9 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Retrieve a named element or fieldset
      *
-     * @param  string $elementOrFieldset
      * @return FieldsetInterface|ElementInterface
      */
-    public function get($elementOrFieldset): ElementInterface
+    public function get(string $elementOrFieldset): ElementInterface
     {
         if (! $this->has($elementOrFieldset)) {
             throw new Exception\InvalidElementException(sprintf(
@@ -218,10 +215,9 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Remove a named element or fieldset
      *
-     * @param  string $elementOrFieldset
      * @return $this
      */
-    public function remove($elementOrFieldset)
+    public function remove(string $elementOrFieldset)
     {
         if (! $this->has($elementOrFieldset)) {
             return $this;
@@ -241,11 +237,9 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Set/change the priority of an element or fieldset
      *
-     * @param  string $elementOrFieldset
-     * @param  int    $priority
      * @return $this
      */
-    public function setPriority($elementOrFieldset, $priority)
+    public function setPriority(string $elementOrFieldset, int $priority)
     {
         $this->iterator->setPriority($elementOrFieldset, $priority);
         return $this;
@@ -299,10 +293,9 @@ class Fieldset extends Element implements FieldsetInterface
      * validation, or, if $elementName is provided, messages for that element
      * only.
      *
-     * @param  null|string $elementName
      * @throws Exception\InvalidArgumentException
      */
-    public function getMessages($elementName = null): array
+    public function getMessages(?string $elementName = null): array
     {
         if (null === $elementName) {
             $messages = $this->messages;
@@ -438,10 +431,8 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Set the class or interface of objects that can be bound to this fieldset.
-     *
-     * @param string $allowObjectBindingClass
      */
-    public function setAllowedObjectBindingClass($allowObjectBindingClass): void
+    public function setAllowedObjectBindingClass(string $allowObjectBindingClass): void
     {
         $this->allowedObjectBindingClass = $allowObjectBindingClass;
     }
@@ -457,7 +448,7 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Checks if the object can be set in this fieldset
      *
-     * @param object $object
+     * @param object|array $object
      */
     public function allowObjectBinding($object): bool
     {
@@ -544,7 +535,7 @@ class Fieldset extends Element implements FieldsetInterface
                 $values[$name] = [];
             }
 
-            $value = $values[$name];
+            $value = $values[$name] ?? [];
 
             if ($element instanceof FieldsetInterface && $element->allowValueBinding()) {
                 $value = $element->bindValues($value, empty($validationGroup[$name]) ? null : $validationGroup[$name]);
@@ -568,12 +559,11 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Set if this fieldset is used as a base fieldset
      *
-     * @param  bool $useAsBaseFieldset
      * @return $this
      */
-    public function setUseAsBaseFieldset($useAsBaseFieldset)
+    public function setUseAsBaseFieldset(bool $useAsBaseFieldset)
     {
-        $this->useAsBaseFieldset = (bool) $useAsBaseFieldset;
+        $this->useAsBaseFieldset = $useAsBaseFieldset;
         return $this;
     }
 

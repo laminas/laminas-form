@@ -22,6 +22,9 @@
     </DuplicateArrayKey>
   </file>
   <file src="src/Element/Collection.php">
+    <ImplementedParamTypeMismatch occurrences="1">
+      <code>$object</code>
+    </ImplementedParamTypeMismatch>
     <MoreSpecificImplementedParamType occurrences="1">
       <code>$object</code>
     </MoreSpecificImplementedParamType>
@@ -62,11 +65,6 @@
       <code>formCollection</code>
       <code>formRow</code>
     </UndefinedMagicMethod>
-  </file>
-  <file src="src/View/Helper/FormDateTimeSelect.php">
-    <ImplementedParamTypeMismatch occurrences="1">
-      <code>$timeType</code>
-    </ImplementedParamTypeMismatch>
   </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">

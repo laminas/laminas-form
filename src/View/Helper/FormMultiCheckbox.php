@@ -75,10 +75,9 @@ class FormMultiCheckbox extends FormInput
      *
      * Proxies to {@link render()}.
      *
-     * @param  null|string           $labelPosition
      * @return string|FormMultiCheckbox
      */
-    public function __invoke(?ElementInterface $element = null, $labelPosition = null)
+    public function __invoke(?ElementInterface $element = null, ?string $labelPosition = null)
     {
         if (! $element) {
             return $this;
@@ -268,7 +267,7 @@ class FormMultiCheckbox extends FormInput
      * @param  array|null $attributes
      * @return $this
      */
-    public function setLabelAttributes($attributes)
+    public function setLabelAttributes(?array $attributes)
     {
         $this->labelAttributes = $attributes;
         return $this;
@@ -319,12 +318,11 @@ class FormMultiCheckbox extends FormInput
     /**
      * Set separator string for checkbox elements
      *
-     * @param  string $separator
      * @return $this
      */
-    public function setSeparator($separator)
+    public function setSeparator(string $separator)
     {
-        $this->separator = (string) $separator;
+        $this->separator = $separator;
         return $this;
     }
 
@@ -340,12 +338,11 @@ class FormMultiCheckbox extends FormInput
      * Sets the option for prefixing the element with a hidden element
      * for the unset value.
      *
-     * @param  bool $useHiddenElement
      * @return $this
      */
-    public function setUseHiddenElement($useHiddenElement)
+    public function setUseHiddenElement(bool $useHiddenElement)
     {
-        $this->useHiddenElement = (bool) $useHiddenElement;
+        $this->useHiddenElement = $useHiddenElement;
         return $this;
     }
 
@@ -361,10 +358,9 @@ class FormMultiCheckbox extends FormInput
     /**
      * Sets the unchecked value used when "UseHiddenElement" is turned on.
      *
-     * @param  string $value
      * @return $this
      */
-    public function setUncheckedValue($value)
+    public function setUncheckedValue(string $value)
     {
         $this->uncheckedValue = $value;
         return $this;
