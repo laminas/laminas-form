@@ -5,6 +5,13 @@ nav:
     - Introduction: intro.md
     - Installation: installation.md
     - "Quick Start": quick-start.md
+    - "Form Creation":
+        - "Programmatic Form Creation": form-creation/programmatic-form-creation.md
+        - "Creation via Factory": form-creation/creation-via-factory.md
+        - "Factory-backed Form Extension": form-creation/factory-backed-form-extension.md
+        - "Using Annotations or PHP8 Attributes": form-creation/using-annotations.md
+    - "Application Integration":
+        - "Usage in a laminas-mvc application": application-integration/usage-in-a-laminas-mvc-application.md
     - Reference:
         - Elements:
             - Introduction: element/intro.md
@@ -84,8 +91,8 @@ nav:
                 - formFileSessionProgress: helper/form-file-session-progress.md
                 - formFileUploadProgress: helper/form-file-upload-progress.md
         - Advanced: advanced.md
-    - "Application Integration":
-        - "Usage in a laminas-mvc application": application-integration/usage-in-a-laminas-mvc-application.md
+    - Migration:
+       - "V2 to V3": migration/v2-to-v3.md
 site_name: laminas-form
 site_description: "Validate and display simple and complex forms, casting forms to business objects and vice versa."
 repo_url: 'https://github.com/laminas/laminas-form'
