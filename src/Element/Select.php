@@ -34,7 +34,7 @@ class Select extends Element implements InputProviderInterface
     /**
      * Create an empty option (option with label but no value). If set to null, no option is created
      *
-     * @var string|null
+     * @var null|string|array
      */
     protected $emptyOption;
 
@@ -174,9 +174,10 @@ class Select extends Element implements InputProviderInterface
     /**
      * Set the string for an empty option (can be empty string). If set to null, no option will be added
      *
+     * @param null|string|array $emptyOption
      * @return $this
      */
-    public function setEmptyOption(?string $emptyOption)
+    public function setEmptyOption($emptyOption)
     {
         $this->emptyOption = $emptyOption;
         return $this;
@@ -184,8 +185,10 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * Return the string for the empty option (null if none)
+     *
+     * @return null|string|array
      */
-    public function getEmptyOption(): ?string
+    public function getEmptyOption()
     {
         return $this->emptyOption;
     }
