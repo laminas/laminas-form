@@ -1545,12 +1545,6 @@ class FormTest extends TestCase
         $this->form->setBindOnValidate(Form::VALUES_AS_ARRAY);
     }
 
-    public function testSetDataOnValidateWrongFlagRaisesException(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->form->setData(null);
-    }
-
     public function testSetDataIsTraversable(): void
     {
         $this->form->setData(new ArrayObject(['foo' => 'bar']));

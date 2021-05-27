@@ -62,7 +62,7 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * The class or interface of objects that can be bound to this fieldset.
      *
-     * @var string
+     * @var null|string
      */
     protected $allowedObjectBindingClass;
 
@@ -432,7 +432,7 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Set the class or interface of objects that can be bound to this fieldset.
      */
-    public function setAllowedObjectBindingClass(string $allowObjectBindingClass): void
+    public function setAllowedObjectBindingClass(?string $allowObjectBindingClass): void
     {
         $this->allowedObjectBindingClass = $allowObjectBindingClass;
     }

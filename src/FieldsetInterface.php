@@ -111,7 +111,6 @@ interface FieldsetInterface extends
     /**
      * Bind values to the bound object
      *
-     * @param  array $values
      * @return mixed
      */
     public function bindValues(array $values = []);

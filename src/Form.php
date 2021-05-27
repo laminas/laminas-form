@@ -2,7 +2,6 @@
 
 namespace Laminas\Form;
 
-use ArrayAccess;
 use Laminas\Form\Element\Collection;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\InputFilter\CollectionInputFilter;
@@ -21,8 +20,6 @@ use function array_shift;
 use function assert;
 use function func_get_args;
 use function func_num_args;
-use function get_class;
-use function gettype;
 use function in_array;
 use function is_array;
 use function is_object;
@@ -63,7 +60,7 @@ class Form extends Fieldset implements FormInterface
     /**
      * Data being validated
      *
-     * @var null|array|Traversable
+     * @var null|array
      */
     protected $data;
 
@@ -250,20 +247,13 @@ class Form extends Fieldset implements FormInterface
      *
      * Typically, also passes data on to the composed input filter.
      *
-     * @param  array|ArrayAccess|Traversable $data
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
-    public function setData($data)
+    public function setData(iterable $data)
     {
         if ($data instanceof Traversable) {
             $data = ArrayUtils::iteratorToArray($data);
-        } elseif (! is_array($data)) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects an array or Traversable argument; received "%s"',
-                __METHOD__,
-                is_object($data) ? get_class($data) : gettype($data)
-            ));
         }
 
         $this->hasValidated = false;
@@ -587,9 +577,6 @@ class Form extends Fieldset implements FormInterface
     /**
      * Prepare the validation group in case Collection elements were used (this function also handle
      * the case where elements could have been dynamically added or removed from a collection using JavaScript)
-     *
-     * @param array $data
-     * @param array $validationGroup
      */
     protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup): void
     {

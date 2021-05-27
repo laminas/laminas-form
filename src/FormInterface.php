@@ -2,7 +2,6 @@
 
 namespace Laminas\Form;
 
-use ArrayAccess;
 use Laminas\InputFilter\InputFilterInterface;
 
 interface FormInterface extends FieldsetInterface
@@ -19,10 +18,9 @@ interface FormInterface extends FieldsetInterface
      *
      * Typically, also passes data on to the composed input filter.
      *
-     * @param  array|ArrayAccess $data
      * @return $this
      */
-    public function setData($data);
+    public function setData(iterable $data);
 
     /**
      * Bind an object to the element

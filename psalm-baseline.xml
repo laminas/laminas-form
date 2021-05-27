@@ -89,11 +89,6 @@
       <code>null</code>
     </NullArgument>
   </file>
-  <file src="test/FormTest.php">
-    <NullArgument occurrences="1">
-      <code>null</code>
-    </NullArgument>
-  </file>
   <file src="test/View/Helper/FormButtonTest.php">
     <InvalidArgument occurrences="1">
       <code>$element</code>
