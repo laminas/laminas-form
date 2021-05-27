@@ -62,8 +62,10 @@ class Element implements
     /**
      * This function is automatically called when creating element with factory. It
      * allows to perform various operations (add elements...)
+     *
+     * @return void
      */
-    public function init(): void
+    public function init()
     {
     }
 
