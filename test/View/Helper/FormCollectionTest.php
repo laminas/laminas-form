@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element\Collection;
 use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
 use Laminas\I18n\Translator\Translator;
+use Laminas\View\Helper\Doctype;
 use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
@@ -418,5 +419,46 @@ class FormCollectionTest extends AbstractCommonTestCase
         );
 
         $method->invokeArgs(new FormCollectionHelper(), []);
+    }
+
+    /**
+     * @dataProvider provideDoctypesAndPermitFlagForNameAttribute
+     */
+    public function testRenderCollectionWithNameAttributeAndDoctypeHtml5(
+        string $doctype,
+        bool $allowsNameAttribute
+    ): void {
+        $this->helper->setDoctype($doctype);
+
+        $form       = $this->getForm();
+        $collection = $form->get('colors');
+        $collection->setAttribute('name', 'foo');
+
+        $markup = $this->helper->render($collection);
+        if ($allowsNameAttribute) {
+            $this->assertStringContainsString('<fieldset name="foo">', $markup);
+        } else {
+            $this->assertStringContainsString('<fieldset>', $markup);
+        }
+    }
+
+    public function provideDoctypesAndPermitFlagForNameAttribute(): array
+    {
+        return [
+            [Doctype::XHTML11,             false],
+            [Doctype::XHTML1_STRICT,       false],
+            [Doctype::XHTML1_TRANSITIONAL, false],
+            [Doctype::XHTML1_FRAMESET,     false],
+            [Doctype::XHTML1_RDFA,         false],
+            [Doctype::XHTML1_RDFA11,       false],
+            [Doctype::XHTML_BASIC1,        false],
+            [Doctype::XHTML5,              true],
+            [Doctype::HTML4_STRICT,        false],
+            [Doctype::HTML4_LOOSE,         false],
+            [Doctype::HTML4_FRAMESET,      false],
+            [Doctype::HTML5,               true],
+            [Doctype::CUSTOM_XHTML,        false],
+            [Doctype::CUSTOM,              false],
+        ];
     }
 }
