@@ -4,6 +4,18 @@ laminas-form v3 makes a number of changes that may affect your application. This
 document details those changes, and provides suggestions on how to update your
 application to work with v3.
 
+## Native types
+
+laminas-form v3 promoted `@param` and `@return` annotations of non-mixed types to
+the corresponding function signatures. This change should affect only highly customized
+element, fieldset or form classes.
+If you need to automate native types promotion, [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+can help you with this command:
+
+```console
+$ php-cs-fixer fix --rules=phpdoc_to_param_type,phpdoc_to_return_type --allow-risky=yes path/to/my/custom/forms/
+```
+
 ## Using doctrine/annotations now instead of laminas/laminas-code
 
 Since laminas-code dropped support for annotation parsing with v4, laminas-form
@@ -11,8 +23,8 @@ switched to doctrine/annotations for annotation parsing. For most users, this wi
 not have any side effects, however, you must ensure that you install
 doctrine/annotations with at least version 1.12.0:
 
-```bash
-composer require doctrine/annotations
+```console
+$ composer require doctrine/annotations
 ```
 
 ## Support for PHP8 Attributes
