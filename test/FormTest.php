@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Form;
 
 use ArrayObject;
@@ -1097,7 +1099,7 @@ class FormTest extends TestCase
 
         $form = new TestAsset\CreateAddressForm();
         $form->bind($address);
-        $form->setBindOnValidate(false);
+        $form->setBindOnValidate(Form::BIND_MANUAL);
 
         $this->assertEquals(true, $form->isValid());
         $this->assertEquals($address, $form->getData());
@@ -1146,7 +1148,7 @@ class FormTest extends TestCase
 
         $form = new TestAsset\NewProductForm();
         $form->bind($product);
-        $form->setBindOnValidate(false);
+        $form->setBindOnValidate(Form::BIND_MANUAL);
 
         $this->assertEquals(true, $form->isValid());
         $this->assertEquals($product, $form->getData());

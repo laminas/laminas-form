@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Form;
 
 use ArrayObject;
@@ -439,11 +441,9 @@ class FieldsetTest extends TestCase
     public function testSetOptionsUseAsBaseFieldset(): void
     {
         $this->fieldset->setOptions([
-            'use_as_base_fieldset' => 'bar',
+            'use_as_base_fieldset' => true,
         ]);
-        $option = $this->fieldset->getOption('use_as_base_fieldset');
-
-        $this->assertEquals('bar', $option);
+        $this->assertTrue($this->fieldset->getOption('use_as_base_fieldset'));
     }
 
     public function testSetOptionAllowedObjectBindingClass(): void

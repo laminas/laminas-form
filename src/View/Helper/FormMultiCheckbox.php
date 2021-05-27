@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form\View\Helper;
 
 use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
@@ -286,11 +288,10 @@ class FormMultiCheckbox extends FormInput
     /**
      * Set value for labelPosition
      *
-     * @param  mixed $labelPosition
      * @throws Exception\InvalidArgumentException
      * @return $this
      */
-    public function setLabelPosition($labelPosition)
+    public function setLabelPosition(string $labelPosition)
     {
         $labelPosition = strtolower($labelPosition);
         if (! in_array($labelPosition, [self::LABEL_APPEND, self::LABEL_PREPEND])) {

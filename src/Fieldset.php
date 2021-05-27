@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form;
 
 use Laminas\Form\Element\Collection;
@@ -274,12 +276,12 @@ class Fieldset extends Element implements FieldsetInterface
     public function setMessages(iterable $messages)
     {
         foreach ($messages as $key => $messageSet) {
-            if (! $this->has($key)) {
+            if (! $this->has((string) $key)) {
                 $this->messages[$key] = $messageSet;
                 continue;
             }
 
-            $element = $this->get($key);
+            $element = $this->get((string) $key);
             $element->setMessages($messageSet);
         }
 

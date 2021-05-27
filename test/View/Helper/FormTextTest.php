@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;

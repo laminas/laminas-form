@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Form\Integration\TestAsset;
 
 use Laminas\Form\Form as BaseForm;

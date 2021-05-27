@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\AdapterInterface as CaptchaAdapter;
@@ -141,11 +143,10 @@ abstract class AbstractWord extends FormInput
     /**
      * Set value for captchaPosition
      *
-     * @param  mixed $captchaPosition
      * @throws Exception\InvalidArgumentException
      * @return $this
      */
-    public function setCaptchaPosition($captchaPosition)
+    public function setCaptchaPosition(string $captchaPosition)
     {
         $captchaPosition = strtolower($captchaPosition);
         if (! in_array($captchaPosition, [self::CAPTCHA_APPEND, self::CAPTCHA_PREPEND])) {

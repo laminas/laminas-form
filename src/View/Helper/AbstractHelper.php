@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form\View\Helper;
 
 use Laminas\Escaper\Exception\RuntimeException as EscaperException;
@@ -13,6 +15,7 @@ use Laminas\View\Helper\EscapeHtmlAttr;
 use function implode;
 use function in_array;
 use function is_bool;
+use function is_string;
 use function mb_strpos;
 use function method_exists;
 use function preg_match;
@@ -394,6 +397,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
             // Normalize boolean attribute values
             if (isset($this->booleanAttributes[$attribute])) {
                 $attributes[$attribute] = $this->prepareBooleanAttributeValue($attribute, $value);
+            } elseif (! is_string($value)) {
+                $attributes[$attribute] = (string) $value;
             }
         }
 
