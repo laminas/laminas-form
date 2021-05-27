@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Form\View\Helper\Captcha;
 
 use Laminas\Captcha\Dumb as DumbCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\Exception\DomainException;
-use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\Captcha\Dumb as DumbCaptchaHelper;
 use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
@@ -88,12 +89,6 @@ class DumbTest extends AbstractCommonTestCase
             . $this->helper->getSeparator(),
             $markup
         );
-    }
-
-    public function testSetCaptchaPositionWithNullRaisesException(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->helper->setCaptchaPosition(null);
     }
 
     public function testSetSeparator(): void

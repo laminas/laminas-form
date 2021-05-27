@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form\Element;
 
 use Laminas\Form\ElementInterface;
@@ -221,15 +223,15 @@ class Collection extends Fieldset
         }
 
         foreach ($toRemove as $name) {
-            $this->remove($name);
+            $this->remove((string) $name);
         }
 
         foreach ($data as $key => $value) {
             $elementOrFieldset = null;
-            if ($this->has($key)) {
-                $elementOrFieldset = $this->get($key);
+            if ($this->has((string) $key)) {
+                $elementOrFieldset = $this->get((string) $key);
             } elseif ($this->targetElement) {
-                $elementOrFieldset = $this->addNewTargetElementInstance($key);
+                $elementOrFieldset = $this->addNewTargetElementInstance((string) $key);
 
                 if ($key > $this->lastChildIndex) {
                     $this->lastChildIndex = $key;
@@ -270,7 +272,7 @@ class Collection extends Fieldset
     {
         $collection = [];
         foreach ($values as $name => $value) {
-            $element = $this->get($name);
+            $element = $this->get((string) $name);
 
             if ($element instanceof FieldsetInterface) {
                 $collection[] = $element->bindValues($value, $validationGroup);
@@ -504,8 +506,8 @@ class Collection extends Fieldset
                 assert($targetElement instanceof Fieldset);
                 $targetElement->setObject($value);
                 $values[$key] = $targetElement->extract();
-                if (! $this->createNewObjects() && $this->has($key)) {
-                    $fieldset = $this->get($key);
+                if (! $this->createNewObjects() && $this->has((string) $key)) {
+                    $fieldset = $this->get((string) $key);
                     assert($fieldset instanceof FieldsetInterface);
                     $fieldset->setObject($value);
                 }
@@ -515,8 +517,8 @@ class Collection extends Fieldset
             // If the target element is a non-fieldset element, just use the value
             if ($this->targetElement instanceof ElementInterface) {
                 $values[$key] = $value;
-                if (! $this->createNewObjects() && $this->has($key)) {
-                    $this->get($key)->setValue($value);
+                if (! $this->createNewObjects() && $this->has((string) $key)) {
+                    $this->get((string) $key)->setValue($value);
                 }
                 continue;
             }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element;
@@ -315,12 +317,6 @@ class FormMultiCheckboxTest extends AbstractCommonTestCase
         $this->helper->__invoke($element, 'append');
 
         $this->assertSame('append', $this->helper->getLabelPosition());
-    }
-
-    public function testSetLabelPositionInputNullRaisesException(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->helper->setLabelPosition(null);
     }
 
     public function testSetLabelAttributes(): void

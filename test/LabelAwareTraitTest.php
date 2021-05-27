@@ -1,8 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-form for the canonical source repository
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Form;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form\View\Helper;
 
 use DateTime;
@@ -104,8 +106,22 @@ class FormDateSelect extends AbstractFormDateSelect
      */
     protected function getDaysOptions(string $pattern): array
     {
-        $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'dd');
-        $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);
+        $keyFormatter   = new IntlDateFormatter(
+            $this->getLocale(),
+            IntlDateFormatter::NONE,
+            IntlDateFormatter::NONE,
+            null,
+            null,
+            'dd'
+        );
+        $valueFormatter = new IntlDateFormatter(
+            $this->getLocale(),
+            IntlDateFormatter::NONE,
+            IntlDateFormatter::NONE,
+            null,
+            null,
+            $pattern
+        );
         $date           = new DateTime('1970-01-01');
 
         $result = [];

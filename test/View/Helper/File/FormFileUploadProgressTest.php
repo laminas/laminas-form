@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Form\View\Helper\File;
 
 use Laminas\Form\View\Helper\File\FormFileUploadProgress;

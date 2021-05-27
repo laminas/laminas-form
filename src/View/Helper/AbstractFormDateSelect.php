@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form\View\Helper;
 
 use DateTime;
@@ -163,8 +165,22 @@ abstract class AbstractFormDateSelect extends AbstractHelper
      */
     protected function getMonthsOptions(string $pattern): array
     {
-        $keyFormatter   = new IntlDateFormatter($this->getLocale(), null, null, null, null, 'MM');
-        $valueFormatter = new IntlDateFormatter($this->getLocale(), null, null, null, null, $pattern);
+        $keyFormatter   = new IntlDateFormatter(
+            $this->getLocale(),
+            IntlDateFormatter::NONE,
+            IntlDateFormatter::NONE,
+            null,
+            null,
+            'MM'
+        );
+        $valueFormatter = new IntlDateFormatter(
+            $this->getLocale(),
+            IntlDateFormatter::NONE,
+            IntlDateFormatter::NONE,
+            null,
+            null,
+            $pattern
+        );
         $date           = new DateTime('1970-01-01');
 
         $result = [];

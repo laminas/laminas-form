@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laminas\Form;
 
 use Laminas\Form\Element\Collection;
@@ -581,11 +583,11 @@ class Form extends Fieldset implements FormInterface
     protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup): void
     {
         foreach ($validationGroup as $key => &$value) {
-            if (! $formOrFieldset->has($key)) {
+            if (! $formOrFieldset->has((string) $key)) {
                 continue;
             }
 
-            $fieldset = $formOrFieldset->iterator->get($key);
+            $fieldset = $formOrFieldset->iterator->get((string) $key);
 
             if ($fieldset instanceof Collection) {
                 if (! isset($data[$key]) && $fieldset->getCount() === 0) {
