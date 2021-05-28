@@ -39,6 +39,9 @@ class Form extends AbstractHelper
     /**
      * Invoke as function
      *
+     * @template T as null|FormInterface
+     * @psalm-param T $form
+     * @psalm-return (T is null ? self : string)
      * @return Form|string
      */
     public function __invoke(?FormInterface $form = null)

@@ -32,7 +32,10 @@ class FormElementErrors extends AbstractHelper
      *
      * Proxies to {@link render()} if an element is passed.
      *
-     * @param  array            $attributes
+     * @template T as null|ElementInterface
+     * @psalm-param T $element
+     * @psalm-return (T is null ? self : string)
+     * @param  array $attributes
      * @return string|FormElementErrors
      */
     public function __invoke(?ElementInterface $element = null, array $attributes = [])
