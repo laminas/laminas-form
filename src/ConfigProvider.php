@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
+use Laminas\Form\View\Helper\Factory\FormElementErrorsFactory;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 class ConfigProvider
@@ -273,7 +274,7 @@ class ConfigProvider
                 View\Helper\FormDateTimeSelect::class           => InvokableFactory::class,
                 View\Helper\FormDateSelect::class               => InvokableFactory::class,
                 View\Helper\FormElement::class                  => InvokableFactory::class,
-                View\Helper\FormElementErrors::class            => InvokableFactory::class,
+                View\Helper\FormElementErrors::class            => FormElementErrorsFactory::class,
                 View\Helper\FormEmail::class                    => InvokableFactory::class,
                 View\Helper\FormFile::class                     => InvokableFactory::class,
                 View\Helper\File\FormFileApcProgress::class     => InvokableFactory::class,
