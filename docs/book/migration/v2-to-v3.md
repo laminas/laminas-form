@@ -38,6 +38,15 @@ In case you still want to migrate from DocBlock annotations to PHP8 attributes,
 please have a look at the [annotations chapter](../form-creation/using-annotations.md),
 which provides a side-by-side comparison of these annotations.
 
+## Element\DateTime is deprecated
+
+Since the HTML element `<input type="datetime">` has been
+[removed from WHATWG HTML](https://github.com/whatwg/html/issues/336) and it currently
+is not supported by any major browsers
+(see [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime)),
+its usage in form of `Element\DateTime` and `View\Helper\FormDateTime` is deprecated.
+Please use something else like `DateTimeLocal` or `DateTimeSelect`.
+
 ## Single Associative Array in Constructors of Annotations is Deprecated
 
 After upgrading you may receive one or more deprecation notices about passing a
