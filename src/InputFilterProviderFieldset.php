@@ -8,7 +8,7 @@ use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
 
-class InputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
+final class InputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
 {
     /**
      * Holds the specification which will be returned by getInputFilterSpecification

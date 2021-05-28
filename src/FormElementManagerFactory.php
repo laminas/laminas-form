@@ -11,7 +11,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 
 use function is_array;
 
-class FormElementManagerFactory implements FactoryInterface
+final class FormElementManagerFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}

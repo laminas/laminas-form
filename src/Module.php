@@ -7,7 +7,7 @@ namespace Laminas\Form;
 use Laminas\ModuleManager\Feature\FormElementProviderInterface;
 use Laminas\ModuleManager\ModuleManager;
 
-class Module
+final class Module
 {
     /**
      * Return laminas-form configuration for laminas-mvc application.

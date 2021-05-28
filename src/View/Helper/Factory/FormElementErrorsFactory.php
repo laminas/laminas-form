@@ -10,7 +10,7 @@ use Psr\Container\ContainerInterface;
 use function array_key_exists;
 use function is_array;
 
-class FormElementErrorsFactory
+final class FormElementErrorsFactory
 {
     public function __invoke(ContainerInterface $container): FormElementErrors
     {

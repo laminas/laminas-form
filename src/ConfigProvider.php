@@ -7,7 +7,7 @@ namespace Laminas\Form;
 use Laminas\Form\View\Helper\Factory\FormElementErrorsFactory;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
-class ConfigProvider
+final class ConfigProvider
 {
     /**
      * Return general-purpose laminas-i18n configuration.
