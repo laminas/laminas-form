@@ -532,7 +532,7 @@ class Fieldset extends Element implements FieldsetInterface
                 $values[$name] = [];
             }
 
-            $value = $values[$name] ?? [];
+            $value = $values[$name];
 
             if ($element instanceof FieldsetInterface && $element->allowValueBinding()) {
                 $value = $element->bindValues($value, empty($validationGroup[$name]) ? null : $validationGroup[$name]);
