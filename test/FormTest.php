@@ -2390,4 +2390,22 @@ class FormTest extends TestCase
         $this->assertEquals($value['numbers'][0]['number'], $fieldsetFoo->getObject()->getNumber());
         $this->assertEquals($value['numbers'][1]['number'], $fieldsetBar->getObject()->getNumber());
     }
+
+    public function testNullDataAreKeptNullToBoundObjects(): void
+    {
+        $object = new class {
+            /** @var null|int */
+            public $foo = 123;
+        };
+
+        $form = new Form();
+        $form->add(new Element('foo'));
+        $form->setHydrator(new ObjectPropertyHydrator());
+        $form->bind($object);
+
+        $form->setData(['foo' => null]);
+
+        $this->assertTrue($form->isValid());
+        $this->assertNull($object->foo);
+    }
 }
