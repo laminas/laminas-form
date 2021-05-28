@@ -925,4 +925,20 @@ class Form extends Fieldset implements FormInterface
 
         return $values;
     }
+
+    /**
+     * Set the input filter by name to use when binding an object to the element.
+     *
+     * The input filter manager {@see InputFilterPluginManager} is used via the
+     * form factory {@see Factory} and the input filter factory
+     * {@see \Laminas\InputFilter\Factory} to fetch the input filter.
+     */
+    public function setInputFilterByName(string $inputFilterName): void
+    {
+        $inputFilter = $this->getFormFactory()
+            ->getInputFilterFactory()
+            ->getInputFilterManager()
+            ->get($inputFilterName);
+        $this->setInputFilter($inputFilter);
+    }
 }

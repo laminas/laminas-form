@@ -30,6 +30,7 @@ use stdClass;
 use function extension_loaded;
 use function print_r;
 use function spl_object_hash;
+use function uniqid;
 use function var_export;
 
 final class FormTest extends TestCase
@@ -2407,5 +2408,19 @@ final class FormTest extends TestCase
 
         $this->assertTrue($form->isValid());
         $this->assertNull($object->foo);
+    }
+
+    public function testSetInputFilterByNameMethodShouldSetValidInputFilterForForm(): void
+    {
+        $inputFilterName    = uniqid('input_filter_');
+        $inputFilter        = $this->createMock(InputFilterInterface::class);
+        $inputFilterFactory = new InputFilterFactory();
+        $inputFilterFactory->getInputFilterManager()->setService($inputFilterName, $inputFilter);
+
+        $this->form->getFormFactory()->setInputFilterFactory($inputFilterFactory);
+
+        $this->form->setInputFilterByName($inputFilterName);
+
+        $this->assertSame($inputFilter, $this->form->getInputFilter());
     }
 }

@@ -9,9 +9,12 @@ use Laminas\Form\Element;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
+use Laminas\Form\FormElementManager;
 use Laminas\Hydrator;
 use Laminas\InputFilter\InputFilter;
+use Laminas\ServiceManager\PluginManagerInterface;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 use stdClass;
 
 final class FieldsetTest extends TestCase
@@ -19,9 +22,13 @@ final class FieldsetTest extends TestCase
     /** @var Fieldset */
     private $fieldset;
 
+    /** @var Hydrator\HydratorInterface */
+    private $hydrator;
+
     protected function setUp(): void
     {
         $this->fieldset = new Fieldset();
+        $this->hydrator = new Hydrator\ObjectPropertyHydrator();
     }
 
     public function populateFieldset(): void
@@ -481,7 +488,7 @@ final class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new Hydrator\ObjectPropertyHydrator());
+        $form->setHydrator($this->hydrator);
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -506,7 +513,7 @@ final class FieldsetTest extends TestCase
         $form->add($disabledInput);
 
         $form->setObject($object);
-        $form->setHydrator(new Hydrator\ObjectPropertyHydrator());
+        $form->setHydrator($this->hydrator);
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
         $this->assertEquals('modified', $object->not_disabled);
@@ -545,7 +552,7 @@ final class FieldsetTest extends TestCase
     {
         $form = new Form();
         $form->add(new Element('foo'));
-        $form->setHydrator(new Hydrator\ObjectPropertyHydrator());
+        $form->setHydrator($this->hydrator);
 
         $object      = new stdClass();
         $object->foo = 'Initial value';
@@ -604,5 +611,35 @@ final class FieldsetTest extends TestCase
 
         $this->fieldset->populateValues(new TestAsset\CustomTraversable(['subElement' => null]));
         $this->assertNull($subElement->getValue());
+    }
+
+    public function testSetHydratorByNameMethodShouldSetValidHydratorForForm(): void
+    {
+        // Hydrator manager
+        $hydratorManager = $this->createMock(PluginManagerInterface::class);
+        $hydratorManager->method('has')
+            ->with('NameOfHydrator')
+            ->willReturn(true);
+        $hydratorManager->method('get')
+            ->with('NameOfHydrator')
+            ->willReturn($this->hydrator);
+
+        // Service container
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('has')
+            ->with('HydratorManager')
+            ->willReturn(true);
+        $container->method('get')
+            ->with('HydratorManager')
+            ->willReturn($hydratorManager);
+
+        $this->fieldset->getFormFactory()->setFormElementManager(
+            new FormElementManager($container)
+        );
+
+        $this->fieldset->setHydratorByName('NameOfHydrator');
+
+        // Test
+        $this->assertSame($this->hydrator, $this->fieldset->getHydrator());
     }
 }
