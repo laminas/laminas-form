@@ -22,7 +22,7 @@ use function get_class;
 /**
  * @covers \Laminas\Form\Element\Date
  */
-class DateTest extends TestCase
+final class DateTest extends TestCase
 {
     /**
      * Stores the original set timezone

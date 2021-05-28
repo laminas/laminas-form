@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class EmailTest extends TestCase
+final class EmailTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesDefaultValidators(): void
     {

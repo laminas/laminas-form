@@ -8,7 +8,7 @@ use Laminas\Form\Annotation;
 
 use const PHP_MAJOR_VERSION;
 
-class AttributeBuilderTest extends AbstractBuilderTestCase
+final class AttributeBuilderTest extends AbstractBuilderTestCase
 {
     public function setUp(): void
     {

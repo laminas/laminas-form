@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use function count;
 use function get_class;
 
-class MultiCheckboxTest extends TestCase
+final class MultiCheckboxTest extends TestCase
 {
     public function useHiddenAttributeDataProvider(): array
     {

@@ -12,7 +12,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use function is_array;
 use function is_string;
 
-class FormAbstractServiceFactory implements AbstractFactoryInterface
+final class FormAbstractServiceFactory implements AbstractFactoryInterface
 {
     /** @var array */
     protected $config;

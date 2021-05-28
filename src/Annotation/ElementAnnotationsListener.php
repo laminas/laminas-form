@@ -39,7 +39,7 @@ use function is_array;
  * work with the annotation values, as well as the element and input specification
  * passed in the event object.
  */
-class ElementAnnotationsListener extends AbstractAnnotationsListener
+final class ElementAnnotationsListener extends AbstractAnnotationsListener
 {
     /**
      * {@inheritDoc}

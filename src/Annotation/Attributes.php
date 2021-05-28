@@ -18,7 +18,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class Attributes
+final class Attributes
 {
     /** @var array */
     protected $attributes;

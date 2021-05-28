@@ -29,7 +29,7 @@ use const E_USER_DEPRECATED;
  * @NamedArgumentConstructor
  */
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)]
-class Filter
+final class Filter
 {
     /** @var string */
     protected $name;

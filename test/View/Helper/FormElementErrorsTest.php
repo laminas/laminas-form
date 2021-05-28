@@ -15,7 +15,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 /**
  * @property FormElementErrorsHelper $helper
  */
-class FormElementErrorsTest extends AbstractCommonTestCase
+final class FormElementErrorsTest extends AbstractCommonTestCase
 {
     use ProphecyTrait;
 

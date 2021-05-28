@@ -25,7 +25,7 @@ use Laminas\EventManager\EventManagerInterface;
  * registered work with the annotation values, as well as the form
  * specification passed in the event object.
  */
-class FormAnnotationsListener extends AbstractAnnotationsListener
+final class FormAnnotationsListener extends AbstractAnnotationsListener
 {
     /**
      * Attach listeners

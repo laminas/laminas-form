@@ -32,7 +32,7 @@ use function print_r;
 use function spl_object_hash;
 use function var_export;
 
-class FormTest extends TestCase
+final class FormTest extends TestCase
 {
     /** @var Form */
     protected $form;

@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use function count;
 use function get_class;
 
-class SelectTest extends TestCase
+final class SelectTest extends TestCase
 {
     public function testProvidesInputSpecificationForSingleSelect(): void
     {

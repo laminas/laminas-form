@@ -31,7 +31,7 @@ use const E_USER_DEPRECATED;
  * @NamedArgumentConstructor
  */
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)]
-class Validator
+final class Validator
 {
     /** @var string */
     protected $name;

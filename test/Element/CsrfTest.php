@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class CsrfTest extends TestCase
+final class CsrfTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {

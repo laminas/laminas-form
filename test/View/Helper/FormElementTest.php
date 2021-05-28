@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 use function get_class;
 use function substr_count;
 
-class FormElementTest extends TestCase
+final class FormElementTest extends TestCase
 {
     /** @var FormElementHelper */
     public $helper;

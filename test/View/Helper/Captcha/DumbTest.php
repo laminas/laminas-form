@@ -15,7 +15,7 @@ use function strrev;
 /**
  * @property DumbCaptchaHelper $helper
  */
-class DumbTest extends AbstractCommonTestCase
+final class DumbTest extends AbstractCommonTestCase
 {
     /** @var DumbCaptcha */
     protected $captcha;

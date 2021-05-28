@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use function extension_loaded;
 use function get_class;
 
-class RangeTest extends TestCase
+final class RangeTest extends TestCase
 {
     public function testProvidesInputSpecificationWithDefaultAttributes(): void
     {

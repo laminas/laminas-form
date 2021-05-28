@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use function array_diff;
 use function array_map;
 
-class TelTest extends TestCase
+final class TelTest extends TestCase
 {
     public function testType(): void
     {

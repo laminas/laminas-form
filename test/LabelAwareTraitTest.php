@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @requires PHP 5.4
  * @group      Laminas_Form
  */
-class LabelAwareTraitTest extends TestCase
+final class LabelAwareTraitTest extends TestCase
 {
     public function testSetLabelAttributes(): void
     {

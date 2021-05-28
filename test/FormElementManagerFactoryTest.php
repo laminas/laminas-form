@@ -13,7 +13,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-class FormElementManagerFactoryTest extends TestCase
+final class FormElementManagerFactoryTest extends TestCase
 {
     use ProphecyTrait;
 

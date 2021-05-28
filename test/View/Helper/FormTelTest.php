@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormTelHelper $helper
  */
-class FormTelTest extends AbstractCommonTestCase
+final class FormTelTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

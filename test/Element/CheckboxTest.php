@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class CheckboxTest extends TestCase
+final class CheckboxTest extends TestCase
 {
     public function testProvidesValidDefaultValues(): void
     {

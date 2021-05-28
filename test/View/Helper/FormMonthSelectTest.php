@@ -15,7 +15,7 @@ use function extension_loaded;
 /**
  * @property FormMonthSelectHelper $helper
  */
-class FormMonthSelectTest extends AbstractCommonTestCase
+final class FormMonthSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

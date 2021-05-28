@@ -21,7 +21,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class Flags
+final class Flags
 {
     /** @var array */
     protected $flags;

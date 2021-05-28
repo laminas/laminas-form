@@ -13,7 +13,7 @@ use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 /**
  * @property FigletCaptchaHelper $helper
  */
-class FigletTest extends AbstractCommonTestCase
+final class FigletTest extends AbstractCommonTestCase
 {
     /** @var FigletCaptcha */
     private $captcha;
