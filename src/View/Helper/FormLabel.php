@@ -36,6 +36,9 @@ class FormLabel extends AbstractHelper
      * Always generates a "for" statement, as we cannot assume the form input
      * will be provided in the $labelContent.
      *
+     * @template T as null|ElementInterface
+     * @psalm-param T $element
+     * @psalm-return (T is null ? self : string)
      * @throws Exception\DomainException
      * @return string|FormLabel
      */

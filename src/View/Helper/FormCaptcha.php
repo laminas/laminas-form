@@ -17,6 +17,9 @@ class FormCaptcha extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
+     * @template T as null|Captcha
+     * @psalm-param T $element
+     * @psalm-return (T is null ? self : string)
      * @return string|FormCaptcha
      */
     public function __invoke(?Captcha $element = null)

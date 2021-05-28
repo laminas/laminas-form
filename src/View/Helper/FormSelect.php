@@ -81,6 +81,9 @@ class FormSelect extends AbstractHelper
      *
      * Proxies to {@link render()}.
      *
+     * @template T as null|ElementInterface
+     * @psalm-param T $element
+     * @psalm-return (T is null ? self : string)
      * @return string|FormSelect
      */
     public function __invoke(?ElementInterface $element = null)
