@@ -25,7 +25,7 @@ use const E_USER_DEPRECATED;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class Hydrator
+final class Hydrator
 {
     /** @var string */
     protected $type;

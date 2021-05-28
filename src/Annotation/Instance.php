@@ -23,7 +23,7 @@ use const E_USER_DEPRECATED;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class Instance
+final class Instance
 {
     /** @var string */
     protected $instance;

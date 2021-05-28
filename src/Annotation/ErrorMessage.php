@@ -18,7 +18,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class ErrorMessage
+final class ErrorMessage
 {
     /** @var string */
     protected $message;

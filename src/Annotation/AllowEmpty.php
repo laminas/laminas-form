@@ -23,7 +23,7 @@ use function is_bool;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class AllowEmpty
+final class AllowEmpty
 {
     /** @var bool */
     protected $allowEmpty;

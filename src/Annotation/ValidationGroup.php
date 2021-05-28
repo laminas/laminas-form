@@ -19,7 +19,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class ValidationGroup
+final class ValidationGroup
 {
     /** @var array */
     protected $validationGroup;

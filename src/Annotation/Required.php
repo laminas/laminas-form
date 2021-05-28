@@ -23,7 +23,7 @@ use function is_bool;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class Required
+final class Required
 {
     /** @var bool */
     protected $required;

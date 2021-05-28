@@ -19,7 +19,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class Input
+final class Input
 {
     /** @var string */
     protected $input;

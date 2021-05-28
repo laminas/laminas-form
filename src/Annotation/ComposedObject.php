@@ -26,7 +26,7 @@ use const E_USER_DEPRECATED;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class ComposedObject
+final class ComposedObject
 {
     /** @var string|null */
     protected $targetObject;

@@ -18,6 +18,6 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class Exclude
+final class Exclude
 {
 }

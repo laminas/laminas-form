@@ -25,7 +25,7 @@ use function sprintf;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-class InputFilter
+final class InputFilter
 {
     /** @var string|array */
     protected $inputFilter;

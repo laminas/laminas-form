@@ -15,7 +15,7 @@ use function is_array;
 use function is_subclass_of;
 use function sprintf;
 
-class BuilderAbstractFactory implements AbstractFactoryInterface
+final class BuilderAbstractFactory implements AbstractFactoryInterface
 {
     /** @var string[] */
     protected $aliases = [
