@@ -257,8 +257,12 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
         if (is_string($value)) {
             try {
                 $value = new PhpDateTime($value);
-            } catch (Exception $e) {
-                throw new InvalidArgumentException('Value should be a parsable string or an instance of \DateTime');
+            } catch (Exception $exception) {
+                throw new InvalidArgumentException(
+                    'Value should be a parsable string or an instance of \DateTime',
+                    0,
+                    $exception
+                );
             }
         }
 
