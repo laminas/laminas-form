@@ -5,14 +5,18 @@ declare(strict_types=1);
 namespace Laminas\Form\Element;
 
 use DateTime as PhpDateTime;
+use Exception;
 use Laminas\Form\Element;
 use Laminas\Form\ElementPrepareAwareInterface;
+use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
 use function date;
+use function is_array;
+use function is_string;
 use function sprintf;
 
 class MonthSelect extends Element implements InputProviderInterface, ElementPrepareAwareInterface
@@ -245,11 +249,27 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @param mixed $value
+     * @param  PhpDateTime|iterable|string|null|mixed $value
      * @return $this
      */
     public function setValue($value)
     {
+        if (is_string($value)) {
+            try {
+                $value = new PhpDateTime($value);
+            } catch (Exception $exception) {
+                throw new InvalidArgumentException(
+                    'Value should be a parsable string or an instance of \DateTime',
+                    0,
+                    $exception
+                );
+            }
+        }
+
+        if (null === $value && ! $this->shouldCreateEmptyOption()) {
+            $value = new PhpDateTime();
+        }
+
         if ($value instanceof PhpDateTime) {
             $value = [
                 'year'  => $value->format('Y'),
@@ -257,18 +277,27 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
             ];
         }
 
-        $this->yearElement->setValue($value['year']);
-        $this->monthElement->setValue($value['month']);
+        if (is_array($value)) {
+            $this->yearElement->setValue($value['year']);
+            $this->monthElement->setValue($value['month']);
+        } else {
+            $this->yearElement->setValue(null);
+            $this->monthElement->setValue(null);
+        }
+
         return $this;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
-        return sprintf(
-            '%s-%s',
-            $this->getYearElement()->getValue(),
-            $this->getMonthElement()->getValue()
-        );
+        $year  = $this->getYearElement()->getValue();
+        $month = $this->getMonthElement()->getValue();
+
+        if ($this->shouldCreateEmptyOption() && null === $year && null === $month) {
+            return null;
+        }
+
+        return sprintf('%04d-%02d', $year, $month);
     }
 
     /**

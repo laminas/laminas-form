@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Laminas\Form\Element;
 
-use ArrayAccess;
 use DateTime as PhpDateTime;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
@@ -13,6 +12,7 @@ use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 
 use function array_merge;
+use function is_array;
 use function is_string;
 use function sprintf;
 
@@ -93,8 +93,8 @@ class DateSelect extends MonthSelect
     }
 
     /**
-     * @param  string|array|ArrayAccess|PhpDateTime $value
-     * @return $this Provides a fluent interface
+     * @param  PhpDateTime|iterable|string|null|mixed $value
+     * @return $this
      * @throws InvalidArgumentException
      */
     public function setValue($value)
@@ -107,6 +107,10 @@ class DateSelect extends MonthSelect
             }
         }
 
+        if (null === $value && ! $this->shouldCreateEmptyOption()) {
+            $value = new PhpDateTime();
+        }
+
         if ($value instanceof PhpDateTime) {
             $value = [
                 'year'  => $value->format('Y'),
@@ -115,21 +119,30 @@ class DateSelect extends MonthSelect
             ];
         }
 
-        $this->yearElement->setValue($value['year']);
-        $this->monthElement->setValue($value['month']);
-        $this->dayElement->setValue($value['day']);
+        if (is_array($value)) {
+            $this->yearElement->setValue($value['year']);
+            $this->monthElement->setValue($value['month']);
+            $this->dayElement->setValue($value['day']);
+        } else {
+            $this->yearElement->setValue(null);
+            $this->monthElement->setValue(null);
+            $this->dayElement->setValue(null);
+        }
 
         return $this;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
-        return sprintf(
-            '%s-%s-%s',
-            $this->getYearElement()->getValue(),
-            $this->getMonthElement()->getValue(),
-            $this->getDayElement()->getValue()
-        );
+        $year  = $this->getYearElement()->getValue();
+        $month = $this->getMonthElement()->getValue();
+        $day   = $this->getDayElement()->getValue();
+
+        if ($this->shouldCreateEmptyOption() && null === $year && null === $month && null === $day) {
+            return null;
+        }
+
+        return sprintf('%04d-%02d-%02d', $year, $month, $day);
     }
 
     /**

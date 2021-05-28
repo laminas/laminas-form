@@ -84,4 +84,24 @@ final class MonthSelectTest extends TestCase
         $element->setValue(new DateTime('2012-09'));
         $this->assertEquals('2012-09', $element->getValue());
     }
+
+    public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption(): void
+    {
+        $element = new MonthSelectElement('foo');
+        $element->setShouldCreateEmptyOption(false);
+        $now = new DateTime();
+        $element->setValue(null);
+        $value = $element->getValue();
+        // the getValue() function returns the date in 'Y-m-d' format
+        $this->assertEquals($now->format('Y-m'), $value);
+    }
+
+    public function testNullSetValueIsNullWithEmptyOption(): void
+    {
+        $element = new MonthSelectElement('foo');
+        $element->setShouldCreateEmptyOption(true);
+        $element->setValue(null);
+        $value = $element->getValue();
+        $this->assertEquals(null, $value);
+    }
 }
