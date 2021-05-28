@@ -72,3 +72,24 @@ Method signature                                                     | Descripti
 `getAttributes() : array`                                            | Returns the attributes that will go on the message open format.
 `setTranslateMessages(bool $flag) : self`                            | Indicate whether or not element validation error messages should be translated during `render()`. Default is to translate them.
 `render(ElementInterface $element [, array $attributes = array()]) : string` | Renders validation errors for the provided `$element`. Attributes provided will be used in the `messageOpenFormat`, and merged with any provided previously via `setAttributes()`.
+
+## Usage in a laminas-mvc Application
+
+Within a [laminas-mvc](https://docs.laminas.dev/laminas-mvc/) application, the options for the view helper can be set via the application configuration.
+
+Add the following lines to a [configuration file](https://docs.laminas.dev/laminas-mvc/services/#default-configuration-options), e.g. `config/autoload/global.config.php`:
+
+```php
+return [
+    'view_helper_config' => [
+        'form_element_errors' => [
+            'attributes'               => ['class' => 'help-inline'],
+            'message_close_string'     => '</div>',
+            'message_open_format'      => '<div%s>',
+            'message_separator_string' => '',
+            'translate_messages'       => false,
+        ],
+    ],
+    // …
+];
+```
