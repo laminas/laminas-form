@@ -112,7 +112,7 @@ final class DateSelectTest extends TestCase
         $this->assertSame($element, $element->setValue('2014-01-01'));
     }
 
-    public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption()
+    public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption(): void
     {
         $element = new DateSelectElement('foo');
         $element->setShouldCreateEmptyOption(false);
@@ -123,7 +123,7 @@ final class DateSelectTest extends TestCase
         $this->assertEquals($now->format('Y-m-d'), $value);
     }
 
-    public function testNullSetValueIsNullWithEmptyOption()
+    public function testNullSetValueIsNullWithEmptyOption(): void
     {
         $element = new DateSelectElement('foo');
         $element->setShouldCreateEmptyOption(true);
