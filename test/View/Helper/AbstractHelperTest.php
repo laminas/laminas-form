@@ -222,4 +222,18 @@ class AbstractHelperTest extends AbstractCommonTestCase
             $this->helper->createAttributesString(['data-value' => "\xc3\x28"])
         );
     }
+
+    public function testNullValueForBooleanAttributeDisablesIt(): void
+    {
+        $this->helper->addValidAttribute('disabled');
+
+        $this->assertSame(
+            'disabled="disabled"',
+            $this->helper->createAttributesString(['disabled' => 'disabled'])
+        );
+        $this->assertSame(
+            '',
+            $this->helper->createAttributesString(['disabled' => null])
+        );
+    }
 }
