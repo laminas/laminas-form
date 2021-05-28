@@ -20,7 +20,7 @@ use function uniqid;
 /**
  * @property FormRowHelper $helper
  */
-class FormRowTest extends AbstractCommonTestCase
+final class FormRowTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

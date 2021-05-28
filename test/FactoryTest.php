@@ -27,7 +27,7 @@ use LaminasTest\Form\TestAsset\InputFilter;
 use LaminasTest\Form\TestAsset\Model;
 use PHPUnit\Framework\TestCase;
 
-class FactoryTest extends TestCase
+final class FactoryTest extends TestCase
 {
     /** @var FormFactory */
     protected $factory;

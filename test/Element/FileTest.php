@@ -10,7 +10,7 @@ use Laminas\InputFilter\Factory as InputFilterFactory;
 use Laminas\InputFilter\FileInput;
 use PHPUnit\Framework\TestCase;
 
-class FileTest extends TestCase
+final class FileTest extends TestCase
 {
     public function testProvidesDefaultInputSpecification(): void
     {

@@ -14,7 +14,7 @@ use Laminas\InputFilter\InputFilter;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class FieldsetTest extends TestCase
+final class FieldsetTest extends TestCase
 {
     /** @var Fieldset */
     private $fieldset;

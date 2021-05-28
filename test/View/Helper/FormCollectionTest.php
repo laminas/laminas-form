@@ -16,7 +16,7 @@ use ReflectionMethod;
 /**
  * @property FormCollectionHelper $helper
  */
-class FormCollectionTest extends AbstractCommonTestCase
+final class FormCollectionTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

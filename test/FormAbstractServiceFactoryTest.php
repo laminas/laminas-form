@@ -18,7 +18,7 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Validator\ValidatorPluginManager;
 use PHPUnit\Framework\TestCase;
 
-class FormAbstractServiceFactoryTest extends TestCase
+final class FormAbstractServiceFactoryTest extends TestCase
 {
     /** @var ServiceManager */
     private $services;

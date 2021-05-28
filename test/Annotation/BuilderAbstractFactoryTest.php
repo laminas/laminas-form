@@ -13,13 +13,14 @@ use Laminas\Form\Annotation\BuilderAbstractFactory;
 use Laminas\Form\Exception\IncompatiblePhpVersionException;
 use Laminas\Form\FormElementManager;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use stdClass;
 
 use const PHP_MAJOR_VERSION;
 
-class BuilderAbstractFactoryTest extends TestCase
+final class BuilderAbstractFactoryTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -28,9 +29,8 @@ class BuilderAbstractFactoryTest extends TestCase
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);
 
-        $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
-        $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->get('FormElementManager')->willReturn(new FormElementManager(new ServiceManager()));
         $container->has('config')->willReturn(false);
         $container->has('InputFilterManager')->willReturn(false);
 
@@ -58,9 +58,8 @@ class BuilderAbstractFactoryTest extends TestCase
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);
 
-        $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
-        $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->get('FormElementManager')->willReturn(new FormElementManager(new ServiceManager()));
         $container->has('config')->willReturn(false);
         $container->has('InputFilterManager')->willReturn(false);
 
@@ -88,9 +87,8 @@ class BuilderAbstractFactoryTest extends TestCase
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);
 
-        $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
-        $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->get('FormElementManager')->willReturn(new FormElementManager(new ServiceManager()));
         $container->has('config')->willReturn(false);
         $container->has('InputFilterManager')->willReturn(false);
 
@@ -105,9 +103,8 @@ class BuilderAbstractFactoryTest extends TestCase
         $container = $this->prophesize(ContainerInterface::class);
         $events    = $this->prophesize(EventManagerInterface::class);
 
-        $elements = $this->prophesize(FormElementManager::class);
         $container->get('EventManager')->willReturn($events->reveal());
-        $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->get('FormElementManager')->willReturn(new FormElementManager(new ServiceManager()));
         $container->has('InputFilterManager')->willReturn(false);
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn([
@@ -130,11 +127,9 @@ class BuilderAbstractFactoryTest extends TestCase
         $listener = $this->prophesize(ListenerAggregateInterface::class);
         $listener->attach($events->reveal())->shouldBeCalled();
 
-        $elements = $this->prophesize(FormElementManager::class);
-
         $container->has('InputFilterManager')->willReturn(false);
         $container->get('EventManager')->willReturn($events->reveal());
-        $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->get('FormElementManager')->willReturn(new FormElementManager(new ServiceManager()));
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn([
             'form_annotation_builder' => [
@@ -155,10 +150,8 @@ class BuilderAbstractFactoryTest extends TestCase
         $events    = $this->prophesize(EventManagerInterface::class);
         $listener  = $this->prophesize(stdClass::class);
 
-        $elements = $this->prophesize(FormElementManager::class);
-
         $container->get('EventManager')->willReturn($events->reveal());
-        $container->get('FormElementManager')->willReturn($elements->reveal());
+        $container->get('FormElementManager')->willReturn(new FormElementManager(new ServiceManager()));
         $container->has('InputFilterManager')->willReturn(false);
         $container->has('config')->willReturn(true);
         $container->get('config')->willReturn([

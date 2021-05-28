@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 use function array_merge;
 
-class ElementTest extends TestCase
+final class ElementTest extends TestCase
 {
     public function testAttributesAreEmptyByDefault(): void
     {

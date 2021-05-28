@@ -25,7 +25,7 @@ use function strtoupper;
 /**
  * @group      Laminas_Form
  */
-class FormElementManagerTest extends TestCase
+final class FormElementManagerTest extends TestCase
 {
     /** @var FormElementManager */
     protected $manager;

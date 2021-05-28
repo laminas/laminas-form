@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormRangeHelper $helper
  */
-class FormRangeTest extends AbstractCommonTestCase
+final class FormRangeTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

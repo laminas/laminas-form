@@ -17,7 +17,7 @@ use function substr_count;
 /**
  * @property FormMultiCheckboxHelper $helper
  */
-class FormMultiCheckboxTest extends AbstractCommonTestCase
+final class FormMultiCheckboxTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

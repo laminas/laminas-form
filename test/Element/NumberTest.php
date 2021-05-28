@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class NumberTest extends TestCase
+final class NumberTest extends TestCase
 {
     public function testProvidesInputSpecificationWithDefaultAttributes(): void
     {

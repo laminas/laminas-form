@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-class ServiceManagerTest extends TestCase
+final class ServiceManagerTest extends TestCase
 {
     use ProphecyTrait;
 

@@ -15,7 +15,7 @@ use function substr;
 /**
  * @property FormDateTimeSelectHelper $helper
  */
-class FormDateTimeSelectTest extends AbstractCommonTestCase
+final class FormDateTimeSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

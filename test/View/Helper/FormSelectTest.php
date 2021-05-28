@@ -19,7 +19,7 @@ use function substr_count;
 /**
  * @property FormSelectHelper $helper
  */
-class FormSelectTest extends AbstractCommonTestCase
+final class FormSelectTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 use function array_shift;
 
-class CaptchaTest extends TestCase
+final class CaptchaTest extends TestCase
 {
     public function testCaptchaIsUndefinedByDefault(): void
     {

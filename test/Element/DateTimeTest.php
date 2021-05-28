@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class DateTimeTest extends TestCase
+final class DateTimeTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {

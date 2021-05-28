@@ -14,7 +14,7 @@ use Laminas\I18n\Translator\Translator;
  *
  * @covers \Laminas\Form\View\Helper\AbstractHelper
  */
-class AbstractHelperTest extends AbstractCommonTestCase
+final class AbstractHelperTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

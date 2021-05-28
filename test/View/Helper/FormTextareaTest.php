@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormTextareaHelper $helper
  */
-class FormTextareaTest extends AbstractCommonTestCase
+final class FormTextareaTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

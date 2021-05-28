@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class WeekTest extends TestCase
+final class WeekTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {

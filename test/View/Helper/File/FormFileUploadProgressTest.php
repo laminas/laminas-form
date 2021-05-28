@@ -10,7 +10,7 @@ use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 /**
  * @property FormFileUploadProgress $helper
  */
-class FormFileUploadProgressTest extends AbstractCommonTestCase
+final class FormFileUploadProgressTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

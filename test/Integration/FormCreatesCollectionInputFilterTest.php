@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 use function sprintf;
 
-class FormCreatesCollectionInputFilterTest extends TestCase
+final class FormCreatesCollectionInputFilterTest extends TestCase
 {
     public static function assertValidatorFound(string $class, array $validators, ?string $message = null): void
     {

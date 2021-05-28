@@ -16,7 +16,7 @@ use function sprintf;
 /**
  * @property FormButtonHelper $helper
  */
-class FormButtonTest extends AbstractCommonTestCase
+final class FormButtonTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

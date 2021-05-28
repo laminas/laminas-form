@@ -12,7 +12,7 @@ use LaminasTest\Form\TestAsset\ArgumentRecorder;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
-class ElementFactoryTest extends TestCase
+final class ElementFactoryTest extends TestCase
 {
     use ProphecyTrait;
 

@@ -18,7 +18,7 @@ use function sprintf;
 use function str_replace;
 use function ucfirst;
 
-class FormElementErrorsFactoryTest extends TestCase
+final class FormElementErrorsFactoryTest extends TestCase
 {
     public function testFactoryShouldCreateHelperWithoutConfigService(): void
     {

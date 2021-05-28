@@ -22,7 +22,7 @@ use function unlink;
 /**
  * @property ImageCaptchaHelper $helper
  */
-class ImageTest extends AbstractCommonTestCase
+final class ImageTest extends AbstractCommonTestCase
 {
     /** @var string */
     protected $tmpDir;

@@ -16,7 +16,7 @@ use function getenv;
 /**
  * @property ReCaptchaHelper $helper
  */
-class ReCaptchaTest extends AbstractCommonTestCase
+final class ReCaptchaTest extends AbstractCommonTestCase
 {
     /** @var ReCaptcha */
     private $captcha;

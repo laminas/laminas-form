@@ -14,7 +14,7 @@ use function sprintf;
 /**
  * @property FormResetHelper $helper
  */
-class FormResetTest extends AbstractCommonTestCase
+final class FormResetTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

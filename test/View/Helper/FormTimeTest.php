@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormTimeHelper $helper
  */
-class FormTimeTest extends AbstractCommonTestCase
+final class FormTimeTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormSearchHelper $helper
  */
-class FormSearchTest extends AbstractCommonTestCase
+final class FormSearchTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

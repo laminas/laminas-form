@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class UrlTest extends TestCase
+final class UrlTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {

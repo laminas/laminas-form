@@ -14,7 +14,7 @@ use function sprintf;
 /**
  * @property FormSubmitHelper $helper
  */
-class FormSubmitTest extends AbstractCommonTestCase
+final class FormSubmitTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

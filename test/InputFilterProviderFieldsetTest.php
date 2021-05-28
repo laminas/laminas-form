@@ -7,7 +7,7 @@ namespace LaminasTest\Form;
 use Laminas\Form\InputFilterProviderFieldset;
 use PHPUnit\Framework\TestCase;
 
-class InputFilterProviderFieldsetTest extends TestCase
+final class InputFilterProviderFieldsetTest extends TestCase
 {
     /** @var InputFilterProviderFieldset */
     private $fieldset;

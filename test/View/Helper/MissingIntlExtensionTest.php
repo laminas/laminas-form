@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 use function extension_loaded;
 
-class MissingIntlExtensionTest extends TestCase
+final class MissingIntlExtensionTest extends TestCase
 {
     protected function setUp(): void
     {

@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormImageHelper $helper
  */
-class FormImageTest extends AbstractCommonTestCase
+final class FormImageTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

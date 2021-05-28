@@ -16,7 +16,7 @@ use function sprintf;
 /**
  * @property FormLabelHelper $helper
  */
-class FormLabelTest extends AbstractCommonTestCase
+final class FormLabelTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

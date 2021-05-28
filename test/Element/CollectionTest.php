@@ -40,7 +40,7 @@ use function extension_loaded;
 use function iterator_count;
 use function spl_object_hash;
 
-class CollectionTest extends TestCase
+final class CollectionTest extends TestCase
 {
     /** @var FormCollection  */
     protected $form;

@@ -14,7 +14,7 @@ use function substr_count;
 /**
  * @property FormRadioHelper $helper
  */
-class FormRadioTest extends AbstractCommonTestCase
+final class FormRadioTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

@@ -23,7 +23,7 @@ use function unlink;
 /**
  * @property FormCaptchaHelper $helper
  */
-class FormCaptchaTest extends AbstractCommonTestCase
+final class FormCaptchaTest extends AbstractCommonTestCase
 {
     /** @var null|string */
     protected $testDir;

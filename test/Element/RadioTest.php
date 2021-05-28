@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class RadioTest extends TestCase
+final class RadioTest extends TestCase
 {
     public function useHiddenAttributeDataProvider(): array
     {

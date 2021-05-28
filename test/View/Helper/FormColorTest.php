@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormColorHelper $helper
  */
-class FormColorTest extends AbstractCommonTestCase
+final class FormColorTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {

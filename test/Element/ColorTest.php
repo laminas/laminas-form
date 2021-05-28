@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-class ColorTest extends TestCase
+final class ColorTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
     {

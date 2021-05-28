@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * @property FormPasswordHelper $helper
  */
-class FormPasswordTest extends AbstractCommonTestCase
+final class FormPasswordTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
