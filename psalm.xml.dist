@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-    errorLevel="4"
+    errorLevel="2"
     errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
@@ -29,6 +29,11 @@
                 <referencedMethod name="PHPUnit\Framework\TestCase::addToAssertionCount"/>
             </errorLevel>
         </InternalMethod>
+        <MissingConstructor>
+            <errorLevel type="suppress">
+              <directory name="test" />
+            </errorLevel>
+        </MissingConstructor>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>

@@ -176,8 +176,8 @@ final class FormCaptchaTest extends AbstractCommonTestCase
         }
 
         $captcha = new Captcha\ReCaptcha();
-        $captcha->setPubKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY'));
-        $captcha->setPrivKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY'));
+        $captcha->setSiteKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY'));
+        $captcha->setSecretKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY'));
 
         $element = $this->getElement();
         $element->setCaptcha($captcha);

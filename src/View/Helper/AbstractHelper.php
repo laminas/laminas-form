@@ -64,7 +64,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * Translatable attributes
      *
-     * @var array
+     * @var array<string, bool>
      */
     protected $translatableAttributes = [
         'placeholder' => true,

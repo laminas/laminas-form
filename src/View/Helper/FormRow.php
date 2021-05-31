@@ -154,6 +154,7 @@ class FormRow extends AbstractHelper
             return $this->view->render($this->partial, $vars);
         }
 
+        $elementErrors = '';
         if ($this->renderErrors) {
             $elementErrors = $elementErrorsHelper->render($element);
         }
@@ -302,7 +303,7 @@ class FormRow extends AbstractHelper
                 __METHOD__,
                 self::class,
                 self::class,
-                (string) $labelPosition
+                $labelPosition
             ));
         }
         $this->labelPosition = $labelPosition;

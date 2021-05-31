@@ -689,7 +689,7 @@ final class CollectionTest extends TestCase
         $mockHydrator = $this->createMock(HydratorInterface::class);
         $mockHydrator->expects($this->exactly(2))
             ->method('extract')
-            ->willReturnCallback(static function ($object) {
+            ->willReturnCallback(static function (object $object): array {
                 return ['value' => $object->field . '_foo'];
             });
 

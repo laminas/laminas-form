@@ -13,7 +13,7 @@ class Cat implements InputFilterAwareInterface
     /** @var string */
     protected $name;
 
-    /** @var InputFilterInterface */
+    /** @var null|InputFilterInterface */
     protected $inputFilter;
 
     /**

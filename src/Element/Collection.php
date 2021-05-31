@@ -86,7 +86,7 @@ class Collection extends Fieldset
     /**
      * Element used as a template
      *
-     * @var ElementInterface|FieldsetInterface
+     * @var null|ElementInterface|FieldsetInterface
      */
     protected $templateElement;
 
@@ -533,6 +533,7 @@ class Collection extends Fieldset
      */
     protected function createNewTargetElementInstance(): ElementInterface
     {
+        assert($this->targetElement !== null);
         return clone $this->targetElement;
     }
 

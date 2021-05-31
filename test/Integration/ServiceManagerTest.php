@@ -8,7 +8,7 @@ use Laminas\Form\Element;
 use Laminas\Form\Form;
 use Laminas\Form\FormElementManagerFactory;
 use Laminas\ServiceManager\Config;
-use Laminas\ServiceManager\InitializerInterface;
+use Laminas\ServiceManager\Initializer\InitializerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -52,7 +52,7 @@ final class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig = new Config([
             'factories'    => [
-                'InitializableElement' => function () use ($element) {
+                'InitializableElement' => static function () use ($element): Element {
                     return $element->reveal();
                 },
             ],
@@ -81,10 +81,7 @@ final class ServiceManagerTest extends TestCase
         $formElementManager = $serviceManager->get('FormElementManager');
 
         $initializer                 = $this->prophesize(InitializerInterface::class);
-        $formElementManagerAssertion = /**
-         * @return true
-         */
-        function ($form) use ($formElementManager): bool {
+        $formElementManagerAssertion = static function ($form) use ($formElementManager): bool {
             TestCase::assertInstanceOf(Form::class, $form);
             TestCase::assertSame($formElementManager, $form->getFormFactory()->getFormElementManager());
             return true;

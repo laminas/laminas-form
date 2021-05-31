@@ -26,7 +26,7 @@ class FormReset extends FormInput
     /**
      * Translatable attributes
      *
-     * @var array
+     * @var array<string, bool>
      */
     protected $translatableAttributes = [
         'value' => true,

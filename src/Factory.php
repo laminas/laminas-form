@@ -232,6 +232,7 @@ class Factory
     {
         $spec     = $this->validateSpecification($spec, __METHOD__);
         $fieldset = $this->configureElement($fieldset, $spec);
+        assert($fieldset instanceof FieldsetInterface);
 
         if (isset($spec['object'])) {
             $this->prepareAndInjectObject($spec['object'], $fieldset, __METHOD__);
@@ -271,6 +272,7 @@ class Factory
     {
         $spec = $this->validateSpecification($spec, __METHOD__);
         $form = $this->configureFieldset($form, $spec);
+        assert($form instanceof FormInterface);
 
         if (isset($spec['input_filter'])) {
             $this->prepareAndInjectInputFilter($spec['input_filter'], $form, __METHOD__);
@@ -521,7 +523,7 @@ class Factory
      *
      * Takes an array of elements names
      *
-     * @param  string|array|Traversable $spec
+     * @param  class-string|array $spec
      * @throws Exception\DomainException If validation group given is not an array.
      */
     protected function prepareAndInjectValidationGroup($spec, FormInterface $form, string $method): void
@@ -531,7 +533,7 @@ class Factory
                 throw new Exception\DomainException(sprintf(
                     '%s expects an array for validation group; received "%s"',
                     $method,
-                    $spec
+                    is_object($spec) ? get_class($spec) : gettype($spec)
                 ));
             }
         }

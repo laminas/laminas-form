@@ -198,7 +198,7 @@ final class FormElementManager extends AbstractPluginManager
     /**
      * Interface all plugins managed by this class must implement.
      *
-     * @var string
+     * @var class-string
      */
     protected $instanceOf = ElementInterface::class;
 

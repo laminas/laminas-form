@@ -640,7 +640,7 @@ class Form extends Fieldset implements FormInterface
             if (null === $this->baseFieldset) {
                 $this->filter = $this->object->getInputFilter();
             } else {
-                $name = $this->baseFieldset->getName();
+                $name = (string) $this->baseFieldset->getName();
                 if (! $this->filter instanceof InputFilterInterface || ! $this->filter->has($name)) {
                     $filter = new InputFilter();
                     $filter->setFactory($this->getFormFactory()->getInputFilterFactory());
@@ -899,7 +899,7 @@ class Form extends Fieldset implements FormInterface
         }
 
         if ($onlyBase && $this->baseFieldset !== null) {
-            $name = $this->baseFieldset->getName();
+            $name = (string) $this->baseFieldset->getName();
             if (array_key_exists($name, $data)) {
                 $this->baseFieldset->populateValues($data[$name]);
             }
@@ -917,8 +917,8 @@ class Form extends Fieldset implements FormInterface
     {
         if ($this->baseFieldset !== null) {
             assert($this->baseFieldset instanceof Fieldset);
-            $name          = $this->baseFieldset->getName();
-            $values[$name] = $this->baseFieldset->extract();
+            $name   = (string) $this->baseFieldset->getName();
+            $values = [$name => $this->baseFieldset->extract()];
         } else {
             $values = parent::extract();
         }
