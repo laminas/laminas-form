@@ -533,6 +533,7 @@ class Collection extends Fieldset
      */
     protected function createNewTargetElementInstance(): ElementInterface
     {
+        assert($this->targetElement !== null);
         return clone $this->targetElement;
     }
 

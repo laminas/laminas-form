@@ -137,7 +137,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * Must return an array with two elements, where the first element is the form specification and the
      * second element is the input filter specification.
      *
-     * @param string|object $entity
+     * @param class-string|object $entity
      * @return array
      */
     abstract protected function getFormSpecificationInternal($entity): array;
@@ -145,7 +145,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Create a form from an object.
      *
-     * @param  string|object $entity
+     * @param  class-string|object $entity
      */
     public function createForm($entity): FormInterface
     {

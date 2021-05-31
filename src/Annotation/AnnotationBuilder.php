@@ -28,7 +28,7 @@ final class AnnotationBuilder extends AbstractBuilder
     /**
      * Derive a form specification from doctrine annotations for a given entity
      *
-     * @param  object|string $entity
+     * @param  object|class-string $entity
      * @throws ReflectionException
      * @return array
      */

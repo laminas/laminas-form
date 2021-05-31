@@ -7,7 +7,6 @@ namespace Laminas\Form;
 use Interop\Container\ContainerInterface;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 
 use function is_array;
 use function is_string;
@@ -64,7 +63,6 @@ final class FormAbstractServiceFactory implements AbstractFactoryInterface
     /**
      * Get forms configuration, if any
      *
-     * @param  ServiceLocatorInterface $container
      * @return array
      */
     protected function getConfig(ContainerInterface $container): array

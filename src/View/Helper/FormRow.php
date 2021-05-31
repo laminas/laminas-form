@@ -154,6 +154,7 @@ class FormRow extends AbstractHelper
             return $this->view->render($this->partial, $vars);
         }
 
+        $elementErrors = '';
         if ($this->renderErrors) {
             $elementErrors = $elementErrorsHelper->render($element);
         }

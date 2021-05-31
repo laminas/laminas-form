@@ -36,7 +36,7 @@ final class AttributeBuilder extends AbstractBuilder
     /**
      * Derive a form specification from PHP attributes for a given entity
      *
-     * @param  object|string $entity
+     * @param  object|class-string $entity
      * @throws ReflectionException
      * @return array
      */

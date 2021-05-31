@@ -68,7 +68,7 @@ class FormSelect extends AbstractHelper
         'label'    => true,
     ];
 
-    /** @var bool[] */
+    /** @var array<string, bool> */
     protected $translatableAttributes = [
         'label' => true,
     ];
@@ -301,10 +301,7 @@ class FormSelect extends AbstractHelper
         return $value;
     }
 
-    /**
-     * @return FormHidden|string
-     */
-    protected function renderHiddenElement(SelectElement $element)
+    protected function renderHiddenElement(SelectElement $element): string
     {
         $hiddenElement = new Hidden($element->getName());
         $hiddenElement->setValue($element->getUnselectedValue());

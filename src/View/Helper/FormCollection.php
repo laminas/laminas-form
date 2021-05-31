@@ -110,7 +110,7 @@ class FormCollection extends AbstractHelper
     public function render(ElementInterface $element): string
     {
         $renderer = $this->getView();
-        if (! method_exists($renderer, 'plugin')) {
+        if ($renderer !== null && ! method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
             return '';
         }
@@ -259,7 +259,6 @@ class FormCollection extends AbstractHelper
     /**
      * Retrieve the element helper.
      *
-     * @return FormRow
      * @throws RuntimeException
      */
     protected function getElementHelper(): HelperInterface
@@ -296,8 +295,6 @@ class FormCollection extends AbstractHelper
 
     /**
      * Retrieve the fieldset helper.
-     *
-     * @return FormCollection
      */
     protected function getFieldsetHelper(): HelperInterface
     {

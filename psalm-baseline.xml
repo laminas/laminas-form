@@ -15,6 +15,34 @@
       <code>getAttributes</code>
     </UndefinedMethod>
   </file>
+  <file src="src/Annotation/BuilderAbstractFactory.php">
+    <LessSpecificReturnStatement occurrences="1">
+      <code>$annotationBuilder</code>
+    </LessSpecificReturnStatement>
+    <MoreSpecificReturnType occurrences="1">
+      <code>AbstractBuilder</code>
+    </MoreSpecificReturnType>
+  </file>
+  <file src="src/Annotation/ElementAnnotationsListener.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getFormSpecification</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyNullReference occurrences="1">
+      <code>getFormSpecification</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="src/Element.php">
+    <LessSpecificReturnStatement occurrences="8">
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+    </LessSpecificReturnStatement>
+  </file>
   <file src="src/Element/Collection.php">
     <ImplementedParamTypeMismatch occurrences="1">
       <code>$object</code>
@@ -22,32 +50,111 @@
     <MoreSpecificImplementedParamType occurrences="1">
       <code>$object</code>
     </MoreSpecificImplementedParamType>
+    <NonInvariantDocblockPropertyType occurrences="1">
+      <code>$object</code>
+    </NonInvariantDocblockPropertyType>
+    <PossiblyNullArgument occurrences="1">
+      <code>$templateElement</code>
+    </PossiblyNullArgument>
+    <PossiblyNullPropertyAssignmentValue occurrences="1">
+      <code>$this-&gt;createTemplateElement()</code>
+    </PossiblyNullPropertyAssignmentValue>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
   </file>
   <file src="src/Factory.php">
+    <LessSpecificReturnStatement occurrences="2">
+      <code>$this-&gt;create($spec)</code>
+      <code>$this-&gt;create($spec)</code>
+    </LessSpecificReturnStatement>
+    <MoreSpecificReturnType occurrences="2">
+      <code>FieldsetInterface</code>
+      <code>FormInterface</code>
+    </MoreSpecificReturnType>
     <TooManyArguments occurrences="1">
       <code>setValidationGroup</code>
     </TooManyArguments>
   </file>
   <file src="src/Fieldset.php">
+    <LessSpecificReturnStatement occurrences="2">
+      <code>$this</code>
+      <code>$this</code>
+    </LessSpecificReturnStatement>
     <MoreSpecificImplementedParamType occurrences="1">
       <code>$object</code>
     </MoreSpecificImplementedParamType>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$object</code>
+    </PossiblyInvalidArgument>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
   </file>
   <file src="src/Form.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$childFieldset</code>
+      <code>$filter</code>
+    </ArgumentTypeCoercion>
+    <LessSpecificReturnStatement occurrences="3">
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+    </LessSpecificReturnStatement>
+    <PossiblyInvalidArgument occurrences="2">
+      <code>$collectionInputFilter-&gt;get($name)</code>
+      <code>$inputFilter</code>
+    </PossiblyInvalidArgument>
+    <PossiblyNullArgument occurrences="1">
+      <code>$this-&gt;data</code>
+    </PossiblyNullArgument>
+    <PossiblyNullArrayOffset occurrences="2">
+      <code>$data</code>
+      <code>$validationGroup</code>
+    </PossiblyNullArrayOffset>
+    <PossiblyUndefinedMethod occurrences="15">
+      <code>add</code>
+      <code>add</code>
+      <code>add</code>
+      <code>add</code>
+      <code>add</code>
+      <code>add</code>
+      <code>get</code>
+      <code>get</code>
+      <code>has</code>
+      <code>has</code>
+      <code>has</code>
+      <code>has</code>
+      <code>has</code>
+      <code>merge</code>
+      <code>merge</code>
+    </PossiblyUndefinedMethod>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
   </file>
+  <file src="src/FormAbstractServiceFactory.php">
+    <PossiblyNullReference occurrences="2">
+      <code>setPluginManager</code>
+      <code>setPluginManager</code>
+    </PossiblyNullReference>
+  </file>
   <file src="src/FormElementManager.php">
+    <NonInvariantDocblockPropertyType occurrences="3">
+      <code>$aliases</code>
+      <code>$factories</code>
+      <code>$instanceOf</code>
+    </NonInvariantDocblockPropertyType>
     <ParamNameMismatch occurrences="1">
       <code>$name</code>
     </ParamNameMismatch>
+  </file>
+  <file src="src/View/Helper/AbstractHelper.php">
+    <PossiblyNullReference occurrences="3">
+      <code>translate</code>
+      <code>translate</code>
+      <code>translate</code>
+    </PossiblyNullReference>
   </file>
   <file src="src/View/Helper/Form.php">
     <UndefinedMagicMethod occurrences="2">
@@ -55,10 +162,48 @@
       <code>formRow</code>
     </UndefinedMagicMethod>
   </file>
+  <file src="src/View/Helper/FormCollection.php">
+    <TypeDoesNotContainType occurrences="4">
+      <code>assert(is_callable($elementHelper))</code>
+      <code>assert(is_callable($elementHelper))</code>
+      <code>assert(is_callable($fieldsetHelper))</code>
+      <code>assert(is_callable($fieldsetHelper))</code>
+    </TypeDoesNotContainType>
+  </file>
+  <file src="src/View/Helper/FormElementErrors.php">
+    <PossiblyNullReference occurrences="1">
+      <code>translate</code>
+    </PossiblyNullReference>
+  </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">
       <code>$element</code>
     </InvalidArgument>
+    <PossiblyUndefinedMethod occurrences="2">
+      <code>hasAttribute</code>
+      <code>hasAttribute</code>
+    </PossiblyUndefinedMethod>
+  </file>
+  <file src="src/View/Helper/FormSelect.php">
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$optionSpec</code>
+    </PossiblyInvalidArgument>
+  </file>
+  <file src="test/Annotation/AbstractBuilderTestCase.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>'ArrayObject'</code>
+    </ArgumentTypeCoercion>
+    <PossiblyUndefinedMethod occurrences="9">
+      <code>allowEmpty</code>
+      <code>getFilterChain</code>
+      <code>getFilterChain</code>
+      <code>getValidatorChain</code>
+      <code>getValidatorChain</code>
+      <code>getValidatorChain</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+    </PossiblyUndefinedMethod>
   </file>
   <file src="test/Element/CaptchaTest.php">
     <NullArgument occurrences="1">
@@ -66,11 +211,45 @@
     </NullArgument>
   </file>
   <file src="test/Element/CollectionTest.php">
+    <ArgumentTypeCoercion occurrences="5">
+      <code>$result</code>
+      <code>'ArrayAccess'</code>
+      <code>'ArrayObject'</code>
+      <code>'stdClass'</code>
+      <code>'stdClass'</code>
+    </ArgumentTypeCoercion>
     <NullArgument occurrences="1">
       <code>null</code>
     </NullArgument>
+    <PossiblyInvalidArgument occurrences="1">
+      <code>$result</code>
+    </PossiblyInvalidArgument>
+    <PossiblyInvalidArrayAccess occurrences="1">
+      <code>$result['text']</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidPropertyFetch occurrences="1">
+      <code>$result-&gt;collection</code>
+    </PossiblyInvalidPropertyFetch>
+    <PossiblyUndefinedMethod occurrences="1">
+      <code>setObject</code>
+    </PossiblyUndefinedMethod>
+    <PossiblyUndefinedVariable occurrences="2">
+      <code>$products</code>
+      <code>$shop</code>
+    </PossiblyUndefinedVariable>
+  </file>
+  <file src="test/FactoryTest.php">
+    <PossiblyUndefinedVariable occurrences="4">
+      <code>$test</code>
+      <code>$test</code>
+      <code>$test</code>
+      <code>$test</code>
+    </PossiblyUndefinedVariable>
   </file>
   <file src="test/FieldsetTest.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>'stdClass'</code>
+    </ArgumentTypeCoercion>
     <InvalidArgument occurrences="1">
       <code>'foo'</code>
     </InvalidArgument>
@@ -78,14 +257,211 @@
       <code>null</code>
     </NullArgument>
   </file>
+  <file src="test/FormAbstractServiceFactoryTest.php">
+    <PossiblyNullReference occurrences="4">
+      <code>getPluginManager</code>
+      <code>getPluginManager</code>
+      <code>getPluginManager</code>
+      <code>getPluginManager</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="test/FormElementManagerTest.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$this-&gt;getInvalidServiceException()</code>
+      <code>$this-&gt;getInvalidServiceException()</code>
+    </ArgumentTypeCoercion>
+  </file>
+  <file src="test/FormTest.php">
+    <PossiblyInvalidArgument occurrences="2">
+      <code>$data</code>
+      <code>$data</code>
+    </PossiblyInvalidArgument>
+    <PossiblyUndefinedMethod occurrences="24">
+      <code>get</code>
+      <code>get</code>
+      <code>get</code>
+      <code>getFilterChain</code>
+      <code>getFilterChain</code>
+      <code>getFilterChain</code>
+      <code>getFilterChain</code>
+      <code>getName</code>
+      <code>getName</code>
+      <code>getName</code>
+      <code>getValidatorChain</code>
+      <code>getValidatorChain</code>
+      <code>getValidatorChain</code>
+      <code>getValidatorChain</code>
+      <code>has</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+      <code>isRequired</code>
+    </PossiblyUndefinedMethod>
+    <PropertyTypeCoercion occurrences="1">
+      <code>$factory-&gt;createForm($spec)</code>
+    </PropertyTypeCoercion>
+  </file>
+  <file src="test/Integration/FormCreatesCollectionInputFilterTest.php">
+    <PossiblyUndefinedMethod occurrences="1">
+      <code>getValidatorChain</code>
+    </PossiblyUndefinedMethod>
+  </file>
+  <file src="test/TestAsset/CustomFieldsetHelper.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$fieldset-&gt;getName()</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/TestAsset/CustomViewHelper.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getName()</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/Captcha/ReCaptchaTest.php">
+    <PossiblyFalseArgument occurrences="2">
+      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
+      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
+    </PossiblyFalseArgument>
+  </file>
   <file src="test/View/Helper/FormButtonTest.php">
     <InvalidArgument occurrences="1">
       <code>$element</code>
     </InvalidArgument>
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormCaptchaTest.php">
+    <PossiblyFalseArgument occurrences="2">
+      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
+      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
+    </PossiblyFalseArgument>
+    <PossiblyFalseOperand occurrences="1">
+      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
+    </PossiblyFalseOperand>
+  </file>
+  <file src="test/View/Helper/FormCollectionTest.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>'RuntimeException'</code>
+    </ArgumentTypeCoercion>
+  </file>
+  <file src="test/View/Helper/FormColorTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormDateTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormDateTimeLocalTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormDateTimeTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormEmailTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormFileTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormHiddenTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormImageTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormInputTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormLabelTest.php">
     <InvalidArgument occurrences="1">
       <code>$element</code>
     </InvalidArgument>
+  </file>
+  <file src="test/View/Helper/FormMonthTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormNumberTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormPasswordTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormRangeTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormResetTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormSearchTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormSubmitTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormTelTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormTextTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormTextareaTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormTimeTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormUrlTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormWeekTest.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$element-&gt;getAttribute($attribute)</code>
+    </PossiblyNullArgument>
   </file>
 </files>

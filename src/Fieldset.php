@@ -64,7 +64,7 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * The class or interface of objects that can be bound to this fieldset.
      *
-     * @var null|string
+     * @var null|class-string
      */
     protected $allowedObjectBindingClass;
 
@@ -159,21 +159,18 @@ class Fieldset extends Element implements FieldsetInterface
         }
 
         $name = $elementOrFieldset->getName();
-        if (
-            (null === $name || '' === $name)
-            && (! array_key_exists('name', $flags) || $flags['name'] === '')
-        ) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s: element or fieldset provided is not named, and no name provided in flags',
-                __METHOD__
-            ));
-        }
-
         if (array_key_exists('name', $flags) && $flags['name'] !== '') {
             $name = $flags['name'];
 
             // Rename the element or fieldset to the specified alias
             $elementOrFieldset->setName($name);
+        }
+
+        if (null === $name || '' === $name) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                '%s: element or fieldset provided is not named, and no name provided in flags',
+                __METHOD__
+            ));
         }
         $order = 0;
         if (array_key_exists('priority', $flags)) {
@@ -434,6 +431,8 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Set the class or interface of objects that can be bound to this fieldset.
+     *
+     * @param null|class-string $allowObjectBindingClass
      */
     public function setAllowedObjectBindingClass(?string $allowObjectBindingClass): void
     {
@@ -442,6 +441,8 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * Get The class or interface of objects that can be bound to this fieldset.
+     *
+     * @return null|class-string
      */
     public function allowedObjectBindingClass(): ?string
     {
@@ -455,12 +456,13 @@ class Fieldset extends Element implements FieldsetInterface
      */
     public function allowObjectBinding($object): bool
     {
-        $validBindingClass = false;
-        if (is_object($object) && $this->allowedObjectBindingClass()) {
-            $objectClass       = ltrim($this->allowedObjectBindingClass(), '\\');
+        $validBindingClass         = false;
+        $allowedObjectBindingClass = $this->allowedObjectBindingClass();
+        if (is_object($object) && $allowedObjectBindingClass !== null) {
+            $objectClass       = ltrim($allowedObjectBindingClass, '\\');
             $reflection        = new ReflectionClass($object);
             $validBindingClass = $reflection->getName() === $objectClass
-                || $reflection->isSubclassOf($this->allowedObjectBindingClass());
+                || $reflection->isSubclassOf($allowedObjectBindingClass);
         }
 
         return $validBindingClass || ($this->object && $object instanceof $this->object);
@@ -610,7 +612,7 @@ class Fieldset extends Element implements FieldsetInterface
 
         // Recursively extract and populate values for nested fieldsets
         foreach ($this->fieldsets as $fieldset) {
-            $name = $fieldset->getName();
+            $name = (string) $fieldset->getName();
 
             if (isset($values[$name])) {
                 $object = $values[$name];
