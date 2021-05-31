@@ -25,7 +25,7 @@ class Number extends Element implements InputProviderInterface
     ];
 
     /** @var array */
-    protected $validators;
+    protected $validators = [];
 
     /**
      * Get validator

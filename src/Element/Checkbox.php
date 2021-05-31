@@ -20,7 +20,7 @@ class Checkbox extends Element implements InputProviderInterface
         'type' => 'checkbox',
     ];
 
-    /** @var ValidatorInterface */
+    /** @var null|ValidatorInterface */
     protected $validator;
 
     /** @var bool */

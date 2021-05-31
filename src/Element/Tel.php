@@ -22,7 +22,7 @@ class Tel extends Element implements InputProviderInterface
         'type' => 'tel',
     ];
 
-    /** @var ValidatorInterface */
+    /** @var null|ValidatorInterface */
     protected $validator;
 
     /**

@@ -100,7 +100,7 @@ class FormLabel extends AbstractHelper
      */
     public function openTag($attributesOrElement = null): string
     {
-        if (null === $attributesOrElement) {
+        if (null === $attributesOrElement || [] === $attributesOrElement) {
             return '<label>';
         }
 

@@ -14,13 +14,13 @@ use function is_string;
 
 final class FormAbstractServiceFactory implements AbstractFactoryInterface
 {
-    /** @var array */
+    /** @var null|array */
     protected $config;
 
     /** @var string Top-level configuration key indicating forms configuration */
     protected $configKey = 'forms';
 
-    /** @var Factory Form factory used to create forms */
+    /** @var null|Factory Form factory used to create forms */
     protected $factory;
 
     /**

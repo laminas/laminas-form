@@ -12,6 +12,7 @@ use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Csrf as CsrfValidator;
 
 use function array_merge;
+use function assert;
 
 class Csrf extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
@@ -27,7 +28,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
     /** @var array */
     protected $csrfValidatorOptions = [];
 
-    /** @var CsrfValidator */
+    /** @var null|CsrfValidator */
     protected $csrfValidator;
 
     /**
@@ -74,6 +75,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
             $csrfOptions = $this->getCsrfValidatorOptions();
             $csrfOptions = array_merge($csrfOptions, ['name' => $this->getName()]);
             $this->setCsrfValidator(new CsrfValidator($csrfOptions));
+            assert(null !== $this->csrfValidator);
         }
         return $this->csrfValidator;
     }

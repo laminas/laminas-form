@@ -33,7 +33,7 @@ class FormRow extends AbstractHelper
      *
      * @var array
      */
-    protected $labelAttributes;
+    protected $labelAttributes = [];
 
     /**
      * Where will be label rendered?
@@ -52,25 +52,25 @@ class FormRow extends AbstractHelper
     /**
      * Form label helper instance
      *
-     * @var FormLabel
+     * @var null|FormLabel
      */
     protected $labelHelper;
 
     /**
      * Form element helper instance
      *
-     * @var FormElement
+     * @var null|FormElement
      */
     protected $elementHelper;
 
     /**
      * Form element errors helper instance
      *
-     * @var FormElementErrors
+     * @var null|FormElementErrors
      */
     protected $elementErrorsHelper;
 
-    /** @var string */
+    /** @var null|string */
     protected $partial;
 
     /**

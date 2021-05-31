@@ -19,7 +19,7 @@ use function sprintf;
 
 class Captcha extends Element implements InputProviderInterface
 {
-    /** @var LaminasCaptcha\AdapterInterface */
+    /** @var null|LaminasCaptcha\AdapterInterface */
     protected $captcha;
 
     /**

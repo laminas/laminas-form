@@ -18,6 +18,7 @@ use function count;
 use function get_class;
 use function gettype;
 use function is_array;
+use function is_int;
 use function is_object;
 use function iterator_to_array;
 use function max;
@@ -36,7 +37,7 @@ class Collection extends Fieldset
     /**
      * Element used in the collection
      *
-     * @var ElementInterface
+     * @var null|ElementInterface
      */
     protected $targetElement;
 
@@ -233,7 +234,7 @@ class Collection extends Fieldset
             } elseif ($this->targetElement) {
                 $elementOrFieldset = $this->addNewTargetElementInstance((string) $key);
 
-                if ($key > $this->lastChildIndex) {
+                if (is_int($key) && $key > $this->lastChildIndex) {
                     $this->lastChildIndex = $key;
                 }
             }

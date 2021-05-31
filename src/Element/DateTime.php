@@ -46,7 +46,7 @@ class DateTime extends Element implements InputProviderInterface
     protected $format = self::DATETIME_FORMAT;
 
     /** @var array */
-    protected $validators;
+    protected $validators = [];
 
     /**
      * Accepted options for DateTime:

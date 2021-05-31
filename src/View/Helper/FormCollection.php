@@ -66,14 +66,14 @@ class FormCollection extends AbstractHelper
     /**
      * The view helper used to render sub elements.
      *
-     * @var HelperInterface
+     * @var null|HelperInterface
      */
     protected $elementHelper;
 
     /**
      * The view helper used to render sub fieldsets.
      *
-     * @var HelperInterface
+     * @var null|HelperInterface
      */
     protected $fieldsetHelper;
 

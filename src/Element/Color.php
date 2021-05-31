@@ -22,7 +22,7 @@ class Color extends Element implements InputProviderInterface
         'type' => 'color',
     ];
 
-    /** @var ValidatorInterface */
+    /** @var null|ValidatorInterface */
     protected $validator;
 
     /**

@@ -65,7 +65,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      */
     protected $renderDelimiters = true;
 
-    /** @var ValidatorInterface */
+    /** @var null|ValidatorInterface */
     protected $validator;
 
     /**

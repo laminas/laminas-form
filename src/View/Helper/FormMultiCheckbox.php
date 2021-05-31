@@ -26,7 +26,7 @@ class FormMultiCheckbox extends FormInput
     /**
      * The attributes applied to option label
      *
-     * @var array
+     * @var null|array
      */
     protected $labelAttributes;
 
@@ -61,14 +61,14 @@ class FormMultiCheckbox extends FormInput
     /**
      * Form input helper instance
      *
-     * @var FormInput
+     * @var null|FormInput
      */
     protected $inputHelper;
 
     /**
      * Form label helper instance
      *
-     * @var FormLabel
+     * @var null|FormLabel
      */
     protected $labelHelper;
 
@@ -408,7 +408,7 @@ class FormMultiCheckbox extends FormInput
      */
     protected function getInputHelper(): FormInput
     {
-        if ($this->inputHelper) {
+        if (null !== $this->inputHelper) {
             return $this->inputHelper;
         }
 
