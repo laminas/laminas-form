@@ -14,6 +14,7 @@ use ReflectionClass;
 use Traversable;
 
 use function array_key_exists;
+use function assert;
 use function get_class;
 use function gettype;
 use function in_array;
@@ -24,7 +25,7 @@ use function sprintf;
 
 class Fieldset extends Element implements FieldsetInterface
 {
-    /** @var Factory */
+    /** @var null|Factory */
     protected $factory;
 
     /** @var array */
@@ -42,7 +43,7 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Hydrator to use with bound object
      *
-     * @var Hydrator\HydratorInterface
+     * @var null|Hydrator\HydratorInterface
      */
     protected $hydrator;
 
@@ -120,6 +121,7 @@ class Fieldset extends Element implements FieldsetInterface
     {
         if (null === $this->factory) {
             $this->setFormFactory(new Factory());
+            assert(null !== $this->factory);
         }
 
         return $this->factory;
@@ -505,10 +507,13 @@ class Fieldset extends Element implements FieldsetInterface
     {
         if (! $this->hydrator instanceof HydratorInterface) {
             if ($this->object instanceof HydratorAwareInterface) {
-                $this->setHydrator($this->object->getHydrator());
+                $hydrator = $this->object->getHydrator();
+                assert($hydrator !== null);
+                $this->setHydrator($hydrator);
             } else {
                 $this->setHydrator(new Hydrator\ArraySerializableHydrator());
             }
+            assert(null !== $this->hydrator);
         }
         return $this->hydrator;
     }

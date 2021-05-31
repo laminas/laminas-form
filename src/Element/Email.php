@@ -22,10 +22,10 @@ class Email extends Element implements InputProviderInterface
         'type' => 'email',
     ];
 
-    /** @var ValidatorInterface */
+    /** @var null|ValidatorInterface */
     protected $validator;
 
-    /** @var ValidatorInterface */
+    /** @var null|ValidatorInterface */
     protected $emailValidator;
 
     /**

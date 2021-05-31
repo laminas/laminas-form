@@ -20,6 +20,7 @@ use ReflectionClass;
 use ReflectionProperty;
 use Reflector;
 
+use function assert;
 use function class_exists;
 use function is_array;
 use function is_object;
@@ -33,13 +34,13 @@ use function var_export;
  */
 abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactoryAwareInterface
 {
-    /** @var EventManagerInterface */
+    /** @var null|EventManagerInterface */
     protected $eventManager;
 
-    /** @var Factory */
+    /** @var null|Factory */
     protected $formFactory;
 
-    /** @var object */
+    /** @var null|class-string|object */
     protected $entity;
 
     /** @var bool */
@@ -92,6 +93,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     {
         if (null === $this->eventManager) {
             $this->setEventManager(new EventManager());
+            assert(null !== $this->eventManager);
         }
         return $this->eventManager;
     }
@@ -99,7 +101,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /**
      * Creates and returns a form specification for use with a factory
      *
-     * @param  string|object $entity Either an instance or a valid class name for an entity
+     * @param  class-string|object $entity Either an instance or a valid class name for an entity
      * @throws Exception\InvalidArgumentException If $entity is not an object or class name.
      */
     public function getFormSpecification($entity): ArrayObject
@@ -110,7 +112,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
                 || (! is_string($entity)) // not an object or string
             ) {
                 throw new Exception\InvalidArgumentException(sprintf(
-                    '%s expects an object or valid class name; received "%s"',
+                    '%s expects an object or valid class name; received %s',
                     __METHOD__,
                     var_export($entity, true)
                 ));
@@ -154,8 +156,10 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
     /**
      * Get the entity used to construct the form.
+     *
+     * @return null|class-string|object
      */
-    public function getEntity(): object
+    public function getEntity()
     {
         return $this->entity;
     }

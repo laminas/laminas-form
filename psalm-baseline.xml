@@ -26,11 +26,6 @@
       <code>bindValues</code>
     </TooManyArguments>
   </file>
-  <file src="src/Element/DateSelect.php">
-    <MoreSpecificImplementedParamType occurrences="1">
-      <code>$value</code>
-    </MoreSpecificImplementedParamType>
-  </file>
   <file src="src/Factory.php">
     <TooManyArguments occurrences="1">
       <code>setValidationGroup</code>

@@ -12,6 +12,7 @@ use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stdlib\ArrayUtils;
 use Traversable;
 
+use function assert;
 use function class_exists;
 use function get_class;
 use function gettype;
@@ -26,10 +27,10 @@ use const E_USER_DEPRECATED;
 
 class Factory
 {
-    /** @var InputFilterFactory */
+    /** @var null|InputFilterFactory */
     protected $inputFilterFactory;
 
-    /** @var FormElementManager */
+    /** @var null|FormElementManager */
     protected $formElementManager;
 
     public function __construct(
@@ -65,6 +66,7 @@ class Factory
     {
         if (null === $this->inputFilterFactory) {
             $this->setInputFilterFactory(new InputFilterFactory());
+            assert(null !== $this->inputFilterFactory);
         }
         return $this->inputFilterFactory;
     }
@@ -87,6 +89,7 @@ class Factory
     {
         if ($this->formElementManager === null) {
             $this->setFormElementManager(new FormElementManager(new ServiceManager()));
+            assert(null !== $this->formElementManager);
         }
 
         return $this->formElementManager;

@@ -55,7 +55,7 @@ class Form extends Fieldset implements FormInterface
     /**
      * Base fieldset to use for hydrating (if none specified, directly hydrate elements)
      *
-     * @var FieldsetInterface
+     * @var null|FieldsetInterface
      */
     protected $baseFieldset;
 
@@ -430,7 +430,7 @@ class Form extends Fieldset implements FormInterface
     /**
      * Get the base fieldset to use when hydrating
      */
-    public function getBaseFieldset(): FieldsetInterface
+    public function getBaseFieldset(): ?FieldsetInterface
     {
         return $this->baseFieldset;
     }

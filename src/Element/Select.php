@@ -25,7 +25,7 @@ class Select extends Element implements InputProviderInterface
         'type' => 'select',
     ];
 
-    /** @var ValidatorInterface */
+    /** @var null|ValidatorInterface */
     protected $validator;
 
     /** @var bool */

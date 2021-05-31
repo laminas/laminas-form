@@ -6,7 +6,7 @@ namespace Laminas\Form;
 
 trait FormFactoryAwareTrait
 {
-    /** @var Factory */
+    /** @var null|Factory */
     protected $factory;
 
     /**

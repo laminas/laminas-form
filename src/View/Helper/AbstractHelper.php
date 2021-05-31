@@ -77,13 +77,13 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     protected $translatableAttributePrefixes = [];
 
-    /** @var Doctype */
+    /** @var null|Doctype */
     protected $doctypeHelper;
 
-    /** @var EscapeHtml */
+    /** @var null|EscapeHtml */
     protected $escapeHtmlHelper;
 
-    /** @var EscapeHtmlAttr */
+    /** @var null|EscapeHtmlAttr */
     protected $escapeHtmlAttrHelper;
 
     /**
