@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
   <file src="src/Annotation/AbstractBuilder.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>! is_string($entity)</code>
+    </DocblockTypeContradiction>
     <InvalidArrayOffset occurrences="1">
       <code>$params['elementSpec']['spec']['type']</code>
     </InvalidArrayOffset>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_string($entity)</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Annotation/AnnotationBuilder.php">
+    <DeprecatedMethod occurrences="1">
+      <code>AnnotationRegistry::registerLoader('class_exists')</code>
+    </DeprecatedMethod>
   </file>
   <file src="src/Annotation/AttributeBuilder.php">
     <NullArgument occurrences="2">
@@ -16,6 +27,9 @@
     </UndefinedMethod>
   </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
+    <InvalidStringClass occurrences="1">
+      <code>new $requestedName()</code>
+    </InvalidStringClass>
     <LessSpecificReturnStatement occurrences="1">
       <code>$annotationBuilder</code>
     </LessSpecificReturnStatement>
@@ -31,6 +45,20 @@
       <code>getFormSpecification</code>
     </PossiblyNullReference>
   </file>
+  <file src="src/Annotation/InputFilter.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
+    </DocblockTypeContradiction>
+  </file>
+  <file src="src/ConfigProvider.php">
+    <DeprecatedClass occurrences="5">
+      <code>View\Helper\FormDateTime::class</code>
+      <code>View\Helper\FormDateTime::class</code>
+      <code>View\Helper\FormDateTime::class</code>
+      <code>View\Helper\FormDateTime::class</code>
+      <code>View\Helper\FormDateTime::class</code>
+    </DeprecatedClass>
+  </file>
   <file src="src/Element.php">
     <LessSpecificReturnStatement occurrences="8">
       <code>$this</code>
@@ -43,7 +71,18 @@
       <code>$this</code>
     </LessSpecificReturnStatement>
   </file>
+  <file src="src/Element/Captcha.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>$captcha instanceof LaminasCaptcha\AdapterInterface</code>
+    </DocblockTypeContradiction>
+  </file>
   <file src="src/Element/Collection.php">
+    <DocblockTypeContradiction occurrences="4">
+      <code>$this-&gt;object instanceof Traversable</code>
+      <code>gettype($elementOrFieldset)</code>
+      <code>is_array($object)</code>
+      <code>is_array($this-&gt;object)</code>
+    </DocblockTypeContradiction>
     <ImplementedParamTypeMismatch occurrences="1">
       <code>$object</code>
     </ImplementedParamTypeMismatch>
@@ -56,14 +95,58 @@
     <PossiblyNullArgument occurrences="1">
       <code>$templateElement</code>
     </PossiblyNullArgument>
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>$this-&gt;createTemplateElement()</code>
-    </PossiblyNullPropertyAssignmentValue>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$object</code>
+    </PropertyNotSetInConstructor>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($elementOrFieldset)</code>
+    </RedundantConditionGivenDocblockType>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
   </file>
+  <file src="src/Element/Date.php">
+    <DeprecatedClass occurrences="1">
+      <code>DateTimeElement</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/Element/DateTimeLocal.php">
+    <DeprecatedClass occurrences="1">
+      <code>DateTime</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/Element/Month.php">
+    <DeprecatedClass occurrences="1">
+      <code>DateTime</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/Element/Select.php">
+    <MissingClosureParamType occurrences="1">
+      <code>$value</code>
+    </MissingClosureParamType>
+    <MissingClosureReturnType occurrences="1">
+      <code>static function ($value) use ($unselectedValue) {</code>
+    </MissingClosureReturnType>
+  </file>
+  <file src="src/Element/Time.php">
+    <DeprecatedClass occurrences="1">
+      <code>DateTime</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/Element/Week.php">
+    <DeprecatedClass occurrences="1">
+      <code>DateTime</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/ElementFactory.php">
+    <InvalidStringClass occurrences="1">
+      <code>new $requestedName($name, $options)</code>
+    </InvalidStringClass>
+  </file>
   <file src="src/Factory.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>$spec instanceof ArrayAccess</code>
+    </DocblockTypeContradiction>
     <LessSpecificReturnStatement occurrences="2">
       <code>$this-&gt;create($spec)</code>
       <code>$this-&gt;create($spec)</code>
@@ -72,11 +155,19 @@
       <code>FieldsetInterface</code>
       <code>FormInterface</code>
     </MoreSpecificReturnType>
+    <PossibleRawObjectIteration occurrences="2">
+      <code>$elements</code>
+      <code>$fieldsets</code>
+    </PossibleRawObjectIteration>
     <TooManyArguments occurrences="1">
       <code>setValidationGroup</code>
     </TooManyArguments>
   </file>
   <file src="src/Fieldset.php">
+    <DocblockTypeContradiction occurrences="2">
+      <code>gettype($elementOrFieldset)</code>
+      <code>is_object($object)</code>
+    </DocblockTypeContradiction>
     <LessSpecificReturnStatement occurrences="2">
       <code>$this</code>
       <code>$this</code>
@@ -87,6 +178,9 @@
     <PossiblyInvalidArgument occurrences="1">
       <code>$object</code>
     </PossiblyInvalidArgument>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($elementOrFieldset)</code>
+    </RedundantConditionGivenDocblockType>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
@@ -129,6 +223,7 @@
       <code>merge</code>
       <code>merge</code>
     </PossiblyUndefinedMethod>
+    <RedundantConditionGivenDocblockType occurrences="1"/>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
@@ -140,6 +235,12 @@
     </PossiblyNullReference>
   </file>
   <file src="src/FormElementManager.php">
+    <DeprecatedClass occurrences="4">
+      <code>Element\DateTime::class</code>
+      <code>Element\DateTime::class</code>
+      <code>Element\DateTime::class</code>
+      <code>Element\DateTime::class</code>
+    </DeprecatedClass>
     <NonInvariantDocblockPropertyType occurrences="3">
       <code>$aliases</code>
       <code>$factories</code>
@@ -148,6 +249,21 @@
     <ParamNameMismatch occurrences="1">
       <code>$name</code>
     </ParamNameMismatch>
+    <RedundantConditionGivenDocblockType occurrences="3">
+      <code>$services</code>
+      <code>$services</code>
+      <code>$services</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/FormElementManagerFactory.php">
+    <MissingParamType occurrences="1">
+      <code>$name</code>
+    </MissingParamType>
+  </file>
+  <file src="src/FormFactoryAwareInterface.php">
+    <MissingReturnType occurrences="1">
+      <code>setFormFactory</code>
+    </MissingReturnType>
   </file>
   <file src="src/View/Helper/AbstractHelper.php">
     <PossiblyNullReference occurrences="3">
@@ -155,6 +271,11 @@
       <code>translate</code>
       <code>translate</code>
     </PossiblyNullReference>
+    <RedundantConditionGivenDocblockType occurrences="3">
+      <code>$this-&gt;view !== null</code>
+      <code>$this-&gt;view !== null</code>
+      <code>$this-&gt;view !== null</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/Form.php">
     <UndefinedMagicMethod occurrences="2">
@@ -162,7 +283,15 @@
       <code>formRow</code>
     </UndefinedMagicMethod>
   </file>
+  <file src="src/View/Helper/FormButton.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>$attributesOrElement instanceof ElementInterface</code>
+    </DocblockTypeContradiction>
+  </file>
   <file src="src/View/Helper/FormCollection.php">
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$this-&gt;view !== null</code>
+    </RedundantConditionGivenDocblockType>
     <TypeDoesNotContainType occurrences="4">
       <code>assert(is_callable($elementHelper))</code>
       <code>assert(is_callable($elementHelper))</code>
@@ -170,10 +299,38 @@
       <code>assert(is_callable($fieldsetHelper))</code>
     </TypeDoesNotContainType>
   </file>
+  <file src="src/View/Helper/FormDate.php">
+    <DeprecatedClass occurrences="1">
+      <code>FormDateTime</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/View/Helper/FormDateTimeLocal.php">
+    <DeprecatedClass occurrences="1">
+      <code>FormDateTime</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/View/Helper/FormElement.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>assert(is_callable($helper))</code>
+    </DocblockTypeContradiction>
+  </file>
   <file src="src/View/Helper/FormElementErrors.php">
+    <MissingClosureParamType occurrences="1">
+      <code>$item</code>
+    </MissingClosureParamType>
     <PossiblyNullReference occurrences="1">
       <code>translate</code>
     </PossiblyNullReference>
+  </file>
+  <file src="src/View/Helper/FormLabel.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>$attributesOrElement instanceof ElementInterface</code>
+    </DocblockTypeContradiction>
+  </file>
+  <file src="src/View/Helper/FormMonth.php">
+    <DeprecatedClass occurrences="1">
+      <code>FormDateTime</code>
+    </DeprecatedClass>
   </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">
@@ -183,16 +340,35 @@
       <code>hasAttribute</code>
       <code>hasAttribute</code>
     </PossiblyUndefinedMethod>
+    <RedundantConditionGivenDocblockType occurrences="3">
+      <code>$this-&gt;view !== null</code>
+      <code>$this-&gt;view !== null</code>
+      <code>$this-&gt;view !== null</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormSelect.php">
     <PossiblyInvalidArgument occurrences="1">
       <code>$optionSpec</code>
     </PossiblyInvalidArgument>
   </file>
+  <file src="src/View/Helper/FormTime.php">
+    <DeprecatedClass occurrences="1">
+      <code>FormDateTime</code>
+    </DeprecatedClass>
+  </file>
+  <file src="src/View/Helper/FormWeek.php">
+    <DeprecatedClass occurrences="1">
+      <code>FormDateTime</code>
+    </DeprecatedClass>
+  </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
     <ArgumentTypeCoercion occurrences="1">
       <code>'ArrayObject'</code>
     </ArgumentTypeCoercion>
+    <DeprecatedMethod occurrences="2">
+      <code>allowEmpty</code>
+      <code>continueIfEmpty</code>
+    </DeprecatedMethod>
     <PossiblyUndefinedMethod occurrences="9">
       <code>allowEmpty</code>
       <code>getFilterChain</code>
@@ -238,7 +414,25 @@
       <code>$shop</code>
     </PossiblyUndefinedVariable>
   </file>
+  <file src="test/Element/DateTimeTest.php">
+    <DeprecatedClass occurrences="11">
+      <code>DateTimeElement::DATETIME_FORMAT</code>
+      <code>DateTimeElement::DATETIME_FORMAT</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+      <code>new DateTimeElement('foo')</code>
+    </DeprecatedClass>
+  </file>
   <file src="test/FactoryTest.php">
+    <DeprecatedMethod occurrences="1">
+      <code>allowEmpty</code>
+    </DeprecatedMethod>
     <PossiblyUndefinedVariable occurrences="4">
       <code>$test</code>
       <code>$test</code>
@@ -265,11 +459,23 @@
       <code>getPluginManager</code>
     </PossiblyNullReference>
   </file>
+  <file src="test/FormElementManagerFactoryTest.php">
+    <MissingClosureParamType occurrences="2">
+      <code>$container</code>
+      <code>$container</code>
+    </MissingClosureParamType>
+  </file>
   <file src="test/FormElementManagerTest.php">
     <ArgumentTypeCoercion occurrences="2">
       <code>$this-&gt;getInvalidServiceException()</code>
       <code>$this-&gt;getInvalidServiceException()</code>
     </ArgumentTypeCoercion>
+    <DeprecatedMethod occurrences="1">
+      <code>setMethods</code>
+    </DeprecatedMethod>
+    <MissingClosureParamType occurrences="1">
+      <code>$elements</code>
+    </MissingClosureParamType>
   </file>
   <file src="test/FormTest.php">
     <PossiblyInvalidArgument occurrences="2">
@@ -305,21 +511,120 @@
     <PropertyTypeCoercion occurrences="1">
       <code>$factory-&gt;createForm($spec)</code>
     </PropertyTypeCoercion>
+    <RedundantCastGivenDocblockType occurrences="1">
+      <code>(string) print_r($chain, true)</code>
+    </RedundantCastGivenDocblockType>
   </file>
   <file src="test/Integration/FormCreatesCollectionInputFilterTest.php">
     <PossiblyUndefinedMethod occurrences="1">
       <code>getValidatorChain</code>
     </PossiblyUndefinedMethod>
   </file>
+  <file src="test/Integration/ServiceManagerTest.php">
+    <MissingClosureParamType occurrences="1">
+      <code>$form</code>
+    </MissingClosureParamType>
+  </file>
+  <file src="test/TestAsset/Annotation/InputFilterInput.php">
+    <DeprecatedInterface occurrences="1">
+      <code>InputFilterInput</code>
+    </DeprecatedInterface>
+    <PropertyNotSetInConstructor occurrences="2">
+      <code>InputFilterInput</code>
+      <code>InputFilterInput</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
+    <MissingPropertyType occurrences="1">
+      <code>$username</code>
+    </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/CustomCollection.php">
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>CustomCollection</code>
+    </PropertyNotSetInConstructor>
+  </file>
   <file src="test/TestAsset/CustomFieldsetHelper.php">
     <PossiblyNullArgument occurrences="1">
       <code>$fieldset-&gt;getName()</code>
     </PossiblyNullArgument>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$this-&gt;fieldsetHelper</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="test/TestAsset/CustomViewHelper.php">
     <PossiblyNullArgument occurrences="1">
       <code>$element-&gt;getName()</code>
     </PossiblyNullArgument>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$this-&gt;elementHelper</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="test/TestAsset/FieldsetWithDependency.php">
+    <MissingParamType occurrences="2">
+      <code>$name</code>
+      <code>$options</code>
+    </MissingParamType>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$dependency</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="test/TestAsset/FileInputFilterProviderFieldset.php">
+    <MissingParamType occurrences="2">
+      <code>$name</code>
+      <code>$options</code>
+    </MissingParamType>
+  </file>
+  <file src="test/TestAsset/FileInputFilterProviderForm.php">
+    <MissingParamType occurrences="2">
+      <code>$name</code>
+      <code>$options</code>
+    </MissingParamType>
+  </file>
+  <file src="test/TestAsset/InputFilterProvider.php">
+    <MissingParamType occurrences="2">
+      <code>$name</code>
+      <code>$options</code>
+    </MissingParamType>
+  </file>
+  <file src="test/TestAsset/InputFilterProviderFieldset.php">
+    <MissingParamType occurrences="2">
+      <code>$name</code>
+      <code>$options</code>
+    </MissingParamType>
+  </file>
+  <file src="test/TestAsset/InputFilterProviderWithFieldset.php">
+    <MissingParamType occurrences="2">
+      <code>$name</code>
+      <code>$options</code>
+    </MissingParamType>
+  </file>
+  <file src="test/TestAsset/OrphansFieldset.php">
+    <MissingParamType occurrences="2">
+      <code>$name</code>
+      <code>$options</code>
+    </MissingParamType>
+  </file>
+  <file src="test/TestAsset/ValueStoringFieldset.php">
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$storedValue</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="test/View/Helper/AbstractCommonTestCase.php">
+    <UnsafeInstantiation occurrences="1">
+      <code>new $helperClass()</code>
+    </UnsafeInstantiation>
+  </file>
+  <file src="test/View/Helper/AbstractHelperTest.php">
+    <DeprecatedMethod occurrences="2">
+      <code>setMethods</code>
+      <code>setMethods</code>
+    </DeprecatedMethod>
+  </file>
+  <file src="test/View/Helper/Captcha/ImageTest.php">
+    <DocblockTypeContradiction occurrences="1">
+      <code>null === $this-&gt;tmpDir</code>
+    </DocblockTypeContradiction>
   </file>
   <file src="test/View/Helper/Captcha/ReCaptchaTest.php">
     <PossiblyFalseArgument occurrences="2">
@@ -365,6 +670,9 @@
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormDateTimeTest.php">
+    <DeprecatedClass occurrences="1">
+      <code>new FormDateTimeHelper()</code>
+    </DeprecatedClass>
     <PossiblyNullArgument occurrences="1">
       <code>$element-&gt;getAttribute($attribute)</code>
     </PossiblyNullArgument>
@@ -423,6 +731,12 @@
     <PossiblyNullArgument occurrences="1">
       <code>$element-&gt;getAttribute($attribute)</code>
     </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormRowTest.php">
+    <DeprecatedMethod occurrences="2">
+      <code>setMethods</code>
+      <code>setMethods</code>
+    </DeprecatedMethod>
   </file>
   <file src="test/View/Helper/FormSearchTest.php">
     <PossiblyNullArgument occurrences="1">

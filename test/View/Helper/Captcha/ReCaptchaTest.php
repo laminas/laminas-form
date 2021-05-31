@@ -36,8 +36,8 @@ final class ReCaptchaTest extends AbstractCommonTestCase
 
         $this->helper  = new ReCaptchaHelper();
         $this->captcha = new ReCaptcha();
-        $this->captcha->setPubKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY'));
-        $this->captcha->setPrivKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY'));
+        $this->captcha->setSiteKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY'));
+        $this->captcha->setSecretKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY'));
         parent::setUp();
     }
 

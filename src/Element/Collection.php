@@ -86,7 +86,7 @@ class Collection extends Fieldset
     /**
      * Element used as a template
      *
-     * @var ElementInterface|FieldsetInterface
+     * @var null|ElementInterface|FieldsetInterface
      */
     protected $templateElement;
 

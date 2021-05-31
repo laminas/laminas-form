@@ -22,15 +22,6 @@ use function sprintf;
 class FormSelect extends AbstractHelper
 {
     /**
-     * Attributes valid for the current tag
-     *
-     * Will vary based on whether a select, option, or optgroup is being rendered
-     *
-     * @var array
-     */
-    protected $validTagAttributes;
-
-    /**
      * Attributes valid for select
      *
      * @var array

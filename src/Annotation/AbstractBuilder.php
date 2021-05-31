@@ -293,8 +293,8 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
         // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
-            static function ($r) {
-                return is_string($r) && ! empty($r);
+            static function (?string $r): bool {
+                return $r !== null && $r !== '';
             },
             $event
         );
@@ -317,7 +317,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
 
         // @codingStandardsIgnoreStart
         $results = $this->getEventManager()->triggerEventUntil(
-            static function ($r) {
+            static function (bool $r): bool {
                 return true === $r;
             },
             $event

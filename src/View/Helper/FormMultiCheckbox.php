@@ -303,7 +303,7 @@ class FormMultiCheckbox extends FormInput
                 __METHOD__,
                 self::class,
                 self::class,
-                (string) $labelPosition
+                $labelPosition
             ));
         }
         $this->labelPosition = $labelPosition;

@@ -193,7 +193,7 @@ class FormElementErrors extends AbstractHelper
     private function flattenMessagesWithoutTranslator(array $messages): array
     {
         $messagesToPrint = [];
-        array_walk_recursive($messages, static function ($item) use (&$messagesToPrint) {
+        array_walk_recursive($messages, static function (string $item) use (&$messagesToPrint): void {
             $messagesToPrint[] = $item;
         });
         return $messagesToPrint;

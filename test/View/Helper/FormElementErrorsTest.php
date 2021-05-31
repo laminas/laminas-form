@@ -102,7 +102,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
             ->expects(self::once())
             ->method('translate')
             ->willReturnCallback(
-                function ($message) {
+                static function (string $message): string {
                     self::assertEquals(
                         'The input does not match against pattern \'%pattern%\'',
                         $message,

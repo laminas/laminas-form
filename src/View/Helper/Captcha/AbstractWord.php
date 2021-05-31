@@ -23,9 +23,6 @@ abstract class AbstractWord extends FormInput
     public const CAPTCHA_APPEND  = 'append';
     public const CAPTCHA_PREPEND = 'prepend';
 
-    /** @var FormInput */
-    protected $inputHelper;
-
     /** @var string */
     protected $captchaPosition = self::CAPTCHA_APPEND;
 
@@ -158,7 +155,7 @@ abstract class AbstractWord extends FormInput
                 __METHOD__,
                 self::class,
                 self::class,
-                (string) $captchaPosition
+                $captchaPosition
             ));
         }
         $this->captchaPosition = $captchaPosition;
