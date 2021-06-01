@@ -24,7 +24,7 @@ use function sprintf;
  *
  * Enforces that elements retrieved are instances of ElementInterface.
  */
-final class FormElementManager extends AbstractPluginManager
+class FormElementManager extends AbstractPluginManager
 {
     /**
      * Aliases for default set of helpers
