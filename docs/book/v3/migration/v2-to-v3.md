@@ -1,4 +1,4 @@
-# Migrating from v2 to v3
+# Migration from Version 2 to 3
 
 laminas-form v3 makes a number of changes that may affect your application. This
 document details those changes, and provides suggestions on how to update your

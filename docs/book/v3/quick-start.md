@@ -20,32 +20,32 @@ component. Choosing the best approach depends on the individual needs in your pr
 
 ### Programmatic Form Creation
 
-While forms can be created manually, this approach comes at the expense of 
-verbosity. However, this approach may be usable if you are using laminas-form as 
-a standalone component. Please see the page on 
+While forms can be created manually, this approach comes at the expense of
+verbosity. However, this approach may be usable if you are using laminas-form as
+a standalone component. Please see the page on
 [programmation form creation](form-creation/programmatic-form-creation.md)
 for examples.
 
 ### Creation via Factory
 
-Creating forms via a factory provides a zero-code approach, where the form is 
+Creating forms via a factory provides a zero-code approach, where the form is
 simply a matter of configuration. For examples, please see the page on
 [form creation via factory](form-creation/creation-via-factory.md).
 
 ### Factory-backed Form Extension
 
 Another alternative is implementing each form as its own class extending from
-`\Laminas\Form\Form`. In contrast to the creation via factory this bears the advantage 
-that you can override certain functionality programmatically, if needed, while 
+`\Laminas\Form\Form`. In contrast to the creation via factory this bears the advantage
+that you can override certain functionality programmatically, if needed, while
 elements can still be added using the same configuration approach. See the page on
-[factory-backed form extension](form-creation/factory-backed-form-extension.md) 
+[factory-backed form extension](form-creation/factory-backed-form-extension.md)
 for further details and examples.
 
 ### Using Annotations or PHP8 Attributes
 
 Lastly, forms can be created by using annotations to your models. This enables
 maintaining models and their respective forms in a single file. Similar to the
-creation via factory this is a zero-code approach. For further information on 
+creation via factory this is a zero-code approach. For further information on
 additional installation requirements, the syntax of the supported annotations and
 examples see the page on [annotation usage](form-creation/using-annotations.md).
 

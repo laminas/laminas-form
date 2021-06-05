@@ -1,4 +1,4 @@
-# Advanced use cases
+# Advanced Use Cases
 
 Beginning with version 2.1, forms elements can be registered using a
 designated plugin manager, in the same way that view helpers, controller

@@ -1,4 +1,4 @@
-# Factory-backed Form Extension
+# Factory-Backed Form Extension
 
 The default `Form` implementation is backed by the `Factory`. This allows you to
 extend it, and define your form internally. This has the benefit of allowing a

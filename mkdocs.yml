@@ -2,102 +2,271 @@ docs_dir: docs/book
 site_dir: docs/html
 nav:
     - Home: index.md
-    - Introduction: intro.md
-    - Installation: installation.md
-    - "Quick Start": quick-start.md
-    - "Form Creation":
-        - "Programmatic Form Creation": form-creation/programmatic-form-creation.md
-        - "Creation via Factory": form-creation/creation-via-factory.md
-        - "Factory-backed Form Extension": form-creation/factory-backed-form-extension.md
-        - "Using Annotations or PHP8 Attributes": form-creation/using-annotations.md
-    - "Application Integration":
-        - "Usage in a laminas-mvc application": application-integration/usage-in-a-laminas-mvc-application.md
-    - Reference:
+    - v3:
+        - Introduction: v3/intro.md
+        - Installation: v3/installation.md
+        - "Quick Start": v3/quick-start.md
+        - "Form Creation":
+            - "Programmatic Form Creation": v3/form-creation/programmatic-form-creation.md
+            - "Creation via Factory": v3/form-creation/creation-via-factory.md
+            - "Factory-Backed Form Extension": v3/form-creation/factory-backed-form-extension.md
+            - "Using Annotations or PHP8 Attributes": v3/form-creation/using-annotations.md
         - Elements:
-            - Introduction: element/intro.md
-            - Element: element/element.md
-            - button: element/button.md
-            - CAPTCHA: element/captcha.md
-            - checkbox: element/checkbox.md
-            - Collection: element/collection.md
-            - color: element/color.md
-            - CSRF: element/csrf.md
-            - date: element/date.md
-            - datetime: element/date-time.md
-            - datetime-local: element/date-time-local.md
-            - email: element/email.md
-            - file: element/file.md
-            - hidden: element/hidden.md
-            - image: element/image.md
-            - month: element/month.md
-            - MonthSelect: element/month-select.md
-            - MultiCheckbox: element/multi-checkbox.md
-            - number: element/number.md
-            - password: element/password.md
-            - radio: element/radio.md
-            - range: element/range.md
-            - search: element/search.md
-            - select: element/select.md
-            - submit: element/submit.md
-            - tel: element/tel.md
-            - text: element/text.md
-            - textarea: element/textarea.md
-            - time: element/time.md
-            - url: element/url.md
-            - week: element/week.md
-        - Collections: collections.md
-        - "File Uploads": file-upload.md
+            - Introduction: v3/element/intro.md
+            - Element: v3/element/element.md
+            - button: v3/element/button.md
+            - CAPTCHA: v3/element/captcha.md
+            - checkbox: v3/element/checkbox.md
+            - Collection: v3/element/collection.md
+            - color: v3/element/color.md
+            - CSRF: v3/element/csrf.md
+            - date: v3/element/date.md
+            - datetime: v3/element/date-time.md
+            - datetime-local: v3/element/date-time-local.md
+            - email: v3/element/email.md
+            - file: v3/element/file.md
+            - hidden: v3/element/hidden.md
+            - image: v3/element/image.md
+            - month: v3/element/month.md
+            - MonthSelect: v3/element/month-select.md
+            - MultiCheckbox: v3/element/multi-checkbox.md
+            - number: v3/element/number.md
+            - password: v3/element/password.md
+            - radio: v3/element/radio.md
+            - range: v3/element/range.md
+            - search: v3/element/search.md
+            - select: v3/element/select.md
+            - submit: v3/element/submit.md
+            - tel: v3/element/tel.md
+            - text: v3/element/text.md
+            - textarea: v3/element/textarea.md
+            - time: v3/element/time.md
+            - url: v3/element/url.md
+            - week: v3/element/week.md
+        - Collections: v3/collections.md
+        - "File Uploads": v3/file-upload.md
         - "View Helpers":
-            - Introduction: helper/intro.md
-            - AbstractHelper: helper/abstract-helper.md
-            - formInput: helper/form-input.md
-            - formElement: helper/form-element.md
-            - formElementErrors: helper/form-element-errors.md
-            - formLabel: helper/form-label.md
-            - formRow: helper/form-row.md
-            - formCollection: helper/form-collection.md
-            - form: helper/form.md
-            - formButton: helper/form-button.md
-            - formCaptcha: helper/form-captcha.md
-            - formCheckbox: helper/form-checkbox.md
-            - formColor: helper/form-color.md
-            - formDate: helper/form-date.md
-            - formDateTime: helper/form-date-time.md
-            - formDateTimeLocal: helper/form-date-time-local.md
-            - formEmail: helper/form-email.md
-            - formFile: helper/form-file.md
-            - formHidden: helper/form-hidden.md
-            - formImage: helper/form-image.md
-            - formMonth: helper/form-month.md
-            - formMonthSelect: helper/form-month-select.md
-            - formMultiCheckbox: helper/form-multicheckbox.md
-            - formNumber: helper/form-number.md
-            - formPassword: helper/form-password.md
-            - formRadio: helper/form-radio.md
-            - formRange: helper/form-range.md
-            - formReset: helper/form-reset.md
-            - formSearch: helper/form-search.md
-            - formSelect: helper/form-select.md
-            - formSubmit: helper/form-submit.md
-            - formTel: helper/form-tel.md
-            - formText: helper/form-text.md
-            - formTextarea: helper/form-textarea.md
-            - formTime: helper/form-time.md
-            - formUrl: helper/form-url.md
-            - formWeek: helper/form-week.md
+            - Introduction: v3/helper/intro.md
+            - AbstractHelper: v3/helper/abstract-helper.md
+            - formInput: v3/helper/form-input.md
+            - formElement: v3/helper/form-element.md
+            - formElementErrors: v3/helper/form-element-errors.md
+            - formLabel: v3/helper/form-label.md
+            - formRow: v3/helper/form-row.md
+            - formCollection: v3/helper/form-collection.md
+            - form: v3/helper/form.md
+            - formButton: v3/helper/form-button.md
+            - formCaptcha: v3/helper/form-captcha.md
+            - formCheckbox: v3/helper/form-checkbox.md
+            - formColor: v3/helper/form-color.md
+            - formDate: v3/helper/form-date.md
+            - formDateTime: v3/helper/form-date-time.md
+            - formDateTimeLocal: v3/helper/form-date-time-local.md
+            - formEmail: v3/helper/form-email.md
+            - formFile: v3/helper/form-file.md
+            - formHidden: v3/helper/form-hidden.md
+            - formImage: v3/helper/form-image.md
+            - formMonth: v3/helper/form-month.md
+            - formMonthSelect: v3/helper/form-month-select.md
+            - formMultiCheckbox: v3/helper/form-multicheckbox.md
+            - formNumber: v3/helper/form-number.md
+            - formPassword: v3/helper/form-password.md
+            - formRadio: v3/helper/form-radio.md
+            - formRange: v3/helper/form-range.md
+            - formReset: v3/helper/form-reset.md
+            - formSearch: v3/helper/form-search.md
+            - formSelect: v3/helper/form-select.md
+            - formSubmit: v3/helper/form-submit.md
+            - formTel: v3/helper/form-tel.md
+            - formText: v3/helper/form-text.md
+            - formTextarea: v3/helper/form-textarea.md
+            - formTime: v3/helper/form-time.md
+            - formUrl: v3/helper/form-url.md
+            - formWeek: v3/helper/form-week.md
             - "Upload Progress":
-                - Introduction: helper/upload-progress-helpers.md
-                - formFileApcProgress: helper/form-file-apc-progress.md
-                - formFileSessionProgress: helper/form-file-session-progress.md
-                - formFileUploadProgress: helper/form-file-upload-progress.md
-        - Advanced: advanced.md
-    - Migration:
-       - "V2 to V3": migration/v2-to-v3.md
+                - Introduction: v3/helper/upload-progress-helpers.md
+                - formFileApcProgress: v3/helper/form-file-apc-progress.md
+                - formFileSessionProgress: v3/helper/form-file-session-progress.md
+                - formFileUploadProgress: v3/helper/form-file-upload-progress.md
+        - "Advanced Use Cases": v3/advanced.md
+        - "Application Integration":
+              - "Usage in a laminas-mvc application": v3/application-integration/usage-in-a-laminas-mvc-application.md
+        - Migration:
+           - "Migration from Version 2 to 3": v3/migration/v2-to-v3.md
+    - v2:
+        - Introduction: v2/intro.md
+        - Installation: v2/installation.md
+        - "Quick Start": v2/quick-start.md
+        - Elements:
+            - Introduction: v2/element/intro.md
+            - Element: v2/element/element.md
+            - button: v2/element/button.md
+            - CAPTCHA: v2/element/captcha.md
+            - checkbox: v2/element/checkbox.md
+            - Collection: v2/element/collection.md
+            - color: v2/element/color.md
+            - CSRF: v2/element/csrf.md
+            - date: v2/element/date.md
+            - datetime: v2/element/date-time.md
+            - datetime-local: v2/element/date-time-local.md
+            - email: v2/element/email.md
+            - file: v2/element/file.md
+            - hidden: v2/element/hidden.md
+            - image: v2/element/image.md
+            - month: v2/element/month.md
+            - MonthSelect: v2/element/month-select.md
+            - MultiCheckbox: v2/element/multi-checkbox.md
+            - number: v2/element/number.md
+            - password: v2/element/password.md
+            - radio: v2/element/radio.md
+            - range: v2/element/range.md
+            - search: v2/element/search.md
+            - select: v2/element/select.md
+            - submit: v2/element/submit.md
+            - tel: v2/element/tel.md
+            - text: v2/element/text.md
+            - textarea: v2/element/textarea.md
+            - time: v2/element/time.md
+            - url: v2/element/url.md
+            - week: v2/element/week.md
+        - Collections: v2/collections.md
+        - "File Uploads": v2/file-upload.md
+        - "View Helpers":
+            - Introduction: v2/helper/intro.md
+            - AbstractHelper: v2/helper/abstract-helper.md
+            - formInput: v2/helper/form-input.md
+            - formElement: v2/helper/form-element.md
+            - formElementErrors: v2/helper/form-element-errors.md
+            - formLabel: v2/helper/form-label.md
+            - formRow: v2/helper/form-row.md
+            - formCollection: v2/helper/form-collection.md
+            - form: v2/helper/form.md
+            - formButton: v2/helper/form-button.md
+            - formCaptcha: v2/helper/form-captcha.md
+            - formCheckbox: v2/helper/form-checkbox.md
+            - formColor: v2/helper/form-color.md
+            - formDate: v2/helper/form-date.md
+            - formDateTime: v2/helper/form-date-time.md
+            - formDateTimeLocal: v2/helper/form-date-time-local.md
+            - formEmail: v2/helper/form-email.md
+            - formFile: v2/helper/form-file.md
+            - formHidden: v2/helper/form-hidden.md
+            - formImage: v2/helper/form-image.md
+            - formMonth: v2/helper/form-month.md
+            - formMonthSelect: v2/helper/form-month-select.md
+            - formMultiCheckbox: v2/helper/form-multicheckbox.md
+            - formNumber: v2/helper/form-number.md
+            - formPassword: v2/helper/form-password.md
+            - formRadio: v2/helper/form-radio.md
+            - formRange: v2/helper/form-range.md
+            - formReset: v2/helper/form-reset.md
+            - formSearch: v2/helper/form-search.md
+            - formSelect: v2/helper/form-select.md
+            - formSubmit: v2/helper/form-submit.md
+            - formTel: v2/helper/form-tel.md
+            - formText: v2/helper/form-text.md
+            - formTextarea: v2/helper/form-textarea.md
+            - formTime: v2/helper/form-time.md
+            - formUrl: v2/helper/form-url.md
+            - formWeek: v2/helper/form-week.md
+            - "Upload Progress":
+                - Introduction: v2/helper/upload-progress-helpers.md
+                - formFileApcProgress: v2/helper/form-file-apc-progress.md
+                - formFileSessionProgress: v2/helper/form-file-session-progress.md
+                - formFileUploadProgress: v2/helper/form-file-upload-progress.md
+        - "Advanced Use Cases": v2/advanced.md
+        - "Application Integration":
+              - "Usage in a laminas-mvc application": v2/application-integration/usage-in-a-laminas-mvc-application.md
 site_name: laminas-form
 site_description: "Validate and display simple and complex forms, casting forms to business objects and vice versa."
 repo_url: 'https://github.com/laminas/laminas-form'
 extra:
     project: Components
+    current_version: v3
+    versions:
+        - v3
+        - v2
     installation:
         config_provider_class: 'Laminas\Form\ConfigProvider'
         module_class: 'Laminas\Form\Module'
+plugins:
+  - search
+  - redirects:
+        redirect_maps:
+            intro.md: v3/intro.md
+            quick-start.md: v3/quick-start.md
+            element/intro.md: v3/element/intro.md
+            element/element.md: v3/element/element.md
+            element/button.md: v3/element/button.md
+            element/captcha.md: v3/element/captcha.md
+            element/checkbox.md: v3/element/checkbox.md
+            element/collection.md: v3/element/collection.md
+            element/color.md: v3/element/color.md
+            element/csrf.md: v3/element/csrf.md
+            element/date.md: v3/element/date.md
+            element/date-time.md: v3/element/date-time.md
+            element/date-time-local.md: v3/element/date-time-local.md
+            element/email.md: v3/element/email.md
+            element/file.md: v3/element/file.md
+            element/hidden.md: v3/element/hidden.md
+            element/image.md: v3/element/image.md
+            element/month.md: v3/element/month.md
+            element/month-select.md: v3/element/month-select.md
+            element/multi-checkbox.md: v3/element/multi-checkbox.md
+            element/number.md: v3/element/number.md
+            element/password.md: v3/element/password.md
+            element/radio.md: v3/element/radio.md
+            element/range.md: v3/element/range.md
+            element/search.md: v3/element/search.md
+            element/select.md: v3/element/select.md
+            element/submit.md: v3/element/submit.md
+            element/tel.md: v3/element/tel.md
+            element/text.md: v3/element/text.md
+            element/textarea.md: v3/element/textarea.md
+            element/time.md: v3/element/time.md
+            element/url.md: v3/element/url.md
+            element/week.md: v3/element/week.md
+            collections.md: v3/collections.md
+            file-upload.md: v3/file-upload.md
+            helper/intro.md: v3/helper/intro.md
+            helper/abstract-helper.md: v3/helper/abstract-helper.md
+            helper/form-input.md: v3/helper/form-input.md
+            helper/form-element.md: v3/helper/form-element.md
+            helper/form-element-errors.md: v3/helper/form-element-errors.md
+            helper/form-label.md: v3/helper/form-label.md
+            helper/form-row.md: v3/helper/form-row.md
+            helper/form-collection.md: v3/helper/form-collection.md
+            helper/form.md: v3/helper/form.md
+            helper/form-button.md: v3/helper/form-button.md
+            helper/form-captcha.md: v3/helper/form-captcha.md
+            helper/form-checkbox.md: v3/helper/form-checkbox.md
+            helper/form-color.md: v3/helper/form-color.md
+            helper/form-date.md: v3/helper/form-date.md
+            helper/form-date-time.md: v3/helper/form-date-time.md
+            helper/form-date-time-local.md: v3/helper/form-date-time-local.md
+            helper/form-email.md: v3/helper/form-email.md
+            helper/form-file.md: v3/helper/form-file.md
+            helper/form-hidden.md: v3/helper/form-hidden.md
+            helper/form-image.md: v3/helper/form-image.md
+            helper/form-month.md: v3/helper/form-month.md
+            helper/form-month-select.md: v3/helper/form-month-select.md
+            helper/form-multicheckbox.md: v3/helper/form-multicheckbox.md
+            helper/form-number.md: v3/helper/form-number.md
+            helper/form-password.md: v3/helper/form-password.md
+            helper/form-radio.md: v3/helper/form-radio.md
+            helper/form-range.md: v3/helper/form-range.md
+            helper/form-reset.md: v3/helper/form-reset.md
+            helper/form-search.md: v3/helper/form-search.md
+            helper/form-select.md: v3/helper/form-select.md
+            helper/form-submit.md: v3/helper/form-submit.md
+            helper/form-tel.md: v3/helper/form-tel.md
+            helper/form-text.md: v3/helper/form-text.md
+            helper/form-textarea.md: v3/helper/form-textarea.md
+            helper/form-time.md: v3/helper/form-time.md
+            helper/form-url.md: v3/helper/form-url.md
+            helper/form-week.md: v3/helper/form-week.md
+            helper/upload-progress-helpers.md: v3/helper/upload-progress-helpers.md
+            helper/form-file-apc-progress.md: v3/helper/form-file-apc-progress.md
+            helper/form-file-session-progress.md: v3/helper/form-file-session-progress.md
+            helper/form-file-upload-progress.md: v3/helper/form-file-upload-progress.md
+            advanced.md: v3/advanced.md
