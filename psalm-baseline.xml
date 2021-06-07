@@ -134,9 +134,6 @@
       <code>$elements</code>
       <code>$fieldsets</code>
     </PossibleRawObjectIteration>
-    <TooManyArguments occurrences="1">
-      <code>setValidationGroup</code>
-    </TooManyArguments>
   </file>
   <file src="src/Fieldset.php">
     <DocblockTypeContradiction occurrences="2">

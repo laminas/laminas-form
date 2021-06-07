@@ -15,13 +15,18 @@
     },
     "conflict": {
         "doctrine/annotations": "<1.12.0",
-        "laminas/laminas-servicemanager": "<3.6.0"
+        "laminas/laminas-captcha": "<2.10.0",
+        "laminas/laminas-eventmanager": "<3.3.0",
+        "laminas/laminas-i18n": "<2.11.0",
+        "laminas/laminas-recaptcha": "<3.3.0",
+        "laminas/laminas-servicemanager": "<3.6.0",
+        "laminas/laminas-view": "<2.12.0"
     },
     "require-dev": {
         "ext-intl": "*",
         "doctrine/annotations": "^1.12.0",
         "laminas/laminas-captcha": "^2.10.0",
-        "laminas/laminas-coding-standard": "^2.2.1",
+        "laminas/laminas-coding-standard": "^2.3.0",
         "laminas/laminas-escaper": "^2.7.0",
         "laminas/laminas-eventmanager": "^3.3.1",
         "laminas/laminas-filter": "^2.11.0",
@@ -34,8 +39,8 @@
         "laminas/laminas-validator": "^2.14.4",
         "laminas/laminas-view": "^2.12.0",
         "phpspec/prophecy-phpunit": "^2.0.1",
-        "phpunit/phpunit": "^9.5.4",
-        "psalm/plugin-phpunit": "^0.15.1",
+        "phpunit/phpunit": "^9.5.5",
+        "psalm/plugin-phpunit": "^0.16.0",
         "vimeo/psalm": "^4.7.3"
     },
     "suggest": {
