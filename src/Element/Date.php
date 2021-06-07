@@ -6,7 +6,7 @@ namespace Laminas\Form\Element;
 
 use DateInterval;
 use DateTimeZone;
-use Laminas\Form\Element\DateTime as DateTimeElement;
+use Laminas\Form\Element\AbstractDateTime as DateTimeElement;
 use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\ValidatorInterface;
 
@@ -14,8 +14,6 @@ use function date;
 
 class Date extends DateTimeElement
 {
-    public const DATETIME_FORMAT = 'Y-m-d';
-
     /**
      * Seed attributes
      *

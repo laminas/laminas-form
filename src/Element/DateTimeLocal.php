@@ -8,12 +8,8 @@ use DateInterval;
 use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\ValidatorInterface;
 
-class DateTimeLocal extends DateTime
+class DateTimeLocal extends AbstractDateTime
 {
-    public const DATETIME_LOCAL_FORMAT = 'Y-m-d\TH:i';
-
-    public const DATETIME_FORMAT = self::DATETIME_LOCAL_FORMAT;
-
     /**
      * Seed attributes
      *
@@ -26,7 +22,7 @@ class DateTimeLocal extends DateTime
     /**
      * {@inheritDoc}
      */
-    protected $format = self::DATETIME_LOCAL_FORMAT;
+    protected $format = 'Y-m-d\TH:i';
 
     /**
      * Retrieves a DateStepValidator configured for a Date Input type

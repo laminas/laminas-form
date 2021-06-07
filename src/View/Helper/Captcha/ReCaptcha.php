@@ -80,14 +80,4 @@ class ReCaptcha extends FormInput
         ]);
         return sprintf($pattern, $attributes, $closingBracket);
     }
-
-    /**
-     * No longer used with v2 of Recaptcha API
-     *
-     * @deprecated
-     */
-    protected function renderJsEvents(string $challengeId, string $responseId): string
-    {
-        return '';
-    }
 }

@@ -11,7 +11,7 @@ use Laminas\Validator\LessThan as LessThanValidator;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
-class Week extends DateTime
+class Week extends AbstractDateTime
 {
     /**
      * Seed attributes

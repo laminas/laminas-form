@@ -21,9 +21,6 @@ use function is_object;
 use function is_string;
 use function method_exists;
 use function sprintf;
-use function trigger_error;
-
-use const E_USER_DEPRECATED;
 
 class Factory
 {

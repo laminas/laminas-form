@@ -6,7 +6,7 @@ namespace Laminas\Form\View\Helper;
 
 use Laminas\Form\ElementInterface;
 
-class FormTime extends FormDateTime
+class FormTime extends AbstractFormDateTime
 {
     /**
      * Determine input type to use
