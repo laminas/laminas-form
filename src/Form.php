@@ -18,10 +18,7 @@ use Traversable;
 
 use function array_key_exists;
 use function array_keys;
-use function array_shift;
 use function assert;
-use function func_get_args;
-use function func_num_args;
 use function in_array;
 use function is_array;
 use function is_object;
@@ -531,39 +528,19 @@ class Form extends Fieldset implements FormInterface
      *
      * Typically, proxies to the composed input filter
      *
-     * @throws Exception\InvalidArgumentException
      * @return $this
      */
-    public function setValidationGroup()
+    public function setValidationGroup(array $group)
     {
-        $argc = func_num_args();
-        if (0 === $argc) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects at least one argument; none provided',
-                __METHOD__
-            ));
-        }
-
-        $argv               = func_get_args();
-        $this->hasValidated = false;
-
-        if ($argc > 1) {
-            $this->validationGroup = $argv;
-            return $this;
-        }
-
-        $arg = array_shift($argv);
-        if ($arg === FormInterface::VALIDATE_ALL) {
-            $this->validationGroup = null;
-            return $this;
-        }
-
-        if (! is_array($arg)) {
-            $arg = (array) $arg;
-        }
-
-        $this->validationGroup = $arg;
+        $this->hasValidated    = false;
+        $this->validationGroup = $group;
         return $this;
+    }
+
+    public function setValidateAll(): void
+    {
+        $this->hasValidated    = false;
+        $this->validationGroup = null;
     }
 
     /**

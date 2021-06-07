@@ -267,7 +267,7 @@ final class FormTest extends TestCase
         $invalidSet = [
             'foo' => 'a',
         ];
-        $this->form->setValidationGroup('foo');
+        $this->form->setValidationGroup(['foo']);
         $this->form->setData($invalidSet);
         $this->assertFalse($this->form->isValid());
 
@@ -306,22 +306,16 @@ final class FormTest extends TestCase
     public function testSettingValidateAllFlagAfterPartialValidationForcesFullValidation(): void
     {
         $this->populateForm();
-        $this->form->setValidationGroup('foo');
+        $this->form->setValidationGroup(['foo']);
 
         $validSet = [
             'foo' => 'abcde',
         ];
         $this->form->setData($validSet);
-        $this->form->setValidationGroup(Form::VALIDATE_ALL);
+        $this->form->setValidateAll();
         $this->assertFalse($this->form->isValid());
         $messages = $this->form->getMessages();
         $this->assertArrayHasKey('foobar', $messages, var_export($messages, true));
-    }
-
-    public function testSetValidationGroupWithNoArgumentsRaisesException(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->form->setValidationGroup();
     }
 
     public function testCallingGetDataPriorToValidationRaisesException(): void
@@ -538,7 +532,7 @@ final class FormTest extends TestCase
             ],
         ];
         $this->populateForm();
-        $this->form->setValidationGroup('foo');
+        $this->form->setValidationGroup(['foo']);
         $this->form->setData($validSet);
         $this->form->isValid();
         $data = $this->form->getData();
@@ -563,7 +557,7 @@ final class FormTest extends TestCase
         $this->form->setHydrator(new ObjectPropertyHydrator());
         $this->form->bind($model);
         $this->form->setData($validSet);
-        $this->form->setValidationGroup('foo');
+        $this->form->setValidationGroup(['foo']);
         $this->form->isValid();
 
         $this->assertObjectHasAttribute('foo', $model);

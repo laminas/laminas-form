@@ -16,6 +16,13 @@ can help you with this command:
 $ php-cs-fixer fix --rules=phpdoc_to_param_type,phpdoc_to_return_type --allow-risky=yes path/to/my/custom/forms/
 ```
 
+## API changes
+
+Many notable API have been changed:
+
+- `\Laminas\Form\FormInterface::setValidationGroup(FormInterface::VALIDATE_ALL)` has now its own dedicated method
+  `\Laminas\Form\FormInterface::setValidateAll()`
+
 ## Using doctrine/annotations now instead of laminas/laminas-code
 
 Since laminas-code dropped support for annotation parsing with v4, laminas-form
