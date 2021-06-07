@@ -85,7 +85,7 @@ final class DateTimeTest extends TestCase
     public function testUsesBrowserFormatByDefault(): void
     {
         $element = new DateTimeElement('foo');
-        $this->assertEquals(DateTimeElement::DATETIME_FORMAT, $element->getFormat());
+        $this->assertEquals('Y-m-d\TH:iP', $element->getFormat());
     }
 
     public function testSpecifyingADateTimeValueWillReturnBrowserFormattedStringByDefault(): void
@@ -93,7 +93,7 @@ final class DateTimeTest extends TestCase
         $date    = new DateTime();
         $element = new DateTimeElement('foo');
         $element->setValue($date);
-        $this->assertEquals($date->format(DateTimeElement::DATETIME_FORMAT), $element->getValue());
+        $this->assertEquals($date->format('Y-m-d\TH:iP'), $element->getValue());
     }
 
     public function testValueIsFormattedAccordingToFormatInElement(): void

@@ -6,7 +6,7 @@ namespace Laminas\Form\View\Helper;
 
 use Laminas\Form\ElementInterface;
 
-class FormWeek extends FormDateTime
+class FormWeek extends AbstractFormDateTime
 {
     /**
      * Determine input type to use

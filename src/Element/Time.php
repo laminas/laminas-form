@@ -10,10 +10,8 @@ use Laminas\Validator\ValidatorInterface;
 
 use function date;
 
-class Time extends DateTime
+class Time extends AbstractDateTime
 {
-    public const DATETIME_FORMAT = 'H:i:s';
-
     /**
      * Seed attributes
      *

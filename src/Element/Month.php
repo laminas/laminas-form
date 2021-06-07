@@ -9,16 +9,14 @@ use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
-class Month extends DateTime
+class Month extends AbstractDateTime
 {
-    public const DATETIME_FORMAT = 'Y-m';
-
     /**
      * A valid format string accepted by date()
      *
      * @var string
      */
-    protected $format = self::DATETIME_FORMAT;
+    protected $format = 'Y-m';
 
     /**
      * Seed attributes

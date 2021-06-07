@@ -105,21 +105,6 @@
       <code>bindValues</code>
     </TooManyArguments>
   </file>
-  <file src="src/Element/Date.php">
-    <DeprecatedClass occurrences="1">
-      <code>DateTimeElement</code>
-    </DeprecatedClass>
-  </file>
-  <file src="src/Element/DateTimeLocal.php">
-    <DeprecatedClass occurrences="1">
-      <code>DateTime</code>
-    </DeprecatedClass>
-  </file>
-  <file src="src/Element/Month.php">
-    <DeprecatedClass occurrences="1">
-      <code>DateTime</code>
-    </DeprecatedClass>
-  </file>
   <file src="src/Element/Select.php">
     <MissingClosureParamType occurrences="1">
       <code>$value</code>
@@ -127,16 +112,6 @@
     <MissingClosureReturnType occurrences="1">
       <code>static function ($value) use ($unselectedValue) {</code>
     </MissingClosureReturnType>
-  </file>
-  <file src="src/Element/Time.php">
-    <DeprecatedClass occurrences="1">
-      <code>DateTime</code>
-    </DeprecatedClass>
-  </file>
-  <file src="src/Element/Week.php">
-    <DeprecatedClass occurrences="1">
-      <code>DateTime</code>
-    </DeprecatedClass>
   </file>
   <file src="src/ElementFactory.php">
     <InvalidStringClass occurrences="1">
@@ -299,16 +274,6 @@
       <code>assert(is_callable($fieldsetHelper))</code>
     </TypeDoesNotContainType>
   </file>
-  <file src="src/View/Helper/FormDate.php">
-    <DeprecatedClass occurrences="1">
-      <code>FormDateTime</code>
-    </DeprecatedClass>
-  </file>
-  <file src="src/View/Helper/FormDateTimeLocal.php">
-    <DeprecatedClass occurrences="1">
-      <code>FormDateTime</code>
-    </DeprecatedClass>
-  </file>
   <file src="src/View/Helper/FormElement.php">
     <DocblockTypeContradiction occurrences="1">
       <code>assert(is_callable($helper))</code>
@@ -326,11 +291,6 @@
     <DocblockTypeContradiction occurrences="1">
       <code>$attributesOrElement instanceof ElementInterface</code>
     </DocblockTypeContradiction>
-  </file>
-  <file src="src/View/Helper/FormMonth.php">
-    <DeprecatedClass occurrences="1">
-      <code>FormDateTime</code>
-    </DeprecatedClass>
   </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">
@@ -350,16 +310,6 @@
     <PossiblyInvalidArgument occurrences="1">
       <code>$optionSpec</code>
     </PossiblyInvalidArgument>
-  </file>
-  <file src="src/View/Helper/FormTime.php">
-    <DeprecatedClass occurrences="1">
-      <code>FormDateTime</code>
-    </DeprecatedClass>
-  </file>
-  <file src="src/View/Helper/FormWeek.php">
-    <DeprecatedClass occurrences="1">
-      <code>FormDateTime</code>
-    </DeprecatedClass>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -415,9 +365,7 @@
     </PossiblyUndefinedVariable>
   </file>
   <file src="test/Element/DateTimeTest.php">
-    <DeprecatedClass occurrences="11">
-      <code>DateTimeElement::DATETIME_FORMAT</code>
-      <code>DateTimeElement::DATETIME_FORMAT</code>
+    <DeprecatedClass occurrences="9">
       <code>new DateTimeElement('foo')</code>
       <code>new DateTimeElement('foo')</code>
       <code>new DateTimeElement('foo')</code>
