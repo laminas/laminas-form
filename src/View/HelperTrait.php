@@ -7,7 +7,6 @@ namespace Laminas\Form\View;
 use IntlDateFormatter;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FormInterface;
-use Laminas\Form\View\Helper\AbstractFormDateTime;
 use Laminas\Form\View\Helper\Captcha\Dumb;
 use Laminas\Form\View\Helper\Captcha\Figlet;
 use Laminas\Form\View\Helper\Captcha\Image;
@@ -20,6 +19,7 @@ use Laminas\Form\View\Helper\FormCollection;
 use Laminas\Form\View\Helper\FormColor;
 use Laminas\Form\View\Helper\FormDate;
 use Laminas\Form\View\Helper\FormDateSelect;
+use Laminas\Form\View\Helper\FormDateTime;
 use Laminas\Form\View\Helper\FormDateTimeLocal;
 use Laminas\Form\View\Helper\FormDateTimeSelect;
 use Laminas\Form\View\Helper\FormElement;
@@ -75,7 +75,7 @@ use Laminas\Form\View\Helper\FormWeek;
  * @method string|FormCollection formCollection(ElementInterface|null $element = null, bool $wrap = true)
  * @method string|FormColor formColor(ElementInterface|null $element = null)
  * @method string|FormDate formDate(ElementInterface|null $element = null)
- * @method string|AbstractFormDateTime formDateTime(ElementInterface|null $element = null)
+ * @method string|FormDateTime formDateTime(ElementInterface|null $element = null)
  * @method string|FormDateTimeLocal formDateTimeLocal(ElementInterface|null $element = null)
  * @method string|FormDateTimeSelect formDateTimeSelect(ElementInterface|null $element = null, int $dateType = IntlDateFormatter::LONG, int|null|string $timeType = IntlDateFormatter::LONG, string|null $locale = null)
  * @method string|FormDateSelect formDateSelect(ElementInterface $element = null, $dateType = IntlDateFormatter::LONG, $locale = null)
