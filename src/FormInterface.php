@@ -10,7 +10,6 @@ interface FormInterface extends FieldsetInterface
 {
     public const BIND_ON_VALIDATE  = 0x00;
     public const BIND_MANUAL       = 0x01;
-    public const VALIDATE_ALL      = 0x10;
     public const VALUES_NORMALIZED = 0x11;
     public const VALUES_RAW        = 0x12;
     public const VALUES_AS_ARRAY   = 0x13;
@@ -76,5 +75,10 @@ interface FormInterface extends FieldsetInterface
      *
      * @return $this
      */
-    public function setValidationGroup();
+    public function setValidationGroup(array $group);
+
+    /**
+     * Reset the form to validate all elements
+     */
+    public function setValidateAll(): void;
 }

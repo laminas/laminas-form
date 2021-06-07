@@ -276,7 +276,7 @@ class Factory
         }
 
         if (isset($spec['validation_group'])) {
-            $this->prepareAndInjectValidationGroup($spec['validation_group'], $form, __METHOD__);
+            $form->setValidationGroup($spec['validation_group']);
         }
 
         return $form;
@@ -513,28 +513,5 @@ class Factory
             $filter->setFactory($factory);
         }
         $form->setInputFilter($filter);
-    }
-
-    /**
-     * Prepare a validation group and inject in the provided form
-     *
-     * Takes an array of elements names
-     *
-     * @param  class-string|array $spec
-     * @throws Exception\DomainException If validation group given is not an array.
-     */
-    protected function prepareAndInjectValidationGroup($spec, FormInterface $form, string $method): void
-    {
-        if (! is_array($spec)) {
-            if (! class_exists($spec)) {
-                throw new Exception\DomainException(sprintf(
-                    '%s expects an array for validation group; received "%s"',
-                    $method,
-                    is_object($spec) ? get_class($spec) : gettype($spec)
-                ));
-            }
-        }
-
-        $form->setValidationGroup($spec);
     }
 }

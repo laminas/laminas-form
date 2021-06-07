@@ -555,7 +555,7 @@ laminas-form provides a proxy method to the underlying `InputFilter`'s
 `setValidationGroup()` method, allowing us to perform this operation.
 
 ```php
-$form->setValidationGroup('name', 'email', 'subject', 'message');
+$form->setValidationGroup(['name', 'email', 'subject', 'message']);
 $form->setData($data);
 if ($form->isValid()) {
     // Contains only the "name", "email", "subject", and "message" values
@@ -563,12 +563,12 @@ if ($form->isValid()) {
 }
 ```
 
-If you later want to reset the form to validate all elements, pass the
-`FormInterface::VALIDATE_ALL` flag to the `setValidationGroup()` method:
+If you later want to reset the form to validate all elements, call the
+`FormInterface::setValidateAll()` method:
 
 ```php
 use Laminas\Form\FormInterface;
-$form->setValidationGroup(FormInterface::VALIDATE_ALL);
+$form->setValidateAll();
 ```
 
 When your form contains nested fieldsets, you can use an array notation to
