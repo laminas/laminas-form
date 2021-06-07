@@ -540,40 +540,4 @@ class Factory
 
         $form->setValidationGroup($spec);
     }
-
-    /**
-     * Try to pull hydrator from service manager, or instantiates it from its name
-     *
-     * @deprecated 3.0.0 Please use FormElementManager::getHydratorFromName() instead
-     *
-     * @return mixed
-     * @throws Exception\DomainException
-     */
-    protected function getHydratorFromName(string $hydratorName)
-    {
-        trigger_error(sprintf(
-            'Usage of %s is deprecated since v3.0.0; please use FormElementManager::getHydratorFromName() instead',
-            __METHOD__
-        ), E_USER_DEPRECATED);
-
-        return $this->getFormElementManager()->getHydratorFromName($hydratorName);
-    }
-
-    /**
-     * Try to pull factory from service manager, or instantiates it from its name
-     *
-     * @deprecated 3.0.0 Please use FormElementManager::getFactoryFromName() instead
-     *
-     * @return mixed
-     * @throws Exception\DomainException
-     */
-    protected function getFactoryFromName(string $factoryName)
-    {
-        trigger_error(sprintf(
-            'Usage of %s is deprecated since v3.0.0; please use FormElementManager::getFactoryFromName() instead',
-            __METHOD__
-        ), E_USER_DEPRECATED);
-
-        return $this->getFormElementManager()->getFactoryFromName($factoryName);
-    }
 }
