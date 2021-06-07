@@ -17,7 +17,4 @@
 
     <!-- Include all rules from the Laminas Coding Standard -->
     <rule ref="LaminasCodingStandard"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
-        <exclude-pattern>src\/Annotation\/</exclude-pattern>
-    </rule>
 </ruleset>

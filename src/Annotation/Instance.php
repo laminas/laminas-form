@@ -8,11 +8,6 @@ use Attribute;
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 
-use function sprintf;
-use function trigger_error;
-
-use const E_USER_DEPRECATED;
-
 /**
  * Instance (formerly "object") annotation
  *
