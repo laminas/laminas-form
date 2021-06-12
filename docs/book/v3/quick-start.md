@@ -47,7 +47,7 @@ Lastly, forms can be created by using annotations to your models. This enables
 maintaining models and their respective forms in a single file. Similar to the
 creation via factory this is a zero-code approach. For further information on
 additional installation requirements, the syntax of the supported annotations and
-examples see the page on [annotation usage](form-creation/using-annotations.md).
+examples see the page on [annotation usage](form-creation/attributes-or-annotations.md).
 
 ## Validating Forms
 

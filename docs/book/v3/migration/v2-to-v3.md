@@ -10,7 +10,7 @@ This document details those changes, and provides suggestions on how to update y
 laminas-form version 3 supports native PHP8 attributes as an alternative to DocBlock annotations.
 While for new projects it is recommended to use PHP8 attributes, there is no need to migrate DocBlock annotations to PHP8 attributes, as laminas-form will continue to support DocBlock annotations.
 
-In case you still want to migrate from DocBlock annotations to PHP8 attributes, please have a look at the [annotations chapter](../form-creation/using-annotations.md), which provides a side-by-side comparison of these annotations.
+In case you still want to migrate from DocBlock annotations to PHP8 attributes, please have a look at the [annotations chapter](../form-creation/attributes-or-annotations.md), which provides a side-by-side comparison of these annotations.
 
 ## Signature Changes
 
@@ -34,7 +34,7 @@ Many notable API have been changed:
 
 ### Using doctrine/annotations Now Instead of laminas/laminas-code
 
-Since laminas-code dropped support for annotation parsing with version 4, laminas-form switched to [doctrine/annotations](https://www.doctrine-project.org/projects/annotations.html) for [annotation parsing](../form-creation/using-annotations.md#using-docblock-annotations).
+Since laminas-code dropped support for annotation parsing with version 4, laminas-form switched to [doctrine/annotations](https://www.doctrine-project.org/projects/annotations.html) for [annotation parsing](../form-creation/attributes-or-annotations.md#using-docblock-annotations).
 For most users, this will not have any side effects, however, you must ensure that you install doctrine/annotations with at least version 1.12.0:
 
 ```console
@@ -58,7 +58,7 @@ Please see the following list of potential notices and how to eliminate them:
 
 #### ComposedObject
 
-Passing a single array to the constructor of [`Laminas\Form\Annotation\ComposedObject`](../form-creation/using-annotations.md#composedobject) is deprecated since 3.0.0, please use separate parameters.
+Passing a single array to the constructor of [`Laminas\Form\Annotation\ComposedObject`](../form-creation/attributes-or-annotations.md#composedobject) is deprecated since 3.0.0, please use separate parameters.
 
 Old style:
 
@@ -78,7 +78,7 @@ New style:
 
 #### Filter
 
-Passing a single array to the constructor of [`Laminas\Form\Annotation\Filter`](../form-creation/using-annotations.md#filter) is deprecated since 3.0.0, please use separate parameters.
+Passing a single array to the constructor of [`Laminas\Form\Annotation\Filter`](../form-creation/attributes-or-annotations.md#filter) is deprecated since 3.0.0, please use separate parameters.
 
 Old style:
 
@@ -98,7 +98,7 @@ New style:
 
 #### Hydrator
 
-Passing a single array to the constructor of [`Laminas\Form\Annotation\Hydrator`](../form-creation/using-annotations.md#hydrator) is deprecated since 3.0.0, please use separate parameters.
+Passing a single array to the constructor of [`Laminas\Form\Annotation\Hydrator`](../form-creation/attributes-or-annotations.md#hydrator) is deprecated since 3.0.0, please use separate parameters.
 
 Old style:
 
@@ -118,7 +118,7 @@ New style:
 
 #### Validator
 
-Passing a single array to the constructor of [`Laminas\Form\Annotation\Validator`](../form-creation/using-annotations.md#validator) is deprecated since 3.0.0, please use separate parameters.
+Passing a single array to the constructor of [`Laminas\Form\Annotation\Validator`](../form-creation/attributes-or-annotations.md#validator) is deprecated since 3.0.0, please use separate parameters.
 
 Old style:
 

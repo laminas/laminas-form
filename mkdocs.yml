@@ -10,7 +10,7 @@ nav:
             - "Programmatic Form Creation": v3/form-creation/programmatic-form-creation.md
             - "Creation via Factory": v3/form-creation/creation-via-factory.md
             - "Factory-Backed Form Extension": v3/form-creation/factory-backed-form-extension.md
-            - "Using Annotations or PHP8 Attributes": v3/form-creation/using-annotations.md
+            - "Using PHP8 Attributes or DocBlock Annotations": v3/form-creation/attributes-or-annotations.md
         - Elements:
             - Introduction: v3/element/intro.md
             - Element: v3/element/element.md
