@@ -169,7 +169,7 @@
             
                 
     <li class="subnavigation__list-item ">
-        <a href="../../form-creation/using-annotations/" class="subnavigation__link">Using Annotations or PHP8 Attributes</a>
+        <a href="../../form-creation/attributes-or-annotations/" class="subnavigation__link">Using PHP8 Attributes or DocBlock Annotations</a>
     </li>
 
             
@@ -793,27 +793,19 @@
             <ul class="toc__list">
                 
                     <li class="toc__entry">
-                        <a href="#native-types" class="toc__link nav-link">Native types</a>
+                        <a href="#new-features" class="toc__link nav-link">New Features</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#api-changes" class="toc__link nav-link">API changes</a>
+                        <a href="#signature-changes" class="toc__link nav-link">Signature Changes</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#using-doctrineannotations-now-instead-of-laminaslaminas-code" class="toc__link nav-link">Using doctrine/annotations now instead of laminas/laminas-code</a>
+                        <a href="#new-dependencies" class="toc__link nav-link">New Dependencies</a>
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#support-for-php8-attributes" class="toc__link nav-link">Support for PHP8 Attributes</a>
-                    </li>
-                
-                    <li class="toc__entry">
-                        <a href="#elementdatetime-is-deprecated" class="toc__link nav-link">Element\DateTime is deprecated</a>
-                    </li>
-                
-                    <li class="toc__entry">
-                        <a href="#single-associative-array-in-constructors-of-annotations-is-deprecated" class="toc__link nav-link">Single Associative Array in Constructors of Annotations is Deprecated</a>
+                        <a href="#deprecations" class="toc__link nav-link">Deprecations</a>
                     </li>
                 
             </ul>
@@ -863,84 +855,77 @@
     
 
     <h1 id="migration-from-version-2-to-3">Migration from Version 2 to 3</h1>
-<p>laminas-form v3 makes a number of changes that may affect your application. This
-document details those changes, and provides suggestions on how to update your
-application to work with v3.</p>
-<h2 id="native-types">Native types</h2>
-<p>laminas-form v3 promoted <code>@param</code> and <code>@return</code> annotations of non-mixed types to
-the corresponding function signatures. This change should affect only highly customized
-element, fieldset or form classes.
-If you need to automate native types promotion, <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PHP-CS-Fixer</a>
-can help you with this command:</p>
+<p>laminas-form version 3 makes a number of changes that may affect your application.
+This document details those changes, and provides suggestions on how to update your application to work with version 3.</p>
+<h2 id="new-features">New Features</h2>
+<h3 id="support-for-php8-attributes">Support for PHP8 Attributes</h3>
+<p>laminas-form version 3 supports native PHP8 attributes as an alternative to DocBlock annotations.
+While for new projects it is recommended to use PHP8 attributes, there is no need to migrate DocBlock annotations to PHP8 attributes, as laminas-form will continue to support DocBlock annotations.</p>
+<p>In case you still want to migrate from DocBlock annotations to PHP8 attributes, please have a look at the <a href="../../form-creation/attributes-or-annotations/">annotations chapter</a>, which provides a side-by-side comparison of these annotations.</p>
+<h2 id="signature-changes">Signature Changes</h2>
+<h3 id="native-types">Native Types</h3>
+<p>laminas-form version 3 promoted <code>@param</code> and <code>@return</code> annotations of non-mixed types to the corresponding function signatures.
+This change should affect only highly customized element, fieldset or form classes.
+If you need to automate native types promotion, <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">PHP-CS-Fixer</a> can help you with this command:</p>
 <pre class="highlight"><code class="language-console">$ php-cs-fixer fix --rules=phpdoc_to_param_type,phpdoc_to_return_type --allow-risky=yes path/to/my/custom/forms/</code></pre>
-<h2 id="api-changes">API changes</h2>
+<h3 id="api-changes">API Changes</h3>
 <p>Many notable API have been changed:</p>
 <ul>
-<li><code>\Laminas\Form\FormInterface::setValidationGroup(FormInterface::VALIDATE_ALL)</code> has now its own dedicated method
-  <code>\Laminas\Form\FormInterface::setValidateAll()</code></li>
+<li><code>\Laminas\Form\FormInterface::setValidationGroup(FormInterface::VALIDATE_ALL)</code> has now its own dedicated method <code>\Laminas\Form\FormInterface::setValidateAll()</code></li>
 </ul>
-<h2 id="using-doctrineannotations-now-instead-of-laminaslaminas-code">Using doctrine/annotations now instead of laminas/laminas-code</h2>
-<p>Since laminas-code dropped support for annotation parsing with v4, laminas-form
-switched to doctrine/annotations for annotation parsing. For most users, this will
-not have any side effects, however, you must ensure that you install
-doctrine/annotations with at least version 1.12.0:</p>
+<h2 id="new-dependencies">New Dependencies</h2>
+<h3 id="using-doctrineannotations-now-instead-of-laminaslaminas-code">Using doctrine/annotations Now Instead of laminas/laminas-code</h3>
+<p>Since laminas-code dropped support for annotation parsing with version 4, laminas-form switched to <a href="https://www.doctrine-project.org/projects/annotations.html">doctrine/annotations</a> for <a href="../../form-creation/attributes-or-annotations/#using-docblock-annotations">annotation parsing</a>.
+For most users, this will not have any side effects, however, you must ensure that you install doctrine/annotations with at least version 1.12.0:</p>
 <pre class="highlight"><code class="language-console">$ composer require doctrine/annotations</code></pre>
-<h2 id="support-for-php8-attributes">Support for PHP8 Attributes</h2>
-<p>laminas-form v3 supports native PHP8 attributes as an alternative to DocBlock
-annotations. While for new projects it is recommended to use PHP8 attributes, there
-is no need to migrate DocBlock annotations to PHP8 attributes, as laminas-form
-will continue to support DocBlock annotations.</p>
-<p>In case you still want to migrate from DocBlock annotations to PHP8 attributes,
-please have a look at the <a href="../../form-creation/using-annotations/">annotations chapter</a>,
-which provides a side-by-side comparison of these annotations.</p>
-<h2 id="elementdatetime-is-deprecated">Element\DateTime is deprecated</h2>
-<p>Since the HTML element <code>&lt;input type="datetime"&gt;</code> has been
-<a href="https://github.com/whatwg/html/issues/336">removed from WHATWG HTML</a> and it currently
-is not supported by any major browsers
-(see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime">MDN Web Docs</a>),
-its usage in form of <code>Element\DateTime</code> and <code>View\Helper\FormDateTime</code> is deprecated.
-Please use something else like <code>DateTimeLocal</code> or <code>DateTimeSelect</code>.</p>
-<h2 id="single-associative-array-in-constructors-of-annotations-is-deprecated">Single Associative Array in Constructors of Annotations is Deprecated</h2>
-<p>After upgrading you may receive one or more deprecation notices about passing a
-single array to the constructor of annotation classes. While the old style will
-continue to work, it is recommended to update your annotations. Please see the following
-list of potential notices and how to eliminate them:</p>
-<h3 id="composedobject">ComposedObject</h3>
-<blockquote>
-<p>Passing a single array to the constructor of Laminas\Form\Annotation\ComposedObject
-is deprecated since 3.0.0, please use separate parameters.</p>
-</blockquote>
+<h2 id="deprecations">Deprecations</h2>
+<h3 id="elementdatetime-is-deprecated"><code>Element\DateTime</code> is Deprecated</h3>
+<p>Since the HTML element <code>&lt;input type="datetime"&gt;</code> has been <a href="https://github.com/whatwg/html/issues/336">removed from WHATWG HTML</a> and it currently is not supported by any major browsers (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime">MDN Web Docs</a>), its usage in form of <a href="../../element/date-time/"><code>Element\DateTime</code></a> and <a href="../../helper/form-date-time/"><code>View\Helper\FormDateTime</code></a> is deprecated.</p>
+<p>Please use something else like <a href="../../element/date-time-local/"><code>DateTimeLocal</code></a> or <code>DateTimeSelect</code>.</p>
+<h3 id="single-associative-array-in-constructors-of-annotations-is-deprecated">Single Associative Array in Constructors of Annotations Is Deprecated</h3>
+<p>After upgrading you may receive one or more deprecation notices about passing a single array to the constructor of annotation classes.
+While the old style will continue to work, it is recommended to update your annotations.</p>
+<p>Please see the following list of potential notices and how to eliminate them:</p>
+<h4 id="composedobject">ComposedObject</h4>
+<p>Passing a single array to the constructor of <a href="../../form-creation/attributes-or-annotations/#composedobject"><code>Laminas\Form\Annotation\ComposedObject</code></a> is deprecated since 3.0.0, please use separate parameters.</p>
 <p>Old style:</p>
-<pre class="highlight"><code class="language-text">@ComposedObject({"target_object": "Namespace\Model\Entity", "is_collection": "true", "options": {}})</code></pre>
+<pre class="highlight"><code class="language-php">/**
+ * @ComposedObject({"target_object": "Namespace\Model\Entity", "is_collection": "true", "options": {}})
+ */</code></pre>
 <p>New style:</p>
-<pre class="highlight"><code class="language-text">@ComposedObject("Namespace\Model\Entity", isCollection="true", options={})</code></pre>
-<h3 id="filter">Filter</h3>
-<blockquote>
-<p>Passing a single array to the constructor of Laminas\Form\Annotation\Filter
-is deprecated since 3.0.0, please use separate parameters.</p>
-</blockquote>
+<pre class="highlight"><code class="language-php">/**
+ * @ComposedObject("Namespace\Model\Entity", isCollection="true", options={})
+ */</code></pre>
+<h4 id="filter">Filter</h4>
+<p>Passing a single array to the constructor of <a href="../../form-creation/attributes-or-annotations/#filter"><code>Laminas\Form\Annotation\Filter</code></a> is deprecated since 3.0.0, please use separate parameters.</p>
 <p>Old style:</p>
-<pre class="highlight"><code class="language-text">@Filter({"name": "StringTrim", "options": {"charlist": " "}, "priority": -100})</code></pre>
+<pre class="highlight"><code class="language-php">/**
+ * @Filter({"name": "StringTrim", "options": {"charlist": " "}, "priority": -100})
+ */</code></pre>
 <p>New style:</p>
-<pre class="highlight"><code class="language-text">@Filter("StringStrim", options={"charlist": " "}, priority=-100)</code></pre>
-<h3 id="hydrator">Hydrator</h3>
-<blockquote>
-<p>Passing a single array to the constructor of Laminas\Form\Annotation\Hydrator
-is deprecated since 3.0.0, please use separate parameters.</p>
-</blockquote>
+<pre class="highlight"><code class="language-php">/**
+ * @Filter("StringStrim", options={"charlist": " "}, priority=-100)
+ */</code></pre>
+<h4 id="hydrator">Hydrator</h4>
+<p>Passing a single array to the constructor of <a href="../../form-creation/attributes-or-annotations/#hydrator"><code>Laminas\Form\Annotation\Hydrator</code></a> is deprecated since 3.0.0, please use separate parameters.</p>
 <p>Old style:</p>
-<pre class="highlight"><code class="language-text">@Hydrator({"type": "Laminas\Hydrator\ClassMethodsHydrator", "options": {"underscoreSeparatedKeys": false}})</code></pre>
+<pre class="highlight"><code class="language-php">/**
+ * @Hydrator({"type": "Laminas\Hydrator\ClassMethodsHydrator", "options": {"underscoreSeparatedKeys": false}})
+ */</code></pre>
 <p>New style:</p>
-<pre class="highlight"><code class="language-text">@Hydrator("Laminas\Hydrator\ClassMethodsHydrator", options={"underscoreSeparatedKeys": false})</code></pre>
-<h3 id="validator">Validator</h3>
-<blockquote>
-<p>Passing a single array to the constructor of Laminas\Form\Annotation\Validator
-is deprecated since 3.0.0, please use separate parameters.</p>
-</blockquote>
+<pre class="highlight"><code class="language-php">/**
+ * @Hydrator("Laminas\Hydrator\ClassMethodsHydrator", options={"underscoreSeparatedKeys": false})
+ */</code></pre>
+<h4 id="validator">Validator</h4>
+<p>Passing a single array to the constructor of <a href="../../form-creation/attributes-or-annotations/#validator"><code>Laminas\Form\Annotation\Validator</code></a> is deprecated since 3.0.0, please use separate parameters.</p>
 <p>Old style:</p>
-<pre class="highlight"><code class="language-text">@Validator({"name": "StringLength", "options": {"min":3,"max":25}, "break_chain_on_failure": true, "priority": -100})</code></pre>
+<pre class="highlight"><code class="language-php">/**
+ * @Validator({"name": "StringLength", "options": {"min":3,"max":25}, "break_chain_on_failure": true, "priority": -100})
+ */</code></pre>
 <p>New style:</p>
-<pre class="highlight"><code class="language-text">@Validator("StringLength", options={"min": 3, "max": 25}, breakChainOnFailure=true, priority=-100)</code></pre>
+<pre class="highlight"><code class="language-php">/**
+ * @Validator("StringLength", options={"min": 3, "max": 25}, breakChainOnFailure=true, priority=-100)
+ */</code></pre>
 
 
 
@@ -1047,7 +1032,7 @@ is deprecated since 3.0.0, please use separate parameters.</p>
             
                 
     <li class="subnavigation__list-item ">
-        <a href="../../form-creation/using-annotations/" class="subnavigation__link">Using Annotations or PHP8 Attributes</a>
+        <a href="../../form-creation/attributes-or-annotations/" class="subnavigation__link">Using PHP8 Attributes or DocBlock Annotations</a>
     </li>
 
             
