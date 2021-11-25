@@ -191,8 +191,17 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Does the fieldset have an element/fieldset by the given name?
      */
-    public function has(string $elementOrFieldset): bool
+    public function has($elementOrFieldset): bool
     {
+        if (! is_string($elementOrFieldset)) {
+            throw new Exception\InvalidElementException(
+                sprintf(
+                    'Name of element or fieldset should be string, [%s] provided, consider typecasting to string',
+                    gettype($elementOrFieldset)
+                )
+            );
+        }
+
         return $this->iterator->get($elementOrFieldset) !== null;
     }
 
@@ -201,8 +210,17 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return FieldsetInterface|ElementInterface
      */
-    public function get(string $elementOrFieldset): ElementInterface
+    public function get($elementOrFieldset): ElementInterface
     {
+        if (! is_string($elementOrFieldset)) {
+            throw new Exception\InvalidElementException(
+                sprintf(
+                    'Name of element or fieldset should be string,  [%s] provided, consider typecasting to string',
+                    gettype($elementOrFieldset)
+                )
+            );
+        }
+
         if (! $this->has($elementOrFieldset)) {
             throw new Exception\InvalidElementException(sprintf(
                 'No element by the name of [%s] found in form',
@@ -217,8 +235,17 @@ class Fieldset extends Element implements FieldsetInterface
      *
      * @return $this
      */
-    public function remove(string $elementOrFieldset)
+    public function remove($elementOrFieldset)
     {
+        if (! is_string($elementOrFieldset)) {
+            throw new Exception\InvalidElementException(
+                sprintf(
+                    'Name of element or fieldset should be string,  [%s] provided, consider typecasting to string',
+                    gettype($elementOrFieldset)
+                )
+            );
+        }
+
         if (! $this->has($elementOrFieldset)) {
             return $this;
         }
