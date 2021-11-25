@@ -69,10 +69,10 @@ class Fieldset extends Element implements FieldsetInterface
     protected $allowedObjectBindingClass;
 
     /**
-     * @param  null|int|string  $name    Optional name for the element
-     * @param  array            $options Optional options for the element
+     * @param  null|string  $name    Optional name for the element
+     * @param  array        $options Optional options for the element
      */
-    public function __construct($name = null, array $options = [])
+    public function __construct(?string $name = null, array $options = [])
     {
         $this->iterator = new PriorityList();
         $this->iterator->isLIFO(false);
