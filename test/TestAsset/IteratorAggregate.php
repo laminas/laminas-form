@@ -20,7 +20,7 @@ class IteratorAggregate implements IteratorAggregateInterface
     /**
      * @inheritDoc
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return $this->iterator;
     }

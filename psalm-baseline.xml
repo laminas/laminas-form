@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
+<files psalm-version="4.13.1@5cf660f63b548ccd4a56f62d916ee4d6028e01a3">
   <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_string($entity)</code>
@@ -73,8 +73,11 @@
   </file>
   <file src="src/Element/Captcha.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$captcha instanceof LaminasCaptcha\AdapterInterface</code>
+      <code>gettype($captcha)</code>
     </DocblockTypeContradiction>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($captcha)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Element/Collection.php">
     <DocblockTypeContradiction occurrences="4">
@@ -120,7 +123,7 @@
   </file>
   <file src="src/Factory.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$spec instanceof ArrayAccess</code>
+      <code>gettype($spec)</code>
     </DocblockTypeContradiction>
     <LessSpecificReturnStatement occurrences="2">
       <code>$this-&gt;create($spec)</code>
@@ -134,6 +137,9 @@
       <code>$elements</code>
       <code>$fieldsets</code>
     </PossibleRawObjectIteration>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($spec)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Fieldset.php">
     <DocblockTypeContradiction occurrences="2">
@@ -195,7 +201,6 @@
       <code>merge</code>
       <code>merge</code>
     </PossiblyUndefinedMethod>
-    <RedundantConditionGivenDocblockType occurrences="1"/>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
@@ -221,7 +226,10 @@
     <ParamNameMismatch occurrences="1">
       <code>$name</code>
     </ParamNameMismatch>
-    <RedundantConditionGivenDocblockType occurrences="3">
+    <RedundantConditionGivenDocblockType occurrences="6">
+      <code>$services</code>
+      <code>$services</code>
+      <code>$services</code>
       <code>$services</code>
       <code>$services</code>
       <code>$services</code>
@@ -257,8 +265,11 @@
   </file>
   <file src="src/View/Helper/FormButton.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$attributesOrElement instanceof ElementInterface</code>
+      <code>gettype($attributesOrElement)</code>
     </DocblockTypeContradiction>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($attributesOrElement)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormCollection.php">
     <RedundantConditionGivenDocblockType occurrences="1">
@@ -286,8 +297,11 @@
   </file>
   <file src="src/View/Helper/FormLabel.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$attributesOrElement instanceof ElementInterface</code>
+      <code>gettype($attributesOrElement)</code>
     </DocblockTypeContradiction>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($attributesOrElement)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">
@@ -493,17 +507,11 @@
     <PossiblyNullArgument occurrences="1">
       <code>$fieldset-&gt;getName()</code>
     </PossiblyNullArgument>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$this-&gt;fieldsetHelper</code>
-    </RedundantConditionGivenDocblockType>
   </file>
   <file src="test/TestAsset/CustomViewHelper.php">
     <PossiblyNullArgument occurrences="1">
       <code>$element-&gt;getName()</code>
     </PossiblyNullArgument>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$this-&gt;elementHelper</code>
-    </RedundantConditionGivenDocblockType>
   </file>
   <file src="test/TestAsset/FieldsetWithDependency.php">
     <MissingParamType occurrences="2">
@@ -576,6 +584,33 @@
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
     </PossiblyFalseArgument>
+  </file>
+  <file src="test/View/Helper/File/FormFileApcProgressTest.php">
+    <InvalidArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </InvalidArgument>
+  </file>
+  <file src="test/View/Helper/File/FormFileSessionProgressTest.php">
+    <InvalidArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </InvalidArgument>
+  </file>
+  <file src="test/View/Helper/File/FormFileUploadProgressTest.php">
+    <InvalidArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </InvalidArgument>
   </file>
   <file src="test/View/Helper/FormButtonTest.php">
     <InvalidArgument occurrences="1">

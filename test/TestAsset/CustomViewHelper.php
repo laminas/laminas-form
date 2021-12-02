@@ -13,7 +13,7 @@ use function preg_replace;
 
 class CustomViewHelper extends AbstractHelper
 {
-    /** @var FormElement */
+    /** @var FormElement|null */
     protected $elementHelper;
 
     public function __invoke(ElementInterface $element): string
@@ -32,7 +32,7 @@ class CustomViewHelper extends AbstractHelper
      */
     protected function getElementHelper()
     {
-        if ($this->elementHelper) {
+        if ($this->elementHelper !== null) {
             return $this->elementHelper;
         }
 

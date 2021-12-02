@@ -24,6 +24,7 @@ class CustomTraversable implements Iterator
     /**
      * @inheritDoc
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->data);
@@ -32,7 +33,7 @@ class CustomTraversable implements Iterator
     /**
      * @inheritDoc
      */
-    public function next()
+    public function next(): void
     {
         next($this->data);
     }
@@ -40,6 +41,7 @@ class CustomTraversable implements Iterator
     /**
      * @inheritDoc
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->data);
@@ -48,7 +50,7 @@ class CustomTraversable implements Iterator
     /**
      * @inheritDoc
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->key() !== null;
     }
@@ -56,7 +58,7 @@ class CustomTraversable implements Iterator
     /**
      * @inheritDoc
      */
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->data);
     }
