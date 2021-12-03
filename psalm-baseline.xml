@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
+<files psalm-version="4.13.1@5cf660f63b548ccd4a56f62d916ee4d6028e01a3">
   <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_string($entity)</code>
@@ -10,6 +10,11 @@
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Annotation/AllowEmpty.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
     <DeprecatedMethod occurrences="1">
@@ -26,6 +31,11 @@
       <code>getAttributes</code>
     </UndefinedMethod>
   </file>
+  <file src="src/Annotation/Attributes.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
       <code>new $requestedName()</code>
@@ -37,6 +47,16 @@
       <code>AbstractBuilder</code>
     </MoreSpecificReturnType>
   </file>
+  <file src="src/Annotation/ComposedObject.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/ContinueIfEmpty.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/ElementAnnotationsListener.php">
     <PossiblyInvalidMethodCall occurrences="1">
       <code>getFormSpecification</code>
@@ -45,10 +65,78 @@
       <code>getFormSpecification</code>
     </PossiblyNullReference>
   </file>
+  <file src="src/Annotation/ErrorMessage.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Exclude.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Filter.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Flags.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Hydrator.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Input.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/InputFilter.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
     </DocblockTypeContradiction>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Instance.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Name.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Options.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Required.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Type.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/ValidationGroup.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Validator.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/ConfigProvider.php">
     <DeprecatedClass occurrences="5">
@@ -73,8 +161,11 @@
   </file>
   <file src="src/Element/Captcha.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$captcha instanceof LaminasCaptcha\AdapterInterface</code>
+      <code>gettype($captcha)</code>
     </DocblockTypeContradiction>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($captcha)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Element/Collection.php">
     <DocblockTypeContradiction occurrences="4">
@@ -120,7 +211,7 @@
   </file>
   <file src="src/Factory.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$spec instanceof ArrayAccess</code>
+      <code>gettype($spec)</code>
     </DocblockTypeContradiction>
     <LessSpecificReturnStatement occurrences="2">
       <code>$this-&gt;create($spec)</code>
@@ -134,6 +225,9 @@
       <code>$elements</code>
       <code>$fieldsets</code>
     </PossibleRawObjectIteration>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($spec)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Fieldset.php">
     <DocblockTypeContradiction occurrences="2">
@@ -167,8 +261,9 @@
       <code>$this</code>
       <code>$this</code>
     </LessSpecificReturnStatement>
-    <PossiblyInvalidArgument occurrences="2">
+    <PossiblyInvalidArgument occurrences="3">
       <code>$collectionInputFilter-&gt;get($name)</code>
+      <code>$input</code>
       <code>$inputFilter</code>
     </PossiblyInvalidArgument>
     <PossiblyNullArgument occurrences="1">
@@ -195,7 +290,6 @@
       <code>merge</code>
       <code>merge</code>
     </PossiblyUndefinedMethod>
-    <RedundantConditionGivenDocblockType occurrences="1"/>
     <TooManyArguments occurrences="1">
       <code>bindValues</code>
     </TooManyArguments>
@@ -221,7 +315,10 @@
     <ParamNameMismatch occurrences="1">
       <code>$name</code>
     </ParamNameMismatch>
-    <RedundantConditionGivenDocblockType occurrences="3">
+    <RedundantConditionGivenDocblockType occurrences="6">
+      <code>$services</code>
+      <code>$services</code>
+      <code>$services</code>
       <code>$services</code>
       <code>$services</code>
       <code>$services</code>
@@ -257,8 +354,11 @@
   </file>
   <file src="src/View/Helper/FormButton.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$attributesOrElement instanceof ElementInterface</code>
+      <code>gettype($attributesOrElement)</code>
     </DocblockTypeContradiction>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($attributesOrElement)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormCollection.php">
     <RedundantConditionGivenDocblockType occurrences="1">
@@ -286,8 +386,11 @@
   </file>
   <file src="src/View/Helper/FormLabel.php">
     <DocblockTypeContradiction occurrences="1">
-      <code>$attributesOrElement instanceof ElementInterface</code>
+      <code>gettype($attributesOrElement)</code>
     </DocblockTypeContradiction>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>is_object($attributesOrElement)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">
@@ -470,19 +573,26 @@
       <code>$form</code>
     </MissingClosureParamType>
   </file>
+  <file src="test/TestAsset/Annotation/ComplexEntity.php">
+    <DeprecatedClass occurrences="1">
+      <code>Annotation\AllowEmpty()</code>
+    </DeprecatedClass>
+  </file>
   <file src="test/TestAsset/Annotation/InputFilterInput.php">
     <DeprecatedInterface occurrences="1">
       <code>InputFilterInput</code>
     </DeprecatedInterface>
-    <PropertyNotSetInConstructor occurrences="2">
-      <code>InputFilterInput</code>
-      <code>InputFilterInput</code>
-    </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/SampleEntity.php">
+    <DeprecatedClass occurrences="2">
+      <code>Annotation\AllowEmpty(true)</code>
+      <code>Annotation\ContinueIfEmpty(true)</code>
+    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/CustomCollection.php">
     <PropertyNotSetInConstructor occurrences="1">
@@ -493,17 +603,17 @@
     <PossiblyNullArgument occurrences="1">
       <code>$fieldset-&gt;getName()</code>
     </PossiblyNullArgument>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$this-&gt;fieldsetHelper</code>
-    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="test/TestAsset/CustomTraversable.php">
+    <InvalidAttribute occurrences="2">
+      <code>ReturnTypeWillChange</code>
+      <code>ReturnTypeWillChange</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/CustomViewHelper.php">
     <PossiblyNullArgument occurrences="1">
       <code>$element-&gt;getName()</code>
     </PossiblyNullArgument>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$this-&gt;elementHelper</code>
-    </RedundantConditionGivenDocblockType>
   </file>
   <file src="test/TestAsset/FieldsetWithDependency.php">
     <MissingParamType occurrences="2">
@@ -576,6 +686,33 @@
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
       <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
     </PossiblyFalseArgument>
+  </file>
+  <file src="test/View/Helper/File/FormFileApcProgressTest.php">
+    <InvalidArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </InvalidArgument>
+  </file>
+  <file src="test/View/Helper/File/FormFileSessionProgressTest.php">
+    <InvalidArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </InvalidArgument>
+  </file>
+  <file src="test/View/Helper/File/FormFileUploadProgressTest.php">
+    <InvalidArgument occurrences="5">
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+      <code>$markup</code>
+    </InvalidArgument>
   </file>
   <file src="test/View/Helper/FormButtonTest.php">
     <InvalidArgument occurrences="1">
