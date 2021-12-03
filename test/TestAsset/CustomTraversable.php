@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Form\TestAsset;
 
 use Iterator;
+use ReturnTypeWillChange;
 
 use function current;
 use function key;
@@ -24,7 +25,7 @@ class CustomTraversable implements Iterator
     /**
      * @inheritDoc
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current($this->data);
@@ -41,7 +42,7 @@ class CustomTraversable implements Iterator
     /**
      * @inheritDoc
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key($this->data);
