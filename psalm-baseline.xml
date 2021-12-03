@@ -11,6 +11,11 @@
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
   </file>
+  <file src="src/Annotation/AllowEmpty.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/AnnotationBuilder.php">
     <DeprecatedMethod occurrences="1">
       <code>AnnotationRegistry::registerLoader('class_exists')</code>
@@ -26,6 +31,11 @@
       <code>getAttributes</code>
     </UndefinedMethod>
   </file>
+  <file src="src/Annotation/Attributes.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
       <code>new $requestedName()</code>
@@ -37,6 +47,16 @@
       <code>AbstractBuilder</code>
     </MoreSpecificReturnType>
   </file>
+  <file src="src/Annotation/ComposedObject.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/ContinueIfEmpty.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/ElementAnnotationsListener.php">
     <PossiblyInvalidMethodCall occurrences="1">
       <code>getFormSpecification</code>
@@ -45,10 +65,78 @@
       <code>getFormSpecification</code>
     </PossiblyNullReference>
   </file>
+  <file src="src/Annotation/ErrorMessage.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Exclude.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Filter.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Flags.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Hydrator.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Input.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="src/Annotation/InputFilter.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
     </DocblockTypeContradiction>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Instance.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Name.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Options.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Required.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Type.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/ValidationGroup.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="src/Annotation/Validator.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="src/ConfigProvider.php">
     <DeprecatedClass occurrences="5">
@@ -173,8 +261,9 @@
       <code>$this</code>
       <code>$this</code>
     </LessSpecificReturnStatement>
-    <PossiblyInvalidArgument occurrences="2">
+    <PossiblyInvalidArgument occurrences="3">
       <code>$collectionInputFilter-&gt;get($name)</code>
+      <code>$input</code>
       <code>$inputFilter</code>
     </PossiblyInvalidArgument>
     <PossiblyNullArgument occurrences="1">
@@ -484,19 +573,26 @@
       <code>$form</code>
     </MissingClosureParamType>
   </file>
+  <file src="test/TestAsset/Annotation/ComplexEntity.php">
+    <DeprecatedClass occurrences="1">
+      <code>Annotation\AllowEmpty()</code>
+    </DeprecatedClass>
+  </file>
   <file src="test/TestAsset/Annotation/InputFilterInput.php">
     <DeprecatedInterface occurrences="1">
       <code>InputFilterInput</code>
     </DeprecatedInterface>
-    <PropertyNotSetInConstructor occurrences="2">
-      <code>InputFilterInput</code>
-      <code>InputFilterInput</code>
-    </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/SampleEntity.php">
+    <DeprecatedClass occurrences="2">
+      <code>Annotation\AllowEmpty(true)</code>
+      <code>Annotation\ContinueIfEmpty(true)</code>
+    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/CustomCollection.php">
     <PropertyNotSetInConstructor occurrences="1">
@@ -507,6 +603,12 @@
     <PossiblyNullArgument occurrences="1">
       <code>$fieldset-&gt;getName()</code>
     </PossiblyNullArgument>
+  </file>
+  <file src="test/TestAsset/CustomTraversable.php">
+    <InvalidAttribute occurrences="2">
+      <code>ReturnTypeWillChange</code>
+      <code>ReturnTypeWillChange</code>
+    </InvalidAttribute>
   </file>
   <file src="test/TestAsset/CustomViewHelper.php">
     <PossiblyNullArgument occurrences="1">
