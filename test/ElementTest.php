@@ -6,7 +6,6 @@ namespace LaminasTest\Form;
 
 use ArrayObject;
 use Laminas\Form\Element;
-use Laminas\Form\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 use function array_merge;
@@ -339,14 +338,5 @@ final class ElementTest extends TestCase
     {
         $element = new Element();
         $this->assertFalse($element->hasValue());
-    }
-
-    public function testConstructMustRejectNonStringNameToBeConsistentWithRetrievalMethods(): void
-    {
-        new Element('1');
-
-        $this->expectException(InvalidArgumentException::class);
-
-        new Element(1);
     }
 }

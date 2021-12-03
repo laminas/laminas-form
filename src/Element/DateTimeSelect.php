@@ -48,10 +48,10 @@ class DateTimeSelect extends DateSelect
     /**
      * Constructor. Add the hour, minute and second select elements
      *
-     * @param  null|int|string  $name    Optional name for the element
-     * @param  array            $options Optional options for the element
+     * @param  null|string  $name    Optional name for the element
+     * @param  array        $options Optional options for the element
      */
-    public function __construct($name = null, array $options = [])
+    public function __construct(?string $name = null, array $options = [])
     {
         parent::__construct($name, $options);
 

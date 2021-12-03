@@ -9,7 +9,6 @@ use Laminas\Stdlib\InitializableInterface;
 use Traversable;
 
 use function array_key_exists;
-use function is_int;
 use function is_string;
 
 class Element implements
@@ -47,19 +46,13 @@ class Element implements
     protected $hasValue = false;
 
     /**
-     * @param  null|int|string   $name    Optional name for the element
-     * @param  iterable $options Optional options for the element
+     * @param  null|string  $name    Optional name for the element
+     * @param  iterable     $options Optional options for the element
      * @throws Exception\InvalidArgumentException
      */
-    public function __construct($name = null, iterable $options = [])
+    public function __construct(?string $name = null, iterable $options = [])
     {
         if (null !== $name) {
-            if (is_int($name)) {
-                throw new Exception\InvalidArgumentException(
-                    "Element name ${name} must be a string,"
-                    . " type-case it to string before passing it to constructor"
-                );
-            }
             $this->setName($name);
         }
 

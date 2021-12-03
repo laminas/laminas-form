@@ -28,10 +28,10 @@ class DateSelect extends MonthSelect
     /**
      * Constructor. Add the day select element
      *
-     * @param  null|int|string $name    Optional name for the element
-     * @param  iterable        $options Optional options for the element
+     * @param  null|string $name    Optional name for the element
+     * @param  iterable    $options Optional options for the element
      */
-    public function __construct($name = null, iterable $options = [])
+    public function __construct(?string $name = null, iterable $options = [])
     {
         $this->dayElement = new Select('day');
 
