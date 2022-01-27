@@ -78,8 +78,10 @@ class FormElementErrors extends AbstractHelper
             $attributes = ' ' . $attributes;
         }
 
-        for ($i = 0; $i < count($messages); $i++) {
-            $messages[$i] = $this->getEscapeHtmlHelper()($messages[$i]);
+        $count   = count($messages);
+        $escaper = $this->getEscapeHtmlHelper();
+        for ($i = 0; $i < $count; $i += 1) {
+            $messages[$i] = $escaper($messages[$i]);
         }
 
         // Generate markup
