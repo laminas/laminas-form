@@ -236,9 +236,8 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
         $element->setMessages($messages);
 
         $markup = $this->helper->render($element);
-        // @codingStandardsIgnoreStart
+
         $this->assertStringNotContainsString('<span>', $markup);
         $this->assertStringNotContainsString('</span>', $markup);
-        // @codingStandardsIgnoreEnd
     }
 }
