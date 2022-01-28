@@ -222,4 +222,22 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
         $helper = $this->helper;
         $this->assertEquals($helper(), $helper);
     }
+
+    public function testHtmlEscapingOfMessages(): void
+    {
+        $messages = [
+            [
+                '<span>First validator message</span>',
+                '<span>Second validator first message</span>',
+                '<span>Second validator second message</span>',
+            ],
+        ];
+        $element  = new Element('foo');
+        $element->setMessages($messages);
+
+        $markup = $this->helper->render($element);
+
+        $this->assertStringNotContainsString('<span>', $markup);
+        $this->assertStringNotContainsString('</span>', $markup);
+    }
 }
