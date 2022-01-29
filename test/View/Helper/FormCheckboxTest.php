@@ -79,7 +79,7 @@ final class FormCheckboxTest extends AbstractCommonTestCase
 
     public function testDoesNotThrowExceptionIfNameIsZero(): void
     {
-        $element = new Element\Checkbox(0);
+        $element = new Element\Checkbox('0');
         $markup  = $this->helper->__invoke($element);
         $this->assertStringContainsString('name="0"', $markup);
     }

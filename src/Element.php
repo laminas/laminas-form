@@ -46,14 +46,14 @@ class Element implements
     protected $hasValue = false;
 
     /**
-     * @param  null|int|string   $name    Optional name for the element
-     * @param  iterable $options Optional options for the element
+     * @param  null|string  $name    Optional name for the element
+     * @param  iterable     $options Optional options for the element
      * @throws Exception\InvalidArgumentException
      */
-    public function __construct($name = null, iterable $options = [])
+    public function __construct(?string $name = null, iterable $options = [])
     {
         if (null !== $name) {
-            $this->setName((string) $name);
+            $this->setName($name);
         }
 
         if (! empty($options)) {
