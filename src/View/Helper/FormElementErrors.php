@@ -8,6 +8,7 @@ use Traversable;
 
 use function array_merge;
 use function array_walk_recursive;
+use function count;
 use function get_class;
 use function gettype;
 use function implode;
@@ -95,6 +96,13 @@ class FormElementErrors extends AbstractHelper
         if (! empty($attributes)) {
             $attributes = ' ' . $attributes;
         }
+
+        $count   = count($messages);
+        $escaper = $this->getEscapeHtmlHelper();
+        for ($i = 0; $i < $count; $i += 1) {
+            $messages[$i] = $escaper($messages[$i]);
+        }
+
 
         // Generate markup
         $markup  = sprintf($this->getMessageOpenFormat(), $attributes);
