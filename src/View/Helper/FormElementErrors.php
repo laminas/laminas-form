@@ -9,6 +9,7 @@ use Laminas\Form\Exception;
 
 use function array_merge;
 use function array_walk_recursive;
+use function count;
 use function implode;
 use function sprintf;
 
@@ -75,6 +76,12 @@ class FormElementErrors extends AbstractHelper
         $attributes = $this->createAttributesString($attributes);
         if (! empty($attributes)) {
             $attributes = ' ' . $attributes;
+        }
+
+        $count   = count($messages);
+        $escaper = $this->getEscapeHtmlHelper();
+        for ($i = 0; $i < $count; $i += 1) {
+            $messages[$i] = $escaper($messages[$i]);
         }
 
         // Generate markup
