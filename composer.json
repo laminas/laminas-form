@@ -51,7 +51,11 @@
         "laminas/laminas-view": "^2.11.4, required for using the laminas-form view helpers"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "extra": {
         "laminas": {
