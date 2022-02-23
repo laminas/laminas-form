@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.13.1@5cf660f63b548ccd4a56f62d916ee4d6028e01a3">
+<files psalm-version="4.21.0@d8bec4c7aaee111a532daec32fb09de5687053d1">
   <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_string($entity)</code>
@@ -10,11 +10,6 @@
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
-  </file>
-  <file src="src/Annotation/AllowEmpty.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
     <DeprecatedMethod occurrences="1">
@@ -47,16 +42,6 @@
       <code>AbstractBuilder</code>
     </MoreSpecificReturnType>
   </file>
-  <file src="src/Annotation/ComposedObject.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/ContinueIfEmpty.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
   <file src="src/Annotation/ElementAnnotationsListener.php">
     <PossiblyInvalidMethodCall occurrences="1">
       <code>getFormSpecification</code>
@@ -65,78 +50,10 @@
       <code>getFormSpecification</code>
     </PossiblyNullReference>
   </file>
-  <file src="src/Annotation/ErrorMessage.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Exclude.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Filter.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Flags.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Hydrator.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Input.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
   <file src="src/Annotation/InputFilter.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
     </DocblockTypeContradiction>
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Instance.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Name.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Options.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Required.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Type.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/ValidationGroup.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute</code>
-    </UndefinedAttributeClass>
-  </file>
-  <file src="src/Annotation/Validator.php">
-    <UndefinedAttributeClass occurrences="1">
-      <code>Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_ALL)</code>
-    </UndefinedAttributeClass>
   </file>
   <file src="src/ConfigProvider.php">
     <DeprecatedClass occurrences="5">
@@ -334,17 +251,17 @@
       <code>setFormFactory</code>
     </MissingReturnType>
   </file>
+  <file src="src/View/Helper/AbstractFormDateSelect.php">
+    <PossiblyNullArgument occurrences="1">
+      <code>$this-&gt;view</code>
+    </PossiblyNullArgument>
+  </file>
   <file src="src/View/Helper/AbstractHelper.php">
     <PossiblyNullReference occurrences="3">
       <code>translate</code>
       <code>translate</code>
       <code>translate</code>
     </PossiblyNullReference>
-    <RedundantConditionGivenDocblockType occurrences="3">
-      <code>$this-&gt;view !== null</code>
-      <code>$this-&gt;view !== null</code>
-      <code>$this-&gt;view !== null</code>
-    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/Form.php">
     <UndefinedMagicMethod occurrences="2">
@@ -361,9 +278,6 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormCollection.php">
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>$this-&gt;view !== null</code>
-    </RedundantConditionGivenDocblockType>
     <TypeDoesNotContainType occurrences="4">
       <code>assert(is_callable($elementHelper))</code>
       <code>assert(is_callable($elementHelper))</code>
@@ -392,24 +306,31 @@
       <code>is_object($attributesOrElement)</code>
     </RedundantConditionGivenDocblockType>
   </file>
+  <file src="src/View/Helper/FormMultiCheckbox.php">
+    <PossiblyNullArgument occurrences="2">
+      <code>$this-&gt;view</code>
+      <code>$this-&gt;view</code>
+    </PossiblyNullArgument>
+  </file>
   <file src="src/View/Helper/FormRow.php">
     <InvalidArgument occurrences="1">
       <code>$element</code>
     </InvalidArgument>
+    <PossiblyNullReference occurrences="1">
+      <code>render</code>
+    </PossiblyNullReference>
     <PossiblyUndefinedMethod occurrences="2">
       <code>hasAttribute</code>
       <code>hasAttribute</code>
     </PossiblyUndefinedMethod>
-    <RedundantConditionGivenDocblockType occurrences="3">
-      <code>$this-&gt;view !== null</code>
-      <code>$this-&gt;view !== null</code>
-      <code>$this-&gt;view !== null</code>
-    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormSelect.php">
     <PossiblyInvalidArgument occurrences="1">
       <code>$optionSpec</code>
     </PossiblyInvalidArgument>
+    <PossiblyNullArgument occurrences="1">
+      <code>$this-&gt;view</code>
+    </PossiblyNullArgument>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -521,9 +442,6 @@
     <DeprecatedMethod occurrences="1">
       <code>setMethods</code>
     </DeprecatedMethod>
-    <MissingClosureParamType occurrences="1">
-      <code>$elements</code>
-    </MissingClosureParamType>
   </file>
   <file src="test/FormTest.php">
     <PossiblyInvalidArgument occurrences="2">
@@ -600,19 +518,15 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/CustomFieldsetHelper.php">
-    <PossiblyNullArgument occurrences="1">
+    <PossiblyNullArgument occurrences="2">
       <code>$fieldset-&gt;getName()</code>
+      <code>$this-&gt;view</code>
     </PossiblyNullArgument>
   </file>
-  <file src="test/TestAsset/CustomTraversable.php">
-    <InvalidAttribute occurrences="2">
-      <code>ReturnTypeWillChange</code>
-      <code>ReturnTypeWillChange</code>
-    </InvalidAttribute>
-  </file>
   <file src="test/TestAsset/CustomViewHelper.php">
-    <PossiblyNullArgument occurrences="1">
+    <PossiblyNullArgument occurrences="2">
       <code>$element-&gt;getName()</code>
+      <code>$this-&gt;view</code>
     </PossiblyNullArgument>
   </file>
   <file src="test/TestAsset/FieldsetWithDependency.php">
