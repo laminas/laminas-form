@@ -83,4 +83,18 @@ final class CsrfTest extends TestCase
         $this->assertEquals(777, $validator->getTimeOut());
         $this->assertEquals('MySalt', $validator->getSalt());
     }
+
+    public function testNameOverride(): void
+    {
+        $element = new CsrfElement('foo');
+        $element->setOptions([
+            'csrf_options' => [
+                'name' => 'bar',
+            ],
+        ]);
+        $validator = $element->getCsrfValidator();
+        $this->assertEquals('foo', $element->getName());
+        $this->assertEquals('bar', $validator->getName());
+        $this->assertEquals('Laminas_Validator_Csrf_salt_bar', $validator->getSessionName());
+    }
 }
