@@ -270,3 +270,4 @@ plugins:
             helper/form-file-session-progress.md: v3/helper/form-file-session-progress.md
             helper/form-file-upload-progress.md: v3/helper/form-file-upload-progress.md
             advanced.md: v3/advanced.md
+            application-integration/usage-in-a-laminas-mvc-application.md: v3/application-integration/usage-in-a-laminas-mvc-application.md
