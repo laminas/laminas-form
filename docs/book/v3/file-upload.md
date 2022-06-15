@@ -738,8 +738,3 @@ Related documentation:
 - [Laminas\InputFilter\FileInput](https://docs.laminas.dev/laminas-inputfilter/file-input/)
 - [Upload Progress Handlers](https://docs.laminas.dev/laminas-progressbar/upload/)
 - [Upload Progress View Helpers](helper/upload-progress-helpers.md)
-
-External resources and blog posts from the community:
-
-- [LaminasFileUploadExamples](https://github.com/cgmartin/LaminasFileUploadExamples) : A
-  Laminas module with several file upload examples.
