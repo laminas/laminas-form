@@ -34,11 +34,13 @@ $form->add([
     'name' => 'csrf',
     'options' => [
         'csrf_options' => [
-            'timeout' => 600,
+            'timeout' => 600, // optional
         ],
     ],
 ]);
 ```
+
+All available options for the validator are listed in the [laminas-validator documentation](https://docs.laminas.dev/laminas-validator/validators/csrf/#supported-options).
 
 > ### Multiple CSRF elements must be uniquely named
 >
