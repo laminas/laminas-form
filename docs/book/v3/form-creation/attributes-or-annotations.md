@@ -257,7 +257,7 @@ optionally further `options` to pass to the constructor of the filter.
 as JSON.
 
 Additionally, you can use the `priority` argument to modify the order
-of the filters in the [filter chain](../../laminas-filter/filter-chains/).
+of the filters in the [filter chain](https://docs.laminas.dev/laminas-filter/filter-chains/).
 
 This annotation may be specified multiple times.
 
@@ -453,7 +453,7 @@ optionally further `options` to pass to the constructor of the validator.
 as JSON.
 
 Additionally, you can use the `breakChainOnFailure` and the `priority`
-argument to modify the [filter chain](../../laminas-validator/validator-chains/).
+argument to modify the [validator chain](https://docs.laminas.dev/laminas-validator/validator-chains/).
 
 This annotation may be specified multiple times.
 
