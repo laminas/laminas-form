@@ -51,14 +51,14 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @var array
      */
     protected $booleanAttributes = [
-        'autofocus' => ['on' => 'autofocus', 'off' => ''],
-        'checked'   => ['on' => 'checked',   'off' => ''],
-        'disabled'  => ['on' => 'disabled',  'off' => ''],
-        'itemscope' => ['on' => 'itemscope', 'off' => ''],
-        'multiple'  => ['on' => 'multiple',  'off' => ''],
-        'readonly'  => ['on' => 'readonly',  'off' => ''],
-        'required'  => ['on' => 'required',  'off' => ''],
-        'selected'  => ['on' => 'selected',  'off' => ''],
+        'autofocus' => ['on' => 'autofocus', 'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-fe-autofocus
+        'checked'   => ['on' => 'checked',   'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-input-checked
+        'disabled'  => ['on' => 'disabled',  'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-fe-disabled
+        'itemscope' => ['on' => 'itemscope', 'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-itemscope
+        'multiple'  => ['on' => 'multiple',  'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-input-multiple
+        'readonly'  => ['on' => 'readonly',  'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-input-readonly
+        'required'  => ['on' => 'required',  'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-input-required
+        'selected'  => ['on' => 'selected',  'off' => ''], // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-option-selected
     ];
 
     /**
@@ -92,90 +92,89 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @var array
      */
     protected $validGlobalAttributes = [
-        'accesskey'          => true,
-        'autocapitalize'     => true,
-        'class'              => true,
-        'contenteditable'    => true,
-        'contextmenu'        => true,
-        'dir'                => true,
-        'draggable'          => true,
-        'dropzone'           => true,
-        'enterkeyhint'       => true,
-        'hidden'             => true,
-        'id'                 => true,
-        'inputmode'          => true,
-        'is'                 => true,
-        //'itemid'             => true, // Microdata attribute
-        'itemprop'           => true,
-        'itemref'            => true,
-        'itemscope'          => true,
-        'itemtype'           => true,
-        'lang'               => true,
-        //'nonce'              => true, // For external references (script, style)
-        'onabort'            => true,
-        'onblur'             => true,
-        'oncanplay'          => true,
-        'oncanplaythrough'   => true,
-        'onchange'           => true,
-        'onclick'            => true,
-        'oncontextmenu'      => true,
-        'ondblclick'         => true,
-        'ondrag'             => true,
-        'ondragend'          => true,
-        'ondragenter'        => true,
-        'ondragleave'        => true,
-        'ondragover'         => true,
-        'ondragstart'        => true,
-        'ondrop'             => true,
-        'ondurationchange'   => true,
-        'onemptied'          => true,
-        'onended'            => true,
-        'onerror'            => true,
-        'onfocus'            => true,
-        'oninput'            => true,
-        'oninvalid'          => true,
-        'onkeydown'          => true,
-        'onkeypress'         => true,
-        'onkeyup'            => true,
-        'onload'             => true,
-        'onloadeddata'       => true,
-        'onloadedmetadata'   => true,
-        'onloadstart'        => true,
-        'onmousedown'        => true,
-        'onmousemove'        => true,
-        'onmouseout'         => true,
-        'onmouseover'        => true,
-        'onmouseup'          => true,
-        'onmousewheel'       => true,
-        'onpause'            => true,
-        'onplay'             => true,
-        'onplaying'          => true,
-        'onprogress'         => true,
-        'onratechange'       => true,
-        'onreadystatechange' => true,
-        'onreset'            => true,
-        'onscroll'           => true,
-        'onseeked'           => true,
-        'onseeking'          => true,
-        'onselect'           => true,
-        'onshow'             => true,
-        'onstalled'          => true,
-        'onsubmit'           => true,
-        'onsuspend'          => true,
-        'ontimeupdate'       => true,
-        'onvolumechange'     => true,
-        'onwaiting'          => true,
-        'part'               => true,
-        'role'               => true,
-        'slot'               => true,
-        'spellcheck'         => true,
-        'style'              => true,
-        'tabindex'           => true,
-        'title'              => true,
-        //'translate'          => true, // For text nodes
-        'xml:base'           => true,
-        'xml:lang'           => true,
-        'xml:space'          => true,
+        'accesskey'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#the-accesskey-attribute
+        'autocapitalize'     => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-autocapitalize
+        'class'              => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#classes
+        'contenteditable'    => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#contenteditable
+        'contextmenu'        => true, // Obsolete: https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-contextmenu
+        'dir'                => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#the-dir-attribute
+        'draggable'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#the-draggable-attribute
+        'dropzone'           => true, // Obsolete: https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-dropzone
+        'enterkeyhint'       => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#input-modalities:-the-enterkeyhint-attribute
+        'hidden'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#the-hidden-attribute
+        'id'                 => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#the-id-attribute
+        'inputmode'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-inputmode
+        'is'                 => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-is
+        //'itemid'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-itemid
+        'itemprop'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#names:-the-itemprop-attribute
+        'itemref'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-itemref
+        'itemscope'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-itemscope
+        'itemtype'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-itemtype
+        'lang'               => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#the-lang-and-xml:lang-attributes
+        //'nonce'              => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-nonce
+        'onabort'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onabort
+        'onblur'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onblur
+        'oncanplay'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-oncanplay
+        'oncanplaythrough'   => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-oncanplaythrough
+        'onchange'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onchange
+        'onclick'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onclick
+        'oncontextmenu'      => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-oncontextmenu
+        'ondblclick'         => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondblclick
+        'ondrag'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondrag
+        'ondragend'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondragend
+        'ondragenter'        => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondragenter
+        'ondragleave'        => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondragleave
+        'ondragover'         => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondragover
+        'ondragstart'        => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondragstart
+        'ondrop'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondrop
+        'ondurationchange'   => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ondurationchange
+        'onemptied'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onemptied
+        'onended'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onended
+        'onerror'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onerror
+        'onfocus'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onfocus
+        'oninput'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-oninput
+        'oninvalid'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-oninvalid
+        'onkeydown'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onkeydown
+        'onkeypress'         => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onkeypress
+        'onkeyup'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onkeyup
+        'onload'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onload
+        'onloadeddata'       => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onloadeddata
+        'onloadedmetadata'   => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onloadedmetadata
+        'onloadstart'        => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onloadstart
+        'onmousedown'        => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onmousedown
+        'onmousemove'        => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onmousemove
+        'onmouseout'         => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onmouseout
+        'onmouseover'        => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onmouseover
+        'onmouseup'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onmouseup
+        'onmousewheel'       => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onmousewheel
+        'onpause'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onpause
+        'onplay'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onplay
+        'onplaying'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onplaying
+        'onprogress'         => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onprogress
+        'onratechange'       => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onratechange
+        'onreadystatechange' => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onreadystatechange
+        'onreset'            => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onreset
+        'onscroll'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onscroll
+        'onseeked'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onseeked
+        'onseeking'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onseeking
+        'onselect'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onselect
+        'onshow'             => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onshow
+        'onstalled'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onstalled
+        'onsubmit'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onsubmit
+        'onsuspend'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onsuspend
+        'ontimeupdate'       => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-ontimeupdate
+        'onvolumechange'     => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onvolumechange
+        'onwaiting'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#handler-onwaiting
+        'role'               => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-aria-role
+        'slot'               => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-slot
+        'spellcheck'         => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-spellcheck
+        'style'              => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-style
+        'tabindex'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-tabindex
+        'title'              => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-title
+        //'translate'          => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#attr-translate
+        'xml:base'           => true, // https://www.w3.org/TR/xmlbase/#syntax
+        'xml:lang'           => true, // https://html.spec.whatwg.org/commit-snapshots/5ddb6b4722aaa5caaf9384436de0f8951444009d/#the-lang-and-xml:lang-attributes
+        'xml:space'          => true, // https://www.w3.org/TR/xml/#sec-white-space
     ];
 
     /**
@@ -184,8 +183,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @var array
      */
     protected $validTagAttributePrefixes = [
-        'data-',
-        'aria-',
+        'data-', // https://html.spec.whatwg.org/multipage/dom.html#attr-data-*
+        'aria-', // https://html.spec.whatwg.org/multipage/infrastructure.html#attr-aria-*
         'x-',
     ];
 
