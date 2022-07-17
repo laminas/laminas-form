@@ -315,15 +315,11 @@ class DateTimeSelect extends DateSelect
     }
 
     /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInput()}.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => false,
             'filters'    => [
                 ['name' => 'DateTimeSelect'],
@@ -332,6 +328,13 @@ class DateTimeSelect extends DateSelect
                 $this->getValidator(),
             ],
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 
     /**

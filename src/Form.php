@@ -701,6 +701,7 @@ class Form extends Fieldset implements FormInterface
             || $inputFilter instanceof CollectionInputFilter
         ) {
             foreach ($elements as $name => $element) {
+                $name = (string) $name;
                 if ($this->preferFormInputFilter && $inputFilter->has($name)) {
                     continue;
                 }

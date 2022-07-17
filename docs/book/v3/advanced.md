@@ -395,8 +395,8 @@ To enable this, we'll create a factory for our `AlbumFieldset` as follows:
 namespace Application\Form;
 
 use Album\Model\AlbumTable;
-use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerInterface;
 
 class AlbumFieldsetFactory implements FactoryInterface
 {

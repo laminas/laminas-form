@@ -49,7 +49,7 @@ class Week extends AbstractDateTime
     /**
      * @see https://bugs.php.net/bug.php?id=74511
      *
-     * @return array
+     * @return array<ValidatorInterface>
      */
     protected function getValidators(): array
     {

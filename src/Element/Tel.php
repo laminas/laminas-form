@@ -39,12 +39,11 @@ class Tel extends Element implements InputProviderInterface
     /**
      * Provide default input rules for this element
      *
-     * @return array
+     * {@inheritDoc}
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => true,
             'filters'    => [
                 ['name' => StringTrim::class],
@@ -54,5 +53,12 @@ class Tel extends Element implements InputProviderInterface
                 $this->getValidator(),
             ],
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 }

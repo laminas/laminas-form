@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Form\Exception;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\Hydrator\HydratorPluginManager;
@@ -12,6 +11,7 @@ use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\Stdlib\InitializableInterface;
+use Psr\Container\ContainerInterface;
 
 use function array_push;
 use function array_search;
@@ -26,6 +26,7 @@ use function sprintf;
  *
  * Enforces that elements retrieved are instances of ElementInterface.
  *
+ * @final
  * @extends AbstractPluginManager<ElementInterface>
  */
 class FormElementManager extends AbstractPluginManager

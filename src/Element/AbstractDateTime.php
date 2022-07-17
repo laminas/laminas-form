@@ -10,6 +10,7 @@ use DateTimeInterface;
 use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\DateStep as DateStepValidator;
@@ -20,6 +21,9 @@ use Laminas\Validator\ValidatorInterface;
 use function date;
 use function sprintf;
 
+/**
+ * @psalm-import-type ValidatorSpecification from InputFilterInterface
+ */
 abstract class AbstractDateTime extends Element implements InputProviderInterface
 {
     /**
@@ -29,7 +33,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
      */
     protected $format = 'Y-m-d\TH:iP';
 
-    /** @var array */
+    /** @var array<ValidatorInterface> */
     protected $validators = [];
 
     /**
@@ -93,7 +97,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
     /**
      * Get validators
      *
-     * @return array
+     * @return array<ValidatorInterface>
      */
     protected function getValidators(): array
     {
@@ -184,18 +188,24 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
      *
      * Attaches default validators for the datetime input.
      *
-     * @return array
+     * {@inheritDoc}
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => true,
             'filters'    => [
                 ['name' => StringTrim::class],
             ],
             'validators' => $this->getValidators(),
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 
     /**

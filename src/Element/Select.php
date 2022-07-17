@@ -256,14 +256,18 @@ class Select extends Element implements InputProviderInterface
     /**
      * Provide default input rules for this element
      *
-     * @return array
+     * {@inheritDoc}
      */
     public function getInputSpecification(): array
     {
         $spec = [
-            'name'     => $this->getName(),
             'required' => true,
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
 
         if ($this->useHiddenElement() && $this->isMultiple()) {
             $unselectedValue = $this->getUnselectedValue();

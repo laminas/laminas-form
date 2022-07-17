@@ -74,17 +74,21 @@ class Captcha extends Element implements InputProviderInterface
      *
      * Attaches the captcha as a validator.
      *
-     * @return array
+     * {@inheritDoc}
      */
     public function getInputSpecification(): array
     {
         $spec = [
-            'name'     => $this->getName(),
             'required' => true,
             'filters'  => [
                 ['name' => StringTrim::class],
             ],
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
 
         // Test that we have a captcha before adding it to the spec
         $captcha = $this->getCaptcha();

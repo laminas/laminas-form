@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Filter\FilterPluginManager;
 use Laminas\Form\Factory;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
 use Laminas\Validator\ValidatorPluginManager;
+use Psr\Container\ContainerInterface;
 
 use function is_array;
 use function is_string;
@@ -95,8 +95,6 @@ final class FormAbstractServiceFactory implements AbstractFactoryInterface
 
     /**
      * Retrieve the form factory, creating it if necessary
-     *
-     * @param  ContainerInterface $services
      */
     protected function getFormFactory(ContainerInterface $container): Factory
     {
@@ -146,10 +144,14 @@ final class FormAbstractServiceFactory implements AbstractFactoryInterface
         }
 
         $inputFilterFactory = $formFactory->getInputFilterFactory();
-        $inputFilterFactory->getDefaultFilterChain()->setPluginManager(
+
+        $filterChain = $inputFilterFactory->getDefaultFilterChain();
+        $filterChain->setPluginManager(
             $container->get(FilterPluginManager::class)
         );
-        $inputFilterFactory->getDefaultValidatorChain()->setPluginManager(
+
+        $validatorChain = $inputFilterFactory->getDefaultValidatorChain();
+        $validatorChain->setPluginManager(
             $container->get(ValidatorPluginManager::class)
         );
     }

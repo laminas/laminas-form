@@ -117,12 +117,11 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      *
      * Attaches the captcha as a validator.
      *
-     * @return array
+     * {@inheritDoc}
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => true,
             'filters'    => [
                 ['name' => StringTrim::class],
@@ -131,6 +130,13 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
                 $this->getCsrfValidator(),
             ],
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 
     /**
