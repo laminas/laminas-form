@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.4 || ~8.0.0 || ~8.1.0",
         "laminas/laminas-hydrator": "^4.3.1",
-        "laminas/laminas-inputfilter": "^2.13.0",
+        "laminas/laminas-inputfilter": "^2.19.1",
         "laminas/laminas-stdlib": "^3.7.1"
     },
     "conflict": {
@@ -34,7 +34,7 @@
         "laminas/laminas-i18n": "^2.14.0",
         "laminas/laminas-modulemanager": "^2.11.0",
         "laminas/laminas-recaptcha": "^3.4.0",
-        "laminas/laminas-servicemanager": "^3.10.0",
+        "laminas/laminas-servicemanager": "^3.15.1",
         "laminas/laminas-session": "^2.12.1",
         "laminas/laminas-text": "^2.9.0",
         "laminas/laminas-validator": "^2.16.0",
