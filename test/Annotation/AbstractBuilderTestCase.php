@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\Annotation;
 
+use Doctrine\Common\Annotations\AnnotationException;
 use Generator;
 use Laminas\Form\Annotation;
 use Laminas\Form\Element;
@@ -406,37 +407,37 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     public function testLegacyComposedObjectAnnotation(): void
     {
-        $this->expectDeprecation();
-        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $this->expectException(AnnotationException::class);
+        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
         $entity  = new TestAsset\Annotation\LegacyComposedObjectAnnotation();
         $builder = $this->createBuilder();
-        $form    = $builder->createForm($entity);
+        $builder->createForm($entity);
     }
 
     public function testLegacyStyleFilterAnnotations(): void
     {
-        $this->expectDeprecation();
-        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $this->expectException(AnnotationException::class);
+        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
         $entity  = new TestAsset\Annotation\LegacyFilterAnnotation();
         $builder = $this->createBuilder();
-        $form    = $builder->createForm($entity);
+        $builder->createForm($entity);
     }
 
     public function testLegacyStyleHydratorAnnotations(): void
     {
-        $this->expectDeprecation();
-        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $this->expectException(AnnotationException::class);
+        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
         $entity  = new TestAsset\Annotation\LegacyHydratorAnnotation();
         $builder = $this->createBuilder();
-        $form    = $builder->createForm($entity);
+        $builder->createForm($entity);
     }
 
     public function testLegacyStyleValidatorAnnotations(): void
     {
-        $this->expectDeprecation();
-        $this->expectDeprecationMessageMatches('/Passing a single array .* is deprecated/');
+        $this->expectException(AnnotationException::class);
+        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
         $entity  = new TestAsset\Annotation\LegacyValidatorAnnotation();
         $builder = $this->createBuilder();
-        $form    = $builder->createForm($entity);
+        $builder->createForm($entity);
     }
 }
