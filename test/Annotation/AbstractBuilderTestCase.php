@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\Annotation;
 
-use Doctrine\Common\Annotations\AnnotationException;
 use Generator;
 use Laminas\Form\Annotation;
 use Laminas\Form\Element;
@@ -23,6 +22,7 @@ use LaminasTest\Form\TestAsset\Annotation\Form;
 use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 use function getenv;
 
@@ -407,37 +407,49 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     public function testLegacyComposedObjectAnnotation(): void
     {
-        $this->expectException(AnnotationException::class);
-        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
-        $entity  = new TestAsset\Annotation\LegacyComposedObjectAnnotation();
-        $builder = $this->createBuilder();
-        $builder->createForm($entity);
+        try {
+            $entity  = new TestAsset\Annotation\LegacyComposedObjectAnnotation();
+            $builder = $this->createBuilder();
+            $builder->createForm($entity);
+            self::fail('Neither a deprecation nor an exception were thrown');
+        } catch (Throwable $error) {
+            self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        }
     }
 
     public function testLegacyStyleFilterAnnotations(): void
     {
-        $this->expectException(AnnotationException::class);
-        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
-        $entity  = new TestAsset\Annotation\LegacyFilterAnnotation();
-        $builder = $this->createBuilder();
-        $builder->createForm($entity);
+        try {
+            $entity  = new TestAsset\Annotation\LegacyFilterAnnotation();
+            $builder = $this->createBuilder();
+            $builder->createForm($entity);
+            self::fail('Neither a deprecation nor an exception were thrown');
+        } catch (Throwable $error) {
+            self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        }
     }
 
     public function testLegacyStyleHydratorAnnotations(): void
     {
-        $this->expectException(AnnotationException::class);
-        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
-        $entity  = new TestAsset\Annotation\LegacyHydratorAnnotation();
-        $builder = $this->createBuilder();
-        $builder->createForm($entity);
+        try {
+            $entity  = new TestAsset\Annotation\LegacyHydratorAnnotation();
+            $builder = $this->createBuilder();
+            $builder->createForm($entity);
+            self::fail('Neither a deprecation nor an exception were thrown');
+        } catch (Throwable $error) {
+            self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        }
     }
 
     public function testLegacyStyleValidatorAnnotations(): void
     {
-        $this->expectException(AnnotationException::class);
-        $this->expectExceptionMessageMatches('/Passing a single array .* is deprecated/');
-        $entity  = new TestAsset\Annotation\LegacyValidatorAnnotation();
-        $builder = $this->createBuilder();
-        $builder->createForm($entity);
+        try {
+            $entity  = new TestAsset\Annotation\LegacyValidatorAnnotation();
+            $builder = $this->createBuilder();
+            $builder->createForm($entity);
+            self::fail('Neither a deprecation nor an exception were thrown');
+        } catch (Throwable $error) {
+            self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        }
     }
 }
