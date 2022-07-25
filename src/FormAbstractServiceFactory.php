@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
+use Laminas\Filter\FilterPluginManager;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
 

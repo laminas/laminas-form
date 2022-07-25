@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Form;
 
 use Generator;
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Form\ElementFactory;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasTest\Form\TestAsset\ArgumentRecorder;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\Annotation;
 
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\Form\Annotation\AnnotationBuilder;
