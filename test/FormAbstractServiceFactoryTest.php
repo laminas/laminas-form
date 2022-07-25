@@ -34,13 +34,11 @@ final class FormAbstractServiceFactoryTest extends TestCase
         $inputFilters = new InputFilterPluginManager($services);
         $validators   = new ValidatorPluginManager($services);
 
-        $services->setService('FilterManager', $filters);
-        $services->setService('FormElementManager', $elements);
-        $services->setService('HydratorManager', $hydrators);
-        $services->setService('InputFilterManager', $inputFilters);
-        $services->setService('ValidatorManager', $validators);
-
-        $inputFilters->setInvokableClass('FooInputFilter', InputFilter::class);
+        $services->setService(FilterPluginManager::class, $filters);
+        $services->setService(FormElementManager::class, $elements);
+        $services->setService(HydratorPluginManager::class, $hydrators);
+        $services->setService(InputFilterPluginManager::class, $inputFilters);
+        $services->setService(ValidatorPluginManager::class, $validators);
 
         $forms = $this->forms = new FormAbstractServiceFactory();
         $services->addAbstractFactory($forms);
@@ -121,7 +119,7 @@ final class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagers(): void
     {
         $formConfig = [
-            'hydrator'     => 'ObjectPropertyHydrator',
+            'hydrator'     => ObjectPropertyHydrator::class,
             'type'         => Form::class,
             'elements'     => [
                 [
@@ -134,7 +132,7 @@ final class FormAbstractServiceFactoryTest extends TestCase
                     ],
                 ],
             ],
-            'input_filter' => 'FooInputFilter',
+            'input_filter' => InputFilter::class,
         ];
         $config     = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('config', $config);
@@ -149,8 +147,8 @@ final class FormAbstractServiceFactoryTest extends TestCase
 
         $inputFactory = $inputFilter->getFactory();
         $this->assertInstanceOf(Factory::class, $inputFactory);
-        $filters    = $this->services->get('FilterManager');
-        $validators = $this->services->get('ValidatorManager');
+        $filters    = $this->services->get(FilterPluginManager::class);
+        $validators = $this->services->get(ValidatorPluginManager::class);
         $this->assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
         $this->assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
     }
@@ -158,7 +156,7 @@ final class FormAbstractServiceFactoryTest extends TestCase
     public function testFormCanBeCreatedViaInteractionOfAllManagersExceptInputFilterManager(): void
     {
         $formConfig = [
-            'hydrator'     => 'ObjectPropertyHydrator',
+            'hydrator'     => ObjectPropertyHydrator::class,
             'type'         => Form::class,
             'elements'     => [
                 [
@@ -199,8 +197,8 @@ final class FormAbstractServiceFactoryTest extends TestCase
         $this->assertInstanceOf(InputFilter::class, $inputFilter);
 
         $inputFactory = $inputFilter->getFactory();
-        $filters      = $this->services->get('FilterManager');
-        $validators   = $this->services->get('ValidatorManager');
+        $filters      = $this->services->get(FilterPluginManager::class);
+        $validators   = $this->services->get(ValidatorPluginManager::class);
         $this->assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
         $this->assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
     }
