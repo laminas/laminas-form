@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
+use Laminas\Filter\FilterPluginManager;
 use Laminas\InputFilter\InputFilterInterface;
+use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
+use Laminas\Validator\ValidatorPluginManager;
 
 use function is_array;
 use function is_string;
@@ -101,8 +104,8 @@ final class FormAbstractServiceFactory implements AbstractFactoryInterface
         }
 
         $elements = null;
-        if ($container->has('FormElementManager')) {
-            $elements = $container->get('FormElementManager');
+        if ($container->has(FormElementManager::class)) {
+            $elements = $container->get(FormElementManager::class);
         }
 
         $this->factory = new Factory($elements);
@@ -132,9 +135,9 @@ final class FormAbstractServiceFactory implements AbstractFactoryInterface
 
         if (
             is_string($config['input_filter'])
-            && $container->has('InputFilterManager')
+            && $container->has(InputFilterPluginManager::class)
         ) {
-            $inputFilters = $container->get('InputFilterManager');
+            $inputFilters = $container->get(InputFilterPluginManager::class);
             if ($inputFilters->has($config['input_filter'])) {
                 $config['input_filter'] = $inputFilters->get($config['input_filter']);
                 return;
@@ -142,7 +145,11 @@ final class FormAbstractServiceFactory implements AbstractFactoryInterface
         }
 
         $inputFilterFactory = $formFactory->getInputFilterFactory();
-        $inputFilterFactory->getDefaultFilterChain()->setPluginManager($container->get('FilterManager'));
-        $inputFilterFactory->getDefaultValidatorChain()->setPluginManager($container->get('ValidatorManager'));
+        $inputFilterFactory->getDefaultFilterChain()->setPluginManager(
+            $container->get(FilterPluginManager::class)
+        );
+        $inputFilterFactory->getDefaultValidatorChain()->setPluginManager(
+            $container->get(ValidatorPluginManager::class)
+        );
     }
 }

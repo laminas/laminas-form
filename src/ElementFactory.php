@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
 use function array_pop;

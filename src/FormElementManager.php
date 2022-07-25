@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Form\Exception;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;

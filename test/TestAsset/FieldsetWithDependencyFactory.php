@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class FieldsetWithDependencyFactory implements FactoryInterface

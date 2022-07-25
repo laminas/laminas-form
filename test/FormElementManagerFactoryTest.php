@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form;
 
-use Interop\Container\ContainerInterface;
+use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Form\Element\Number;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FormElementManager;
