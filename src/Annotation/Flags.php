@@ -23,8 +23,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Flags
 {
-    /** @var array */
-    protected $flags;
+    protected array $flags;
 
     /**
      * Receive and process the contents of an annotation

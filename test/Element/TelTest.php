@@ -42,9 +42,7 @@ final class TelTest extends TestCase
      */
     private function assertInputSpecContainsFilters(array $expectedFilters, array $inputSpec): void
     {
-        $actualFilters  = array_map(static function (array $filterSpec): string {
-            return $filterSpec['name'];
-        }, $inputSpec['filters']);
+        $actualFilters  = array_map(static fn(array $filterSpec): string => $filterSpec['name'], $inputSpec['filters']);
         $missingFilters = array_diff($expectedFilters, $actualFilters);
         $this->assertCount(0, $missingFilters);
     }

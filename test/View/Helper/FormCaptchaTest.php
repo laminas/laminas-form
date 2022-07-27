@@ -25,10 +25,8 @@ use function unlink;
  */
 final class FormCaptchaTest extends AbstractCommonTestCase
 {
-    /** @var null|string */
-    protected $testDir;
-    /** @var null|string */
-    protected $tmpDir;
+    protected ?string $testDir = null;
+    protected ?string $tmpDir  = null;
 
     protected function setUp(): void
     {

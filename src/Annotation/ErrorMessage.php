@@ -20,8 +20,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class ErrorMessage
 {
-    /** @var string */
-    protected $message;
+    protected string $message;
 
     /**
      * Receive and process the contents of an annotation

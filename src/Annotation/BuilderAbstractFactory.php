@@ -18,7 +18,7 @@ use function sprintf;
 final class BuilderAbstractFactory implements AbstractFactoryInterface
 {
     /** @var string[] */
-    protected $aliases = [
+    protected array $aliases = [
         'FormAnnotationBuilder' => AnnotationBuilder::class,
         'FormAttributeBuilder'  => AttributeBuilder::class,
     ];

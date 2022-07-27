@@ -20,8 +20,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Name
 {
-    /** @var string */
-    protected $name;
+    protected string $name;
 
     /**
      * Receive and process the contents of an annotation

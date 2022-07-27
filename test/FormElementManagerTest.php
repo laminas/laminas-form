@@ -31,8 +31,7 @@ use function strtoupper;
  */
 final class FormElementManagerTest extends TestCase
 {
-    /** @var FormElementManager */
-    protected $manager;
+    protected FormElementManager $manager;
 
     protected function setUp(): void
     {
@@ -51,7 +50,7 @@ final class FormElementManagerTest extends TestCase
     public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement(): void
     {
         $factory = new Factory();
-        $this->manager->setFactory('my-form', function ($elements) use ($factory) {
+        $this->manager->setFactory('my-form', static function ($elements) use ($factory) {
             $form = new Form();
             $form->setFormFactory($factory);
             return $form;
@@ -128,9 +127,7 @@ final class FormElementManagerTest extends TestCase
 
         $element->expects($this->once())->method('init');
 
-        $this->manager->setFactory('sharedElement', function () use ($element) {
-            return $element;
-        });
+        $this->manager->setFactory('sharedElement', static fn() => $element);
 
         $this->manager->setShared('sharedElement', true);
 
@@ -152,8 +149,10 @@ final class FormElementManagerTest extends TestCase
     {
         // @codingStandardsIgnoreStart
         $initializers = [
-            function (): void {},
-            function (): void {},
+            static function () : void {
+            },
+            static function () : void {
+            },
         ];
         // @codingStandardsIgnoreEnd
 
@@ -178,8 +177,10 @@ final class FormElementManagerTest extends TestCase
     {
         // @codingStandardsIgnoreStart
         $initializers = [
-            function (): void {},
-            function (): void {},
+            static function () : void {
+            },
+            static function () : void {
+            },
         ];
         // @codingStandardsIgnoreEnd
 

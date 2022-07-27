@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\Annotation;
 
+use ArrayObject;
 use Generator;
 use Laminas\Form\Annotation;
 use Laminas\Form\Element;
@@ -163,7 +164,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $entity  = new TestAsset\Annotation\ComplexEntity();
         $builder = $this->createBuilder();
         $spec    = $builder->getFormSpecification($entity);
-        $this->assertInstanceOf('ArrayObject', $spec);
+        $this->assertInstanceOf(ArrayObject::class, $spec);
     }
 
     public function testAllowsExtensionOfEntities(): void

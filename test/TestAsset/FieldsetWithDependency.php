@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Fieldset;
+use LaminasTest\Form\TestAsset\InputFilter;
 
 class FieldsetWithDependency extends Fieldset
 {
-    /** @var InputFilter */
-    private $dependency;
+    private InputFilter $dependency;
 
     /**
      * @inheritDoc

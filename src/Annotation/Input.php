@@ -21,8 +21,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Input
 {
-    /** @var string */
-    protected $input;
+    protected string $input;
 
     /**
      * Receive and process the contents of an annotation

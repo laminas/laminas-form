@@ -35,8 +35,7 @@ use function var_export;
 
 final class FormTest extends TestCase
 {
-    /** @var Form */
-    protected $form;
+    protected Form $form;
 
     protected function setUp(): void
     {

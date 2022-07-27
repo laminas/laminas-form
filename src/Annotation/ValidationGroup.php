@@ -21,8 +21,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class ValidationGroup
 {
-    /** @var array */
-    protected $validationGroup;
+    protected array $validationGroup;
 
     /**
      * Receive and process the contents of an annotation

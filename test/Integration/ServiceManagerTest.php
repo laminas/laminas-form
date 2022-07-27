@@ -52,9 +52,7 @@ final class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig = new Config([
             'factories'    => [
-                'InitializableElement' => static function () use ($element): Element {
-                    return $element->reveal();
-                },
+                'InitializableElement' => fn(): Element => $element->reveal(),
             ],
             'initializers' => [
                 $initializer->reveal(),
@@ -81,7 +79,7 @@ final class ServiceManagerTest extends TestCase
         $formElementManager = $serviceManager->get('FormElementManager');
 
         $initializer                 = $this->prophesize(InitializerInterface::class);
-        $formElementManagerAssertion = static function ($form) use ($formElementManager): bool {
+        $formElementManagerAssertion = function ($form) use ($formElementManager): bool {
             TestCase::assertInstanceOf(Form::class, $form);
             TestCase::assertSame($formElementManager, $form->getFormFactory()->getFormElementManager());
             return true;
@@ -93,9 +91,7 @@ final class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig = new Config([
             'factories'    => [
-                'MyForm' => function () {
-                    return new TestAsset\Form();
-                },
+                'MyForm' => fn() => new TestAsset\Form(),
             ],
             'initializers' => [
                 $initializer->reveal(),

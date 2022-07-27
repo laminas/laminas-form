@@ -77,8 +77,7 @@ class FormCollection extends AbstractHelper
      */
     protected $fieldsetHelper;
 
-    /** @var array */
-    private $doctypesAllowedToHaveNameAttribute = [
+    private array $doctypesAllowedToHaveNameAttribute = [
         Doctype::HTML5  => true,
         Doctype::XHTML5 => true,
     ];

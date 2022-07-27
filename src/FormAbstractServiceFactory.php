@@ -6,6 +6,7 @@ namespace Laminas\Form;
 
 use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Filter\FilterPluginManager;
+use Laminas\Form\Factory;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
@@ -20,10 +21,10 @@ final class FormAbstractServiceFactory implements AbstractFactoryInterface
     protected $config;
 
     /** @var string Top-level configuration key indicating forms configuration */
-    protected $configKey = 'forms';
+    protected string $configKey = 'forms';
 
     /** @var null|Factory Form factory used to create forms */
-    protected $factory;
+    protected ?Factory $factory = null;
 
     /**
      * Create a form (v3)

@@ -54,9 +54,7 @@ final class FormElementManagerFactoryTest extends TestCase
                     'test' => Number::class,
                 ],
                 'factories' => [
-                    'test-too' => function ($container) use ($element): ElementInterface {
-                        return $element;
-                    },
+                    'test-too' => static fn($container): ElementInterface => $element,
                 ],
             ],
         ];
@@ -87,9 +85,7 @@ final class FormElementManagerFactoryTest extends TestCase
                     'test' => Number::class,
                 ],
                 'factories' => [
-                    'test-too' => function ($container) use ($element): ElementInterface {
-                        return $element;
-                    },
+                    'test-too' => static fn($container): ElementInterface => $element,
                 ],
             ],
         ];

@@ -9,8 +9,7 @@ use Laminas\Form\Form;
 
 class CustomCreatedForm extends Form
 {
-    /** @var DateTime */
-    private $created;
+    private DateTime $created;
 
     public function __construct(DateTime $created, ?string $name = null, array $options = [])
     {

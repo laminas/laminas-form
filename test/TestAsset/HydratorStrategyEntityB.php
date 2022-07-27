@@ -6,10 +6,8 @@ namespace LaminasTest\Form\TestAsset;
 
 class HydratorStrategyEntityB
 {
-    /** @var int  */
-    private $field1;
-    /** @var string  */
-    private $field2;
+    private int $field1;
+    private string $field2;
 
     public function __construct(int $field1, string $field2)
     {

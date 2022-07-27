@@ -19,6 +19,6 @@ class LegacyComposedObjectAnnotation
      */
     #[Annotation\Name("composed")]
     // @codingStandardsIgnoreLine
-    #[Annotation\ComposedObject(["target_object" => "LaminasTest\Form\TestAsset\Annotation\Entity", "is_collection" => "true"])]
+    #[Annotation\ComposedObject(["target_object" => \LaminasTest\Form\TestAsset\Annotation\Entity::class, "is_collection" => "true"])]
     public $child;
 }

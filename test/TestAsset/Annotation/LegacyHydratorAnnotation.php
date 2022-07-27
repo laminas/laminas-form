@@ -12,7 +12,7 @@ use Laminas\Form\Annotation;
  * @Annotation\Hydrator({"type": "Laminas\Hydrator\ClassMethodsHydrator", "options":{"underscoreSeparatedKeys": false}})
  */
 #[Annotation\Name("user")]
-#[Annotation\Hydrator(["type" => "Laminas\Hydrator\ClassMethodsHydrator", "options" => ["underscoreSeparatedKeys" => false]])]
+#[Annotation\Hydrator(["type" => \Laminas\Hydrator\ClassMethodsHydrator::class, "options" => ["underscoreSeparatedKeys" => false]])]
 class LegacyHydratorAnnotation
 {
     /**
