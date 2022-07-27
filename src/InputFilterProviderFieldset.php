@@ -12,10 +12,8 @@ final class InputFilterProviderFieldset extends Fieldset implements InputFilterP
 {
     /**
      * Holds the specification which will be returned by getInputFilterSpecification
-     *
-     * @var array
      */
-    protected $filterSpec = [];
+    protected array $filterSpec = [];
 
     public function getInputFilterSpecification(): array
     {

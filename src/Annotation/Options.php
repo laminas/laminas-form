@@ -22,8 +22,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Options
 {
-    /** @var array */
-    protected $options;
+    protected array $options;
 
     /**
      * Receive and process the contents of an annotation

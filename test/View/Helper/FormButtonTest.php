@@ -69,7 +69,7 @@ final class FormButtonTest extends AbstractCommonTestCase
     {
         $element = new ArrayObject();
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('ArrayObject');
+        $this->expectExceptionMessage(ArrayObject::class);
         $this->helper->openTag($element);
     }
 

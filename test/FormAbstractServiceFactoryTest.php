@@ -20,10 +20,8 @@ use PHPUnit\Framework\TestCase;
 
 final class FormAbstractServiceFactoryTest extends TestCase
 {
-    /** @var ServiceManager */
-    private $services;
-    /** @var FormAbstractServiceFactory */
-    private $forms;
+    private ServiceManager $services;
+    private FormAbstractServiceFactory $forms;
 
     protected function setUp(): void
     {

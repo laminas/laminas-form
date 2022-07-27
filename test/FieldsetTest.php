@@ -11,6 +11,7 @@ use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 use Laminas\Form\FormElementManager;
 use Laminas\Hydrator;
+use Laminas\Hydrator\HydratorInterface;
 use Laminas\InputFilter\InputFilter;
 use Laminas\ServiceManager\PluginManagerInterface;
 use PHPUnit\Framework\TestCase;
@@ -19,11 +20,9 @@ use stdClass;
 
 final class FieldsetTest extends TestCase
 {
-    /** @var Fieldset */
-    private $fieldset;
+    private Fieldset $fieldset;
 
-    /** @var Hydrator\HydratorInterface */
-    private $hydrator;
+    private HydratorInterface $hydrator;
 
     protected function setUp(): void
     {
@@ -529,7 +528,7 @@ final class FieldsetTest extends TestCase
     public function testShouldValidateAllowObjectBindingByClassname(): void
     {
         $object = new stdClass();
-        $this->fieldset->setAllowedObjectBindingClass('stdClass');
+        $this->fieldset->setAllowedObjectBindingClass(stdClass::class);
         $allowed = $this->fieldset->allowObjectBinding($object);
 
         $this->assertTrue($allowed);

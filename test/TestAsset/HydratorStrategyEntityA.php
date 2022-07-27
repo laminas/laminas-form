@@ -14,9 +14,8 @@ use function get_object_vars;
 class HydratorStrategyEntityA implements InputFilterAwareInterface
 {
     /** @var HydratorStrategyEntityB[]  */
-    public $entities = []; // public to make testing easier!
-    /** @var null|InputFilterInterface */
-    private $inputFilter; // used to test forms
+    public $entities                           = [];
+    private ?InputFilterInterface $inputFilter = null; // used to test forms
 
     public function addEntity(HydratorStrategyEntityB $entity): void
     {

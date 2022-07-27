@@ -13,7 +13,7 @@ use Traversable;
 
 use function get_class;
 use function gettype;
-use function is_array;
+use function is_iterable;
 use function is_object;
 use function sprintf;
 
@@ -48,7 +48,7 @@ class Captcha extends Element implements InputProviderInterface
      */
     public function setCaptcha($captcha)
     {
-        if (is_array($captcha) || $captcha instanceof Traversable) {
+        if (is_iterable($captcha)) {
             $captcha = LaminasCaptcha\Factory::factory($captcha);
         } elseif (! $captcha instanceof LaminasCaptcha\AdapterInterface) {
             throw new Exception\InvalidArgumentException(sprintf(

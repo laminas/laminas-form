@@ -19,8 +19,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 {
     use ProphecyTrait;
 
-    /** @var null|TranslatorInterface */
-    protected $defaultTranslator;
+    protected ?TranslatorInterface $defaultTranslator;
 
     protected function setUp(): void
     {

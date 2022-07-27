@@ -17,6 +17,7 @@ use function class_exists;
 use function get_class;
 use function gettype;
 use function is_array;
+use function is_iterable;
 use function is_object;
 use function is_string;
 use function method_exists;
@@ -197,11 +198,11 @@ class Factory
             $element->setName($name);
         }
 
-        if (is_array($options) || $options instanceof Traversable) {
+        if (is_iterable($options)) {
             $element->setOptions($options);
         }
 
-        if (is_array($attributes) || $attributes instanceof Traversable) {
+        if (is_iterable($attributes)) {
             $element->setAttributes($attributes);
         }
 

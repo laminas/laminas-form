@@ -18,8 +18,7 @@ use function getenv;
  */
 final class ReCaptchaTest extends AbstractCommonTestCase
 {
-    /** @var ReCaptcha */
-    private $captcha;
+    private ReCaptcha $captcha;
 
     protected function setUp(): void
     {

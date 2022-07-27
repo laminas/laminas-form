@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\Element;
 
+use ArrayAccess;
 use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Element\Collection;
@@ -42,10 +43,8 @@ use function spl_object_hash;
 
 final class CollectionTest extends TestCase
 {
-    /** @var FormCollection  */
-    protected $form;
-    /** @var ProductFieldset  */
-    protected $productFieldset;
+    protected FormCollection $form;
+    protected ProductFieldset $productFieldset;
 
     protected function setUp(): void
     {
@@ -689,9 +688,7 @@ final class CollectionTest extends TestCase
         $mockHydrator = $this->createMock(HydratorInterface::class);
         $mockHydrator->expects($this->exactly(2))
             ->method('extract')
-            ->willReturnCallback(static function (object $object): array {
-                return ['value' => $object->field . '_foo'];
-            });
+            ->willReturnCallback(static fn(object $object): array => ['value' => $object->field . '_foo']);
 
         $collection->setHydrator($mockHydrator);
 
@@ -834,7 +831,7 @@ final class CollectionTest extends TestCase
 
         foreach ($marketCollection as $shopFieldset) {
             $this->assertInstanceOf(Fieldset::class, $shopFieldset);
-            $this->assertInstanceOf('stdClass', $shopFieldset->getObject());
+            $this->assertInstanceOf(stdClass::class, $shopFieldset->getObject());
 
             // test for collection -> fieldset
             $productFieldset = $shopFieldset->get('product');
@@ -1255,7 +1252,7 @@ final class CollectionTest extends TestCase
         $this->assertTrue($form->isValid());
 
         $result = $form->getData();
-        $this->assertInstanceOf('ArrayAccess', $result);
+        $this->assertInstanceOf(ArrayAccess::class, $result);
         $this->assertArrayHasKey('text', $result);
         $this->assertIsArray($result['text']);
         $this->assertArrayHasKey(0, $result['text']);
@@ -1296,11 +1293,11 @@ final class CollectionTest extends TestCase
         $this->assertTrue($form->isValid());
 
         $result = $form->getData();
-        $this->assertInstanceOf('stdClass', $result);
+        $this->assertInstanceOf(stdClass::class, $result);
         $this->assertObjectHasAttribute('collection', $result);
         $this->assertIsArray($result->collection);
         $this->assertCount(1, $result->collection);
-        $this->assertInstanceOf('ArrayObject', $result->collection[0]);
+        $this->assertInstanceOf(ArrayObject::class, $result->collection[0]);
         $this->assertArrayHasKey('test', $result->collection[0]);
         $this->assertEquals('bar', $result->collection[0]['test']);
     }

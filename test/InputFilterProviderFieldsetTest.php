@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 final class InputFilterProviderFieldsetTest extends TestCase
 {
-    /** @var InputFilterProviderFieldset */
-    private $fieldset;
+    private InputFilterProviderFieldset $fieldset;
 
     protected function setUp(): void
     {

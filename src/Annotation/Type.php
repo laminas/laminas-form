@@ -21,8 +21,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Type
 {
-    /** @var string */
-    protected $type;
+    protected string $type;
 
     /**
      * Receive and process the contents of an annotation

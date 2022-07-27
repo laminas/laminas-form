@@ -12,6 +12,7 @@ use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
 use ReflectionMethod;
+use RuntimeException;
 
 /**
  * @property FormCollectionHelper $helper
@@ -412,7 +413,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         $method = new ReflectionMethod(FormCollectionHelper::class, 'getElementHelper');
         $method->setAccessible(true);
 
-        $this->expectException('RuntimeException');
+        $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(
             'Invalid element helper set in FormCollection.'
             . ' The helper must be an instance of Laminas\View\Helper\HelperInterface.'

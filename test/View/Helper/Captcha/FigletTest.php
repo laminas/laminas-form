@@ -15,8 +15,7 @@ use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
  */
 final class FigletTest extends AbstractCommonTestCase
 {
-    /** @var FigletCaptcha */
-    private $captcha;
+    private FigletCaptcha $captcha;
 
     protected function setUp(): void
     {
