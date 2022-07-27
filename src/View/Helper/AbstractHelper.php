@@ -92,25 +92,25 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @var array
      */
     protected $validGlobalAttributes = [
-        'accesskey'          => true, // https://html.spec.whatwg.org/#the-accesskey-attribute
-        'autocapitalize'     => true, // https://html.spec.whatwg.org/#attr-autocapitalize
-        'class'              => true, // https://html.spec.whatwg.org/#classes
-        'contenteditable'    => true, // https://html.spec.whatwg.org/#contenteditable
-        'contextmenu'        => true, // Obsolete: https://html.spec.whatwg.org/#attr-contextmenu
-        'dir'                => true, // https://html.spec.whatwg.org/#the-dir-attribute
-        'draggable'          => true, // https://html.spec.whatwg.org/#the-draggable-attribute
-        'dropzone'           => true, // Obsolete: https://html.spec.whatwg.org/#attr-dropzone
-        'enterkeyhint'       => true, // https://html.spec.whatwg.org/#input-modalities:-the-enterkeyhint-attribute
-        'hidden'             => true, // https://html.spec.whatwg.org/#the-hidden-attribute
-        'id'                 => true, // https://html.spec.whatwg.org/#the-id-attribute
-        'inputmode'          => true, // https://html.spec.whatwg.org/#attr-inputmode
-        'is'                 => true, // https://html.spec.whatwg.org/#attr-is
+        'accesskey'       => true, // https://html.spec.whatwg.org/#the-accesskey-attribute
+        'autocapitalize'  => true, // https://html.spec.whatwg.org/#attr-autocapitalize
+        'class'           => true, // https://html.spec.whatwg.org/#classes
+        'contenteditable' => true, // https://html.spec.whatwg.org/#contenteditable
+        'contextmenu'     => true, // Obsolete: https://html.spec.whatwg.org/#attr-contextmenu
+        'dir'             => true, // https://html.spec.whatwg.org/#the-dir-attribute
+        'draggable'       => true, // https://html.spec.whatwg.org/#the-draggable-attribute
+        'dropzone'        => true, // Obsolete: https://html.spec.whatwg.org/#attr-dropzone
+        'enterkeyhint'    => true, // https://html.spec.whatwg.org/#input-modalities:-the-enterkeyhint-attribute
+        'hidden'          => true, // https://html.spec.whatwg.org/#the-hidden-attribute
+        'id'              => true, // https://html.spec.whatwg.org/#the-id-attribute
+        'inputmode'       => true, // https://html.spec.whatwg.org/#attr-inputmode
+        'is'              => true, // https://html.spec.whatwg.org/#attr-is
         //'itemid'             => true, // https://html.spec.whatwg.org/#attr-itemid
-        'itemprop'           => true, // https://html.spec.whatwg.org/#names:-the-itemprop-attribute
-        'itemref'            => true, // https://html.spec.whatwg.org/#attr-itemref
-        'itemscope'          => true, // https://html.spec.whatwg.org/#attr-itemscope
-        'itemtype'           => true, // https://html.spec.whatwg.org/#attr-itemtype
-        'lang'               => true, // https://html.spec.whatwg.org/#the-lang-and-xml:lang-attributes
+        'itemprop'  => true, // https://html.spec.whatwg.org/#names:-the-itemprop-attribute
+        'itemref'   => true, // https://html.spec.whatwg.org/#attr-itemref
+        'itemscope' => true, // https://html.spec.whatwg.org/#attr-itemscope
+        'itemtype'  => true, // https://html.spec.whatwg.org/#attr-itemtype
+        'lang'      => true, // https://html.spec.whatwg.org/#the-lang-and-xml:lang-attributes
         //'nonce'              => true, // https://html.spec.whatwg.org/#attr-nonce
         'onabort'            => true, // https://html.spec.whatwg.org/#handler-onabort
         'onblur'             => true, // https://html.spec.whatwg.org/#handler-onblur
@@ -172,9 +172,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
         'tabindex'           => true, // https://html.spec.whatwg.org/#attr-tabindex
         'title'              => true, // https://html.spec.whatwg.org/#attr-title
         //'translate'          => true, // https://html.spec.whatwg.org/#attr-translate
-        'xml:base'           => true, // https://www.w3.org/TR/xmlbase/#syntax
-        'xml:lang'           => true, // https://html.spec.whatwg.org/#the-lang-and-xml:lang-attributes
-        'xml:space'          => true, // https://www.w3.org/TR/xml/#sec-white-space
+        'xml:base'  => true, // https://www.w3.org/TR/xmlbase/#syntax
+        'xml:lang'  => true, // https://html.spec.whatwg.org/#the-lang-and-xml:lang-attributes
+        'xml:space' => true, // https://www.w3.org/TR/xml/#sec-white-space
     ];
 
     /**
