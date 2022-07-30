@@ -9,6 +9,8 @@ use Laminas\Form\Element\DateSelect;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
+use ReflectionException;
+use ReflectionMethod;
 
 use function extension_loaded;
 
@@ -114,5 +116,29 @@ final class FormDateSelectTest extends AbstractCommonTestCase
         }
 
         $this->assertCount(31, $elements[0]->getValueOptions());
+    }
+
+    /**
+     * @group issue-160
+     * @throws ReflectionException
+     */
+    public function testParsePatternWithShortDateFormat(): void
+    {
+        $element  = new DateSelect('foo');
+        $dateType = IntlDateFormatter::SHORT;
+        $locale   = 'es_CL';
+
+        $this->helper->setLocale($locale);
+        $this->helper->setDateType($dateType);
+
+        $method = new ReflectionMethod($this->helper, 'parsePattern');
+        $method->setAccessible(true);
+
+        $pattern = $method->invoke($this->helper, $element->shouldRenderDelimiters());
+
+        $this->assertIsArray($pattern);
+        $this->assertArrayHasKey('day', $pattern);
+        $this->assertArrayHasKey('month', $pattern);
+        $this->assertArrayHasKey('year', $pattern);
     }
 }

@@ -195,7 +195,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
     {
         $pattern    = $this->getPattern();
         $pregResult = preg_split(
-            "/([ -,.:\/]*'.*?'[ -,.:\/]*)|([ -,.:\/]+)/",
+            "/([ \-,.:\/]*'.*?'[ \-,.:\/]*)|([ \-,.:\/]+)/",
             $pattern,
             -1,
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
