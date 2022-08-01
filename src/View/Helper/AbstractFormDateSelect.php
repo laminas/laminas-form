@@ -75,7 +75,7 @@ abstract class AbstractFormDateSelect extends AbstractHelper
     {
         $pattern    = $this->getPattern();
         $pregResult = preg_split(
-            "/([ -,.\/]*(?:'[a-zA-Z]+')*[ -,.\/]+)/",
+            "/([ \-,.\/]*(?:'[a-zA-Z]+')*[ \-,.\/]+)/",
             $pattern,
             -1,
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
