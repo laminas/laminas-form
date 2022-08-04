@@ -79,6 +79,7 @@ final class FormPasswordTest extends AbstractCommonTestCase
             ['step', 'assertStringNotContainsString'],
             ['value', 'assertStringContainsString'],
             ['width', 'assertStringNotContainsString'],
+            ['passwordrules', 'assertStringContainsString'],
         ];
     }
 
@@ -116,6 +117,7 @@ final class FormPasswordTest extends AbstractCommonTestCase
             'src'            => 'value',
             'step'           => 'value',
             'width'          => 'value',
+            'passwordrules'  => 'value',
         ]);
         $element->setValue('value');
         return $element;
