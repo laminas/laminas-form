@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.21.0@d8bec4c7aaee111a532daec32fb09de5687053d1">
+<files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac">
   <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_string($entity)</code>
@@ -21,10 +21,6 @@
       <code>$annotations</code>
       <code>$annotations</code>
     </NullArgument>
-    <UndefinedMethod occurrences="2">
-      <code>getAttributes</code>
-      <code>getAttributes</code>
-    </UndefinedMethod>
   </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
@@ -277,6 +273,9 @@
     </TooManyArguments>
   </file>
   <file src="src/FormAbstractServiceFactory.php">
+    <InvalidDocblock occurrences="1">
+      <code>setPluginManager</code>
+    </InvalidDocblock>
     <PossiblyNullReference occurrences="2">
       <code>setPluginManager</code>
       <code>setPluginManager</code>
@@ -322,6 +321,22 @@
     </PossiblyNullArgument>
   </file>
   <file src="src/View/Helper/AbstractHelper.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$encoding</code>
+      <code>$encoding</code>
+    </ArgumentTypeCoercion>
+    <DeprecatedMethod occurrences="3">
+      <code>getEncoding</code>
+      <code>setEncoding</code>
+      <code>setEncoding</code>
+    </DeprecatedMethod>
+    <InternalMethod occurrences="5">
+      <code>getEncoding</code>
+      <code>new EscapeHtml()</code>
+      <code>new EscapeHtmlAttr()</code>
+      <code>setEncoding</code>
+      <code>setEncoding</code>
+    </InternalMethod>
     <PossiblyNullReference occurrences="3">
       <code>translate</code>
       <code>translate</code>
@@ -329,6 +344,9 @@
     </PossiblyNullReference>
   </file>
   <file src="src/View/Helper/Form.php">
+    <DeprecatedMethod occurrences="1">
+      <code>getView</code>
+    </DeprecatedMethod>
     <UndefinedMagicMethod occurrences="2">
       <code>formCollection</code>
       <code>formRow</code>
@@ -342,18 +360,21 @@
       <code>is_object($attributesOrElement)</code>
     </RedundantConditionGivenDocblockType>
   </file>
+  <file src="src/View/Helper/FormCaptcha.php">
+    <DeprecatedMethod occurrences="1">
+      <code>getView</code>
+    </DeprecatedMethod>
+  </file>
   <file src="src/View/Helper/FormCollection.php">
+    <DeprecatedMethod occurrences="1">
+      <code>getView</code>
+    </DeprecatedMethod>
     <TypeDoesNotContainType occurrences="4">
       <code>assert(is_callable($elementHelper))</code>
       <code>assert(is_callable($elementHelper))</code>
       <code>assert(is_callable($fieldsetHelper))</code>
       <code>assert(is_callable($fieldsetHelper))</code>
     </TypeDoesNotContainType>
-  </file>
-  <file src="src/View/Helper/FormElement.php">
-    <DocblockTypeContradiction occurrences="1">
-      <code>assert(is_callable($helper))</code>
-    </DocblockTypeContradiction>
   </file>
   <file src="src/View/Helper/FormElementErrors.php">
     <MissingClosureParamType occurrences="1">
@@ -398,9 +419,6 @@
     </PossiblyNullArgument>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'ArrayObject'</code>
-    </ArgumentTypeCoercion>
     <DeprecatedMethod occurrences="2">
       <code>allowEmpty</code>
       <code>continueIfEmpty</code>
@@ -423,25 +441,9 @@
     </NullArgument>
   </file>
   <file src="test/Element/CollectionTest.php">
-    <ArgumentTypeCoercion occurrences="5">
-      <code>$result</code>
-      <code>'ArrayAccess'</code>
-      <code>'ArrayObject'</code>
-      <code>'stdClass'</code>
-      <code>'stdClass'</code>
-    </ArgumentTypeCoercion>
     <NullArgument occurrences="1">
       <code>null</code>
     </NullArgument>
-    <PossiblyInvalidArgument occurrences="1">
-      <code>$result</code>
-    </PossiblyInvalidArgument>
-    <PossiblyInvalidArrayAccess occurrences="1">
-      <code>$result['text']</code>
-    </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidPropertyFetch occurrences="1">
-      <code>$result-&gt;collection</code>
-    </PossiblyInvalidPropertyFetch>
     <PossiblyUndefinedMethod occurrences="1">
       <code>setObject</code>
     </PossiblyUndefinedMethod>
@@ -475,9 +477,6 @@
     </PossiblyUndefinedVariable>
   </file>
   <file src="test/FieldsetTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'stdClass'</code>
-    </ArgumentTypeCoercion>
     <InvalidArgument occurrences="1">
       <code>'foo'</code>
     </InvalidArgument>
@@ -561,6 +560,11 @@
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
+  <file src="test/TestAsset/Annotation/ComplexEntity.php">
+    <DeprecatedClass occurrences="1">
+      <code>Annotation\AllowEmpty()</code>
+    </DeprecatedClass>
+  </file>
   <file src="test/TestAsset/Annotation/InputFilterInput.php">
     <DeprecatedInterface occurrences="1">
       <code>InputFilterInput</code>
@@ -570,6 +574,12 @@
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/SampleEntity.php">
+    <DeprecatedClass occurrences="2">
+      <code>Annotation\AllowEmpty(true)</code>
+      <code>Annotation\ContinueIfEmpty(true)</code>
+    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/BasicFieldset.php">
     <LessSpecificImplementedReturnType occurrences="1">
@@ -704,6 +714,15 @@
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/View/Helper/AbstractCommonTestCase.php">
+    <DeprecatedMethod occurrences="3">
+      <code>getEncoding</code>
+      <code>getEncoding</code>
+      <code>setView</code>
+    </DeprecatedMethod>
+    <InternalMethod occurrences="2">
+      <code>getEncoding</code>
+      <code>getEncoding</code>
+    </InternalMethod>
     <UnsafeInstantiation occurrences="1">
       <code>new $helperClass()</code>
     </UnsafeInstantiation>
@@ -713,11 +732,6 @@
       <code>setMethods</code>
       <code>setMethods</code>
     </DeprecatedMethod>
-  </file>
-  <file src="test/View/Helper/Captcha/ImageTest.php">
-    <DocblockTypeContradiction occurrences="1">
-      <code>null === $this-&gt;tmpDir</code>
-    </DocblockTypeContradiction>
   </file>
   <file src="test/View/Helper/Captcha/ReCaptchaTest.php">
     <PossiblyFalseArgument occurrences="2">
@@ -770,9 +784,10 @@
     </PossiblyFalseOperand>
   </file>
   <file src="test/View/Helper/FormCollectionTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'RuntimeException'</code>
-    </ArgumentTypeCoercion>
+    <DeprecatedMethod occurrences="2">
+      <code>setView</code>
+      <code>setView</code>
+    </DeprecatedMethod>
   </file>
   <file src="test/View/Helper/FormColorTest.php">
     <PossiblyNullArgument occurrences="1">
@@ -857,6 +872,9 @@
       <code>setMethods</code>
       <code>setMethods</code>
     </DeprecatedMethod>
+    <PossiblyInvalidFunctionCall occurrences="1">
+      <code>$escapeHelper($label)</code>
+    </PossiblyInvalidFunctionCall>
   </file>
   <file src="test/View/Helper/FormSearchTest.php">
     <PossiblyNullArgument occurrences="1">
