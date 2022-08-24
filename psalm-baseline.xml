@@ -21,6 +21,10 @@
       <code>$annotations</code>
       <code>$annotations</code>
     </NullArgument>
+    <UndefinedMethod occurrences="2">
+      <code>getAttributes</code>
+      <code>getAttributes</code>
+    </UndefinedMethod>
   </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
@@ -560,11 +564,6 @@
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
-  <file src="test/TestAsset/Annotation/ComplexEntity.php">
-    <DeprecatedClass occurrences="1">
-      <code>Annotation\AllowEmpty()</code>
-    </DeprecatedClass>
-  </file>
   <file src="test/TestAsset/Annotation/InputFilterInput.php">
     <DeprecatedInterface occurrences="1">
       <code>InputFilterInput</code>
@@ -574,12 +573,6 @@
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/SampleEntity.php">
-    <DeprecatedClass occurrences="2">
-      <code>Annotation\AllowEmpty(true)</code>
-      <code>Annotation\ContinueIfEmpty(true)</code>
-    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/BasicFieldset.php">
     <LessSpecificImplementedReturnType occurrences="1">
