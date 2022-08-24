@@ -463,7 +463,7 @@ final class FormRowTest extends AbstractCommonTestCase
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertStringContainsString($escapeHelper->__invoke($label), $markup);
+        $this->assertStringContainsString($escapeHelper($label), $markup);
     }
 
     public function testCanDisableLabelHtmlEscape(): void

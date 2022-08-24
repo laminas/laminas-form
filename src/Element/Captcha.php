@@ -9,7 +9,6 @@ use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\Form\Exception;
 use Laminas\InputFilter\InputProviderInterface;
-use Traversable;
 
 use function get_class;
 use function gettype;
@@ -42,7 +41,7 @@ class Captcha extends Element implements InputProviderInterface
     /**
      * Set captcha
      *
-     * @param  array|Traversable|LaminasCaptcha\AdapterInterface $captcha
+     * @param  iterable<string, mixed>|LaminasCaptcha\AdapterInterface $captcha
      * @throws Exception\InvalidArgumentException
      * @return $this
      */
