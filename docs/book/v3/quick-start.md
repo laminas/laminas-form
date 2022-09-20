@@ -15,7 +15,7 @@ populated from the validated values.
 ## Creating Forms
 
 Before a form can be used to process and validate data, it must first be created.
-There are different alternativs of specifying and creation forms supported by this
+There are different alternatives for specifying and creating forms supported by this
 component. Choosing the best approach depends on the individual needs in your project.
 
 ### Programmatic Form Creation
