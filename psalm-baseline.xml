@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac">
+<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
   <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_string($entity)</code>
@@ -21,10 +21,6 @@
       <code>$annotations</code>
       <code>$annotations</code>
     </NullArgument>
-    <UndefinedMethod occurrences="2">
-      <code>getAttributes</code>
-      <code>getAttributes</code>
-    </UndefinedMethod>
   </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
@@ -564,6 +560,11 @@
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
+  <file src="test/TestAsset/Annotation/ComplexEntity.php">
+    <DeprecatedClass occurrences="1">
+      <code>Annotation\AllowEmpty()</code>
+    </DeprecatedClass>
+  </file>
   <file src="test/TestAsset/Annotation/InputFilterInput.php">
     <DeprecatedInterface occurrences="1">
       <code>InputFilterInput</code>
@@ -573,6 +574,12 @@
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/SampleEntity.php">
+    <DeprecatedClass occurrences="2">
+      <code>Annotation\AllowEmpty(true)</code>
+      <code>Annotation\ContinueIfEmpty(true)</code>
+    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/BasicFieldset.php">
     <LessSpecificImplementedReturnType occurrences="1">
