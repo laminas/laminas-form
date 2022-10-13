@@ -11,7 +11,6 @@ use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
 use function count;
-use function get_class;
 
 final class SelectTest extends TestCase
 {
@@ -32,7 +31,7 @@ final class SelectTest extends TestCase
             InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
         }
     }
@@ -101,7 +100,7 @@ final class SelectTest extends TestCase
             Explode::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Explode::class:

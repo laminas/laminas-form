@@ -8,8 +8,6 @@ use Laminas\Form\Element\Radio as RadioElement;
 use Laminas\Validator\InArray;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class RadioTest extends TestCase
 {
     public function useHiddenAttributeDataProvider(): array
@@ -41,7 +39,7 @@ final class RadioTest extends TestCase
             InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
         }
     }

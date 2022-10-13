@@ -9,8 +9,6 @@ use Laminas\Validator\Explode;
 use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class EmailTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesDefaultValidators(): void
@@ -25,7 +23,7 @@ final class EmailTest extends TestCase
             Regex::class,
         ];
         foreach ($inputSpec['validators'] as $i => $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertEquals($expectedValidators[$i], $class);
         }
     }
@@ -52,7 +50,7 @@ final class EmailTest extends TestCase
         $this->assertIsArray($inputSpec['validators']);
 
         foreach ($inputSpec['validators'] as $i => $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertEquals($expectedValidators[$i], $class);
             switch ($class) {
                 case Explode::class:

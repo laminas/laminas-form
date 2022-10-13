@@ -17,7 +17,6 @@ use PHPUnit\Framework\TestCase;
 use function date;
 use function date_default_timezone_get;
 use function date_default_timezone_set;
-use function get_class;
 
 /**
  * @covers \Laminas\Form\Element\Date
@@ -58,7 +57,7 @@ final class DateTest extends TestCase
             DateStep::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case DateStep::class:
@@ -93,7 +92,7 @@ final class DateTest extends TestCase
             DateStep::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
@@ -135,7 +134,7 @@ final class DateTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            switch (get_class($validator)) {
+            switch ($validator::class) {
                 case DateStep::class:
                 case Date::class:
                     $this->assertEquals('d-m-Y', $validator->getFormat());
@@ -155,7 +154,7 @@ final class DateTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            switch (get_class($validator)) {
+            switch ($validator::class) {
                 case DateStep::class:
                     $this->assertTrue($validator->isValid('2013-12-25'));
                     break;

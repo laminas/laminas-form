@@ -9,7 +9,6 @@ use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
 use function array_merge;
-use function get_class;
 use function gettype;
 use function is_array;
 use function is_object;
@@ -113,7 +112,7 @@ class FormLabel extends AbstractHelper
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Laminas\Form\ElementInterface instance; received "%s"',
                 __METHOD__,
-                is_object($attributesOrElement) ? get_class($attributesOrElement) : gettype($attributesOrElement)
+                is_object($attributesOrElement) ? $attributesOrElement::class : gettype($attributesOrElement)
             ));
         }
 

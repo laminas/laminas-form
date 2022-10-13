@@ -11,8 +11,6 @@ use Laminas\InputFilter\Factory as InputFilterFactory;
 use Laminas\Validator\Date;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class DateTimeSelectTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
@@ -27,7 +25,7 @@ final class DateTimeSelectTest extends TestCase
             Date::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Date::class:

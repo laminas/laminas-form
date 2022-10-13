@@ -14,7 +14,6 @@ use function array_push;
 use function array_search;
 use function array_unshift;
 use function class_exists;
-use function get_class;
 use function gettype;
 use function is_object;
 use function sprintf;
@@ -275,7 +274,7 @@ class FormElementManager extends AbstractPluginManager
                 '%s can only create instances of %s; %s is invalid',
                 static::class,
                 $this->instanceOf,
-                is_object($instance) ? get_class($instance) : gettype($instance)
+                is_object($instance) ? $instance::class : gettype($instance)
             ));
         }
     }

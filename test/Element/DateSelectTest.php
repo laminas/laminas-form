@@ -11,8 +11,6 @@ use Laminas\Validator\Date;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class DateSelectTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
@@ -27,7 +25,7 @@ final class DateSelectTest extends TestCase
             Date::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Date::class:
