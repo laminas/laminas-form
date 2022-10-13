@@ -5,17 +5,14 @@ declare(strict_types=1);
 namespace LaminasTest\Form;
 
 use Generator;
-use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Form\ElementFactory;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 use LaminasTest\Form\TestAsset\ArgumentRecorder;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Container\ContainerInterface;
 
 final class ElementFactoryTest extends TestCase
 {
-    use ProphecyTrait;
-
+    /** @return Generator<string, array{0: array|null, 1: array}> */
     public function validCreationOptions(): Generator
     {
         yield 'array' => [['key' => 'value'], ['key' => 'value']];
@@ -25,18 +22,14 @@ final class ElementFactoryTest extends TestCase
 
     /**
      * @dataProvider validCreationOptions
-     * @param mixed $creationOptions
      * @param array $expectedValue
      */
-    public function testValidCreationOptions($creationOptions, array $expectedValue): void
+    public function testValidCreationOptions(array|null $creationOptions, array $expectedValue): void
     {
-        $container = $this->prophesize(ServiceLocatorInterface::class)
-            ->willImplement(ContainerInterface::class)
-            ->reveal();
-
-        $factory = new ElementFactory();
-        $result  = $factory->__invoke($container, ArgumentRecorder::class, $creationOptions);
-        $this->assertInstanceOf(ArgumentRecorder::class, $result);
-        $this->assertSame(['argumentrecorder', $expectedValue], $result->args);
+        $container = $this->createMock(ContainerInterface::class);
+        $factory   = new ElementFactory();
+        $result    = $factory->__invoke($container, ArgumentRecorder::class, $creationOptions);
+        self::assertInstanceOf(ArgumentRecorder::class, $result);
+        self::assertSame(['argumentrecorder', $expectedValue], $result->args);
     }
 }

@@ -169,10 +169,6 @@ final class FormCaptchaTest extends AbstractCommonTestCase
 
     public function testPassingElementWithReCaptchaRendersCorrectly(): void
     {
-        if (! getenv('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {
-            $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT to test PDF render');
-        }
-
         $captcha = new Captcha\ReCaptcha();
         $captcha->setSiteKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY'));
         $captcha->setSecretKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY'));

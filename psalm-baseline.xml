@@ -493,7 +493,7 @@
     </PossiblyNullReference>
   </file>
   <file src="test/FormElementManagerFactoryTest.php">
-    <MissingClosureParamType occurrences="2">
+    <MissingClosureParamType occurrences="1">
       <code>$container</code>
       <code>$container</code>
     </MissingClosureParamType>
@@ -549,11 +549,6 @@
     <PossiblyUndefinedMethod occurrences="1">
       <code>getValidatorChain</code>
     </PossiblyUndefinedMethod>
-  </file>
-  <file src="test/Integration/ServiceManagerTest.php">
-    <MissingClosureParamType occurrences="1">
-      <code>$form</code>
-    </MissingClosureParamType>
   </file>
   <file src="test/TestAsset/AddressFieldset.php">
     <LessSpecificImplementedReturnType occurrences="1">
@@ -732,12 +727,6 @@
       <code>setMethods</code>
       <code>setMethods</code>
     </DeprecatedMethod>
-  </file>
-  <file src="test/View/Helper/Captcha/ReCaptchaTest.php">
-    <PossiblyFalseArgument occurrences="2">
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
-    </PossiblyFalseArgument>
   </file>
   <file src="test/View/Helper/File/FormFileApcProgressTest.php">
     <InvalidArgument occurrences="5">

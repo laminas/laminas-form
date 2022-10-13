@@ -10,15 +10,12 @@ use Laminas\Form\View\Helper\FormElementErrors as FormElementErrorsHelper;
 use Laminas\I18n\Translator\Translator;
 use Laminas\Validator\AbstractValidator;
 use Laminas\Validator\Translator\TranslatorInterface;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @property FormElementErrorsHelper $helper
  */
 final class FormElementErrorsTest extends AbstractCommonTestCase
 {
-    use ProphecyTrait;
-
     protected ?TranslatorInterface $defaultTranslator;
 
     protected function setUp(): void

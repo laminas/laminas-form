@@ -20,11 +20,8 @@ use function get_class;
  */
 abstract class AbstractCommonTestCase extends TestCase
 {
-    /** @var AbstractHelper */
-    public $helper;
-
-    /** @var PhpRenderer */
-    public $renderer;
+    protected AbstractHelper $helper;
+    protected PhpRenderer $renderer;
 
     protected function setUp(): void
     {

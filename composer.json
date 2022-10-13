@@ -39,7 +39,6 @@
         "laminas/laminas-text": "^2.9.0",
         "laminas/laminas-validator": "^2.26",
         "laminas/laminas-view": "^2.24",
-        "phpspec/prophecy-phpunit": "^2.0.1",
         "phpunit/phpunit": "^9.5.25",
         "psalm/plugin-phpunit": "^0.17.0",
         "vimeo/psalm": "^4.29"
