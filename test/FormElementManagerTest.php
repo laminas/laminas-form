@@ -19,6 +19,7 @@ use LaminasTest\Form\TestAsset\InvokableForm;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use ReflectionProperty;
+use Throwable;
 
 use function array_pop;
 use function array_shift;
@@ -63,6 +64,7 @@ final class FormElementManagerTest extends TestCase
     public function testRegisteringInvalidElementRaisesException(): void
     {
         $this->expectException($this->getInvalidServiceException());
+        /** @psalm-suppress InvalidArgument */
         $this->manager->setService('test', $this);
     }
 
@@ -73,6 +75,7 @@ final class FormElementManagerTest extends TestCase
         $this->manager->get('test');
     }
 
+    /** @return class-string<Throwable> */
     protected function getInvalidServiceException(): string
     {
         if (method_exists($this->manager, 'configure')) {

@@ -22,6 +22,8 @@ use function sprintf;
  * laminas-servicemanager v3-compatible plugin manager implementation for form elements.
  *
  * Enforces that elements retrieved are instances of ElementInterface.
+ *
+ * @extends AbstractPluginManager<ElementInterface>
  */
 class FormElementManager extends AbstractPluginManager
 {
@@ -266,6 +268,7 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param  mixed $instance
      * @throws InvalidServiceException
+     * @psalm-assert ElementInterface $instance
      */
     public function validate($instance): void
     {
@@ -314,8 +317,10 @@ class FormElementManager extends AbstractPluginManager
      * createFromInvokable() will use these and pass them to the instance
      * constructor if not null and a non-empty array.
      *
-     * @param  string $name
+     * @param class-string<ElementInterface>|string $name Service name of plugin to retrieve.
+     * @param null|array<mixed> $options Options to use when creating the instance.
      * @return mixed
+     * @psalm-return ($name is class-string<ElementInterface> ? ElementInterface : mixed)
      */
     public function get($name, ?array $options = null)
     {
