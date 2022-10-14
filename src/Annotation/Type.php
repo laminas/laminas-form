@@ -24,7 +24,7 @@ final class Type
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected string $type)
+    public function __construct(private string $type)
     {
     }
 

@@ -23,7 +23,7 @@ final class Attributes
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected array $attributes)
+    public function __construct(private array $attributes)
     {
     }
 

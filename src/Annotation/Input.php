@@ -24,7 +24,7 @@ final class Input
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected string $input)
+    public function __construct(private string $input)
     {
     }
 

@@ -23,7 +23,7 @@ final class ErrorMessage
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected string $message)
+    public function __construct(private string $message)
     {
     }
 

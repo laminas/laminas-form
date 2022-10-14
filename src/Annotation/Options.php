@@ -25,7 +25,7 @@ final class Options
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected array $options)
+    public function __construct(private array $options)
     {
     }
 

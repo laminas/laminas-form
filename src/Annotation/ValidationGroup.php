@@ -24,7 +24,7 @@ final class ValidationGroup
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected array $validationGroup)
+    public function __construct(private array $validationGroup)
     {
     }
 

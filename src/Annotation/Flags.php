@@ -26,7 +26,7 @@ final class Flags
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected array $flags)
+    public function __construct(private array $flags)
     {
     }
 

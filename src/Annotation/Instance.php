@@ -23,7 +23,7 @@ final class Instance
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(protected string $instance)
+    public function __construct(private string $instance)
     {
     }
 
