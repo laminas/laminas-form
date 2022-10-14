@@ -65,7 +65,7 @@ final class FormElementManagerFactoryTest extends TestCase
             ->willReturn($config);
 
         $factory  = new FormElementManagerFactory();
-        $elements = $factory($container, 'FormElementManager');
+        $elements = $factory($container, FormElementManager::class);
 
         self::assertInstanceOf(FormElementManager::class, $elements);
         self::assertTrue($elements->has('test'));
@@ -85,7 +85,7 @@ final class FormElementManagerFactoryTest extends TestCase
             ->method('get');
 
         $factory  = new FormElementManagerFactory();
-        $elements = $factory($container, 'FormElementManager');
+        $elements = $factory($container, FormElementManager::class);
 
         self::assertInstanceOf(FormElementManager::class, $elements);
         self::assertFalse($elements->has('test'));
@@ -105,7 +105,7 @@ final class FormElementManagerFactoryTest extends TestCase
             ->method('get');
 
         $factory  = new FormElementManagerFactory();
-        $elements = $factory($container, 'FormElementManager');
+        $elements = $factory($container, FormElementManager::class);
 
         self::assertInstanceOf(FormElementManager::class, $elements);
     }
@@ -125,7 +125,7 @@ final class FormElementManagerFactoryTest extends TestCase
             ->willReturn(['foo' => 'bar']);
 
         $factory  = new FormElementManagerFactory();
-        $elements = $factory($container, 'FormElementManager');
+        $elements = $factory($container, FormElementManager::class);
 
         self::assertInstanceOf(FormElementManager::class, $elements);
         self::assertFalse($elements->has('foo'));

@@ -21,14 +21,14 @@ final class ServiceManagerTest extends TestCase
         // Reproducing the behaviour of a full stack MVC + ModuleManager
         $serviceManagerConfig = new Config([
             'factories' => [
-                'FormElementManager' => FormElementManagerFactory::class,
+                FormElementManager::class => FormElementManagerFactory::class,
             ],
         ]);
 
         $serviceManager = new ServiceManager();
         $serviceManagerConfig->configureServiceManager($serviceManager);
 
-        $formElementManager = $serviceManager->get('FormElementManager');
+        $formElementManager = $serviceManager->get(FormElementManager::class);
         self::assertInstanceOf(FormElementManager::class, $formElementManager);
 
         $element     = new class extends Element {
@@ -62,13 +62,13 @@ final class ServiceManagerTest extends TestCase
         // Reproducing the behaviour of a full stack MVC + ModuleManager
         $serviceManagerConfig = new Config([
             'factories' => [
-                'FormElementManager' => FormElementManagerFactory::class,
+                FormElementManager::class => FormElementManagerFactory::class,
             ],
         ]);
 
         $serviceManager = new ServiceManager();
         $serviceManagerConfig->configureServiceManager($serviceManager);
-        $formElementManager = $serviceManager->get('FormElementManager');
+        $formElementManager = $serviceManager->get(FormElementManager::class);
         self::assertInstanceOf(FormElementManager::class, $formElementManager);
 
         $initializer = new class ($formElementManager) implements InitializerInterface

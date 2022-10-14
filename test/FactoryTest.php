@@ -343,7 +343,7 @@ final class FactoryTest extends TestCase
         $hydratorShortName = 'ObjectPropertyHydrator';
         $hydratorType      = ObjectPropertyHydrator::class;
 
-        $this->services->setService('HydratorManager', new HydratorPluginManager($this->services));
+        $this->services->setService(HydratorPluginManager::class, new HydratorPluginManager($this->services));
 
         $form = $this->factory->createForm([
             'name'     => 'foo',

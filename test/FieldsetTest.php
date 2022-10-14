@@ -626,10 +626,10 @@ final class FieldsetTest extends TestCase
         // Service container
         $container = $this->createMock(ContainerInterface::class);
         $container->method('has')
-            ->with('HydratorManager')
+            ->with(Hydrator\HydratorPluginManager::class)
             ->willReturn(true);
         $container->method('get')
-            ->with('HydratorManager')
+            ->with(Hydrator\HydratorPluginManager::class)
             ->willReturn($hydratorManager);
 
         $this->fieldset->getFormFactory()->setFormElementManager(

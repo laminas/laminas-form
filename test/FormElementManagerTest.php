@@ -12,6 +12,7 @@ use Laminas\Form\Factory;
 use Laminas\Form\Form;
 use Laminas\Form\FormElementManager;
 use Laminas\Hydrator\HydratorInterface;
+use Laminas\Hydrator\HydratorPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\PluginManagerInterface;
 use Laminas\ServiceManager\ServiceManager;
@@ -270,10 +271,10 @@ final class FormElementManagerTest extends TestCase
         // Service container
         $container = $this->createMock(ContainerInterface::class);
         $container->method('has')
-            ->with('HydratorManager')
+            ->with(HydratorPluginManager::class)
             ->willReturn(true);
         $container->method('get')
-            ->with('HydratorManager')
+            ->with(HydratorPluginManager::class)
             ->willReturn($hydratorManager);
 
         $formElementManager = new FormElementManager($container);
