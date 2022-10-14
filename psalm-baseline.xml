@@ -499,10 +499,6 @@
     </MissingClosureParamType>
   </file>
   <file src="test/FormElementManagerTest.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>$this-&gt;getInvalidServiceException()</code>
-      <code>$this-&gt;getInvalidServiceException()</code>
-    </ArgumentTypeCoercion>
     <DeprecatedMethod occurrences="1">
       <code>setMethods</code>
     </DeprecatedMethod>
