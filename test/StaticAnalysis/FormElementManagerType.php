@@ -18,4 +18,9 @@ final class FormElementManagerType
     {
         return $this->manager->get(Checkbox::class);
     }
+
+    public function getReturnsMixedWhenGivenAnAlias(): mixed
+    {
+        return $this->manager->get('foo');
+    }
 }
