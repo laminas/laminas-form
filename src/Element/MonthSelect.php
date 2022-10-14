@@ -151,7 +151,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Set the month attributes
      *
-     * @param  array $monthAttributes
      * @return $this
      */
     public function setMonthAttributes(array $monthAttributes)
@@ -173,7 +172,6 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Set the year attributes
      *
-     * @param  array $yearAttributes
      * @return $this
      */
     public function setYearAttributes(array $yearAttributes)

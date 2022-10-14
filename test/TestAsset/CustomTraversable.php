@@ -14,11 +14,8 @@ use function reset;
 
 class CustomTraversable implements Iterator
 {
-    private array $data;
-
-    public function __construct(array $data)
+    public function __construct(private array $data)
     {
-        $this->data = $data;
     }
 
     /**

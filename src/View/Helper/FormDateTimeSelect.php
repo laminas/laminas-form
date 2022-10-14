@@ -14,9 +14,9 @@ use function is_numeric;
 use function preg_split;
 use function rtrim;
 use function sprintf;
+use function str_contains;
 use function str_replace;
 use function stripos;
-use function strpos;
 use function trim;
 
 use const PREG_SPLIT_DELIM_CAPTURE;
@@ -205,7 +205,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         foreach ($pregResult as $value) {
             if (stripos($value, "'") === false && stripos($value, 'd') !== false) {
                 $result['day'] = $value;
-            } elseif (stripos($value, "'") === false && strpos($value, 'M') !== false) {
+            } elseif (stripos($value, "'") === false && str_contains($value, 'M')) {
                 $result['month'] = $value;
             } elseif (stripos($value, "'") === false && stripos($value, 'y') !== false) {
                 $result['year'] = $value;
@@ -213,7 +213,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
                 $result['hour'] = $value;
             } elseif (stripos($value, "'") === false && stripos($value, 'm') !== false) {
                 $result['minute'] = $value;
-            } elseif (stripos($value, "'") === false && strpos($value, 's') !== false) {
+            } elseif (stripos($value, "'") === false && str_contains($value, 's')) {
                 $result['second'] = $value;
             } elseif (stripos($value, "'") === false && stripos($value, 'a') !== false) {
                 // ignore ante/post meridiem marker

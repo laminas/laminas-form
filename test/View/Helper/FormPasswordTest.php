@@ -130,15 +130,10 @@ final class FormPasswordTest extends AbstractCommonTestCase
     ): void {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
-        switch ($attribute) {
-            case 'value':
-                // Password value should never be rendered, see 7166
-                $expect = sprintf('%s=""', $attribute);
-                break;
-            default:
-                $expect = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
-                break;
-        }
+        $expect  = match ($attribute) {
+            'value' => sprintf('%s=""', $attribute),
+            default => sprintf('%s="%s"', $attribute, $element->getAttribute($attribute)),
+        };
         $this->$assertion($expect, $markup);
     }
 

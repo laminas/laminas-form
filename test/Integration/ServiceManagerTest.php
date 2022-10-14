@@ -43,7 +43,7 @@ final class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig = new Config([
             'factories'    => [
-                'InitializableElement' => fn(): Element => $element,
+                'InitializableElement' => static fn(): Element => $element,
             ],
             'initializers' => [
                 $initializer,
@@ -89,7 +89,7 @@ final class ServiceManagerTest extends TestCase
 
         $formElementManagerConfig = new Config([
             'factories'    => [
-                'MyForm' => fn() => new TestAsset\Form(),
+                'MyForm' => static fn(): \LaminasTest\Form\Integration\TestAsset\Form => new TestAsset\Form(),
             ],
             'initializers' => [
                 $initializer,

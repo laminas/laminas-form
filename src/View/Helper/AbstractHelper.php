@@ -20,9 +20,8 @@ use function mb_strpos;
 use function method_exists;
 use function preg_match;
 use function sprintf;
-use function strlen;
+use function str_starts_with;
 use function strtolower;
-use function substr;
 
 /**
  * Base functionality for all form view helpers
@@ -273,7 +272,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
             try {
                 $escapedAttribute = $escapeAttr($value);
                 $strings[]        = sprintf('%s="%s"', $escape($key), $escapedAttribute);
-            } catch (EscaperException $x) {
+            } catch (EscaperException) {
                 // If an escaper exception happens, escape only the key, and use a blank value.
                 $strings[] = sprintf('%s=""', $escape($key));
             }
@@ -418,10 +417,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * Prepare a boolean attribute value
      *
      * Prepares the expected representation for the boolean attribute specified.
-     *
-     * @param  mixed $value
      */
-    protected function prepareBooleanAttributeValue(string $attribute, $value): string
+    protected function prepareBooleanAttributeValue(string $attribute, mixed $value): string
     {
         if (! is_bool($value) && in_array($value, $this->booleanAttributes[$attribute], true)) {
             return $value;
@@ -552,7 +549,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     protected function hasAllowedPrefix(string $attribute): bool
     {
         foreach ($this->validTagAttributePrefixes as $prefix) {
-            if (substr($attribute, 0, strlen($prefix)) === $prefix) {
+            if (str_starts_with($attribute, $prefix)) {
                 return true;
             }
         }

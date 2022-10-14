@@ -21,14 +21,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Input
 {
-    protected string $input;
-
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(string $input)
+    public function __construct(private string $input)
     {
-        $this->input = $input;
     }
 
     /**

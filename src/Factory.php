@@ -133,8 +133,6 @@ class Factory
 
     /**
      * Create an element
-     *
-     * @param  array $spec
      */
     public function createElement(array $spec): ElementInterface
     {
@@ -147,8 +145,6 @@ class Factory
 
     /**
      * Create a fieldset
-     *
-     * @param  array $spec
      */
     public function createFieldset(array $spec): FieldsetInterface
     {
@@ -161,8 +157,6 @@ class Factory
 
     /**
      * Create a form
-     *
-     * @param  array $spec
      */
     public function createForm(array $spec): FormInterface
     {

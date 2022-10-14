@@ -44,7 +44,6 @@ class MultiCheckbox extends Checkbox
     }
 
     /**
-     * @param  array $options
      * @return $this
      */
     public function setValueOptions(array $options)

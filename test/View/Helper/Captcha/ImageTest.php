@@ -24,9 +24,9 @@ use function unlink;
  */
 final class ImageTest extends AbstractCommonTestCase
 {
-    protected ?string $tmpDir = null;
-    protected string $testDir;
-    protected ImageCaptcha $captcha;
+    private ?string $tmpDir = null;
+    private string $testDir;
+    private ImageCaptcha $captcha;
 
     protected function setUp(): void
     {

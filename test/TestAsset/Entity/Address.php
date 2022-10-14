@@ -50,7 +50,6 @@ class Address
     }
 
     /**
-     * @param array $phones
      * @return $this
      */
     public function setPhones(array $phones)

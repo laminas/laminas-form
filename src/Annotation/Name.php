@@ -20,14 +20,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Name
 {
-    protected string $name;
-
     /**
      * Receive and process the contents of an annotation
      */
-    public function __construct(string $name)
+    public function __construct(private string $name)
     {
-        $this->name = $name;
     }
 
     /**

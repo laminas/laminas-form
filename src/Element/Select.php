@@ -56,7 +56,6 @@ class Select extends Element implements InputProviderInterface
     }
 
     /**
-     * @param  array $options
      * @return $this
      */
     public function setValueOptions(array $options)
@@ -318,11 +317,9 @@ class Select extends Element implements InputProviderInterface
     }
 
     /**
-     * @param mixed $key
-     * @param mixed $optionSpec
      * @return mixed
      */
-    protected function getOptionValue($key, $optionSpec)
+    protected function getOptionValue(mixed $key, mixed $optionSpec)
     {
         return is_array($optionSpec) ? $optionSpec['value'] : $key;
     }

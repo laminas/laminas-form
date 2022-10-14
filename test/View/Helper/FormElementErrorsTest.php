@@ -16,7 +16,7 @@ use Laminas\Validator\Translator\TranslatorInterface;
  */
 final class FormElementErrorsTest extends AbstractCommonTestCase
 {
-    protected ?TranslatorInterface $defaultTranslator;
+    private ?TranslatorInterface $defaultTranslator;
 
     protected function setUp(): void
     {

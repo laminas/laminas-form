@@ -16,6 +16,7 @@ use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\PluginManagerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\Form\TestAsset\InvokableForm;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use ReflectionProperty;
@@ -32,7 +33,7 @@ use function strtoupper;
  */
 final class FormElementManagerTest extends TestCase
 {
-    protected FormElementManager $manager;
+    private FormElementManager $manager;
 
     protected function setUp(): void
     {
@@ -51,7 +52,7 @@ final class FormElementManagerTest extends TestCase
     public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement(): void
     {
         $factory = new Factory();
-        $this->manager->setFactory('my-form', static function ($elements) use ($factory) {
+        $this->manager->setFactory('my-form', static function ($elements) use ($factory): Form {
             $form = new Form();
             $form->setFormFactory($factory);
             return $form;
@@ -130,7 +131,7 @@ final class FormElementManagerTest extends TestCase
 
         $element->expects($this->once())->method('init');
 
-        $this->manager->setFactory('sharedElement', static fn() => $element);
+        $this->manager->setFactory('sharedElement', static fn(): MockObject => $element);
 
         $this->manager->setShared('sharedElement', true);
 

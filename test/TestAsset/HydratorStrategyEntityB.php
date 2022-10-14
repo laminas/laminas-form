@@ -6,13 +6,8 @@ namespace LaminasTest\Form\TestAsset;
 
 class HydratorStrategyEntityB
 {
-    private int $field1;
-    private string $field2;
-
-    public function __construct(int $field1, string $field2)
+    public function __construct(private int $field1, private string $field2)
     {
-        $this->field1 = $field1;
-        $this->field2 = $field2;
     }
 
     public function getField1(): int

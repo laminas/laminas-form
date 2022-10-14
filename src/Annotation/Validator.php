@@ -34,22 +34,21 @@ use const E_USER_DEPRECATED;
 final class Validator
 {
     /** @var string */
-    protected $name;
+    private $name;
 
     /** @var array */
-    protected $options;
+    private $options;
 
     /** @var bool|null */
-    protected $breakChainOnFailure;
+    private $breakChainOnFailure;
 
     /** @var int|null */
-    protected $priority;
+    private $priority;
 
     /**
      * Receive and process the contents of an annotation
      *
      * @param string|array $name
-     * @param array $options
      */
     public function __construct($name, array $options = [], ?bool $breakChainOnFailure = null, ?int $priority = null)
     {

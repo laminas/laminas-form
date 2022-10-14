@@ -25,7 +25,7 @@ use function is_bool;
 #[Attribute]
 final class Required
 {
-    protected bool $required;
+    private bool $required;
 
     /**
      * Receive and process the contents of an annotation

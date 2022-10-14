@@ -113,7 +113,6 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the hour attributes
      *
-     * @param  array $hourAttributes
      * @return $this
      */
     public function setHourAttributes(array $hourAttributes)
@@ -135,7 +134,6 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the minute attributes
      *
-     * @param  array $minuteAttributes
      * @return $this
      */
     public function setMinuteAttributes(array $minuteAttributes)
@@ -157,7 +155,6 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the second attributes
      *
-     * @param  array $secondAttributes
      * @return $this
      */
     public function setSecondAttributes(array $secondAttributes)
@@ -203,7 +200,7 @@ class DateTimeSelect extends DateSelect
         if (is_string($value)) {
             try {
                 $value = new PhpDateTime($value);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 throw new InvalidArgumentException('Value should be a parsable string or an instance of \DateTime');
             }
         }

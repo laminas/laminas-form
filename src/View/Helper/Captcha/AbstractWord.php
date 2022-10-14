@@ -93,8 +93,6 @@ abstract class AbstractWord extends FormInput
 
     /**
      * Render the hidden input with the captcha identifier
-     *
-     * @param  array          $attributes
      */
     protected function renderCaptchaHidden(CaptchaAdapter $captcha, array $attributes): string
     {
@@ -122,8 +120,6 @@ abstract class AbstractWord extends FormInput
 
     /**
      * Render the input for capturing the captcha value from the client
-     *
-     * @param  array          $attributes
      */
     protected function renderCaptchaInput(CaptchaAdapter $captcha, array $attributes): string
     {

@@ -266,12 +266,11 @@ class FormSelect extends AbstractHelper
      * a domain issue -- you cannot have multiple options selected unless the
      * multiple attribute is present and enabled.
      *
-     * @param  mixed $value
      * @param  array $attributes
      * @return array
      * @throws Exception\DomainException
      */
-    protected function validateMultiValue($value, array $attributes): array
+    protected function validateMultiValue(mixed $value, array $attributes): array
     {
         if (null === $value) {
             return [];
