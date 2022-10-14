@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-class Identifier
-{
-    private int $id;
+use Stringable;
 
-    public function __construct(int $id)
+class Identifier implements Stringable
+{
+    public function __construct(private int $id)
     {
-        $this->id = $id;
     }
 
     public function __toString(): string

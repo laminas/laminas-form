@@ -333,15 +333,10 @@ class Form extends Fieldset implements FormInterface
 
         $filter = $this->getInputFilter();
 
-        switch ($this->bindAs) {
-            case FormInterface::VALUES_RAW:
-                $data = $filter->getRawValues();
-                break;
-            case FormInterface::VALUES_NORMALIZED:
-            default:
-                $data = $filter->getValues();
-                break;
-        }
+        $data = match ($this->bindAs) {
+            FormInterface::VALUES_RAW => $filter->getRawValues(),
+            default => $filter->getValues(),
+        };
 
         $data            = $this->prepareBindData($data, $this->data);
         $validationGroup = $this->getValidationGroup();
@@ -361,8 +356,6 @@ class Form extends Fieldset implements FormInterface
     /**
      * Parse filtered values and return only posted fields for binding
      *
-     * @param  array $values
-     * @param  array $match
      * @return array
      */
     protected function prepareBindData(array $values, array $match): array

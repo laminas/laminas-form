@@ -28,16 +28,15 @@ use const E_USER_DEPRECATED;
 final class Hydrator
 {
     /** @var string */
-    protected $type;
+    private $type;
 
     /** @var array */
-    protected $options;
+    private $options;
 
     /**
      * Receive and process the contents of an annotation
      *
      * @param string|array $type
-     * @param array $options
      */
     public function __construct($type, array $options = [])
     {

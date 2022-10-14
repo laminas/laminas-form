@@ -18,13 +18,13 @@ use function is_string;
 final class FormAbstractServiceFactory implements AbstractFactoryInterface
 {
     /** @var null|array */
-    protected $config;
+    private $config;
 
     /** @var string Top-level configuration key indicating forms configuration */
-    protected string $configKey = 'forms';
+    private string $configKey = 'forms';
 
     /** @var null|Factory Form factory used to create forms */
-    protected ?Factory $factory = null;
+    private ?Factory $factory = null;
 
     /**
      * Create a form (v3)

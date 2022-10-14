@@ -25,7 +25,7 @@ use function is_bool;
 #[Attribute]
 final class ContinueIfEmpty
 {
-    protected bool $continueIfEmpty;
+    private bool $continueIfEmpty;
 
     /**
      * Receive and process the contents of an annotation

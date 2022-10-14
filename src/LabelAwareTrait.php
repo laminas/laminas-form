@@ -25,7 +25,6 @@ trait LabelAwareTrait
     /**
      * Set the attributes to use with the label
      *
-     * @param array $labelAttributes
      * @return $this
      */
     public function setLabelAttributes(array $labelAttributes)
@@ -84,7 +83,6 @@ trait LabelAwareTrait
     /**
      * Remove many attributes at once
      *
-     * @param  array $keys
      * @return $this
      */
     public function removeLabelOptions(array $keys)
@@ -99,10 +97,9 @@ trait LabelAwareTrait
     /**
      * Set a single label optionn
      *
-     * @param  mixed  $value
      * @return $this
      */
-    public function setLabelOption(string $key, $value)
+    public function setLabelOption(string $key, mixed $value)
     {
         $this->labelOptions[$key] = $value;
         return $this;

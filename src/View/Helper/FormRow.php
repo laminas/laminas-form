@@ -222,15 +222,10 @@ class FormRow extends AbstractHelper
                     $labelPosition = $element->getLabelOption('label_position');
                 }
 
-                switch ($labelPosition) {
-                    case self::LABEL_PREPEND:
-                        $markup = $labelOpen . $label . $elementString . $labelClose;
-                        break;
-                    case self::LABEL_APPEND:
-                    default:
-                        $markup = $labelOpen . $elementString . $label . $labelClose;
-                        break;
-                }
+                $markup = match ($labelPosition) {
+                    self::LABEL_PREPEND => $labelOpen . $label . $elementString . $labelClose,
+                    default => $labelOpen . $elementString . $label . $labelClose,
+                };
             }
 
             if ($this->renderErrors) {
@@ -269,7 +264,6 @@ class FormRow extends AbstractHelper
     /**
      * Set the attributes for the row label
      *
-     * @param  array $labelAttributes
      * @return $this
      */
     public function setLabelAttributes(array $labelAttributes)

@@ -13,7 +13,6 @@ use Laminas\View\Renderer\PhpRenderer;
 use PHPUnit\Framework\TestCase;
 
 use function extension_loaded;
-use function get_class;
 
 /**
  * Abstract base test case for all form view helpers
@@ -85,7 +84,7 @@ abstract class AbstractCommonTestCase extends TestCase
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $helperClass = get_class($this->helper);
+        $helperClass = $this->helper::class;
         $helper      = new $helperClass();
         $this->assertEquals(Doctype::HTML4_LOOSE, $helper->getDoctype());
     }

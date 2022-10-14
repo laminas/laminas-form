@@ -29,19 +29,18 @@ use const E_USER_DEPRECATED;
 final class ComposedObject
 {
     /** @var string|null */
-    protected $targetObject;
+    private $targetObject;
 
     /** @var bool */
-    protected $isCollection;
+    private $isCollection;
 
     /** @var array */
-    protected $options;
+    private $options;
 
     /**
      * Receive and process the contents of an annotation
      *
      * @param array|string $targetObject
-     * @param array $options
      */
     public function __construct($targetObject, bool $isCollection = false, array $options = [])
     {

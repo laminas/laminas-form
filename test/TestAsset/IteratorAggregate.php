@@ -9,12 +9,8 @@ use Traversable;
 
 class IteratorAggregate implements IteratorAggregateInterface
 {
-    /** @var Traversable  */
-    protected $iterator;
-
-    public function __construct(Traversable $iterator)
+    public function __construct(protected Traversable $iterator)
     {
-        $this->iterator = $iterator;
     }
 
     /**

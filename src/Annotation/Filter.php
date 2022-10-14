@@ -32,19 +32,18 @@ use const E_USER_DEPRECATED;
 final class Filter
 {
     /** @var string */
-    protected $name;
+    private $name;
 
     /** @var array */
-    protected $options;
+    private $options;
 
     /** @var int|null */
-    protected $priority;
+    private $priority;
 
     /**
      * Receive and process the contents of an annotation
      *
      * @param string|array $name
-     * @param array $options
      */
     public function __construct($name, array $options = [], ?int $priority = null)
     {

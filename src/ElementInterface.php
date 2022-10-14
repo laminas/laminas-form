@@ -31,10 +31,9 @@ interface ElementInterface
     /**
      * Set a single option for an element
      *
-     * @param  mixed $value
      * @return $this
      */
-    public function setOption(string $key, $value);
+    public function setOption(string $key, mixed $value);
 
     /**
      * get the defined options
@@ -53,10 +52,9 @@ interface ElementInterface
     /**
      * Set a single element attribute
      *
-     * @param  mixed $value
      * @return $this
      */
-    public function setAttribute(string $key, $value);
+    public function setAttribute(string $key, mixed $value);
 
     /**
      * Retrieve a single element attribute
@@ -87,10 +85,9 @@ interface ElementInterface
     /**
      * Set the value of the element
      *
-     * @param  mixed $value
      * @return $this
      */
-    public function setValue($value);
+    public function setValue(mixed $value);
 
     /**
      * Retrieve the element value

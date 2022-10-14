@@ -27,8 +27,7 @@ use function sprintf;
 #[Attribute]
 final class InputFilter
 {
-    /** @var string|array */
-    protected $inputFilter;
+    private string|array $inputFilter;
 
     /**
      * Receive and process the contents of an annotation

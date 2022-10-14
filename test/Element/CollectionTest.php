@@ -43,8 +43,8 @@ use function spl_object_hash;
 
 final class CollectionTest extends TestCase
 {
-    protected FormCollection $form;
-    protected ProductFieldset $productFieldset;
+    private FormCollection $form;
+    private ProductFieldset $productFieldset;
 
     protected function setUp(): void
     {

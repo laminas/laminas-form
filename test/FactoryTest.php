@@ -29,9 +29,9 @@ use PHPUnit\Framework\TestCase;
 
 final class FactoryTest extends TestCase
 {
-    protected FormFactory $factory;
+    private FormFactory $factory;
 
-    protected ServiceManager $services;
+    private ServiceManager $services;
 
     protected function setUp(): void
     {

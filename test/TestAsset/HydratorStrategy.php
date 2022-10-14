@@ -51,10 +51,9 @@ class HydratorStrategy extends DefaultStrategy
     }
 
     /**
-     * @param mixed $field1
      * @return mixed|null
      */
-    private function findEntity($field1)
+    private function findEntity(mixed $field1)
     {
         $result = null;
         foreach ($this->simulatedStorageDevice as $entity) {

@@ -14,7 +14,6 @@ use Laminas\Validator\Date;
 use Laminas\View\Resolver\TemplatePathStack;
 
 use function explode;
-use function get_class;
 use function uniqid;
 
 /**
@@ -390,7 +389,7 @@ final class FormRowTest extends AbstractCommonTestCase
 
     public function testInvokeWithNoRenderErrors(): void
     {
-        $mock = $this->getMockBuilder(get_class($this->helper))
+        $mock = $this->getMockBuilder($this->helper::class)
             ->setMethods(['setRenderErrors'])
             ->getMock();
         $mock->expects($this->never())
@@ -401,7 +400,7 @@ final class FormRowTest extends AbstractCommonTestCase
 
     public function testInvokeWithRenderErrorsTrue(): void
     {
-        $mock = $this->getMockBuilder(get_class($this->helper))
+        $mock = $this->getMockBuilder($this->helper::class)
             ->setMethods(['setRenderErrors'])
             ->getMock();
         $mock->expects($this->once())

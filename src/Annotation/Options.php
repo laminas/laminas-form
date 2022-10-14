@@ -22,16 +22,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class Options
 {
-    protected array $options;
-
     /**
      * Receive and process the contents of an annotation
-     *
-     * @param array $options
      */
-    public function __construct(array $options)
+    public function __construct(protected array $options)
     {
-        $this->options = $options;
     }
 
     /**

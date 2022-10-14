@@ -18,6 +18,7 @@ use function assert;
 use function gettype;
 use function in_array;
 use function is_array;
+use function is_iterable;
 use function is_object;
 use function ltrim;
 use function sprintf;
@@ -357,7 +358,7 @@ class Fieldset extends Element implements FieldsetInterface
             $valueExists = array_key_exists($name, $data);
 
             if ($elementOrFieldset instanceof FieldsetInterface) {
-                if ($valueExists && (is_array($data[$name]) || $data[$name] instanceof Traversable)) {
+                if ($valueExists && (is_iterable($data[$name]))) {
                     $elementOrFieldset->populateValues($data[$name]);
                     continue;
                 }

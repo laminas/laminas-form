@@ -129,14 +129,10 @@ final class FormSubmitTest extends AbstractCommonTestCase
     ): void {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
-        switch ($attribute) {
-            case 'value':
-                $expect = sprintf('%s="%s"', $attribute, $element->getValue());
-                break;
-            default:
-                $expect = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
-                break;
-        }
+        $expect  = match ($attribute) {
+            'value' => sprintf('%s="%s"', $attribute, $element->getValue()),
+            default => sprintf('%s="%s"', $attribute, $element->getAttribute($attribute)),
+        };
         $this->$assertion($expect, $markup);
     }
 

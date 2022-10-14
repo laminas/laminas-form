@@ -130,10 +130,6 @@ class FormMultiCheckbox extends FormInput
 
     /**
      * Render options
-     *
-     * @param  array                $options
-     * @param  array                $selectedOptions
-     * @param  array                $attributes
      */
     protected function renderOptions(
         MultiCheckboxElement $element,
@@ -229,15 +225,10 @@ class FormMultiCheckbox extends FormInput
 
             $labelOpen = $labelHelper->openTag($labelAttributes);
             $template  = $labelOpen . '%s%s' . $labelClose;
-            switch ($labelPosition) {
-                case self::LABEL_PREPEND:
-                    $markup = sprintf($template, $label, $input);
-                    break;
-                case self::LABEL_APPEND:
-                default:
-                    $markup = sprintf($template, $input, $label);
-                    break;
-            }
+            $markup    = match ($labelPosition) {
+                self::LABEL_PREPEND => sprintf($template, $label, $input),
+                default => sprintf($template, $input, $label),
+            };
 
             $combinedMarkup[] = $markup;
         }
@@ -269,7 +260,6 @@ class FormMultiCheckbox extends FormInput
     /**
      * Sets the attributes applied to option label.
      *
-     * @param  array|null $attributes
      * @return $this
      */
     public function setLabelAttributes(?array $attributes)

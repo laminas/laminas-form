@@ -35,7 +35,7 @@ use function var_export;
 
 final class FormTest extends TestCase
 {
-    protected Form $form;
+    private Form $form;
 
     protected function setUp(): void
     {
@@ -2078,8 +2078,6 @@ final class FormTest extends TestCase
     }
 
     /**
-     * @param array $expectedFormData
-     * @param array $data
      * @dataProvider formWithSelectMultipleAndEmptyUnselectedValueDataProvider
      */
     public function testFormWithSelectMultipleAndEmptyUnselectedValue(

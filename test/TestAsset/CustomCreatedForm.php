@@ -9,12 +9,9 @@ use Laminas\Form\Form;
 
 class CustomCreatedForm extends Form
 {
-    private DateTime $created;
-
-    public function __construct(DateTime $created, ?string $name = null, array $options = [])
+    public function __construct(private DateTime $created, ?string $name = null, array $options = [])
     {
         parent::__construct($name, $options);
-        $this->created = $created;
     }
 
     public function getCreated(): DateTime

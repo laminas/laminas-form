@@ -183,7 +183,6 @@ class FormElementErrors extends AbstractHelper
     }
 
     /**
-     * @param array $messages
      * @return array
      */
     private function flattenMessages(array $messages): array
@@ -194,7 +193,6 @@ class FormElementErrors extends AbstractHelper
     }
 
     /**
-     * @param array $messages
      * @return array
      */
     private function flattenMessagesWithoutTranslator(array $messages): array
@@ -207,7 +205,6 @@ class FormElementErrors extends AbstractHelper
     }
 
     /**
-     * @param array $messages
      * @return array
      */
     private function flattenMessagesWithTranslator(array $messages): array

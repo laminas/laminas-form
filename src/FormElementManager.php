@@ -208,7 +208,7 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param mixed $instance Instance to inspect and optionally inject.
      */
-    public function injectFactory(ContainerInterface $container, $instance): void
+    public function injectFactory(ContainerInterface $container, mixed $instance): void
     {
         if (! $instance instanceof Fieldset) {
             return;
@@ -228,7 +228,7 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param mixed $instance Instance to inspect and optionally initialize.
      */
-    public function callElementInit(ContainerInterface $container, $instance): void
+    public function callElementInit(ContainerInterface $container, mixed $instance): void
     {
         if ($instance instanceof InitializableInterface) {
             $instance->init();

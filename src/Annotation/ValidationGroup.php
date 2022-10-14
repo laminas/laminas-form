@@ -21,16 +21,11 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
 #[Attribute]
 final class ValidationGroup
 {
-    protected array $validationGroup;
-
     /**
      * Receive and process the contents of an annotation
-     *
-     * @param array $validationGroup
      */
-    public function __construct(array $validationGroup)
+    public function __construct(protected array $validationGroup)
     {
-        $this->validationGroup = $validationGroup;
     }
 
     /**

@@ -38,7 +38,6 @@ final class TelTest extends TestCase
 
     /**
      * @param string[] $expectedFilters
-     * @param array $inputSpec
      */
     private function assertInputSpecContainsFilters(array $expectedFilters, array $inputSpec): void
     {
@@ -47,9 +46,6 @@ final class TelTest extends TestCase
         $this->assertCount(0, $missingFilters);
     }
 
-    /**
-     * @param array $inputSpec
-     */
     private function assertInputSpecContainsRegexValidator(array $inputSpec): void
     {
         $regexValidatorFound = false;

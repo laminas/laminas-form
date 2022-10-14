@@ -73,7 +73,6 @@ class DateSelect extends MonthSelect
     /**
      * Set the day attributes
      *
-     * @param  array $dayAttributes
      * @return $this
      */
     public function setDayAttributes(array $dayAttributes)
@@ -102,7 +101,7 @@ class DateSelect extends MonthSelect
         if (is_string($value)) {
             try {
                 $value = new PhpDateTime($value);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 throw new InvalidArgumentException('Value should be a parsable string or an instance of DateTime');
             }
         }

@@ -17,7 +17,7 @@ use function strrev;
  */
 final class DumbTest extends AbstractCommonTestCase
 {
-    protected DumbCaptcha $captcha;
+    private DumbCaptcha $captcha;
 
     protected function setUp(): void
     {

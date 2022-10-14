@@ -22,7 +22,6 @@ final class ElementFactoryTest extends TestCase
 
     /**
      * @dataProvider validCreationOptions
-     * @param array $expectedValue
      */
     public function testValidCreationOptions(array|null $creationOptions, array $expectedValue): void
     {
