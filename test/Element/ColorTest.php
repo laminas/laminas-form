@@ -8,8 +8,6 @@ use Laminas\Form\Element\Color as ColorElement;
 use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class ColorTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
@@ -24,7 +22,7 @@ final class ColorTest extends TestCase
             Regex::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Regex::class:

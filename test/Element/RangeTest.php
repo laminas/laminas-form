@@ -12,7 +12,6 @@ use Laminas\Validator\Step;
 use PHPUnit\Framework\TestCase;
 
 use function extension_loaded;
-use function get_class;
 
 final class RangeTest extends TestCase
 {
@@ -36,7 +35,7 @@ final class RangeTest extends TestCase
             Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
@@ -82,7 +81,7 @@ final class RangeTest extends TestCase
             Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:

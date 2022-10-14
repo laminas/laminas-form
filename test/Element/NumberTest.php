@@ -11,8 +11,6 @@ use Laminas\Validator\Regex;
 use Laminas\Validator\Step;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class NumberTest extends TestCase
 {
     public function testProvidesInputSpecificationWithDefaultAttributes(): void
@@ -28,7 +26,7 @@ final class NumberTest extends TestCase
             Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Step::class:
@@ -61,7 +59,7 @@ final class NumberTest extends TestCase
             Step::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
@@ -91,7 +89,7 @@ final class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) === GreaterThan::class) {
+            if ($validator::class === GreaterThan::class) {
                 $this->assertFalse($validator->getInclusive());
                 break;
             }
@@ -107,7 +105,7 @@ final class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) === GreaterThan::class) {
+            if ($validator::class === GreaterThan::class) {
                 $this->assertTrue($validator->getInclusive());
                 break;
             }
@@ -120,7 +118,7 @@ final class NumberTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
-            if (get_class($validator) === Regex::class) {
+            if ($validator::class === Regex::class) {
                 $this->assertFalse($validator->isValid('1,000.01'));
                 $this->assertFalse($validator->isValid('-1,000.01'));
                 $this->assertTrue($validator->isValid('1000.01'));

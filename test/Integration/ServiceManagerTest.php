@@ -6,18 +6,16 @@ namespace LaminasTest\Form\Integration;
 
 use Laminas\Form\Element;
 use Laminas\Form\Form;
+use Laminas\Form\FormElementManager;
 use Laminas\Form\FormElementManagerFactory;
 use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\Initializer\InitializerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Container\ContainerInterface;
 
 final class ServiceManagerTest extends TestCase
 {
-    use ProphecyTrait;
-
     public function testInitInitializerShouldBeCalledAfterAllOtherInitializers(): void
     {
         // Reproducing the behaviour of a full stack MVC + ModuleManager
@@ -31,37 +29,32 @@ final class ServiceManagerTest extends TestCase
         $serviceManagerConfig->configureServiceManager($serviceManager);
 
         $formElementManager = $serviceManager->get('FormElementManager');
+        self::assertInstanceOf(FormElementManager::class, $formElementManager);
 
-        $test = 0;
-        $spy  = function () use (&$test): void {
-            TestCase::assertEquals(1, $test);
+        $element     = new class extends Element {
         };
-
-        $element = $this->prophesize(Element::class);
-        $element->init()->will($spy);
-
-        $initializer   = $this->prophesize(InitializerInterface::class);
-        $incrementTest = function () use (&$test): void {
-            $test += 1;
+        $initializer = new class implements InitializerInterface {
+            public function __invoke(ContainerInterface $container, mixed $instance)
+            {
+                TestCase::assertInstanceOf(Element::class, $instance);
+                $instance->setName('special');
+            }
         };
-
-        $initializer->__invoke(
-            $serviceManager,
-            $element->reveal()
-        )->will($incrementTest)->shouldBeCalled();
 
         $formElementManagerConfig = new Config([
             'factories'    => [
-                'InitializableElement' => fn(): Element => $element->reveal(),
+                'InitializableElement' => fn(): Element => $element,
             ],
             'initializers' => [
-                $initializer->reveal(),
+                $initializer,
             ],
         ]);
 
         $formElementManagerConfig->configureServiceManager($formElementManager);
 
+        self::assertNull($element->getName());
         $formElementManager->get('InitializableElement');
+        self::assertSame('special', $element->getName());
     }
 
     public function testInjectFactoryInitializerShouldTriggerBeforeInitInitializer(): void
@@ -75,33 +68,39 @@ final class ServiceManagerTest extends TestCase
 
         $serviceManager = new ServiceManager();
         $serviceManagerConfig->configureServiceManager($serviceManager);
-
         $formElementManager = $serviceManager->get('FormElementManager');
+        self::assertInstanceOf(FormElementManager::class, $formElementManager);
 
-        $initializer                 = $this->prophesize(InitializerInterface::class);
-        $formElementManagerAssertion = function ($form) use ($formElementManager): bool {
-            TestCase::assertInstanceOf(Form::class, $form);
-            TestCase::assertSame($formElementManager, $form->getFormFactory()->getFormElementManager());
-            return true;
+        $initializer = new class ($formElementManager) implements InitializerInterface
+        {
+            public bool $initialized = false;
+
+            public function __construct(private FormElementManager $manager)
+            {
+            }
+
+            public function __invoke(ContainerInterface $container, mixed $instance)
+            {
+                TestCase::assertInstanceOf(Form::class, $instance);
+                TestCase::assertSame($this->manager, $instance->getFormFactory()->getFormElementManager());
+                $this->initialized = true;
+            }
         };
-        $initializer->__invoke(
-            $serviceManager,
-            Argument::that($formElementManagerAssertion)
-        )->shouldBeCalled();
 
         $formElementManagerConfig = new Config([
             'factories'    => [
                 'MyForm' => fn() => new TestAsset\Form(),
             ],
             'initializers' => [
-                $initializer->reveal(),
+                $initializer,
             ],
         ]);
 
         $formElementManagerConfig->configureServiceManager($formElementManager);
 
-        /** @var TestAsset\Form $form */
         $form = $formElementManager->get('MyForm');
-        $this->assertSame($formElementManager, $form->elementManagerAtInit);
+        self::assertInstanceOf(TestAsset\Form::class, $form);
+        self::assertSame($formElementManager, $form->elementManagerAtInit);
+        self::assertTrue($initializer->initialized);
     }
 }

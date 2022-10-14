@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac">
+<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
   <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_string($entity)</code>
@@ -21,10 +21,6 @@
       <code>$annotations</code>
       <code>$annotations</code>
     </NullArgument>
-    <UndefinedMethod occurrences="2">
-      <code>getAttributes</code>
-      <code>getAttributes</code>
-    </UndefinedMethod>
   </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
     <InvalidStringClass occurrences="1">
@@ -497,7 +493,7 @@
     </PossiblyNullReference>
   </file>
   <file src="test/FormElementManagerFactoryTest.php">
-    <MissingClosureParamType occurrences="2">
+    <MissingClosureParamType occurrences="1">
       <code>$container</code>
       <code>$container</code>
     </MissingClosureParamType>
@@ -554,15 +550,15 @@
       <code>getValidatorChain</code>
     </PossiblyUndefinedMethod>
   </file>
-  <file src="test/Integration/ServiceManagerTest.php">
-    <MissingClosureParamType occurrences="1">
-      <code>$form</code>
-    </MissingClosureParamType>
-  </file>
   <file src="test/TestAsset/AddressFieldset.php">
     <LessSpecificImplementedReturnType occurrences="1">
       <code>array</code>
     </LessSpecificImplementedReturnType>
+  </file>
+  <file src="test/TestAsset/Annotation/ComplexEntity.php">
+    <DeprecatedClass occurrences="1">
+      <code>Annotation\AllowEmpty()</code>
+    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/Annotation/InputFilterInput.php">
     <DeprecatedInterface occurrences="1">
@@ -573,6 +569,12 @@
     <MissingPropertyType occurrences="1">
       <code>$username</code>
     </MissingPropertyType>
+  </file>
+  <file src="test/TestAsset/Annotation/SampleEntity.php">
+    <DeprecatedClass occurrences="2">
+      <code>Annotation\AllowEmpty(true)</code>
+      <code>Annotation\ContinueIfEmpty(true)</code>
+    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/BasicFieldset.php">
     <LessSpecificImplementedReturnType occurrences="1">
@@ -725,12 +727,6 @@
       <code>setMethods</code>
       <code>setMethods</code>
     </DeprecatedMethod>
-  </file>
-  <file src="test/View/Helper/Captcha/ReCaptchaTest.php">
-    <PossiblyFalseArgument occurrences="2">
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
-    </PossiblyFalseArgument>
   </file>
   <file src="test/View/Helper/File/FormFileApcProgressTest.php">
     <InvalidArgument occurrences="5">

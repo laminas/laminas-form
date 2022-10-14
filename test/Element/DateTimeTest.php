@@ -15,8 +15,6 @@ use Laminas\Validator\GreaterThan;
 use Laminas\Validator\LessThan;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class DateTimeTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
@@ -40,7 +38,7 @@ final class DateTimeTest extends TestCase
             DateStep::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:

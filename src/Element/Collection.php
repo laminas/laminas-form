@@ -15,7 +15,6 @@ use Traversable;
 
 use function assert;
 use function count;
-use function get_class;
 use function gettype;
 use function is_array;
 use function is_int;
@@ -176,7 +175,7 @@ class Collection extends Fieldset
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable object argument; received "%s"',
                 __METHOD__,
-                is_object($object) ? get_class($object) : gettype($object)
+                is_object($object) ? $object::class : gettype($object)
             ));
         }
 
@@ -326,7 +325,7 @@ class Collection extends Fieldset
                 '%s requires that $elementOrFieldset be an object implementing %s; received "%s"',
                 __METHOD__,
                 __NAMESPACE__ . '\ElementInterface',
-                is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset)
+                is_object($elementOrFieldset) ? $elementOrFieldset::class : gettype($elementOrFieldset)
             ));
         }
 

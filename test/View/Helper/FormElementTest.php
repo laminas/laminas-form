@@ -14,7 +14,6 @@ use Laminas\View\Renderer\PhpRenderer;
 use Laminas\View\Renderer\RendererInterface;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
 use function substr_count;
 
 final class FormElementTest extends TestCase
@@ -155,7 +154,7 @@ final class FormElementTest extends TestCase
         $hash      = '';
 
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             switch ($class) {
                 case Csrf::class:
                     $hash = $validator->getHash();

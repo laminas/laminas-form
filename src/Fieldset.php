@@ -15,7 +15,6 @@ use Traversable;
 
 use function array_key_exists;
 use function assert;
-use function get_class;
 use function gettype;
 use function in_array;
 use function is_array;
@@ -154,7 +153,7 @@ class Fieldset extends Element implements FieldsetInterface
                 '%s requires that $elementOrFieldset be an object implementing %s; received "%s"',
                 __METHOD__,
                 __NAMESPACE__ . '\ElementInterface',
-                is_object($elementOrFieldset) ? get_class($elementOrFieldset) : gettype($elementOrFieldset)
+                is_object($elementOrFieldset) ? $elementOrFieldset::class : gettype($elementOrFieldset)
             ));
         }
 

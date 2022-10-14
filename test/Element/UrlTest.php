@@ -8,8 +8,6 @@ use Laminas\Form\Element\Url as UrlElement;
 use Laminas\Validator\Uri;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class UrlTest extends TestCase
 {
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(): void
@@ -28,7 +26,7 @@ final class UrlTest extends TestCase
             Uri::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Uri::class:

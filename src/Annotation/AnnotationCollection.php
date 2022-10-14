@@ -6,8 +6,6 @@ namespace Laminas\Form\Annotation;
 
 use ArrayObject;
 
-use function get_class;
-
 /**
  * @extends ArrayObject<array-key, object>
  */
@@ -19,7 +17,7 @@ final class AnnotationCollection extends ArrayObject
     public function hasAnnotation(string $class): bool
     {
         foreach ($this as $annotation) {
-            if (get_class($annotation) === $class) {
+            if ($annotation::class === $class) {
                 return true;
             }
         }

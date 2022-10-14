@@ -10,7 +10,6 @@ use Laminas\Validator\InArray;
 use PHPUnit\Framework\TestCase;
 
 use function count;
-use function get_class;
 
 final class MultiCheckboxTest extends TestCase
 {
@@ -43,7 +42,7 @@ final class MultiCheckboxTest extends TestCase
             Explode::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Explode::class:

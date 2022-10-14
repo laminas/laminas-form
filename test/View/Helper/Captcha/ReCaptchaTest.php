@@ -22,10 +22,6 @@ final class ReCaptchaTest extends AbstractCommonTestCase
 
     protected function setUp(): void
     {
-        if (! getenv('TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT')) {
-            $this->markTestSkipped('Enable TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT to test PDF render');
-        }
-
         if (! class_exists(ReCaptcha::class)) {
             $this->markTestSkipped(
                 'laminas-captcha-related tests are skipped until the component '
@@ -35,8 +31,8 @@ final class ReCaptchaTest extends AbstractCommonTestCase
 
         $this->helper  = new ReCaptchaHelper();
         $this->captcha = new ReCaptcha();
-        $this->captcha->setSiteKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY'));
-        $this->captcha->setSecretKey(getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY'));
+        $this->captcha->setSiteKey((string) getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY'));
+        $this->captcha->setSecretKey((string) getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY'));
         parent::setUp();
     }
 

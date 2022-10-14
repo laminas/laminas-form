@@ -9,8 +9,6 @@ use Laminas\Validator\InArray;
 use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
-use function get_class;
-
 final class CheckboxTest extends TestCase
 {
     public function testProvidesValidDefaultValues(): void
@@ -32,7 +30,7 @@ final class CheckboxTest extends TestCase
             InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
-            $class = get_class($validator);
+            $class = $validator::class;
             $this->assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case InArray::class:
