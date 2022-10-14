@@ -34,14 +34,14 @@ final class ConfigProvider
                 FormAbstractServiceFactory::class,
             ],
             'aliases'            => [
-                'FormAnnotationBuilder' => Annotation\AnnotationBuilder::class,
-                'FormAttributeBuilder'  => Annotation\AttributeBuilder::class,
-                'FormElementManager'    => FormElementManager::class,
+                Annotation\AnnotationBuilder::class => 'FormAnnotationBuilder',
+                Annotation\AttributeBuilder::class  => 'FormAttributeBuilder',
+                FormElementManager::class           => 'FormElementManager',
             ],
             'factories'          => [
-                Annotation\AnnotationBuilder::class => Annotation\BuilderAbstractFactory::class,
-                Annotation\AttributeBuilder::class  => Annotation\BuilderAbstractFactory::class,
-                FormElementManager::class           => FormElementManagerFactory::class,
+                'FormAnnotationBuilder' => Annotation\BuilderAbstractFactory::class,
+                'FormAttributeBuilder'  => Annotation\BuilderAbstractFactory::class,
+                'FormElementManager'    => FormElementManagerFactory::class,
             ],
         ];
     }
