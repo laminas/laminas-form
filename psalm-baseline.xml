@@ -293,9 +293,6 @@
       <code>$factories</code>
       <code>$instanceOf</code>
     </NonInvariantDocblockPropertyType>
-    <ParamNameMismatch occurrences="1">
-      <code>$name</code>
-    </ParamNameMismatch>
     <RedundantConditionGivenDocblockType occurrences="6">
       <code>$services</code>
       <code>$services</code>
