@@ -11,6 +11,7 @@ nav:
             - "Creation via Factory": v3/form-creation/creation-via-factory.md
             - "Factory-Backed Form Extension": v3/form-creation/factory-backed-form-extension.md
             - "Using PHP8 Attributes or DocBlock Annotations": v3/form-creation/attributes-or-annotations.md
+        - "Form Element Manager": v3/form-element-manager.md
         - Elements:
             - Introduction: v3/element/intro.md
             - Element: v3/element/element.md
