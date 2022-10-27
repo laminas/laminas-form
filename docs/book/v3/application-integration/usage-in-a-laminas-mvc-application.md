@@ -25,7 +25,7 @@ use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\Validator\StringLength;
 
-class AlbumForm extends Form implements InputFilterProviderInterface
+final class AlbumForm extends Form implements InputFilterProviderInterface
 {
     public function init() : void
     {
@@ -78,7 +78,9 @@ use Album\Form\AlbumForm;
 use Laminas\Form\FormElementManager;
 use Laminas\Mvc\Controller\AbstractActionController;
 
-class AlbumController extends AbstractActionController
+use function assert;
+
+final class AlbumController extends AbstractActionController
 {
     public function __construct(
         public readonly FormElementManager $formElementManager
@@ -87,6 +89,7 @@ class AlbumController extends AbstractActionController
     public function addAction()
     {
         $form = $this->formElementManager->get(AlbumForm::class);
+        assert($form instanceof AlbumForm);
     
         // Set action attribute
         $form->setAttribute(
