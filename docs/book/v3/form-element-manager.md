@@ -39,7 +39,7 @@ $element = $formElementManager->get(Laminas\Form\Element\Select::class);
 
 ## Fetch and Configure a Standard Element
 
-Internally, the included factory `Laminas\Form\ElementFactory::class` for all types of elements, fieldsets and forms is used to create an element. This factory allows to configure an element, fieldset or form on creation:
+The form element manager uses the factory `Laminas\Form\ElementFactory` to create all elements, fieldsets, and forms.
 
 ```php
 $element = $formElementManager->get(
@@ -55,7 +55,7 @@ $element = $formElementManager->get(
 );
 ```
 
-The name for the element and the array with options are set as parameter to the constructor of the object on instantiation.
+The name for the element and the options array are provided as parameters to the associated class constructor on instantiation.
 
 ```php
 public function __construct($name = null, iterable $options = []) {}
@@ -69,7 +69,7 @@ $element->getValueOptions(); // [1, 2, 3, 4, 5]
 
 ## Fetch a Custom Element without Registration
 
-The form element manager allows to fetch custom elements without prior registration on the manager.
+The form element manager allows fetching custom elements without prior registration with the manager.
 
 The following example creates a custom element:
 
@@ -86,7 +86,7 @@ The form element manager can create these custom element by the related class na
 $element = $formElementManager->get(ExampleElement::class);
 ```
 
-Also here, the included factory `Laminas\Form\ElementFactory::class` is used by the manager to instance the element which allows the pass the name and options like before:
+The manager uses the factory `Laminas\Form\ElementFactory` to instantiate the element, and will pass the name and options array just like in the prior example:
 
 ```php
 $element = $formElementManager->get(
@@ -160,7 +160,7 @@ The form element manager can create the form by the related class name:
 $form = $formElementManager->get(ExampleForm::class);
 ```
 
-If no separate factory is required, then the form element manager will be instantiating the form class directly, by using the standard factory for elements `Laminas\Form\ElementFactory::class`.
+If no separate factory is required, then the form element manager will be instantiating the form class directly, by using the standard factory for elements (`Laminas\Form\ElementFactory`).
 
 ## Register and Fetch a Form With a Factory
 
@@ -203,6 +203,11 @@ Now the custom factory will be used to instance the form.
 ## Set a Paramater to a Form on Instantiation
 
 The options of a form can be used to set custom parameters to a form.
+
+* It can be hooked into the initialization via the `init()` method.
+* The form element factory calls the `init()` method after creating an instance of the class.
+* Since the name and options are processed in the constructor, it can be accessed them via `init()` to perform further customizations for the instance.
+
 Create a class for the form and get a custom option:
 
 ```php
@@ -266,13 +271,13 @@ $form = $formElementManager->get(ExampleForm::class);
 The form element manager will provide the form with the custom element which is created by the form element manager, like before: with or without explicit registration of the element.
 
 
-## Why Using the Form Element Manager?
+## Why Use the Form Element Manager?
 
-- Allows to overwrite or to extend elements without change form specifications.
-- Allows decoration of elements, like adding a database adapter without passing the adapter through all layers of a form.
-- Handles correct instantiation with configuration and dependencies of elements, fieldsets and forms.
-- Allows usage and configuration of custom elements without prior registration of the elements.
-- Handles all types of objects of a form; elements, fieldsets and the form itself.
+- It allows overwriting or extending elements without changing form specifications.
+- It allows decoration of elements, like adding a database adapter without passing the adapter through all layers of a form.
+- It manages instantiation and initialization of elements, fieldsets and forms, including all dependencies and configuration options.
+- It allows usage and configuration of custom elements without prior registration of the elements.
+- It handles all form object types: elements, fieldsets and the form itself.
 
 ## Learn More
 
