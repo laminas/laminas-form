@@ -25,7 +25,7 @@ use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\Validator\StringLength;
 
-class AlbumForm extends Form implements InputFilterProviderInterface
+final class AlbumForm extends Form implements InputFilterProviderInterface
 {
     public function init() : void
     {
@@ -67,80 +67,51 @@ class AlbumForm extends Form implements InputFilterProviderInterface
 }
 ```
 
-## Using Form
+## Create Controller
 
-### Create Controller
-
-[Create a controller class](https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-controller)
-and inject the form via the constructor, e.g.
-`module/Album/Controller/AlbumController.php`:
+[Create a controller class](https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-controller) and inject the form element manager via the constructor, e.g. `module/Album/Controller/AlbumController.php`:
 
 ```php
 namespace Album\Controller;
 
 use Album\Form\AlbumForm;
-use Laminas\Form\FormInterface;
+use Laminas\Form\FormElementManager;
 use Laminas\Mvc\Controller\AbstractActionController;
 
-class AlbumController extends AbstractActionController
+use function assert;
+
+final class AlbumController extends AbstractActionController
 {
-    /** @var FormInterface */
-    private $form;
-    
-    public function __construct(AlbumForm $form)
-    {
-        $this->form = $form;
-    }
+    public function __construct(
+        public readonly FormElementManager $formElementManager
+    ) {}
     
     public function addAction()
     {
+        $form = $this->formElementManager->get(AlbumForm::class);
+        assert($form instanceof AlbumForm);
+    
         // Set action attribute
-        $this->form->setAttribute(
+        $form->setAttribute(
             'action',
             $this->url()->fromRoute('album', ['action' => 'add'])
         );
 
-        $variables = ['form' => $this->form];
+        $variables = ['form' => $form];
         
         if (! $this->getRequest()->isPost()) {
             return $variables;
         }
 
         // Validation
-        $this->form->setData($this->getRequest()->getPost());
-        if (! $this->form->isValid()) {
+        $form->setData($this->getRequest()->getPost());
+        if (! $form->isValid()) {
             return $variables;
         }
     
         // …
 
         return $this->redirect()->toRoute('album', ['action' => 'add']);
-    }
-}
-```
-
-### Create Factory for Controller
-
-Fetch the `AlbumForm` from the form element manager in a factory,
-e.g. `src/Album/Controller/AlbumControllerFactory.php`:
-
-```php
-namespace Album\Controller;
-
-use Album\Form\AlbumForm;
-use Laminas\ServiceManager\PluginManagerInterface;
-use Psr\Container\ContainerInterface;
-
-class AlbumControllerFactory
-{
-    public function __invoke(ContainerInterface $container) : AlbumController
-    {
-        /** @var PluginManagerInterface $formElementManager */
-        $formElementManager = $container->get('FormElementManager');
-        /** @var AlbumForm */ 
-        $form = $formElementManager->get(AlbumForm::class);
-
-        return new AlbumController($form);
     }
 }
 ```
@@ -154,33 +125,36 @@ class AlbumControllerFactory
 > [Custom form elements](../advanced.md#creating-custom-elements)
 > can also be used in this way.
 >
-> Additionally the [form element manager calls the `init` method](../advanced.md#initialization)
+> Additionally, the [form element manager calls the `init` method](../advanced.md#initialization)
 > _after_ instantiating the form, ensuring all dependencies are fully injected
 > first.
 
 ## Register Form and Controller
 
-If no separate factory is required for the form, then the form element manager
-will instantiating the form class. Otherwise the form must be registered.
+If no separate factory is required for the form, then the form element manager will be instantiating the form class without prior registration. Otherwise, the form must be registered.
 
 To [register the controller](https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-route)
 for the application, extend the configuration of the module.  
 Add the following lines to the module configuration file, e.g.
 `module/Album/config/module.config.php`:
 
-<pre class="language-php" data-line="6-7"><code>
+<pre class="language-php" data-line="8-9"><code>
 namespace Album;
+
+use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 
 return [
     'controllers' => [
         'factories' => [
             // Add this line
-            Controller\AlbumController::class => Controller\AlbumControllerFactory::class,
+            Controller\AlbumController::class => ReflectionBasedAbstractFactory::class,
         ],
     ],
     // …
 ];
 </code></pre>
+
+The example uses the [reflection factory from laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/reflection-abstract-factory/) to resolve the constructor dependencies for the controller class.
 
 ## Create View Script
 
