@@ -806,7 +806,7 @@
                     </li>
                 
                     <li class="toc__entry">
-                        <a href="#using-form" class="toc__link nav-link">Using Form</a>
+                        <a href="#create-controller" class="toc__link nav-link">Create Controller</a>
                     </li>
                 
                     <li class="toc__entry">
@@ -883,7 +883,7 @@ use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\Validator\StringLength;
 
-class AlbumForm extends Form implements InputFilterProviderInterface
+final class AlbumForm extends Form implements InputFilterProviderInterface
 {
     public function init() : void
     {
@@ -923,71 +923,48 @@ class AlbumForm extends Form implements InputFilterProviderInterface
         ];
     }
 }</code></pre>
-<h2 id="using-form">Using Form</h2>
-<h3 id="create-controller">Create Controller</h3>
-<p><a href="https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-controller">Create a controller class</a>
-and inject the form via the constructor, e.g.
-<code>module/Album/Controller/AlbumController.php</code>:</p>
+<h2 id="create-controller">Create Controller</h2>
+<p><a href="https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-controller">Create a controller class</a> and inject the form element manager via the constructor, e.g. <code>module/Album/Controller/AlbumController.php</code>:</p>
 <pre class="highlight"><code class="language-php">namespace Album\Controller;
 
 use Album\Form\AlbumForm;
-use Laminas\Form\FormInterface;
+use Laminas\Form\FormElementManager;
 use Laminas\Mvc\Controller\AbstractActionController;
 
-class AlbumController extends AbstractActionController
-{
-    /** @var FormInterface */
-    private $form;
+use function assert;
 
-    public function __construct(AlbumForm $form)
-    {
-        $this-&gt;form = $form;
-    }
+final class AlbumController extends AbstractActionController
+{
+    public function __construct(
+        public readonly FormElementManager $formElementManager
+    ) {}
 
     public function addAction()
     {
+        $form = $this-&gt;formElementManager-&gt;get(AlbumForm::class);
+        assert($form instanceof AlbumForm);
+
         // Set action attribute
-        $this-&gt;form-&gt;setAttribute(
+        $form-&gt;setAttribute(
             'action',
             $this-&gt;url()-&gt;fromRoute('album', ['action' =&gt; 'add'])
         );
 
-        $variables = ['form' =&gt; $this-&gt;form];
+        $variables = ['form' =&gt; $form];
 
         if (! $this-&gt;getRequest()-&gt;isPost()) {
             return $variables;
         }
 
         // Validation
-        $this-&gt;form-&gt;setData($this-&gt;getRequest()-&gt;getPost());
-        if (! $this-&gt;form-&gt;isValid()) {
+        $form-&gt;setData($this-&gt;getRequest()-&gt;getPost());
+        if (! $form-&gt;isValid()) {
             return $variables;
         }
 
         // …
 
         return $this-&gt;redirect()-&gt;toRoute('album', ['action' =&gt; 'add']);
-    }
-}</code></pre>
-<h3 id="create-factory-for-controller">Create Factory for Controller</h3>
-<p>Fetch the <code>AlbumForm</code> from the form element manager in a factory,
-e.g. <code>src/Album/Controller/AlbumControllerFactory.php</code>:</p>
-<pre class="highlight"><code class="language-php">namespace Album\Controller;
-
-use Album\Form\AlbumForm;
-use Laminas\ServiceManager\PluginManagerInterface;
-use Psr\Container\ContainerInterface;
-
-class AlbumControllerFactory
-{
-    public function __invoke(ContainerInterface $container) : AlbumController
-    {
-        /** @var PluginManagerInterface $formElementManager */
-        $formElementManager = $container-&gt;get('FormElementManager');
-        /** @var AlbumForm */ 
-        $form = $formElementManager-&gt;get(AlbumForm::class);
-
-        return new AlbumController($form);
     }
 }</code></pre>
 <blockquote>
@@ -998,31 +975,33 @@ input filter registered with the input filter managers which includes custom
 filters and validators.<br />
 <a href="../../advanced/#creating-custom-elements">Custom form elements</a>
 can also be used in this way.</p>
-<p>Additionally the <a href="../../advanced/#initialization">form element manager calls the <code>init</code> method</a>
+<p>Additionally, the <a href="../../advanced/#initialization">form element manager calls the <code>init</code> method</a>
 <em>after</em> instantiating the form, ensuring all dependencies are fully injected
 first.</p>
 </blockquote>
 <h2 id="register-form-and-controller">Register Form and Controller</h2>
-<p>If no separate factory is required for the form, then the form element manager
-will instantiating the form class. Otherwise the form must be registered.</p>
+<p>If no separate factory is required for the form, then the form element manager will be instantiating the form class without prior registration. Otherwise, the form must be registered.</p>
 <p>To <a href="https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-route">register the controller</a>
 for the application, extend the configuration of the module.<br />
 Add the following lines to the module configuration file, e.g.
 <code>module/Album/config/module.config.php</code>:</p>
-<pre class="language-php" data-line="6-7"><code>
+<pre class="language-php" data-line="8-9"><code>
 namespace Album;
+
+use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
 
 return [
     'controllers' => [
         'factories' => [
             // Add this line
-            Controller\AlbumController::class => Controller\AlbumControllerFactory::class,
+            Controller\AlbumController::class => ReflectionBasedAbstractFactory::class,
         ],
     ],
     // …
 ];
 </code></pre>
 
+<p>The example uses the <a href="https://docs.laminas.dev/laminas-servicemanager/reflection-abstract-factory/">reflection factory from laminas-servicemanager</a> to resolve the constructor dependencies for the controller class.</p>
 <h2 id="create-view-script">Create View Script</h2>
 <p>Create a view script in the module, e.g.
 <code>module/Album/view/album/album/add.phtml</code>:</p>
