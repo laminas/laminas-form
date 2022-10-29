@@ -44,31 +44,31 @@ final class FormAbstractServiceFactoryTest extends TestCase
 
     public function testMissingConfigServiceIndicatesCannotCreateForm(): void
     {
-        $this->assertFalse($this->forms->canCreate($this->services, 'foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'foo'));
     }
 
     public function testMissingFormServicePrefixIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', []);
-        $this->assertFalse($this->forms->canCreate($this->services, 'foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'foo'));
     }
 
     public function testMissingFormManagerConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', []);
-        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testInvalidFormManagerConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', ['forms' => 'string']);
-        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testEmptyFormManagerConfigIndicatesCannotCreateForm(): void
     {
         $this->services->setService('config', ['forms' => []]);
-        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testMissingFormConfigIndicatesCannotCreateForm(): void
@@ -78,7 +78,7 @@ final class FormAbstractServiceFactoryTest extends TestCase
                 'Bar' => [],
             ],
         ]);
-        $this->assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'Form\Foo'));
     }
 
     public function testInvalidFormConfigIndicatesCannotCreateForm(): void
@@ -88,7 +88,7 @@ final class FormAbstractServiceFactoryTest extends TestCase
                 'Foo' => 'string',
             ],
         ]);
-        $this->assertFalse($this->forms->canCreate($this->services, 'Foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'Foo'));
     }
 
     public function testEmptyFormConfigIndicatesCannotCreateForm(): void
@@ -98,7 +98,7 @@ final class FormAbstractServiceFactoryTest extends TestCase
                 'Foo' => [],
             ],
         ]);
-        $this->assertFalse($this->forms->canCreate($this->services, 'Foo'));
+        self::assertFalse($this->forms->canCreate($this->services, 'Foo'));
     }
 
     public function testPopulatedFormConfigIndicatesFormCanBeCreated(): void
@@ -111,7 +111,7 @@ final class FormAbstractServiceFactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertTrue($this->forms->canCreate($this->services, 'Foo'));
+        self::assertTrue($this->forms->canCreate($this->services, 'Foo'));
     }
 
     public function testFormCanBeCreatedViaInteractionOfAllManagers(): void
@@ -135,20 +135,20 @@ final class FormAbstractServiceFactoryTest extends TestCase
         $config     = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('config', $config);
         $form = $this->forms->__invoke($this->services, 'Foo');
-        $this->assertInstanceOf(Form::class, $form);
+        self::assertInstanceOf(Form::class, $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
+        self::assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilter::class, $inputFilter);
+        self::assertInstanceOf(InputFilter::class, $inputFilter);
 
         $inputFactory = $inputFilter->getFactory();
-        $this->assertInstanceOf(Factory::class, $inputFactory);
+        self::assertInstanceOf(Factory::class, $inputFactory);
         $filters    = $this->services->get(FilterPluginManager::class);
         $validators = $this->services->get(ValidatorPluginManager::class);
-        $this->assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
-        $this->assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
+        self::assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
+        self::assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
     }
 
     public function testFormCanBeCreatedViaInteractionOfAllManagersExceptInputFilterManager(): void
@@ -186,18 +186,18 @@ final class FormAbstractServiceFactoryTest extends TestCase
         $config     = ['forms' => ['Foo' => $formConfig]];
         $this->services->setService('config', $config);
         $form = $this->forms->__invoke($this->services, 'Foo');
-        $this->assertInstanceOf(Form::class, $form);
+        self::assertInstanceOf(Form::class, $form);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
+        self::assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilter::class, $inputFilter);
+        self::assertInstanceOf(InputFilter::class, $inputFilter);
 
         $inputFactory = $inputFilter->getFactory();
         $filters      = $this->services->get(FilterPluginManager::class);
         $validators   = $this->services->get(ValidatorPluginManager::class);
-        $this->assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
-        $this->assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
+        self::assertSame($filters, $inputFactory->getDefaultFilterChain()->getPluginManager());
+        self::assertSame($validators, $inputFactory->getDefaultValidatorChain()->getPluginManager());
     }
 }

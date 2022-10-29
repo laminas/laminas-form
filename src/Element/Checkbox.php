@@ -135,7 +135,7 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * Attaches the captcha as a validator.
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

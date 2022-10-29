@@ -117,7 +117,7 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      *
      * Attaches the captcha as a validator.
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

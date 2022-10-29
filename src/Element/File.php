@@ -31,7 +31,7 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

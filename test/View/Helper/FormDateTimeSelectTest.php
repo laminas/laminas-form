@@ -39,12 +39,12 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
     {
         $element = new DateTimeSelect('foo');
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString('<select name="day"', $markup);
-        $this->assertStringContainsString('<select name="month"', $markup);
-        $this->assertStringContainsString('<select name="year"', $markup);
-        $this->assertStringContainsString('<select name="hour"', $markup);
-        $this->assertStringContainsString('<select name="minute"', $markup);
-        $this->assertStringNotContainsString('<select name="second"', $markup);
+        self::assertStringContainsString('<select name="day"', $markup);
+        self::assertStringContainsString('<select name="month"', $markup);
+        self::assertStringContainsString('<select name="year"', $markup);
+        self::assertStringContainsString('<select name="hour"', $markup);
+        self::assertStringContainsString('<select name="minute"', $markup);
+        self::assertStringNotContainsString('<select name="second"', $markup);
     }
 
     public function testGeneratesSecondSelectIfAskedByElement(): void
@@ -52,12 +52,12 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
         $element = new DateTimeSelect('foo');
         $element->setShouldShowSeconds(true);
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<select name="day"', $markup);
-        $this->assertStringContainsString('<select name="month"', $markup);
-        $this->assertStringContainsString('<select name="year"', $markup);
-        $this->assertStringContainsString('<select name="hour"', $markup);
-        $this->assertStringContainsString('<select name="minute"', $markup);
-        $this->assertStringContainsString('<select name="second"', $markup);
+        self::assertStringContainsString('<select name="day"', $markup);
+        self::assertStringContainsString('<select name="month"', $markup);
+        self::assertStringContainsString('<select name="year"', $markup);
+        self::assertStringContainsString('<select name="hour"', $markup);
+        self::assertStringContainsString('<select name="minute"', $markup);
+        self::assertStringContainsString('<select name="second"', $markup);
     }
 
     public function testCanGenerateSelectsWithEmptyOption(): void
@@ -65,12 +65,12 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
         $element = new DateTimeSelect('foo');
         $element->setShouldCreateEmptyOption(true);
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<select name="day"', $markup);
-        $this->assertStringContainsString('<select name="month"', $markup);
-        $this->assertStringContainsString('<select name="year"', $markup);
-        $this->assertStringContainsString('<select name="hour"', $markup);
-        $this->assertStringContainsString('<select name="minute"', $markup);
-        $this->assertStringContainsString('<option value=""></option>', $markup);
+        self::assertStringContainsString('<select name="day"', $markup);
+        self::assertStringContainsString('<select name="month"', $markup);
+        self::assertStringContainsString('<select name="year"', $markup);
+        self::assertStringContainsString('<select name="hour"', $markup);
+        self::assertStringContainsString('<select name="minute"', $markup);
+        self::assertStringContainsString('<option value=""></option>', $markup);
     }
 
     public function testCanDisableDelimiters(): void
@@ -82,7 +82,7 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
 
         // If it contains two consecutive selects this means that no delimiters
         // are inserted
-        $this->assertStringContainsString('</select><select', $markup);
+        self::assertStringContainsString('</select><select', $markup);
     }
 
     public function testCanRenderTextDelimiters(): void
@@ -94,23 +94,23 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
         $markup = $this->helper->__invoke($element, IntlDateFormatter::LONG, IntlDateFormatter::LONG, 'pt_BR');
 
         // pattern === "d 'de' MMMM 'de' y HH'h'mm'min'ss's'"
-        $this->assertStringMatchesFormat('%a de %a de %a %ah%amin%as%a', $markup);
+        self::assertStringMatchesFormat('%a de %a de %a %ah%amin%as%a', $markup);
     }
 
     public function testInvokeProxiesToRender(): void
     {
         $element = new DateTimeSelect('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertStringContainsString('<select name="day"', $markup);
-        $this->assertStringContainsString('<select name="month"', $markup);
-        $this->assertStringContainsString('<select name="year"', $markup);
-        $this->assertStringContainsString('<select name="hour"', $markup);
-        $this->assertStringContainsString('<select name="minute"', $markup);
+        self::assertStringContainsString('<select name="day"', $markup);
+        self::assertStringContainsString('<select name="month"', $markup);
+        self::assertStringContainsString('<select name="year"', $markup);
+        self::assertStringContainsString('<select name="hour"', $markup);
+        self::assertStringContainsString('<select name="minute"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 
     public function testNoMinutesDelimiterIfSecondsNotShown(): void
@@ -131,7 +131,7 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
 
         // the last $markup char should be the '>' of the minutes  html select
         // closing tag and not the delimiter
-        $this->assertEquals('>', substr($markup, -1));
+        self::assertEquals('>', substr($markup, -1));
     }
 
     /**

@@ -18,18 +18,18 @@ final class DateSelectTest extends TestCase
         $element = new DateSelectElement();
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Date::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Date::class:
-                    $this->assertEquals('Y-m-d', $validator->getFormat());
+                    self::assertEquals('Y-m-d', $validator->getFormat());
                     break;
                 default:
                     break;
@@ -42,9 +42,9 @@ final class DateSelectTest extends TestCase
         $element = new DateSelectElement();
         $element->setValue(new DateTime('2012-09-24'));
 
-        $this->assertEquals('2012', $element->getYearElement()->getValue());
-        $this->assertEquals('09', $element->getMonthElement()->getValue());
-        $this->assertEquals('24', $element->getDayElement()->getValue());
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
+        self::assertEquals('24', $element->getDayElement()->getValue());
     }
 
     public function testCanSetDateFromString(): void
@@ -52,9 +52,9 @@ final class DateSelectTest extends TestCase
         $element = new DateSelectElement();
         $element->setValue('2012-09-24');
 
-        $this->assertEquals('2012', $element->getYearElement()->getValue());
-        $this->assertEquals('09', $element->getMonthElement()->getValue());
-        $this->assertEquals('24', $element->getDayElement()->getValue());
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
+        self::assertEquals('24', $element->getDayElement()->getValue());
     }
 
     public function testCanGetValue(): void
@@ -62,7 +62,7 @@ final class DateSelectTest extends TestCase
         $element = new DateSelectElement();
         $element->setValue(new DateTime('2012-09-24'));
 
-        $this->assertEquals('2012-09-24', $element->getValue());
+        self::assertEquals('2012-09-24', $element->getValue());
     }
 
     public function testThrowsOnInvalidValue(): void
@@ -76,7 +76,7 @@ final class DateSelectTest extends TestCase
     {
         $sut           = new DateSelectElement('dateSelect', ['day_attributes' => ['class' => 'test']]);
         $dayAttributes = $sut->getDayAttributes();
-        $this->assertEquals('test', $dayAttributes['class']);
+        self::assertEquals('test', $dayAttributes['class']);
     }
 
     public function testConstructAcceptsTraversableOptions(): void
@@ -86,7 +86,7 @@ final class DateSelectTest extends TestCase
         ]);
         $sut     = new DateSelectElement('dateSelect', $options);
 
-        $this->assertSame('test', $sut->getDayAttributes()['class']);
+        self::assertSame('test', $sut->getDayAttributes()['class']);
     }
 
     public function testSetOptionsAcceptsTraversableObject(): void
@@ -97,7 +97,7 @@ final class DateSelectTest extends TestCase
         $sut     = new DateSelectElement();
         $sut->setOptions($options);
 
-        $this->assertSame('test', $sut->getDayAttributes()['class']);
+        self::assertSame('test', $sut->getDayAttributes()['class']);
     }
 
     /**
@@ -107,7 +107,7 @@ final class DateSelectTest extends TestCase
     {
         $element = new DateSelectElement();
 
-        $this->assertSame($element, $element->setValue('2014-01-01'));
+        self::assertSame($element, $element->setValue('2014-01-01'));
     }
 
     public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption(): void
@@ -118,7 +118,7 @@ final class DateSelectTest extends TestCase
         $element->setValue(null);
         $value = $element->getValue();
         // the getValue() function returns the date in 'Y-m-d' format
-        $this->assertEquals($now->format('Y-m-d'), $value);
+        self::assertEquals($now->format('Y-m-d'), $value);
     }
 
     public function testNullSetValueIsNullWithEmptyOption(): void
@@ -127,6 +127,6 @@ final class DateSelectTest extends TestCase
         $element->setShouldCreateEmptyOption(true);
         $element->setValue(null);
         $value = $element->getValue();
-        $this->assertEquals(null, $value);
+        self::assertEquals(null, $value);
     }
 }

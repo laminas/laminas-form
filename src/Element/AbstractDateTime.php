@@ -188,7 +188,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
      *
      * Attaches default validators for the datetime input.
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

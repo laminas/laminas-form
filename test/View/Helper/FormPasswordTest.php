@@ -33,8 +33,8 @@ final class FormPasswordTest extends AbstractCommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="password"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="password"', $markup);
     }
 
     public function testGeneratesPasswordInputTagRegardlessOfElementType(): void
@@ -42,8 +42,8 @@ final class FormPasswordTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="password"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="password"', $markup);
     }
 
     public function validAttributes(): array
@@ -141,13 +141,13 @@ final class FormPasswordTest extends AbstractCommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertStringContainsString('<input', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
-        $this->assertStringContainsString('type="password"', $markup);
+        self::assertStringContainsString('<input', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('type="password"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 }

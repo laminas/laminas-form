@@ -14,8 +14,7 @@ use function is_array;
 final class FormElementManagerFactory implements FactoryInterface
 {
     /**
-     * {@inheritDoc}
-     *
+     * @inheritDoc
      * @return AbstractPluginManager
      */
     public function __invoke(ContainerInterface $container, $name, ?array $options = null): AbstractPluginManager

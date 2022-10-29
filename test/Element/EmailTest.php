@@ -16,15 +16,15 @@ final class EmailTest extends TestCase
         $element = new EmailElement();
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedValidators = [
             Regex::class,
         ];
         foreach ($inputSpec['validators'] as $i => $validator) {
             $class = $validator::class;
-            $this->assertEquals($expectedValidators[$i], $class);
+            self::assertEquals($expectedValidators[$i], $class);
         }
     }
 
@@ -46,15 +46,15 @@ final class EmailTest extends TestCase
         $element->setAttributes($attributes);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         foreach ($inputSpec['validators'] as $i => $validator) {
             $class = $validator::class;
-            $this->assertEquals($expectedValidators[$i], $class);
+            self::assertEquals($expectedValidators[$i], $class);
             switch ($class) {
                 case Explode::class:
-                    $this->assertInstanceOf(Regex::class, $validator->getValidator());
+                    self::assertInstanceOf(Regex::class, $validator->getValidator());
                     break;
                 default:
                     break;

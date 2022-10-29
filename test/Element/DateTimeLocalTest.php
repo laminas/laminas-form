@@ -26,8 +26,8 @@ final class DateTimeLocalTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Date::class,
@@ -37,19 +37,19 @@ final class DateTimeLocalTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2000-01-01T00:00', $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('2000-01-01T00:00', $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2001-01-01T00:00', $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('2001-01-01T00:00', $validator->getMax());
                     break;
                 case DateStep::class:
                     $dateInterval = new DateInterval('PT1M');
-                    $this->assertEquals($dateInterval, $validator->getStep());
+                    self::assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:
                     break;

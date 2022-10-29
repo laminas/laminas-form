@@ -317,7 +317,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

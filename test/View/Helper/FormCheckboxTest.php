@@ -44,10 +44,10 @@ final class FormCheckboxTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
 
-        $this->assertStringContainsString('type="checkbox"', $markup);
-        $this->assertStringContainsString('value="checked"', $markup);
-        $this->assertStringContainsString('type="hidden"', $markup);
-        $this->assertStringContainsString('value="unchecked"', $markup);
+        self::assertStringContainsString('type="checkbox"', $markup);
+        self::assertStringContainsString('value="checked"', $markup);
+        self::assertStringContainsString('type="hidden"', $markup);
+        self::assertStringContainsString('value="unchecked"', $markup);
     }
 
     public function testUsesElementValueToDetermineCheckboxStatus(): void
@@ -56,16 +56,16 @@ final class FormCheckboxTest extends AbstractCommonTestCase
         $element->setValue('checked');
         $markup = $this->helper->render($element);
 
-        $this->assertMatchesRegularExpression('#value="checked"\s+checked="checked"#', $markup);
-        $this->assertDoesNotMatchRegularExpression('#value="unchecked"\s+checked="checked"#', $markup);
+        self::assertMatchesRegularExpression('#value="checked"\s+checked="checked"#', $markup);
+        self::assertDoesNotMatchRegularExpression('#value="unchecked"\s+checked="checked"#', $markup);
     }
 
     public function testNoOptionsAttributeCreatesDefaultCheckedAndUncheckedValues(): void
     {
         $element = new Element\Checkbox('foo');
         $markup  = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#type="checkbox".*?(value="1")#', $markup);
-        $this->assertMatchesRegularExpression('#type="hidden"\s+name="foo"\s+value="0"#', $markup);
+        self::assertMatchesRegularExpression('#type="checkbox".*?(value="1")#', $markup);
+        self::assertMatchesRegularExpression('#type="hidden"\s+name="foo"\s+value="0"#', $markup);
     }
 
     public function testSetUseHiddenElementAttributeDoesNotRenderHiddenInput(): void
@@ -73,15 +73,15 @@ final class FormCheckboxTest extends AbstractCommonTestCase
         $element = new Element\Checkbox('foo');
         $element->setUseHiddenElement(false);
         $markup = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#type="checkbox".*?(value="1")#', $markup);
-        $this->assertDoesNotMatchRegularExpression('#type="hidden"\s+name="foo"\s+value="0"#', $markup);
+        self::assertMatchesRegularExpression('#type="checkbox".*?(value="1")#', $markup);
+        self::assertDoesNotMatchRegularExpression('#type="hidden"\s+name="foo"\s+value="0"#', $markup);
     }
 
     public function testDoesNotThrowExceptionIfNameIsZero(): void
     {
         $element = new Element\Checkbox(0);
         $markup  = $this->helper->__invoke($element);
-        $this->assertStringContainsString('name="0"', $markup);
+        self::assertStringContainsString('name="0"', $markup);
     }
 
     /**
@@ -104,6 +104,6 @@ final class FormCheckboxTest extends AbstractCommonTestCase
         $element->setAttribute('disabled', true);
 
         $markup = $this->helper->__invoke($element);
-        $this->assertMatchesRegularExpression('#type="hidden"[^>]?disabled="disabled"#', $markup);
+        self::assertMatchesRegularExpression('#type="hidden"[^>]?disabled="disabled"#', $markup);
     }
 }

@@ -18,18 +18,18 @@ final class DateTimeSelectTest extends TestCase
         $element = new DateTimeSelectElement();
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Date::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Date::class:
-                    $this->assertEquals('Y-m-d H:i:s', $validator->getFormat());
+                    self::assertEquals('Y-m-d H:i:s', $validator->getFormat());
                     break;
                 default:
                     break;
@@ -53,7 +53,7 @@ final class DateTimeSelectTest extends TestCase
                 'minute' => '14',
             ],
         ]);
-        $this->assertTrue($inputFilter->isValid());
+        self::assertTrue($inputFilter->isValid());
     }
 
     public function testCanSetDateFromDateTime(): void
@@ -61,12 +61,12 @@ final class DateTimeSelectTest extends TestCase
         $element = new DateTimeSelectElement();
         $element->setValue(new DateTime('2012-09-24 03:04:05'));
 
-        $this->assertEquals('2012', $element->getYearElement()->getValue());
-        $this->assertEquals('09', $element->getMonthElement()->getValue());
-        $this->assertEquals('24', $element->getDayElement()->getValue());
-        $this->assertEquals('03', $element->getHourElement()->getValue());
-        $this->assertEquals('04', $element->getMinuteElement()->getValue());
-        $this->assertEquals('05', $element->getSecondElement()->getValue());
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
+        self::assertEquals('24', $element->getDayElement()->getValue());
+        self::assertEquals('03', $element->getHourElement()->getValue());
+        self::assertEquals('04', $element->getMinuteElement()->getValue());
+        self::assertEquals('05', $element->getSecondElement()->getValue());
     }
 
     public function testCanSetDateFromString(): void
@@ -74,12 +74,12 @@ final class DateTimeSelectTest extends TestCase
         $element = new DateTimeSelectElement();
         $element->setValue('2012-09-24 03:04:05');
 
-        $this->assertEquals('2012', $element->getYearElement()->getValue());
-        $this->assertEquals('09', $element->getMonthElement()->getValue());
-        $this->assertEquals('24', $element->getDayElement()->getValue());
-        $this->assertEquals('03', $element->getHourElement()->getValue());
-        $this->assertEquals('04', $element->getMinuteElement()->getValue());
-        $this->assertEquals('05', $element->getSecondElement()->getValue());
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
+        self::assertEquals('24', $element->getDayElement()->getValue());
+        self::assertEquals('03', $element->getHourElement()->getValue());
+        self::assertEquals('04', $element->getMinuteElement()->getValue());
+        self::assertEquals('05', $element->getSecondElement()->getValue());
     }
 
     public function testCanGetValue(): void
@@ -87,7 +87,7 @@ final class DateTimeSelectTest extends TestCase
         $element = new DateTimeSelectElement();
         $element->setValue(new DateTime('2012-09-24 03:04:05'));
 
-        $this->assertEquals('2012-09-24 03:04:05', $element->getValue());
+        self::assertEquals('2012-09-24 03:04:05', $element->getValue());
     }
 
     public function testThrowsOnInvalidValue(): void
@@ -108,12 +108,12 @@ final class DateTimeSelectTest extends TestCase
             'minute' => '04',
         ]);
 
-        $this->assertEquals('2012', $element->getYearElement()->getValue());
-        $this->assertEquals('09', $element->getMonthElement()->getValue());
-        $this->assertEquals('24', $element->getDayElement()->getValue());
-        $this->assertEquals('03', $element->getHourElement()->getValue());
-        $this->assertEquals('04', $element->getMinuteElement()->getValue());
-        $this->assertEquals('00', $element->getSecondElement()->getValue());
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
+        self::assertEquals('24', $element->getDayElement()->getValue());
+        self::assertEquals('03', $element->getHourElement()->getValue());
+        self::assertEquals('04', $element->getMinuteElement()->getValue());
+        self::assertEquals('00', $element->getSecondElement()->getValue());
     }
 
     public function testCloningPreservesCorrectValues(): void
@@ -123,12 +123,12 @@ final class DateTimeSelectTest extends TestCase
 
         $cloned = clone $element;
 
-        $this->assertEquals('2014', $cloned->getYearElement()->getValue());
-        $this->assertEquals('01', $cloned->getMonthElement()->getValue());
-        $this->assertEquals('02', $cloned->getDayElement()->getValue());
-        $this->assertEquals('03', $cloned->getHourElement()->getValue());
-        $this->assertEquals('04', $cloned->getMinuteElement()->getValue());
-        $this->assertEquals('05', $cloned->getSecondElement()->getValue());
+        self::assertEquals('2014', $cloned->getYearElement()->getValue());
+        self::assertEquals('01', $cloned->getMonthElement()->getValue());
+        self::assertEquals('02', $cloned->getDayElement()->getValue());
+        self::assertEquals('03', $cloned->getHourElement()->getValue());
+        self::assertEquals('04', $cloned->getMinuteElement()->getValue());
+        self::assertEquals('05', $cloned->getSecondElement()->getValue());
     }
 
     public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption(): void
@@ -139,7 +139,7 @@ final class DateTimeSelectTest extends TestCase
         $element->setValue(null);
         $value = $element->getValue();
         // the getValue() function returns the date in 'Y-m-d' format
-        $this->assertEquals($now->format('Y-m-d H:i:s'), $value);
+        self::assertEquals($now->format('Y-m-d H:i:s'), $value);
     }
 
     public function testNullSetValueIsNullWithEmptyOption(): void
@@ -148,7 +148,7 @@ final class DateTimeSelectTest extends TestCase
         $element->setShouldCreateEmptyOption(true);
         $element->setValue(null);
         $value = $element->getValue();
-        $this->assertEquals(null, $value);
+        self::assertEquals(null, $value);
     }
 
     public function testSettingTimeOnlyUsesCurrentDate(): void
@@ -165,7 +165,7 @@ final class DateTimeSelectTest extends TestCase
             'second' => $now->format('s'),
         ]);
         $value = $element->getValue();
-        $this->assertEquals($now->format('Y-m-d H:i:s'), $value);
+        self::assertEquals($now->format('Y-m-d H:i:s'), $value);
     }
 
     public function testSettingDateOnlyUsesMidnightTime(): void
@@ -182,6 +182,6 @@ final class DateTimeSelectTest extends TestCase
             'second' => null,
         ]);
         $value = $element->getValue();
-        $this->assertEquals($now->format('Y-m-d 00:00:00'), $value);
+        self::assertEquals($now->format('Y-m-d 00:00:00'), $value);
     }
 }

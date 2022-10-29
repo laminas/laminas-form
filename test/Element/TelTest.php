@@ -19,7 +19,7 @@ final class TelTest extends TestCase
     {
         $element = new Tel('test');
 
-        $this->assertSame('tel', $element->getAttribute('type'));
+        self::assertSame('tel', $element->getAttribute('type'));
     }
 
     public function testInputSpecification(): void
@@ -29,11 +29,11 @@ final class TelTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
 
-        $this->assertSame($name, $inputSpec['name']);
-        $this->assertTrue($inputSpec['required']);
+        self::assertSame($name, $inputSpec['name']);
+        self::assertTrue($inputSpec['required']);
         $expectedFilters = [StringTrim::class, StripNewlines::class];
-        $this->assertInputSpecContainsFilters($expectedFilters, $inputSpec);
-        $this->assertInputSpecContainsRegexValidator($inputSpec);
+        self::assertInputSpecContainsFilters($expectedFilters, $inputSpec);
+        self::assertInputSpecContainsRegexValidator($inputSpec);
     }
 
     /**
@@ -43,7 +43,7 @@ final class TelTest extends TestCase
     {
         $actualFilters  = array_map(static fn(array $filterSpec): string => $filterSpec['name'], $inputSpec['filters']);
         $missingFilters = array_diff($expectedFilters, $actualFilters);
-        $this->assertCount(0, $missingFilters);
+        self::assertCount(0, $missingFilters);
     }
 
     private function assertInputSpecContainsRegexValidator(array $inputSpec): void
@@ -54,6 +54,6 @@ final class TelTest extends TestCase
                 $regexValidatorFound = true;
             }
         }
-        $this->assertTrue($regexValidatorFound);
+        self::assertTrue($regexValidatorFound);
     }
 }

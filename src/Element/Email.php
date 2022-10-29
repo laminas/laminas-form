@@ -106,7 +106,7 @@ class Email extends Element implements InputProviderInterface
      *
      * Attaches an email validator.
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

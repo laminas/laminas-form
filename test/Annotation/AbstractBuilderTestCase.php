@@ -44,35 +44,35 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertTrue($form->has('username'));
-        $this->assertTrue($form->has('password'));
+        self::assertTrue($form->has('username'));
+        self::assertTrue($form->has('password'));
 
         $username = $form->get('username');
-        $this->assertInstanceOf(Element::class, $username);
-        $this->assertEquals('required', $username->getAttribute('required'));
+        self::assertInstanceOf(Element::class, $username);
+        self::assertEquals('required', $username->getAttribute('required'));
 
         $password = $form->get('password');
-        $this->assertInstanceOf(Element::class, $password);
+        self::assertInstanceOf(Element::class, $password);
         $attributes = $password->getAttributes();
-        $this->assertEquals(
+        self::assertEquals(
             ['type' => 'password', 'label' => 'Enter your password', 'name' => 'password'],
             $attributes
         );
-        $this->assertNull($password->getAttribute('required'));
+        self::assertNull($password->getAttribute('required'));
 
         $filter = $form->getInputFilter();
-        $this->assertTrue($filter->has('username'));
-        $this->assertTrue($filter->has('password'));
+        self::assertTrue($filter->has('username'));
+        self::assertTrue($filter->has('password'));
 
         $username = $filter->get('username');
-        $this->assertTrue($username->isRequired());
-        $this->assertCount(1, $username->getFilterChain());
-        $this->assertCount(2, $username->getValidatorChain());
+        self::assertTrue($username->isRequired());
+        self::assertCount(1, $username->getFilterChain());
+        self::assertCount(2, $username->getValidatorChain());
 
         $password = $filter->get('password');
-        $this->assertTrue($password->isRequired());
-        $this->assertCount(1, $password->getFilterChain());
-        $this->assertCount(1, $password->getValidatorChain());
+        self::assertTrue($password->isRequired());
+        self::assertCount(1, $password->getFilterChain());
+        self::assertCount(1, $password->getValidatorChain());
     }
 
     public function testCanCreateFormWithClassAnnotations(): void
@@ -81,25 +81,25 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertTrue($form->has('keeper'));
-        $this->assertFalse($form->has('keep'));
-        $this->assertFalse($form->has('omit'));
-        $this->assertEquals('some_name', $form->getName());
+        self::assertTrue($form->has('keeper'));
+        self::assertFalse($form->has('keep'));
+        self::assertFalse($form->has('omit'));
+        self::assertEquals('some_name', $form->getName());
 
         $attributes = $form->getAttributes();
-        $this->assertArrayHasKey('legend', $attributes);
-        $this->assertEquals('Some Fieldset', $attributes['legend']);
+        self::assertArrayHasKey('legend', $attributes);
+        self::assertEquals('Some Fieldset', $attributes['legend']);
 
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilter::class, $filter);
+        self::assertInstanceOf(InputFilter::class, $filter);
 
         $keeper     = $form->get('keeper');
         $attributes = $keeper->getAttributes();
-        $this->assertArrayHasKey('type', $attributes);
-        $this->assertEquals('text', $attributes['type']);
+        self::assertArrayHasKey('type', $attributes);
+        self::assertEquals('text', $attributes['type']);
 
-        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
-        $this->assertSame(['omit', 'keep'], $form->getValidationGroup());
+        self::assertInstanceOf(\Laminas\Form\Form::class, $form);
+        self::assertSame(['omit', 'keep'], $form->getValidationGroup());
     }
 
     public function testComplexEntityCreationWithPriorities(): void
@@ -108,28 +108,28 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertEquals('user', $form->getName());
+        self::assertEquals('user', $form->getName());
         $attributes = $form->getAttributes();
-        $this->assertArrayHasKey('legend', $attributes);
-        $this->assertEquals('Register', $attributes['legend']);
+        self::assertArrayHasKey('legend', $attributes);
+        self::assertEquals('Register', $attributes['legend']);
 
-        $this->assertFalse($form->has('someComposedObject'));
-        $this->assertTrue($form->has('user_image'));
-        $this->assertTrue($form->has('email'));
-        $this->assertTrue($form->has('password'));
-        $this->assertTrue($form->has('username'));
+        self::assertFalse($form->has('someComposedObject'));
+        self::assertTrue($form->has('user_image'));
+        self::assertTrue($form->has('email'));
+        self::assertTrue($form->has('password'));
+        self::assertTrue($form->has('username'));
 
         $email       = $form->get('email');
         $traversable = $form->getIterator();
-        $this->assertInstanceOf(PriorityList::class, $traversable);
+        self::assertInstanceOf(PriorityList::class, $traversable);
         $test = $traversable->getIterator()->current();
-        $this->assertSame($email, $test, 'Test is element ' . $test->getName());
+        self::assertSame($email, $test, 'Test is element ' . $test->getName());
 
         $test = $traversable->current();
-        $this->assertSame($email, $test, 'Test is element ' . $test->getName());
+        self::assertSame($email, $test, 'Test is element ' . $test->getName());
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
+        self::assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testFieldsetOrder(): void
@@ -140,9 +140,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $element     = $form->get('element');
         $traversable = $form->getIterator();
-        $this->assertInstanceOf(PriorityList::class, $traversable);
+        self::assertInstanceOf(PriorityList::class, $traversable);
         $first = $traversable->getIterator()->current();
-        $this->assertSame($element, $first, 'Test is element ' . $first->getName());
+        self::assertSame($element, $first, 'Test is element ' . $first->getName());
     }
 
     public function testFieldsetOrderWithPreserve(): void
@@ -154,9 +154,9 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $fieldset    = $form->get('fieldset');
         $traversable = $form->getIterator();
-        $this->assertInstanceOf(PriorityList::class, $traversable);
+        self::assertInstanceOf(PriorityList::class, $traversable);
         $first = $traversable->getIterator()->current();
-        $this->assertSame($fieldset, $first, 'Test is element ' . $first->getName());
+        self::assertSame($fieldset, $first, 'Test is element ' . $first->getName());
     }
 
     public function testCanRetrieveOnlyFormSpecification(): void
@@ -164,7 +164,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $entity  = new TestAsset\Annotation\ComplexEntity();
         $builder = $this->createBuilder();
         $spec    = $builder->getFormSpecification($entity);
-        $this->assertInstanceOf(ArrayObject::class, $spec);
+        self::assertInstanceOf(ArrayObject::class, $spec);
     }
 
     public function testAllowsExtensionOfEntities(): void
@@ -173,17 +173,17 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertTrue($form->has('username'));
-        $this->assertTrue($form->has('password'));
-        $this->assertTrue($form->has('email'));
+        self::assertTrue($form->has('username'));
+        self::assertTrue($form->has('password'));
+        self::assertTrue($form->has('email'));
 
-        $this->assertEquals('extended', $form->getName());
+        self::assertEquals('extended', $form->getName());
         $expected = ['username', 'password', 'email'];
         $test     = [];
         foreach ($form as $element) {
             $test[] = $element->getName();
         }
-        $this->assertEquals($expected, $test);
+        self::assertEquals($expected, $test);
     }
 
     public function testAllowsSpecifyingFormAndElementTypes(): void
@@ -192,9 +192,9 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertInstanceOf(Form::class, $form);
+        self::assertInstanceOf(Form::class, $form);
         $element = $form->get('typed_element');
-        $this->assertInstanceOf(\LaminasTest\Form\TestAsset\Annotation\Element::class, $element);
+        self::assertInstanceOf(\LaminasTest\Form\TestAsset\Annotation\Element::class, $element);
     }
 
     public function testAllowsComposingChildEntities(): void
@@ -203,18 +203,18 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertTrue($form->has('composed'));
+        self::assertTrue($form->has('composed'));
         $composed = $form->get('composed');
-        $this->assertInstanceOf(FieldsetInterface::class, $composed);
-        $this->assertTrue($composed->has('username'));
-        $this->assertTrue($composed->has('password'));
+        self::assertInstanceOf(FieldsetInterface::class, $composed);
+        self::assertTrue($composed->has('username'));
+        self::assertTrue($composed->has('password'));
 
         $filter = $form->getInputFilter();
-        $this->assertTrue($filter->has('composed'));
+        self::assertTrue($filter->has('composed'));
         $composed = $filter->get('composed');
-        $this->assertInstanceOf(InputFilterInterface::class, $composed);
-        $this->assertTrue($composed->has('username'));
-        $this->assertTrue($composed->has('password'));
+        self::assertInstanceOf(InputFilterInterface::class, $composed);
+        self::assertTrue($composed->has('username'));
+        self::assertTrue($composed->has('password'));
     }
 
     public function testAllowsComposingMultipleChildEntities(): void
@@ -223,14 +223,14 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertTrue($form->has('composed'));
+        self::assertTrue($form->has('composed'));
         $composed = $form->get('composed');
 
-        $this->assertInstanceOf(Collection::class, $composed);
+        self::assertInstanceOf(Collection::class, $composed);
         $target = $composed->getTargetElement();
-        $this->assertInstanceOf(FieldsetInterface::class, $target);
-        $this->assertTrue($target->has('username'));
-        $this->assertTrue($target->has('password'));
+        self::assertInstanceOf(FieldsetInterface::class, $target);
+        self::assertTrue($target->has('username'));
+        self::assertTrue($target->has('password'));
     }
 
     /**
@@ -245,10 +245,10 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $child = $form->get($childName);
 
-        $this->assertInstanceOf(Collection::class, $child);
+        self::assertInstanceOf(Collection::class, $child);
         $target = $child->getTargetElement();
-        $this->assertInstanceOf(FieldsetInterface::class, $target);
-        $this->assertEquals('My label', $child->getLabel());
+        self::assertInstanceOf(FieldsetInterface::class, $target);
+        self::assertEquals('My label', $child->getLabel());
     }
 
     /**
@@ -274,8 +274,8 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $child = $form->get($childName);
 
-        $this->assertInstanceOf(FieldsetInterface::class, $child);
-        $this->assertEquals('My label', $child->getLabel());
+        self::assertInstanceOf(FieldsetInterface::class, $child);
+        self::assertEquals('My label', $child->getLabel());
     }
 
     /**
@@ -295,16 +295,16 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertInstanceOf(Fieldset::class, $form);
-        $this->assertTrue($form->useAsBaseFieldset());
+        self::assertInstanceOf(Fieldset::class, $form);
+        self::assertTrue($form->useAsBaseFieldset());
 
-        $this->assertTrue($form->has('username'));
+        self::assertTrue($form->has('username'));
 
         $username = $form->get('username');
-        $this->assertInstanceOf(Element::class, $username);
+        self::assertInstanceOf(Element::class, $username);
 
-        $this->assertEquals('Username:', $username->getLabel());
-        $this->assertEquals(['class' => 'label'], $username->getLabelAttributes());
+        self::assertEquals('Username:', $username->getLabel());
+        self::assertEquals(['class' => 'label'], $username->getLabelAttributes());
     }
 
     public function testCanHandleHydratorArrayAnnotation(): void
@@ -314,8 +314,8 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form    = $builder->createForm($entity);
 
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
-        $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
+        self::assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
+        self::assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
     public function testAllowTypeAsElementNameInInputFilter(): void
@@ -324,9 +324,9 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder = $this->createBuilder();
         $form    = $builder->createForm($entity);
 
-        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
+        self::assertInstanceOf(\Laminas\Form\Form::class, $form);
         $element = $form->get('type');
-        $this->assertInstanceOf(Element::class, $element);
+        self::assertInstanceOf(Element::class, $element);
     }
 
     public function testAllowEmptyInput(): void
@@ -337,7 +337,7 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('sampleinput');
-        $this->assertTrue($sampleinput->allowEmpty());
+        self::assertTrue($sampleinput->allowEmpty());
     }
 
     public function testContinueIfEmptyInput(): void
@@ -348,8 +348,8 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('sampleinput');
-        $this->assertInstanceOf(Input::class, $sampleinput);
-        $this->assertTrue($sampleinput->continueIfEmpty());
+        self::assertInstanceOf(Input::class, $sampleinput);
+        self::assertTrue($sampleinput->continueIfEmpty());
     }
 
     public function testInputNotRequiredByDefault(): void
@@ -359,7 +359,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form        = $builder->createForm($entity);
         $inputFilter = $form->getInputFilter();
         $sampleinput = $inputFilter->get('anotherSampleInput');
-        $this->assertFalse($sampleinput->isRequired());
+        self::assertFalse($sampleinput->isRequired());
     }
 
     public function testInstanceElementAnnotation(): void
@@ -370,11 +370,11 @@ abstract class AbstractBuilderTestCase extends TestCase
 
         $fieldset = $form->get('object');
 
-        $this->assertInstanceOf(Fieldset::class, $fieldset);
-        $this->assertInstanceOf(Entity::class, $fieldset->getObject());
+        self::assertInstanceOf(Fieldset::class, $fieldset);
+        self::assertInstanceOf(Entity::class, $fieldset->getObject());
         $hydrator = $fieldset->getHydrator();
-        $this->assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
-        $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
+        self::assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
+        self::assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
     public function testInputFilterInputAnnotation(): void
@@ -384,13 +384,13 @@ abstract class AbstractBuilderTestCase extends TestCase
         $form        = $builder->createForm($entity);
         $inputFilter = $form->getInputFilter();
 
-        $this->assertTrue($inputFilter->has('input'));
+        self::assertTrue($inputFilter->has('input'));
         $expected = [
             InputInterface::class,
             InputFilterInput::class,
         ];
         foreach ($expected as $expectedInstance) {
-            $this->assertInstanceOf($expectedInstance, $inputFilter->get('input'));
+            self::assertInstanceOf($expectedInstance, $inputFilter->get('input'));
         }
     }
 
@@ -403,7 +403,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $builder     = $this->createBuilder();
         $form        = $builder->createForm($entity);
         $inputFilter = $form->getInputFilter();
-        $this->assertCount(2, $inputFilter->get('username')->getValidatorChain());
+        self::assertCount(2, $inputFilter->get('username')->getValidatorChain());
     }
 
     public function testLegacyComposedObjectAnnotation(): void

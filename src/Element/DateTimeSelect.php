@@ -315,7 +315,7 @@ class DateTimeSelect extends DateSelect
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

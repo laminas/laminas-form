@@ -16,18 +16,18 @@ final class MonthSelectTest extends TestCase
         $element = new MonthSelectElement();
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Regex::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Regex::class:
-                    $this->assertEquals('/^[0-9]{4}\-(0?[1-9]|1[012])$/', $validator->getPattern());
+                    self::assertEquals('/^[0-9]{4}\-(0?[1-9]|1[012])$/', $validator->getPattern());
                     break;
                 default:
                     break;
@@ -62,9 +62,9 @@ final class MonthSelectTest extends TestCase
     {
         $element   = new MonthSelectElement('foo');
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
+        self::assertArrayHasKey('validators', $inputSpec);
         $monthValidator = $inputSpec['validators'][0];
-        $this->assertEquals($expected, $monthValidator->isValid($value));
+        self::assertEquals($expected, $monthValidator->isValid($value));
     }
 
     public function testCanSetMonthFromDateTime(): void
@@ -72,15 +72,15 @@ final class MonthSelectTest extends TestCase
         $element = new MonthSelectElement();
         $element->setValue(new DateTime('2012-09'));
 
-        $this->assertEquals('2012', $element->getYearElement()->getValue());
-        $this->assertEquals('09', $element->getMonthElement()->getValue());
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
     }
 
     public function testCanGetValue(): void
     {
         $element = new MonthSelectElement();
         $element->setValue(new DateTime('2012-09'));
-        $this->assertEquals('2012-09', $element->getValue());
+        self::assertEquals('2012-09', $element->getValue());
     }
 
     public function testNullSetValueIsSemanticallyTodayWithoutEmptyOption(): void
@@ -91,7 +91,7 @@ final class MonthSelectTest extends TestCase
         $element->setValue(null);
         $value = $element->getValue();
         // the getValue() function returns the date in 'Y-m-d' format
-        $this->assertEquals($now->format('Y-m'), $value);
+        self::assertEquals($now->format('Y-m'), $value);
     }
 
     public function testNullSetValueIsNullWithEmptyOption(): void
@@ -100,6 +100,6 @@ final class MonthSelectTest extends TestCase
         $element->setShouldCreateEmptyOption(true);
         $element->setValue(null);
         $value = $element->getValue();
-        $this->assertEquals(null, $value);
+        self::assertEquals(null, $value);
     }
 }

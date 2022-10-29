@@ -35,19 +35,19 @@ final class MultiCheckboxTest extends TestCase
         $element->setUseHiddenElement($useHiddenElement);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Explode::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Explode::class:
                     $inArrayValidator = $validator->getValidator();
-                    $this->assertInstanceOf(InArray::class, $inArrayValidator);
+                    self::assertInstanceOf(InArray::class, $inArrayValidator);
                     break;
                 default:
                     break;
@@ -85,10 +85,10 @@ final class MultiCheckboxTest extends TestCase
             'options' => $options,
         ]);
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
+        self::assertArrayHasKey('validators', $inputSpec);
         $explodeValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf(Explode::class, $explodeValidator);
-        $this->assertTrue($explodeValidator->isValid($valueTests));
+        self::assertInstanceOf(Explode::class, $explodeValidator);
+        self::assertTrue($explodeValidator->isValid($valueTests));
     }
 
     /**
@@ -107,7 +107,7 @@ final class MultiCheckboxTest extends TestCase
             'options' => $options,
         ]);
         $haystack = $inArrayValidator->getHaystack();
-        $this->assertCount(count($options), $haystack);
+        self::assertCount(count($options), $haystack);
     }
 
     public function testAttributeType(): void
@@ -115,8 +115,8 @@ final class MultiCheckboxTest extends TestCase
         $element    = new MultiCheckboxElement();
         $attributes = $element->getAttributes();
 
-        $this->assertArrayHasKey('type', $attributes);
-        $this->assertEquals('multi_checkbox', $attributes['type']);
+        self::assertArrayHasKey('type', $attributes);
+        self::assertEquals('multi_checkbox', $attributes['type']);
     }
 
     public function testSetOptionsOptions(): void
@@ -126,8 +126,8 @@ final class MultiCheckboxTest extends TestCase
             'value_options' => ['bar' => 'baz'],
             'options'       => ['foo' => 'bar'],
         ]);
-        $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
-        $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
+        self::assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
+        self::assertEquals(['foo' => 'bar'], $element->getOption('options'));
     }
 
     public function testDisableInputSpecification(): void
@@ -141,7 +141,7 @@ final class MultiCheckboxTest extends TestCase
         $element->setDisableInArrayValidator(true);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayNotHasKey('validators', $inputSpec);
+        self::assertArrayNotHasKey('validators', $inputSpec);
     }
 
     public function testUnsetValueOption(): void
@@ -155,7 +155,7 @@ final class MultiCheckboxTest extends TestCase
         $element->unsetValueOption('Option 2');
 
         $valueOptions = $element->getValueOptions();
-        $this->assertArrayNotHasKey('Option 2', $valueOptions);
+        self::assertArrayNotHasKey('Option 2', $valueOptions);
     }
 
     public function testUnsetUndefinedValueOption(): void
@@ -169,7 +169,7 @@ final class MultiCheckboxTest extends TestCase
         $element->unsetValueOption('Option Undefined');
 
         $valueOptions = $element->getValueOptions();
-        $this->assertArrayNotHasKey('Option Undefined', $valueOptions);
+        self::assertArrayNotHasKey('Option Undefined', $valueOptions);
     }
 
     public function testOptionValueinSelectedOptions(): void
@@ -184,6 +184,6 @@ final class MultiCheckboxTest extends TestCase
         $optionValue     = 'option3';
         $selectedOptions = ['option1', 'option3'];
         $element->setValue($selectedOptions);
-        $this->assertContains($optionValue, $element->getValue());
+        self::assertContains($optionValue, $element->getValue());
     }
 }

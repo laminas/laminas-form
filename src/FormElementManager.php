@@ -292,7 +292,7 @@ class FormElementManager extends AbstractPluginManager
      * Always pushes `injectFactory` to top of initializer stack, and
      * `callElementInit` to the bottom.
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function configure(array $config)
     {

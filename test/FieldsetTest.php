@@ -111,18 +111,18 @@ final class FieldsetTest extends TestCase
         $subFieldset = new TestAsset\ValueStoringFieldset('subFieldset');
         $this->fieldset->add($subFieldset);
         $this->fieldset->populateValues(['subFieldset' => $subValue]);
-        $this->assertEquals($subValue, $subFieldset->getStoredValue());
+        self::assertEquals($subValue, $subFieldset->getStoredValue());
     }
 
     public function testFieldsetIsEmptyByDefault(): void
     {
-        $this->assertCount(0, $this->fieldset);
+        self::assertCount(0, $this->fieldset);
     }
 
     public function testCanAddElementsToFieldset(): void
     {
         $this->fieldset->add(new Element('foo'));
-        $this->assertCount(1, $this->fieldset);
+        self::assertCount(1, $this->fieldset);
     }
 
     public function testCanSetCustomOptionFromConstructor(): void
@@ -131,8 +131,8 @@ final class FieldsetTest extends TestCase
             'custom' => 'option',
         ]);
         $options  = $fieldset->getOptions();
-        $this->assertArrayHasKey('custom', $options);
-        $this->assertEquals('option', $options['custom']);
+        self::assertArrayHasKey('custom', $options);
+        self::assertEquals('option', $options['custom']);
     }
 
     public function testAddWithInvalidElementRaisesException(): void
@@ -145,28 +145,28 @@ final class FieldsetTest extends TestCase
     {
         $element = new Element('foo');
         $this->fieldset->add($element);
-        $this->assertSame($element, $this->fieldset->get('foo'));
+        self::assertSame($element, $this->fieldset->get('foo'));
     }
 
     public function testElementMayBeRetrievedByAliasProvidedWhenAdded(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element, ['name' => 'bar']);
-        $this->assertSame($element, $this->fieldset->get('bar'));
+        self::assertSame($element, $this->fieldset->get('bar'));
     }
 
     public function testElementNameIsChangedToAliasWhenAdded(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element, ['name' => 'bar']);
-        $this->assertEquals('bar', $element->getName());
+        self::assertEquals('bar', $element->getName());
     }
 
     public function testCannotRetrieveElementByItsNameWhenProvidingAnAliasDuringAddition(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element, ['name' => 'bar']);
-        $this->assertFalse($this->fieldset->has('foo'));
+        self::assertFalse($this->fieldset->has('foo'));
     }
 
     public function testAddingAnElementWithNoNameOrAliasWillRaiseException(): void
@@ -180,25 +180,25 @@ final class FieldsetTest extends TestCase
     {
         $fieldset = new Fieldset('foo');
         $this->fieldset->add($fieldset);
-        $this->assertCount(1, $this->fieldset);
+        self::assertCount(1, $this->fieldset);
     }
 
     public function testCanRemoveElementsByName(): void
     {
         $element = new Element('foo');
         $this->fieldset->add($element);
-        $this->assertTrue($this->fieldset->has('foo'));
+        self::assertTrue($this->fieldset->has('foo'));
         $this->fieldset->remove('foo');
-        $this->assertFalse($this->fieldset->has('foo'));
+        self::assertFalse($this->fieldset->has('foo'));
     }
 
     public function testCanRemoveFieldsetsByName(): void
     {
         $fieldset = new Fieldset('foo');
         $this->fieldset->add($fieldset);
-        $this->assertTrue($this->fieldset->has('foo'));
+        self::assertTrue($this->fieldset->has('foo'));
         $this->fieldset->remove('foo');
-        $this->assertFalse($this->fieldset->has('foo'));
+        self::assertFalse($this->fieldset->has('foo'));
     }
 
     public function testCanRemoveElementsByWrongName(): void
@@ -207,28 +207,28 @@ final class FieldsetTest extends TestCase
         $this->fieldset->add($element);
         $element2 = new Element('bar');
         $this->fieldset->add($element2);
-        $this->assertTrue($this->fieldset->has('foo'));
-        $this->assertTrue($this->fieldset->has('bar'));
+        self::assertTrue($this->fieldset->has('foo'));
+        self::assertTrue($this->fieldset->has('bar'));
 
         // remove wrong element, bar still available
         $this->fieldset->remove('bars');
-        $this->assertTrue($this->fieldset->has('foo'));
-        $this->assertTrue($this->fieldset->has('bar'));
+        self::assertTrue($this->fieldset->has('foo'));
+        self::assertTrue($this->fieldset->has('bar'));
 
         $this->fieldset->remove('bar');
-        $this->assertTrue($this->fieldset->has('foo'));
-        $this->assertFalse($this->fieldset->has('bar'));
+        self::assertTrue($this->fieldset->has('foo'));
+        self::assertFalse($this->fieldset->has('bar'));
     }
 
     public function testCanRetrieveAllAttachedElementsSeparateFromFieldsetsAtOnce(): void
     {
         $this->populateFieldset();
         $elements = $this->fieldset->getElements();
-        $this->assertCount(3, $elements);
+        self::assertCount(3, $elements);
         foreach (['foo', 'bar', 'baz'] as $name) {
-            $this->assertTrue(isset($elements[$name]));
+            self::assertTrue(isset($elements[$name]));
             $element = $this->fieldset->get($name);
-            $this->assertSame($element, $elements[$name]);
+            self::assertSame($element, $elements[$name]);
         }
     }
 
@@ -236,11 +236,11 @@ final class FieldsetTest extends TestCase
     {
         $this->populateFieldset();
         $fieldsets = $this->fieldset->getFieldsets();
-        $this->assertCount(2, $fieldsets);
+        self::assertCount(2, $fieldsets);
         foreach (['foobar', 'barbaz'] as $name) {
-            $this->assertTrue(isset($fieldsets[$name]));
+            self::assertTrue(isset($fieldsets[$name]));
             $fieldset = $this->fieldset->get($name);
-            $this->assertSame($fieldset, $fieldsets[$name]);
+            self::assertSame($fieldset, $fieldsets[$name]);
         }
     }
 
@@ -250,7 +250,7 @@ final class FieldsetTest extends TestCase
         $messages = $this->getMessages();
         $this->fieldset->setMessages($messages);
         $test = $this->fieldset->getMessages();
-        $this->assertEquals($messages, $test);
+        self::assertEquals($messages, $test);
     }
 
     public function testOnlyElementsWithErrorsInMessages(): void
@@ -266,8 +266,8 @@ final class FieldsetTest extends TestCase
         $form->isValid();
 
         $messages = $form->getMessages();
-        $this->assertArrayHasKey('foo', $messages['set']);
-        $this->assertArrayNotHasKey('bar', $messages['set']);
+        self::assertArrayHasKey('foo', $messages['set']);
+        self::assertArrayNotHasKey('bar', $messages['set']);
     }
 
     public function testCanRetrieveMessagesForSingleElementsAfterMessagesHaveBeenSet(): void
@@ -277,7 +277,7 @@ final class FieldsetTest extends TestCase
         $this->fieldset->setMessages($messages);
 
         $test = $this->fieldset->getMessages('bar');
-        $this->assertEquals($messages['bar'], $test);
+        self::assertEquals($messages['bar'], $test);
     }
 
     public function testCanRetrieveMessagesForSingleFieldsetsAfterMessagesHaveBeenSet(): void
@@ -287,7 +287,7 @@ final class FieldsetTest extends TestCase
         $this->fieldset->setMessages($messages);
 
         $test = $this->fieldset->getMessages('barbaz');
-        $this->assertEquals($messages['barbaz'], $test);
+        self::assertEquals($messages['barbaz'], $test);
     }
 
     public function testGetMessagesWithInvalidElementRaisesException(): void
@@ -299,7 +299,7 @@ final class FieldsetTest extends TestCase
     public function testCountGivesCountOfAttachedElementsAndFieldsets(): void
     {
         $this->populateFieldset();
-        $this->assertCount(5, $this->fieldset);
+        self::assertCount(5, $this->fieldset);
     }
 
     public function testCanIterateOverElementsAndFieldsetsInOrderAttached(): void
@@ -310,7 +310,7 @@ final class FieldsetTest extends TestCase
         foreach ($this->fieldset as $element) {
             $test[] = $element->getName();
         }
-        $this->assertEquals($expected, $test);
+        self::assertEquals($expected, $test);
     }
 
     public function testIteratingRespectsOrderPriorityProvidedWhenAttaching(): void
@@ -325,7 +325,7 @@ final class FieldsetTest extends TestCase
         foreach ($this->fieldset as $element) {
             $test[] = $element->getName();
         }
-        $this->assertEquals($expected, $test);
+        self::assertEquals($expected, $test);
     }
 
     public function testIteratingRespectsOrderPriorityProvidedWhenSetLater(): void
@@ -341,7 +341,7 @@ final class FieldsetTest extends TestCase
         foreach ($this->fieldset as $element) {
             $test[] = $element->getName();
         }
-        $this->assertEquals($expected, $test);
+        self::assertEquals($expected, $test);
     }
 
     public function testIteratingRespectsOrderPriorityWhenCloned(): void
@@ -366,8 +366,8 @@ final class FieldsetTest extends TestCase
             $testClone[] = $element->getName();
         }
 
-        $this->assertEquals($expected, $testClone);
-        $this->assertEquals($testOrig, $testClone);
+        self::assertEquals($expected, $testClone);
+        self::assertEquals($testOrig, $testClone);
     }
 
     public function testCloneDeepClonesElementsAndObject(): void
@@ -378,9 +378,9 @@ final class FieldsetTest extends TestCase
 
         $fieldsetClone = clone $this->fieldset;
 
-        $this->assertNotSame($this->fieldset->get('foo'), $fieldsetClone->get('foo'));
-        $this->assertNotSame($this->fieldset->get('bar'), $fieldsetClone->get('bar'));
-        $this->assertNotSame($this->fieldset->getObject(), $fieldsetClone->getObject());
+        self::assertNotSame($this->fieldset->get('foo'), $fieldsetClone->get('foo'));
+        self::assertNotSame($this->fieldset->get('bar'), $fieldsetClone->get('bar'));
+        self::assertNotSame($this->fieldset->getObject(), $fieldsetClone->getObject());
     }
 
     public function testSubFieldsetsBindObject(): void
@@ -395,7 +395,7 @@ final class FieldsetTest extends TestCase
             ]),
         ]);
         $form->bind($value);
-        $this->assertSame($fieldset, $form->get('foobar'));
+        self::assertSame($fieldset, $form->get('foobar'));
     }
 
     public function testBindEmptyValue(): void
@@ -420,16 +420,16 @@ final class FieldsetTest extends TestCase
         ]);
         $form->isValid();
 
-        $this->assertSame('', $value['foo']);
-        $this->assertSame('ghi', $value['bar']);
+        self::assertSame('', $value['foo']);
+        self::assertSame('ghi', $value['bar']);
     }
 
     public function testFieldsetExposesFluentInterface(): void
     {
         $fieldset = $this->fieldset->add(new Element('foo'));
-        $this->assertSame($this->fieldset, $fieldset);
+        self::assertSame($this->fieldset, $fieldset);
         $fieldset = $this->fieldset->remove('foo');
-        $this->assertSame($this->fieldset, $fieldset);
+        self::assertSame($this->fieldset, $fieldset);
     }
 
     public function testSetOptions(): void
@@ -439,7 +439,7 @@ final class FieldsetTest extends TestCase
         ]);
         $option = $this->fieldset->getOption('foo');
 
-        $this->assertEquals('bar', $option);
+        self::assertEquals('bar', $option);
     }
 
     public function testSetOptionsUseAsBaseFieldset(): void
@@ -447,7 +447,7 @@ final class FieldsetTest extends TestCase
         $this->fieldset->setOptions([
             'use_as_base_fieldset' => true,
         ]);
-        $this->assertTrue($this->fieldset->getOption('use_as_base_fieldset'));
+        self::assertTrue($this->fieldset->getOption('use_as_base_fieldset'));
     }
 
     public function testSetOptionAllowedObjectBindingClass(): void
@@ -457,7 +457,7 @@ final class FieldsetTest extends TestCase
         ]);
         $option = $this->fieldset->getOption('allowed_object_binding_class');
 
-        $this->assertEquals('bar', $option);
+        self::assertEquals('bar', $option);
     }
 
     public function testShouldThrowExceptionWhenGetInvalidElement(): void
@@ -469,7 +469,7 @@ final class FieldsetTest extends TestCase
     public function testBindValuesHasNoName(): void
     {
         $bindValues = $this->fieldset->bindValues(['foo']);
-        $this->assertNull($bindValues);
+        self::assertNull($bindValues);
     }
 
     public function testBindValuesSkipDisabled(): void
@@ -490,8 +490,8 @@ final class FieldsetTest extends TestCase
         $form->setHydrator($this->hydrator);
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
-        $this->assertEquals('modified', $object->not_disabled);
-        $this->assertEquals('notModified', $object->disabled);
+        self::assertEquals('modified', $object->not_disabled);
+        self::assertEquals('notModified', $object->disabled);
     }
 
     /**
@@ -515,8 +515,8 @@ final class FieldsetTest extends TestCase
         $form->setHydrator($this->hydrator);
         $form->bindValues(['not_disabled' => 'modified', 'disabled' => 'modified']);
 
-        $this->assertEquals('modified', $object->not_disabled);
-        $this->assertEquals('modified', $object->disabled);
+        self::assertEquals('modified', $object->not_disabled);
+        self::assertEquals('modified', $object->disabled);
     }
 
     public function testSetObjectWithStringRaisesException(): void
@@ -531,7 +531,7 @@ final class FieldsetTest extends TestCase
         $this->fieldset->setAllowedObjectBindingClass(stdClass::class);
         $allowed = $this->fieldset->allowObjectBinding($object);
 
-        $this->assertTrue($allowed);
+        self::assertTrue($allowed);
     }
 
     public function testShouldValidateAllowObjectBindingByObject(): void
@@ -540,7 +540,7 @@ final class FieldsetTest extends TestCase
         $this->fieldset->setObject($object);
         $allowed = $this->fieldset->allowObjectBinding($object);
 
-        $this->assertTrue($allowed);
+        self::assertTrue($allowed);
     }
 
     /**
@@ -561,11 +561,11 @@ final class FieldsetTest extends TestCase
             'foo' => 'New value',
         ]);
 
-        $this->assertSame('New value', $form->get('foo')->getValue());
+        self::assertSame('New value', $form->get('foo')->getValue());
 
         $form->isValid();
 
-        $this->assertSame('New value', $form->get('foo')->getValue());
+        self::assertSame('New value', $form->get('foo')->getValue());
     }
 
     /**
@@ -585,7 +585,7 @@ final class FieldsetTest extends TestCase
         $fieldset = new Fieldset();
         $fieldset->setMessages($messages);
 
-        $this->assertEquals($messages, $fieldset->getMessages());
+        self::assertEquals($messages, $fieldset->getMessages());
     }
 
     public function testSetNullValueWhenArrayProvided(): void
@@ -594,10 +594,10 @@ final class FieldsetTest extends TestCase
         $subElement = new Element('subElement');
         $this->fieldset->add($subElement);
         $this->fieldset->populateValues(['subElement' => $subValue]);
-        $this->assertSame($subValue, $subElement->getValue());
+        self::assertSame($subValue, $subElement->getValue());
 
         $this->fieldset->populateValues(['subElement' => null]);
-        $this->assertNull($subElement->getValue());
+        self::assertNull($subElement->getValue());
     }
 
     public function testSetNullValueWhenTraversableProvided(): void
@@ -606,10 +606,10 @@ final class FieldsetTest extends TestCase
         $subElement = new Element('subElement');
         $this->fieldset->add($subElement);
         $this->fieldset->populateValues(new TestAsset\CustomTraversable(['subElement' => $subValue]));
-        $this->assertSame($subValue, $subElement->getValue());
+        self::assertSame($subValue, $subElement->getValue());
 
         $this->fieldset->populateValues(new TestAsset\CustomTraversable(['subElement' => null]));
-        $this->assertNull($subElement->getValue());
+        self::assertNull($subElement->getValue());
     }
 
     public function testSetHydratorByNameMethodShouldSetValidHydratorForForm(): void
@@ -639,6 +639,6 @@ final class FieldsetTest extends TestCase
         $this->fieldset->setHydratorByName('NameOfHydrator');
 
         // Test
-        $this->assertSame($this->hydrator, $this->fieldset->getHydrator());
+        self::assertSame($this->hydrator, $this->fieldset->getHydrator());
     }
 }

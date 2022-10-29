@@ -13,6 +13,6 @@ final class SearchTest extends TestCase
     {
         $element = new Search('test');
 
-        $this->assertSame('search', $element->getAttribute('type'));
+        self::assertSame('search', $element->getAttribute('type'));
     }
 }

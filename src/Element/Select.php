@@ -256,7 +256,7 @@ class Select extends Element implements InputProviderInterface
     /**
      * Provide default input rules for this element
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

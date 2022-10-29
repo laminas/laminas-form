@@ -41,7 +41,7 @@ class Color extends Element implements InputProviderInterface
      *
      * Attaches a color validator.
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

@@ -43,7 +43,7 @@ class Url extends Element implements InputProviderInterface
      *
      * Attaches an uri validator.
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

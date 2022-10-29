@@ -859,8 +859,7 @@ class Form extends Fieldset implements FormInterface
     }
 
     /**
-     * {@inheritDoc}
-     *
+     * @inheritDoc
      * @param bool $onlyBase
      */
     public function populateValues(iterable $data, bool $onlyBase = false): void

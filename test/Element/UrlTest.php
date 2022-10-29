@@ -19,19 +19,19 @@ final class UrlTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Uri::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Uri::class:
-                    $this->assertEquals(true, $validator->getAllowAbsolute());
-                    $this->assertEquals(false, $validator->getAllowRelative());
+                    self::assertEquals(true, $validator->getAllowAbsolute());
+                    self::assertEquals(false, $validator->getAllowRelative());
                     break;
                 default:
                     break;

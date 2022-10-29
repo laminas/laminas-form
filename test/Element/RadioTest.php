@@ -32,15 +32,15 @@ final class RadioTest extends TestCase
         $element->setUseHiddenElement($useHiddenElement);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
         }
     }
 
@@ -74,11 +74,11 @@ final class RadioTest extends TestCase
             'options' => $options,
         ]);
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
+        self::assertArrayHasKey('validators', $inputSpec);
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf(InArray::class, $inArrayValidator);
+        self::assertInstanceOf(InArray::class, $inArrayValidator);
         foreach ($valueTests as $valueToTest) {
-            $this->assertTrue($inArrayValidator->isValid($valueToTest));
+            self::assertTrue($inArrayValidator->isValid($valueToTest));
         }
     }
 
@@ -93,6 +93,6 @@ final class RadioTest extends TestCase
         $element->setDisableInArrayValidator(true);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayNotHasKey('validators', $inputSpec);
+        self::assertArrayNotHasKey('validators', $inputSpec);
     }
 }

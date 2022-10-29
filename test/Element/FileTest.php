@@ -15,12 +15,12 @@ final class FileTest extends TestCase
     public function testProvidesDefaultInputSpecification(): void
     {
         $element = new FileElement('foo');
-        $this->assertEquals('file', $element->getAttribute('type'));
+        self::assertEquals('file', $element->getAttribute('type'));
 
         $inputSpec = $element->getInputSpecification();
         $factory   = new InputFilterFactory();
         $input     = $factory->createInput($inputSpec);
-        $this->assertInstanceOf(FileInput::class, $input);
+        self::assertInstanceOf(FileInput::class, $input);
     }
 
     public function testWillAddFileEnctypeAttributeToForm(): void

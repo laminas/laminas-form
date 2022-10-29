@@ -57,19 +57,19 @@ final class CollectionTest extends TestCase
     public function testCanRetrieveDefaultPlaceholder(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $placeholder = $collection->getTemplatePlaceholder();
-        $this->assertEquals('__index__', $placeholder);
+        self::assertEquals('__index__', $placeholder);
     }
 
     public function testCannotAllowNewElementsIfAllowAddIsFalse(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
 
-        $this->assertTrue($collection->allowAdd());
+        self::assertTrue($collection->allowAdd());
         $collection->setAllowAdd(false);
-        $this->assertFalse($collection->allowAdd());
+        self::assertFalse($collection->allowAdd());
 
         // By default, $collection contains 2 elements
         $data   = [];
@@ -77,7 +77,7 @@ final class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertCount(2, $collection->getElements());
+        self::assertCount(2, $collection->getElements());
 
         $this->expectException(DomainException::class);
         $data[] = 'orange';
@@ -87,9 +87,9 @@ final class CollectionTest extends TestCase
     public function testCanAddNewElementsIfAllowAddIsTrue(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowAdd(true);
-        $this->assertTrue($collection->allowAdd());
+        self::assertTrue($collection->allowAdd());
 
         // By default, $collection contains 2 elements
         $data   = [];
@@ -97,37 +97,37 @@ final class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertCount(2, $collection->getElements());
+        self::assertCount(2, $collection->getElements());
 
         $data[] = 'orange';
         $collection->populateValues($data);
-        $this->assertCount(3, $collection->getElements());
+        self::assertCount(3, $collection->getElements());
     }
 
     public function testCanRemoveElementsIfAllowRemoveIsTrue(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
-        $this->assertTrue($collection->allowRemove());
+        self::assertTrue($collection->allowRemove());
 
         $data   = [];
         $data[] = 'blue';
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertCount(2, $collection->getElements());
+        self::assertCount(2, $collection->getElements());
 
         unset($data[0]);
 
         $collection->populateValues($data);
-        $this->assertCount(1, $collection->getElements());
+        self::assertCount(1, $collection->getElements());
     }
 
     public function testCanReplaceElementsIfAllowAddAndAllowRemoveIsTrue(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowAdd(true);
         $collection->setAllowRemove(true);
 
@@ -136,13 +136,13 @@ final class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertCount(2, $collection->getElements());
+        self::assertCount(2, $collection->getElements());
 
         unset($data[0]);
         $data[] = 'orange';
 
         $collection->populateValues($data);
-        $this->assertCount(2, $collection->getElements());
+        self::assertCount(2, $collection->getElements());
     }
 
     public function testCanValidateFormWithCollectionWithoutTemplate(): void
@@ -168,7 +168,7 @@ final class CollectionTest extends TestCase
             ],
         ]);
 
-        $this->assertEquals(true, $this->form->isValid());
+        self::assertEquals(true, $this->form->isValid());
     }
 
     public function testCannotValidateFormWithCollectionWithBadColor(): void
@@ -194,9 +194,9 @@ final class CollectionTest extends TestCase
             ],
         ]);
 
-        $this->assertEquals(false, $this->form->isValid());
+        self::assertEquals(false, $this->form->isValid());
         $messages = $this->form->getMessages();
-        $this->assertArrayHasKey('colors', $messages);
+        self::assertArrayHasKey('colors', $messages);
     }
 
     public function testCannotValidateFormWithCollectionWithBadFieldsetField(): void
@@ -222,20 +222,20 @@ final class CollectionTest extends TestCase
             ],
         ]);
 
-        $this->assertEquals(false, $this->form->isValid());
+        self::assertEquals(false, $this->form->isValid());
         $messages = $this->form->getMessages();
-        $this->assertCount(1, $messages);
-        $this->assertArrayHasKey('fieldsets', $messages);
+        self::assertCount(1, $messages);
+        self::assertArrayHasKey('fieldsets', $messages);
     }
 
     public function testCanValidateFormWithCollectionWithTemplate(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
 
-        $this->assertFalse($collection->shouldCreateTemplate());
+        self::assertFalse($collection->shouldCreateTemplate());
         $collection->setShouldCreateTemplate(true);
-        $this->assertTrue($collection->shouldCreateTemplate());
+        self::assertTrue($collection->shouldCreateTemplate());
 
         $collection->setTemplatePlaceholder('__template__');
 
@@ -260,7 +260,7 @@ final class CollectionTest extends TestCase
             ],
         ]);
 
-        $this->assertEquals(true, $this->form->isValid());
+        self::assertEquals(true, $this->form->isValid());
     }
 
     public function testThrowExceptionIfThereAreLessElementsAndAllowRemoveNotAllowed(): void
@@ -268,7 +268,7 @@ final class CollectionTest extends TestCase
         $this->expectException(DomainException::class);
 
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(false);
 
         $this->form->setData([
@@ -297,7 +297,7 @@ final class CollectionTest extends TestCase
     public function testCanValidateLessThanSpecifiedCount(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
 
         $this->form->setData([
@@ -320,7 +320,7 @@ final class CollectionTest extends TestCase
             ],
         ]);
 
-        $this->assertEquals(true, $this->form->isValid());
+        self::assertEquals(true, $this->form->isValid());
     }
 
     public function testSetOptions(): void
@@ -336,12 +336,12 @@ final class CollectionTest extends TestCase
             'template_placeholder'   => 'foo',
         ]);
 
-        $this->assertInstanceOf(Element::class, $collection->getOption('target_element'));
-        $this->assertEquals(2, $collection->getOption('count'));
-        $this->assertEquals(true, $collection->getOption('allow_add'));
-        $this->assertEquals(false, $collection->getOption('allow_remove'));
-        $this->assertEquals(true, $collection->getOption('should_create_template'));
-        $this->assertEquals('foo', $collection->getOption('template_placeholder'));
+        self::assertInstanceOf(Element::class, $collection->getOption('target_element'));
+        self::assertEquals(2, $collection->getOption('count'));
+        self::assertEquals(true, $collection->getOption('allow_add'));
+        self::assertEquals(false, $collection->getOption('allow_remove'));
+        self::assertEquals(true, $collection->getOption('should_create_template'));
+        self::assertEquals('foo', $collection->getOption('template_placeholder'));
     }
 
     public function testSetOptionsTraversable(): void
@@ -357,12 +357,12 @@ final class CollectionTest extends TestCase
             'template_placeholder'   => 'foo',
         ]));
 
-        $this->assertInstanceOf(Element::class, $collection->getOption('target_element'));
-        $this->assertEquals(2, $collection->getOption('count'));
-        $this->assertEquals(true, $collection->getOption('allow_add'));
-        $this->assertEquals(false, $collection->getOption('allow_remove'));
-        $this->assertEquals(true, $collection->getOption('should_create_template'));
-        $this->assertEquals('foo', $collection->getOption('template_placeholder'));
+        self::assertInstanceOf(Element::class, $collection->getOption('target_element'));
+        self::assertEquals(2, $collection->getOption('count'));
+        self::assertEquals(true, $collection->getOption('allow_add'));
+        self::assertEquals(false, $collection->getOption('allow_remove'));
+        self::assertEquals(true, $collection->getOption('should_create_template'));
+        self::assertEquals('foo', $collection->getOption('template_placeholder'));
     }
 
     public function testSetObjectNullRaisesException(): void
@@ -375,7 +375,7 @@ final class CollectionTest extends TestCase
     public function testSetTargetElementNullRaisesException(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $this->expectException(InvalidArgumentException::class);
         $collection->setTargetElement(null);
     }
@@ -383,11 +383,11 @@ final class CollectionTest extends TestCase
     public function testGetTargetElement(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $element = new Element('foo');
         $collection->setTargetElement($element);
 
-        $this->assertInstanceOf(Element::class, $collection->getTargetElement());
+        self::assertInstanceOf(Element::class, $collection->getTargetElement());
     }
 
     public function testExtractFromObjectDoesntTouchOriginalObject(): void
@@ -398,9 +398,9 @@ final class CollectionTest extends TestCase
         $form->add($this->productFieldset);
 
         $categories = $this->productFieldset->get('categories');
-        $this->assertInstanceOf(Collection::class, $categories);
+        self::assertInstanceOf(Collection::class, $categories);
         $targetElement = $categories->getTargetElement();
-        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
+        self::assertInstanceOf(FieldsetInterface::class, $targetElement);
         $originalObjectHash = spl_object_hash(
             $targetElement->getObject()
         );
@@ -432,7 +432,7 @@ final class CollectionTest extends TestCase
             $targetElement->getObject()
         );
 
-        $this->assertSame($originalObjectHash, $objectAfterExtractHash);
+        self::assertSame($originalObjectHash, $objectAfterExtractHash);
     }
 
     public function testDoesNotCreateNewObjects(): void
@@ -472,8 +472,8 @@ final class CollectionTest extends TestCase
         $form->isValid();
 
         $categories = $product->getCategories();
-        $this->assertSame($categories[0], $cat1);
-        $this->assertSame($categories[1], $cat2);
+        self::assertSame($categories[0], $cat1);
+        self::assertSame($categories[1], $cat2);
     }
 
     public function testCreatesNewObjectsIfSpecified(): void
@@ -518,8 +518,8 @@ final class CollectionTest extends TestCase
         $form->isValid();
 
         $categories = $product->getCategories();
-        $this->assertNotSame($categories[0], $cat1);
-        $this->assertNotSame($categories[1], $cat2);
+        self::assertNotSame($categories[0], $cat1);
+        self::assertNotSame($categories[1], $cat2);
     }
 
     /**
@@ -558,7 +558,7 @@ final class CollectionTest extends TestCase
 
         $form->bind($customer);
         $form->setData($data);
-        $this->assertTrue($form->isValid());
+        self::assertTrue($form->isValid());
     }
 
     /**
@@ -606,9 +606,9 @@ final class CollectionTest extends TestCase
         $form->bind($customer);
         $form->setData($data);
 
-        $this->assertTrue($form->isValid());
+        self::assertTrue($form->isValid());
         $phones = $customer->addresses[0]->getPhones();
-        $this->assertSame($phone, $phones[0]);
+        self::assertSame($phone, $phones[0]);
     }
 
     public function testDoNotCreateExtraFieldsetOnMultipleBind(): void
@@ -629,29 +629,29 @@ final class CollectionTest extends TestCase
         $market->product = $product;
 
         $productFieldset = $form->get('product');
-        $this->assertInstanceOf(Fieldset::class, $productFieldset);
+        self::assertInstanceOf(Fieldset::class, $productFieldset);
         $categoriesFieldset = $productFieldset->get('categories');
-        $this->assertInstanceOf(Fieldset::class, $categoriesFieldset);
+        self::assertInstanceOf(Fieldset::class, $categoriesFieldset);
         // this will pass the test
         $form->bind($market);
-        $this->assertSame(count($categoriesFieldset), iterator_count($categoriesFieldset->getIterator()));
+        self::assertSame(count($categoriesFieldset), iterator_count($categoriesFieldset->getIterator()));
 
         // this won't pass, but must
         $form->bind($market);
-        $this->assertSame(count($categoriesFieldset), iterator_count($categoriesFieldset->getIterator()));
+        self::assertSame(count($categoriesFieldset), iterator_count($categoriesFieldset->getIterator()));
     }
 
     public function testExtractDefaultIsEmptyArray(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
-        $this->assertEquals([], $collection->extract());
+        self::assertInstanceOf(Collection::class, $collection);
+        self::assertEquals([], $collection->extract());
     }
 
     public function testExtractThroughTargetElementHydrator(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
         $expected = [
@@ -659,30 +659,30 @@ final class CollectionTest extends TestCase
             'obj3' => ['field' => 'fieldTwo'],
         ];
 
-        $this->assertEquals($expected, $collection->extract());
+        self::assertEquals($expected, $collection->extract());
     }
 
     public function testExtractMaintainsTargetElementObject(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
         $targetElement = $collection->getTargetElement();
-        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
+        self::assertInstanceOf(FieldsetInterface::class, $targetElement);
         $expected = $targetElement->getObject();
 
         $collection->extract();
 
         $test = $targetElement->getObject();
 
-        $this->assertSame($expected, $test);
+        self::assertSame($expected, $test);
     }
 
     public function testExtractThroughCustomHydrator(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
         $mockHydrator = $this->createMock(HydratorInterface::class);
@@ -697,13 +697,13 @@ final class CollectionTest extends TestCase
             'obj3' => ['value' => 'fieldTwo_foo'],
         ];
 
-        $this->assertEquals($expected, $collection->extract());
+        self::assertEquals($expected, $collection->extract());
     }
 
     public function testExtractFromTraversable(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $this->prepareForExtract($collection);
 
         $traversable = new ArrayObject($collection->getObject());
@@ -714,7 +714,7 @@ final class CollectionTest extends TestCase
             'obj3' => ['field' => 'fieldTwo'],
         ];
 
-        $this->assertEquals($expected, $collection->extract());
+        self::assertEquals($expected, $collection->extract());
     }
 
     public function testValidateData(): void
@@ -744,14 +744,14 @@ final class CollectionTest extends TestCase
 
         $myForm->setData($data);
 
-        $this->assertTrue($myForm->isValid());
-        $this->assertEmpty($myForm->getMessages());
+        self::assertTrue($myForm->isValid());
+        self::assertEmpty($myForm->getMessages());
     }
 
     protected function prepareForExtract(Collection $collection): void
     {
         $targetElement = $collection->getTargetElement();
-        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
+        self::assertInstanceOf(FieldsetInterface::class, $targetElement);
 
         $obj1 = new stdClass();
 
@@ -827,30 +827,30 @@ final class CollectionTest extends TestCase
 
         //test for object binding
         $marketCollection = $form->get('collection');
-        $this->assertInstanceOf(Collection::class, $marketCollection);
+        self::assertInstanceOf(Collection::class, $marketCollection);
 
         foreach ($marketCollection as $shopFieldset) {
-            $this->assertInstanceOf(Fieldset::class, $shopFieldset);
-            $this->assertInstanceOf(stdClass::class, $shopFieldset->getObject());
+            self::assertInstanceOf(Fieldset::class, $shopFieldset);
+            self::assertInstanceOf(stdClass::class, $shopFieldset->getObject());
 
             // test for collection -> fieldset
             $productFieldset = $shopFieldset->get('product');
-            $this->assertInstanceOf(ProductFieldset::class, $productFieldset);
-            $this->assertInstanceOf(Product::class, $productFieldset->getObject());
+            self::assertInstanceOf(ProductFieldset::class, $productFieldset);
+            self::assertInstanceOf(Product::class, $productFieldset->getObject());
 
             // test for collection -> fieldset -> fieldset
             $madeInCountry = $productFieldset->get('made_in_country');
-            $this->assertInstanceOf(CountryFieldset::class, $madeInCountry);
-            $this->assertInstanceOf(Country::class, $madeInCountry->getObject());
+            self::assertInstanceOf(CountryFieldset::class, $madeInCountry);
+            self::assertInstanceOf(Country::class, $madeInCountry->getObject());
 
             // test for collection -> fieldset -> collection
             $productCategories = $productFieldset->get('categories');
-            $this->assertInstanceOf(Collection::class, $productCategories);
+            self::assertInstanceOf(Collection::class, $productCategories);
 
             // test for collection -> fieldset -> collection -> fieldset
             foreach ($productCategories as $category) {
-                $this->assertInstanceOf(CategoryFieldset::class, $category);
-                $this->assertInstanceOf(Category::class, $category->getObject());
+                self::assertInstanceOf(CategoryFieldset::class, $category);
+                self::assertInstanceOf(Category::class, $category->getObject());
             }
         }
 
@@ -858,10 +858,10 @@ final class CollectionTest extends TestCase
         // test for collection -> fieldset -> field value
         foreach ($prices as $key => $price) {
             $field1 = $marketCollection->get((string) $key);
-            $this->assertInstanceOf(Fieldset::class, $field1);
+            self::assertInstanceOf(Fieldset::class, $field1);
             $field2 = $field1->get('product');
-            $this->assertInstanceOf(Fieldset::class, $field2);
-            $this->assertEquals(
+            self::assertInstanceOf(Fieldset::class, $field2);
+            self::assertEquals(
                 $price,
                 $field2
                     ->get('price')
@@ -872,12 +872,12 @@ final class CollectionTest extends TestCase
         // test for collection -> fieldset -> fieldset ->field value
         foreach ($productCountries as $key => $countryName) {
             $field1 = $marketCollection->get((string) $key);
-            $this->assertInstanceOf(Fieldset::class, $field1);
+            self::assertInstanceOf(Fieldset::class, $field1);
             $field2 = $field1->get('product');
-            $this->assertInstanceOf(Fieldset::class, $field2);
+            self::assertInstanceOf(Fieldset::class, $field2);
             $field3 = $field2->get('made_in_country');
-            $this->assertInstanceOf(Fieldset::class, $field3);
-            $this->assertEquals(
+            self::assertInstanceOf(Fieldset::class, $field3);
+            self::assertEquals(
                 $countryName,
                 $field3
                     ->get('name')
@@ -888,14 +888,14 @@ final class CollectionTest extends TestCase
         // test collection -> fieldset -> collection -> fieldset -> field value
         foreach ($categoryNames as $key => $categoryName) {
             $field1 = $marketCollection->get((string) $key);
-            $this->assertInstanceOf(Fieldset::class, $field1);
+            self::assertInstanceOf(Fieldset::class, $field1);
             $field2 = $field1->get('product');
-            $this->assertInstanceOf(Fieldset::class, $field2);
+            self::assertInstanceOf(Fieldset::class, $field2);
             $field3 = $field2->get('categories');
-            $this->assertInstanceOf(Fieldset::class, $field3);
+            self::assertInstanceOf(Fieldset::class, $field3);
             $field4 = $field3->get((string) 0);
-            $this->assertInstanceOf(Fieldset::class, $field4);
-            $this->assertEquals(
+            self::assertInstanceOf(Fieldset::class, $field4);
+            self::assertEquals(
                 $categoryName,
                 $field4
                     ->get('name')
@@ -907,7 +907,7 @@ final class CollectionTest extends TestCase
     public function testExtractFromTraversableImplementingToArrayThroughCollectionHydrator(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
 
         // this test is using a hydrator set on the collection
         $collection->setHydrator(new ArraySerializableHydrator());
@@ -919,17 +919,17 @@ final class CollectionTest extends TestCase
             ['foo' => 'foo_value_2', 'bar' => 'bar_value_2', 'foobar' => 'foobar_value_2'],
         ];
 
-        $this->assertEquals($expected, $collection->extract());
+        self::assertEquals($expected, $collection->extract());
     }
 
     public function testExtractFromTraversableImplementingToArrayThroughTargetElementHydrator(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
 
         // this test is using a hydrator set on the target element of the collection
         $targetElement = $collection->getTargetElement();
-        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
+        self::assertInstanceOf(FieldsetInterface::class, $targetElement);
         $targetElement->setHydrator(new ArraySerializableHydrator());
         $obj1 = new ArrayModel();
         $targetElement->setObject($obj1);
@@ -941,7 +941,7 @@ final class CollectionTest extends TestCase
             ['foo' => 'foo_value_2', 'bar' => 'bar_value_2', 'foobar' => 'foobar_value_2'],
         ];
 
-        $this->assertEquals($expected, $collection->extract());
+        self::assertEquals($expected, $collection->extract());
     }
 
     protected function prepareForExtractWithCustomTraversable(Collection $collection): void
@@ -982,19 +982,19 @@ final class CollectionTest extends TestCase
 
         // Collection element attached to a form
         $formCollection = $form->get('collection');
-        $this->assertInstanceOf(Collection::class, $formCollection);
+        self::assertInstanceOf(Collection::class, $formCollection);
 
         $collection->populateValues($inputData);
         $formCollection->populateValues($inputData);
 
-        $this->assertCount(count($collection->getFieldsets()), $inputData);
-        $this->assertCount(count($formCollection->getFieldsets()), $inputData);
+        self::assertCount(count($collection->getFieldsets()), $inputData);
+        self::assertCount(count($formCollection->getFieldsets()), $inputData);
     }
 
     public function testCanRemoveAllElementsIfAllowRemoveIsTrue(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
         $collection->setCount(0);
 
@@ -1004,10 +1004,10 @@ final class CollectionTest extends TestCase
         $data[] = 'green';
 
         $collection->populateValues($data);
-        $this->assertCount(2, $collection->getElements());
+        self::assertCount(2, $collection->getElements());
 
         $collection->populateValues([]);
-        $this->assertCount(0, $collection->getElements());
+        self::assertCount(0, $collection->getElements());
     }
 
     public function testCanBindObjectMultipleNestedFieldsets(): void
@@ -1067,19 +1067,19 @@ final class CollectionTest extends TestCase
 
         // Main fieldset has a collection 'nested'...
         $main = $form->get('main');
-        $this->assertInstanceOf(Fieldset::class, $main);
-        $this->assertCount(1, $main->getFieldsets());
+        self::assertInstanceOf(Fieldset::class, $main);
+        self::assertCount(1, $main->getFieldsets());
         foreach ($main->getFieldsets() as $fieldset) {
             // ...which contains two stdClass objects (shops)
-            $this->assertCount(2, $fieldset->getFieldsets());
+            self::assertCount(2, $fieldset->getFieldsets());
             foreach ($fieldset->getFieldsets() as $nestedfieldset) {
                 // Each shop is represented by a single fieldset
-                $this->assertCount(1, $nestedfieldset->getFieldsets());
+                self::assertCount(1, $nestedfieldset->getFieldsets());
                 foreach ($nestedfieldset->getFieldsets() as $productfieldset) {
                     // Each shop fieldset contain a collection with two products in it
-                    $this->assertCount(2, $productfieldset->getFieldsets());
+                    self::assertCount(2, $productfieldset->getFieldsets());
                     foreach ($productfieldset->getFieldsets() as $product) {
-                        $this->assertInstanceOf(Product::class, $product->getObject());
+                        self::assertInstanceOf(Product::class, $product->getObject());
                     }
                 }
             }
@@ -1129,17 +1129,17 @@ final class CollectionTest extends TestCase
 
         //test for object binding
         $addresses = $form->get('addresses');
-        $this->assertInstanceOf(Collection::class, $addresses);
+        self::assertInstanceOf(Collection::class, $addresses);
         foreach ($addresses->getFieldsets() as $fieldset) {
-            $this->assertInstanceOf(Address::class, $fieldset->getObject());
+            self::assertInstanceOf(Address::class, $fieldset->getObject());
             foreach ($fieldset->getFieldsets() as $childFieldsetName => $childFieldset) {
                 switch ($childFieldsetName) {
                     case 'city':
-                        $this->assertInstanceOf(City::class, $childFieldset->getObject());
+                        self::assertInstanceOf(City::class, $childFieldset->getObject());
                         break;
                     case 'phones':
                         foreach ($childFieldset->getFieldsets() as $phoneFieldset) {
-                            $this->assertInstanceOf(
+                            self::assertInstanceOf(
                                 Phone::class,
                                 $phoneFieldset->getObject()
                             );
@@ -1152,10 +1152,10 @@ final class CollectionTest extends TestCase
         //test for correct extract and populate
         $index = 0;
         foreach ($addresses as $addresses) {
-            $this->assertEquals($data[$index]['street'], $addresses->get('street')->getValue());
+            self::assertEquals($data[$index]['street'], $addresses->get('street')->getValue());
             //assuming data has just 1 phone entry
             foreach ($addresses->get('phones') as $phone) {
-                $this->assertEquals($data[$index]['number'], $phone->get('number')->getValue());
+                self::assertEquals($data[$index]['number'], $phone->get('number')->getValue());
             }
             $index++;
         }
@@ -1179,13 +1179,13 @@ final class CollectionTest extends TestCase
         ]);
 
         $namesCollection = $form->get('names');
-        $this->assertInstanceOf(Collection::class, $namesCollection);
+        self::assertInstanceOf(Collection::class, $namesCollection);
 
-        $this->assertCount(count($names), $namesCollection);
+        self::assertCount(count($names), $namesCollection);
 
         $i = 0;
         foreach ($namesCollection as $field) {
-            $this->assertEquals($names[$i], $field->getValue());
+            self::assertEquals($names[$i], $field->getValue());
             $i++;
         }
     }
@@ -1208,13 +1208,13 @@ final class CollectionTest extends TestCase
         ]);
 
         $namesCollection = $form->get('names');
-        $this->assertInstanceOf(Collection::class, $namesCollection);
+        self::assertInstanceOf(Collection::class, $namesCollection);
 
-        $this->assertCount(0, $namesCollection);
+        self::assertCount(0, $namesCollection);
 
         $form->prepare();
 
-        $this->assertCount(2, $namesCollection);
+        self::assertCount(2, $namesCollection);
     }
 
     public function testMininumLenghtIsMaintanedWhenSettingASmallerCollection(): void
@@ -1225,10 +1225,10 @@ final class CollectionTest extends TestCase
         ];
 
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setCount(3);
         $collection->setObject($arrayCollection);
-        $this->assertEquals(3, $collection->getCount());
+        self::assertEquals(3, $collection->getCount());
     }
 
     /**
@@ -1249,16 +1249,16 @@ final class CollectionTest extends TestCase
         ]);
         $object = new ArrayObject(['text' => ['Foo', 'Bar']]);
         $form->bind($object);
-        $this->assertTrue($form->isValid());
+        self::assertTrue($form->isValid());
 
         $result = $form->getData();
-        $this->assertInstanceOf(ArrayAccess::class, $result);
-        $this->assertArrayHasKey('text', $result);
-        $this->assertIsArray($result['text']);
-        $this->assertArrayHasKey(0, $result['text']);
-        $this->assertEquals('Foo', $result['text'][0]);
-        $this->assertArrayHasKey(1, $result['text']);
-        $this->assertEquals('Bar', $result['text'][1]);
+        self::assertInstanceOf(ArrayAccess::class, $result);
+        self::assertArrayHasKey('text', $result);
+        self::assertIsArray($result['text']);
+        self::assertArrayHasKey(0, $result['text']);
+        self::assertEquals('Foo', $result['text'][0]);
+        self::assertArrayHasKey(1, $result['text']);
+        self::assertEquals('Bar', $result['text'][1]);
     }
 
     /**
@@ -1290,16 +1290,16 @@ final class CollectionTest extends TestCase
         $model->collection = [new ArrayObject(['test' => 'bar']), new stdClass()];
 
         $form->bind($model);
-        $this->assertTrue($form->isValid());
+        self::assertTrue($form->isValid());
 
         $result = $form->getData();
-        $this->assertInstanceOf(stdClass::class, $result);
-        $this->assertObjectHasAttribute('collection', $result);
-        $this->assertIsArray($result->collection);
-        $this->assertCount(1, $result->collection);
-        $this->assertInstanceOf(ArrayObject::class, $result->collection[0]);
-        $this->assertArrayHasKey('test', $result->collection[0]);
-        $this->assertEquals('bar', $result->collection[0]['test']);
+        self::assertInstanceOf(stdClass::class, $result);
+        self::assertObjectHasAttribute('collection', $result);
+        self::assertIsArray($result->collection);
+        self::assertCount(1, $result->collection);
+        self::assertInstanceOf(ArrayObject::class, $result->collection[0]);
+        self::assertArrayHasKey('test', $result->collection[0]);
+        self::assertEquals('bar', $result->collection[0]['test']);
     }
 
     /**
@@ -1317,15 +1317,15 @@ final class CollectionTest extends TestCase
             ],
         ];
         $form->setData($data);
-        $this->assertTrue($form->isValid());
-        $this->assertIsArray($object['colors']);
-        $this->assertCount(1, $object['colors']);
+        self::assertTrue($form->isValid());
+        self::assertIsArray($object['colors']);
+        self::assertCount(1, $object['colors']);
     }
 
     public function testCanRemoveMultipleElements(): void
     {
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(true);
         $collection->setCount(0);
 
@@ -1337,7 +1337,7 @@ final class CollectionTest extends TestCase
         $collection->populateValues($data);
 
         $collection->populateValues(['colors' => ['0' => 'blue']]);
-        $this->assertCount(1, $collection->getElements());
+        self::assertCount(1, $collection->getElements());
     }
 
     public function testGetErrorMessagesForInvalidCollectionElements(): void
@@ -1362,7 +1362,7 @@ final class CollectionTest extends TestCase
         $this->form->setData([]);
         $this->form->isValid();
 
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'colors'    => [
                     'isEmpty' => "Value is required and can't be empty",
@@ -1403,7 +1403,7 @@ final class CollectionTest extends TestCase
         $form->isValid();
 
         // expect the fieldsets key to be an empty array since there's no valid targetElement
-        $this->assertEquals(
+        self::assertEquals(
             [
                 'fieldsets' => [],
             ],
@@ -1416,21 +1416,21 @@ final class CollectionTest extends TestCase
         $data = new CustomTraversable(['blue', 'green']);
 
         $collection = $this->form->get('colors');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
         $collection->setAllowRemove(false);
         $collection->populateValues($data);
 
-        $this->assertCount(2, $collection->getElements());
+        self::assertCount(2, $collection->getElements());
     }
 
     public function testSetObjectTraversable(): void
     {
         $collection = $this->form->get('fieldsets');
-        $this->assertInstanceOf(Collection::class, $collection);
+        self::assertInstanceOf(Collection::class, $collection);
 
         // this test is using a hydrator set on the target element of the collection
         $targetElement = $collection->getTargetElement();
-        $this->assertInstanceOf(FieldsetInterface::class, $targetElement);
+        self::assertInstanceOf(FieldsetInterface::class, $targetElement);
         $targetElement->setHydrator(new ArraySerializableHydrator());
         $obj1 = new ArrayModel();
         $targetElement->setObject($obj1);
@@ -1447,7 +1447,7 @@ final class CollectionTest extends TestCase
             ['foo' => 'foo_value_2', 'bar' => 'bar_value_2', 'foobar' => 'foobar_value_2'],
         ];
 
-        $this->assertSame($expected, $collection->extract());
-        $this->assertSame([$obj2, $obj3], $collection->getObject());
+        self::assertSame($expected, $collection->extract());
+        self::assertSame([$obj2, $obj3], $collection->getObject());
     }
 }

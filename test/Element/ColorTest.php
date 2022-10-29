@@ -15,18 +15,18 @@ final class ColorTest extends TestCase
         $element = new ColorElement();
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Regex::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Regex::class:
-                    $this->assertEquals('/^#[0-9a-fA-F]{6}$/', $validator->getPattern());
+                    self::assertEquals('/^#[0-9a-fA-F]{6}$/', $validator->getPattern());
                     break;
                 default:
                     break;

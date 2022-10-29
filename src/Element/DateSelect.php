@@ -168,7 +168,7 @@ class DateSelect extends MonthSelect
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

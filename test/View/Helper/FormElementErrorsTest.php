@@ -43,7 +43,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertEquals('', $markup);
+        self::assertEquals('', $markup);
     }
 
     public function testRendersErrorMessagesUsingUnorderedListByDefault(): void
@@ -54,7 +54,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertMatchesRegularExpression('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
+        self::assertMatchesRegularExpression('#<ul>\s*<li>First error message</li>\s*<li>Second error message</li>\s*<li>Third error message</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -70,7 +70,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
             );
 
         $this->helper->setTranslator($mockTranslator);
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $this->helper->setTranslatorTextDomain('default');
 
@@ -80,7 +80,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertMatchesRegularExpression('#<ul>\s*<li>Translated first error message</li>\s*<li>Translated second error message</li>\s*<li>Translated third error message</li>\s*</ul>#s', $markup);
+        self::assertMatchesRegularExpression('#<ul>\s*<li>Translated first error message</li>\s*<li>Translated second error message</li>\s*<li>Translated third error message</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -119,7 +119,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
             ->method('translate');
 
         $this->helper->setTranslator($mockFormTranslator);
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $this->helper->setTranslatorTextDomain('default');
 
@@ -128,7 +128,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($form->get('test_element'));
 
-        $this->assertMatchesRegularExpression('#^<ul>\s*<li>TRANSLATED#s', $markup);
+        self::assertMatchesRegularExpression('#^<ul>\s*<li>TRANSLATED#s', $markup);
     }
 
     public function testCanSpecifyAttributesForOpeningTag(): void
@@ -138,7 +138,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
         $element->setMessages($messages);
 
         $markup = $this->helper->render($element, ['class' => 'error']);
-        $this->assertStringContainsString('ul class="error"', $markup);
+        self::assertStringContainsString('ul class="error"', $markup);
     }
 
     public function testCanSpecifyAttributesForOpeningTagUsingInvoke(): void
@@ -149,7 +149,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
         $element->setMessages($messages);
 
         $markup = $helper($element, ['class' => 'error']);
-        $this->assertStringContainsString('ul class="error"', $markup);
+        self::assertStringContainsString('ul class="error"', $markup);
     }
 
     public function testCanSpecifyAlternateMarkupStringsViaSetters(): void
@@ -165,7 +165,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertMatchesRegularExpression('#<div class="error">\s*<span>First error message</span>\s*<span>Second error message</span>\s*<span>Third error message</span>\s*</div>#s', $markup);
+        self::assertMatchesRegularExpression('#<div class="error">\s*<span>First error message</span>\s*<span>Second error message</span>\s*<span>Third error message</span>\s*</div>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -177,7 +177,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
         $element->setAttributes(['class' => 'foo']);
 
         $markup = $this->helper->render($element, ['class' => 'error']);
-        $this->assertStringContainsString('ul class="error"', $markup);
+        self::assertStringContainsString('ul class="error"', $markup);
     }
 
     public function testGetAttributes(): void
@@ -190,7 +190,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 
         $this->helper->render($element);
 
-        $this->assertEquals(['class' => 'error'], $this->helper->getAttributes());
+        self::assertEquals(['class' => 'error'], $this->helper->getAttributes());
     }
 
     public function testRendersNestedMessageSetsAsAFlatList(): void
@@ -209,14 +209,14 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element, ['class' => 'error']);
         // @codingStandardsIgnoreStart
-        $this->assertMatchesRegularExpression('#<ul class="error">\s*<li>First validator message</li>\s*<li>Second validator first message</li>\s*<li>Second validator second message</li>\s*</ul>#s', $markup);
+        self::assertMatchesRegularExpression('#<ul class="error">\s*<li>First validator message</li>\s*<li>Second validator first message</li>\s*<li>Second validator second message</li>\s*</ul>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
     public function testCallingTheHelperToRenderInvokeCanReturnObject(): void
     {
         $helper = $this->helper;
-        $this->assertEquals($helper(), $helper);
+        self::assertEquals($helper(), $helper);
     }
 
     public function testHtmlEscapingOfMessages(): void
@@ -233,7 +233,7 @@ final class FormElementErrorsTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element);
 
-        $this->assertStringNotContainsString('<span>', $markup);
-        $this->assertStringNotContainsString('</span>', $markup);
+        self::assertStringNotContainsString('<span>', $markup);
+        self::assertStringNotContainsString('</span>', $markup);
     }
 }

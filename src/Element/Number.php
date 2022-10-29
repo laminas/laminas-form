@@ -82,7 +82,7 @@ class Number extends Element implements InputProviderInterface
      *
      * Attaches a number validator, as well as a greater than and less than validators
      *
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {

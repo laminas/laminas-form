@@ -88,8 +88,8 @@ final class FormElementTest extends TestCase
         $element->setAttribute('src', 'http://zend.com/img.png');
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString('<input', $markup);
-        $this->assertStringContainsString('type="' . $type . '"', $markup);
+        self::assertStringContainsString('<input', $markup);
+        self::assertStringContainsString('type="' . $type . '"', $markup);
     }
 
     public function getMultiElements(): array
@@ -109,13 +109,13 @@ final class FormElementTest extends TestCase
     {
         if ($type === 'radio') {
             $element = new Element\Radio('foo');
-            $this->assertEquals('radio', $element->getAttribute('type'));
+            self::assertEquals('radio', $element->getAttribute('type'));
         } elseif ($type === 'multi_checkbox') {
             $element = new Element\MultiCheckbox('foo');
-            $this->assertEquals('multi_checkbox', $element->getAttribute('type'));
+            self::assertEquals('multi_checkbox', $element->getAttribute('type'));
         } elseif ($type === 'select') {
             $element = new Element\Select('foo');
-            $this->assertEquals('select', $element->getAttribute('type'));
+            self::assertEquals('select', $element->getAttribute('type'));
         } else {
             $element = new Element('foo');
         }
@@ -130,10 +130,10 @@ final class FormElementTest extends TestCase
         $element->setAttribute('value', 'value2');
         $markup = $this->helper->render($element);
 
-        $this->assertEquals(3, substr_count($markup, '<' . $inputType), $markup);
-        $this->assertStringContainsString($additionalMarkup, $markup);
+        self::assertEquals(3, substr_count($markup, '<' . $inputType), $markup);
+        self::assertStringContainsString($additionalMarkup, $markup);
         if ($type === 'select') {
-            $this->assertMatchesRegularExpression('#value="value2"[^>]*?(selected="selected")#', $markup);
+            self::assertMatchesRegularExpression('#value="value2"[^>]*?(selected="selected")#', $markup);
         }
     }
 
@@ -144,7 +144,7 @@ final class FormElementTest extends TestCase
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString($captcha->getLabel(), $markup);
+        self::assertStringContainsString($captcha->getLabel(), $markup);
     }
 
     public function testRendersCsrfAsExpected(): void
@@ -166,8 +166,8 @@ final class FormElementTest extends TestCase
 
         $markup = $this->helper->render($element);
 
-        $this->assertMatchesRegularExpression('#<input[^>]*(type="hidden")#', $markup);
-        $this->assertMatchesRegularExpression('#<input[^>]*(value="' . $hash . '")#', $markup);
+        self::assertMatchesRegularExpression('#<input[^>]*(type="hidden")#', $markup);
+        self::assertMatchesRegularExpression('#<input[^>]*(value="' . $hash . '")#', $markup);
     }
 
     public function testRendersTextareaAsExpected(): void
@@ -177,8 +177,8 @@ final class FormElementTest extends TestCase
         $element->setAttribute('value', 'Initial content');
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString('<textarea', $markup);
-        $this->assertStringContainsString('>Initial content<', $markup);
+        self::assertStringContainsString('<textarea', $markup);
+        self::assertStringContainsString('>Initial content<', $markup);
     }
 
     public function testRendersCollectionAsExpected(): void
@@ -187,7 +187,7 @@ final class FormElementTest extends TestCase
         $element->setLabel('foo');
 
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<legend>foo</legend>', $markup);
+        self::assertStringContainsString('<legend>foo</legend>', $markup);
     }
 
     public function testRendersButtonAsExpected(): void
@@ -196,13 +196,13 @@ final class FormElementTest extends TestCase
         $element->setLabel('My Button');
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString('<button', $markup);
-        $this->assertStringContainsString('>My Button<', $markup);
+        self::assertStringContainsString('<button', $markup);
+        self::assertStringContainsString('>My Button<', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 }
