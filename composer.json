@@ -32,7 +32,7 @@
         "laminas/laminas-eventmanager": "^3.6",
         "laminas/laminas-filter": "^2.23",
         "laminas/laminas-i18n": "^2.19",
-        "laminas/laminas-modulemanager": "^2.12",
+        "laminas/laminas-modulemanager": "^2.14.0",
         "laminas/laminas-recaptcha": "^3.4.0",
         "laminas/laminas-servicemanager": "^3.19",
         "laminas/laminas-session": "^2.13",
