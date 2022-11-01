@@ -40,7 +40,7 @@
         "laminas/laminas-validator": "^2.26",
         "laminas/laminas-view": "^2.24",
         "phpunit/phpunit": "^9.5.25",
-        "psalm/plugin-phpunit": "^0.17.0",
+        "psalm/plugin-phpunit": "^0.18.0",
         "vimeo/psalm": "^4.29"
     },
     "suggest": {
