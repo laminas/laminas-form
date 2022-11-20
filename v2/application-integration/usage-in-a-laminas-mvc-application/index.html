@@ -935,15 +935,15 @@ e.g. <code>src/Album/Controller/AlbumControllerFactory.php</code>:</p>
 <pre class="highlight"><code class="language-php">namespace Album\Controller;
 
 use Album\Form\AlbumForm;
-use Laminas\ServiceManager\PluginManagerInterface;
+use Laminas\Form\FormElementManager;
 use Psr\Container\ContainerInterface;
 
 class AlbumControllerFactory
 {
     public function __invoke(ContainerInterface $container) : AlbumController
     {
-        /** @var PluginManagerInterface $formElementManager */
-        $formElementManager = $container-&gt;get('FormElementManager');
+        /** @var FormElementManager $formElementManager */
+        $formElementManager = $container-&gt;get(FormElementManager::class);
         /** @var AlbumForm */ 
         $form = $formElementManager-&gt;get(AlbumForm::class);
 

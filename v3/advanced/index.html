@@ -1071,14 +1071,15 @@ class IndexController extends AbstractActionController
 <p>This now requires a factory to inject the form instance:</p>
 <pre class="highlight"><code class="language-php">namespace Application\Controller;
 
-use Interop\Container\ContainerInterface;
 use Application\Form\MyForm;
+use Laminas\Form\FormElementManager;
+use Psr\Container\ContainerInterface;
 
 class IndexControllerFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $formManager = $container-&gt;get('FormElementManager');
+        $formManager = $container-&gt;get(FormElementManager::class);
         return new IndexController($formManager-&gt;get(MyForm::class));
     }
 }</code></pre>
