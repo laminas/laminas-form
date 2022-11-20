@@ -6,6 +6,9 @@ namespace Laminas\Form;
 
 use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\Form\Exception;
+use Laminas\Hydrator\HydratorInterface;
+use Laminas\Hydrator\HydratorPluginManager;
+use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\Stdlib\InitializableInterface;
@@ -217,8 +220,8 @@ class FormElementManager extends AbstractPluginManager
         $factory = $instance->getFormFactory();
         $factory->setFormElementManager($this);
 
-        if ($container->has('InputFilterManager')) {
-            $inputFilters = $container->get('InputFilterManager');
+        if ($container->has(InputFilterPluginManager::class)) {
+            $inputFilters = $container->get(InputFilterPluginManager::class);
             $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
         }
     }
@@ -343,15 +346,17 @@ class FormElementManager extends AbstractPluginManager
     /**
      * Try to pull hydrator from the creation context, or instantiates it from its name
      *
+     * @param string|class-string<HydratorInterface> $hydratorName
      * @return mixed
+     * @psalm-return ($hydratorName is class-string<HydratorInterface> ? HydratorInterface : mixed)
      * @throws Exception\DomainException
      */
     public function getHydratorFromName(string $hydratorName)
     {
         $services = $this->creationContext;
 
-        if ($services && $services->has('HydratorManager')) {
-            $hydrators = $services->get('HydratorManager');
+        if ($services && $services->has(HydratorPluginManager::class)) {
+            $hydrators = $services->get(HydratorPluginManager::class);
             if ($hydrators->has($hydratorName)) {
                 return $hydrators->get($hydratorName);
             }

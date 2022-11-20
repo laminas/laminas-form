@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Laminas\Form\Annotation;
 
-use Interop\Container\ContainerInterface; // phpcs:disable WebimpressCodingStandard.PHP.CorrectClassNameCase
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\Form\Factory;
+use Laminas\Form\FormElementManager;
+use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\Factory\AbstractFactoryInterface;
+use Psr\Container\ContainerInterface;
 
 use function is_array;
 use function is_subclass_of;
@@ -121,10 +123,10 @@ final class BuilderAbstractFactory implements AbstractFactoryInterface
      */
     private function injectFactory(Factory $factory, ContainerInterface $container): void
     {
-        $factory->setFormElementManager($container->get('FormElementManager'));
+        $factory->setFormElementManager($container->get(FormElementManager::class));
 
-        if ($container->has('InputFilterManager')) {
-            $inputFilters = $container->get('InputFilterManager');
+        if ($container->has(InputFilterPluginManager::class)) {
+            $inputFilters = $container->get(InputFilterPluginManager::class);
             $factory->getInputFilterFactory()->setInputFilterManager($inputFilters);
         }
     }

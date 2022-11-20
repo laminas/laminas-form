@@ -265,14 +265,15 @@ This now requires a factory to inject the form instance:
 ```php
 namespace Application\Controller;
 
-use Interop\Container\ContainerInterface;
 use Application\Form\MyForm;
+use Laminas\Form\FormElementManager;
+use Psr\Container\ContainerInterface;
 
 class IndexControllerFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $formManager = $container->get('FormElementManager');
+        $formManager = $container->get(FormElementManager::class);
         return new IndexController($formManager->get(MyForm::class));
     }
 }

@@ -10,6 +10,7 @@ use Laminas\Form\Annotation\AnnotationBuilder;
 use Laminas\Form\Annotation\AttributeBuilder;
 use Laminas\Form\Annotation\BuilderAbstractFactory;
 use Laminas\Form\FormElementManager;
+use Laminas\InputFilter\InputFilterPluginManager;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
 use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
@@ -26,14 +27,14 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('get')
             ->willReturnMap([
                 ['EventManager', $events],
-                ['FormElementManager', new FormElementManager(new ServiceManager())],
+                [FormElementManager::class, new FormElementManager(new ServiceManager())],
             ]);
 
         $container->expects(self::atLeast(2))
             ->method('has')
             ->willReturnMap([
                 ['config', false],
-                ['InputFilterManager', false],
+                [InputFilterPluginManager::class, false],
             ]);
 
         $factory = new BuilderAbstractFactory();
@@ -60,14 +61,14 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('get')
             ->willReturnMap([
                 ['EventManager', $events],
-                ['FormElementManager', new FormElementManager(new ServiceManager())],
+                [FormElementManager::class, new FormElementManager(new ServiceManager())],
             ]);
 
         $container->expects(self::atLeast(2))
             ->method('has')
             ->willReturnMap([
                 ['config', false],
-                ['InputFilterManager', false],
+                [InputFilterPluginManager::class, false],
             ]);
 
         $factory = new BuilderAbstractFactory();
@@ -99,7 +100,7 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('get')
             ->willReturnMap([
                 ['EventManager', $events],
-                ['FormElementManager', new FormElementManager(new ServiceManager())],
+                [FormElementManager::class, new FormElementManager(new ServiceManager())],
                 ['config', $config],
             ]);
 
@@ -107,7 +108,7 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('has')
             ->willReturnMap([
                 ['config', true],
-                ['InputFilterManager', false],
+                [InputFilterPluginManager::class, false],
             ]);
 
         $factory = new BuilderAbstractFactory();
@@ -133,7 +134,7 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('get')
             ->willReturnMap([
                 ['EventManager', $events],
-                ['FormElementManager', new FormElementManager(new ServiceManager())],
+                [FormElementManager::class, new FormElementManager(new ServiceManager())],
                 ['config', $config],
                 ['test-listener', $listener],
             ]);
@@ -142,7 +143,7 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('has')
             ->willReturnMap([
                 ['config', true],
-                ['InputFilterManager', false],
+                [InputFilterPluginManager::class, false],
             ]);
 
         $listener->expects(self::once())
@@ -169,7 +170,7 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('get')
             ->willReturnMap([
                 ['EventManager', $events],
-                ['FormElementManager', new FormElementManager(new ServiceManager())],
+                [FormElementManager::class, new FormElementManager(new ServiceManager())],
                 ['config', $config],
                 [
                     'test-listener',
@@ -182,7 +183,7 @@ final class BuilderAbstractFactoryTest extends TestCase
             ->method('has')
             ->willReturnMap([
                 ['config', true],
-                ['InputFilterManager', false],
+                [InputFilterPluginManager::class, false],
             ]);
 
         $factory = new BuilderAbstractFactory();

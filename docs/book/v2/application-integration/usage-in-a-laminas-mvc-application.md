@@ -128,15 +128,15 @@ e.g. `src/Album/Controller/AlbumControllerFactory.php`:
 namespace Album\Controller;
 
 use Album\Form\AlbumForm;
-use Laminas\ServiceManager\PluginManagerInterface;
+use Laminas\Form\FormElementManager;
 use Psr\Container\ContainerInterface;
 
 class AlbumControllerFactory
 {
     public function __invoke(ContainerInterface $container) : AlbumController
     {
-        /** @var PluginManagerInterface $formElementManager */
-        $formElementManager = $container->get('FormElementManager');
+        /** @var FormElementManager $formElementManager */
+        $formElementManager = $container->get(FormElementManager::class);
         /** @var AlbumForm */ 
         $form = $formElementManager->get(AlbumForm::class);
 
