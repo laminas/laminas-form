@@ -49,8 +49,8 @@ final class DateTest extends TestCase
         $element = new DateElement('foo');
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Date::class,
@@ -58,12 +58,12 @@ final class DateTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case DateStep::class:
                     $dateInterval = new DateInterval('P1D');
-                    $this->assertEquals($dateInterval, $validator->getStep());
-                    $this->assertEquals(date('Y-m-d', 0), $validator->getBaseValue());
+                    self::assertEquals($dateInterval, $validator->getStep());
+                    self::assertEquals(date('Y-m-d', 0), $validator->getBaseValue());
                     break;
                 default:
                     break;
@@ -82,8 +82,8 @@ final class DateTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Date::class,
@@ -93,20 +93,20 @@ final class DateTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2000-01-01', $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('2000-01-01', $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2001-01-01', $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('2001-01-01', $validator->getMax());
                     break;
                 case DateStep::class:
                     $dateInterval = new DateInterval('P1D');
-                    $this->assertEquals($dateInterval, $validator->getStep());
-                    $this->assertEquals('2000-01-01', $validator->getBaseValue());
+                    self::assertEquals($dateInterval, $validator->getStep());
+                    self::assertEquals('2000-01-01', $validator->getBaseValue());
                     break;
                 default:
                     break;
@@ -120,7 +120,7 @@ final class DateTest extends TestCase
         $date    = new DateTime();
         $element->setValue($date);
         $value = $element->getValue();
-        $this->assertEquals($date->format('Y-m-d'), $value);
+        self::assertEquals($date->format('Y-m-d'), $value);
     }
 
     public function testCorrectFormatPassedToDateValidator(): void
@@ -137,7 +137,7 @@ final class DateTest extends TestCase
             switch ($validator::class) {
                 case DateStep::class:
                 case Date::class:
-                    $this->assertEquals('d-m-Y', $validator->getFormat());
+                    self::assertEquals('d-m-Y', $validator->getFormat());
                     break;
             }
         }
@@ -156,7 +156,7 @@ final class DateTest extends TestCase
         foreach ($inputSpec['validators'] as $validator) {
             switch ($validator::class) {
                 case DateStep::class:
-                    $this->assertTrue($validator->isValid('2013-12-25'));
+                    self::assertTrue($validator->isValid('2013-12-25'));
                     break;
             }
         }

@@ -41,7 +41,7 @@ abstract class AbstractCommonTestCase extends TestCase
             $this->markTestSkipped('ext/intl not enabled');
         }
 
-        $this->assertEquals('UTF-8', $this->helper->getEncoding());
+        self::assertEquals('UTF-8', $this->helper->getEncoding());
     }
 
     public function testCanInjectEncoding(): void
@@ -51,7 +51,7 @@ abstract class AbstractCommonTestCase extends TestCase
         }
 
         $this->helper->setEncoding('iso-8859-1');
-        $this->assertEquals('iso-8859-1', $this->helper->getEncoding());
+        self::assertEquals('iso-8859-1', $this->helper->getEncoding());
     }
 
     public function testInjectingEncodingProxiesToEscapeHelper(): void
@@ -61,9 +61,9 @@ abstract class AbstractCommonTestCase extends TestCase
         }
 
         $escape = $this->renderer->plugin('escapehtml');
-        $this->assertInstanceOf(EscapeHtml::class, $escape);
+        self::assertInstanceOf(EscapeHtml::class, $escape);
         $this->helper->setEncoding('iso-8859-1');
-        $this->assertEquals('iso-8859-1', $escape->getEncoding());
+        self::assertEquals('iso-8859-1', $escape->getEncoding());
     }
 
     public function testInjectingEncodingProxiesToAttrEscapeHelper(): void
@@ -73,9 +73,9 @@ abstract class AbstractCommonTestCase extends TestCase
         }
 
         $escape = $this->renderer->plugin('escapehtmlattr');
-        $this->assertInstanceOf(EscapeHtmlAttr::class, $escape);
+        self::assertInstanceOf(EscapeHtmlAttr::class, $escape);
         $this->helper->setEncoding('iso-8859-1');
-        $this->assertEquals('iso-8859-1', $escape->getEncoding());
+        self::assertEquals('iso-8859-1', $escape->getEncoding());
     }
 
     public function testAssumesHtml4LooseDoctypeByDefault(): void
@@ -86,7 +86,7 @@ abstract class AbstractCommonTestCase extends TestCase
 
         $helperClass = $this->helper::class;
         $helper      = new $helperClass();
-        $this->assertEquals(Doctype::HTML4_LOOSE, $helper->getDoctype());
+        self::assertEquals(Doctype::HTML4_LOOSE, $helper->getDoctype());
     }
 
     public function testCanInjectDoctype(): void
@@ -96,7 +96,7 @@ abstract class AbstractCommonTestCase extends TestCase
         }
 
         $this->helper->setDoctype(Doctype::HTML5);
-        $this->assertEquals(Doctype::HTML5, $this->helper->getDoctype());
+        self::assertEquals(Doctype::HTML5, $this->helper->getDoctype());
     }
 
     public function testCanGetDoctypeFromDoctypeHelper(): void
@@ -106,6 +106,6 @@ abstract class AbstractCommonTestCase extends TestCase
         }
 
         $this->renderer->doctype(Doctype::XHTML1_STRICT);
-        $this->assertEquals(Doctype::XHTML1_STRICT, $this->helper->getDoctype());
+        self::assertEquals(Doctype::XHTML1_STRICT, $this->helper->getDoctype());
     }
 }

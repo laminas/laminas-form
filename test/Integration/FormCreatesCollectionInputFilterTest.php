@@ -61,14 +61,14 @@ final class FormCreatesCollectionInputFilterTest extends TestCase
         ]);
         $inputFilter           = $form->getInputFilter();
         $inputFilterCollection = $inputFilter->get('collection');
-        $this->assertInstanceOf(CollectionInputFilter::class, $inputFilterCollection);
+        self::assertInstanceOf(CollectionInputFilter::class, $inputFilterCollection);
         $filter = $inputFilterCollection->getInputFilter()->get('date');
 
         $validators = $filter->getValidatorChain()->getValidators();
-        $this->assertCount(3, $validators);
-        $this->assertValidatorFound(Validator\StringLength::class, $validators);
-        $this->assertValidatorFound(Validator\Date::class, $validators);
-        $this->assertValidatorFound(Validator\DateStep::class, $validators);
+        self::assertCount(3, $validators);
+        self::assertValidatorFound(Validator\StringLength::class, $validators);
+        self::assertValidatorFound(Validator\Date::class, $validators);
+        self::assertValidatorFound(Validator\DateStep::class, $validators);
 
         return $form;
     }
@@ -79,6 +79,6 @@ final class FormCreatesCollectionInputFilterTest extends TestCase
     public function testCollectionElementDoesNotCreateDiscreteElementInInputFilter(Form $form): void
     {
         $inputFilter = $form->getInputFilter();
-        $this->assertFalse($inputFilter->has('date'));
+        self::assertFalse($inputFilter->has('date'));
     }
 }

@@ -27,21 +27,21 @@ final class FormTest extends AbstractCommonTestCase
 
     public function testInvokeReturnsHelper(): void
     {
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 
     public function testCallingOpenTagWithoutProvidingFormResultsInEmptyActionAndGetMethod(): void
     {
         $markup = $this->helper->openTag();
-        $this->assertStringContainsString('<form', $markup);
-        $this->assertStringContainsString('action=""', $markup);
-        $this->assertStringContainsString('method="get"', $markup);
+        self::assertStringContainsString('<form', $markup);
+        self::assertStringContainsString('action=""', $markup);
+        self::assertStringContainsString('method="get"', $markup);
     }
 
     public function testCallingCloseTagEmitsClosingFormTag(): void
     {
         $markup = $this->helper->closeTag();
-        $this->assertEquals('</form>', $markup);
+        self::assertEquals('</form>', $markup);
     }
 
     public function testCallingOpenTagWithFormUsesFormAttributes(): void
@@ -60,9 +60,9 @@ final class FormTest extends AbstractCommonTestCase
         $markup = $this->helper->openTag($form);
 
         $escape = $this->renderer->plugin('escapehtmlattr');
-        $this->assertInstanceOf(EscapeHtmlAttr::class, $escape);
+        self::assertInstanceOf(EscapeHtmlAttr::class, $escape);
         foreach ($attributes as $attribute => $value) {
-            $this->assertStringContainsString(sprintf('%s="%s"', $attribute, $escape($value)), $markup);
+            self::assertStringContainsString(sprintf('%s="%s"', $attribute, $escape($value)), $markup);
         }
     }
 
@@ -75,8 +75,8 @@ final class FormTest extends AbstractCommonTestCase
         $form->setAttributes($attributes);
 
         $markup = $this->helper->openTag($form);
-        $this->assertStringContainsString('name="login-form"', $markup);
-        $this->assertStringContainsString('id="login-form"', $markup);
+        self::assertStringContainsString('name="login-form"', $markup);
+        self::assertStringContainsString('id="login-form"', $markup);
     }
 
     public function testRender(): void
@@ -89,12 +89,12 @@ final class FormTest extends AbstractCommonTestCase
 
         $markup = $this->helper->__invoke($form);
 
-        $this->assertStringContainsString('<form', $markup);
-        $this->assertStringContainsString('id="login-form"', $markup);
-        $this->assertStringContainsString('<label><span>Name of the city</span>', $markup);
-        $this->assertStringContainsString('<fieldset><legend>Country</legend>', $markup);
-        $this->assertStringContainsString('<input type="submit" name="send"', $markup);
-        $this->assertStringContainsString('</form>', $markup);
+        self::assertStringContainsString('<form', $markup);
+        self::assertStringContainsString('id="login-form"', $markup);
+        self::assertStringContainsString('<label><span>Name of the city</span>', $markup);
+        self::assertStringContainsString('<fieldset><legend>Country</legend>', $markup);
+        self::assertStringContainsString('<input type="submit" name="send"', $markup);
+        self::assertStringContainsString('</form>', $markup);
     }
 
     public function testRenderPreparesForm(): void
@@ -106,8 +106,8 @@ final class FormTest extends AbstractCommonTestCase
 
         $markup = $this->helper->__invoke($form);
 
-        $this->assertStringContainsString('<form', $markup);
-        $this->assertStringContainsString('</form>', $markup);
+        self::assertStringContainsString('<form', $markup);
+        self::assertStringContainsString('</form>', $markup);
     }
 
     public function testHtml5DoesNotAddEmptyActionAttributeToFormTag(): void
@@ -121,9 +121,9 @@ final class FormTest extends AbstractCommonTestCase
         $helper->setDoctype(Doctype::XHTML5);
         $xhtml5Markup = $helper->openTag();
 
-        $this->assertStringContainsString('action=""', $html4Markup);
-        $this->assertStringNotContainsString('action=""', $html5Markup);
-        $this->assertStringNotContainsString('action=""', $xhtml5Markup);
+        self::assertStringContainsString('action=""', $html4Markup);
+        self::assertStringNotContainsString('action=""', $html5Markup);
+        self::assertStringNotContainsString('action=""', $xhtml5Markup);
     }
 
     public function testHtml5DoesNotSetDefaultMethodAttributeInFormTag(): void
@@ -137,8 +137,8 @@ final class FormTest extends AbstractCommonTestCase
         $helper->setDoctype(Doctype::XHTML5);
         $xhtml5Markup = $helper->openTag();
 
-        $this->assertStringContainsString('method="get"', $html4Markup);
-        $this->assertStringNotContainsString('method="get"', $html5Markup);
-        $this->assertStringNotContainsString('method="get"', $xhtml5Markup);
+        self::assertStringContainsString('method="get"', $html4Markup);
+        self::assertStringNotContainsString('method="get"', $html5Markup);
+        self::assertStringNotContainsString('method="get"', $xhtml5Markup);
     }
 }

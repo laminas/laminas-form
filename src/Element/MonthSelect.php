@@ -317,15 +317,11 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInput()}.
-     *
-     * @return array
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => false,
             'filters'    => [
                 ['name' => 'MonthSelect'],
@@ -334,6 +330,13 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
                 $this->getValidator(),
             ],
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 
     /**

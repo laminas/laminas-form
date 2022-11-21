@@ -27,7 +27,7 @@ final class FormButtonTest extends AbstractCommonTestCase
     public function testCanEmitStartTagOnly(): void
     {
         $markup = $this->helper->openTag();
-        $this->assertEquals('<button>', $markup);
+        self::assertEquals('<button>', $markup);
     }
 
     public function testPassingArrayToOpenTagRendersAttributes(): void
@@ -40,21 +40,21 @@ final class FormButtonTest extends AbstractCommonTestCase
         $markup     = $this->helper->openTag($attributes);
 
         foreach ($attributes as $key => $value) {
-            $this->assertStringContainsString(sprintf('%s="%s"', $key, $value), $markup);
+            self::assertStringContainsString(sprintf('%s="%s"', $key, $value), $markup);
         }
     }
 
     public function testCanEmitCloseTagOnly(): void
     {
         $markup = $this->helper->closeTag();
-        $this->assertEquals('</button>', $markup);
+        self::assertEquals('</button>', $markup);
     }
 
     public function testPassingElementToOpenTagWillUseNameAttribute(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->openTag($element);
-        $this->assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
     }
 
     public function testRaisesExceptionWhenNameIsNotPresentInElementWhenPassedToOpenTag(): void
@@ -77,8 +77,8 @@ final class FormButtonTest extends AbstractCommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->openTag($element);
-        $this->assertStringContainsString('<button ', $markup);
-        $this->assertStringContainsString('type="submit"', $markup);
+        self::assertStringContainsString('<button ', $markup);
+        self::assertStringContainsString('type="submit"', $markup);
     }
 
     public function testGeneratesButtonTagWithElementsTypeAttribute(): void
@@ -86,8 +86,8 @@ final class FormButtonTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'button');
         $markup = $this->helper->openTag($element);
-        $this->assertStringContainsString('<button ', $markup);
-        $this->assertStringContainsString('type="button"', $markup);
+        self::assertStringContainsString('<button ', $markup);
+        self::assertStringContainsString('type="button"', $markup);
     }
 
     public function inputTypes(): array
@@ -219,51 +219,51 @@ final class FormButtonTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setLabel('{button_content}');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('>{button_content}<', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
-        $this->assertStringContainsString('<button', $markup);
-        $this->assertStringContainsString('</button>', $markup);
+        self::assertStringContainsString('>{button_content}<', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('<button', $markup);
+        self::assertStringContainsString('</button>', $markup);
     }
 
     public function testPassingElementAndContentToRenderUsesContent(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element, '{button_content}');
-        $this->assertStringContainsString('>{button_content}<', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
-        $this->assertStringContainsString('<button', $markup);
-        $this->assertStringContainsString('</button>', $markup);
+        self::assertStringContainsString('>{button_content}<', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('<button', $markup);
+        self::assertStringContainsString('</button>', $markup);
     }
 
     public function testCallingFromViewHelperCanHandleOpenTagAndCloseTag(): void
     {
         $helper = $this->helper;
         $markup = $helper()->openTag();
-        $this->assertEquals('<button>', $markup);
+        self::assertEquals('<button>', $markup);
         $markup = $helper()->closeTag();
-        $this->assertEquals('</button>', $markup);
+        self::assertEquals('</button>', $markup);
     }
 
     public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element, '{button_content}');
-        $this->assertStringContainsString('<button', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
-        $this->assertStringContainsString('>{button_content}<', $markup);
+        self::assertStringContainsString('<button', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('>{button_content}<', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 
     public function testDoesNotThrowExceptionIfNameIsZero(): void
     {
         $element = new Element(0);
         $markup  = $this->helper->__invoke($element, '{button_content}');
-        $this->assertStringContainsString('name="0"', $markup);
+        self::assertStringContainsString('name="0"', $markup);
     }
 
     public function testCanTranslateContent(): void
@@ -277,10 +277,10 @@ final class FormButtonTest extends AbstractCommonTestCase
             ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertStringContainsString('>translated content<', $markup);
+        self::assertStringContainsString('>translated content<', $markup);
     }
 
     public function testCanTranslateButtonContentParameter(): void
@@ -293,10 +293,10 @@ final class FormButtonTest extends AbstractCommonTestCase
             ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element, 'translate me');
-        $this->assertStringContainsString('>translated content<', $markup);
+        self::assertStringContainsString('>translated content<', $markup);
     }
 
     public function testTranslatorMethods(): void
@@ -304,13 +304,13 @@ final class FormButtonTest extends AbstractCommonTestCase
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
-        $this->assertEquals($translatorMock, $this->helper->getTranslator());
-        $this->assertEquals('foo', $this->helper->getTranslatorTextDomain());
-        $this->assertTrue($this->helper->hasTranslator());
-        $this->assertTrue($this->helper->isTranslatorEnabled());
+        self::assertEquals($translatorMock, $this->helper->getTranslator());
+        self::assertEquals('foo', $this->helper->getTranslatorTextDomain());
+        self::assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->isTranslatorEnabled());
 
         $this->helper->setTranslatorEnabled(false);
-        $this->assertFalse($this->helper->isTranslatorEnabled());
+        self::assertFalse($this->helper->isTranslatorEnabled());
     }
 
     public function testLabelIsEscapedByDefault(): void
@@ -318,7 +318,7 @@ final class FormButtonTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setLabel('<strong>Click me</strong>');
         $markup = $this->helper->__invoke($element);
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#<button([^>]*)>&lt;strong&gt;Click me&lt;/strong&gt;<\/button>#',
             $markup
         );
@@ -330,6 +330,6 @@ final class FormButtonTest extends AbstractCommonTestCase
         $element->setLabel('<strong>Click me</strong>');
         $element->setLabelOptions(['disable_html_escape' => true]);
         $markup = $this->helper->__invoke($element);
-        $this->assertMatchesRegularExpression('#<button([^>]*)><strong>Click me</strong></button>#', $markup);
+        self::assertMatchesRegularExpression('#<button([^>]*)><strong>Click me</strong></button>#', $markup);
     }
 }

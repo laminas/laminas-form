@@ -18,8 +18,8 @@ final class NumberTest extends TestCase
         $element = new NumberElement();
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Regex::class,
@@ -27,10 +27,10 @@ final class NumberTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Step::class:
-                    $this->assertEquals(1, $validator->getStep());
+                    self::assertEquals(1, $validator->getStep());
                     break;
                 default:
                     break;
@@ -49,8 +49,8 @@ final class NumberTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             GreaterThan::class,
@@ -60,18 +60,18 @@ final class NumberTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals(5, $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals(5, $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals(10, $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals(10, $validator->getMax());
                     break;
                 case Step::class:
-                    $this->assertEquals(1, $validator->getStep());
+                    self::assertEquals(1, $validator->getStep());
                     break;
                 default:
                     break;
@@ -90,7 +90,7 @@ final class NumberTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
             if ($validator::class === GreaterThan::class) {
-                $this->assertFalse($validator->getInclusive());
+                self::assertFalse($validator->getInclusive());
                 break;
             }
         }
@@ -106,7 +106,7 @@ final class NumberTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
             if ($validator::class === GreaterThan::class) {
-                $this->assertTrue($validator->getInclusive());
+                self::assertTrue($validator->getInclusive());
                 break;
             }
         }
@@ -119,10 +119,10 @@ final class NumberTest extends TestCase
         $inputSpec = $element->getInputSpecification();
         foreach ($inputSpec['validators'] as $validator) {
             if ($validator::class === Regex::class) {
-                $this->assertFalse($validator->isValid('1,000.01'));
-                $this->assertFalse($validator->isValid('-1,000.01'));
-                $this->assertTrue($validator->isValid('1000.01'));
-                $this->assertTrue($validator->isValid('-1000.01'));
+                self::assertFalse($validator->isValid('1,000.01'));
+                self::assertFalse($validator->isValid('-1,000.01'));
+                self::assertTrue($validator->isValid('1000.01'));
+                self::assertTrue($validator->isValid('-1000.01'));
                 break;
             }
         }

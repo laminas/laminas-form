@@ -25,8 +25,8 @@ final class WeekTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Regex::class,
@@ -36,19 +36,19 @@ final class WeekTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('1970-W01', $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('1970-W01', $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('1970-W03', $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('1970-W03', $validator->getMax());
                     break;
                 case DateStep::class:
                     $dateInterval = new DateInterval('P1W');
-                    $this->assertEquals($dateInterval, $validator->getStep());
+                    self::assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:
                     break;
@@ -76,8 +76,8 @@ final class WeekTest extends TestCase
     {
         $element   = new WeekElement('foo');
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
+        self::assertArrayHasKey('validators', $inputSpec);
         $weekValidator = $inputSpec['validators'][0];
-        $this->assertEquals($expected, $weekValidator->isValid($value));
+        self::assertEquals($expected, $weekValidator->isValid($value));
     }
 }

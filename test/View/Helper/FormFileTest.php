@@ -39,8 +39,8 @@ final class FormFileTest extends AbstractCommonTestCase
     {
         $element = new Element\File('foo');
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="file"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="file"', $markup);
     }
 
     /**
@@ -51,8 +51,8 @@ final class FormFileTest extends AbstractCommonTestCase
         $element = new Element\File('foo');
         $element->setAttribute('type', 'email');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="file"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="file"', $markup);
     }
 
     /**
@@ -69,9 +69,9 @@ final class FormFileTest extends AbstractCommonTestCase
             'error'    => 2,
         ]);
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="file"', $markup);
-        $this->assertStringNotContainsString('value="', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="file"', $markup);
+        self::assertStringNotContainsString('value="', $markup);
     }
 
     /**
@@ -176,7 +176,7 @@ final class FormFileTest extends AbstractCommonTestCase
         $element = new Element\File('foo');
         $element->setAttribute('multiple', true);
         $markup = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#<input[^>]*?(name="foo\&\#x5B\;\&\#x5D\;")#', $markup);
+        self::assertMatchesRegularExpression('#<input[^>]*?(name="foo\&\#x5B\;\&\#x5D\;")#', $markup);
     }
 
     /**
@@ -186,9 +186,9 @@ final class FormFileTest extends AbstractCommonTestCase
     {
         $element = new Element\File('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertStringContainsString('<input', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
-        $this->assertStringContainsString('type="file"', $markup);
+        self::assertStringContainsString('<input', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('type="file"', $markup);
     }
 
     /**
@@ -196,6 +196,6 @@ final class FormFileTest extends AbstractCommonTestCase
      */
     public function testInvokeWithNoElementChainsHelper()
     {
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 }

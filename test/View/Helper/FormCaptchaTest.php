@@ -91,12 +91,12 @@ final class FormCaptchaTest extends AbstractCommonTestCase
         $element->setCaptcha($captcha);
         $element->setAttribute('id', 'foo');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString($captcha->getLabel(), $markup);
-        $this->assertMatchesRegularExpression(
+        self::assertStringContainsString($captcha->getLabel(), $markup);
+        self::assertMatchesRegularExpression(
             '#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
             $markup
         );
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
         );
@@ -109,15 +109,15 @@ final class FormCaptchaTest extends AbstractCommonTestCase
         $element->setCaptcha($captcha);
         $element->setAttribute('id', 'foo');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             '<pre>' . $captcha->getFiglet()->render($captcha->getWord()) . '</pre>',
             $markup
         );
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
             $markup
         );
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
         );
@@ -150,18 +150,18 @@ final class FormCaptchaTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString('<img ', $markup);
-        $this->assertStringContainsString($captcha->getImgUrl(), html_entity_decode($markup));
-        $this->assertStringContainsString($captcha->getId(), $markup);
-        $this->assertMatchesRegularExpression(
+        self::assertStringContainsString('<img ', $markup);
+        self::assertStringContainsString($captcha->getImgUrl(), html_entity_decode($markup));
+        self::assertStringContainsString($captcha->getId(), $markup);
+        self::assertMatchesRegularExpression(
             '#<img[^>]*(id="' . $element->getAttribute('id') . '-image")[^>]*>#',
             $markup
         );
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#<input[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
             $markup
         );
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#<input[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
         );
@@ -176,7 +176,7 @@ final class FormCaptchaTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $element->setCaptcha($captcha);
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             'data-sitekey="' . getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY') . '"',
             $markup
         );

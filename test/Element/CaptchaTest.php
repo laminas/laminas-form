@@ -21,7 +21,7 @@ final class CaptchaTest extends TestCase
     public function testCaptchaIsUndefinedByDefault(): void
     {
         $element = new CaptchaElement();
-        $this->assertNull($element->getCaptcha());
+        self::assertNull($element->getCaptcha());
     }
 
     public function testCaptchaIsMutable(): void
@@ -31,21 +31,21 @@ final class CaptchaTest extends TestCase
         // by instance
         $captcha = new Captcha\Dumb();
         $element->setCaptcha($captcha);
-        $this->assertSame($captcha, $element->getCaptcha());
+        self::assertSame($captcha, $element->getCaptcha());
 
         // by array
         $captcha = [
             'class' => 'dumb',
         ];
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf(Dumb::class, $element->getCaptcha());
+        self::assertInstanceOf(Dumb::class, $element->getCaptcha());
 
         // by traversable
         $captcha = new ArrayObject([
             'class' => 'dumb',
         ]);
         $element->setCaptcha($captcha);
-        $this->assertInstanceOf(Dumb::class, $element->getCaptcha());
+        self::assertInstanceOf(Dumb::class, $element->getCaptcha());
     }
 
     public function testCaptchaWithNullRaisesException(): void
@@ -60,7 +60,7 @@ final class CaptchaTest extends TestCase
         $element = new CaptchaElement();
         $captcha = new Captcha\Dumb();
         $element->setCaptcha($captcha);
-        $this->assertSame($captcha, $element->getCaptcha());
+        self::assertSame($captcha, $element->getCaptcha());
     }
 
     public function testCreatingCaptchaElementViaFormFactoryWillCreateCaptcha(): void
@@ -75,9 +75,9 @@ final class CaptchaTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf(CaptchaElement::class, $element);
+        self::assertInstanceOf(CaptchaElement::class, $element);
         $captcha = $element->getCaptcha();
-        $this->assertInstanceOf(Dumb::class, $captcha);
+        self::assertInstanceOf(Dumb::class, $captcha);
     }
 
     public function testProvidesInputSpecificationThatIncludesCaptchaAsValidator(): void
@@ -87,10 +87,10 @@ final class CaptchaTest extends TestCase
         $element->setCaptcha($captcha);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
         $test = array_shift($inputSpec['validators']);
-        $this->assertSame($captcha, $test);
+        self::assertSame($captcha, $test);
     }
 
     /**
@@ -105,6 +105,6 @@ final class CaptchaTest extends TestCase
         ]));
         $element = new CaptchaElement('captcha', $options);
         $captcha = $element->getCaptcha();
-        $this->assertInstanceOf(Dumb::class, $captcha);
+        self::assertInstanceOf(Dumb::class, $captcha);
     }
 }

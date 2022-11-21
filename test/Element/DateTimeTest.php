@@ -28,8 +28,8 @@ final class DateTimeTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Date::class,
@@ -39,19 +39,19 @@ final class DateTimeTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2000-01-01T00:00Z', $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('2000-01-01T00:00Z', $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('2001-01-01T00:00Z', $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('2001-01-01T00:00Z', $validator->getMax());
                     break;
                 case DateStep::class:
                     $dateInterval = new DateInterval('PT1M');
-                    $this->assertEquals($dateInterval, $validator->getStep());
+                    self::assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:
                     break;
@@ -65,14 +65,14 @@ final class DateTimeTest extends TestCase
         $element->setFormat(DateTime::W3C);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('filters', $inputSpec);
-        $this->assertIsArray($inputSpec['filters']);
+        self::assertArrayHasKey('filters', $inputSpec);
+        self::assertIsArray($inputSpec['filters']);
 
         foreach ($inputSpec['filters'] as $filter) {
             switch ($filter['name']) {
                 case DateTimeFormatter::class:
-                    $this->assertEquals($filter['options']['format'], DateTime::W3C);
-                    $this->assertEquals($filter['options']['format'], $element->getFormat());
+                    self::assertEquals($filter['options']['format'], DateTime::W3C);
+                    self::assertEquals($filter['options']['format'], $element->getFormat());
                     break;
                 default:
                     break;
@@ -83,7 +83,7 @@ final class DateTimeTest extends TestCase
     public function testUsesBrowserFormatByDefault(): void
     {
         $element = new DateTimeElement('foo');
-        $this->assertEquals('Y-m-d\TH:iP', $element->getFormat());
+        self::assertEquals('Y-m-d\TH:iP', $element->getFormat());
     }
 
     public function testSpecifyingADateTimeValueWillReturnBrowserFormattedStringByDefault(): void
@@ -91,7 +91,7 @@ final class DateTimeTest extends TestCase
         $date    = new DateTime();
         $element = new DateTimeElement('foo');
         $element->setValue($date);
-        $this->assertEquals($date->format('Y-m-d\TH:iP'), $element->getValue());
+        self::assertEquals($date->format('Y-m-d\TH:iP'), $element->getValue());
     }
 
     public function testValueIsFormattedAccordingToFormatInElement(): void
@@ -100,7 +100,7 @@ final class DateTimeTest extends TestCase
         $element = new DateTimeElement('foo');
         $element->setFormat($date::RFC2822);
         $element->setValue($date);
-        $this->assertEquals($date->format($date::RFC2822), $element->getValue());
+        self::assertEquals($date->format($date::RFC2822), $element->getValue());
     }
 
     public function testCanRetrieveDateTimeObjectByPassingBooleanFalseToGetValue(): void
@@ -108,7 +108,7 @@ final class DateTimeTest extends TestCase
         $date    = new DateTime();
         $element = new DateTimeElement('foo');
         $element->setValue($date);
-        $this->assertSame($date, $element->getValue(false));
+        self::assertSame($date, $element->getValue(false));
     }
 
     public function testSetFormatWithOptions(): void
@@ -119,7 +119,7 @@ final class DateTimeTest extends TestCase
             'format' => $format,
         ]);
 
-        $this->assertSame($format, $element->getFormat());
+        self::assertSame($format, $element->getFormat());
     }
 
     public function testFailsWithInvalidMinSpecification(): void

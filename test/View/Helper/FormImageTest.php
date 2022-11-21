@@ -43,9 +43,9 @@ final class FormImageTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setAttribute('src', 'foo.png');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="image"', $markup);
-        $this->assertStringContainsString('src="foo.png"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="image"', $markup);
+        self::assertStringContainsString('src="foo.png"', $markup);
     }
 
     public function testGeneratesImageInputTagRegardlessOfElementType(): void
@@ -54,9 +54,9 @@ final class FormImageTest extends AbstractCommonTestCase
         $element->setAttribute('src', 'foo.png');
         $element->setAttribute('type', 'email');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="image"', $markup);
-        $this->assertStringContainsString('src="foo.png"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="image"', $markup);
+        self::assertStringContainsString('src="foo.png"', $markup);
     }
 
     public function validAttributes(): array
@@ -153,14 +153,14 @@ final class FormImageTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setAttribute('src', 'foo.png');
         $markup = $this->helper->__invoke($element);
-        $this->assertStringContainsString('<input', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
-        $this->assertStringContainsString('type="image"', $markup);
-        $this->assertStringContainsString('src="foo.png"', $markup);
+        self::assertStringContainsString('<input', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('type="image"', $markup);
+        self::assertStringContainsString('src="foo.png"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 }

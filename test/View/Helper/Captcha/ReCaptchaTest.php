@@ -55,8 +55,8 @@ final class ReCaptchaTest extends AbstractCommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString('type="hidden"', $markup);
-        $this->assertStringContainsString('value="g-recaptcha-response"', $markup);
+        self::assertStringContainsString('type="hidden"', $markup);
+        self::assertStringContainsString('value="g-recaptcha-response"', $markup);
     }
 
     public function testDoesNotRenderHiddenInputWhenNameIsRecaptchaDefault(): void
@@ -64,13 +64,13 @@ final class ReCaptchaTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $element->setName('g-recaptcha-response');
         $markup = $this->helper->render($element);
-        $this->assertStringNotContainsString('type="hidden"', $markup);
+        self::assertStringNotContainsString('type="hidden"', $markup);
     }
 
     public function testRendersReCaptchaMarkup(): void
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString($this->captcha->getService()->getHtml(), $markup);
+        self::assertStringContainsString($this->captcha->getService()->getHtml(), $markup);
     }
 }

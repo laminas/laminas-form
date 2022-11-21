@@ -41,12 +41,11 @@ class Color extends Element implements InputProviderInterface
      *
      * Attaches a color validator.
      *
-     * @return array
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => true,
             'filters'    => [
                 ['name' => StringTrim::class],
@@ -56,5 +55,12 @@ class Color extends Element implements InputProviderInterface
                 $this->getValidator(),
             ],
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 }

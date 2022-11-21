@@ -25,8 +25,8 @@ final class RangeTest extends TestCase
         $element = new RangeElement();
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             IsFloat::class,
@@ -36,18 +36,18 @@ final class RangeTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals(0, $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals(0, $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals(100, $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals(100, $validator->getMax());
                     break;
                 case Step::class:
-                    $this->assertEquals(1, $validator->getStep());
+                    self::assertEquals(1, $validator->getStep());
                     break;
                 default:
                     break;
@@ -71,8 +71,8 @@ final class RangeTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             IsFloat::class,
@@ -82,18 +82,18 @@ final class RangeTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals(2, $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals(2, $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals(102, $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals(102, $validator->getMax());
                     break;
                 case Step::class:
-                    $this->assertEquals(2, $validator->getStep());
+                    self::assertEquals(2, $validator->getStep());
                     break;
                 default:
                     break;

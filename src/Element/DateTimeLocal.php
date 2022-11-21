@@ -19,9 +19,7 @@ class DateTimeLocal extends AbstractDateTime
         'type' => 'datetime-local',
     ];
 
-    /**
-     * {@inheritDoc}
-     */
+    /** @inheritDoc */
     protected $format = 'Y-m-d\TH:i';
 
     /**

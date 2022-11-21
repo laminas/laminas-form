@@ -46,11 +46,11 @@ final class DumbTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
 
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#',
             $markup
         );
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#',
             $markup
         );
@@ -61,7 +61,7 @@ final class DumbTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
 
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;input\&\#x5D\;").*?(type="text")#',
             $markup
         );
@@ -71,7 +71,7 @@ final class DumbTest extends AbstractCommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $this->captcha->getLabel() . ' <b>' . strrev($this->captcha->getWord()) . '</b>'
             . $this->helper->getSeparator() . '<input',
             $markup
@@ -83,7 +83,7 @@ final class DumbTest extends AbstractCommonTestCase
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             '>' . $this->captcha->getLabel() . ' <b>' . strrev($this->captcha->getWord()) . '</b>'
             . $this->helper->getSeparator(),
             $markup
@@ -97,7 +97,7 @@ final class DumbTest extends AbstractCommonTestCase
         $this->helper->render($element);
         $this->helper->setSeparator('-');
 
-        $this->assertEquals('-', $this->helper->getSeparator());
+        self::assertEquals('-', $this->helper->getSeparator());
     }
 
     public function testRenderSeparatorOneTimeAfterText(): void
@@ -106,12 +106,12 @@ final class DumbTest extends AbstractCommonTestCase
         $this->helper->setSeparator('<br />');
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $this->captcha->getLabel() . ' <b>' . strrev($this->captcha->getWord())
             . '</b>' . $this->helper->getSeparator() . '<input name="foo&#x5B;id&#x5D;" type="hidden"',
             $markup
         );
-        $this->assertStringNotContainsString(
+        self::assertStringNotContainsString(
             $this->helper->getSeparator() . '<input name="foo[input]" type="text"',
             $markup
         );

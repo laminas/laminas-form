@@ -27,7 +27,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
      */
     public function testWillEscapeValueAttributeValuesCorrectly(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'data-value="breaking&#x20;your&#x20;HTML&#x20;like&#x20;a&#x20;boss&#x21;&#x20;&#x5C;"',
             $this->helper->createAttributesString(['data-value' => 'breaking your HTML like a boss! \\'])
         );
@@ -39,7 +39,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         $this->helper->setEncoding('iso-8859-1');
 
-        $this->assertSame(
+        self::assertSame(
             'data-value="' . $escaper->escapeHtmlAttr('Título') . '"',
             $this->helper->createAttributesString(['data-value' => 'Título'])
         );
@@ -49,7 +49,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
     {
         $escaper = new Escaper('iso-8859-1');
 
-        $this->assertNotSame(
+        self::assertNotSame(
             'data-value="' . $escaper->escapeHtmlAttr('Título') . '"',
             $this->helper->createAttributesString(['data-value' => 'Título'])
         );
@@ -87,7 +87,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         $this->helper->addValidAttribute($attribute);
 
-        $this->assertSame(
+        self::assertSame(
             $expected,
             $this->helper->createAttributesString([$attribute => 'value'])
         );
@@ -126,7 +126,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         $this->helper->addValidAttributePrefix($prefix);
 
-        $this->assertSame(
+        self::assertSame(
             $expected,
             $this->helper->createAttributesString([$prefix . 'attr' => 'value'])
         );
@@ -157,17 +157,17 @@ final class AbstractHelperTest extends AbstractCommonTestCase
                 'view-helper-text-domain'
             );
 
-        $this->assertSame(
+        self::assertSame(
             'data-translate-me="Willkommen"',
             $this->helper->createAttributesString(['data-translate-me' => 'Welcome'])
         );
 
-        $this->assertSame(
+        self::assertSame(
             'data-translatable-welcome="Willkommen"',
             $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome'])
         );
 
-        $this->assertSame(
+        self::assertSame(
             'class="Welcome"',
             $this->helper->createAttributesString(['class' => 'Welcome'])
         );
@@ -199,17 +199,17 @@ final class AbstractHelperTest extends AbstractCommonTestCase
                 'view-helper-text-domain'
             );
 
-        $this->assertSame(
+        self::assertSame(
             'data-translate-me="Willkommen"',
             $this->helper->createAttributesString(['data-translate-me' => 'Welcome'])
         );
 
-        $this->assertSame(
+        self::assertSame(
             'data-translatable-welcome="Willkommen"',
             $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome'])
         );
 
-        $this->assertSame(
+        self::assertSame(
             'class="Welcome"',
             $this->helper->createAttributesString(['class' => 'Welcome'])
         );
@@ -217,7 +217,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
     public function testWillInsulateAgainstBadAttributes(): void
     {
-        $this->assertSame(
+        self::assertSame(
             'data-value=""',
             $this->helper->createAttributesString(['data-value' => "\xc3\x28"])
         );
@@ -227,11 +227,11 @@ final class AbstractHelperTest extends AbstractCommonTestCase
     {
         $this->helper->addValidAttribute('disabled');
 
-        $this->assertSame(
+        self::assertSame(
             'disabled="disabled"',
             $this->helper->createAttributesString(['disabled' => 'disabled'])
         );
-        $this->assertSame(
+        self::assertSame(
             '',
             $this->helper->createAttributesString(['disabled' => null])
         );

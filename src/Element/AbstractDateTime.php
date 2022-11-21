@@ -29,7 +29,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
      */
     protected $format = 'Y-m-d\TH:iP';
 
-    /** @var array */
+    /** @var array<ValidatorInterface> */
     protected $validators = [];
 
     /**
@@ -93,7 +93,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
     /**
      * Get validators
      *
-     * @return array
+     * @return array<ValidatorInterface>
      */
     protected function getValidators(): array
     {
@@ -184,18 +184,24 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
      *
      * Attaches default validators for the datetime input.
      *
-     * @return array
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => true,
             'filters'    => [
                 ['name' => StringTrim::class],
             ],
             'validators' => $this->getValidators(),
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 
     /**

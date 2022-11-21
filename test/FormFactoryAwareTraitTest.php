@@ -27,12 +27,12 @@ final class FormFactoryAwareTraitTest extends TestCase
             }
         };
 
-        $this->assertNull($object->getFormFactory());
+        self::assertNull($object->getFormFactory());
 
         $factory = new Factory();
 
         $object->setFormFactory($factory);
 
-        $this->assertSame($factory, $object->getFormFactory());
+        self::assertSame($factory, $object->getFormFactory());
     }
 }

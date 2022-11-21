@@ -106,12 +106,11 @@ class Email extends Element implements InputProviderInterface
      *
      * Attaches an email validator.
      *
-     * @return array
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {
-        return [
-            'name'       => $this->getName(),
+        $spec = [
             'required'   => true,
             'filters'    => [
                 ['name' => StringTrim::class],
@@ -120,5 +119,12 @@ class Email extends Element implements InputProviderInterface
                 $this->getValidator(),
             ],
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 }

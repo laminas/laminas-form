@@ -16,18 +16,18 @@ final class CsrfTest extends TestCase
         $element = new CsrfElement('foo');
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Csrf::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Csrf::class:
-                    $this->assertEquals('foo', $validator->getName());
+                    self::assertEquals('foo', $validator->getName());
                     break;
                 default:
                     break;
@@ -40,7 +40,7 @@ final class CsrfTest extends TestCase
         $element       = new CsrfElement('foo');
         $validatorMock = $this->createMock(Csrf::class);
         $element->setCsrfValidator($validatorMock);
-        $this->assertEquals($validatorMock, $element->getCsrfValidator());
+        self::assertEquals($validatorMock, $element->getCsrfValidator());
     }
 
     public function testAllowSettingCsrfValidatorOptions(): void
@@ -48,8 +48,8 @@ final class CsrfTest extends TestCase
         $element = new CsrfElement('foo');
         $element->setCsrfValidatorOptions(['timeout' => 777]);
         $validator = $element->getCsrfValidator();
-        $this->assertEquals('foo', $validator->getName());
-        $this->assertEquals(777, $validator->getTimeout());
+        self::assertEquals('foo', $validator->getName());
+        self::assertEquals(777, $validator->getTimeout());
     }
 
     public function testAllowSettingCsrfOptions(): void
@@ -62,9 +62,9 @@ final class CsrfTest extends TestCase
             ],
         ]);
         $validator = $element->getCsrfValidator();
-        $this->assertEquals('foo', $validator->getName());
-        $this->assertEquals(777, $validator->getTimeOut());
-        $this->assertEquals('MySalt', $validator->getSalt());
+        self::assertEquals('foo', $validator->getName());
+        self::assertEquals(777, $validator->getTimeOut());
+        self::assertEquals('MySalt', $validator->getSalt());
     }
 
     public function testSetOptionsTraversable(): void
@@ -77,9 +77,9 @@ final class CsrfTest extends TestCase
             ],
         ]));
         $validator = $element->getCsrfValidator();
-        $this->assertEquals('foo', $validator->getName());
-        $this->assertEquals(777, $validator->getTimeOut());
-        $this->assertEquals('MySalt', $validator->getSalt());
+        self::assertEquals('foo', $validator->getName());
+        self::assertEquals(777, $validator->getTimeOut());
+        self::assertEquals('MySalt', $validator->getSalt());
     }
 
     public function testNameOverride(): void
@@ -91,8 +91,8 @@ final class CsrfTest extends TestCase
             ],
         ]);
         $validator = $element->getCsrfValidator();
-        $this->assertEquals('foo', $element->getName());
-        $this->assertEquals('bar', $validator->getName());
-        $this->assertEquals('Laminas_Validator_Csrf_salt_bar', $validator->getSessionName());
+        self::assertEquals('foo', $element->getName());
+        self::assertEquals('bar', $validator->getName());
+        self::assertEquals('Laminas_Validator_Csrf_salt_bar', $validator->getSessionName());
     }
 }

@@ -266,8 +266,8 @@ This now requires a factory to inject the form instance:
 namespace Application\Controller;
 
 use Application\Form\MyForm;
+use Interop\Container\ContainerInterface;
 use Laminas\Form\FormElementManager;
-use Psr\Container\ContainerInterface;
 
 class IndexControllerFactory
 {

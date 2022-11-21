@@ -135,14 +135,18 @@ class Checkbox extends Element implements InputProviderInterface
      *
      * Attaches the captcha as a validator.
      *
-     * @return array
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {
         $spec = [
-            'name'     => $this->getName(),
             'required' => true,
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
 
         if ($validator = $this->getValidator()) {
             $spec['validators'] = [

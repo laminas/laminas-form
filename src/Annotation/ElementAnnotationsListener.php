@@ -42,7 +42,7 @@ use function is_array;
 final class ElementAnnotationsListener extends AbstractAnnotationsListener
 {
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {

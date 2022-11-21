@@ -20,7 +20,7 @@ final class LabelAwareTraitTest extends TestCase
             use LabelAwareTrait;
         };
 
-        $this->assertEmpty($object->getLabelAttributes());
+        self::assertEmpty($object->getLabelAttributes());
 
         $labelAttributes = [
             'test',
@@ -29,7 +29,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $object->setLabelAttributes($labelAttributes);
 
-        $this->assertSame($labelAttributes, $object->getLabelAttributes());
+        self::assertSame($labelAttributes, $object->getLabelAttributes());
     }
 
     public function testGetEmptyLabelAttributes(): void
@@ -38,7 +38,7 @@ final class LabelAwareTraitTest extends TestCase
             use LabelAwareTrait;
         };
 
-        $this->assertEmpty($object->getLabelAttributes());
+        self::assertEmpty($object->getLabelAttributes());
     }
 
     public function testGetLabelAttributes(): void
@@ -56,7 +56,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $getLabelAttributes = $object->getLabelAttributes();
 
-        $this->assertEquals($labelAttributes, $getLabelAttributes);
+        self::assertEquals($labelAttributes, $getLabelAttributes);
     }
 
     public function testSetEmptyLabelOptions(): void
@@ -69,7 +69,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $object->setLabelOptions($labelOptions);
 
-        $this->assertEquals($labelOptions, []);
+        self::assertEquals($labelOptions, []);
     }
 
     public function testSetLabelOptions(): void
@@ -87,7 +87,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedLabelOptions = $object->getLabelOptions();
 
-        $this->assertEquals($retrievedLabelOptions, $labelOptions);
+        self::assertEquals($retrievedLabelOptions, $labelOptions);
     }
 
     public function testSetLabelOptionsTraversable(): void
@@ -105,7 +105,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedLabelOptions = $object->getLabelOptions();
 
-        $this->assertEquals($retrievedLabelOptions, $labelOptions);
+        self::assertEquals($retrievedLabelOptions, $labelOptions);
     }
 
     public function testGetEmptyLabelOptions(): void
@@ -116,7 +116,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $labelOptions = $object->getLabelOptions();
 
-        $this->assertEquals($labelOptions, []);
+        self::assertEquals($labelOptions, []);
     }
 
     public function testGetLabelOptions(): void
@@ -134,7 +134,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedLabelOptions = $object->getLabelOptions();
 
-        $this->assertEquals($labelOptions, $retrievedLabelOptions);
+        self::assertEquals($labelOptions, $retrievedLabelOptions);
     }
 
     public function testClearLabelOptions(): void
@@ -154,7 +154,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedLabelOptions = $object->getLabelOptions();
 
-        $this->assertEquals([], $retrievedLabelOptions);
+        self::assertEquals([], $retrievedLabelOptions);
     }
 
     public function testRemoveLabelOptions(): void
@@ -182,7 +182,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedLabelOptions = $object->getLabelOptions();
 
-        $this->assertEquals($expectedLabelOptions, $retrievedLabelOptions);
+        self::assertEquals($expectedLabelOptions, $retrievedLabelOptions);
     }
 
     public function testSetLabelOption(): void
@@ -199,7 +199,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedLabelOptions = $object->getLabelOptions();
 
-        $this->assertEquals($expectedLabelOptions, $retrievedLabelOptions);
+        self::assertEquals($expectedLabelOptions, $retrievedLabelOptions);
     }
 
     public function testGetInvalidLabelOption(): void
@@ -212,7 +212,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedOption = $object->getLabelOption($invalidOption);
 
-        $this->assertEquals(null, $retrievedOption);
+        self::assertEquals(null, $retrievedOption);
     }
 
     public function testGetLabelOption(): void
@@ -228,7 +228,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedValue = $object->getLabelOption($option);
 
-        $this->assertEquals($retrievedValue, $value);
+        self::assertEquals($retrievedValue, $value);
     }
 
     public function testRemoveLabelOption(): void
@@ -246,7 +246,7 @@ final class LabelAwareTraitTest extends TestCase
 
         $retrievedValue = $object->getLabelOption($option);
 
-        $this->assertEquals(null, $retrievedValue);
+        self::assertEquals(null, $retrievedValue);
     }
 
     public function testHasValidLabelOption(): void
@@ -261,7 +261,7 @@ final class LabelAwareTraitTest extends TestCase
         $object->setLabelOption($option, $value);
 
         $hasLabelOptionResult = $object->hasLabelOption($option);
-        $this->assertTrue($hasLabelOptionResult);
+        self::assertTrue($hasLabelOptionResult);
     }
 
     public function testHasInvalidLabelOption(): void
@@ -273,6 +273,6 @@ final class LabelAwareTraitTest extends TestCase
         $option = 'foo';
 
         $hasLabelOptionResult = $object->hasLabelOption($option);
-        $this->assertFalse($hasLabelOptionResult);
+        self::assertFalse($hasLabelOptionResult);
     }
 }

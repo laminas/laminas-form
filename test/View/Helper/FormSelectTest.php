@@ -56,19 +56,19 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
 
-        $this->assertEquals(1, substr_count($markup, '<select'));
-        $this->assertEquals(1, substr_count($markup, '</select>'));
-        $this->assertEquals(3, substr_count($markup, '<option'));
-        $this->assertEquals(3, substr_count($markup, '</option>'));
-        $this->assertStringContainsString('>This is the first label<', $markup);
-        $this->assertStringContainsString('>This is the second label<', $markup);
-        $this->assertStringContainsString('>This is the third label<', $markup);
-        $this->assertStringContainsString('value="value1"', $markup);
-        $this->assertStringContainsString('value="value2"', $markup);
-        $this->assertStringContainsString('value="value3"', $markup);
+        self::assertEquals(1, substr_count($markup, '<select'));
+        self::assertEquals(1, substr_count($markup, '</select>'));
+        self::assertEquals(3, substr_count($markup, '<option'));
+        self::assertEquals(3, substr_count($markup, '</option>'));
+        self::assertStringContainsString('>This is the first label<', $markup);
+        self::assertStringContainsString('>This is the second label<', $markup);
+        self::assertStringContainsString('>This is the third label<', $markup);
+        self::assertStringContainsString('value="value1"', $markup);
+        self::assertStringContainsString('value="value2"', $markup);
+        self::assertStringContainsString('value="value3"', $markup);
 
         //Test class attribute on third option
-        $this->assertMatchesRegularExpression('#option .*?value="value3" class="test-class"#', $markup);
+        self::assertMatchesRegularExpression('#option .*?value="value3" class="test-class"#', $markup);
     }
 
     public function testCanMarkSingleOptionAsSelected(): void
@@ -77,9 +77,9 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setAttribute('value', 'value2');
 
         $markup = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#option .*?value="value2" selected="selected"#', $markup);
-        $this->assertDoesNotMatchRegularExpression('#option .*?value="value1" selected="selected"#', $markup);
-        $this->assertDoesNotMatchRegularExpression('#option .*?value="value3" selected="selected"#', $markup);
+        self::assertMatchesRegularExpression('#option .*?value="value2" selected="selected"#', $markup);
+        self::assertDoesNotMatchRegularExpression('#option .*?value="value1" selected="selected"#', $markup);
+        self::assertDoesNotMatchRegularExpression('#option .*?value="value3" selected="selected"#', $markup);
     }
 
     public function testCanOnlyMarkSingleOptionAsSelectedIfMultipleAttributeIsDisabled(): void
@@ -99,10 +99,10 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setAttribute('value', ['value1', 'value2']);
         $markup = $this->helper->render($element);
 
-        $this->assertMatchesRegularExpression('#select .*?multiple="multiple"#', $markup);
-        $this->assertMatchesRegularExpression('#option .*?value="value1" selected="selected"#', $markup);
-        $this->assertMatchesRegularExpression('#option .*?value="value2" selected="selected"#', $markup);
-        $this->assertDoesNotMatchRegularExpression('#option .*?value="value3" selected="selected"#', $markup);
+        self::assertMatchesRegularExpression('#select .*?multiple="multiple"#', $markup);
+        self::assertMatchesRegularExpression('#option .*?value="value1" selected="selected"#', $markup);
+        self::assertMatchesRegularExpression('#option .*?value="value2" selected="selected"#', $markup);
+        self::assertDoesNotMatchRegularExpression('#option .*?value="value3" selected="selected"#', $markup);
     }
 
     public function testCanMarkOptionsAsDisabled(): void
@@ -113,7 +113,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#option .*?value="value2" .*?disabled="disabled"#', $markup);
+        self::assertMatchesRegularExpression('#option .*?value="value2" .*?disabled="disabled"#', $markup);
     }
 
     public function testCanMarkOptionsAsSelected(): void
@@ -124,7 +124,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#option .*?value="value2" .*?selected="selected"#', $markup);
+        self::assertMatchesRegularExpression('#option .*?value="value2" .*?selected="selected"#', $markup);
     }
 
     public function testOptgroupsAreCreatedWhenAnOptionHasAnOptionsKey(): void
@@ -141,7 +141,7 @@ final class FormSelectTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertMatchesRegularExpression('#optgroup[^>]*?label="This\&\#x20\;is\&\#x20\;the\&\#x20\;second\&\#x20\;label"[^>]*>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#s', $markup);
+        self::assertMatchesRegularExpression('#optgroup[^>]*?label="This\&\#x20\;is\&\#x20\;the\&\#x20\;second\&\#x20\;label"[^>]*>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#s', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -160,7 +160,7 @@ final class FormSelectTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($element);
         // @codingStandardsIgnoreStart
-        $this->assertMatchesRegularExpression('#optgroup .*?label="This\&\#x20\;is\&\#x20\;the\&\#x20\;second\&\#x20\;label"[^>]*?disabled="disabled"[^>]*?>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#', $markup);
+        self::assertMatchesRegularExpression('#optgroup .*?label="This\&\#x20\;is\&\#x20\;the\&\#x20\;second\&\#x20\;label"[^>]*?disabled="disabled"[^>]*?>\s*<option[^>]*?value="bar"[^>]*?>foo.*?</optgroup>#', $markup);
         // @codingStandardsIgnoreEnd
     }
 
@@ -173,7 +173,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setAttribute('disabled', false);
         $markup = $this->helper->render($element);
 
-        $this->assertStringNotContainsString('disabled', $markup);
+        self::assertStringNotContainsString('disabled', $markup);
     }
 
     /**
@@ -185,7 +185,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setAttribute('type', 'select');
         $markup = $this->helper->render($element);
 
-        $this->assertStringNotContainsString('disabled', $markup);
+        self::assertStringNotContainsString('disabled', $markup);
     }
 
     public function testNameShouldHaveArrayNotationWhenMultipleIsSpecified(): void
@@ -194,7 +194,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setAttribute('multiple', true);
         $element->setAttribute('value', ['value1', 'value2']);
         $markup = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#<select[^>]*?(name="foo\&\#x5B\;\&\#x5D\;")#', $markup);
+        self::assertMatchesRegularExpression('#<select[^>]*?(name="foo\&\#x5B\;\&\#x5D\;")#', $markup);
     }
 
     public function getScalarOptionsDataProvider(): array
@@ -218,13 +218,13 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setValueOptions($options);
         $markup = $this->helper->render($element);
         $value  = key($options);
-        $this->assertMatchesRegularExpression(sprintf('#option .*?value="%s"#', (string) $value), $markup);
+        self::assertMatchesRegularExpression(sprintf('#option .*?value="%s"#', (string) $value), $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = $this->getElement();
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 
     public function testCanTranslateContent(): void
@@ -244,10 +244,10 @@ final class FormSelectTest extends AbstractCommonTestCase
             ->willReturn('translated content');
 
         $this->helper->setTranslator($mockTranslator);
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
-        $this->assertStringContainsString('>translated content<', $markup);
+        self::assertStringContainsString('>translated content<', $markup);
     }
 
     public function testCanTranslateOptGroupLabel(): void
@@ -278,13 +278,13 @@ final class FormSelectTest extends AbstractCommonTestCase
             );
 
         $this->helper->setTranslator($mockTranslator);
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertStringContainsString('label="translated&#x20;label"', $markup);
-        $this->assertStringContainsString('>translated foo<', $markup);
-        $this->assertStringContainsString('>translated bar<', $markup);
+        self::assertStringContainsString('label="translated&#x20;label"', $markup);
+        self::assertStringContainsString('>translated foo<', $markup);
+        self::assertStringContainsString('>translated bar<', $markup);
     }
 
     public function testTranslatorMethods(): void
@@ -292,13 +292,13 @@ final class FormSelectTest extends AbstractCommonTestCase
         $translatorMock = $this->createMock(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
-        $this->assertEquals($translatorMock, $this->helper->getTranslator());
-        $this->assertEquals('foo', $this->helper->getTranslatorTextDomain());
-        $this->assertTrue($this->helper->hasTranslator());
-        $this->assertTrue($this->helper->isTranslatorEnabled());
+        self::assertEquals($translatorMock, $this->helper->getTranslator());
+        self::assertEquals('foo', $this->helper->getTranslatorTextDomain());
+        self::assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->isTranslatorEnabled());
 
         $this->helper->setTranslatorEnabled(false);
-        $this->assertFalse($this->helper->isTranslatorEnabled());
+        self::assertFalse($this->helper->isTranslatorEnabled());
     }
 
     public function testDoesNotThrowExceptionIfNameIsZero(): void
@@ -308,7 +308,7 @@ final class FormSelectTest extends AbstractCommonTestCase
 
         $this->helper->__invoke($element);
         $markup = $this->helper->__invoke($element);
-        $this->assertStringContainsString('name="0"', $markup);
+        self::assertStringContainsString('name="0"', $markup);
     }
 
     public function testCanCreateEmptyOption(): void
@@ -323,7 +323,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString('<option value="">empty</option>', $markup);
+        self::assertStringContainsString('<option value="">empty</option>', $markup);
     }
 
     public function testCanCreateEmptyOptionWithEmptyString(): void
@@ -338,7 +338,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString('<option value=""></option>', $markup);
+        self::assertStringContainsString('<option value=""></option>', $markup);
     }
 
     public function testDoesNotRenderEmptyOptionByDefault(): void
@@ -352,7 +352,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $this->assertStringNotContainsString('<option value=""></option>', $markup);
+        self::assertStringNotContainsString('<option value=""></option>', $markup);
     }
 
     public function testNullEmptyOptionDoesNotRenderEmptyOption(): void
@@ -367,7 +367,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $this->assertStringNotContainsString('<option value=""></option>', $markup);
+        self::assertStringNotContainsString('<option value=""></option>', $markup);
     }
 
     public function testCanMarkOptionsAsSelectedWhenEmptyOptionOrZeroValueSelected(): void
@@ -381,13 +381,13 @@ final class FormSelectTest extends AbstractCommonTestCase
 
         $element->setValue('');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<option value="" selected="selected">empty</option>', $markup);
-        $this->assertStringContainsString('<option value="0">label0</option>', $markup);
+        self::assertStringContainsString('<option value="" selected="selected">empty</option>', $markup);
+        self::assertStringContainsString('<option value="0">label0</option>', $markup);
 
         $element->setValue('0');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<option value="">empty</option>', $markup);
-        $this->assertStringContainsString('<option value="0" selected="selected">label0</option>', $markup);
+        self::assertStringContainsString('<option value="">empty</option>', $markup);
+        self::assertStringContainsString('<option value="0" selected="selected">label0</option>', $markup);
     }
 
     public function testHiddenElementWhenAttributeMultipleIsSet(): void
@@ -397,7 +397,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setUnselectedValue('empty');
 
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<input type="hidden" name="foo" value="empty"><select', $markup);
+        self::assertStringContainsString('<input type="hidden" name="foo" value="empty"><select', $markup);
     }
 
     public function testRenderInputNotSelectElementRaisesException(): void
@@ -438,8 +438,8 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element->setValue(new Identifier(42));
 
         $markup = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#option .*?value="42" selected="selected"#', $markup);
-        $this->assertDoesNotMatchRegularExpression('#option .*?value="43" selected="selected"#', $markup);
+        self::assertMatchesRegularExpression('#option .*?value="42" selected="selected"#', $markup);
+        self::assertDoesNotMatchRegularExpression('#option .*?value="43" selected="selected"#', $markup);
     }
 
     public function testComparisonOfSelectedValuesIsPerformedInStrictMode(): void
@@ -454,14 +454,14 @@ final class FormSelectTest extends AbstractCommonTestCase
             '1.20' => 'Chinese',
         ]);
         $select->setValue(['1.1']);
-        $this->assertEquals(['1.1'], $select->getValue());
+        self::assertEquals(['1.1'], $select->getValue());
 
         $markup = $this->helper->render($select);
 
-        $this->assertMatchesRegularExpression('{value="1.1" selected="selected"}i', $markup);
-        $this->assertDoesNotMatchRegularExpression('{value="1.2" selected="selected"}i', $markup);
-        $this->assertDoesNotMatchRegularExpression('{value="1.10" selected="selected"}i', $markup);
-        $this->assertDoesNotMatchRegularExpression('{value="1.20" selected="selected"}i', $markup);
+        self::assertMatchesRegularExpression('{value="1.1" selected="selected"}i', $markup);
+        self::assertDoesNotMatchRegularExpression('{value="1.2" selected="selected"}i', $markup);
+        self::assertDoesNotMatchRegularExpression('{value="1.10" selected="selected"}i', $markup);
+        self::assertDoesNotMatchRegularExpression('{value="1.20" selected="selected"}i', $markup);
     }
 
     public function testArrayEmptyOptionRendersOption(): void
@@ -480,6 +480,6 @@ final class FormSelectTest extends AbstractCommonTestCase
         ]);
         $markup = $this->helper->render($element);
 
-        $this->assertStringContainsString('<option value="" disabled="disabled">Select...</option>', $markup);
+        self::assertStringContainsString('<option value="" disabled="disabled">Select...</option>', $markup);
     }
 }

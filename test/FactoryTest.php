@@ -50,11 +50,11 @@ final class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.text',
             ],
         ]);
-        $this->assertInstanceOf(ElementInterface::class, $element);
-        $this->assertEquals('foo', $element->getName());
-        $this->assertEquals('text', $element->getAttribute('type'));
-        $this->assertEquals('foo-class', $element->getAttribute('class'));
-        $this->assertEquals('my.form.text', $element->getAttribute('data-js-type'));
+        self::assertInstanceOf(ElementInterface::class, $element);
+        self::assertEquals('foo', $element->getName());
+        self::assertEquals('text', $element->getAttribute('type'));
+        self::assertEquals('foo-class', $element->getAttribute('class'));
+        self::assertEquals('my.form.text', $element->getAttribute('data-js-type'));
     }
 
     public function testCanCreateFieldsets(): void
@@ -68,12 +68,12 @@ final class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.fieldset',
             ],
         ]);
-        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
-        $this->assertEquals('foo', $fieldset->getName());
-        $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
-        $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
-        $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
-        $this->assertEquals(new Model(), $fieldset->getObject());
+        self::assertInstanceOf(FieldsetInterface::class, $fieldset);
+        self::assertEquals('foo', $fieldset->getName());
+        self::assertEquals('fieldset', $fieldset->getAttribute('type'));
+        self::assertEquals('foo-class', $fieldset->getAttribute('class'));
+        self::assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
+        self::assertEquals(new Model(), $fieldset->getObject());
     }
 
     public function testCanCreateFieldsetsWithElements(): void
@@ -119,34 +119,34 @@ final class FactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
+        self::assertInstanceOf(FieldsetInterface::class, $fieldset);
         $elements = $fieldset->getElements();
-        $this->assertCount(3, $elements);
-        $this->assertTrue($fieldset->has('bar'));
-        $this->assertTrue($fieldset->has('baz'));
-        $this->assertTrue($fieldset->has('bat'));
+        self::assertCount(3, $elements);
+        self::assertTrue($fieldset->has('bar'));
+        self::assertTrue($fieldset->has('baz'));
+        self::assertTrue($fieldset->has('bat'));
 
         $element = $fieldset->get('bar');
-        $this->assertEquals('text', $element->getAttribute('type'));
+        self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $fieldset->get('baz');
-        $this->assertEquals('radio', $element->getAttribute('type'));
-        $this->assertEquals([
+        self::assertEquals('radio', $element->getAttribute('type'));
+        self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
         ], $element->getAttribute('options'));
 
         $element = $fieldset->get('bat');
-        $this->assertEquals('textarea', $element->getAttribute('type'));
-        $this->assertEquals('Type here...', $element->getAttribute('content'));
-        $this->assertEquals('bat', $element->getName());
+        self::assertEquals('textarea', $element->getAttribute('type'));
+        self::assertEquals('Type here...', $element->getAttribute('content'));
+        self::assertEquals('bat', $element->getName());
 
         // Testing that priority flag is present and works as expected
         foreach ($fieldset as $element) {
             $test = $element->getName();
             break;
         }
-        $this->assertEquals('bat', $test);
+        self::assertEquals('bat', $test);
     }
 
     public function testCanCreateNestedFieldsets(): void
@@ -199,35 +199,35 @@ final class FactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf(FieldsetInterface::class, $masterFieldset);
+        self::assertInstanceOf(FieldsetInterface::class, $masterFieldset);
         $fieldsets = $masterFieldset->getFieldsets();
-        $this->assertCount(1, $fieldsets);
-        $this->assertTrue($masterFieldset->has('bar'));
+        self::assertCount(1, $fieldsets);
+        self::assertTrue($masterFieldset->has('bar'));
 
         $fieldset = $masterFieldset->get('bar');
-        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
+        self::assertInstanceOf(FieldsetInterface::class, $fieldset);
 
         $element = $fieldset->get('bar');
-        $this->assertEquals('text', $element->getAttribute('type'));
+        self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $fieldset->get('baz');
-        $this->assertEquals('radio', $element->getAttribute('type'));
-        $this->assertEquals([
+        self::assertEquals('radio', $element->getAttribute('type'));
+        self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
         ], $element->getAttribute('options'));
 
         $element = $fieldset->get('bat');
-        $this->assertEquals('textarea', $element->getAttribute('type'));
-        $this->assertEquals('Type here...', $element->getAttribute('content'));
-        $this->assertEquals('bat', $element->getName());
+        self::assertEquals('textarea', $element->getAttribute('type'));
+        self::assertEquals('Type here...', $element->getAttribute('content'));
+        self::assertEquals('bat', $element->getName());
 
         // Testing that priority flag is present and works as expected
         foreach ($fieldset as $element) {
             $test = $element->getName();
             break;
         }
-        $this->assertEquals('bat', $test);
+        self::assertEquals('bat', $test);
     }
 
     public function testCanCreateForms(): void
@@ -239,10 +239,10 @@ final class FactoryTest extends TestCase
                 'method' => 'get',
             ],
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
-        $this->assertEquals('foo', $form->getName());
-        $this->assertEquals('get', $form->getAttribute('method'));
-        $this->assertEquals(new Model(), $form->getObject());
+        self::assertInstanceOf(FormInterface::class, $form);
+        self::assertEquals('foo', $form->getName());
+        self::assertEquals('get', $form->getAttribute('method'));
+        self::assertEquals(new Model(), $form->getObject());
     }
 
     public function testCanCreateFormsWithNamedInputFilters(): void
@@ -251,9 +251,9 @@ final class FactoryTest extends TestCase
             'name'         => 'foo',
             'input_filter' => InputFilter::class,
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilter::class, $filter);
+        self::assertInstanceOf(InputFilter::class, $filter);
     }
 
     public function testCanCreateFormsWithInputFilterSpecifications(): void
@@ -293,23 +293,23 @@ final class FactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilterInterface::class, $filter);
-        $this->assertCount(2, $filter);
+        self::assertInstanceOf(InputFilterInterface::class, $filter);
+        self::assertCount(2, $filter);
         foreach (['foo', 'bar'] as $name) {
             $input = $filter->get($name);
 
             switch ($name) {
                 case 'foo':
-                    $this->assertInstanceOf(Input::class, $input);
-                    $this->assertFalse($input->isRequired());
-                    $this->assertCount(2, $input->getValidatorChain());
+                    self::assertInstanceOf(Input::class, $input);
+                    self::assertFalse($input->isRequired());
+                    self::assertCount(2, $input->getValidatorChain());
                     break;
                 case 'bar':
-                    $this->assertInstanceOf(Input::class, $input);
-                    $this->assertTrue($input->allowEmpty());
-                    $this->assertCount(2, $input->getFilterChain());
+                    self::assertInstanceOf(Input::class, $input);
+                    self::assertTrue($input->allowEmpty());
+                    self::assertCount(2, $input->getFilterChain());
                     break;
             }
         }
@@ -322,9 +322,9 @@ final class FactoryTest extends TestCase
             'name'         => 'foo',
             'input_filter' => $filter,
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
         $test = $form->getInputFilter();
-        $this->assertSame($filter, $test);
+        self::assertSame($filter, $test);
     }
 
     public function testCanCreateFormsAndSpecifyHydrator(): void
@@ -333,9 +333,9 @@ final class FactoryTest extends TestCase
             'name'     => 'foo',
             'hydrator' => ObjectPropertyHydrator::class,
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
+        self::assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testCanCreateFormsAndSpecifyHydratorManagedByHydratorManager(): void
@@ -349,9 +349,9 @@ final class FactoryTest extends TestCase
             'name'     => 'foo',
             'hydrator' => $hydratorShortName,
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf($hydratorType, $hydrator);
+        self::assertInstanceOf($hydratorType, $hydrator);
     }
 
     public function testCanCreateHydratorFromArray(): void
@@ -364,11 +364,11 @@ final class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
+        self::assertInstanceOf(\Laminas\Form\Form::class, $form);
         $hydrator = $form->getHydrator();
 
-        $this->assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
-        $this->assertFalse($hydrator->getUnderscoreSeparatedKeys());
+        self::assertInstanceOf(ClassMethodsHydrator::class, $hydrator);
+        self::assertFalse($hydrator->getUnderscoreSeparatedKeys());
     }
 
     public function testCanCreateHydratorFromConcreteClass(): void
@@ -378,9 +378,9 @@ final class FactoryTest extends TestCase
             'hydrator' => new ObjectPropertyHydrator(),
         ]);
 
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
+        self::assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testCanCreateFormsAndSpecifyFactory(): void
@@ -389,9 +389,9 @@ final class FactoryTest extends TestCase
             'name'    => 'foo',
             'factory' => FormFactory::class,
         ]);
-        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
+        self::assertInstanceOf(\Laminas\Form\Form::class, $form);
         $factory = $form->getFormFactory();
-        $this->assertInstanceOf(FormFactory::class, $factory);
+        self::assertInstanceOf(FormFactory::class, $factory);
     }
 
     public function testCanCreateFactoryFromArray(): void
@@ -403,9 +403,9 @@ final class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
+        self::assertInstanceOf(\Laminas\Form\Form::class, $form);
         $factory = $form->getFormFactory();
-        $this->assertInstanceOf(FormFactory::class, $factory);
+        self::assertInstanceOf(FormFactory::class, $factory);
     }
 
     public function testCanCreateFactoryFromConcreteClass(): void
@@ -416,9 +416,9 @@ final class FactoryTest extends TestCase
             'factory' => $factory,
         ]);
 
-        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
+        self::assertInstanceOf(\Laminas\Form\Form::class, $form);
         $test = $form->getFormFactory();
-        $this->assertSame($factory, $test);
+        self::assertSame($factory, $test);
     }
 
     public function testCanCreateFormFromConcreteClassAndSpecifyCustomValidatorByName(): void
@@ -451,29 +451,29 @@ final class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilterInterface::class, $inputFilter);
+        self::assertInstanceOf(InputFilterInterface::class, $inputFilter);
 
         $input = $inputFilter->get('bar');
-        $this->assertInstanceOf(Input::class, $input);
+        self::assertInstanceOf(Input::class, $input);
 
         $validatorChain = $input->getValidatorChain();
-        $this->assertInstanceOf(ValidatorChain::class, $validatorChain);
+        self::assertInstanceOf(ValidatorChain::class, $validatorChain);
 
         $validatorArray = $validatorChain->getValidators();
         $found          = false;
         foreach ($validatorArray as $validator) {
             $validatorInstance = $validator['instance'];
-            $this->assertInstanceOf(ValidatorInterface::class, $validatorInstance);
+            self::assertInstanceOf(ValidatorInterface::class, $validatorInstance);
 
             if ($validatorInstance instanceof Digits) {
                 $found = true;
                 break;
             }
         }
-        $this->assertTrue($found);
+        self::assertTrue($found);
     }
 
     // @codingStandardsIgnoreLine
@@ -506,29 +506,29 @@ final class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
 
         $inputFilter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilterInterface::class, $inputFilter);
+        self::assertInstanceOf(InputFilterInterface::class, $inputFilter);
 
         $input = $inputFilter->get('bar');
-        $this->assertInstanceOf(Input::class, $input);
+        self::assertInstanceOf(Input::class, $input);
 
         $validatorChain = $input->getValidatorChain();
-        $this->assertInstanceOf(ValidatorChain::class, $validatorChain);
+        self::assertInstanceOf(ValidatorChain::class, $validatorChain);
 
         $validatorArray = $validatorChain->getValidators();
         $found          = false;
         foreach ($validatorArray as $validator) {
             $validatorInstance = $validator['instance'];
-            $this->assertInstanceOf(ValidatorInterface::class, $validatorInstance);
+            self::assertInstanceOf(ValidatorInterface::class, $validatorInstance);
 
             if ($validatorInstance instanceof Digits) {
                 $found = true;
                 break;
             }
         }
-        $this->assertTrue($found);
+        self::assertTrue($found);
     }
 
     public function testCanCreateFormWithHydratorAndInputFilterAndElementsAndFieldsets(): void
@@ -621,73 +621,73 @@ final class FactoryTest extends TestCase
             'input_filter' => InputFilter::class,
             'hydrator'     => ObjectPropertyHydrator::class,
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
 
         $elements = $form->getElements();
-        $this->assertCount(3, $elements);
-        $this->assertTrue($form->has('bar'));
-        $this->assertTrue($form->has('baz'));
-        $this->assertTrue($form->has('bat'));
+        self::assertCount(3, $elements);
+        self::assertTrue($form->has('bar'));
+        self::assertTrue($form->has('baz'));
+        self::assertTrue($form->has('bat'));
 
         $element = $form->get('bar');
-        $this->assertEquals('text', $element->getAttribute('type'));
+        self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $form->get('baz');
-        $this->assertEquals('radio', $element->getAttribute('type'));
-        $this->assertEquals([
+        self::assertEquals('radio', $element->getAttribute('type'));
+        self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
         ], $element->getAttribute('options'));
 
         $element = $form->get('bat');
-        $this->assertEquals('textarea', $element->getAttribute('type'));
-        $this->assertEquals('Type here...', $element->getAttribute('content'));
-        $this->assertEquals('bat', $element->getName());
+        self::assertEquals('textarea', $element->getAttribute('type'));
+        self::assertEquals('Type here...', $element->getAttribute('content'));
+        self::assertEquals('bat', $element->getName());
 
         // Testing that priority flag is present and works as expected
         foreach ($form as $element) {
             $test = $element->getName();
             break;
         }
-        $this->assertEquals('bat', $test);
+        self::assertEquals('bat', $test);
 
         // Test against nested fieldset
         $fieldsets = $form->getFieldsets();
-        $this->assertCount(1, $fieldsets);
-        $this->assertTrue($form->has('foobar'));
+        self::assertCount(1, $fieldsets);
+        self::assertTrue($form->has('foobar'));
 
         $fieldset = $form->get('foobar');
-        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
+        self::assertInstanceOf(FieldsetInterface::class, $fieldset);
 
         $element = $fieldset->get('bar');
-        $this->assertEquals('text', $element->getAttribute('type'));
+        self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $fieldset->get('baz');
-        $this->assertEquals('radio', $element->getAttribute('type'));
-        $this->assertEquals([
+        self::assertEquals('radio', $element->getAttribute('type'));
+        self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
         ], $element->getAttribute('options'));
 
         $element = $fieldset->get('bat');
-        $this->assertEquals('textarea', $element->getAttribute('type'));
-        $this->assertEquals('Type here...', $element->getAttribute('content'));
-        $this->assertEquals('bat', $element->getName());
+        self::assertEquals('textarea', $element->getAttribute('type'));
+        self::assertEquals('Type here...', $element->getAttribute('content'));
+        self::assertEquals('bat', $element->getName());
 
         // Testing that priority flag is present and works as expected
         foreach ($fieldset as $element) {
             $test = $element->getName();
             break;
         }
-        $this->assertEquals('bat', $test);
+        self::assertEquals('bat', $test);
 
         // input filter
         $filter = $form->getInputFilter();
-        $this->assertInstanceOf(InputFilter::class, $filter);
+        self::assertInstanceOf(InputFilter::class, $filter);
 
         // hydrator
         $hydrator = $form->getHydrator();
-        $this->assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
+        self::assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
     }
 
     public function testCanCreateFormUsingCreate(): void
@@ -699,9 +699,9 @@ final class FactoryTest extends TestCase
                 'method' => 'get',
             ],
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
-        $this->assertEquals('foo', $form->getName());
-        $this->assertEquals('get', $form->getAttribute('method'));
+        self::assertInstanceOf(FormInterface::class, $form);
+        self::assertEquals('foo', $form->getName());
+        self::assertEquals('get', $form->getAttribute('method'));
     }
 
     public function testCanCreateFieldsetUsingCreate(): void
@@ -715,11 +715,11 @@ final class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.fieldset',
             ],
         ]);
-        $this->assertInstanceOf(FieldsetInterface::class, $fieldset);
-        $this->assertEquals('foo', $fieldset->getName());
-        $this->assertEquals('fieldset', $fieldset->getAttribute('type'));
-        $this->assertEquals('foo-class', $fieldset->getAttribute('class'));
-        $this->assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
+        self::assertInstanceOf(FieldsetInterface::class, $fieldset);
+        self::assertEquals('foo', $fieldset->getName());
+        self::assertEquals('fieldset', $fieldset->getAttribute('type'));
+        self::assertEquals('foo-class', $fieldset->getAttribute('class'));
+        self::assertEquals('my.form.fieldset', $fieldset->getAttribute('data-js-type'));
     }
 
     public function testCanCreateElementUsingCreate(): void
@@ -732,25 +732,25 @@ final class FactoryTest extends TestCase
                 'data-js-type' => 'my.form.text',
             ],
         ]);
-        $this->assertInstanceOf(ElementInterface::class, $element);
-        $this->assertEquals('foo', $element->getName());
-        $this->assertEquals('text', $element->getAttribute('type'));
-        $this->assertEquals('foo-class', $element->getAttribute('class'));
-        $this->assertEquals('my.form.text', $element->getAttribute('data-js-type'));
+        self::assertInstanceOf(ElementInterface::class, $element);
+        self::assertEquals('foo', $element->getName());
+        self::assertEquals('text', $element->getAttribute('type'));
+        self::assertEquals('foo-class', $element->getAttribute('class'));
+        self::assertEquals('my.form.text', $element->getAttribute('data-js-type'));
     }
 
     public function testAutomaticallyAddFieldsetTypeWhenCreateFieldset(): void
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
-        $this->assertInstanceOf(Fieldset::class, $fieldset);
-        $this->assertEquals('myFieldset', $fieldset->getName());
+        self::assertInstanceOf(Fieldset::class, $fieldset);
+        self::assertEquals('myFieldset', $fieldset->getName());
     }
 
     public function testAutomaticallyAddFormTypeWhenCreateForm(): void
     {
         $form = $this->factory->createForm(['name' => 'myForm']);
-        $this->assertInstanceOf(\Laminas\Form\Form::class, $form);
-        $this->assertEquals('myForm', $form->getName());
+        self::assertInstanceOf(\Laminas\Form\Form::class, $form);
+        self::assertEquals('myForm', $form->getName());
     }
 
     public function testCanPullHydratorThroughServiceManager(): void
@@ -769,14 +769,14 @@ final class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(ObjectPropertyHydrator::class, $fieldset->getHydrator());
+        self::assertInstanceOf(ObjectPropertyHydrator::class, $fieldset->getHydrator());
     }
 
     public function testCreatedFieldsetsHaveFactoryAndFormElementManagerInjected(): void
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);
-        $this->assertInstanceOf(Fieldset::class, $fieldset);
-        $this->assertSame(
+        self::assertInstanceOf(Fieldset::class, $fieldset);
+        self::assertSame(
             $fieldset->getFormFactory()->getFormElementManager(),
             $this->factory->getFormElementManager()
         );
@@ -811,13 +811,13 @@ final class FactoryTest extends TestCase
                 ],
             ],
         ]);
-        $this->assertInstanceOf(FormInterface::class, $form);
+        self::assertInstanceOf(FormInterface::class, $form);
 
         $elements = $form->getElements();
-        $this->assertCount(2, $elements);
-        $this->assertTrue($form->has('bar'));
-        $this->assertFalse($form->has('baz'));
-        $this->assertTrue($form->has('bat'));
+        self::assertCount(2, $elements);
+        self::assertTrue($form->has('bar'));
+        self::assertFalse($form->has('baz'));
+        self::assertTrue($form->has('bat'));
     }
 
     public function testCanCreateWithConstructionLogicInOptions(): void
@@ -838,11 +838,11 @@ final class FactoryTest extends TestCase
             ],
         ]);
 
-        $this->assertInstanceOf(Form\Element\Collection::class, $collection);
+        self::assertInstanceOf(Form\Element\Collection::class, $collection);
 
         $targetElement = $collection->getTargetElement();
 
-        $this->assertInstanceOf(TestAsset\FieldsetWithDependency::class, $targetElement);
-        $this->assertInstanceOf(InputFilter::class, $targetElement->getDependency());
+        self::assertInstanceOf(TestAsset\FieldsetWithDependency::class, $targetElement);
+        self::assertInstanceOf(InputFilter::class, $targetElement->getDependency());
     }
 }

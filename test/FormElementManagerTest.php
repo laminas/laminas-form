@@ -44,7 +44,7 @@ final class FormElementManagerTest extends TestCase
     public function testInjectToFormFactoryAware(): void
     {
         $form = $this->manager->get('Form');
-        $this->assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
+        self::assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }
 
     /**
@@ -59,8 +59,8 @@ final class FormElementManagerTest extends TestCase
             return $form;
         });
         $form = $this->manager->get('my-form');
-        $this->assertSame($factory, $form->getFormFactory());
-        $this->assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
+        self::assertSame($factory, $form->getFormFactory());
+        self::assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }
 
     public function testRegisteringInvalidElementRaisesException(): void
@@ -95,8 +95,8 @@ final class FormElementManagerTest extends TestCase
             ],
         ];
         $element = $this->manager->get('element', $args);
-        $this->assertEquals('foo', $element->getName(), 'Specified name in array[name]');
-        $this->assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
+        self::assertEquals('foo', $element->getName(), 'Specified name in array[name]');
+        self::assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
     }
 
     public function testOptionsCreationOptions(): void
@@ -105,8 +105,8 @@ final class FormElementManagerTest extends TestCase
             'label' => 'bar',
         ];
         $element = $this->manager->get('element', $args);
-        $this->assertEquals('element', $element->getName(), 'Invokable CNAME');
-        $this->assertEquals('bar', $element->getLabel(), 'Specified options in array');
+        self::assertEquals('element', $element->getName(), 'Invokable CNAME');
+        self::assertEquals('bar', $element->getLabel(), 'Specified options in array');
     }
 
     public function testArrayOptionsCreationOptions(): void
@@ -117,8 +117,8 @@ final class FormElementManagerTest extends TestCase
             ],
         ];
         $element = $this->manager->get('element', $args);
-        $this->assertEquals('element', $element->getName(), 'Invokable CNAME');
-        $this->assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
+        self::assertEquals('element', $element->getName(), 'Invokable CNAME');
+        self::assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
     }
 
     /**
@@ -143,7 +143,7 @@ final class FormElementManagerTest extends TestCase
     public function testWillInstantiateFormFromInvokable(): void
     {
         $form = $this->manager->get('form');
-        $this->assertInstanceof(Form::class, $form);
+        self::assertInstanceof(Form::class, $form);
     }
 
     /**
@@ -169,9 +169,9 @@ final class FormElementManagerTest extends TestCase
         $r->setAccessible(true);
         $actual = $r->getValue($manager);
 
-        $this->assertGreaterThan(2, count($actual));
+        self::assertGreaterThan(2, count($actual));
         $first = array_shift($actual);
-        $this->assertSame([$manager, 'injectFactory'], $first);
+        self::assertSame([$manager, 'injectFactory'], $first);
     }
 
     /**
@@ -197,9 +197,9 @@ final class FormElementManagerTest extends TestCase
         $r->setAccessible(true);
         $actual = $r->getValue($manager);
 
-        $this->assertGreaterThan(2, count($actual));
+        self::assertGreaterThan(2, count($actual));
         $last = array_pop($actual);
-        $this->assertSame([$manager, 'callElementInit'], $last);
+        self::assertSame([$manager, 'callElementInit'], $last);
     }
 
     /**
@@ -213,15 +213,15 @@ final class FormElementManagerTest extends TestCase
         $r->setAccessible(true);
         $aliases = $r->getValue($this->manager);
 
-        $this->assertArrayHasKey('foo', $aliases);
-        $this->assertEquals(TestAsset\ElementWithFilter::class, $aliases['foo']);
+        self::assertArrayHasKey('foo', $aliases);
+        self::assertEquals(TestAsset\ElementWithFilter::class, $aliases['foo']);
 
         $r = new ReflectionProperty($this->manager, 'factories');
         $r->setAccessible(true);
         $factories = $r->getValue($this->manager);
 
-        $this->assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
-        $this->assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
+        self::assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
+        self::assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
     }
 
     public function testAllAliasesShouldBeCanonicalized(): void
@@ -280,7 +280,7 @@ final class FormElementManagerTest extends TestCase
         $formElementManager = new FormElementManager($container);
 
         // Test
-        $this->assertSame(
+        self::assertSame(
             $hydrator,
             $formElementManager->getHydratorFromName('NameOfHydrator')
         );
@@ -312,7 +312,7 @@ final class FormElementManagerTest extends TestCase
         $formElementManager = new FormElementManager($container);
 
         // Test
-        $this->assertSame(
+        self::assertSame(
             $hydrator,
             $formElementManager->getHydratorFromName('NameOfHydrator')
         );

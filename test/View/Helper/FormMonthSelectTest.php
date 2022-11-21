@@ -39,9 +39,9 @@ final class FormMonthSelectTest extends AbstractCommonTestCase
     {
         $element = new MonthSelect('foo');
         $markup  = $this->helper->render($element);
-        $this->assertStringNotContainsString('<select name="day"', $markup);
-        $this->assertStringContainsString('<select name="month"', $markup);
-        $this->assertStringContainsString('<select name="year"', $markup);
+        self::assertStringNotContainsString('<select name="day"', $markup);
+        self::assertStringContainsString('<select name="month"', $markup);
+        self::assertStringContainsString('<select name="year"', $markup);
     }
 
     public function testCanGenerateSelectsWithEmptyOption(): void
@@ -49,10 +49,10 @@ final class FormMonthSelectTest extends AbstractCommonTestCase
         $element = new MonthSelect('foo');
         $element->setShouldCreateEmptyOption(true);
         $markup = $this->helper->render($element);
-        $this->assertStringNotContainsString('<select name="day"', $markup);
-        $this->assertStringContainsString('<select name="month"', $markup);
-        $this->assertStringContainsString('<select name="year"', $markup);
-        $this->assertStringContainsString('<option value=""></option>', $markup);
+        self::assertStringNotContainsString('<select name="day"', $markup);
+        self::assertStringContainsString('<select name="month"', $markup);
+        self::assertStringContainsString('<select name="year"', $markup);
+        self::assertStringContainsString('<option value=""></option>', $markup);
     }
 
     public function testCanDisableDelimiters(): void
@@ -64,7 +64,7 @@ final class FormMonthSelectTest extends AbstractCommonTestCase
 
         // If it contains two consecutive selects this means that no delimiters
         // are inserted
-        $this->assertStringContainsString('</select><select', $markup);
+        self::assertStringContainsString('</select><select', $markup);
     }
 
     public function testCanRenderTextDelimiters(): void
@@ -75,28 +75,28 @@ final class FormMonthSelectTest extends AbstractCommonTestCase
         $markup = $this->helper->__invoke($element, IntlDateFormatter::LONG, 'pt_BR');
 
         // pattern === "MMMM 'de' y"
-        $this->assertStringMatchesFormat('%a de %a', $markup);
+        self::assertStringMatchesFormat('%a de %a', $markup);
     }
 
     public function testInvokeProxiesToRender(): void
     {
         $element = new MonthSelect('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertStringNotContainsString('<select name="day"', $markup);
-        $this->assertStringContainsString('<select name="month"', $markup);
-        $this->assertStringContainsString('<select name="year"', $markup);
+        self::assertStringNotContainsString('<select name="day"', $markup);
+        self::assertStringContainsString('<select name="month"', $markup);
+        self::assertStringContainsString('<select name="year"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 
     public function testMonthElementValueOptions(): void
     {
         $element = new MonthSelect('foo');
         $this->helper->render($element);
-        $this->assertCount(12, $element->getMonthElement()->getValueOptions());
+        self::assertCount(12, $element->getMonthElement()->getValueOptions());
     }
 
     /**
@@ -107,12 +107,12 @@ final class FormMonthSelectTest extends AbstractCommonTestCase
         $element = new MonthSelect('foo');
         $this->helper->render($element);
         $elements = $element->getElements();
-        $this->assertCount(2, $elements);
+        self::assertCount(2, $elements);
 
         foreach ($elements as $subElement) {
-            $this->assertInstanceOf(Select::class, $subElement);
+            self::assertInstanceOf(Select::class, $subElement);
         }
 
-        $this->assertCount(12, $elements[0]->getValueOptions());
+        self::assertCount(12, $elements[0]->getValueOptions());
     }
 }

@@ -26,8 +26,8 @@ final class TimeTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Date::class,
@@ -37,22 +37,22 @@ final class TimeTest extends TestCase
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Date::class:
-                    $this->assertEquals('H:i:s', $validator->getFormat());
+                    self::assertEquals('H:i:s', $validator->getFormat());
                     break;
                 case GreaterThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('00:00:00', $validator->getMin());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('00:00:00', $validator->getMin());
                     break;
                 case LessThan::class:
-                    $this->assertTrue($validator->getInclusive());
-                    $this->assertEquals('00:01:00', $validator->getMax());
+                    self::assertTrue($validator->getInclusive());
+                    self::assertEquals('00:01:00', $validator->getMax());
                     break;
                 case DateStep::class:
                     $dateInterval = new DateInterval('PT60S');
-                    $this->assertEquals($dateInterval, $validator->getStep());
+                    self::assertEquals($dateInterval, $validator->getStep());
                     break;
                 default:
                     break;

@@ -33,7 +33,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertMatchesRegularExpression('#<textarea.*?></textarea>#', $markup);
+        self::assertMatchesRegularExpression('#<textarea.*?></textarea>#', $markup);
     }
 
     public function validAttributes(): array
@@ -271,7 +271,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $element->setAttribute($attribute, true);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
@@ -281,13 +281,13 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $off);
         if ($off !== '') {
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
             );
         } else {
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -298,7 +298,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $element->setAttribute($attribute, $on);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
@@ -309,13 +309,13 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $expect = sprintf('%s="%s"', $attribute, $off);
 
         if ($off !== '') {
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
             );
         } else {
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -337,14 +337,14 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $markup = $this->helper->render($element);
         $expect = $attribute;
 
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
         );
 
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringNotContainsString(
+        self::assertStringNotContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should not be '%s'; received %s", $attribute, $on, $markup)
@@ -356,7 +356,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         if ($off !== '') {
             $expect = sprintf('%s="%s"', $attribute, $off);
 
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
@@ -364,7 +364,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         } else {
             $expect = $attribute;
 
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -376,14 +376,14 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $markup = $this->helper->render($element);
         $expect = $attribute;
 
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
         );
 
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringNotContainsString(
+        self::assertStringNotContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should not be '%s'; received %s", $attribute, $on, $markup)
@@ -395,7 +395,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         if ($off !== '') {
             $expect = sprintf('%s="%s"', $attribute, $off);
 
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
@@ -403,7 +403,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         } else {
             $expect = $attribute;
 
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -416,20 +416,20 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setAttribute('value', 'Initial content');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('>Initial content</textarea>', $markup);
+        self::assertStringContainsString('>Initial content</textarea>', $markup);
     }
 
     public function testInvokeProxiesToRender(): void
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertStringContainsString('<textarea', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('<textarea', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 }

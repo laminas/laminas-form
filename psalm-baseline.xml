@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
+<files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
   <file src="src/Annotation/AbstractBuilder.php">
     <DocblockTypeContradiction occurrences="1">
       <code>! is_string($entity)</code>
@@ -67,26 +67,13 @@
       <code>$this</code>
     </LessSpecificReturnStatement>
   </file>
-  <file src="src/Element/AbstractDateTime.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
   <file src="src/Element/Captcha.php">
     <DocblockTypeContradiction occurrences="1">
       <code>gettype($captcha)</code>
     </DocblockTypeContradiction>
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>is_object($captcha)</code>
     </RedundantConditionGivenDocblockType>
-  </file>
-  <file src="src/Element/Checkbox.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
   </file>
   <file src="src/Element/Collection.php">
     <DocblockTypeContradiction occurrences="4">
@@ -117,66 +104,13 @@
       <code>bindValues</code>
     </TooManyArguments>
   </file>
-  <file src="src/Element/Color.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/Csrf.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/DateSelect.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/DateTimeSelect.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/Email.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/File.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/MonthSelect.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/Number.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
   <file src="src/Element/Select.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
     <MissingClosureParamType occurrences="1">
       <code>$value</code>
     </MissingClosureParamType>
     <MissingClosureReturnType occurrences="1">
       <code>static function ($value) use ($unselectedValue) {</code>
     </MissingClosureReturnType>
-  </file>
-  <file src="src/Element/Tel.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="src/Element/Url.php">
-    <LessSpecificImplementedReturnType occurrences="1">
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
   </file>
   <file src="src/ElementFactory.php">
     <InvalidStringClass occurrences="1">
@@ -230,9 +164,6 @@
       <code>$childFieldset</code>
       <code>$filter</code>
     </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="1">
-      <code>$spec</code>
-    </InvalidArgument>
     <LessSpecificReturnStatement occurrences="3">
       <code>$this</code>
       <code>$this</code>
@@ -273,9 +204,6 @@
     </TooManyArguments>
   </file>
   <file src="src/FormAbstractServiceFactory.php">
-    <InvalidDocblock occurrences="1">
-      <code>setPluginManager</code>
-    </InvalidDocblock>
     <PossiblyNullReference occurrences="2">
       <code>setPluginManager</code>
       <code>setPluginManager</code>
@@ -416,10 +344,6 @@
     </PossiblyNullArgument>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
-    <DeprecatedMethod occurrences="2">
-      <code>allowEmpty</code>
-      <code>continueIfEmpty</code>
-    </DeprecatedMethod>
     <PossiblyUndefinedMethod occurrences="9">
       <code>allowEmpty</code>
       <code>getFilterChain</code>
@@ -436,6 +360,20 @@
     <NullArgument occurrences="1">
       <code>null</code>
     </NullArgument>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="test/Element/CheckboxTest.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getHaystack</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getHaystack</code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/CollectionTest.php">
     <NullArgument occurrences="1">
@@ -449,6 +387,97 @@
       <code>$shop</code>
     </PossiblyUndefinedVariable>
   </file>
+  <file src="test/Element/ColorTest.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getPattern</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getPattern</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/CsrfTest.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getName</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getName</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/DateSelectTest.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getFormat</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getFormat</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/DateTest.php">
+    <PossiblyInvalidMethodCall occurrences="8">
+      <code>getBaseValue</code>
+      <code>getBaseValue</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="4">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="8">
+      <code>getBaseValue</code>
+      <code>getBaseValue</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/DateTimeLocalTest.php">
+    <PossiblyInvalidMethodCall occurrences="5">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="5">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/DateTimeSelectTest.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getFormat</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getFormat</code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="test/Element/DateTimeTest.php">
     <DeprecatedClass occurrences="9">
       <code>new DateTimeElement('foo')</code>
@@ -461,11 +490,273 @@
       <code>new DateTimeElement('foo')</code>
       <code>new DateTimeElement('foo')</code>
     </DeprecatedClass>
+    <PossiblyInvalidArrayAccess occurrences="2">
+      <code>$filter['name']</code>
+      <code>$filter['options']</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidMethodCall occurrences="5">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="3">
+      <code>$filter['options']</code>
+      <code>$inputSpec['filters']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="7">
+      <code>$filter</code>
+      <code>$filter</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/EmailTest.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getValidator</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getValidator</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/MonthSelectTest.php">
+    <PossiblyInvalidArrayAccess occurrences="1">
+      <code>$inputSpec['validators'][0]</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getPattern</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getPattern</code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/Element/MonthTest.php">
+    <PossiblyInvalidArrayAccess occurrences="1">
+      <code>$inputSpec['validators'][0]</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidMethodCall occurrences="5">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="5">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/Element/MultiCheckboxTest.php">
+    <PossiblyInvalidArrayAccess occurrences="2">
+      <code>$inputSpec['validators'][0]</code>
+      <code>$inputSpec['validators'][0]</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getValidator</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="3">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getValidator</code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="2">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/Element/NumberTest.php">
+    <PossiblyInvalidMethodCall occurrences="6">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="5">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="6">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/RadioTest.php">
+    <PossiblyInvalidArrayAccess occurrences="1">
+      <code>$inputSpec['validators'][0]</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedMethod occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/Element/RangeTest.php">
+    <PossiblyInvalidMethodCall occurrences="10">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getMin</code>
+      <code>getStep</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="10">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getMin</code>
+      <code>getStep</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/SelectTest.php">
+    <PossiblyInvalidArrayAccess occurrences="4">
+      <code>$inputSpec['validators'][0]</code>
+      <code>$inputSpec['validators'][0]</code>
+      <code>$inputSpec['validators'][0]</code>
+      <code>$inputSpec['validators'][0]</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getValidator</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="8">
+      <code>$inputSpec['allow_empty']</code>
+      <code>$inputSpec['continue_if_empty']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getValidator</code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="4">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/Element/TelTest.php">
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$inputSpec['name']</code>
+      <code>$inputSpec['required']</code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="test/Element/TimeTest.php">
+    <PossiblyInvalidMethodCall occurrences="6">
+      <code>getFormat</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="6">
+      <code>getFormat</code>
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/UrlTest.php">
+    <PossiblyInvalidMethodCall occurrences="2">
+      <code>getAllowAbsolute</code>
+      <code>getAllowRelative</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>getAllowAbsolute</code>
+      <code>getAllowRelative</code>
+    </UndefinedInterfaceMethod>
+  </file>
+  <file src="test/Element/WeekTest.php">
+    <PossiblyInvalidArrayAccess occurrences="1">
+      <code>$inputSpec['validators'][0]</code>
+    </PossiblyInvalidArrayAccess>
+    <PossiblyInvalidMethodCall occurrences="5">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="2">
+      <code>$inputSpec['validators']</code>
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="5">
+      <code>getInclusive</code>
+      <code>getInclusive</code>
+      <code>getMax</code>
+      <code>getMin</code>
+      <code>getStep</code>
+    </UndefinedInterfaceMethod>
+    <UndefinedMethod occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </UndefinedMethod>
   </file>
   <file src="test/FactoryTest.php">
-    <DeprecatedMethod occurrences="1">
-      <code>allowEmpty</code>
-    </DeprecatedMethod>
     <PossiblyUndefinedVariable occurrences="4">
       <code>$test</code>
       <code>$test</code>
@@ -491,7 +782,6 @@
   </file>
   <file src="test/FormElementManagerFactoryTest.php">
     <MissingClosureParamType occurrences="1">
-      <code>$container</code>
       <code>$container</code>
     </MissingClosureParamType>
   </file>
@@ -552,11 +842,6 @@
     <DeprecatedClass occurrences="1">
       <code>Annotation\AllowEmpty()</code>
     </DeprecatedClass>
-  </file>
-  <file src="test/TestAsset/Annotation/InputFilterInput.php">
-    <DeprecatedInterface occurrences="1">
-      <code>InputFilterInput</code>
-    </DeprecatedInterface>
   </file>
   <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
     <MissingPropertyType occurrences="1">
@@ -793,6 +1078,17 @@
     <PossiblyNullArgument occurrences="1">
       <code>$element-&gt;getAttribute($attribute)</code>
     </PossiblyNullArgument>
+  </file>
+  <file src="test/View/Helper/FormElementTest.php">
+    <PossiblyInvalidMethodCall occurrences="1">
+      <code>getHash</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedArrayOffset occurrences="1">
+      <code>$inputSpec['validators']</code>
+    </PossiblyUndefinedArrayOffset>
+    <UndefinedInterfaceMethod occurrences="1">
+      <code>getHash</code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="test/View/Helper/FormEmailTest.php">
     <PossiblyNullArgument occurrences="1">

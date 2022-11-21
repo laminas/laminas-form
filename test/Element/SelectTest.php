@@ -24,15 +24,15 @@ final class SelectTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             InArray::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
         }
     }
 
@@ -53,8 +53,8 @@ final class SelectTest extends TestCase
         $inputSpec        = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
 
-        $this->assertTrue($inArrayValidator->isValid('Option 1'));
-        $this->assertFalse($inArrayValidator->isValid('Option 5'));
+        self::assertTrue($inArrayValidator->isValid('Option 1'));
+        self::assertFalse($inArrayValidator->isValid('Option 5'));
     }
 
     public function testValidateWorksForNestedSelectElementWithExplicitNaming(): void
@@ -74,10 +74,10 @@ final class SelectTest extends TestCase
         $inputSpec        = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0];
 
-        $this->assertTrue($inArrayValidator->isValid('Option 1'));
-        $this->assertTrue($inArrayValidator->isValid('Option 2'));
-        $this->assertTrue($inArrayValidator->isValid('Option 3'));
-        $this->assertFalse($inArrayValidator->isValid('Option 5'));
+        self::assertTrue($inArrayValidator->isValid('Option 1'));
+        self::assertTrue($inArrayValidator->isValid('Option 2'));
+        self::assertTrue($inArrayValidator->isValid('Option 3'));
+        self::assertFalse($inArrayValidator->isValid('Option 5'));
     }
 
     public function testProvidesInputSpecificationForMultipleSelect(): void
@@ -93,18 +93,18 @@ final class SelectTest extends TestCase
         ]);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
-        $this->assertIsArray($inputSpec['validators']);
+        self::assertArrayHasKey('validators', $inputSpec);
+        self::assertIsArray($inputSpec['validators']);
 
         $expectedClasses = [
             Explode::class,
         ];
         foreach ($inputSpec['validators'] as $validator) {
             $class = $validator::class;
-            $this->assertContains($class, $expectedClasses, $class);
+            self::assertContains($class, $expectedClasses, $class);
             switch ($class) {
                 case Explode::class:
-                    $this->assertInstanceOf(InArray::class, $validator->getValidator());
+                    self::assertInstanceOf(InArray::class, $validator->getValidator());
                     break;
                 default:
                     break;
@@ -140,11 +140,11 @@ final class SelectTest extends TestCase
         $element = new SelectElement('my-select');
         $element->setValueOptions($options);
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayHasKey('validators', $inputSpec);
+        self::assertArrayHasKey('validators', $inputSpec);
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf(InArray::class, $inArrayValidator);
+        self::assertInstanceOf(InArray::class, $inArrayValidator);
         foreach ($valueTests as $valueToTest) {
-            $this->assertTrue($inArrayValidator->isValid($valueToTest));
+            self::assertTrue($inArrayValidator->isValid($valueToTest));
         }
     }
 
@@ -160,17 +160,17 @@ final class SelectTest extends TestCase
         $inputSpec = $element->getInputSpecification();
 
         $inArrayValidator = $inputSpec['validators'][0];
-        $this->assertInstanceOf(InArray::class, $inArrayValidator);
+        self::assertInstanceOf(InArray::class, $inArrayValidator);
 
         $element->setValueOptions($options);
         $haystack = $inArrayValidator->getHaystack();
-        $this->assertCount(count($options), $haystack);
+        self::assertCount(count($options), $haystack);
     }
 
     public function testOptionsHasArrayOnConstruct(): void
     {
         $element = new SelectElement();
-        $this->assertIsArray($element->getValueOptions());
+        self::assertIsArray($element->getValueOptions());
     }
 
     public function testDeprecateOptionsInAttributes(): void
@@ -185,7 +185,7 @@ final class SelectTest extends TestCase
             'multiple' => true,
             'options'  => $valueOptions,
         ]);
-        $this->assertEquals($valueOptions, $element->getValueOptions());
+        self::assertEquals($valueOptions, $element->getValueOptions());
     }
 
     public function testSetOptionsArray(): void
@@ -196,9 +196,9 @@ final class SelectTest extends TestCase
             'options'       => ['foo' => 'bar'],
             'empty_option'  => 'xye',
         ]);
-        $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
-        $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
-        $this->assertEquals('xye', $element->getOption('empty_option'));
+        self::assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
+        self::assertEquals(['foo' => 'bar'], $element->getOption('options'));
+        self::assertEquals('xye', $element->getOption('empty_option'));
     }
 
     public function testSetOptionsTraversable(): void
@@ -209,9 +209,9 @@ final class SelectTest extends TestCase
             'options'       => ['foo' => 'bar'],
             'empty_option'  => 'xye',
         ]));
-        $this->assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
-        $this->assertEquals(['foo' => 'bar'], $element->getOption('options'));
-        $this->assertEquals('xye', $element->getOption('empty_option'));
+        self::assertEquals(['bar' => 'baz'], $element->getOption('value_options'));
+        self::assertEquals(['foo' => 'bar'], $element->getOption('options'));
+        self::assertEquals('xye', $element->getOption('empty_option'));
     }
 
     public function testDisableInputSpecification(): void
@@ -225,7 +225,7 @@ final class SelectTest extends TestCase
         $element->setDisableInArrayValidator(true);
 
         $inputSpec = $element->getInputSpecification();
-        $this->assertArrayNotHasKey('validators', $inputSpec);
+        self::assertArrayNotHasKey('validators', $inputSpec);
     }
 
     public function testUnsetValueOption(): void
@@ -239,7 +239,7 @@ final class SelectTest extends TestCase
         $element->unsetValueOption('Option 2');
 
         $valueOptions = $element->getValueOptions();
-        $this->assertArrayNotHasKey('Option 2', $valueOptions);
+        self::assertArrayNotHasKey('Option 2', $valueOptions);
     }
 
     public function testUnsetUndefinedValueOption(): void
@@ -253,7 +253,7 @@ final class SelectTest extends TestCase
         $element->unsetValueOption('Option Undefined');
 
         $valueOptions = $element->getValueOptions();
-        $this->assertArrayNotHasKey('Option Undefined', $valueOptions);
+        self::assertArrayNotHasKey('Option Undefined', $valueOptions);
     }
 
     public function testSetOptionsToSelectMultiple(): void
@@ -269,9 +269,9 @@ final class SelectTest extends TestCase
         ]);
         $element->setAttributes(['multiple' => 'multiple']);
 
-        $this->assertTrue($element->isMultiple());
-        $this->assertTrue($element->useHiddenElement());
-        $this->assertEquals('empty', $element->getUnselectedValue());
+        self::assertTrue($element->isMultiple());
+        self::assertTrue($element->useHiddenElement());
+        self::assertEquals('empty', $element->getUnselectedValue());
     }
 
     public function testProvidesInputSpecificationForMultipleSelectWithUseHiddenElement(): void
@@ -285,9 +285,9 @@ final class SelectTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
 
-        $this->assertArrayHasKey('allow_empty', $inputSpec);
-        $this->assertTrue($inputSpec['allow_empty']);
-        $this->assertArrayHasKey('continue_if_empty', $inputSpec);
-        $this->assertTrue($inputSpec['continue_if_empty']);
+        self::assertArrayHasKey('allow_empty', $inputSpec);
+        self::assertTrue($inputSpec['allow_empty']);
+        self::assertArrayHasKey('continue_if_empty', $inputSpec);
+        self::assertTrue($inputSpec['continue_if_empty']);
     }
 }

@@ -31,17 +31,20 @@ class File extends Element implements InputProviderInterface, ElementPrepareAwar
     }
 
     /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInput()}.
-     *
-     * @return array
+     * @inheritDoc
      */
     public function getInputSpecification(): array
     {
-        return [
+        $spec = [
             'type'     => FileInput::class,
-            'name'     => $this->getName(),
             'required' => false,
         ];
+
+        $name = $this->getName();
+        if ($name !== null) {
+            $spec['name'] = $name;
+        }
+
+        return $spec;
     }
 }

@@ -34,8 +34,8 @@ final class FormInputTest extends AbstractCommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="text"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="text"', $markup);
     }
 
     public function testGeneratesInputTagWithElementsTypeAttribute(): void
@@ -43,8 +43,8 @@ final class FormInputTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $element->setAttribute('type', 'email');
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('<input ', $markup);
-        $this->assertStringContainsString('type="email"', $markup);
+        self::assertStringContainsString('<input ', $markup);
+        self::assertStringContainsString('type="email"', $markup);
     }
 
     public function inputTypes(): array
@@ -340,7 +340,7 @@ final class FormInputTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
         $markup = $this->helper->render($element);
-        $this->assertStringNotContainsString('/>', $markup);
+        self::assertStringNotContainsString('/>', $markup);
     }
 
     public function xhtmlDoctypes(): array
@@ -364,7 +364,7 @@ final class FormInputTest extends AbstractCommonTestCase
         $element = new Element('foo');
         $this->renderer->doctype($doctype);
         $markup = $this->helper->render($element);
-        $this->assertStringContainsString('/>', $markup);
+        self::assertStringContainsString('/>', $markup);
     }
 
     /**
@@ -395,7 +395,7 @@ final class FormInputTest extends AbstractCommonTestCase
         $element->setAttribute($attribute, true);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
@@ -406,13 +406,13 @@ final class FormInputTest extends AbstractCommonTestCase
         $expect = sprintf('%s="%s"', $attribute, $off);
 
         if ($off !== '') {
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
             );
         } else {
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -423,7 +423,7 @@ final class FormInputTest extends AbstractCommonTestCase
         $element->setAttribute($attribute, $on);
         $markup = $this->helper->render($element);
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
@@ -434,13 +434,13 @@ final class FormInputTest extends AbstractCommonTestCase
         $expect = sprintf('%s="%s"', $attribute, $off);
 
         if ($off !== '') {
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
             );
         } else {
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -462,14 +462,14 @@ final class FormInputTest extends AbstractCommonTestCase
         $element->setAttribute($attribute, true);
         $markup = $this->helper->render($element);
         $expect = $attribute;
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
         );
 
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringNotContainsString(
+        self::assertStringNotContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should not be '%s'; received %s", $attribute, $on, $markup)
@@ -481,7 +481,7 @@ final class FormInputTest extends AbstractCommonTestCase
         if ($off !== '') {
             $expect = sprintf('%s="%s"', $attribute, $off);
 
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
@@ -489,7 +489,7 @@ final class FormInputTest extends AbstractCommonTestCase
         } else {
             $expect = $attribute;
 
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -500,14 +500,14 @@ final class FormInputTest extends AbstractCommonTestCase
         $element->setAttribute($attribute, $on);
         $markup = $this->helper->render($element);
         $expect = $attribute;
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should be '%s'; received %s", $attribute, $on, $markup)
         );
 
         $expect = sprintf('%s="%s"', $attribute, $on);
-        $this->assertStringNotContainsString(
+        self::assertStringNotContainsString(
             $expect,
             $markup,
             sprintf("Enabled value for %s should not be '%s'; received %s", $attribute, $on, $markup)
@@ -519,7 +519,7 @@ final class FormInputTest extends AbstractCommonTestCase
         if ($off !== '') {
             $expect = sprintf('%s="%s"', $attribute, $off);
 
-            $this->assertStringContainsString(
+            self::assertStringContainsString(
                 $expect,
                 $markup,
                 sprintf("Disabled value for %s should be '%s'; received %s", $attribute, $off, $markup)
@@ -527,7 +527,7 @@ final class FormInputTest extends AbstractCommonTestCase
         } else {
             $expect = $attribute;
 
-            $this->assertStringNotContainsString(
+            self::assertStringNotContainsString(
                 $expect,
                 $markup,
                 sprintf('Disabled value for %s should not be rendered; received %s', $attribute, $markup)
@@ -539,14 +539,14 @@ final class FormInputTest extends AbstractCommonTestCase
     {
         $element = new Element('foo');
         $markup  = $this->helper->__invoke($element);
-        $this->assertStringContainsString('<input', $markup);
-        $this->assertStringContainsString('name="foo"', $markup);
+        self::assertStringContainsString('<input', $markup);
+        self::assertStringContainsString('name="foo"', $markup);
     }
 
     public function testInvokeWithNoElementChainsHelper(): void
     {
         $element = new Element('foo');
-        $this->assertSame($this->helper, $this->helper->__invoke());
+        self::assertSame($this->helper, $this->helper->__invoke());
     }
 
     /**
@@ -565,11 +565,11 @@ final class FormInputTest extends AbstractCommonTestCase
 
         $this->helper->setTranslator($mockTranslator);
 
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertStringContainsString('placeholder="translated&#x20;string"', $markup);
+        self::assertStringContainsString('placeholder="translated&#x20;string"', $markup);
     }
 
     public function testCanTranslateTitle(): void
@@ -586,11 +586,11 @@ final class FormInputTest extends AbstractCommonTestCase
 
         $this->helper->setTranslator($mockTranslator);
 
-        $this->assertTrue($this->helper->hasTranslator());
+        self::assertTrue($this->helper->hasTranslator());
 
         $markup = $this->helper->__invoke($element);
 
-        $this->assertStringContainsString('title="translated&#x20;string"', $markup);
+        self::assertStringContainsString('title="translated&#x20;string"', $markup);
     }
 
     /**
@@ -602,6 +602,6 @@ final class FormInputTest extends AbstractCommonTestCase
         $element->setAttribute('type', 'password');
 
         $markup = $this->helper->__invoke($element);
-        $this->assertStringContainsString('value=""', $markup);
+        self::assertStringContainsString('value=""', $markup);
     }
 }

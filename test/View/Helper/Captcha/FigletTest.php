@@ -43,11 +43,11 @@ final class FigletTest extends AbstractCommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(type="hidden")#',
             $markup
         );
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;id\&\#x5D\;").*?(value="' . $this->captcha->getId() . '")#',
             $markup
         );
@@ -57,7 +57,7 @@ final class FigletTest extends AbstractCommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertMatchesRegularExpression(
+        self::assertMatchesRegularExpression(
             '#(name="' . $element->getName() . '\&\#x5B\;input\&\#x5D\;").*?(type="text")#',
             $markup
         );
@@ -67,7 +67,7 @@ final class FigletTest extends AbstractCommonTestCase
     {
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             '<pre>' . $this->captcha->getFiglet()->render($this->captcha->getWord()) . '</pre>'
             . $this->helper->getSeparator() . '<input',
             $markup
@@ -79,6 +79,6 @@ final class FigletTest extends AbstractCommonTestCase
         $this->helper->setCaptchaPosition('prepend');
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
-        $this->assertStringContainsString('><pre>', $markup);
+        self::assertStringContainsString('><pre>', $markup);
     }
 }
