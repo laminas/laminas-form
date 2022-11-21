@@ -10,7 +10,6 @@ use DateTimeInterface;
 use Laminas\Filter\StringTrim;
 use Laminas\Form\Element;
 use Laminas\Form\Exception\InvalidArgumentException;
-use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\DateStep as DateStepValidator;
