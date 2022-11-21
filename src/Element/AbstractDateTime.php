@@ -21,9 +21,6 @@ use Laminas\Validator\ValidatorInterface;
 use function date;
 use function sprintf;
 
-/**
- * @psalm-import-type ValidatorSpecification from InputFilterInterface
- */
 abstract class AbstractDateTime extends Element implements InputProviderInterface
 {
     /**
