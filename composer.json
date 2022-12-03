@@ -41,7 +41,7 @@
         "laminas/laminas-view": "^2.24",
         "phpunit/phpunit": "^9.5.25",
         "psalm/plugin-phpunit": "^0.18.0",
-        "vimeo/psalm": "^4.29"
+        "vimeo/psalm": "^5.0"
     },
     "suggest": {
         "doctrine/annotations": "^1.12, required to use laminas-form annotations support",
