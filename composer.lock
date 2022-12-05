@@ -86,16 +86,16 @@
         },
         {
             "name": "laminas/laminas-hydrator",
-            "version": "4.9.0",
+            "version": "4.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-hydrator.git",
-                "reference": "49ab61ee0f2352cc147569544bffe4671ca8e4de"
+                "reference": "9917c999faa8acc13da51a9b0d12e513b5d26430"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-hydrator/zipball/49ab61ee0f2352cc147569544bffe4671ca8e4de",
-                "reference": "49ab61ee0f2352cc147569544bffe4671ca8e4de",
+                "url": "https://api.github.com/repos/laminas/laminas-hydrator/zipball/9917c999faa8acc13da51a9b0d12e513b5d26430",
+                "reference": "9917c999faa8acc13da51a9b0d12e513b5d26430",
                 "shasum": ""
             },
             "require": {
@@ -159,7 +159,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-12-03T22:20:37+00:00"
+            "time": "2022-12-05T18:17:44+00:00"
         },
         {
             "name": "laminas/laminas-inputfilter",
@@ -1761,16 +1761,16 @@
         },
         {
             "name": "laminas/laminas-db",
-            "version": "2.16.0",
+            "version": "2.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-db.git",
-                "reference": "0fb9d7a32b40036a158961a5df082ff421321aa7"
+                "reference": "2bdc91a08d903fb981b451adfb8548eeb8a87c80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/0fb9d7a32b40036a158961a5df082ff421321aa7",
-                "reference": "0fb9d7a32b40036a158961a5df082ff421321aa7",
+                "url": "https://api.github.com/repos/laminas/laminas-db/zipball/2bdc91a08d903fb981b451adfb8548eeb8a87c80",
+                "reference": "2bdc91a08d903fb981b451adfb8548eeb8a87c80",
                 "shasum": ""
             },
             "require": {
@@ -1828,7 +1828,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-11-18T09:28:22+00:00"
+            "time": "2022-12-05T18:24:57+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
