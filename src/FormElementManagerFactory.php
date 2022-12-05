@@ -21,10 +21,13 @@ final class FormElementManagerFactory implements FactoryInterface
      * @param ServiceManagerConfiguration|null $options
      * @return AbstractPluginManager
      */
-    public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): AbstractPluginManager
-    {
+    public function __invoke(
+        ContainerInterface $container,
+        $requestedName,
+        ?array $options = null
+    ): AbstractPluginManager {
         /** @psalm-var ServiceManagerConfiguration $options */
-        $options = is_array($options) ? $options : [];
+        $options       = is_array($options) ? $options : [];
         $pluginManager = new FormElementManager($container, $options);
 
         // If this is in a laminas-mvc application, the ServiceListener will inject
