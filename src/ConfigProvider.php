@@ -5,14 +5,20 @@ declare(strict_types=1);
 namespace Laminas\Form;
 
 use Laminas\Form\View\Helper\Factory\FormElementErrorsFactory;
+use Laminas\ServiceManager\ConfigInterface;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
+/** @psalm-import-type ServiceManagerConfigurationType from ConfigInterface */
 final class ConfigProvider
 {
     /**
      * Return general-purpose laminas-i18n configuration.
      *
-     * @return array
+     * @return array{
+     *     dependencies: ServiceManagerConfigurationType,
+     *     view_helpers: ServiceManagerConfigurationType,
+     *     ...
+     * }
      */
     public function __invoke(): array
     {
@@ -25,7 +31,7 @@ final class ConfigProvider
     /**
      * Return application-level dependency configuration.
      *
-     * @return array
+     * @return ServiceManagerConfigurationType
      */
     public function getDependencyConfig(): array
     {
@@ -51,7 +57,7 @@ final class ConfigProvider
      *
      * Obsoletes View\HelperConfig.
      *
-     * @return array
+     * @return ServiceManagerConfigurationType
      */
     public function getViewHelperConfig(): array
     {
