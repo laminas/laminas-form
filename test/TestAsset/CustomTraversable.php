@@ -12,8 +12,14 @@ use function key;
 use function next;
 use function reset;
 
+/**
+ * @template TKey
+ * @template TValue
+ * @implements Iterator<TKey, TValue>
+ */
 class CustomTraversable implements Iterator
 {
+    /** @param array<TKey, TValue> $data */
     public function __construct(private array $data)
     {
     }

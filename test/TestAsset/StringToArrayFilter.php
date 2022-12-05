@@ -9,6 +9,9 @@ use Laminas\Filter\AbstractFilter;
 use function explode;
 use function is_array;
 
+/**
+ * @extends AbstractFilter<array{}>
+ */
 class StringToArrayFilter extends AbstractFilter
 {
     /**

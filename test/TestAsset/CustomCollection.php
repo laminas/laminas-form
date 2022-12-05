@@ -6,8 +6,14 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Stdlib\ArrayObject;
 
+/**
+ * @template TKey of array-key
+ * @template TValue
+ * @extends  ArrayObject<TKey, TValue>
+ */
 class CustomCollection extends ArrayObject
 {
+    /** @return array<TKey, TValue> */
     public function toArray(): array
     {
         $ret = [];
