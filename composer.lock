@@ -2302,16 +2302,16 @@
         },
         {
             "name": "laminas/laminas-recaptcha",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-recaptcha.git",
-                "reference": "64c72f1f941c15df07b4ab0985b2f7cc1d492ba9"
+                "reference": "ead14136a0ded44d1a72f4885df0f3333065d919"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-recaptcha/zipball/64c72f1f941c15df07b4ab0985b2f7cc1d492ba9",
-                "reference": "64c72f1f941c15df07b4ab0985b2f7cc1d492ba9",
+                "url": "https://api.github.com/repos/laminas/laminas-recaptcha/zipball/ead14136a0ded44d1a72f4885df0f3333065d919",
+                "reference": "ead14136a0ded44d1a72f4885df0f3333065d919",
                 "shasum": ""
             },
             "require": {
@@ -2329,7 +2329,7 @@
                 "laminas/laminas-validator": "^2.15",
                 "phpunit/phpunit": "^9.5.26",
                 "psalm/plugin-phpunit": "^0.18.0",
-                "vimeo/psalm": "^4.29.0"
+                "vimeo/psalm": "^5.0.0"
             },
             "suggest": {
                 "laminas/laminas-validator": "~2.0, if using ReCaptcha's Mailhide API"
@@ -2364,7 +2364,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-11-18T09:15:54+00:00"
+            "time": "2022-12-05T21:28:54+00:00"
         },
         {
             "name": "laminas/laminas-session",
