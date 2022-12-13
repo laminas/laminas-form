@@ -191,6 +191,7 @@ extra:
     installation:
         config_provider_class: 'Laminas\Form\ConfigProvider'
         module_class: 'Laminas\Form\Module'
+    show_special_homepage: true
 plugins:
   - search
   - redirects:
