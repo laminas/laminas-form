@@ -313,5 +313,6 @@ $formElementManager = new Laminas\Form\FormElementManager(
 
 ## Learn More
 
+- [Usage of Form Element Manager in a laminas-mvc Application](application-integration/form-element-manager-mvc.md)
 - [The `init` method](advanced.md#initialization)
 - [Configuring the service manager](https://docs.laminas.dev/laminas-servicemanager/configuring-the-service-manager/)
