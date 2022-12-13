@@ -19,7 +19,7 @@ use Laminas\Mvc\Controller\AbstractActionController;
 final class AlbumController extends AbstractActionController
 {
     public function __construct(
-        public readonly FormElementManager $formElementManager
+        private readonly FormElementManager $formElementManager
     ) {}
 }
 ```
@@ -27,10 +27,10 @@ final class AlbumController extends AbstractActionController
 ### Register Controller
 
 In a laminas-mvc based application, the form element manager is registered in the application during the [installation of laminas-form](../installation.md#installation-for-mezzio-and-laminas-mvc-application).
-This allows to fetch the form element manager from the application service container.
-With the [reflection factory of laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/reflection-abstract-factory/), the form element manager can be automaticly injected into the controller.
+This allows fetching the form element manager from the application service container.
+When using the [reflection factory of laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/reflection-abstract-factory/), the form element manager can be automatically injected into the controller.
 
-To [register the controller](https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-route) for the application, extend the configuration of the module.
+To [register the controller](https://docs.laminas.dev/laminas-mvc/quick-start/#create-a-route) in the application, extend the configuration of the module.
 Add the following lines to the module configuration file, e.g. `module/Album/config/module.config.php`:
 
 <pre class="language-php" data-line="8-9"><code>
@@ -51,7 +51,7 @@ return [
 
 ## Fetch a Form without Registration
 
-The following example creates a class as form:
+The following example creates a form class:
 
 ```php
 final class AlbumForm extends Laminas\Form\Form
@@ -94,7 +94,7 @@ final class AlbumController extends AbstractActionController
 
 If a form needs some preparation for creation then a factory can be used.
 
-The following example creates a class as factory for the form:
+The following example creates a factory class for the form:
 
 ```php
 final class AlbumFormFactory
@@ -125,7 +125,7 @@ return [
 ];
 </code></pre>
 
-Get the form and the name in a controller:
+To retrieve the form and the form name in a controller:
 
 ```php
 namespace Album\Controller;
@@ -152,7 +152,7 @@ final class AlbumController extends AbstractActionController
 }
 ```
 
-Now the custom factory will be used to instance the form.
+Now the custom factory will be used to create the form instance.
 
 ## Using a Custom Element without Registration
 
@@ -214,11 +214,11 @@ final class AlbumController extends AbstractActionController
 }
 ```
 
-## Register and Using a Custom Element with a Factory
+## Register and Use a Custom Element via a Factory
 
 If a custom element needs some preparation for creation then a factory can be used.
 
-The following example creates a class as factory for the element of the previous example:
+The following example creates a factory class for the element of the previous example:
 
 ```php
 final class ExampleElementFactory
@@ -249,13 +249,13 @@ return [
 ];
 </code></pre>
 
-Now the custom factory will be used to instance the element.
+Now the custom factory will be used to create the element instance.
 
 ## Configuring the Form Element Manager
 
 The [configuration of the form element manager follows the exact same pattern](https://docs.laminas.dev/laminas-servicemanager/configuring-the-service-manager/) as for a normal service manager of laminas-servicemanager.
 
-In a laminas-mvc based application this means to use the application or module configuration, like `config/autload/global.php` or `module/Album/config/module.config.php`, and the configuration key `form_elements`:
+In a laminas-mvc based application this means using the application or module configuration, such as `config/autload/global.php` or `module/Album/config/module.config.php`, and the configuration key `form_elements`:
 
 ```php
 return [
@@ -273,7 +273,7 @@ return [
 ];
 ```
 
-The factory `Laminas\Form\FormElementManagerFactory` uses the configuration, search for the configuration key `form_elements` and create the form element manager.
+The factory `Laminas\Form\FormElementManagerFactory` uses the configuration, searches for the configuration key `form_elements` and creates the form element manager using the discovered configuration.
 
 ## Learn More
 

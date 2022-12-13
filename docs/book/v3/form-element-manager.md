@@ -16,8 +16,8 @@ The following benefits are provided by the manager:
 - Create forms, fieldsets and elements with all dependencies like validators and filters.
 - Can create forms, fieldsets and elements with name and options.
 - Can provide elements, fieldsets and forms without prior registration.
-- Fetches hydrators and input filters from the application's service container and add them to a form or a fieldset.
-- Allows to override existing elements or to extend them.
+- Fetches hydrators and input filters from the application's service container and adds them to a form or a fieldset.
+- Allows overriding existing elements or extending them.
 
 > INFO: **Stand-Alone Usage**
 > The following examples show the basics of the form element manager using stand-alone usage.
@@ -26,8 +26,8 @@ The following benefits are provided by the manager:
 
 ## Create a Form Element Manager
 
-To create an instance, the form element manager requires a PSR-11 dependency container.
-The following examples uses the container implementation of [laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/):
+To create an instance, the form element manager requires a [PSR-11 dependency container](https://www.php-fig.org/psr/psr-11/).
+The following examples use the PSR-11 container implementation provided by [laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/):
 
 ```php
 $formElementManager = new Laminas\Form\FormElementManager(
@@ -90,7 +90,7 @@ final class ExampleElement extends Laminas\Form\Element
 }
 ```
 
-The form element manager can create these custom element by the related class name:
+The form element manager can create these custom elements by the related class name:
 
 ```php
 $element = $formElementManager->get(ExampleElement::class);
@@ -114,7 +114,7 @@ $element = $formElementManager->get(
 
 If a custom element needs some preparation for creation then a factory can be used.
 
-The following example creates a class as factory for the element:
+The following example creates a factory class for the element:
 
 ```php
 final class ExampleElementFactory
@@ -146,13 +146,13 @@ $element = $formElementManager->get(ExampleElement::class);
 echo $form->getOption('example_param'); // value
 ```
 
-Now the custom factory will be used to instance the element.
+Now the custom factory will be used to create the element instance.
 
 ## Fetch a Form without Registration
 
-The form element manager handles also whole forms.
+The form element manager also handles whole forms.
 
-The following example creates a class as form:
+The following example creates a form class:
 
 ```php
 final class ExampleForm extends Laminas\Form\Form
@@ -208,15 +208,15 @@ $form = $formElementManager->get(ExampleForm::class);
 echo $form->getName(); // example
 ```
 
-Now the custom factory will be used to instance the form.
+Now the custom factory will be used to instantiate the form.
 
 ## Set a Paramater to a Form on Instantiation
 
 The options of a form can be used to set custom parameters to a form.
 
-* It can be hooked into the initialization via the `init()` method.
-* The form element factory calls the `init()` method after creating an instance of the class.
-* Since the name and options are processed in the constructor, it can be accessed them via `init()` to perform further customizations for the instance.
+- It can be hooked into the initialization via the `init()` method.
+- The form element factory calls the `init()` method after creating an instance of the class.
+- Since the name and options are processed in the constructor, it can access them within `init()` to perform further customization of the instance.
 
 Create a class for the form and get a custom option:
 
@@ -233,7 +233,7 @@ final class ExampleForm extends Laminas\Form\Form
 }
 ```
 
-The standard factory `Laminas\Form\ElementFactory` for form elements and forms is used which sets the name and/or the options to the object on creation via constructor:
+The standard factory `Laminas\Form\ElementFactory` for form elements and forms is used which provides the name and/or the options to the object as arguments to the constructor:
 
 ```php
 $form = $formElementManager->get(
