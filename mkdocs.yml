@@ -11,6 +11,7 @@ nav:
             - "Creation via Factory": v3/form-creation/creation-via-factory.md
             - "Factory-Backed Form Extension": v3/form-creation/factory-backed-form-extension.md
             - "Using PHP8 Attributes or DocBlock Annotations": v3/form-creation/attributes-or-annotations.md
+        - "Form Element Manager": v3/form-element-manager.md
         - Elements:
             - Introduction: v3/element/intro.md
             - Element: v3/element/element.md
@@ -91,6 +92,7 @@ nav:
         - "Advanced Use Cases": v3/advanced.md
         - "Application Integration":
               - "Usage in a laminas-mvc application": v3/application-integration/usage-in-a-laminas-mvc-application.md
+              - "Usage of Form Element Manager in a laminas-mvc Application": v3/application-integration/form-element-manager-mvc.md
         - Migration:
            - "Migration from Version 2 to 3": v3/migration/v2-to-v3.md
     - v2:
@@ -189,6 +191,7 @@ extra:
     installation:
         config_provider_class: 'Laminas\Form\ConfigProvider'
         module_class: 'Laminas\Form\Module'
+    show_special_homepage: true
 plugins:
   - search
   - redirects:
