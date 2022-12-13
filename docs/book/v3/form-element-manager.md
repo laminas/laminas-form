@@ -19,9 +19,15 @@ The following benefits are provided by the manager:
 - Fetches hydrators and input filters from the application's service container and add them to a form or a fieldset.
 - Allows to override existing elements or to extend them.
 
+> INFO: **Stand-Alone Usage**
+> The following examples show the basics of the form element manager using stand-alone usage.
+>
+> The configuration and usage in **laminas-mvc** or **Mezzio** based application [can be found in separate sections](#learn-more).
+
 ## Create a Form Element Manager
 
-To create an instance, the form element manager requires a PSR-11 dependency container. The following examples uses the container implementation of [laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/):
+To create an instance, the form element manager requires a PSR-11 dependency container.
+The following examples uses the container implementation of [laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/):
 
 ```php
 $formElementManager = new Laminas\Form\FormElementManager(
@@ -40,6 +46,7 @@ $element = $formElementManager->get(Laminas\Form\Element\Select::class);
 ## Fetch and Configure a Standard Element
 
 The form element manager uses the factory `Laminas\Form\ElementFactory` to create all elements, fieldsets, and forms.
+This factory allows the configuration of an element during fetching:
 
 ```php
 $element = $formElementManager->get(
@@ -55,16 +62,19 @@ $element = $formElementManager->get(
 );
 ```
 
-The name for the element and the options array are provided as parameters to the associated class constructor on instantiation.
+The name for the element and the options array are provided as parameters to the associated class constructor on instantiation:
 
 ```php
 public function __construct($name = null, iterable $options = []) {}
 ```
 
+Retrieving the name and the set options:
+
 ```php
-$element->getName(); // rating
-$element->getLabel(); // Rating
-$element->getValueOptions(); // [1, 2, 3, 4, 5]
+echo $element->getName(); // rating
+echo $element->getLabel(); // Rating
+
+$valueOptions = $element->getValueOptions(); // [1, 2, 3, 4, 5]
 ```
 
 ## Fetch a Custom Element without Registration
@@ -223,7 +233,7 @@ final class ExampleForm extends Laminas\Form\Form
 }
 ```
 
-The standard factory `Laminas\Form\ElementFactory::class` for form elements and forms is used which sets the name and/or the options to the object on creation via constructor:
+The standard factory `Laminas\Form\ElementFactory` for form elements and forms is used which sets the name and/or the options to the object on creation via constructor:
 
 ```php
 $form = $formElementManager->get(
@@ -240,7 +250,7 @@ echo $form->getOption('example_param'); // value
 
 ## Usage of the Form Element Manager in a Form
 
-If an element is added to a form via the `add` method and the definition of the element is provided via an array then the form factory `Laminas\Form\Factory::class` will be used to create this element.
+If an element is added to a form via the `add` method and the definition of the element is provided via an array then the form factory `Laminas\Form\Factory` will be used to create this element.
 The form factory uses the form element manager to fetch the element.
 The following example uses a custom element in a form:
 
@@ -253,7 +263,7 @@ final class ExampleForm extends Laminas\Form\Form
             'type'    => ExampleElement::class,
             'name'    => 'example',
             'options' => [
-                // …
+                'label' => 'Example element'
             ],
         ]);
 
@@ -262,14 +272,36 @@ final class ExampleForm extends Laminas\Form\Form
 }
 ```
 
-Fetch the form:
+Fetch the form and the element:
 
 ```php
 $form = $formElementManager->get(ExampleForm::class);
+
+echo $form->get('example')->getLabel(); // Example element
 ```
 
 The form element manager will provide the form with the custom element which is created by the form element manager, like before: with or without explicit registration of the element.
 
+## Configuring the Form Element Manager
+
+The manager is based on the [plugin manager of laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/plugin-managers/) and the [configuration follows the exact same pattern](https://docs.laminas.dev/laminas-servicemanager/configuring-the-service-manager/) as for a normal service manager of laminas-servicemanager:
+
+```php
+$formElementManager = new Laminas\Form\FormElementManager(
+    new Laminas\ServiceManager\ServiceManager(),
+    [
+        'factories'          => [
+            Album\Form\ExampleElement::class => Album\Form\ExampleElementFactory::class,
+        ],
+        'aliases'            => [
+            'example' => Album\Form\ExampleElement::class,
+        ],
+        'abstract_factories' => [],
+        'delegators'         => [],
+        // …
+    ]
+);
+```
 
 ## Why Use the Form Element Manager?
 
@@ -282,3 +314,4 @@ The form element manager will provide the form with the custom element which is 
 ## Learn More
 
 - [The `init` method](advanced.md#initialization)
+- [Configuring the service manager](https://docs.laminas.dev/laminas-servicemanager/configuring-the-service-manager/)
