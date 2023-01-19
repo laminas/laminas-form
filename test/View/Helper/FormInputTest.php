@@ -246,6 +246,8 @@ final class FormInputTest extends AbstractCommonTestCase
             'onended'            => 'value',
             'onerror'            => 'value',
             'onfocus'            => 'value',
+            'onfocusin'          => 'value',
+            'onfocusout'         => 'value',
             'oninput'            => 'value',
             'oninvalid'          => 'value',
             'onkeydown'          => 'value',
