@@ -131,6 +131,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
         'onended'            => true, // https://html.spec.whatwg.org/#handler-onended
         'onerror'            => true, // https://html.spec.whatwg.org/#handler-onerror
         'onfocus'            => true, // https://html.spec.whatwg.org/#handler-onfocus
+        'onfocusin'          => true, // https://developer.mozilla.org/fr/docs/Web/API/Element/focusin_event
         'onfocusout'         => true, // https://developer.mozilla.org/fr/docs/Web/API/Element/focusout_event
         'oninput'            => true, // https://html.spec.whatwg.org/#handler-oninput
         'oninvalid'          => true, // https://html.spec.whatwg.org/#handler-oninvalid
