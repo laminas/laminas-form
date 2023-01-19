@@ -150,6 +150,7 @@ final class FormInputTest extends AbstractCommonTestCase
             ['onended', 'assertStringContainsString'],
             ['onerror', 'assertStringContainsString'],
             ['onfocus', 'assertStringContainsString'],
+            ['onfocusout', 'assertStringContainsString'],
             ['oninput', 'assertStringContainsString'],
             ['oninvalid', 'assertStringContainsString'],
             ['onkeydown', 'assertStringContainsString'],
