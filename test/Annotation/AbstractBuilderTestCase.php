@@ -219,7 +219,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertInstanceOf(InputFilterInterface::class, $composed);
         self::assertTrue($composed->has('username'));
         self::assertTrue($composed->has('password'));
-        $usernameInput = $composed->get('username');
+        $usernameInput      = $composed->get('username');
         $usernameValidators = $usernameInput->getValidatorChain()->getValidators();
         self::assertCount(2, $usernameValidators);
         self::assertInstanceOf(NotEmpty::class, $usernameValidators[0]['instance']);
@@ -228,7 +228,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertCount(1, $usernameFilters);
         self::assertInstanceOf(StringTrim::class, $usernameFilters[0]);
 
-        $passwordInput = $composed->get('password');
+        $passwordInput      = $composed->get('password');
         $passwordValidators = $passwordInput->getValidatorChain()->getValidators();
         self::assertCount(1, $passwordValidators);
         self::assertInstanceOf(EmailAddress::class, $passwordValidators[0]['instance']);
@@ -257,41 +257,40 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertArrayHasKey('password', $filterSpec);
         $usernameFilterSpec = $filterSpec['username'];
         self::assertEquals([
-            'name' => 'username',
+            'name'          => 'username',
             'error_message' => 'Invalid or missing username',
-            'required' => 1,
-            'filters' => [
+            'required'      => 1,
+            'filters'       => [
                 '0' => [
-                    'name' => 'StringTrim'
+                    'name' => 'StringTrim',
                 ],
             ],
-            'validators' => [
+            'validators'    => [
                 '0' => [
-                    'name' => 'NotEmpty'
+                    'name' => 'NotEmpty',
                 ],
-                1 => [
-                    'name' => 'StringLength',
+                1   => [
+                    'name'    => 'StringLength',
                     'options' => [
                         'min' => 3,
-                        'max' => 25
-                    ]
-
-                ]
-            ]
+                        'max' => 25,
+                    ],
+                ],
+            ],
         ], $usernameFilterSpec);
         $passwordFilterSpec = $filterSpec['password'];
         self::assertEquals([
-            'name' => 'password',
-            'filters' => [
+            'name'       => 'password',
+            'filters'    => [
                 '0' => [
-                    'name' => 'StringTrim'
+                    'name' => 'StringTrim',
                 ],
             ],
             'validators' => [
                 '0' => [
-                    'name' => 'EmailAddress'
-                ]
-            ]
+                    'name' => 'EmailAddress',
+                ],
+            ],
         ], $passwordFilterSpec);
     }
 
