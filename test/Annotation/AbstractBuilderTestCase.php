@@ -12,6 +12,7 @@ use Laminas\Form\Element;
 use Laminas\Form\Element\Collection;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
+use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\ObjectPropertyHydrator;
 use Laminas\InputFilter\Input;
@@ -21,6 +22,7 @@ use Laminas\Stdlib\PriorityList;
 use Laminas\Validator\EmailAddress;
 use Laminas\Validator\NotEmpty;
 use Laminas\Validator\StringLength;
+use Laminas\Validator\ValidatorChain;
 use LaminasTest\Form\TestAsset;
 use LaminasTest\Form\TestAsset\Annotation\Entity;
 use LaminasTest\Form\TestAsset\Annotation\Form;
@@ -219,8 +221,11 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertInstanceOf(InputFilterInterface::class, $composed);
         self::assertTrue($composed->has('username'));
         self::assertTrue($composed->has('password'));
-        $usernameInput      = $composed->get('username');
-        $usernameValidators = $usernameInput->getValidatorChain()->getValidators();
+        $usernameInput = $composed->get('username');
+        self::assertInstanceOf(Input::class, $usernameInput);
+        $validatorChain = $usernameInput->getValidatorChain();
+        self::assertInstanceOf(ValidatorChain::class, $validatorChain);
+        $usernameValidators = $validatorChain->getValidators();
         self::assertCount(2, $usernameValidators);
         self::assertInstanceOf(NotEmpty::class, $usernameValidators[0]['instance']);
         self::assertInstanceOf(StringLength::class, $usernameValidators[1]['instance']);
@@ -228,8 +233,10 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertCount(1, $usernameFilters);
         self::assertInstanceOf(StringTrim::class, $usernameFilters[0]);
 
-        $passwordInput      = $composed->get('password');
-        $passwordValidators = $passwordInput->getValidatorChain()->getValidators();
+        $passwordInput = $composed->get('password');
+        self::assertInstanceOf(Input::class, $passwordInput);
+        $validatorChain     = $passwordInput->getValidatorChain();
+        $passwordValidators = $validatorChain->getValidators();
         self::assertCount(1, $passwordValidators);
         self::assertInstanceOf(EmailAddress::class, $passwordValidators[0]['instance']);
 
@@ -252,6 +259,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertInstanceOf(FieldsetInterface::class, $target);
         self::assertTrue($target->has('username'));
         self::assertTrue($target->has('password'));
+        self::assertInstanceOf(InputFilterProviderFieldset::class, $target);
         $filterSpec = $target->getInputFilterSpecification();
         self::assertArrayHasKey('username', $filterSpec);
         self::assertArrayHasKey('password', $filterSpec);
