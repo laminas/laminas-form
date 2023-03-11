@@ -6,6 +6,7 @@ namespace LaminasTest\Form\Annotation;
 
 use ArrayObject;
 use Generator;
+use Laminas\Filter\StringTrim;
 use Laminas\Form\Annotation;
 use Laminas\Form\Element;
 use Laminas\Form\Element\Collection;
@@ -17,6 +18,9 @@ use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputInterface;
 use Laminas\Stdlib\PriorityList;
+use Laminas\Validator\EmailAddress;
+use Laminas\Validator\NotEmpty;
+use Laminas\Validator\StringLength;
 use LaminasTest\Form\TestAsset;
 use LaminasTest\Form\TestAsset\Annotation\Entity;
 use LaminasTest\Form\TestAsset\Annotation\Form;
@@ -215,6 +219,23 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertInstanceOf(InputFilterInterface::class, $composed);
         self::assertTrue($composed->has('username'));
         self::assertTrue($composed->has('password'));
+        $usernameInput = $composed->get('username');
+        $usernameValidators = $usernameInput->getValidatorChain()->getValidators();
+        self::assertCount(2, $usernameValidators);
+        self::assertInstanceOf(NotEmpty::class, $usernameValidators[0]['instance']);
+        self::assertInstanceOf(StringLength::class, $usernameValidators[1]['instance']);
+        $usernameFilters = $usernameInput->getFilterChain()->getFilters()->toArray();
+        self::assertCount(1, $usernameFilters);
+        self::assertInstanceOf(StringTrim::class, $usernameFilters[0]);
+
+        $passwordInput = $composed->get('password');
+        $passwordValidators = $passwordInput->getValidatorChain()->getValidators();
+        self::assertCount(1, $passwordValidators);
+        self::assertInstanceOf(EmailAddress::class, $passwordValidators[0]['instance']);
+
+        $passwordFilters = $passwordInput->getFilterChain()->getFilters()->toArray();
+        self::assertCount(1, $passwordFilters);
+        self::assertInstanceOf(StringTrim::class, $passwordFilters[0]);
     }
 
     public function testAllowsComposingMultipleChildEntities(): void
@@ -231,6 +252,47 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertInstanceOf(FieldsetInterface::class, $target);
         self::assertTrue($target->has('username'));
         self::assertTrue($target->has('password'));
+        $filterSpec = $target->getInputFilterSpecification();
+        self::assertArrayHasKey('username', $filterSpec);
+        self::assertArrayHasKey('password', $filterSpec);
+        $usernameFilterSpec = $filterSpec['username'];
+        self::assertEquals([
+            'name' => 'username',
+            'error_message' => 'Invalid or missing username',
+            'required' => 1,
+            'filters' => [
+                '0' => [
+                    'name' => 'StringTrim'
+                ],
+            ],
+            'validators' => [
+                '0' => [
+                    'name' => 'NotEmpty'
+                ],
+                1 => [
+                    'name' => 'StringLength',
+                    'options' => [
+                        'min' => 3,
+                        'max' => 25
+                    ]
+
+                ]
+            ]
+        ], $usernameFilterSpec);
+        $passwordFilterSpec = $filterSpec['password'];
+        self::assertEquals([
+            'name' => 'password',
+            'filters' => [
+                '0' => [
+                    'name' => 'StringTrim'
+                ],
+            ],
+            'validators' => [
+                '0' => [
+                    'name' => 'EmailAddress'
+                ]
+            ]
+        ], $passwordFilterSpec);
     }
 
     /**
