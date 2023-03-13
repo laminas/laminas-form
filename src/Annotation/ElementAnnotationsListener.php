@@ -156,7 +156,8 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
             if (! isset($inputFilter['type'])) {
                 $inputFilter['type'] = InputFilter::class;
             }
-            $e->setParam('inputSpec', $inputFilter);
+            $inputSpec = $e->getParam('inputSpec');
+            $inputSpec->exchangeArray($inputFilter);
             unset($specification['input_filter']);
 
             // Compose specification as a fieldset into parent form/fieldset
