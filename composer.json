@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "ext-intl": "*",
-        "doctrine/annotations": "^1.13.3",
+        "doctrine/annotations": "^2.0.0",
         "laminas/laminas-captcha": "^2.15",
         "laminas/laminas-coding-standard": "^2.4",
         "laminas/laminas-db": "^2.16",
