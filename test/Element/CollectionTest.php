@@ -1294,7 +1294,7 @@ final class CollectionTest extends TestCase
 
         $result = $form->getData();
         self::assertInstanceOf(stdClass::class, $result);
-        self::assertObjectHasAttribute('collection', $result);
+        self::assertTrue(isset($result->collection));
         self::assertIsArray($result->collection);
         self::assertCount(1, $result->collection);
         self::assertInstanceOf(ArrayObject::class, $result->collection[0]);

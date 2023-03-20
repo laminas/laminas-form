@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.1.0@4defa177c89397c5e14737a80fe4896584130674">
+<files psalm-version="5.8.0@9cf4f60a333f779ad3bc704a555920e81d4fdcda">
   <file src="src/Annotation/AbstractBuilder.php">
-    <DocblockTypeContradiction occurrences="1">
-      <code>! is_string($entity)</code>
-    </DocblockTypeContradiction>
-    <InvalidArrayOffset occurrences="1">
-      <code>$params['elementSpec']['spec']['type']</code>
+    <InvalidArrayOffset>
+      <code><![CDATA[$params['elementSpec']['spec']['type']]]></code>
     </InvalidArrayOffset>
-    <RedundantConditionGivenDocblockType occurrences="1">
+    <RedundantConditionGivenDocblockType>
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Annotation/AnnotationBuilder.php">
-    <DeprecatedMethod occurrences="1">
-      <code>AnnotationRegistry::registerLoader('class_exists')</code>
+    <DeprecatedMethod>
+      <code><![CDATA[AnnotationRegistry::registerLoader('class_exists')]]></code>
     </DeprecatedMethod>
   </file>
   <file src="src/Annotation/AttributeBuilder.php">
-    <NullArgument occurrences="2">
+    <NullArgument>
       <code>$annotations</code>
       <code>$annotations</code>
     </NullArgument>
   </file>
   <file src="src/Annotation/BuilderAbstractFactory.php">
-    <InvalidStringClass occurrences="1">
+    <InvalidStringClass>
       <code>new $requestedName()</code>
     </InvalidStringClass>
-    <LessSpecificReturnStatement occurrences="1">
+    <LessSpecificReturnStatement>
       <code>$annotationBuilder</code>
     </LessSpecificReturnStatement>
-    <MoreSpecificReturnType occurrences="1">
+    <MoreSpecificReturnType>
       <code>AbstractBuilder</code>
     </MoreSpecificReturnType>
   </file>
   <file src="src/Annotation/ElementAnnotationsListener.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getFormSpecification</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>getFormSpecification</code>
     </PossiblyNullReference>
   </file>
   <file src="src/Annotation/InputFilter.php">
-    <DocblockTypeContradiction occurrences="1">
-      <code>! is_array($inputFilter) &amp;&amp; ! is_string($inputFilter)</code>
+    <DocblockTypeContradiction>
+      <code><![CDATA[! is_array($inputFilter) && ! is_string($inputFilter)]]></code>
     </DocblockTypeContradiction>
   </file>
   <file src="src/ConfigProvider.php">
-    <DeprecatedClass occurrences="5">
+    <DeprecatedClass>
       <code>View\Helper\FormDateTime::class</code>
       <code>View\Helper\FormDateTime::class</code>
       <code>View\Helper\FormDateTime::class</code>
@@ -56,7 +53,7 @@
     </DeprecatedClass>
   </file>
   <file src="src/Element.php">
-    <LessSpecificReturnStatement occurrences="24">
+    <LessSpecificReturnStatement>
       <code>$this</code>
       <code>$this</code>
       <code>$this</code>
@@ -84,84 +81,87 @@
     </LessSpecificReturnStatement>
   </file>
   <file src="src/Element/Captcha.php">
-    <DocblockTypeContradiction occurrences="1">
+    <DocblockTypeContradiction>
       <code>gettype($captcha)</code>
     </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType occurrences="1">
+    <RedundantConditionGivenDocblockType>
       <code>is_object($captcha)</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Element/Collection.php">
-    <DocblockTypeContradiction occurrences="4">
-      <code>$this-&gt;object instanceof Traversable</code>
-      <code>gettype($elementOrFieldset)</code>
+    <DocblockTypeContradiction>
+      <code><![CDATA[$this->object instanceof Traversable]]></code>
       <code>is_array($object)</code>
-      <code>is_array($this-&gt;object)</code>
+      <code><![CDATA[is_array($this->object)]]></code>
+      <code>is_object($elementOrFieldset)</code>
     </DocblockTypeContradiction>
-    <ImplementedParamTypeMismatch occurrences="1">
+    <ImplementedParamTypeMismatch>
       <code>$object</code>
     </ImplementedParamTypeMismatch>
-    <MoreSpecificImplementedParamType occurrences="1">
+    <MoreSpecificImplementedParamType>
       <code>$object</code>
     </MoreSpecificImplementedParamType>
-    <NonInvariantDocblockPropertyType occurrences="1">
+    <NonInvariantDocblockPropertyType>
       <code>$object</code>
     </NonInvariantDocblockPropertyType>
-    <PossiblyNullArgument occurrences="1">
+    <PossiblyNullArgument>
       <code>$templateElement</code>
     </PossiblyNullArgument>
-    <PropertyNotSetInConstructor occurrences="1">
+    <PropertyNotSetInConstructor>
       <code>$object</code>
     </PropertyNotSetInConstructor>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>is_object($elementOrFieldset)</code>
+    <RedundantCast>
+      <code>(string) $name</code>
+    </RedundantCast>
+    <RedundantConditionGivenDocblockType>
+      <code>gettype($elementOrFieldset)</code>
     </RedundantConditionGivenDocblockType>
-    <TooManyArguments occurrences="1">
+    <TooManyArguments>
       <code>bindValues</code>
     </TooManyArguments>
   </file>
   <file src="src/Element/Select.php">
-    <MissingClosureParamType occurrences="1">
+    <MissingClosureParamType>
       <code>$value</code>
     </MissingClosureParamType>
-    <MissingClosureReturnType occurrences="1">
+    <MissingClosureReturnType>
       <code>static function ($value) use ($unselectedValue) {</code>
     </MissingClosureReturnType>
   </file>
   <file src="src/ElementFactory.php">
-    <InvalidStringClass occurrences="1">
+    <InvalidStringClass>
       <code>new $requestedName($name, $options)</code>
     </InvalidStringClass>
   </file>
   <file src="src/Factory.php">
-    <DocblockTypeContradiction occurrences="1">
+    <DocblockTypeContradiction>
       <code>gettype($spec)</code>
     </DocblockTypeContradiction>
-    <InvalidArgument occurrences="1">
+    <InvalidArgument>
       <code>$spec</code>
     </InvalidArgument>
-    <LessSpecificReturnStatement occurrences="2">
-      <code>$this-&gt;create($spec)</code>
-      <code>$this-&gt;create($spec)</code>
+    <LessSpecificReturnStatement>
+      <code><![CDATA[$this->create($spec)]]></code>
+      <code><![CDATA[$this->create($spec)]]></code>
     </LessSpecificReturnStatement>
-    <MoreSpecificReturnType occurrences="2">
+    <MoreSpecificReturnType>
       <code>FieldsetInterface</code>
       <code>FormInterface</code>
     </MoreSpecificReturnType>
-    <PossibleRawObjectIteration occurrences="2">
+    <PossibleRawObjectIteration>
       <code>$elements</code>
       <code>$fieldsets</code>
     </PossibleRawObjectIteration>
-    <RedundantConditionGivenDocblockType occurrences="1">
+    <RedundantConditionGivenDocblockType>
       <code>is_object($spec)</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Fieldset.php">
-    <DocblockTypeContradiction occurrences="2">
-      <code>gettype($elementOrFieldset)</code>
+    <DocblockTypeContradiction>
+      <code>is_object($elementOrFieldset)</code>
       <code>is_object($object)</code>
     </DocblockTypeContradiction>
-    <LessSpecificReturnStatement occurrences="6">
+    <LessSpecificReturnStatement>
       <code>$this</code>
       <code>$this</code>
       <code>$this</code>
@@ -169,33 +169,32 @@
       <code>$this</code>
       <code>$this</code>
     </LessSpecificReturnStatement>
-    <MoreSpecificImplementedParamType occurrences="1">
+    <MoreSpecificImplementedParamType>
       <code>$object</code>
     </MoreSpecificImplementedParamType>
-    <PossiblyInvalidArgument occurrences="1">
+    <PossiblyInvalidArgument>
       <code>$object</code>
     </PossiblyInvalidArgument>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>is_object($elementOrFieldset)</code>
+    <RedundantConditionGivenDocblockType>
+      <code>gettype($elementOrFieldset)</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/FieldsetInterface.php">
-    <MissingTemplateParam occurrences="1">
+    <MissingTemplateParam>
       <code>IteratorAggregate</code>
     </MissingTemplateParam>
   </file>
   <file src="src/Form.php">
-    <ArgumentTypeCoercion occurrences="2">
+    <ArgumentTypeCoercion>
       <code>$childFieldset</code>
       <code>$filter</code>
-    </ArgumentTypeCoercion>
-    <InvalidArgument occurrences="1">
       <code>$spec</code>
-    </InvalidArgument>
-    <InvalidArrayOffset occurrences="1">
+      <code>$validationGroup</code>
+    </ArgumentTypeCoercion>
+    <InvalidArrayOffset>
       <code>$values[$cKey]</code>
     </InvalidArrayOffset>
-    <LessSpecificReturnStatement occurrences="6">
+    <LessSpecificReturnStatement>
       <code>$this</code>
       <code>$this</code>
       <code>$this</code>
@@ -203,120 +202,125 @@
       <code>$this</code>
       <code>$this</code>
     </LessSpecificReturnStatement>
-    <NoValue occurrences="1">
+    <NoValue>
       <code>$cKey</code>
     </NoValue>
-    <PossiblyInvalidArgument occurrences="4">
-      <code>$collectionInputFilter-&gt;get($name)</code>
+    <PossiblyInvalidArgument>
+      <code><![CDATA[$collectionInputFilter->get($name)]]></code>
       <code>$input</code>
       <code>$inputFilter</code>
-      <code>$inputFilter-&gt;get($name)</code>
+      <code><![CDATA[$inputFilter->get($name)]]></code>
     </PossiblyInvalidArgument>
-    <PossiblyNullArgument occurrences="1">
-      <code>$this-&gt;data</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$this->data]]></code>
     </PossiblyNullArgument>
-    <PossiblyNullArrayOffset occurrences="2">
+    <PossiblyNullArrayOffset>
       <code>$data</code>
       <code>$validationGroup</code>
     </PossiblyNullArrayOffset>
-    <PossiblyUndefinedMethod occurrences="2">
+    <PossiblyUndefinedMethod>
       <code>merge</code>
       <code>merge</code>
     </PossiblyUndefinedMethod>
-    <TooManyArguments occurrences="1">
+    <TooManyArguments>
       <code>bindValues</code>
     </TooManyArguments>
   </file>
   <file src="src/FormAbstractServiceFactory.php">
-    <PossiblyNullReference occurrences="2">
+    <PossiblyNullReference>
       <code>setPluginManager</code>
       <code>setPluginManager</code>
     </PossiblyNullReference>
   </file>
   <file src="src/FormElementManager.php">
-    <DeprecatedClass occurrences="4">
+    <DeprecatedClass>
       <code>Element\DateTime::class</code>
       <code>Element\DateTime::class</code>
       <code>Element\DateTime::class</code>
       <code>Element\DateTime::class</code>
     </DeprecatedClass>
-    <NonInvariantDocblockPropertyType occurrences="3">
+    <NonInvariantDocblockPropertyType>
       <code>$aliases</code>
       <code>$factories</code>
       <code>$instanceOf</code>
     </NonInvariantDocblockPropertyType>
-    <RedundantConditionGivenDocblockType occurrences="3">
+    <RedundantConditionGivenDocblockType>
       <code>$services</code>
       <code>$services</code>
       <code>$services</code>
     </RedundantConditionGivenDocblockType>
   </file>
+  <file src="src/FormElementManagerFactory.php">
+    <MoreSpecificImplementedParamType>
+      <code>$options</code>
+    </MoreSpecificImplementedParamType>
+  </file>
   <file src="src/FormFactoryAwareInterface.php">
-    <MissingReturnType occurrences="1">
+    <MissingReturnType>
       <code>setFormFactory</code>
     </MissingReturnType>
   </file>
   <file src="src/View/Helper/AbstractFormDateSelect.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$this-&gt;view</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="src/View/Helper/AbstractHelper.php">
-    <ArgumentTypeCoercion occurrences="2">
+    <ArgumentTypeCoercion>
       <code>$encoding</code>
       <code>$encoding</code>
     </ArgumentTypeCoercion>
-    <DeprecatedMethod occurrences="3">
+    <DeprecatedMethod>
       <code>getEncoding</code>
       <code>setEncoding</code>
       <code>setEncoding</code>
     </DeprecatedMethod>
-    <InternalMethod occurrences="5">
+    <InternalMethod>
       <code>getEncoding</code>
       <code>new EscapeHtml()</code>
       <code>new EscapeHtmlAttr()</code>
       <code>setEncoding</code>
       <code>setEncoding</code>
     </InternalMethod>
-    <PossiblyNullReference occurrences="3">
+    <PossiblyNullReference>
       <code>translate</code>
       <code>translate</code>
       <code>translate</code>
     </PossiblyNullReference>
   </file>
   <file src="src/View/Helper/Form.php">
-    <DeprecatedMethod occurrences="1">
+    <DeprecatedMethod>
       <code>getView</code>
     </DeprecatedMethod>
-    <UndefinedMagicMethod occurrences="2">
+    <UndefinedMagicMethod>
       <code>formCollection</code>
       <code>formRow</code>
     </UndefinedMagicMethod>
   </file>
   <file src="src/View/Helper/FormButton.php">
-    <DocblockTypeContradiction occurrences="1">
+    <DocblockTypeContradiction>
       <code>gettype($attributesOrElement)</code>
     </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType occurrences="1">
+    <RedundantConditionGivenDocblockType>
       <code>is_object($attributesOrElement)</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormCaptcha.php">
-    <DeprecatedMethod occurrences="1">
+    <DeprecatedMethod>
       <code>getView</code>
     </DeprecatedMethod>
   </file>
   <file src="src/View/Helper/FormCollection.php">
-    <DeprecatedMethod occurrences="1">
+    <DeprecatedMethod>
       <code>getView</code>
     </DeprecatedMethod>
-    <InvalidFunctionCall occurrences="4">
+    <InvalidFunctionCall>
       <code>$elementHelper($elementOrFieldset)</code>
       <code>$elementHelper($elementOrFieldset)</code>
-      <code>$fieldsetHelper($elementOrFieldset, $this-&gt;shouldWrap())</code>
-      <code>$fieldsetHelper($elementOrFieldset, $this-&gt;shouldWrap())</code>
+      <code><![CDATA[$fieldsetHelper($elementOrFieldset, $this->shouldWrap())]]></code>
+      <code><![CDATA[$fieldsetHelper($elementOrFieldset, $this->shouldWrap())]]></code>
     </InvalidFunctionCall>
-    <TypeDoesNotContainType occurrences="4">
+    <TypeDoesNotContainType>
       <code>assert(is_callable($elementHelper))</code>
       <code>assert(is_callable($elementHelper))</code>
       <code>assert(is_callable($fieldsetHelper))</code>
@@ -324,42 +328,42 @@
     </TypeDoesNotContainType>
   </file>
   <file src="src/View/Helper/FormElementErrors.php">
-    <MissingClosureParamType occurrences="1">
+    <MissingClosureParamType>
       <code>$item</code>
     </MissingClosureParamType>
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>translate</code>
     </PossiblyNullReference>
   </file>
   <file src="src/View/Helper/FormLabel.php">
-    <DocblockTypeContradiction occurrences="1">
+    <DocblockTypeContradiction>
       <code>gettype($attributesOrElement)</code>
     </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType occurrences="1">
+    <RedundantConditionGivenDocblockType>
       <code>is_object($attributesOrElement)</code>
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/View/Helper/FormMultiCheckbox.php">
-    <PossiblyNullArgument occurrences="2">
-      <code>$this-&gt;view</code>
-      <code>$this-&gt;view</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$this->view]]></code>
+      <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="src/View/Helper/FormRow.php">
-    <PossiblyNullReference occurrences="1">
+    <PossiblyNullReference>
       <code>render</code>
     </PossiblyNullReference>
   </file>
   <file src="src/View/Helper/FormSelect.php">
-    <PossiblyInvalidArgument occurrences="1">
+    <PossiblyInvalidArgument>
       <code>$optionSpec</code>
     </PossiblyInvalidArgument>
-    <PossiblyNullArgument occurrences="1">
-      <code>$this-&gt;view</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
-    <PossiblyUndefinedMethod occurrences="9">
+    <PossiblyUndefinedMethod>
       <code>allowEmpty</code>
       <code>getFilterChain</code>
       <code>getFilterChain</code>
@@ -372,79 +376,79 @@
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/Element/CaptchaTest.php">
-    <NullArgument occurrences="1">
+    <NullArgument>
       <code>null</code>
     </NullArgument>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="test/Element/CheckboxTest.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getHaystack</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getHaystack</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/CollectionTest.php">
-    <InvalidArgument occurrences="2">
+    <InvalidArgument>
       <code>$obj2</code>
       <code>$obj3</code>
     </InvalidArgument>
-    <InvalidArrayOffset occurrences="2">
+    <InvalidArrayOffset>
       <code>$data[$index]</code>
       <code>$names[$i]</code>
     </InvalidArrayOffset>
-    <NullArgument occurrences="1">
+    <NullArgument>
       <code>null</code>
     </NullArgument>
-    <PossiblyUndefinedMethod occurrences="1">
+    <PossiblyUndefinedMethod>
       <code>setObject</code>
     </PossiblyUndefinedMethod>
-    <PossiblyUndefinedVariable occurrences="2">
+    <PossiblyUndefinedVariable>
       <code>$products</code>
       <code>$shop</code>
     </PossiblyUndefinedVariable>
   </file>
   <file src="test/Element/ColorTest.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getPattern</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getPattern</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/CsrfTest.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getName</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getName</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/DateSelectTest.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getFormat</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getFormat</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/DateTest.php">
-    <PossiblyInvalidMethodCall occurrences="8">
+    <PossiblyInvalidMethodCall>
       <code>getBaseValue</code>
       <code>getBaseValue</code>
       <code>getInclusive</code>
@@ -454,13 +458,13 @@
       <code>getStep</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="4">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="8">
+    <UndefinedInterfaceMethod>
       <code>getBaseValue</code>
       <code>getBaseValue</code>
       <code>getInclusive</code>
@@ -472,17 +476,17 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/DateTimeLocalTest.php">
-    <PossiblyInvalidMethodCall occurrences="5">
+    <PossiblyInvalidMethodCall>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
       <code>getMin</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="5">
+    <UndefinedInterfaceMethod>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
@@ -491,45 +495,45 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/DateTimeSelectTest.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getFormat</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getFormat</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/DateTimeTest.php">
-    <DeprecatedClass occurrences="9">
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
-      <code>new DateTimeElement('foo')</code>
+    <DeprecatedClass>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
+      <code><![CDATA[new DateTimeElement('foo')]]></code>
     </DeprecatedClass>
-    <PossiblyInvalidArrayAccess occurrences="2">
-      <code>$filter['name']</code>
-      <code>$filter['options']</code>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$filter['name']]]></code>
+      <code><![CDATA[$filter['options']]]></code>
     </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidMethodCall occurrences="5">
+    <PossiblyInvalidMethodCall>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
       <code>getMin</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="3">
-      <code>$filter['options']</code>
-      <code>$inputSpec['filters']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$filter['options']]]></code>
+      <code><![CDATA[$inputSpec['filters']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="7">
+    <UndefinedInterfaceMethod>
       <code>$filter</code>
       <code>$filter</code>
       <code>getInclusive</code>
@@ -540,84 +544,84 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/EmailTest.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getValidator</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="2">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getValidator</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/MonthSelectTest.php">
-    <PossiblyInvalidArrayAccess occurrences="1">
-      <code>$inputSpec['validators'][0]</code>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
     </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getPattern</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="2">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getPattern</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMethod occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <UndefinedMethod>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </UndefinedMethod>
   </file>
   <file src="test/Element/MonthTest.php">
-    <PossiblyInvalidArrayAccess occurrences="1">
-      <code>$inputSpec['validators'][0]</code>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
     </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidMethodCall occurrences="5">
+    <PossiblyInvalidMethodCall>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
       <code>getMin</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="2">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="5">
+    <UndefinedInterfaceMethod>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
       <code>getMin</code>
       <code>getStep</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMethod occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <UndefinedMethod>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </UndefinedMethod>
   </file>
   <file src="test/Element/MultiCheckboxTest.php">
-    <PossiblyInvalidArrayAccess occurrences="2">
-      <code>$inputSpec['validators'][0]</code>
-      <code>$inputSpec['validators'][0]</code>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
     </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getValidator</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="3">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getValidator</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMethod occurrences="2">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <UndefinedMethod>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </UndefinedMethod>
   </file>
   <file src="test/Element/NumberTest.php">
-    <PossiblyInvalidMethodCall occurrences="6">
+    <PossiblyInvalidMethodCall>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
@@ -625,14 +629,14 @@
       <code>getStep</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="5">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="6">
+    <UndefinedInterfaceMethod>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
@@ -642,19 +646,19 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/RadioTest.php">
-    <PossiblyInvalidArrayAccess occurrences="1">
-      <code>$inputSpec['validators'][0]</code>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
     </PossiblyInvalidArrayAccess>
-    <PossiblyUndefinedArrayOffset occurrences="2">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedMethod occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <UndefinedMethod>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </UndefinedMethod>
   </file>
   <file src="test/Element/RangeTest.php">
-    <PossiblyInvalidMethodCall occurrences="10">
+    <PossiblyInvalidMethodCall>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getInclusive</code>
@@ -666,11 +670,11 @@
       <code>getStep</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="2">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="10">
+    <UndefinedInterfaceMethod>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getInclusive</code>
@@ -684,43 +688,43 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/SelectTest.php">
-    <PossiblyInvalidArrayAccess occurrences="4">
-      <code>$inputSpec['validators'][0]</code>
-      <code>$inputSpec['validators'][0]</code>
-      <code>$inputSpec['validators'][0]</code>
-      <code>$inputSpec['validators'][0]</code>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
     </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getValidator</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="8">
-      <code>$inputSpec['allow_empty']</code>
-      <code>$inputSpec['continue_if_empty']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['allow_empty']]]></code>
+      <code><![CDATA[$inputSpec['continue_if_empty']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getValidator</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMethod occurrences="4">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <UndefinedMethod>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </UndefinedMethod>
   </file>
   <file src="test/Element/TelTest.php">
-    <PossiblyUndefinedArrayOffset occurrences="2">
-      <code>$inputSpec['name']</code>
-      <code>$inputSpec['required']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['name']]]></code>
+      <code><![CDATA[$inputSpec['required']]]></code>
     </PossiblyUndefinedArrayOffset>
   </file>
   <file src="test/Element/TimeTest.php">
-    <PossiblyInvalidMethodCall occurrences="6">
+    <PossiblyInvalidMethodCall>
       <code>getFormat</code>
       <code>getInclusive</code>
       <code>getInclusive</code>
@@ -728,10 +732,10 @@
       <code>getMin</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="6">
+    <UndefinedInterfaceMethod>
       <code>getFormat</code>
       <code>getInclusive</code>
       <code>getInclusive</code>
@@ -741,46 +745,46 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/UrlTest.php">
-    <PossiblyInvalidMethodCall occurrences="2">
+    <PossiblyInvalidMethodCall>
       <code>getAllowAbsolute</code>
       <code>getAllowRelative</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="2">
+    <UndefinedInterfaceMethod>
       <code>getAllowAbsolute</code>
       <code>getAllowRelative</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/WeekTest.php">
-    <PossiblyInvalidArrayAccess occurrences="1">
-      <code>$inputSpec['validators'][0]</code>
+    <PossiblyInvalidArrayAccess>
+      <code><![CDATA[$inputSpec['validators'][0]]]></code>
     </PossiblyInvalidArrayAccess>
-    <PossiblyInvalidMethodCall occurrences="5">
+    <PossiblyInvalidMethodCall>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
       <code>getMin</code>
       <code>getStep</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="2">
-      <code>$inputSpec['validators']</code>
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="5">
+    <UndefinedInterfaceMethod>
       <code>getInclusive</code>
       <code>getInclusive</code>
       <code>getMax</code>
       <code>getMin</code>
       <code>getStep</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMethod occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <UndefinedMethod>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </UndefinedMethod>
   </file>
   <file src="test/FactoryTest.php">
-    <PossiblyUndefinedVariable occurrences="4">
+    <PossiblyUndefinedVariable>
       <code>$test</code>
       <code>$test</code>
       <code>$test</code>
@@ -788,15 +792,15 @@
     </PossiblyUndefinedVariable>
   </file>
   <file src="test/FieldsetTest.php">
-    <InvalidArgument occurrences="1">
-      <code>'foo'</code>
+    <InvalidArgument>
+      <code><![CDATA['foo']]></code>
     </InvalidArgument>
-    <NullArgument occurrences="1">
+    <NullArgument>
       <code>null</code>
     </NullArgument>
   </file>
   <file src="test/FormAbstractServiceFactoryTest.php">
-    <PossiblyNullReference occurrences="4">
+    <PossiblyNullReference>
       <code>getPluginManager</code>
       <code>getPluginManager</code>
       <code>getPluginManager</code>
@@ -804,21 +808,17 @@
     </PossiblyNullReference>
   </file>
   <file src="test/FormElementManagerFactoryTest.php">
-    <MissingClosureParamType occurrences="1">
+    <MissingClosureParamType>
       <code>$container</code>
     </MissingClosureParamType>
   </file>
   <file src="test/FormElementManagerTest.php">
-    <DeprecatedMethod occurrences="1">
+    <DeprecatedMethod>
       <code>setMethods</code>
     </DeprecatedMethod>
   </file>
   <file src="test/FormTest.php">
-    <PossiblyInvalidArgument occurrences="2">
-      <code>$data</code>
-      <code>$data</code>
-    </PossiblyInvalidArgument>
-    <PossiblyUndefinedMethod occurrences="24">
+    <PossiblyUndefinedMethod>
       <code>get</code>
       <code>get</code>
       <code>get</code>
@@ -844,193 +844,193 @@
       <code>isRequired</code>
       <code>isRequired</code>
     </PossiblyUndefinedMethod>
-    <PropertyTypeCoercion occurrences="1">
-      <code>$factory-&gt;createForm($spec)</code>
+    <PropertyTypeCoercion>
+      <code><![CDATA[$factory->createForm($spec)]]></code>
     </PropertyTypeCoercion>
-    <RedundantCastGivenDocblockType occurrences="1">
+    <RedundantCastGivenDocblockType>
       <code>(string) print_r($chain, true)</code>
     </RedundantCastGivenDocblockType>
   </file>
   <file src="test/Integration/FormCreatesCollectionInputFilterTest.php">
-    <PossiblyUndefinedMethod occurrences="1">
+    <PossiblyUndefinedMethod>
       <code>getValidatorChain</code>
     </PossiblyUndefinedMethod>
   </file>
   <file src="test/TestAsset/AddressFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/Annotation/ComplexEntity.php">
-    <DeprecatedClass occurrences="1">
+    <DeprecatedClass>
       <code>Annotation\AllowEmpty()</code>
     </DeprecatedClass>
   </file>
   <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
-    <MissingPropertyType occurrences="1">
+    <MissingPropertyType>
       <code>$username</code>
     </MissingPropertyType>
   </file>
   <file src="test/TestAsset/Annotation/SampleEntity.php">
-    <DeprecatedClass occurrences="2">
+    <DeprecatedClass>
       <code>Annotation\AllowEmpty(true)</code>
       <code>Annotation\ContinueIfEmpty(true)</code>
     </DeprecatedClass>
   </file>
   <file src="test/TestAsset/BasicFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/CategoryFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/CityFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/CountryFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/CustomCollection.php">
-    <PropertyNotSetInConstructor occurrences="1">
+    <PropertyNotSetInConstructor>
       <code>CustomCollection</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/CustomFieldsetHelper.php">
-    <PossiblyNullArgument occurrences="2">
-      <code>$fieldset-&gt;getName()</code>
-      <code>$this-&gt;view</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$fieldset->getName()]]></code>
+      <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/TestAsset/CustomViewHelper.php">
-    <PossiblyNullArgument occurrences="2">
-      <code>$element-&gt;getName()</code>
-      <code>$this-&gt;view</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getName()]]></code>
+      <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/TestAsset/ElementWithFilter.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/ElementWithStringToArrayFilter.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/FieldsetWithDependency.php">
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
-    <PropertyNotSetInConstructor occurrences="1">
+    <PropertyNotSetInConstructor>
       <code>$dependency</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/TestAsset/FieldsetWithInputFilter.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array[]</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/FileInputFilterProviderFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array[]</code>
     </LessSpecificImplementedReturnType>
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
   </file>
   <file src="test/TestAsset/FileInputFilterProviderForm.php">
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
   </file>
   <file src="test/TestAsset/InputFilterProvider.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array[]</code>
     </LessSpecificImplementedReturnType>
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
   </file>
   <file src="test/TestAsset/InputFilterProviderFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array[]</code>
     </LessSpecificImplementedReturnType>
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
   </file>
   <file src="test/TestAsset/InputFilterProviderWithFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array[]</code>
     </LessSpecificImplementedReturnType>
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
   </file>
   <file src="test/TestAsset/MyFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array[]</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/NestedFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/OrphansFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array[]</code>
     </LessSpecificImplementedReturnType>
-    <MissingParamType occurrences="2">
+    <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
   </file>
   <file src="test/TestAsset/ProductFieldset.php">
-    <LessSpecificImplementedReturnType occurrences="1">
+    <LessSpecificImplementedReturnType>
       <code>array</code>
     </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/ValueStoringFieldset.php">
-    <PropertyNotSetInConstructor occurrences="1">
+    <PropertyNotSetInConstructor>
       <code>$storedValue</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="test/View/Helper/AbstractCommonTestCase.php">
-    <DeprecatedMethod occurrences="3">
+    <DeprecatedMethod>
       <code>getEncoding</code>
       <code>getEncoding</code>
       <code>setView</code>
     </DeprecatedMethod>
-    <InternalMethod occurrences="2">
+    <InternalMethod>
       <code>getEncoding</code>
       <code>getEncoding</code>
     </InternalMethod>
-    <UnsafeInstantiation occurrences="1">
+    <UnsafeInstantiation>
       <code>new $helperClass()</code>
     </UnsafeInstantiation>
   </file>
   <file src="test/View/Helper/AbstractHelperTest.php">
-    <DeprecatedMethod occurrences="2">
+    <DeprecatedMethod>
       <code>setMethods</code>
       <code>setMethods</code>
     </DeprecatedMethod>
   </file>
   <file src="test/View/Helper/File/FormFileApcProgressTest.php">
-    <InvalidArgument occurrences="5">
+    <InvalidArgument>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -1039,7 +1039,7 @@
     </InvalidArgument>
   </file>
   <file src="test/View/Helper/File/FormFileSessionProgressTest.php">
-    <InvalidArgument occurrences="5">
+    <InvalidArgument>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -1048,7 +1048,7 @@
     </InvalidArgument>
   </file>
   <file src="test/View/Helper/File/FormFileUploadProgressTest.php">
-    <InvalidArgument occurrences="5">
+    <InvalidArgument>
       <code>$markup</code>
       <code>$markup</code>
       <code>$markup</code>
@@ -1057,164 +1057,164 @@
     </InvalidArgument>
   </file>
   <file src="test/View/Helper/FormButtonTest.php">
-    <InvalidArgument occurrences="1">
+    <InvalidArgument>
       <code>$element</code>
     </InvalidArgument>
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormCaptchaTest.php">
-    <PossiblyFalseArgument occurrences="2">
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')</code>
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
+    <PossiblyFalseArgument>
+      <code><![CDATA[getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY')]]></code>
+      <code><![CDATA[getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')]]></code>
     </PossiblyFalseArgument>
-    <PossiblyFalseOperand occurrences="1">
-      <code>getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')</code>
+    <PossiblyFalseOperand>
+      <code><![CDATA[getenv('TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY')]]></code>
     </PossiblyFalseOperand>
   </file>
   <file src="test/View/Helper/FormCollectionTest.php">
-    <DeprecatedMethod occurrences="2">
+    <DeprecatedMethod>
       <code>setView</code>
       <code>setView</code>
     </DeprecatedMethod>
   </file>
   <file src="test/View/Helper/FormColorTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormDateTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormDateTimeLocalTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormDateTimeTest.php">
-    <DeprecatedClass occurrences="1">
+    <DeprecatedClass>
       <code>new FormDateTimeHelper()</code>
     </DeprecatedClass>
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormElementTest.php">
-    <PossiblyInvalidMethodCall occurrences="1">
+    <PossiblyInvalidMethodCall>
       <code>getHash</code>
     </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedArrayOffset occurrences="1">
-      <code>$inputSpec['validators']</code>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod occurrences="1">
+    <UndefinedInterfaceMethod>
       <code>getHash</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/View/Helper/FormEmailTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormFileTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormHiddenTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormImageTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormInputTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormLabelTest.php">
-    <InvalidArgument occurrences="1">
+    <InvalidArgument>
       <code>$element</code>
     </InvalidArgument>
   </file>
   <file src="test/View/Helper/FormMonthTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormNumberTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormPasswordTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormRangeTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormResetTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormRowTest.php">
-    <DeprecatedMethod occurrences="2">
+    <DeprecatedMethod>
       <code>setMethods</code>
       <code>setMethods</code>
     </DeprecatedMethod>
-    <PossiblyInvalidFunctionCall occurrences="1">
+    <PossiblyInvalidFunctionCall>
       <code>$escapeHelper($label)</code>
     </PossiblyInvalidFunctionCall>
   </file>
   <file src="test/View/Helper/FormSearchTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormSubmitTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormTelTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormTextTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormTextareaTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormTimeTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormUrlTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormWeekTest.php">
-    <PossiblyNullArgument occurrences="1">
-      <code>$element-&gt;getAttribute($attribute)</code>
+    <PossiblyNullArgument>
+      <code><![CDATA[$element->getAttribute($attribute)]]></code>
     </PossiblyNullArgument>
   </file>
 </files>
