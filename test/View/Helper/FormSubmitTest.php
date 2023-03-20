@@ -47,7 +47,7 @@ final class FormSubmitTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="submit"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

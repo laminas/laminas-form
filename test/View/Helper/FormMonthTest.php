@@ -46,7 +46,7 @@ final class FormMonthTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="month"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],

@@ -46,7 +46,7 @@ final class FormHiddenTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="hidden"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

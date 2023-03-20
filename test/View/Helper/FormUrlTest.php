@@ -46,7 +46,7 @@ final class FormUrlTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="url"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],

@@ -46,7 +46,7 @@ final class FormDateTimeLocalTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="datetime-local"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],

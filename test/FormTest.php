@@ -2115,7 +2115,7 @@ final class FormTest extends TestCase
     /**
      * @return array
      */
-    public function formWithSelectMultipleAndEmptyUnselectedValueDataProvider()
+    public static function formWithSelectMultipleAndEmptyUnselectedValueDataProvider(): array
     {
         return [
             [

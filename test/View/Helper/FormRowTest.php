@@ -390,7 +390,7 @@ final class FormRowTest extends AbstractCommonTestCase
     public function testInvokeWithNoRenderErrors(): void
     {
         $mock = $this->getMockBuilder($this->helper::class)
-            ->setMethods(['setRenderErrors'])
+            ->onlyMethods(['setRenderErrors'])
             ->getMock();
         $mock->expects($this->never())
                 ->method('setRenderErrors');
@@ -401,7 +401,7 @@ final class FormRowTest extends AbstractCommonTestCase
     public function testInvokeWithRenderErrorsTrue(): void
     {
         $mock = $this->getMockBuilder($this->helper::class)
-            ->setMethods(['setRenderErrors'])
+            ->onlyMethods(['setRenderErrors'])
             ->getMock();
         $mock->expects($this->once())
                 ->method('setRenderErrors')

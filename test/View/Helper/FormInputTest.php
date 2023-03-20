@@ -47,7 +47,7 @@ final class FormInputTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="email"', $markup);
     }
 
-    public function inputTypes(): array
+    public static function inputTypes(): array
     {
         return [
             ['text', 'assertStringContainsString'],
@@ -97,7 +97,7 @@ final class FormInputTest extends AbstractCommonTestCase
     /**
      * @return array
      */
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['accept', 'assertStringContainsString'],
@@ -326,7 +326,7 @@ final class FormInputTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function nonXhtmlDoctypes(): array
+    public static function nonXhtmlDoctypes(): array
     {
         return [
             ['HTML4_STRICT'],
@@ -347,7 +347,7 @@ final class FormInputTest extends AbstractCommonTestCase
         self::assertStringNotContainsString('/>', $markup);
     }
 
-    public function xhtmlDoctypes(): array
+    public static function xhtmlDoctypes(): array
     {
         return [
             ['XHTML11'],
@@ -376,7 +376,7 @@ final class FormInputTest extends AbstractCommonTestCase
      *
      * @return string[][]
      */
-    public function booleanAttributeTypes(): array
+    public static function booleanAttributeTypes(): array
     {
         return [
             ['autofocus', 'autofocus', ''],

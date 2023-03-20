@@ -41,7 +41,7 @@ final class MonthSelectTest extends TestCase
      *
      * @return array
      */
-    public function monthValuesDataProvider()
+    public static function monthValuesDataProvider(): array
     {
         return [
             //    value         expected

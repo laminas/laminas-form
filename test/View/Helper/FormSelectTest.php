@@ -197,7 +197,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         self::assertMatchesRegularExpression('#<select[^>]*?(name="foo\&\#x5B\;\&\#x5D\;")#', $markup);
     }
 
-    public function getScalarOptionsDataProvider(): array
+    public static function getScalarOptionsDataProvider(): array
     {
         return [
             [['value' => 'string']],

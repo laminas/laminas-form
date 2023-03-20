@@ -46,7 +46,7 @@ final class FormColorTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="color"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

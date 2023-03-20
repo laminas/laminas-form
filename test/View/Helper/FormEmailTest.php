@@ -46,7 +46,7 @@ final class FormEmailTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="email"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

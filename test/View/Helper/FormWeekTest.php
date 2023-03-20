@@ -46,7 +46,7 @@ final class FormWeekTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="week"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],

@@ -90,7 +90,7 @@ final class FormButtonTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="button"', $markup);
     }
 
-    public function inputTypes(): array
+    public static function inputTypes(): array
     {
         return [
             ['submit', 'assertStringContainsString'],
@@ -116,7 +116,7 @@ final class FormButtonTest extends AbstractCommonTestCase
         $this->$assertion($expected, $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
