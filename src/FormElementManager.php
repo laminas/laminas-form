@@ -323,10 +323,9 @@ class FormElementManager extends AbstractPluginManager
      *
      * @param class-string<ElementInterface>|string $name Service name of plugin to retrieve.
      * @param null|array<mixed> $options Options to use when creating the instance.
-     * @return mixed
      * @psalm-return ($name is class-string<ElementInterface> ? ElementInterface : mixed)
      */
-    public function get($name, ?array $options = null)
+    public function get($name, ?array $options = null): mixed
     {
         if (! $this->has($name)) {
             if (! $this->autoAddInvokableClass || ! class_exists($name)) {

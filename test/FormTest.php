@@ -24,6 +24,7 @@ use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputInterface;
+use LaminasTest\Form\TestAsset\Entity\Category;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -67,10 +68,10 @@ final class FormTest extends TestCase
         $product->setName('Chair');
         $product->setPrice(10);
 
-        $firstCategory = new TestAsset\Entity\Category();
+        $firstCategory = new Category();
         $firstCategory->setName('Office');
 
-        $secondCategory = new TestAsset\Entity\Category();
+        $secondCategory = new Category();
         $secondCategory->setName('Armchair');
 
         $product->setCategories([$firstCategory, $secondCategory]);
@@ -481,11 +482,11 @@ final class FormTest extends TestCase
         $this->form->setData($validSet);
         $this->form->isValid();
 
-        self::assertObjectHasAttribute('foo', $model);
+        self::assertTrue(isset($model->foo));
         self::assertEquals($validSet['foo'], $model->foo);
-        self::assertObjectHasAttribute('bar', $model);
+        self::assertTrue(isset($model->bar));
         self::assertEquals('always valid', $model->bar);
-        self::assertObjectHasAttribute('foobar', $model);
+        self::assertTrue(isset($model->foobar));
         self::assertEquals([
             'foo' => 'abcde',
             'bar' => 'always valid',
@@ -509,11 +510,11 @@ final class FormTest extends TestCase
         $this->form->setData($validSet);
         $this->form->isValid();
 
-        self::assertObjectHasAttribute('foo', $model);
+        self::assertTrue(isset($model->foo));
         self::assertEquals($validSet['foo'], $model->foo);
-        self::assertObjectHasAttribute('bar', $model);
+        self::assertTrue(isset($model->bar));
         self::assertEquals(' ALWAYS valid ', $model->bar);
-        self::assertObjectHasAttribute('foobar', $model);
+        self::assertTrue(isset($model->foobar));
         self::assertEquals([
             'foo' => 'abcde',
             'bar' => ' always VALID',
@@ -559,10 +560,10 @@ final class FormTest extends TestCase
         $this->form->setValidationGroup(['foo']);
         $this->form->isValid();
 
-        self::assertObjectHasAttribute('foo', $model);
+        self::assertTrue(isset($model->foo));
         self::assertEquals('abcde', $model->foo);
-        self::assertObjectNotHasAttribute('bar', $model);
-        self::assertObjectNotHasAttribute('foobar', $model);
+        self::assertFalse(isset($model->bar));
+        self::assertFalse(isset($model->foobar));
     }
 
     public function testFormWithCollectionAndValidationGroupBindValuesToModel(): void
@@ -598,12 +599,13 @@ final class FormTest extends TestCase
         ]);
         $this->form->isValid();
 
-        self::assertObjectHasAttribute('foo', $model);
+        self::assertTrue(isset($model->foo));
         self::assertEquals('abcde', $model->foo);
-        self::assertObjectHasAttribute('categories', $model);
-        self::assertObjectHasAttribute('name', $model->categories[0]);
+        self::assertTrue(isset($model->categories));
+        self::assertIsArray($model->categories);
+        self::assertInstanceOf(Category::class, $model->categories[0]);
         self::assertEquals('category', $model->categories[0]->getName());
-        self::assertObjectNotHasAttribute('foobar', $model);
+        self::assertFalse(isset($model->foobar));
     }
 
     public function testSettingValidationGroupWithoutCollectionBindsOnlyThoseValuesToModel(): void
@@ -629,10 +631,10 @@ final class FormTest extends TestCase
         $this->form->setValidationGroup(['foo']);
         $this->form->isValid();
 
-        self::assertObjectHasAttribute('foo', $model);
+        self::assertTrue(isset($model->foo));
         self::assertEquals('abcde', $model->foo);
-        self::assertObjectNotHasAttribute('categories', $model);
-        self::assertObjectNotHasAttribute('foobar', $model);
+        self::assertFalse(isset($model->categories));
+        self::assertFalse(isset($model->foobar));
     }
 
     public function testCanBindModelsToArraySerializableObjects(): void
@@ -767,17 +769,17 @@ final class FormTest extends TestCase
         $this->form->setData($validSet);
         $this->form->isValid();
 
-        self::assertObjectNotHasAttribute('foo', $model);
-        self::assertObjectNotHasAttribute('bar', $model);
-        self::assertObjectNotHasAttribute('foobar', $model);
+        self::assertFalse(isset($model->foo));
+        self::assertFalse(isset($model->bar));
+        self::assertFalse(isset($model->foobar));
 
         $this->form->bindValues();
 
-        self::assertObjectHasAttribute('foo', $model);
+        self::assertTrue(isset($model->foo));
         self::assertEquals($validSet['foo'], $model->foo);
-        self::assertObjectHasAttribute('bar', $model);
+        self::assertTrue(isset($model->bar));
         self::assertEquals('always valid', $model->bar);
-        self::assertObjectHasAttribute('foobar', $model);
+        self::assertTrue(isset($model->foobar));
         self::assertEquals([
             'foo' => 'abcde',
             'bar' => 'always valid',
@@ -803,9 +805,9 @@ final class FormTest extends TestCase
         $this->form->bind($model);
         $this->form->setData($validSet);
 
-        self::assertObjectNotHasAttribute('foo', $model);
-        self::assertObjectNotHasAttribute('bar', $model);
-        self::assertObjectNotHasAttribute('foobar', $model);
+        self::assertFalse(isset($model->foo));
+        self::assertFalse(isset($model->bar));
+        self::assertFalse(isset($model->foobar));
 
         $this->form->isValid();
 
@@ -836,7 +838,7 @@ final class FormTest extends TestCase
 
         $form->isValid(); // Calls ->bindValues after validation (line: 817)
 
-        self::assertObjectNotHasAttribute('submit', $model);
+        self::assertFalse(isset($model->submit));
     }
 
     public function testHasFactoryComposedByDefault(): void
@@ -1290,8 +1292,9 @@ final class FormTest extends TestCase
         $this->form->setData($validSet);
         $this->form->isValid();
         $data = $this->form->getData();
-        self::assertObjectNotHasAttribute('foo', $data);
-        self::assertObjectHasAttribute('bar', $data);
+        self::assertInstanceOf(stdClass::class, $data);
+        self::assertFalse(isset($data->foo));
+        self::assertTrue(isset($data->bar));
     }
 
     public function testRemoveCollectionFromValidationGroupWhenZeroCountAndNoData(): void
@@ -1657,11 +1660,11 @@ final class FormTest extends TestCase
         $product->setName('Foobar');
         $product->setPrice(100);
 
-        $c1 = new TestAsset\Entity\Category();
+        $c1 = new Category();
         $c1->setId(1);
         $c1->setName('First Category');
 
-        $c2 = new TestAsset\Entity\Category();
+        $c2 = new Category();
         $c2->setId(2);
         $c2->setName('Second Category');
 
