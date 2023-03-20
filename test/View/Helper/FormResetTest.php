@@ -47,7 +47,7 @@ final class FormResetTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="reset"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

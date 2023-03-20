@@ -112,7 +112,7 @@ final class SelectTest extends TestCase
         }
     }
 
-    public function selectOptionsDataProvider(): array
+    public static function selectOptionsDataProvider(): array
     {
         return [
             [

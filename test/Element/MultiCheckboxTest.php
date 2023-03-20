@@ -13,7 +13,7 @@ use function count;
 
 final class MultiCheckboxTest extends TestCase
 {
-    public function useHiddenAttributeDataProvider(): array
+    public static function useHiddenAttributeDataProvider(): array
     {
         return [[true], [false]];
     }
@@ -55,7 +55,7 @@ final class MultiCheckboxTest extends TestCase
         }
     }
 
-    public function multiCheckboxOptionsDataProvider(): array
+    public static function multiCheckboxOptionsDataProvider(): array
     {
         return [
             [

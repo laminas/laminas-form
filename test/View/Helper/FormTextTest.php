@@ -46,7 +46,7 @@ final class FormTextTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="text"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

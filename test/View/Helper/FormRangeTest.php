@@ -46,7 +46,7 @@ final class FormRangeTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="range"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

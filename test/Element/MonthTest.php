@@ -56,7 +56,7 @@ final class MonthTest extends TestCase
         }
     }
 
-    public function monthValuesDataProvider(): array
+    public static function monthValuesDataProvider(): array
     {
         return [
             //    value         expected

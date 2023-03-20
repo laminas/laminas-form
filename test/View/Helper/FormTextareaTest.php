@@ -36,7 +36,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         self::assertMatchesRegularExpression('#<textarea.*?></textarea>#', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['accesskey', 'assertStringContainsString'],
@@ -251,7 +251,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         $this->$assertion($expect, $markup);
     }
 
-    public function booleanAttributeTypes(): array
+    public static function booleanAttributeTypes(): array
     {
         return [
             ['autofocus', 'autofocus', ''],

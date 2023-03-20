@@ -109,7 +109,7 @@ final class FormElementErrorsFactoryTest extends TestCase
         );
     }
 
-    public function configProvider(): Generator
+    public static function configProvider(): Generator
     {
         $defaultOptions = [
             'message_open_format'      => '<ul%s><li>',

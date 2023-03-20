@@ -59,7 +59,7 @@ final class FormImageTest extends AbstractCommonTestCase
         self::assertStringContainsString('src="foo.png"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

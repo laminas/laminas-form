@@ -56,7 +56,7 @@ final class WeekTest extends TestCase
         }
     }
 
-    public function weekValuesDataProvider(): array
+    public static function weekValuesDataProvider(): array
     {
         return [
             //    value        expected

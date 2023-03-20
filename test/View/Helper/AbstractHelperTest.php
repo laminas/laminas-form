@@ -55,7 +55,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
-    public function addAttributesData(): array
+    public static function addAttributesData(): array
     {
         return [
             'valid'                => ['valid', 'valid="value"'],
@@ -93,7 +93,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
-    public function addAttributesPrefixData(): array
+    public static function addAttributesPrefixData(): array
     {
         return [
             'valid'                => ['v-', 'v-attr="value"'],
@@ -136,7 +136,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
     {
         $translator = self::getMockBuilder(Translator::class)
             ->disableOriginalConstructor()
-            ->setMethods(['translate'])
+            ->onlyMethods(['translate'])
             ->getMock();
 
         $translator
@@ -177,7 +177,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
     {
         $translator = self::getMockBuilder(Translator::class)
             ->disableOriginalConstructor()
-            ->setMethods(['translate'])
+            ->onlyMethods(['translate'])
             ->getMock();
 
         $translator

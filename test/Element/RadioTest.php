@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class RadioTest extends TestCase
 {
-    public function useHiddenAttributeDataProvider(): array
+    public static function useHiddenAttributeDataProvider(): array
     {
         return [[true], [false]];
     }
@@ -44,7 +44,7 @@ final class RadioTest extends TestCase
         }
     }
 
-    public function radioOptionsDataProvider(): array
+    public static function radioOptionsDataProvider(): array
     {
         return [
             [

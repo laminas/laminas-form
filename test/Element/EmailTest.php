@@ -28,7 +28,7 @@ final class EmailTest extends TestCase
         }
     }
 
-    public function emailAttributesDataProvider(): array
+    public static function emailAttributesDataProvider(): array
     {
         return [
                   // attributes               // expectedValidators

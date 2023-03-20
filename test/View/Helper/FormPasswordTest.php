@@ -46,7 +46,7 @@ final class FormPasswordTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="password"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

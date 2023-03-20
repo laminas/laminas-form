@@ -39,7 +39,7 @@ final class FormElementTest extends TestCase
         $this->helper->setView($this->renderer);
     }
 
-    public function getInputElements(): array
+    public static function getInputElements(): array
     {
         return [
             ['text'],
@@ -92,7 +92,7 @@ final class FormElementTest extends TestCase
         self::assertStringContainsString('type="' . $type . '"', $markup);
     }
 
-    public function getMultiElements(): array
+    public static function getMultiElements(): array
     {
         return [
             ['radio', 'input', 'type="radio"'],

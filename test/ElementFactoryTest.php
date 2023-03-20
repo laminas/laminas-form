@@ -13,7 +13,7 @@ use Psr\Container\ContainerInterface;
 final class ElementFactoryTest extends TestCase
 {
     /** @return Generator<string, array{0: array|null, 1: array}> */
-    public function validCreationOptions(): Generator
+    public static function validCreationOptions(): Generator
     {
         yield 'array' => [['key' => 'value'], ['key' => 'value']];
         yield 'empty-array' => [[], []];

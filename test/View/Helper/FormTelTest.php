@@ -46,7 +46,7 @@ final class FormTelTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="tel"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name',           'assertStringContainsString'],

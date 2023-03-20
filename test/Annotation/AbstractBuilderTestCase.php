@@ -23,6 +23,7 @@ use Laminas\Validator\EmailAddress;
 use Laminas\Validator\NotEmpty;
 use Laminas\Validator\StringLength;
 use Laminas\Validator\ValidatorChain;
+use LaminasTest\Form\ErrorHandler;
 use LaminasTest\Form\TestAsset;
 use LaminasTest\Form\TestAsset\Annotation\Entity;
 use LaminasTest\Form\TestAsset\Annotation\Form;
@@ -322,10 +323,8 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     /**
      * Data provider
-     *
-     * @return Generator
      */
-    public function provideOptionsAnnotationAndComposedObjectAnnotation()
+    public static function provideOptionsAnnotationAndComposedObjectAnnotation(): Generator
     {
         yield ['child'];
         yield ['childTheSecond'];
@@ -349,10 +348,8 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     /**
      * Data provider
-     *
-     * @return Generator
      */
-    public function provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection()
+    public static function provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection(): Generator
     {
         yield ['childTheThird'];
         yield ['childTheFourth'];
@@ -477,6 +474,7 @@ abstract class AbstractBuilderTestCase extends TestCase
 
     public function testLegacyComposedObjectAnnotation(): void
     {
+        ErrorHandler::setErrorHandler();
         try {
             $entity  = new TestAsset\Annotation\LegacyComposedObjectAnnotation();
             $builder = $this->createBuilder();
@@ -484,11 +482,14 @@ abstract class AbstractBuilderTestCase extends TestCase
             self::fail('Neither a deprecation nor an exception were thrown');
         } catch (Throwable $error) {
             self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        } finally {
+            ErrorHandler::restoreErrorHandler();
         }
     }
 
     public function testLegacyStyleFilterAnnotations(): void
     {
+        ErrorHandler::setErrorHandler();
         try {
             $entity  = new TestAsset\Annotation\LegacyFilterAnnotation();
             $builder = $this->createBuilder();
@@ -496,11 +497,14 @@ abstract class AbstractBuilderTestCase extends TestCase
             self::fail('Neither a deprecation nor an exception were thrown');
         } catch (Throwable $error) {
             self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        } finally {
+            ErrorHandler::restoreErrorHandler();
         }
     }
 
     public function testLegacyStyleHydratorAnnotations(): void
     {
+        ErrorHandler::setErrorHandler();
         try {
             $entity  = new TestAsset\Annotation\LegacyHydratorAnnotation();
             $builder = $this->createBuilder();
@@ -508,11 +512,14 @@ abstract class AbstractBuilderTestCase extends TestCase
             self::fail('Neither a deprecation nor an exception were thrown');
         } catch (Throwable $error) {
             self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        } finally {
+            ErrorHandler::restoreErrorHandler();
         }
     }
 
     public function testLegacyStyleValidatorAnnotations(): void
     {
+        ErrorHandler::setErrorHandler();
         try {
             $entity  = new TestAsset\Annotation\LegacyValidatorAnnotation();
             $builder = $this->createBuilder();
@@ -520,6 +527,8 @@ abstract class AbstractBuilderTestCase extends TestCase
             self::fail('Neither a deprecation nor an exception were thrown');
         } catch (Throwable $error) {
             self::assertMatchesRegularExpression('/Passing a single array .* is deprecated/', $error->getMessage());
+        } finally {
+            ErrorHandler::restoreErrorHandler();
         }
     }
 }

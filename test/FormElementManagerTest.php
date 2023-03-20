@@ -127,7 +127,7 @@ final class FormElementManagerTest extends TestCase
     public function testSharedFormElementsAreNotInitializedMultipleTimes(): void
     {
         $element = $this->getMockBuilder(Element::class)
-            ->setMethods(['init'])
+            ->onlyMethods(['init'])
             ->getMock();
 
         $element->expects($this->once())->method('init');

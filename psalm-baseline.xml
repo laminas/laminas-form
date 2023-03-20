@@ -783,6 +783,17 @@
       <code><![CDATA[$inputSpec['validators']]]></code>
     </UndefinedMethod>
   </file>
+  <file src="test/ErrorHandler.php">
+    <InvalidArgument>
+      <code><![CDATA[static function (int $errno, string $errstr, string $errfile, int $errline): void {
+            if (! (error_reporting() & $errno)) {
+                return;
+            }
+
+             throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+        }]]></code>
+    </InvalidArgument>
+  </file>
   <file src="test/FactoryTest.php">
     <PossiblyUndefinedVariable>
       <code>$test</code>
@@ -811,11 +822,6 @@
     <MissingClosureParamType>
       <code>$container</code>
     </MissingClosureParamType>
-  </file>
-  <file src="test/FormElementManagerTest.php">
-    <DeprecatedMethod>
-      <code>setMethods</code>
-    </DeprecatedMethod>
   </file>
   <file src="test/FormTest.php">
     <PossiblyUndefinedMethod>
@@ -852,6 +858,11 @@
     </RedundantCastGivenDocblockType>
   </file>
   <file src="test/Integration/FormCreatesCollectionInputFilterTest.php">
+    <InvalidArgument>
+      <code>$validators</code>
+      <code>$validators</code>
+      <code>$validators</code>
+    </InvalidArgument>
     <PossiblyUndefinedMethod>
       <code>getValidatorChain</code>
     </PossiblyUndefinedMethod>
@@ -1023,12 +1034,6 @@
       <code>new $helperClass()</code>
     </UnsafeInstantiation>
   </file>
-  <file src="test/View/Helper/AbstractHelperTest.php">
-    <DeprecatedMethod>
-      <code>setMethods</code>
-      <code>setMethods</code>
-    </DeprecatedMethod>
-  </file>
   <file src="test/View/Helper/File/FormFileApcProgressTest.php">
     <InvalidArgument>
       <code>$markup</code>
@@ -1169,10 +1174,6 @@
     </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormRowTest.php">
-    <DeprecatedMethod>
-      <code>setMethods</code>
-      <code>setMethods</code>
-    </DeprecatedMethod>
     <PossiblyInvalidFunctionCall>
       <code>$escapeHelper($label)</code>
     </PossiblyInvalidFunctionCall>

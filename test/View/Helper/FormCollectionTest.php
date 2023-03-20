@@ -443,7 +443,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         }
     }
 
-    public function provideDoctypesAndPermitFlagForNameAttribute(): array
+    public static function provideDoctypesAndPermitFlagForNameAttribute(): array
     {
         return [
             [Doctype::XHTML11,             false],

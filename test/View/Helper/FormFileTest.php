@@ -77,7 +77,7 @@ final class FormFileTest extends AbstractCommonTestCase
     /**
      * @return array
      */
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],

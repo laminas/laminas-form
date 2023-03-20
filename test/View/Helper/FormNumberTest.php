@@ -46,7 +46,7 @@ final class FormNumberTest extends AbstractCommonTestCase
         self::assertStringContainsString('type="number"', $markup);
     }
 
-    public function validAttributes(): array
+    public static function validAttributes(): array
     {
         return [
             ['name', 'assertStringContainsString'],
