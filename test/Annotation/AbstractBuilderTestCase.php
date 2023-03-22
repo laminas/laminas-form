@@ -299,7 +299,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertInstanceOf(EntityObjectPropertyHydrator::class, $entity->child[1]);
     }
 
-    protected function validateEntityFilterSpec(array $filterSpec)
+    protected function validateEntityFilterSpec(array $filterSpec): void
     {
         self::assertArrayHasKey('username', $filterSpec);
         self::assertArrayHasKey('password', $filterSpec);

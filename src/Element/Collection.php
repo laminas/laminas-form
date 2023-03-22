@@ -9,6 +9,7 @@ use Laminas\Form\Exception;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormInterface;
+use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Stdlib\Exception\InvalidArgumentException;
 use Traversable;
@@ -533,9 +534,11 @@ class Collection extends Fieldset
     protected function createNewTargetElementInstance(): ElementInterface
     {
         assert($this->targetElement !== null);
-        if ($this->targetElement->getOption('target_type')) {
-            $type = $this->targetElement->getOption('target_type');
-            $this->targetElement->setObject(new $type());
+        if ($this->targetElement instanceof InputFilterProviderFieldset) {
+            if ($this->targetElement->getOption('target_type')) {
+                $type = $this->targetElement->getOption('target_type');
+                $this->targetElement->setObject(new $type());
+            }
         }
         return clone $this->targetElement;
     }
