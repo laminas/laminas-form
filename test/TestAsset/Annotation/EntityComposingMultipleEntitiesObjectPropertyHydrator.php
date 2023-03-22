@@ -16,7 +16,7 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
 class EntityComposingMultipleEntitiesObjectPropertyHydrator
 {
     /**
-     * @var null|Entity
+     * @var null|list<EntityObjectPropertyHydrator>
      * @Annotation\ComposedObject("LaminasTest\Form\TestAsset\Annotation\EntityObjectPropertyHydrator", isCollection=true)
      */
     #[Annotation\ComposedObject(
@@ -24,5 +24,5 @@ class EntityComposingMultipleEntitiesObjectPropertyHydrator
         isCollection: true,
         options: ['create_new_objects' => true]
     )]
-    public $child;
+    public ?array $child = null;
 }

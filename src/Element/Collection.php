@@ -15,11 +15,13 @@ use Laminas\Stdlib\Exception\InvalidArgumentException;
 use Traversable;
 
 use function assert;
+use function class_exists;
 use function count;
 use function gettype;
 use function is_array;
 use function is_int;
 use function is_object;
+use function is_string;
 use function iterator_to_array;
 use function max;
 use function sprintf;
@@ -535,8 +537,8 @@ class Collection extends Fieldset
     {
         assert($this->targetElement !== null);
         if ($this->targetElement instanceof InputFilterProviderFieldset) {
-            if ($this->targetElement->getOption('target_type')) {
-                $type = $this->targetElement->getOption('target_type');
+            if (null !== ($type = $this->targetElement->getOption('target_type'))) {
+                assert(is_string($type) && class_exists($type));
                 $this->targetElement->setObject(new $type());
             }
         }

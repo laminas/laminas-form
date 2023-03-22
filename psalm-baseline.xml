@@ -8,11 +8,6 @@
       <code>is_string($entity)</code>
     </RedundantConditionGivenDocblockType>
   </file>
-  <file src="src/Annotation/AnnotationBuilder.php">
-    <DeprecatedMethod>
-      <code><![CDATA[AnnotationRegistry::registerLoader('class_exists')]]></code>
-    </DeprecatedMethod>
-  </file>
   <file src="src/Annotation/AttributeBuilder.php">
     <NullArgument>
       <code>$annotations</code>
@@ -363,6 +358,9 @@
     </PossiblyNullArgument>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
+    <DocblockTypeContradiction>
+      <code>assertNotNull</code>
+    </DocblockTypeContradiction>
     <PossiblyUndefinedMethod>
       <code>allowEmpty</code>
       <code>getFilterChain</code>
