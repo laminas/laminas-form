@@ -163,7 +163,7 @@ class Collection extends Fieldset
      * Set the object used by the hydrator
      * In this case the "object" is a collection of objects
      *
-     * @param  iterable $object
+     * @param iterable $object
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
@@ -533,6 +533,10 @@ class Collection extends Fieldset
     protected function createNewTargetElementInstance(): ElementInterface
     {
         assert($this->targetElement !== null);
+        if ($this->targetElement->getOption('target_type')) {
+            $type = $this->targetElement->getOption('target_type');
+            $this->targetElement->setObject(new $type());
+        }
         return clone $this->targetElement;
     }
 

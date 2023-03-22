@@ -32,6 +32,7 @@ use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
+use function count;
 use function getenv;
 
 abstract class AbstractBuilderTestCase extends TestCase
@@ -261,7 +262,44 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertTrue($target->has('username'));
         self::assertTrue($target->has('password'));
         self::assertInstanceOf(InputFilterProviderFieldset::class, $target);
-        $filterSpec = $target->getInputFilterSpecification();
+        $this->validateEntityFilterSpec($target->getInputFilterSpecification());
+    }
+
+    public function testAllowsComposingMultipleChildEntitiesWithEntityBind(): void
+    {
+        $entity  = new TestAsset\Annotation\EntityComposingMultipleEntitiesObjectPropertyHydrator();
+        $builder = $this->createBuilder();
+        $form    = $builder->createForm($entity);
+
+        self::assertTrue($form->has('child'));
+        $child = $form->get('child');
+        self::assertInstanceOf(Collection::class, $child);
+        $target = $child->getTargetElement();
+        self::assertInstanceOf(FieldsetInterface::class, $target);
+        self::assertTrue($target->has('username'));
+        self::assertTrue($target->has('password'));
+        self::assertInstanceOf(InputFilterProviderFieldset::class, $target);
+        $this->validateEntityFilterSpec($target->getInputFilterSpecification());
+
+        self::assertNull($entity->child);
+        $form->bind($entity);
+        $form->setData([
+            'child' => [
+                '0' => ['password' => 'email@test.com', 'username' => 'user'],
+                '1' => ['password' => 'email2@test.com', 'username' => 'user2'],
+            ],
+        ]);
+        self::assertTrue($form->isValid());
+        self::assertNotNull($entity->child);
+        self::assertEquals(2, count($entity->child));
+        self::assertInstanceOf(Entity::class, $entity->child[0]);
+        self::assertEquals('email@test.com', $entity->child[0]->password);
+        self::assertEquals('user', $entity->child[0]->username);
+        self::assertInstanceOf(Entity::class, $entity->child[1]);
+    }
+
+    protected function validateEntityFilterSpec(array $filterSpec)
+    {
         self::assertArrayHasKey('username', $filterSpec);
         self::assertArrayHasKey('password', $filterSpec);
         $usernameFilterSpec = $filterSpec['username'];
