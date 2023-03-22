@@ -26,6 +26,7 @@ use Laminas\Validator\ValidatorChain;
 use LaminasTest\Form\ErrorHandler;
 use LaminasTest\Form\TestAsset;
 use LaminasTest\Form\TestAsset\Annotation\Entity;
+use LaminasTest\Form\TestAsset\Annotation\EntityObjectPropertyHydrator;
 use LaminasTest\Form\TestAsset\Annotation\Form;
 use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
@@ -292,10 +293,10 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertTrue($form->isValid());
         self::assertNotNull($entity->child);
         self::assertEquals(2, count($entity->child));
-        self::assertInstanceOf(Entity::class, $entity->child[0]);
+        self::assertInstanceOf(EntityObjectPropertyHydrator::class, $entity->child[0]);
         self::assertEquals('email@test.com', $entity->child[0]->password);
         self::assertEquals('user', $entity->child[0]->username);
-        self::assertInstanceOf(Entity::class, $entity->child[1]);
+        self::assertInstanceOf(EntityObjectPropertyHydrator::class, $entity->child[1]);
     }
 
     protected function validateEntityFilterSpec(array $filterSpec)
