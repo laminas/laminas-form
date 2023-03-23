@@ -9,16 +9,19 @@ use Laminas\Form\Exception;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\FormInterface;
+use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Stdlib\Exception\InvalidArgumentException;
 use Traversable;
 
 use function assert;
+use function class_exists;
 use function count;
 use function gettype;
 use function is_array;
 use function is_int;
 use function is_object;
+use function is_string;
 use function iterator_to_array;
 use function max;
 use function sprintf;
@@ -163,7 +166,7 @@ class Collection extends Fieldset
      * Set the object used by the hydrator
      * In this case the "object" is a collection of objects
      *
-     * @param  iterable $object
+     * @param iterable $object
      * @return $this
      * @throws Exception\InvalidArgumentException
      */
@@ -533,6 +536,12 @@ class Collection extends Fieldset
     protected function createNewTargetElementInstance(): ElementInterface
     {
         assert($this->targetElement !== null);
+        if ($this->targetElement instanceof InputFilterProviderFieldset) {
+            if (null !== ($type = $this->targetElement->getOption('target_type'))) {
+                assert(is_string($type) && class_exists($type));
+                $this->targetElement->setObject(new $type());
+            }
+        }
         return clone $this->targetElement;
     }
 

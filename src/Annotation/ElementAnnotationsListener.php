@@ -146,6 +146,7 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
 
             $elementSpec['spec']['options']['target_element']                                 = $specification;
             $elementSpec['spec']['options']['target_element']['options']['input_filter_spec'] = $inputFilter;
+            $elementSpec['spec']['options']['target_element']['options']['target_type']       = $class;
 
             if (isset($specification['hydrator'])) {
                 $elementSpec['spec']['hydrator'] = $specification['hydrator'];
