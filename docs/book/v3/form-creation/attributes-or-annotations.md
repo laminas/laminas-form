@@ -143,10 +143,6 @@ filter with the appropriate inputs, and all elements.
 
 ### AllowEmpty
 
-> ### Deprecated
->
-> This annotation is deprecated, please add a `NotEmpty` validator instead.
-
 Marks an input as allowing an empty value. This annotation does not require a value.
 
 ```php
@@ -180,10 +176,6 @@ protected $myProperty;
 ```
 
 ### ContinueIfEmpty
-
-> ### Deprecated
->
-> This annotation is deprecated, please add a `NotEmpty` validator instead.
 
 Indicate whether the element can be submitted when it is empty. A boolean
 value is expected, defaulting to `true`. If `@Required` is set to `false`,
