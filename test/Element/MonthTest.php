@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Form\Element;
 
 use DateInterval;
+use DateTime;
 use Laminas\Form\Element\Month as MonthElement;
 use Laminas\Validator\DateStep;
 use Laminas\Validator\GreaterThan;
@@ -80,5 +81,12 @@ final class MonthTest extends TestCase
         self::assertArrayHasKey('validators', $inputSpec);
         $monthValidator = $inputSpec['validators'][0];
         self::assertEquals($expected, $monthValidator->isValid($value));
+    }
+
+    public function testTestDayTimeReset(): void
+    {
+        $element = new MonthElement('foo');
+        $date    = DateTime::createFromFormat($element->getFormat(), '2023-01');
+        self::assertEquals($date->format('d H:i:s'), '01 00:00:00');
     }
 }
