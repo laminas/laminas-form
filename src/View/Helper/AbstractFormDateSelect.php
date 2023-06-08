@@ -83,11 +83,12 @@ abstract class AbstractFormDateSelect extends AbstractHelper
 
         $result = [];
         foreach ($pregResult as $value) {
-            if (stripos($value, "'") === false && stripos($value, 'd') !== false) {
+            $noDelimiter = stripos($value, "'") === false;
+            if ($noDelimiter && stripos($value, 'd') !== false) {
                 $result['day'] = $value;
-            } elseif (stripos($value, "'") === false && stripos($value, 'm') !== false) {
+            } elseif ($noDelimiter && stripos($value, 'm') !== false) {
                 $result['month'] = $value;
-            } elseif (stripos($value, "'") === false && stripos($value, 'y') !== false) {
+            } elseif ($noDelimiter && stripos($value, 'y') !== false) {
                 $result['year'] = $value;
             } elseif ($renderDelimiters) {
                 $result[] = str_replace("'", '', $value);
