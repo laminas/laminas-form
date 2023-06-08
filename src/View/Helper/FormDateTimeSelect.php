@@ -203,19 +203,20 @@ class FormDateTimeSelect extends AbstractFormDateSelect
 
         $result = [];
         foreach ($pregResult as $value) {
-            if (stripos($value, "'") === false && stripos($value, 'd') !== false) {
+            $noDelimiter = stripos($value, "'") === false;
+            if ($noDelimiter && stripos($value, 'd') !== false) {
                 $result['day'] = $value;
-            } elseif (stripos($value, "'") === false && str_contains($value, 'M')) {
+            } elseif ($noDelimiter && str_contains($value, 'M')) {
                 $result['month'] = $value;
-            } elseif (stripos($value, "'") === false && stripos($value, 'y') !== false) {
+            } elseif ($noDelimiter && stripos($value, 'y') !== false) {
                 $result['year'] = $value;
-            } elseif (stripos($value, "'") === false && stripos($value, 'h') !== false) {
+            } elseif ($noDelimiter && stripos($value, 'h') !== false) {
                 $result['hour'] = $value;
-            } elseif (stripos($value, "'") === false && stripos($value, 'm') !== false) {
+            } elseif ($noDelimiter && stripos($value, 'm') !== false) {
                 $result['minute'] = $value;
-            } elseif (stripos($value, "'") === false && str_contains($value, 's')) {
+            } elseif ($noDelimiter && str_contains($value, 's')) {
                 $result['second'] = $value;
-            } elseif (stripos($value, "'") === false && stripos($value, 'a') !== false) {
+            } elseif ($noDelimiter && stripos($value, 'a') !== false) {
                 // ignore ante/post meridiem marker
                 continue;
             } elseif ($renderDelimiters) {
