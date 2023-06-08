@@ -16,7 +16,7 @@ class Month extends AbstractDateTime
      *
      * @var string
      */
-    protected $format = 'Y-m';
+    protected $format = '!Y-m';
 
     /**
      * Seed attributes
