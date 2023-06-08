@@ -924,14 +924,12 @@ them is suitable for legacy projects or if you need support for PHP 7.</p>
 Annotation names will be resolved according to the import statements in your
 class; as such, you can make them as long or as short as you want depending on
 what you import.</p>
-<blockquote>
-<h3 id="installation-requirements">Installation Requirements</h3>
-<p>DocBlock annotations require
-<a href="https://www.doctrine-project.org/projects/annotations.html">Doctrine's annotation parser <code>doctrine\annotations</code></a>
-as a peer dependency, which contains an annotation parsing engine. You need to
-manually install it using Composer:</p>
+<div class="admonition missing">
+<p class="admonition-title">Installation Requirements</p>
+<p>DocBlock annotations require <a href="https://www.doctrine-project.org/projects/annotations.html">Doctrine's annotation parser <code>doctrine\annotations</code></a> as a peer dependency, which contains an annotation parsing engine.
+You need to manually install it using Composer:</p>
 <pre class="highlight"><code class="language-bash">$ composer require doctrine/annotations</code></pre>
-</blockquote>
+</div>
 <p>Here is the same example from above using DocBlock annotations:</p>
 <pre class="highlight"><code class="language-php">use Laminas\Form\Annotation;
 
@@ -972,10 +970,6 @@ $form    = $builder-&gt;createForm(User::class);</code></pre>
 filter with the appropriate inputs, and all elements.</p>
 <h2 id="list-of-supported-annotations">List of Supported Annotations</h2>
 <h3 id="allowempty">AllowEmpty</h3>
-<blockquote>
-<h3 id="deprecated">Deprecated</h3>
-<p>This annotation is deprecated, please add a <code>NotEmpty</code> validator instead.</p>
-</blockquote>
 <p>Marks an input as allowing an empty value. This annotation does not require a value.</p>
 <pre class="highlight"><code class="language-php">/**
  * @AllowEmpty
@@ -994,10 +988,6 @@ protected $myProperty;</code></pre>
 <pre class="highlight"><code class="language-php">#[Attributes(["id" =&gt; "my_property_element", "class" =&gt; "laminas_form"])]
 protected $myProperty;</code></pre>
 <h3 id="continueifempty">ContinueIfEmpty</h3>
-<blockquote>
-<h3 id="deprecated_1">Deprecated</h3>
-<p>This annotation is deprecated, please add a <code>NotEmpty</code> validator instead.</p>
-</blockquote>
 <p>Indicate whether the element can be submitted when it is empty. A boolean
 value is expected, defaulting to <code>true</code>. If <code>@Required</code> is set to <code>false</code>,
 <code>@ContinueIfEmpty(true)</code> or simply <code>@ContinueIfEmpty()</code>needs to be specified
