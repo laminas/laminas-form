@@ -115,4 +115,20 @@ final class FormMonthSelectTest extends AbstractCommonTestCase
 
         self::assertCount(12, $elements[0]->getValueOptions());
     }
+
+    public function testRendersDatesWithArARLocaleContainsSelectOptionsWithOnlyNumericValues(): void
+    {
+        $this->helper->setLocale('ar_AR');
+        $this->helper->setDateType(IntlDateFormatter::LONG);
+
+        $element = new MonthSelect('foo');
+
+        $element->setMinYear(2022);
+        $element->setMaxYear(2023);
+
+        self::assertDoesNotMatchRegularExpression(
+            self::NON_NUMERIC_OPTION_REGEX,
+            $this->helper->render($element)
+        );
+    }
 }

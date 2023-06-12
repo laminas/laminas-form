@@ -22,6 +22,8 @@ abstract class AbstractCommonTestCase extends TestCase
     protected AbstractHelper $helper;
     protected PhpRenderer $renderer;
 
+    protected const NON_NUMERIC_OPTION_REGEX = '/<option value="[^"]*[^"0-9]+[^"]*">/';
+
     protected function setUp(): void
     {
         Doctype::unsetDoctypeRegistry();
