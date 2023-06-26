@@ -161,6 +161,8 @@ class FormSelect extends AbstractHelper
         $optionStrings = [];
         $escapeHtml    = $this->getEscapeHtmlHelper();
 
+        $stringSelectedOptions = array_map('\\strval', $selectedOptions);
+
         foreach ($options as $key => $optionSpec) {
             $value    = '';
             $label    = '';
@@ -192,7 +194,6 @@ class FormSelect extends AbstractHelper
                 $disabled = $optionSpec['disabled'];
             }
 
-            $stringSelectedOptions = array_map('\\strval', $selectedOptions);
             if (ArrayUtils::inArray((string) $value, $stringSelectedOptions, true)) {
                 $selected = true;
             }
