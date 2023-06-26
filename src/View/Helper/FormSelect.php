@@ -161,7 +161,7 @@ class FormSelect extends AbstractHelper
         $optionStrings = [];
         $escapeHtml    = $this->getEscapeHtmlHelper();
 
-        $stringSelectedOptions = array_map('\\strval', $selectedOptions);
+        $stringSelectedOptions = array_map('strval', $selectedOptions);
 
         foreach ($options as $key => $optionSpec) {
             $value    = '';
