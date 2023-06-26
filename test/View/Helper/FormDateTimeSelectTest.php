@@ -299,4 +299,21 @@ XML,
             '<html>' . $this->helper->render($element) . '</html>'
         );
     }
+
+    public function testRendersDatesWithArARLocaleContainsOnlyOptionsWithNumericValues(): void
+    {
+        $this->helper->setLocale('ar_AR');
+        $this->helper->setDateType(IntlDateFormatter::LONG);
+        $this->helper->setTimeType(IntlDateFormatter::LONG);
+
+        $element = new DateTimeSelect('foo');
+
+        $element->setMinYear(2022);
+        $element->setMaxYear(2023);
+
+        self::assertDoesNotMatchRegularExpression(
+            self::NON_NUMERIC_OPTION_REGEX,
+            $this->helper->render($element)
+        );
+    }
 }
