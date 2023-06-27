@@ -368,7 +368,9 @@ final class CollectionTest extends TestCase
     public function testSetObjectNullRaisesException(): void
     {
         $collection = $this->form->get('colors');
+        self::assertInstanceOf(Collection::class, $collection);
         $this->expectException(InvalidArgumentException::class);
+        /** @psalm-suppress NullArgument */
         $collection->setObject(null);
     }
 

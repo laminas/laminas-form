@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.8.0@9cf4f60a333f779ad3bc704a555920e81d4fdcda">
+<files psalm-version="5.13.0@a0a9c27630bcf8301ee78cb06741d2907d8c9fef">
   <file src="src/Annotation/AbstractBuilder.php">
     <InvalidArrayOffset>
       <code><![CDATA[$params['elementSpec']['spec']['type']]]></code>
@@ -173,6 +173,9 @@
     <RedundantConditionGivenDocblockType>
       <code>gettype($elementOrFieldset)</code>
     </RedundantConditionGivenDocblockType>
+    <TooManyArguments>
+      <code>bindValues</code>
+    </TooManyArguments>
   </file>
   <file src="src/FieldsetInterface.php">
     <MissingTemplateParam>
@@ -246,6 +249,9 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/FormElementManagerFactory.php">
+    <DeprecatedClass>
+      <code><![CDATA[new Config($config['form_elements'])]]></code>
+    </DeprecatedClass>
     <MoreSpecificImplementedParamType>
       <code>$options</code>
     </MoreSpecificImplementedParamType>
@@ -404,9 +410,6 @@
     <NullArgument>
       <code>null</code>
     </NullArgument>
-    <PossiblyUndefinedMethod>
-      <code>setObject</code>
-    </PossiblyUndefinedMethod>
     <PossiblyUndefinedVariable>
       <code>$products</code>
       <code>$shop</code>
@@ -865,6 +868,36 @@
       <code>getValidatorChain</code>
     </PossiblyUndefinedMethod>
   </file>
+  <file src="test/Integration/ServiceManagerTest.php">
+    <DeprecatedClass>
+      <code><![CDATA[new Config([
+            'factories'    => [
+                'InitializableElement' => static fn(): Element => $element,
+            ],
+            'initializers' => [
+                $initializer,
+            ],
+        ])]]></code>
+      <code><![CDATA[new Config([
+            'factories'    => [
+                'MyForm' => static fn(): \LaminasTest\Form\Integration\TestAsset\Form => new TestAsset\Form(),
+            ],
+            'initializers' => [
+                $initializer,
+            ],
+        ])]]></code>
+      <code><![CDATA[new Config([
+            'factories' => [
+                FormElementManager::class => FormElementManagerFactory::class,
+            ],
+        ])]]></code>
+      <code><![CDATA[new Config([
+            'factories' => [
+                FormElementManager::class => FormElementManagerFactory::class,
+            ],
+        ])]]></code>
+    </DeprecatedClass>
+  </file>
   <file src="test/TestAsset/AddressFieldset.php">
     <LessSpecificImplementedReturnType>
       <code>array</code>
@@ -1031,6 +1064,11 @@
     <UnsafeInstantiation>
       <code>new $helperClass()</code>
     </UnsafeInstantiation>
+  </file>
+  <file src="test/View/Helper/AbstractHelperTest.php">
+    <DeprecatedMethod>
+      <code>getMockForAbstractClass</code>
+    </DeprecatedMethod>
   </file>
   <file src="test/View/Helper/File/FormFileApcProgressTest.php">
     <InvalidArgument>
