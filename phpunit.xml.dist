@@ -3,35 +3,35 @@
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          colors="true"
          cacheDirectory=".phpunit.cache">
-  <coverage>
-    <include>
-      <directory suffix=".php">./src</directory>
-    </include>
-  </coverage>
-  <testsuites>
-    <testsuite name="laminas-form Test Suite">
-      <directory>./test/</directory>
-    </testsuite>
-  </testsuites>
-  <groups>
-    <exclude>
-      <group>disable</group>
-    </exclude>
-  </groups>
-  <php>
-    <ini name="date.timezone" value="UTC"/>
-    <!-- OB_ENABLED should be enabled for some tests to check if all
-             functionality works as expected. Such tests include those for
-             Laminas\Soap and Laminas\Session, which require that headers not be sent
-             in order to work. -->
-    <env name="TESTS_LAMINAS_OB_ENABLED" value="false"/>
-    <!-- Enable this if you have installed Doctrine\Common on the
-             include_path or via composer. -->
-    <env name="TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT" value="true"/>
-    <!-- Enable this if you have installed Laminas\ReCaptcha on the
-             include_path or via Composer. -->
-    <env name="TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT" value="false"/>
-    <env name="TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY" value="public key"/>
-    <env name="TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY" value="private key"/>
-  </php>
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
+    <testsuites>
+        <testsuite name="laminas-form Test Suite">
+            <directory>./test/</directory>
+        </testsuite>
+    </testsuites>
+    <groups>
+        <exclude>
+            <group>disable</group>
+        </exclude>
+    </groups>
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+        <!-- OB_ENABLED should be enabled for some tests to check if all
+                 functionality works as expected. Such tests include those for
+                 Laminas\Soap and Laminas\Session, which require that headers not be sent
+                 in order to work. -->
+        <env name="TESTS_LAMINAS_OB_ENABLED" value="false"/>
+        <!-- Enable this if you have installed Doctrine\Common on the
+                 include_path or via composer. -->
+        <env name="TESTS_LAMINAS_FORM_ANNOTATION_SUPPORT" value="true"/>
+        <!-- Enable this if you have installed Laminas\ReCaptcha on the
+                 include_path or via Composer. -->
+        <env name="TESTS_LAMINAS_FORM_RECAPTCHA_SUPPORT" value="false"/>
+        <env name="TESTS_LAMINAS_FORM_RECAPTCHA_PUBLIC_KEY" value="public key"/>
+        <env name="TESTS_LAMINAS_FORM_RECAPTCHA_PRIVATE_KEY" value="private key"/>
+    </php>
 </phpunit>
