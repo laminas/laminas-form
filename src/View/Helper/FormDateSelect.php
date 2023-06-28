@@ -109,14 +109,6 @@ class FormDateSelect extends AbstractFormDateSelect
      */
     protected function getDaysOptions(string $pattern): array
     {
-        $keyFormatter   = new IntlDateFormatter(
-            $this->getLocale(),
-            IntlDateFormatter::NONE,
-            IntlDateFormatter::NONE,
-            null,
-            null,
-            'dd'
-        );
         $valueFormatter = new IntlDateFormatter(
             $this->getLocale(),
             IntlDateFormatter::NONE,
@@ -129,7 +121,7 @@ class FormDateSelect extends AbstractFormDateSelect
 
         $result = [];
         for ($day = 1; $day <= 31; $day++) {
-            $key          = $keyFormatter->format($date->getTimestamp());
+            $key          = $date->format('d');
             $value        = $valueFormatter->format($date->getTimestamp());
             $result[$key] = $value;
 
