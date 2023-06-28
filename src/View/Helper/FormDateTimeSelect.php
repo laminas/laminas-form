@@ -276,7 +276,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         $date           = new DateTime('1970-01-01 00:00:00');
 
         $result = [];
-        for ($hour = 1; $hour <= 24; $hour++) {
+        for ($hour = 0; $hour <= 23; $hour++) {
             $key          = $date->format('H');
             $value        = $valueFormatter->format($date);
             $result[$key] = $value;
@@ -306,7 +306,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         $date           = new DateTime('1970-01-01 00:00:00');
 
         $result = [];
-        for ($min = 1; $min <= 60; $min++) {
+        for ($min = 0; $min <= 59; $min++) {
             $key          = $date->format('i');
             $value        = $valueFormatter->format($date);
             $result[$key] = $value;
@@ -336,7 +336,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         $date           = new DateTime('1970-01-01 00:00:00');
 
         $result = [];
-        for ($sec = 1; $sec <= 60; $sec++) {
+        for ($sec = 0; $sec <= 59; $sec++) {
             $key          = $date->format('s');
             $value        = $valueFormatter->format($date);
             $result[$key] = $value;
