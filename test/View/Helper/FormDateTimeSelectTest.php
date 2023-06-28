@@ -299,4 +299,16 @@ XML,
             '<html>' . $this->helper->render($element) . '</html>'
         );
     }
+
+    public function testRendersDatesWithZhHansHKLocaleDatePattern(): void
+    {
+        $this->helper->setLocale('zh_Hans_HK');
+        $this->helper->setDateType(IntlDateFormatter::LONG);
+
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2022);
+        $element->setMaxYear(2027);
+
+        $this->helper->render($element);
+    }
 }
