@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Form\Element;
 
 use DateTime;
+use DateTimeImmutable;
 use Laminas\Form\Element\MonthSelect as MonthSelectElement;
 use Laminas\Validator\Regex;
 use PHPUnit\Framework\TestCase;
@@ -71,6 +72,15 @@ final class MonthSelectTest extends TestCase
     {
         $element = new MonthSelectElement();
         $element->setValue(new DateTime('2012-09'));
+
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
+    }
+
+    public function testCanSetMonthFromDateTimeImmutable(): void
+    {
+        $element = new MonthSelectElement();
+        $element->setValue(new DateTimeImmutable('2012-09'));
 
         self::assertEquals('2012', $element->getYearElement()->getValue());
         self::assertEquals('09', $element->getMonthElement()->getValue());
