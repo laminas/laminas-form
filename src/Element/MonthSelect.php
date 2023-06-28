@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laminas\Form\Element;
 
 use DateTime as PhpDateTime;
+use DateTimeInterface;
 use Exception;
 use Laminas\Form\Element;
 use Laminas\Form\ElementPrepareAwareInterface;
@@ -268,7 +269,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
             $value = new PhpDateTime();
         }
 
-        if ($value instanceof PhpDateTime) {
+        if ($value instanceof DateTimeInterface) {
             $value = [
                 'year'  => $value->format('Y'),
                 'month' => $value->format('m'),
