@@ -122,7 +122,7 @@ class FormDateSelect extends AbstractFormDateSelect
         $result = [];
         for ($day = 1; $day <= 31; $day++) {
             $key          = $date->format('d');
-            $value        = $valueFormatter->format($date->getTimestamp());
+            $value        = $valueFormatter->format($date);
             $result[$key] = $value;
 
             $date->modify('+1 day');
