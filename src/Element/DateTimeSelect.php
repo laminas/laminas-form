@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laminas\Form\Element;
 
 use DateTime as PhpDateTime;
+use DateTimeInterface;
 use Exception;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\FormInterface;
@@ -209,7 +210,7 @@ class DateTimeSelect extends DateSelect
             $value = new PhpDateTime();
         }
 
-        if ($value instanceof PhpDateTime) {
+        if ($value instanceof DateTimeInterface) {
             $value = [
                 'year'   => $value->format('Y'),
                 'month'  => $value->format('m'),

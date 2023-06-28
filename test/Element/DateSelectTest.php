@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Form\Element;
 
 use DateTime;
+use DateTimeImmutable;
 use Laminas\Form\Element\DateSelect as DateSelectElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Validator\Date;
@@ -41,6 +42,16 @@ final class DateSelectTest extends TestCase
     {
         $element = new DateSelectElement();
         $element->setValue(new DateTime('2012-09-24'));
+
+        self::assertEquals('2012', $element->getYearElement()->getValue());
+        self::assertEquals('09', $element->getMonthElement()->getValue());
+        self::assertEquals('24', $element->getDayElement()->getValue());
+    }
+
+    public function testCanSetDateFromDateTimeImmutable(): void
+    {
+        $element = new DateSelectElement();
+        $element->setValue(new DateTimeImmutable('2012-09-24'));
 
         self::assertEquals('2012', $element->getYearElement()->getValue());
         self::assertEquals('09', $element->getMonthElement()->getValue());
