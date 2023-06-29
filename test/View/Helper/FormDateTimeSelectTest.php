@@ -309,6 +309,9 @@ XML,
 
         $availableLocales = IntlCalendar::getAvailableLocales();
 
+        self::assertContains('en', $availableLocales);
+        self::assertContains('ar', $availableLocales);
+
         foreach ($availableLocales as $locale) {
             $this->helper->setLocale($locale);
             $this->helper->setDateType(IntlDateFormatter::SHORT);
