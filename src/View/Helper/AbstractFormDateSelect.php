@@ -167,14 +167,6 @@ abstract class AbstractFormDateSelect extends AbstractHelper
      */
     protected function getMonthsOptions(string $pattern): array
     {
-        $keyFormatter   = new IntlDateFormatter(
-            $this->getLocale(),
-            IntlDateFormatter::NONE,
-            IntlDateFormatter::NONE,
-            null,
-            null,
-            'MM'
-        );
         $valueFormatter = new IntlDateFormatter(
             $this->getLocale(),
             IntlDateFormatter::NONE,
@@ -187,7 +179,7 @@ abstract class AbstractFormDateSelect extends AbstractHelper
 
         $result = [];
         for ($month = 1; $month <= 12; $month++) {
-            $key          = $keyFormatter->format($date->getTimestamp());
+            $key          = $date->format('m');
             $value        = $valueFormatter->format($date->getTimestamp());
             $result[$key] = $value;
 

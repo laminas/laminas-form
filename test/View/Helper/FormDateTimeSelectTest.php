@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\View\Helper;
 
+use IntlCalendar;
 use IntlDateFormatter;
 use Laminas\Form\Element\DateTimeSelect;
 use Laminas\Form\Exception\DomainException;
@@ -298,5 +299,27 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
 XML,
             '<html>' . $this->helper->render($element) . '</html>'
         );
+    }
+
+    public function testRendersDatesOnlyWithNumericValuesInSelectOptions(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2023);
+        $element->setMaxYear(2023);
+
+        $availableLocales = IntlCalendar::getAvailableLocales();
+
+        self::assertContains('en', $availableLocales);
+        self::assertContains('ar', $availableLocales);
+
+        foreach ($availableLocales as $locale) {
+            $this->helper->setLocale($locale);
+            $this->helper->setDateType(IntlDateFormatter::SHORT);
+            self::assertDoesNotMatchRegularExpression(
+                '/<option value="[^"]*[^0-9"]+[^"]*">/',
+                $this->helper->render($element),
+                "Option value with locale={$locale} contains non numeric characters!"
+            );
+        }
     }
 }
