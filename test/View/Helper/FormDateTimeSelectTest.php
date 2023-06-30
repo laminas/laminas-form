@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper;
 use IntlCalendar;
 use IntlDateFormatter;
 use Laminas\Form\Element\DateTimeSelect;
+use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 
@@ -321,5 +322,26 @@ XML,
                 "Option value with locale={$locale} contains non numeric characters!"
             );
         }
+    }
+
+    public function testGetElements(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $this->helper->render($element);
+
+        $elements = $element->getElements();
+        self::assertCount(6, $elements);
+
+        foreach ($elements as $childElement) {
+            self::assertInstanceOf(Select::class, $childElement);
+        }
+
+        self::assertCount(24, $elements[3]->getValueOptions());
+        self::assertCount(60, $elements[4]->getValueOptions());
+        self::assertCount(60, $elements[5]->getValueOptions());
+
+        self::assertContains($element->getHourElement(), $elements);
+        self::assertContains($element->getSecondElement(), $elements);
+        self::assertContains($element->getMinuteElement(), $elements);
     }
 }
