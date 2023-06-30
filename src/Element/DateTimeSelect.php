@@ -12,6 +12,7 @@ use Laminas\Form\FormInterface;
 use Laminas\Validator\Date as DateValidator;
 use Laminas\Validator\ValidatorInterface;
 
+use function array_merge;
 use function is_array;
 use function is_string;
 use function sprintf;
@@ -109,6 +110,15 @@ class DateTimeSelect extends DateSelect
     public function getSecondElement(): Select
     {
         return $this->secondElement;
+    }
+
+    public function getElements(): array
+    {
+        return array_merge(parent::getElements(), [
+            $this->hourElement,
+            $this->minuteElement,
+            $this->secondElement,
+        ]);
     }
 
     /**
