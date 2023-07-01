@@ -212,7 +212,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
                 $result['year'] = $value;
             } elseif ($noDelimiter && stripos($value, 'h') !== false) {
                 $result['hour'] = $value;
-            } elseif ($noDelimiter && strpos($value, 'm') !== false) {
+            } elseif ($noDelimiter && str_contains($value, 'm')) {
                 $result['minute'] = $value;
             } elseif ($noDelimiter && str_contains($value, 's')) {
                 $result['second'] = $value;
