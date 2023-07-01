@@ -313,11 +313,12 @@ XML,
         self::assertContains('ar', $availableLocales);
 
         foreach ($availableLocales as $locale) {
-            $this->helper->setLocale($locale);
-            $this->helper->setDateType(IntlDateFormatter::SHORT);
+            $helper = clone $this->helper;
+            $helper->setLocale($locale);
+            $helper->setDateType(IntlDateFormatter::SHORT);
             self::assertDoesNotMatchRegularExpression(
                 '/<option value="[^"]*[^0-9"]+[^"]*">/',
-                $this->helper->render($element),
+                $helper->render($element),
                 "Option value with locale={$locale} contains non numeric characters!"
             );
         }
