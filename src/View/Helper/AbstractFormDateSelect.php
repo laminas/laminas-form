@@ -123,6 +123,10 @@ abstract class AbstractFormDateSelect extends AbstractHelper
             $dateType = IntlDateFormatter::LONG;
         }
 
+        if ($this->dateType !== $dateType) {
+            $this->pattern = null;
+        }
+
         $this->dateType = $dateType;
 
         return $this;
@@ -143,7 +147,12 @@ abstract class AbstractFormDateSelect extends AbstractHelper
      */
     public function setLocale(string $locale)
     {
+        if ($this->locale !== $locale) {
+            $this->pattern = null;
+        }
+
         $this->locale = $locale;
+
         return $this;
     }
 

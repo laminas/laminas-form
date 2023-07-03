@@ -161,6 +161,10 @@ class FormDateTimeSelect extends AbstractFormDateSelect
             $timeType = IntlDateFormatter::LONG;
         }
 
+        if ($this->timeType !== $timeType) {
+            $this->pattern = null;
+        }
+
         $this->timeType = $timeType;
 
         return $this;
