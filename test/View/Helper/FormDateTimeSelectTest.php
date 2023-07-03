@@ -10,6 +10,7 @@ use Laminas\Form\Element\DateTimeSelect;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
+use ReflectionMethod;
 
 use function extension_loaded;
 use function substr;
@@ -344,5 +345,72 @@ XML,
         self::assertContains($element->getHourElement(), $elements);
         self::assertContains($element->getSecondElement(), $elements);
         self::assertContains($element->getMinuteElement(), $elements);
+    }
+
+    public function testChangingLocaleYieldsDifferentPatterns(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2023);
+        $element->setMaxYear(2023);
+
+        $availableLocales = IntlCalendar::getAvailableLocales();
+
+        self::assertContains('en', $availableLocales);
+        self::assertContains('ar', $availableLocales);
+
+        $helper = clone $this->helper;
+
+        $helper->setLocale('en');
+        $enPattern = $helper->getPattern();
+
+        $helper->setLocale('ar');
+        $arPattern = $helper->getPattern();
+
+        self::assertNotEquals($enPattern, $arPattern);
+    }
+
+    public function testChangingLocaleYieldsDifferentParsePatternResults(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2023);
+        $element->setMaxYear(2023);
+
+        $availableLocales = IntlCalendar::getAvailableLocales();
+
+        self::assertContains('en', $availableLocales);
+        self::assertContains('ar', $availableLocales);
+
+        $parsePattern = new ReflectionMethod(FormDateTimeSelectHelper::class, 'parsePattern');
+
+        $helper = clone $this->helper;
+
+        $helper->setLocale('en');
+        $enResult = $parsePattern->invoke($helper, true);
+
+        $helper->setLocale('ar');
+        $arResult = $parsePattern->invoke($helper, true);
+
+        self::assertNotEquals($enResult, $arResult);
+    }
+
+    public function testDifferentIntlFormatRendersDifferentMarkup(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2023);
+        $element->setMaxYear(2023);
+
+        $helper = clone $this->helper;
+        $helper->setLocale('en');
+
+        $long  = IntlDateFormatter::LONG;
+        $short = IntlDateFormatter::SHORT;
+
+        // Using long-format for time part as there is another bug in
+        // FormatDateTimeSelect helper: with short format $pattern['second] is
+        // not set since there are no seconds intl placeholders involved
+        $longMarkup  = $helper->__invoke($element, $long, $long);
+        $shortMarkup = $helper->__invoke($element, $short, $long);
+
+        self::assertNotEquals($longMarkup, $shortMarkup);
     }
 }
