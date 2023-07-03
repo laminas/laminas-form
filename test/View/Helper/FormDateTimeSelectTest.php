@@ -322,4 +322,17 @@ XML,
             );
         }
     }
+
+    public function testShortTimeFormatDoesNotProvideSecondPart(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2023);
+        $element->setMaxYear(2023);
+
+        $this->helper->setTimeType(IntlDateFormatter::SHORT);
+
+        // This causes a TypeError: $pattern['second] in not set therefore
+        // getSecondsOptions(string) receives null as argument
+        $this->helper->render($element);
+    }
 }
