@@ -95,6 +95,7 @@ final class FormElementErrorsFactoryTest extends TestCase
         if ($result['translate_messages'] === true) {
             $errorMessage = 'tranlated message';
         }
+        self::assertIsString($result['message_open_format']);
         $expected = sprintf(
             '%s%s%s',
             str_replace('%s', '', $result['message_open_format']),
