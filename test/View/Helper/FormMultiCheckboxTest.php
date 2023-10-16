@@ -419,4 +419,16 @@ final class FormMultiCheckboxTest extends AbstractCommonTestCase
 
         self::assertEmpty($this->helper->render($element));
     }
+
+    public function testRendersZeroAsUncheckedValueOfElement(): void
+    {
+        $element = $this->getElement();
+        $element->setUseHiddenElement(true);
+        $element->setUncheckedValue('0');
+
+        $markup = $this->helper->render($element);
+
+        $expectedElement = '<input type="hidden" name="foo" value="0">';
+        self::assertStringContainsString($expectedElement, $markup);
+    }
 }
