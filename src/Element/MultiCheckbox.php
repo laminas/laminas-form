@@ -29,8 +29,8 @@ class MultiCheckbox extends Checkbox
     /** @var bool */
     protected $useHiddenElement = false;
 
-    /** @var string */
-    protected $uncheckedValue = '';
+    /** @var null|string */
+    protected $uncheckedValue;
 
     /** @var array */
     protected $valueOptions = [];
