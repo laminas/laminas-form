@@ -54,9 +54,9 @@ class FormMultiCheckbox extends FormInput
     /**
      * The unchecked value used when "UseHiddenElement" is turned on
      *
-     * @var string
+     * @var null|string
      */
-    protected $uncheckedValue = '';
+    protected $uncheckedValue;
 
     /**
      * Form input helper instance
@@ -243,7 +243,7 @@ class FormMultiCheckbox extends FormInput
     {
         $closingBracket = $this->getInlineClosingBracket();
 
-        $uncheckedValue = $element->getUncheckedValue() ?: $this->uncheckedValue;
+        $uncheckedValue = $element->getUncheckedValue() ?? $this->uncheckedValue;
 
         $hiddenAttributes = [
             'name'  => $element->getName(),
@@ -354,7 +354,7 @@ class FormMultiCheckbox extends FormInput
      *
      * @return $this
      */
-    public function setUncheckedValue(string $value)
+    public function setUncheckedValue(?string $value)
     {
         $this->uncheckedValue = $value;
         return $this;
@@ -363,7 +363,7 @@ class FormMultiCheckbox extends FormInput
     /**
      * Returns the unchecked value used when "UseHiddenElement" is turned on.
      */
-    public function getUncheckedValue(): string
+    public function getUncheckedValue(): ?string
     {
         return $this->uncheckedValue;
     }
