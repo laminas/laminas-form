@@ -16,11 +16,7 @@ use function is_array;
 
 class Select extends Element implements InputProviderInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'select',
     ];
@@ -134,12 +130,7 @@ class Select extends Element implements InputProviderInterface
         return $this;
     }
 
-    /**
-     * Set a single element attribute
-     *
-     * @param  mixed  $value
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setAttribute(string $key, $value)
     {
         // Do not include the options in the list of attributes

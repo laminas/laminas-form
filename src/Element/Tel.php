@@ -13,11 +13,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Tel extends Element implements InputProviderInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'tel',
     ];

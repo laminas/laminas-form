@@ -10,11 +10,7 @@ use Laminas\Form\FormInterface;
 
 class Password extends Element implements ElementPrepareAwareInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'password',
     ];

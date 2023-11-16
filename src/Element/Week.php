@@ -13,11 +13,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Week extends AbstractDateTime
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'week',
     ];

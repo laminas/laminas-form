@@ -52,6 +52,7 @@ interface ElementInterface
     /**
      * Set a single element attribute
      *
+     * @param scalar|null $value
      * @return $this
      */
     public function setAttribute(string $key, mixed $value);
@@ -59,7 +60,7 @@ interface ElementInterface
     /**
      * Retrieve a single element attribute
      *
-     * @return mixed
+     * @return scalar|null
      */
     public function getAttribute(string $key);
 
@@ -73,12 +74,15 @@ interface ElementInterface
      *
      * Implementation will decide if this will overwrite or merge.
      *
+     * @param iterable<string, scalar|null> $arrayOrTraversable
      * @return $this
      */
     public function setAttributes(iterable $arrayOrTraversable);
 
     /**
      * Retrieve all attributes at once
+     *
+     * @return array<string, scalar|null>
      */
     public function getAttributes(): array;
 

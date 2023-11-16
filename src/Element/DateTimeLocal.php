@@ -10,11 +10,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class DateTimeLocal extends AbstractDateTime
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'datetime-local',
     ];

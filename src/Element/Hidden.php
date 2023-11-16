@@ -8,11 +8,7 @@ use Laminas\Form\Element;
 
 class Hidden extends Element
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'hidden',
     ];

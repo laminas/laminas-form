@@ -16,11 +16,7 @@ use function assert;
 
 class Csrf extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'hidden',
     ];
@@ -103,6 +99,8 @@ class Csrf extends Element implements InputProviderInterface, ElementPrepareAwar
      * Override: get attributes
      *
      * Seeds 'value' attribute with validator hash
+     *
+     * @inheritDoc
      */
     public function getAttributes(): array
     {

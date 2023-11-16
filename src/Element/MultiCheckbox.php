@@ -14,11 +14,7 @@ use function is_array;
 
 class MultiCheckbox extends Checkbox
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'multi_checkbox',
     ];
@@ -99,12 +95,7 @@ class MultiCheckbox extends Checkbox
         return $this;
     }
 
-    /**
-     * Set a single element attribute
-     *
-     * @param  mixed  $value
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setAttribute(string $key, $value)
     {
         // Do not include the options in the list of attributes

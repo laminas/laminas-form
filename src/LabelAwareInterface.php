@@ -21,7 +21,7 @@ interface LabelAwareInterface
     /**
      * Set the attributes to use with the label
      *
-     * @param  array $labelAttributes
+     * @param  array<string, mixed> $labelAttributes
      * @return $this
      */
     public function setLabelAttributes(array $labelAttributes);

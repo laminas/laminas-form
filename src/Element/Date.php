@@ -14,11 +14,7 @@ use function date;
 
 class Date extends DateTimeElement
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'date',
     ];

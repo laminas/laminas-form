@@ -8,11 +8,7 @@ use Laminas\Form\Element;
 
 class Text extends Element
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'text',
     ];

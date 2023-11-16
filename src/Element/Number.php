@@ -15,11 +15,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Number extends Element implements InputProviderInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'number',
     ];
