@@ -20,7 +20,7 @@ class FormElement extends BaseAbstractHelper
     /**
      * Instance map to view helper
      *
-     * @var array<class-string, string>
+     * @var array<class-string<ElementInterface>, string>
      */
     protected $classMap = [
         Element\Button::class         => 'formbutton',
@@ -147,7 +147,7 @@ class FormElement extends BaseAbstractHelper
     /**
      * Add instance class to plugin map
      *
-     * @param class-string $class
+     * @param class-string<ElementInterface> $class
      * @return $this
      */
     public function addClass(string $class, string $plugin)
