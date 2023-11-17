@@ -9,6 +9,7 @@ use Laminas\Stdlib\InitializableInterface;
 use Traversable;
 
 use function array_key_exists;
+use function assert;
 use function is_string;
 
 class Element implements
@@ -87,7 +88,10 @@ class Element implements
      */
     public function getName(): ?string
     {
-        return $this->getAttribute('name');
+        $name = $this->getAttribute('name');
+        assert(is_string($name) || $name === null);
+
+        return $name;
     }
 
     /**
