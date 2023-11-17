@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.13.0@a0a9c27630bcf8301ee78cb06741d2907d8c9fef">
+<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
   <file src="src/Annotation/AbstractBuilder.php">
     <InvalidArrayOffset>
       <code><![CDATA[$params['elementSpec']['spec']['type']]]></code>
@@ -552,9 +552,6 @@
       <code><![CDATA[$inputSpec['validators']]]></code>
       <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UndefinedInterfaceMethod>
-      <code>getValidator</code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/MonthSelectTest.php">
     <PossiblyInvalidArrayAccess>
@@ -601,6 +598,14 @@
     </UndefinedMethod>
   </file>
   <file src="test/Element/MultiCheckboxTest.php">
+    <InvalidArgument>
+      <code><![CDATA[[
+            'options' => [
+                'a' => 'A',
+                'b' => 'B',
+            ],
+        ]]]></code>
+    </InvalidArgument>
     <PossiblyInvalidArrayAccess>
       <code><![CDATA[$inputSpec['validators'][0]]]></code>
       <code><![CDATA[$inputSpec['validators'][0]]]></code>
@@ -689,6 +694,12 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/Element/SelectTest.php">
+    <InvalidArgument>
+      <code><![CDATA[[
+            'multiple' => true,
+            'options'  => $valueOptions,
+        ]]]></code>
+    </InvalidArgument>
     <PossiblyInvalidArrayAccess>
       <code><![CDATA[$inputSpec['validators'][0]]]></code>
       <code><![CDATA[$inputSpec['validators'][0]]]></code>
@@ -1101,9 +1112,6 @@
     <InvalidArgument>
       <code>$element</code>
     </InvalidArgument>
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormCaptchaTest.php">
     <PossiblyFalseArgument>
@@ -1120,28 +1128,10 @@
       <code>setView</code>
     </DeprecatedMethod>
   </file>
-  <file src="test/View/Helper/FormColorTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormDateTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormDateTimeLocalTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
   <file src="test/View/Helper/FormDateTimeTest.php">
     <DeprecatedClass>
       <code>new FormDateTimeHelper()</code>
     </DeprecatedClass>
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
   </file>
   <file src="test/View/Helper/FormElementTest.php">
     <PossiblyInvalidMethodCall>
@@ -1154,104 +1144,14 @@
       <code>getHash</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="test/View/Helper/FormEmailTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormFileTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormHiddenTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormImageTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormInputTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
   <file src="test/View/Helper/FormLabelTest.php">
     <InvalidArgument>
       <code>$element</code>
     </InvalidArgument>
   </file>
-  <file src="test/View/Helper/FormMonthTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormNumberTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormPasswordTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormRangeTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormResetTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
   <file src="test/View/Helper/FormRowTest.php">
     <PossiblyInvalidFunctionCall>
       <code>$escapeHelper($label)</code>
     </PossiblyInvalidFunctionCall>
-  </file>
-  <file src="test/View/Helper/FormSearchTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormSubmitTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormTelTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormTextTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormTextareaTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormTimeTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormUrlTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
-  </file>
-  <file src="test/View/Helper/FormWeekTest.php">
-    <PossiblyNullArgument>
-      <code><![CDATA[$element->getAttribute($attribute)]]></code>
-    </PossiblyNullArgument>
   </file>
 </files>

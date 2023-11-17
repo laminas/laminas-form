@@ -8,11 +8,7 @@ use Laminas\Form\Element;
 
 class Button extends Element
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'button',
     ];

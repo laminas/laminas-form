@@ -9,11 +9,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Radio extends MultiCheckbox
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'radio',
     ];

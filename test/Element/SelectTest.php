@@ -11,6 +11,10 @@ use LaminasTest\Form\TestAsset\CustomTraversable;
 use PHPUnit\Framework\TestCase;
 
 use function count;
+use function restore_error_handler;
+use function set_error_handler;
+
+use const E_USER_DEPRECATED;
 
 final class SelectTest extends TestCase
 {
@@ -173,8 +177,20 @@ final class SelectTest extends TestCase
         self::assertIsArray($element->getValueOptions());
     }
 
+    /** @deprecated */
     public function testDeprecateOptionsInAttributes(): void
     {
+        $trigger = false;
+        set_error_handler(function (int $code, string $message) use (&$trigger): bool {
+            self::assertStringContainsString(
+                'Providing multi-select value options via attributes is deprecated',
+                $message
+            );
+
+            $trigger = true;
+            return true;
+        }, E_USER_DEPRECATED);
+
         $element      = new SelectElement();
         $valueOptions = [
             'Option 1' => 'option1',
@@ -185,7 +201,11 @@ final class SelectTest extends TestCase
             'multiple' => true,
             'options'  => $valueOptions,
         ]);
+
+        restore_error_handler();
+
         self::assertEquals($valueOptions, $element->getValueOptions());
+        self::assertTrue($trigger);
     }
 
     public function testSetOptionsArray(): void

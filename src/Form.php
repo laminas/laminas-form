@@ -26,11 +26,7 @@ use function sprintf;
 
 class Form extends Fieldset implements FormInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'method' => 'POST',
     ];

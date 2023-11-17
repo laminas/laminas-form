@@ -85,18 +85,18 @@ final class FormSelectTest extends AbstractCommonTestCase
     public function testCanOnlyMarkSingleOptionAsSelectedIfMultipleAttributeIsDisabled(): void
     {
         $element = $this->getElement();
-        $element->setAttribute('value', ['value1', 'value2']);
+        $element->setValue(['value1', 'value2']);
 
         $this->expectException(DomainException::class);
         $this->expectExceptionMessage('multiple');
-        $markup = $this->helper->render($element);
+        $this->helper->render($element);
     }
 
     public function testCanMarkManyOptionsAsSelectedIfMultipleAttributeIsEnabled(): void
     {
         $element = $this->getElement();
         $element->setAttribute('multiple', true);
-        $element->setAttribute('value', ['value1', 'value2']);
+        $element->setValue(['value1', 'value2']);
         $markup = $this->helper->render($element);
 
         self::assertMatchesRegularExpression('#select .*?multiple="multiple"#', $markup);
@@ -192,7 +192,7 @@ final class FormSelectTest extends AbstractCommonTestCase
     {
         $element = $this->getElement();
         $element->setAttribute('multiple', true);
-        $element->setAttribute('value', ['value1', 'value2']);
+        $element->setValue(['value1', 'value2']);
         $markup = $this->helper->render($element);
         self::assertMatchesRegularExpression('#<select[^>]*?(name="foo\&\#x5B\;\&\#x5D\;")#', $markup);
     }

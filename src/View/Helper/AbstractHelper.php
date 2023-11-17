@@ -292,7 +292,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     public function getId(ElementInterface $element): ?string
     {
         $id = $element->getAttribute('id');
-        if (null !== $id) {
+        if (is_string($id) && $id !== '') {
             return $id;
         }
 

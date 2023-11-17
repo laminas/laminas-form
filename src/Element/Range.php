@@ -13,11 +13,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Range extends NumberElement
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'range',
     ];

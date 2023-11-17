@@ -12,11 +12,7 @@ use Laminas\InputFilter\InputProviderInterface;
 
 class File extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'file',
     ];

@@ -18,11 +18,7 @@ class Month extends AbstractDateTime
      */
     protected $format = '!Y-m';
 
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'month',
     ];

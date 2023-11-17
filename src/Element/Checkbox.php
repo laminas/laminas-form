@@ -11,11 +11,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Checkbox extends Element implements InputProviderInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'checkbox',
     ];

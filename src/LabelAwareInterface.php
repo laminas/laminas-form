@@ -21,7 +21,7 @@ interface LabelAwareInterface
     /**
      * Set the attributes to use with the label
      *
-     * @param  array $labelAttributes
+     * @param  array<string, scalar|null> $labelAttributes
      * @return $this
      */
     public function setLabelAttributes(array $labelAttributes);
@@ -29,7 +29,7 @@ interface LabelAwareInterface
     /**
      * Get the attributes to use with the label
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getLabelAttributes(): array;
 

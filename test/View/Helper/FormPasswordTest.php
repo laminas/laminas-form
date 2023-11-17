@@ -132,7 +132,7 @@ final class FormPasswordTest extends AbstractCommonTestCase
         $markup  = $this->helper->render($element);
         $expect  = match ($attribute) {
             'value' => sprintf('%s=""', $attribute),
-            default => sprintf('%s="%s"', $attribute, $element->getAttribute($attribute)),
+            default => sprintf('%s="%s"', $attribute, (string) $element->getAttribute($attribute)),
         };
         $this->$assertion($expect, $markup);
     }

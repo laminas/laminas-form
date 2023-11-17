@@ -8,11 +8,7 @@ use Laminas\Form\Element;
 
 class Submit extends Element
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'submit',
     ];

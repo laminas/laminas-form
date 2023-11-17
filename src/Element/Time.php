@@ -12,11 +12,7 @@ use function date;
 
 class Time extends AbstractDateTime
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'time',
     ];

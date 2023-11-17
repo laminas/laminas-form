@@ -121,7 +121,7 @@ final class FormRowTest extends AbstractCommonTestCase
 
         $element = new Element\MultiCheckbox('foo');
         $element->setAttribute('type', 'multi_checkbox');
-        $element->setAttribute('options', $options);
+        $element->setValueOptions($options);
         $element->setLabel('This is a multi-checkbox');
         $markup = $this->helper->render($element);
         self::assertStringContainsString('<fieldset>', $markup);

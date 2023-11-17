@@ -11,6 +11,7 @@ use Laminas\Form\LabelAwareInterface;
 use function gettype;
 use function is_array;
 use function is_object;
+use function is_string;
 use function sprintf;
 use function strtolower;
 
@@ -163,7 +164,7 @@ class FormButton extends FormInput
     protected function getType(ElementInterface $element): string
     {
         $type = $element->getAttribute('type');
-        if (empty($type)) {
+        if (! is_string($type) || $type === '') {
             return 'submit';
         }
 

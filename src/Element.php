@@ -9,6 +9,7 @@ use Laminas\Stdlib\InitializableInterface;
 use Traversable;
 
 use function array_key_exists;
+use function assert;
 use function is_string;
 
 class Element implements
@@ -17,19 +18,19 @@ class Element implements
     InitializableInterface,
     LabelAwareInterface
 {
-    /** @var array  */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [];
 
     /** @var null|string */
     protected $label;
 
-    /** @var array */
+    /** @var array<string, scalar|null> */
     protected $labelAttributes = [];
 
     /**
      * Label specific options
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected $labelOptions = [];
 
@@ -87,7 +88,10 @@ class Element implements
      */
     public function getName(): ?string
     {
-        return $this->getAttribute('name');
+        $name = $this->getAttribute('name');
+        assert(is_string($name) || $name === null);
+
+        return $name;
     }
 
     /**
@@ -158,12 +162,7 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Set a single element attribute
-     *
-     * @param  mixed  $value
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setAttribute(string $key, $value)
     {
         // Do not include the value in the list of attributes
@@ -175,11 +174,7 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Retrieve a single element attribute
-     *
-     * @return mixed|null
-     */
+    /** @inheritDoc */
     public function getAttribute(string $key)
     {
         if (! isset($this->attributes[$key])) {
@@ -209,11 +204,7 @@ class Element implements
     }
 
     /**
-     * Set many attributes at once
-     *
-     * Implementation will decide if this will overwrite or merge.
-     *
-     * @return $this
+     * @inheritDoc
      * @throws Exception\InvalidArgumentException
      */
     public function setAttributes(iterable $arrayOrTraversable)
@@ -224,9 +215,7 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Retrieve all attributes at once
-     */
+    /** @inheritDoc */
     public function getAttributes(): array
     {
         return $this->attributes;
@@ -235,7 +224,7 @@ class Element implements
     /**
      * Remove many attributes at once
      *
-     * @param array $keys
+     * @param list<string> $keys
      * @return $this
      */
     public function removeAttributes(array $keys)
@@ -304,23 +293,14 @@ class Element implements
         return $this->label;
     }
 
-    /**
-     * Set the attributes to use with the label
-     *
-     * @param array $labelAttributes
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setLabelAttributes(array $labelAttributes)
     {
         $this->labelAttributes = $labelAttributes;
         return $this;
     }
 
-    /**
-     * Get the attributes to use with the label
-     *
-     * @return array
-     */
+    /** @inheritDoc */
     public function getLabelAttributes(): array
     {
         return $this->labelAttributes;

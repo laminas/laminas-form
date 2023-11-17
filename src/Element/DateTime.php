@@ -11,11 +11,7 @@ namespace Laminas\Form\Element;
  */
 class DateTime extends AbstractDateTime
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'datetime',
     ];

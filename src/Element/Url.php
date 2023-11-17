@@ -12,11 +12,7 @@ use Laminas\Validator\ValidatorInterface;
 
 class Url extends Element implements InputProviderInterface
 {
-    /**
-     * Seed attributes
-     *
-     * @var array
-     */
+    /** @var array<string, scalar|null>  */
     protected $attributes = [
         'type' => 'url',
     ];

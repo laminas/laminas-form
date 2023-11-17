@@ -112,6 +112,7 @@ class DateTimeSelect extends DateSelect
         return $this->secondElement;
     }
 
+    /** @return list<Select> */
     public function getElements(): array
     {
         return array_merge(parent::getElements(), [
@@ -124,6 +125,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the hour attributes
      *
+     * @param array<string, scalar|null> $hourAttributes
      * @return $this
      */
     public function setHourAttributes(array $hourAttributes)
@@ -135,7 +137,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Get the hour attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getHourAttributes(): array
     {
@@ -145,6 +147,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the minute attributes
      *
+     * @param array<string, scalar|null> $minuteAttributes
      * @return $this
      */
     public function setMinuteAttributes(array $minuteAttributes)
@@ -156,7 +159,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Get the minute attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getMinuteAttributes(): array
     {
@@ -166,6 +169,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Set the second attributes
      *
+     * @param array<string, scalar|null> $secondAttributes
      * @return $this
      */
     public function setSecondAttributes(array $secondAttributes)
@@ -177,7 +181,7 @@ class DateTimeSelect extends DateSelect
     /**
      * Get the second attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getSecondAttributes(): array
     {

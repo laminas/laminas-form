@@ -7,6 +7,7 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\Email as EmailElement;
 use Laminas\Validator\Explode;
 use Laminas\Validator\Regex;
+use Laminas\Validator\ValidatorInterface;
 use PHPUnit\Framework\TestCase;
 
 final class EmailTest extends TestCase
@@ -28,6 +29,7 @@ final class EmailTest extends TestCase
         }
     }
 
+    /** @return list<array{0: array<string, scalar>, 1: list<class-string<ValidatorInterface>>}> */
     public static function emailAttributesDataProvider(): array
     {
         return [
@@ -39,6 +41,8 @@ final class EmailTest extends TestCase
 
     /**
      * @dataProvider emailAttributesDataProvider
+     * @param array<string, scalar> $attributes
+     * @param list<class-string<ValidatorInterface>> $expectedValidators
      */
     public function testProvidesInputSpecificationBasedOnAttributes(array $attributes, array $expectedValidators): void
     {
@@ -47,7 +51,7 @@ final class EmailTest extends TestCase
 
         $inputSpec = $element->getInputSpecification();
         self::assertArrayHasKey('validators', $inputSpec);
-        self::assertIsArray($inputSpec['validators']);
+        self::assertIsArray($inputSpec['validators'] ?? null);
 
         foreach ($inputSpec['validators'] as $i => $validator) {
             $class = $validator::class;

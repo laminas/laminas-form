@@ -20,7 +20,7 @@ class FormElement extends BaseAbstractHelper
     /**
      * Instance map to view helper
      *
-     * @var array
+     * @var array<class-string<ElementInterface>, string>
      */
     protected $classMap = [
         Element\Button::class         => 'formbutton',
@@ -35,7 +35,7 @@ class FormElement extends BaseAbstractHelper
     /**
      * Type map to view helper
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $typeMap = [
         'checkbox'       => 'formcheckbox',
@@ -147,6 +147,7 @@ class FormElement extends BaseAbstractHelper
     /**
      * Add instance class to plugin map
      *
+     * @param class-string<ElementInterface> $class
      * @return $this
      */
     public function addClass(string $class, string $plugin)
@@ -189,8 +190,8 @@ class FormElement extends BaseAbstractHelper
     {
         $type = $element->getAttribute('type');
 
-        if (isset($this->typeMap[$type])) {
-            return $this->renderHelper($this->typeMap[$type], $element);
+        if (isset($this->typeMap[(string) $type])) {
+            return $this->renderHelper($this->typeMap[(string) $type], $element);
         }
 
         return null;
