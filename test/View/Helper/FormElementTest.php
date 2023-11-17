@@ -39,32 +39,33 @@ final class FormElementTest extends TestCase
         $this->helper->setView($this->renderer);
     }
 
+    /** @return array<string, array{0: string}> */
     public static function getInputElements(): array
     {
         return [
-            ['text'],
-            ['password'],
-            ['checkbox'],
-            ['radio'],
-            ['submit'],
-            ['reset'],
-            ['file'],
-            ['hidden'],
-            ['image'],
-            ['button'],
-            ['number'],
-            ['range'],
-            ['date'],
-            ['color'],
-            ['search'],
-            ['tel'],
-            ['email'],
-            ['url'],
-            ['datetime'],
-            ['datetime-local'],
-            ['month'],
-            ['week'],
-            ['time'],
+            'text'           => ['text'],
+            'password'       => ['password'],
+            'checkbox'       => ['checkbox'],
+            'radio'          => ['radio'],
+            'submit'         => ['submit'],
+            'reset'          => ['reset'],
+            'file'           => ['file'],
+            'hidden'         => ['hidden'],
+            'image'          => ['image'],
+            'button'         => ['button'],
+            'number'         => ['number'],
+            'range'          => ['range'],
+            'date'           => ['date'],
+            'color'          => ['color'],
+            'search'         => ['search'],
+            'tel'            => ['tel'],
+            'email'          => ['email'],
+            'url'            => ['url'],
+            'datetime'       => ['datetime'],
+            'datetime-local' => ['datetime-local'],
+            'month'          => ['month'],
+            'week'           => ['week'],
+            'time'           => ['time'],
         ];
     }
 
@@ -73,19 +74,27 @@ final class FormElementTest extends TestCase
      */
     public function testRendersExpectedInputElement(string $type): void
     {
+        $element = new Element('foo');
+
         if ($type === 'radio') {
             $element = new Element\Radio('foo');
-        } elseif ($type === 'checkbox') {
+            $element->setValueOptions(['option' => 'value']);
+        }
+
+        if ($type === 'checkbox') {
             $element = new Element\Checkbox('foo');
-        } elseif ($type === 'select') {
+        }
+
+        if ($type === 'select') {
             $element = new Element\Select('foo');
-        } else {
-            $element = new Element('foo');
+            $element->setValueOptions(['option' => 'value']);
+        }
+
+        if ($type === 'image') {
+            $element->setAttribute('src', '/some-image.png');
         }
 
         $element->setAttribute('type', $type);
-        $element->setAttribute('options', ['option' => 'value']);
-        $element->setAttribute('src', 'http://zend.com/img.png');
         $markup = $this->helper->render($element);
 
         self::assertStringContainsString('<input', $markup);

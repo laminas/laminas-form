@@ -7,6 +7,7 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function is_string;
 use function sprintf;
 use function strtolower;
 
@@ -138,7 +139,7 @@ class FormInput extends AbstractHelper
     protected function getType(ElementInterface $element): string
     {
         $type = $element->getAttribute('type');
-        if (empty($type)) {
+        if (! is_string($type) || $type === '') {
             return 'text';
         }
 

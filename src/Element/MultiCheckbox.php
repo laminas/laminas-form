@@ -11,6 +11,10 @@ use Laminas\Validator\ValidatorInterface;
 
 use function assert;
 use function is_array;
+use function is_iterable;
+use function trigger_error;
+
+use const E_USER_DEPRECATED;
 
 class MultiCheckbox extends Checkbox
 {
@@ -98,9 +102,13 @@ class MultiCheckbox extends Checkbox
     /** @inheritDoc */
     public function setAttribute(string $key, $value)
     {
-        // Do not include the options in the list of attributes
-        // TODO: Deprecate this
-        if ($key === 'options') {
+        /** @psalm-suppress DocblockTypeContradiction */
+        if ($key === 'options' && is_iterable($value)) {
+            trigger_error(
+                'Providing multi-checkbox value options via attributes is deprecated and will be removed in '
+                . 'version 4.0 of this library',
+                E_USER_DEPRECATED,
+            );
             $this->setValueOptions($value);
             return $this;
         }

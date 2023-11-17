@@ -106,7 +106,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
 
         if (
             isset($this->attributes['min'])
-            && $this->valueIsValidDateTimeFormat($this->attributes['min'])
+            && $this->valueIsValidDateTimeFormat((string) $this->attributes['min'])
         ) {
             $validators[] = new GreaterThanValidator([
                 'min'       => $this->attributes['min'],
@@ -114,19 +114,19 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
             ]);
         } elseif (
             isset($this->attributes['min'])
-            && ! $this->valueIsValidDateTimeFormat($this->attributes['min'])
+            && ! $this->valueIsValidDateTimeFormat((string) $this->attributes['min'])
         ) {
             throw new InvalidArgumentException(sprintf(
                 '%1$s expects "min" to conform to %2$s; received "%3$s"',
                 __METHOD__,
                 $this->format,
-                $this->attributes['min']
+                (string) $this->attributes['min']
             ));
         }
 
         if (
             isset($this->attributes['max'])
-            && $this->valueIsValidDateTimeFormat($this->attributes['max'])
+            && $this->valueIsValidDateTimeFormat((string) $this->attributes['max'])
         ) {
             $validators[] = new LessThanValidator([
                 'max'       => $this->attributes['max'],
@@ -134,13 +134,13 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
             ]);
         } elseif (
             isset($this->attributes['max'])
-            && ! $this->valueIsValidDateTimeFormat($this->attributes['max'])
+            && ! $this->valueIsValidDateTimeFormat((string) $this->attributes['max'])
         ) {
             throw new InvalidArgumentException(sprintf(
                 '%1$s expects "max" to conform to %2$s; received "%3$s"',
                 __METHOD__,
                 $this->format,
-                $this->attributes['max']
+                (string) $this->attributes['max']
             ));
         }
         if (

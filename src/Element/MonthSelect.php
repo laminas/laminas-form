@@ -142,7 +142,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Get both the year and month elements
      *
-     * @return array
+     * @return list<Select>
      */
     public function getElements(): array
     {
@@ -152,6 +152,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Set the month attributes
      *
+     * @param array<string, scalar|null> $monthAttributes
      * @return $this
      */
     public function setMonthAttributes(array $monthAttributes)
@@ -163,7 +164,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Get the month attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getMonthAttributes(): array
     {
@@ -173,6 +174,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Set the year attributes
      *
+     * @param array<string, scalar|null> $yearAttributes
      * @return $this
      */
     public function setYearAttributes(array $yearAttributes)
@@ -184,7 +186,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     /**
      * Get the year attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getYearAttributes(): array
     {

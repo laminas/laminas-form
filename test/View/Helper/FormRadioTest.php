@@ -125,7 +125,7 @@ final class FormRadioTest extends AbstractCommonTestCase
     public function testUsesElementValueToDetermineRadioStatus(): void
     {
         $element = $this->getElement();
-        $element->setAttribute('value', ['value1', 'value3']);
+        $element->setValue(['value1', 'value3']);
         $markup = $this->helper->render($element);
 
         self::assertMatchesRegularExpression('#value="value1"\s+checked="checked"#', $markup);

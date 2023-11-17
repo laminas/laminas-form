@@ -21,13 +21,10 @@ final class RadioTest extends TestCase
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement): void
     {
         $element = new RadioElement();
-        $options = [
+        $element->setValueOptions([
             '1' => 'Option 1',
             '2' => 'Option 2',
             '3' => 'Option 3',
-        ];
-        $element->setAttributes([
-            'options' => $options,
         ]);
         $element->setUseHiddenElement($useHiddenElement);
 
@@ -44,6 +41,7 @@ final class RadioTest extends TestCase
         }
     }
 
+    /** @return list<array{0: list<mixed>, 1: array<array-key, mixed>}> */
     public static function radioOptionsDataProvider(): array
     {
         return [
@@ -70,9 +68,7 @@ final class RadioTest extends TestCase
     public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new RadioElement('my-radio');
-        $element->setAttributes([
-            'options' => $options,
-        ]);
+        $element->setValueOptions($options);
         $inputSpec = $element->getInputSpecification();
         self::assertArrayHasKey('validators', $inputSpec);
         $inArrayValidator = $inputSpec['validators'][0];

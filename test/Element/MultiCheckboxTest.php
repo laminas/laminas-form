@@ -10,6 +10,10 @@ use Laminas\Validator\InArray;
 use PHPUnit\Framework\TestCase;
 
 use function count;
+use function restore_error_handler;
+use function set_error_handler;
+
+use const E_USER_DEPRECATED;
 
 final class MultiCheckboxTest extends TestCase
 {
@@ -24,13 +28,10 @@ final class MultiCheckboxTest extends TestCase
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement): void
     {
         $element = new MultiCheckboxElement();
-        $options = [
+        $element->setValueOptions([
             '1' => 'Option 1',
             '2' => 'Option 2',
             '3' => 'Option 3',
-        ];
-        $element->setAttributes([
-            'options' => $options,
         ]);
         $element->setUseHiddenElement($useHiddenElement);
 
@@ -81,9 +82,7 @@ final class MultiCheckboxTest extends TestCase
     public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new MultiCheckboxElement('my-checkbox');
-        $element->setAttributes([
-            'options' => $options,
-        ]);
+        $element->setValueOptions($options);
         $inputSpec = $element->getInputSpecification();
         self::assertArrayHasKey('validators', $inputSpec);
         $explodeValidator = $inputSpec['validators'][0];
@@ -97,15 +96,13 @@ final class MultiCheckboxTest extends TestCase
      *
      * @dataProvider multiCheckboxOptionsDataProvider
      */
-    public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options): void
+    public function testInArrayValidatorHaystackIsUpdated(array $valueTests, array $options): void
     {
         $element          = new MultiCheckboxElement('my-checkbox');
         $inputSpec        = $element->getInputSpecification();
         $inArrayValidator = $inputSpec['validators'][0]->getValidator();
 
-        $element->setAttributes([
-            'options' => $options,
-        ]);
+        $element->setValueOptions($options);
         $haystack = $inArrayValidator->getHaystack();
         self::assertCount(count($options), $haystack);
     }
@@ -185,5 +182,36 @@ final class MultiCheckboxTest extends TestCase
         $selectedOptions = ['option1', 'option3'];
         $element->setValue($selectedOptions);
         self::assertContains($optionValue, $element->getValue());
+    }
+
+    /** @deprecated */
+    public function testDeprecatedValueOptionsAsAttribute(): void
+    {
+        $trigger = false;
+        set_error_handler(function (int $code, string $message) use (&$trigger): bool {
+            self::assertStringContainsString(
+                'Providing multi-checkbox value options via attributes is deprecated',
+                $message
+            );
+
+            $trigger = true;
+            return true;
+        }, E_USER_DEPRECATED);
+
+        $element = new MultiCheckboxElement();
+        $element->setAttributes([
+            'options' => [
+                'a' => 'A',
+                'b' => 'B',
+            ],
+        ]);
+
+        restore_error_handler();
+
+        self::assertSame([
+            'a' => 'A',
+            'b' => 'B',
+        ], $element->getValueOptions());
+        self::assertTrue($trigger);
     }
 }

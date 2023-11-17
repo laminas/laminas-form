@@ -128,7 +128,7 @@ final class FormMultiCheckboxTest extends AbstractCommonTestCase
     public function testUsesElementValueToDetermineCheckboxStatus(): void
     {
         $element = $this->getElement();
-        $element->setAttribute('value', ['value1', 'value3']);
+        $element->setValue(['value1', 'value3']);
         $markup = $this->helper->render($element);
 
         self::assertMatchesRegularExpression('#value="value1"\s+checked="checked"#', $markup);
@@ -216,14 +216,14 @@ final class FormMultiCheckboxTest extends AbstractCommonTestCase
         $element->setName('codeType');
         $element->setOptions(['label' => 'Code Type']);
         $element->setAttributes([
-            'type'  => 'radio',
-            'value' => ['markdown'],
+            'type' => 'radio',
         ]);
         $element->setValueOptions([
             'Markdown' => 'markdown',
             'HTML'     => 'html',
             'Wiki'     => 'wiki',
         ]);
+        $element->setValue(['markdown']);
 
         $markup = $this->helper->render($element);
         self::assertStringNotContainsString('type="hidden"', $markup);

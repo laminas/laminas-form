@@ -293,7 +293,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     {
         $id = $element->getAttribute('id');
         if (null !== $id) {
-            return $id;
+            return (string) $id;
         }
 
         return $element->getName();

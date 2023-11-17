@@ -247,7 +247,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
     ): void {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
-        $expect  = sprintf('%s="%s"', $attribute, $element->getAttribute($attribute));
+        $expect  = sprintf('%s="%s"', $attribute, (string) $element->getAttribute($attribute));
         $this->$assertion($expect, $markup);
     }
 

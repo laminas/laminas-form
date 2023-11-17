@@ -129,8 +129,8 @@ final class FormDateTimeTest extends AbstractCommonTestCase
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
         $expect  = match ($attribute) {
-            'value' => sprintf('%s="%s"', $attribute, $element->getValue()),
-            default => sprintf('%s="%s"', $attribute, $element->getAttribute($attribute)),
+            'value' => sprintf('%s="%s"', $attribute, (string) $element->getValue()),
+            default => sprintf('%s="%s"', $attribute, (string) $element->getAttribute($attribute)),
         };
         $this->$assertion($expect, $markup);
     }

@@ -64,7 +64,7 @@ class DateSelect extends MonthSelect
     /**
      * Get both the year and month elements
      *
-     * @return array
+     * @return list<Select>
      */
     public function getElements(): array
     {
@@ -74,6 +74,7 @@ class DateSelect extends MonthSelect
     /**
      * Set the day attributes
      *
+     * @param array<string, scalar|null> $dayAttributes
      * @return $this
      */
     public function setDayAttributes(array $dayAttributes)
@@ -85,7 +86,7 @@ class DateSelect extends MonthSelect
     /**
      * Get the day attributes
      *
-     * @return array
+     * @return array<string, scalar|null>
      */
     public function getDayAttributes(): array
     {
