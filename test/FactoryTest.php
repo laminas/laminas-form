@@ -96,9 +96,9 @@ final class FactoryTest extends TestCase
                         'name' => 'baz',
                     ],
                     'spec'  => [
-                        'attributes' => [
-                            'type'    => 'radio',
-                            'options' => [
+                        'type'    => Form\Element\Radio::class,
+                        'options' => [
+                            'value_options' => [
                                 'foo' => 'Foo Bar',
                                 'bar' => 'Bar Baz',
                             ],
@@ -130,11 +130,12 @@ final class FactoryTest extends TestCase
         self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $fieldset->get('baz');
+        self::assertInstanceOf(Form\Element\Radio::class, $element);
         self::assertEquals('radio', $element->getAttribute('type'));
         self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
-        ], $element->getAttribute('options'));
+        ], $element->getValueOptions());
 
         $element = $fieldset->get('bat');
         self::assertEquals('textarea', $element->getAttribute('type'));
@@ -173,9 +174,9 @@ final class FactoryTest extends TestCase
                                     'name' => 'baz',
                                 ],
                                 'spec'  => [
-                                    'attributes' => [
-                                        'type'    => 'radio',
-                                        'options' => [
+                                    'type'    => Form\Element\Radio::class,
+                                    'options' => [
+                                        'value_options' => [
                                             'foo' => 'Foo Bar',
                                             'bar' => 'Bar Baz',
                                         ],
@@ -211,11 +212,12 @@ final class FactoryTest extends TestCase
         self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $fieldset->get('baz');
+        self::assertInstanceOf(Form\Element\Radio::class, $element);
         self::assertEquals('radio', $element->getAttribute('type'));
         self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
-        ], $element->getAttribute('options'));
+        ], $element->getValueOptions());
 
         $element = $fieldset->get('bat');
         self::assertEquals('textarea', $element->getAttribute('type'));
@@ -551,9 +553,9 @@ final class FactoryTest extends TestCase
                         'name' => 'baz',
                     ],
                     'spec'  => [
-                        'attributes' => [
-                            'type'    => 'radio',
-                            'options' => [
+                        'type'    => Form\Element\Radio::class,
+                        'options' => [
+                            'value_options' => [
                                 'foo' => 'Foo Bar',
                                 'bar' => 'Bar Baz',
                             ],
@@ -593,9 +595,9 @@ final class FactoryTest extends TestCase
                                     'name' => 'baz',
                                 ],
                                 'spec'  => [
-                                    'attributes' => [
-                                        'type'    => 'radio',
-                                        'options' => [
+                                    'type'    => Form\Element\Radio::class,
+                                    'options' => [
+                                        'value_options' => [
                                             'foo' => 'Foo Bar',
                                             'bar' => 'Bar Baz',
                                         ],
@@ -633,11 +635,12 @@ final class FactoryTest extends TestCase
         self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $form->get('baz');
+        self::assertInstanceOf(Form\Element\Radio::class, $element);
         self::assertEquals('radio', $element->getAttribute('type'));
         self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
-        ], $element->getAttribute('options'));
+        ], $element->getValueOptions());
 
         $element = $form->get('bat');
         self::assertEquals('textarea', $element->getAttribute('type'));
@@ -663,11 +666,12 @@ final class FactoryTest extends TestCase
         self::assertEquals('text', $element->getAttribute('type'));
 
         $element = $fieldset->get('baz');
+        self::assertInstanceOf(Form\Element\Radio::class, $element);
         self::assertEquals('radio', $element->getAttribute('type'));
         self::assertEquals([
             'foo' => 'Foo Bar',
             'bar' => 'Bar Baz',
-        ], $element->getAttribute('options'));
+        ], $element->getValueOptions());
 
         $element = $fieldset->get('bat');
         self::assertEquals('textarea', $element->getAttribute('type'));
