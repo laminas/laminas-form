@@ -293,23 +293,14 @@ class Element implements
         return $this->label;
     }
 
-    /**
-     * Set the attributes to use with the label
-     *
-     * @param array<string, mixed> $labelAttributes
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setLabelAttributes(array $labelAttributes)
     {
         $this->labelAttributes = $labelAttributes;
         return $this;
     }
 
-    /**
-     * Get the attributes to use with the label
-     *
-     * @return array<string, mixed>
-     */
+    /** @inheritDoc */
     public function getLabelAttributes(): array
     {
         return $this->labelAttributes;
