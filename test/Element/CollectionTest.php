@@ -1153,10 +1153,11 @@ final class CollectionTest extends TestCase
 
         //test for correct extract and populate
         $index = 0;
-        foreach ($addresses as $addresses) {
-            self::assertEquals($data[$index]['street'], $addresses->get('street')->getValue());
+        foreach ($addresses as $address) {
+            self::assertInstanceOf(FieldsetInterface::class, $address);
+            self::assertEquals($data[$index]['street'], $address->get('street')->getValue());
             //assuming data has just 1 phone entry
-            foreach ($addresses->get('phones') as $phone) {
+            foreach ($address->get('phones') as $phone) {
                 self::assertEquals($data[$index]['number'], $phone->get('number')->getValue());
             }
             $index++;

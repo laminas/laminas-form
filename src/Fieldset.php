@@ -15,11 +15,13 @@ use Traversable;
 
 use function array_key_exists;
 use function assert;
-use function gettype;
+use function get_debug_type;
 use function in_array;
 use function is_array;
 use function is_iterable;
+use function is_numeric;
 use function is_object;
+use function is_string;
 use function ltrim;
 use function sprintf;
 
@@ -28,16 +30,16 @@ class Fieldset extends Element implements FieldsetInterface
     /** @var null|Factory */
     protected $factory;
 
-    /** @var array */
+    /** @var array<string, ElementInterface> */
     protected $elements = [];
 
-    /** @var FieldsetInterface[] */
+    /** @var array<string, FieldsetInterface> */
     protected $fieldsets = [];
 
     /** @var array */
     protected $messages = [];
 
-    /** @var PriorityList */
+    /** @var PriorityList<string, ElementInterface> */
     protected $iterator;
 
     /**
@@ -74,7 +76,9 @@ class Fieldset extends Element implements FieldsetInterface
      */
     public function __construct($name = null, array $options = [])
     {
-        $this->iterator = new PriorityList();
+        /** @var PriorityList<string, ElementInterface> $list */
+        $list           = new PriorityList();
+        $this->iterator = $list;
         $this->iterator->isLIFO(false);
         parent::__construct($name, $options);
     }
@@ -154,12 +158,12 @@ class Fieldset extends Element implements FieldsetInterface
                 '%s requires that $elementOrFieldset be an object implementing %s; received "%s"',
                 __METHOD__,
                 __NAMESPACE__ . '\ElementInterface',
-                is_object($elementOrFieldset) ? $elementOrFieldset::class : gettype($elementOrFieldset)
+                get_debug_type($elementOrFieldset),
             ));
         }
 
         $name = $elementOrFieldset->getName();
-        if (array_key_exists('name', $flags) && $flags['name'] !== '') {
+        if (isset($flags['name']) && is_string($flags['name']) && $flags['name'] !== '') {
             $name = $flags['name'];
 
             // Rename the element or fieldset to the specified alias
@@ -173,8 +177,8 @@ class Fieldset extends Element implements FieldsetInterface
             ));
         }
         $order = 0;
-        if (array_key_exists('priority', $flags)) {
-            $order = $flags['priority'];
+        if (isset($flags['priority']) && is_numeric($flags['priority'])) {
+            $order = (int) $flags['priority'];
         }
 
         $this->iterator->insert($name, $elementOrFieldset, $order);
@@ -203,13 +207,14 @@ class Fieldset extends Element implements FieldsetInterface
      */
     public function get(string $elementOrFieldset): ElementInterface
     {
-        if (! $this->has($elementOrFieldset)) {
+        $element = $this->iterator->get($elementOrFieldset);
+        if (! $element) {
             throw new Exception\InvalidElementException(sprintf(
                 'No element by the name of [%s] found in form',
                 $elementOrFieldset
             ));
         }
-        return $this->iterator->get($elementOrFieldset);
+        return $element;
     }
 
     /**
@@ -301,10 +306,7 @@ class Fieldset extends Element implements FieldsetInterface
             $messages = $this->messages;
             foreach ($this->iterator as $name => $element) {
                 $messageSet = $element->getMessages();
-                if (
-                    empty($messageSet)
-                    || (! is_array($messageSet) && ! $messageSet instanceof Traversable)
-                ) {
+                if ($messageSet === []) {
                     continue;
                 }
                 $messages[$name] = $messageSet;
@@ -392,6 +394,8 @@ class Fieldset extends Element implements FieldsetInterface
 
     /**
      * IteratorAggregate: return internal iterator
+     *
+     * @return PriorityList<string, ElementInterface>
      */
     public function getIterator(): PriorityList
     {

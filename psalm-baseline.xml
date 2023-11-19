@@ -88,7 +88,6 @@
       <code><![CDATA[$this->object instanceof Traversable]]></code>
       <code>is_array($object)</code>
       <code><![CDATA[is_array($this->object)]]></code>
-      <code>is_object($elementOrFieldset)</code>
     </DocblockTypeContradiction>
     <ImplementedParamTypeMismatch>
       <code>$object</code>
@@ -105,12 +104,9 @@
     <PropertyNotSetInConstructor>
       <code>$object</code>
     </PropertyNotSetInConstructor>
-    <RedundantCast>
+    <RedundantCastGivenDocblockType>
       <code>(string) $name</code>
-    </RedundantCast>
-    <RedundantConditionGivenDocblockType>
-      <code>gettype($elementOrFieldset)</code>
-    </RedundantConditionGivenDocblockType>
+    </RedundantCastGivenDocblockType>
     <TooManyArguments>
       <code>bindValues</code>
     </TooManyArguments>
@@ -153,7 +149,6 @@
   </file>
   <file src="src/Fieldset.php">
     <DocblockTypeContradiction>
-      <code>is_object($elementOrFieldset)</code>
       <code>is_object($object)</code>
     </DocblockTypeContradiction>
     <LessSpecificReturnStatement>
@@ -170,21 +165,14 @@
     <PossiblyInvalidArgument>
       <code>$object</code>
     </PossiblyInvalidArgument>
-    <RedundantConditionGivenDocblockType>
-      <code>gettype($elementOrFieldset)</code>
-    </RedundantConditionGivenDocblockType>
     <TooManyArguments>
       <code>bindValues</code>
     </TooManyArguments>
   </file>
-  <file src="src/FieldsetInterface.php">
-    <MissingTemplateParam>
-      <code>IteratorAggregate</code>
-    </MissingTemplateParam>
-  </file>
   <file src="src/Form.php">
     <ArgumentTypeCoercion>
       <code>$childFieldset</code>
+      <code>$fieldset</code>
       <code>$filter</code>
       <code>$spec</code>
       <code>$validationGroup</code>
@@ -414,6 +402,9 @@
       <code>$products</code>
       <code>$shop</code>
     </PossiblyUndefinedVariable>
+    <RawObjectIteration>
+      <code><![CDATA[$address->get('phones')]]></code>
+    </RawObjectIteration>
   </file>
   <file src="test/Element/ColorTest.php">
     <PossiblyInvalidMethodCall>
