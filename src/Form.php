@@ -549,11 +549,11 @@ class Form extends Fieldset implements FormInterface
     protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup): void
     {
         foreach ($validationGroup as $key => &$value) {
-            if (! $formOrFieldset->has((string) $key)) {
+            $fieldset = $formOrFieldset->iterator->get((string) $key);
+
+            if (! $fieldset) {
                 continue;
             }
-
-            $fieldset = $formOrFieldset->iterator->get((string) $key);
 
             if ($fieldset instanceof Collection) {
                 if (! isset($data[$key]) && $fieldset->getCount() === 0) {

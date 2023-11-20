@@ -9,6 +9,7 @@ use IteratorAggregate;
 use Laminas\Hydrator\HydratorInterface;
 use Traversable;
 
+/** @extends IteratorAggregate<string, ElementInterface> */
 interface FieldsetInterface extends
     Countable,
     IteratorAggregate,
