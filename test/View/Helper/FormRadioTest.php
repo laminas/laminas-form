@@ -64,6 +64,8 @@ final class FormRadioTest extends AbstractCommonTestCase
         self::assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
+            self::assertIsString($value);
+            self::assertIsString($label);
             self::assertStringContainsString(sprintf('>%s</label>', $label), $markup);
             self::assertStringContainsString(sprintf('value="%s"', $value), $markup);
         }
@@ -117,6 +119,8 @@ final class FormRadioTest extends AbstractCommonTestCase
         self::assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
+            self::assertIsString($value);
+            self::assertIsString($label);
             self::assertStringContainsString(sprintf('>%s</label>', $label), $markup);
             self::assertStringContainsString(sprintf('value="%s"', $value), $markup);
         }
@@ -154,6 +158,8 @@ final class FormRadioTest extends AbstractCommonTestCase
         self::assertEquals(3, substr_count($markup, '<label'));
 
         foreach ($options as $value => $label) {
+            self::assertIsString($value);
+            self::assertIsString($label);
             self::assertStringContainsString(sprintf('<label>%s<', $label), $markup);
         }
     }

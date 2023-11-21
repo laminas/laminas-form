@@ -16,6 +16,16 @@ use function trigger_error;
 
 use const E_USER_DEPRECATED;
 
+/**
+ * @psalm-type ValueOptionSpec = array<string, string>|list<array{
+ *     label: non-empty-string,
+ *     value: non-empty-string,
+ *     selected?: bool,
+ *     disabled?: bool,
+ *     attributes?: array<string, scalar|null>,
+ *     label_attributes?: array<string, scalar|null>,
+ * }>
+ */
 class MultiCheckbox extends Checkbox
 {
     /** @var array<string, scalar|null>  */
@@ -32,11 +42,11 @@ class MultiCheckbox extends Checkbox
     /** @var null|string */
     protected $uncheckedValue;
 
-    /** @var array */
+    /** @var ValueOptionSpec */
     protected $valueOptions = [];
 
     /**
-     * @return array
+     * @return ValueOptionSpec
      */
     public function getValueOptions(): array
     {
@@ -44,6 +54,7 @@ class MultiCheckbox extends Checkbox
     }
 
     /**
+     * @param ValueOptionSpec $options
      * @return $this
      */
     public function setValueOptions(array $options)
@@ -61,6 +72,11 @@ class MultiCheckbox extends Checkbox
     }
 
     /**
+     * Unset a value option
+     *
+     * This method will only unset a value option when the element was created with a simple array of key-value pairs
+     * for value options, for example ['value1' => 'label1', 'value2' => 'label2']
+     *
      * @return $this
      */
     public function unsetValueOption(string $key)
