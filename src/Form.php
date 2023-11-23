@@ -24,6 +24,10 @@ use function is_array;
 use function is_object;
 use function sprintf;
 
+/**
+ * @template TFilteredValues
+ * @implements FormInterface<TFilteredValues>
+ */
 class Form extends Fieldset implements FormInterface
 {
     /** @var array<string, scalar|null>  */
@@ -487,7 +491,7 @@ class Form extends Fieldset implements FormInterface
      * By default, retrieves normalized values; pass one of the
      * FormInterface::VALUES_* constants to shape the behavior.
      *
-     * @return array|object
+     * @inheritDoc
      * @throws Exception\DomainException
      */
     public function getData(int $flag = FormInterface::VALUES_NORMALIZED)
@@ -510,6 +514,19 @@ class Form extends Fieldset implements FormInterface
         }
 
         return $filter->getValues();
+    }
+
+    /** @return TFilteredValues */
+    public function getValidatedPayload(): array
+    {
+        if (! $this->hasValidated) {
+            throw new Exception\DomainException(sprintf(
+                '%s cannot return data as validation has not yet occurred',
+                __METHOD__
+            ));
+        }
+
+        return $this->getInputFilter()->getValues();
     }
 
     /**
@@ -582,6 +599,8 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set the input filter used by this form
      *
+     * @param InputFilterInterface<TFilteredValues> $inputFilter
+     *
      * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter)
@@ -599,6 +618,8 @@ class Form extends Fieldset implements FormInterface
 
     /**
      * Retrieve input filter used by this form
+     *
+     * @return InputFilterInterface<TFilteredValues>
      */
     public function getInputFilter(): InputFilterInterface
     {

@@ -6,6 +6,9 @@ namespace Laminas\Form;
 
 use Laminas\InputFilter\InputFilterInterface;
 
+/**
+ * @template TFilteredValues
+ */
 interface FormInterface extends FieldsetInterface
 {
     public const BIND_ON_VALIDATE  = 0x00;
@@ -42,12 +45,15 @@ interface FormInterface extends FieldsetInterface
     /**
      * Set input filter
      *
+     * @param InputFilterInterface<TFilteredValues> $inputFilter
      * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter);
 
     /**
      * Retrieve input filter
+     *
+     * @return InputFilterInterface<TFilteredValues>
      */
     public function getInputFilter(): InputFilterInterface;
 
@@ -64,9 +70,24 @@ interface FormInterface extends FieldsetInterface
      * By default, retrieves normalized values; pass one of the VALUES_*
      * constants to shape the behavior.
      *
-     * @return array|object
+     * @param self::VALUES_* $flag
+     * @return TFilteredValues|object|array<string, mixed>
+     * @psalm-return (
+     *     $flag is self::VALUES_NORMALIZED
+     *          ? TFilteredValues|object
+     *          : ($flag is self::VALUES_RAW ? array<string, mixed> : TFilteredValues)
+     * )
      */
     public function getData(int $flag = FormInterface::VALUES_NORMALIZED);
+
+    /**
+     * Return the normalized, validated data
+     *
+     * This method returns the payload as filtered by the composed Input Filter
+     *
+     * @return TFilteredValues
+     */
+    public function getValidatedPayload(): array;
 
     /**
      * Set the validation group (set of values to validate)
