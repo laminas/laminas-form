@@ -7,6 +7,7 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\Form\Form;
 use Laminas\Hydrator\ClassMethodsHydrator;
 
+/** @extends Form<array<string, mixed>> */
 class NewProductForm extends Form
 {
     public function __construct()
@@ -15,8 +16,7 @@ class NewProductForm extends Form
 
         $this
             ->setAttribute('method', 'post')
-            ->setHydrator(new ClassMethodsHydrator())
-            ->setInputFilter(new InputFilter());
+            ->setHydrator(new ClassMethodsHydrator());
 
         $fieldset = new ProductFieldset();
         $fieldset->setUseAsBaseFieldset(true);

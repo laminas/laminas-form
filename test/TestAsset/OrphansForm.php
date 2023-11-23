@@ -6,8 +6,8 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Element\Collection;
 use Laminas\Form\Form;
-use LaminasTest\Form\TestAsset\OrphansFieldset;
 
+/** @extends Form<array<string, mixed>> */
 class OrphansForm extends Form
 {
     public function __construct()
@@ -15,8 +15,7 @@ class OrphansForm extends Form
         parent::__construct('orphans');
 
         $this->setAttribute('method', 'post')
-            ->setBindOnValidate(self::BIND_ON_VALIDATE)
-            ->setInputFilter(new InputFilter());
+            ->setBindOnValidate(self::BIND_ON_VALIDATE);
 
         //adds a collection of 2
         $this->add(

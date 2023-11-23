@@ -7,6 +7,7 @@ namespace LaminasTest\Form\TestAsset;
 use DateTime;
 use Laminas\Form\Form;
 
+/** @extends Form<array<string, mixed>> */
 class CustomCreatedForm extends Form
 {
     public function __construct(private DateTime $created, ?string $name = null, array $options = [])
