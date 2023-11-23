@@ -600,7 +600,6 @@ class Form extends Fieldset implements FormInterface
      * Set the input filter used by this form
      *
      * @param InputFilterInterface<TFilteredValues> $inputFilter
-     *
      * @return $this
      */
     public function setInputFilter(InputFilterInterface $inputFilter)

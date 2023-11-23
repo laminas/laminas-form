@@ -12,7 +12,6 @@ use Laminas\InputFilter\InputFilter;
  *     string: non-empty-string,
  *     number: int,
  * }
- *
  * @extends InputFilter<ValidPayload>
  */
 final class ExampleInputFilter extends InputFilter
