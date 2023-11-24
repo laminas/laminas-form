@@ -516,19 +516,6 @@ class Form extends Fieldset implements FormInterface
         return $filter->getValues();
     }
 
-    /** @return TFilteredValues */
-    public function getValidatedPayload(): array
-    {
-        if (! $this->hasValidated) {
-            throw new Exception\DomainException(sprintf(
-                '%s cannot return data as validation has not yet occurred',
-                __METHOD__
-            ));
-        }
-
-        return $this->getInputFilter()->getValues();
-    }
-
     /**
      * Set the validation group (set of values to validate)
      *

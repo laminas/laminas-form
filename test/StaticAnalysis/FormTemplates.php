@@ -13,23 +13,6 @@ use function is_array;
 final class FormTemplates
 {
     /** @return non-empty-string */
-    public function getStringTypeFromValidPayload(): string
-    {
-        $form = new ExampleForm();
-
-        $validatedPayload = $form->getValidatedPayload();
-
-        return $validatedPayload['string'];
-    }
-
-    public function getIntTypeFromValidPayload(): int
-    {
-        $form = new ExampleForm();
-
-        return $form->getValidatedPayload()['number'];
-    }
-
-    /** @return non-empty-string */
     public function getSingleValueFromComposedInputFilter(): string
     {
         $form = new ExampleForm();

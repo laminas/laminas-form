@@ -81,15 +81,6 @@ interface FormInterface extends FieldsetInterface
     public function getData(int $flag = FormInterface::VALUES_NORMALIZED);
 
     /**
-     * Return the normalized, validated data
-     *
-     * This method returns the payload as filtered by the composed Input Filter
-     *
-     * @return TFilteredValues
-     */
-    public function getValidatedPayload(): array;
-
-    /**
      * Set the validation group (set of values to validate)
      *
      * Typically, proxies to the composed input filter
