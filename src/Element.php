@@ -311,7 +311,7 @@ class Element implements
      *
      * Implementation will decide if this will overwrite or merge.
      *
-     * @return self
+     * @return $this
      * @throws Exception\InvalidArgumentException
      */
     public function setLabelOptions(iterable $arrayOrTraversable)

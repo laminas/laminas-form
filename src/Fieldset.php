@@ -585,7 +585,7 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Set if this fieldset is used as a base fieldset
      *
-     * @return self
+     * @return $this
      */
     public function setUseAsBaseFieldset(bool $useAsBaseFieldset)
     {
