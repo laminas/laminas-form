@@ -55,4 +55,20 @@ final class FormTemplates
 
         return $data['string'];
     }
+
+    /** @return non-empty-string */
+    public function testThatFluidReturnTypesPreserveTemplatesForSetPreferFormInputFilter(): string
+    {
+        $form = new ExampleForm();
+        return $form->setPreferFormInputFilter(true)
+            ->getData(FormInterface::VALUES_AS_ARRAY)['string'];
+    }
+
+    /** @return non-empty-string */
+    public function testThatFluidReturnTypesPreserveTemplatesForSetWrapElements(): string
+    {
+        $form = new ExampleForm();
+        return $form->setWrapElements(true)
+            ->getData(FormInterface::VALUES_AS_ARRAY)['string'];
+    }
 }

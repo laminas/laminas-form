@@ -675,7 +675,7 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set flag indicating whether or not to prefer the form input filter over element and fieldset defaults
      *
-     * @return $this
+     * @return self<TFilteredValues>
      */
     public function setPreferFormInputFilter(bool $preferFormInputFilter)
     {

@@ -22,7 +22,7 @@ interface LabelAwareInterface
      * Set the attributes to use with the label
      *
      * @param  array<string, scalar|null> $labelAttributes
-     * @return $this
+     * @return self
      */
     public function setLabelAttributes(array $labelAttributes);
 
@@ -38,7 +38,7 @@ interface LabelAwareInterface
      *
      * Implementation will decide if this will overwrite or merge.
      *
-     * @return $this
+     * @return self
      */
     public function setLabelOptions(iterable $arrayOrTraversable);
 
