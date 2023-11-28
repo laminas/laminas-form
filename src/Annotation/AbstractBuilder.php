@@ -106,17 +106,12 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      */
     public function getFormSpecification($entity): ArrayObject
     {
-        if (! is_object($entity)) {
-            if (
-                (is_string($entity) && (! class_exists($entity))) // non-existent class
-                || (! is_string($entity)) // not an object or string
-            ) {
-                throw new Exception\InvalidArgumentException(sprintf(
-                    '%s expects an object or valid class name; received %s',
-                    __METHOD__,
-                    var_export($entity, true)
-                ));
-            }
+        if (! is_object($entity) && ! is_string($entity) || (is_string($entity) && ! class_exists($entity))) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                '%s expects an object or valid class name; received %s',
+                __METHOD__,
+                var_export($entity, true)
+            ));
         }
 
         $this->entity            = $entity;
@@ -138,7 +133,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
      * second element is the input filter specification.
      *
      * @param class-string|object $entity
-     * @return array
+     * @return array{0: ArrayObject, 1: ArrayObject}
      */
     abstract protected function getFormSpecificationInternal($entity): array;
 

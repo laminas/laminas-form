@@ -415,7 +415,7 @@ class Fieldset extends Element implements FieldsetInterface
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an object argument; received "%s"',
                 __METHOD__,
-                $object
+                get_debug_type($object),
             ));
         }
 

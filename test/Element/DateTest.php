@@ -25,6 +25,8 @@ final class DateTest extends TestCase
 {
     /**
      * Stores the original set timezone
+     *
+     * @var non-empty-string
      */
     private string $originaltimezone;
 

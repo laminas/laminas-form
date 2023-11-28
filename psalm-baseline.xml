@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.15.0@5c774aca4746caf3d239d9c8cadb9f882ca29352">
+<files psalm-version="5.16.0@2897ba636551a8cb61601cc26f6ccfbba6c36591">
   <file src="src/Annotation/AbstractBuilder.php">
     <InvalidArrayOffset>
       <code><![CDATA[$params['elementSpec']['spec']['type']]]></code>
     </InvalidArrayOffset>
-    <RedundantConditionGivenDocblockType>
-      <code>is_string($entity)</code>
-    </RedundantConditionGivenDocblockType>
+    <NullArgument>
+      <code>$filterSpec</code>
+    </NullArgument>
   </file>
   <file src="src/Annotation/AttributeBuilder.php">
     <NullArgument>
@@ -93,9 +93,7 @@
   </file>
   <file src="src/Element/Collection.php">
     <DocblockTypeContradiction>
-      <code><![CDATA[$this->object instanceof Traversable]]></code>
       <code>is_array($object)</code>
-      <code><![CDATA[is_array($this->object)]]></code>
     </DocblockTypeContradiction>
     <ImplementedParamTypeMismatch>
       <code>$object</code>
@@ -119,6 +117,11 @@
       <code>bindValues</code>
     </TooManyArguments>
   </file>
+  <file src="src/Element/MultiCheckbox.php">
+    <NoValue>
+      <code>$value</code>
+    </NoValue>
+  </file>
   <file src="src/Element/Select.php">
     <MissingClosureParamType>
       <code>$value</code>
@@ -126,6 +129,9 @@
     <MissingClosureReturnType>
       <code>static function ($value) use ($unselectedValue) {</code>
     </MissingClosureReturnType>
+    <NoValue>
+      <code>$value</code>
+    </NoValue>
   </file>
   <file src="src/ElementFactory.php">
     <InvalidStringClass>
@@ -187,9 +193,6 @@
       <code>$spec</code>
       <code>$validationGroup</code>
     </ArgumentTypeCoercion>
-    <InvalidArrayOffset>
-      <code>$values[$cKey]</code>
-    </InvalidArrayOffset>
     <LessSpecificReturnStatement>
       <code>$this</code>
       <code>$this</code>
@@ -365,9 +368,6 @@
     </PossiblyNullArgument>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
-    <DocblockTypeContradiction>
-      <code>assertNotNull</code>
-    </DocblockTypeContradiction>
     <PossiblyUndefinedMethod>
       <code>allowEmpty</code>
       <code>getFilterChain</code>
