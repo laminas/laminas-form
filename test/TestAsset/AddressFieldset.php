@@ -38,12 +38,7 @@ class AddressFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add($phones);
     }
 
-    /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
-     *
-     * @return array
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

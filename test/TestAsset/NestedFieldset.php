@@ -20,12 +20,7 @@ class NestedFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add($field);
     }
 
-    /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
-     *
-     * @return array
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

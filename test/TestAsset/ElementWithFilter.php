@@ -12,13 +12,11 @@ use Laminas\Validator\NotEmpty;
 
 class ElementWithFilter extends Element implements InputProviderInterface
 {
-    /**
-     * @return array
-     */
+    /** @inheritDoc */
     public function getInputSpecification()
     {
         return [
-            'name'       => $this->getName(),
+            'name'       => (string) $this->getName(),
             'required'   => true,
             'filters'    => [
                 ['name' => StringTrim::class],

@@ -18,9 +18,7 @@ class MyFieldset extends Fieldset implements InputFilterProviderInterface
         ]);
     }
 
-    /**
-     * @return array[]
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

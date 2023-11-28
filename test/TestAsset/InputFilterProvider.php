@@ -25,9 +25,7 @@ class InputFilterProvider extends Form implements InputFilterProviderInterface
         ]);
     }
 
-    /**
-     * @return array[]
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

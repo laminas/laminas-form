@@ -900,11 +900,6 @@
         ])]]></code>
     </DeprecatedClass>
   </file>
-  <file src="test/TestAsset/AddressFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
   <file src="test/TestAsset/Annotation/ComplexEntity.php">
     <DeprecatedClass>
       <code>Annotation\AllowEmpty()</code>
@@ -920,26 +915,6 @@
       <code>Annotation\AllowEmpty(true)</code>
       <code>Annotation\ContinueIfEmpty(true)</code>
     </DeprecatedClass>
-  </file>
-  <file src="test/TestAsset/BasicFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="test/TestAsset/CategoryFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="test/TestAsset/CityFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="test/TestAsset/CountryFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/CustomCollection.php">
     <PropertyNotSetInConstructor>
@@ -958,16 +933,6 @@
       <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
-  <file src="test/TestAsset/ElementWithFilter.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="test/TestAsset/ElementWithStringToArrayFilter.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
-  </file>
   <file src="test/TestAsset/FieldsetWithDependency.php">
     <MissingParamType>
       <code>$name</code>
@@ -977,15 +942,7 @@
       <code>$dependency</code>
     </PropertyNotSetInConstructor>
   </file>
-  <file src="test/TestAsset/FieldsetWithInputFilter.php">
-    <LessSpecificImplementedReturnType>
-      <code>array[]</code>
-    </LessSpecificImplementedReturnType>
-  </file>
   <file src="test/TestAsset/FileInputFilterProviderFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array[]</code>
-    </LessSpecificImplementedReturnType>
     <MissingParamType>
       <code>$name</code>
       <code>$options</code>
@@ -998,55 +955,22 @@
     </MissingParamType>
   </file>
   <file src="test/TestAsset/InputFilterProvider.php">
-    <LessSpecificImplementedReturnType>
-      <code>array[]</code>
-    </LessSpecificImplementedReturnType>
     <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
   </file>
   <file src="test/TestAsset/InputFilterProviderFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array[]</code>
-    </LessSpecificImplementedReturnType>
     <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
-  </file>
-  <file src="test/TestAsset/InputFilterProviderWithFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array[]</code>
-    </LessSpecificImplementedReturnType>
-    <MissingParamType>
-      <code>$name</code>
-      <code>$options</code>
-    </MissingParamType>
-  </file>
-  <file src="test/TestAsset/MyFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array[]</code>
-    </LessSpecificImplementedReturnType>
-  </file>
-  <file src="test/TestAsset/NestedFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/OrphansFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array[]</code>
-    </LessSpecificImplementedReturnType>
     <MissingParamType>
       <code>$name</code>
       <code>$options</code>
     </MissingParamType>
-  </file>
-  <file src="test/TestAsset/ProductFieldset.php">
-    <LessSpecificImplementedReturnType>
-      <code>array</code>
-    </LessSpecificImplementedReturnType>
   </file>
   <file src="test/TestAsset/ValueStoringFieldset.php">
     <PropertyNotSetInConstructor>

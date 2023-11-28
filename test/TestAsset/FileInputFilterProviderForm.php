@@ -17,7 +17,7 @@ class FileInputFilterProviderForm extends Form
         parent::__construct($name, $options);
 
         $this->add([
-            'type' => __NAMESPACE__ . '\FileInputFilterProviderFieldset',
+            'type' => FileInputFilterProviderFieldset::class,
             'name' => 'file_fieldset',
         ]);
     }

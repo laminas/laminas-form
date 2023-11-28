@@ -26,9 +26,7 @@ class InputFilterProviderFieldset extends Fieldset implements InputFilterProvide
         $this->add(new BasicFieldset());
     }
 
-    /**
-     * @return array[]
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

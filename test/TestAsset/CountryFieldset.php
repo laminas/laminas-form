@@ -28,12 +28,7 @@ class CountryFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add($continent);
     }
 
-    /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
-     *
-     * @return array
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [
