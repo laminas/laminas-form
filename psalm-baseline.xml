@@ -73,6 +73,14 @@
       <code>$this</code>
       <code>$this</code>
       <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
     </LessSpecificReturnStatement>
   </file>
   <file src="src/Element/Captcha.php">
@@ -158,6 +166,8 @@
       <code>$this</code>
       <code>$this</code>
       <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
     </LessSpecificReturnStatement>
     <MoreSpecificImplementedParamType>
       <code>$object</code>
@@ -181,6 +191,9 @@
       <code>$values[$cKey]</code>
     </InvalidArrayOffset>
     <LessSpecificReturnStatement>
+      <code>$this</code>
+      <code>$this</code>
+      <code>$this</code>
       <code>$this</code>
       <code>$this</code>
       <code>$this</code>
