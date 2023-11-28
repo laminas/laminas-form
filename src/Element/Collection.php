@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form\Element;
 
+use ArrayAccess;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\Fieldset;
@@ -32,7 +33,7 @@ class Collection extends Fieldset
      */
     public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
 
-    /** @var array */
+    /** @var array|ArrayAccess */
     protected $object;
 
     /**
@@ -603,8 +604,8 @@ class Collection extends Fieldset
         }
 
         foreach ($fieldsets as $fieldset) {
-            $i = $fieldset->getName();
-            if (isset($this->object[$i])) {
+            $i = (string) $fieldset->getName();
+            if ($i !== '' && isset($this->object[$i])) {
                 $fieldset->setObject($this->object[$i]);
             }
         }

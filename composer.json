@@ -30,17 +30,17 @@
         "laminas/laminas-escaper": "^2.13",
         "laminas/laminas-eventmanager": "^3.12",
         "laminas/laminas-filter": "^2.33",
-        "laminas/laminas-i18n": "^2.24",
+        "laminas/laminas-i18n": "^2.24.1",
         "laminas/laminas-modulemanager": "^2.15.0",
-        "laminas/laminas-recaptcha": "^3.6",
+        "laminas/laminas-recaptcha": "^3.7",
         "laminas/laminas-servicemanager": "^3.22.1",
-        "laminas/laminas-session": "^2.16",
-        "laminas/laminas-text": "^2.10.0",
-        "laminas/laminas-validator": "^2.42",
+        "laminas/laminas-session": "^2.17",
+        "laminas/laminas-text": "^2.11.0",
+        "laminas/laminas-validator": "^2.43",
         "laminas/laminas-view": "^2.32",
         "phpunit/phpunit": "^10.4.2",
         "psalm/plugin-phpunit": "^0.18.4",
-        "vimeo/psalm": "^5.15"
+        "vimeo/psalm": "^5.16"
     },
     "conflict": {
         "doctrine/annotations": "<1.14.0",

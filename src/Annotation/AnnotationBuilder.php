@@ -20,7 +20,7 @@ final class AnnotationBuilder extends AbstractBuilder
      *
      * @param  object|class-string $entity
      * @throws ReflectionException
-     * @return array
+     * @return array{0: ArrayObject, 1: ArrayObject}
      */
     protected function getFormSpecificationInternal($entity): array
     {

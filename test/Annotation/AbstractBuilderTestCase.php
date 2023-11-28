@@ -33,7 +33,6 @@ use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
-use function count;
 use function getenv;
 
 abstract class AbstractBuilderTestCase extends TestCase
@@ -282,7 +281,6 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertInstanceOf(InputFilterProviderFieldset::class, $target);
         $this->validateEntityFilterSpec($target->getInputFilterSpecification());
 
-        self::assertNull($entity->child);
         $form->bind($entity);
         $form->setData([
             'child' => [
@@ -291,8 +289,8 @@ abstract class AbstractBuilderTestCase extends TestCase
             ],
         ]);
         self::assertTrue($form->isValid());
-        self::assertNotNull($entity->child);
-        self::assertEquals(2, count($entity->child));
+        self::assertIsArray($entity->child);
+        self::assertCount(2, $entity->child);
         self::assertInstanceOf(EntityObjectPropertyHydrator::class, $entity->child[0]);
         self::assertEquals('email@test.com', $entity->child[0]->password);
         self::assertEquals('user', $entity->child[0]->username);
