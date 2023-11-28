@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "221f176618f7611133dd0af3c3032429",
+    "content-hash": "60b00d26fc51fc8ef303809bc1f450bb",
     "packages": [
         {
             "name": "laminas/laminas-filter",
