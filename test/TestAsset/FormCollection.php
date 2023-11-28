@@ -8,12 +8,12 @@ use Laminas\Form\Element\Collection;
 use Laminas\Form\Element\Color as ColorElement;
 use Laminas\Form\Form;
 
+/** @extends Form<array<string, mixed>> */
 class FormCollection extends Form
 {
     public function __construct()
     {
         parent::__construct('collection');
-        $this->setInputFilter(new InputFilter());
 
         $element = new ColorElement('color');
         $this->add([

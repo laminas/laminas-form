@@ -641,4 +641,24 @@ final class FieldsetTest extends TestCase
         // Test
         self::assertSame($this->hydrator, $this->fieldset->getHydrator());
     }
+
+    public function testTheValueOfAFieldsetIsNullWhenComposedInAForm(): void
+    {
+        $fieldset = new Fieldset('set');
+        $fieldset->add(new Element\Text('text'));
+        $fieldset->setUseAsBaseFieldset(true);
+
+        $form = new Form();
+        $form->add($fieldset);
+        $payload = [
+            'set' => [
+                'text' => 'Test Value',
+            ],
+        ];
+        $form->setData($payload);
+
+        self::assertTrue($form->isValid());
+        self::assertNull($fieldset->getValue());
+        self::assertSame($payload, $form->getData());
+    }
 }

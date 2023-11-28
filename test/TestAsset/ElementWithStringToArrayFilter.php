@@ -10,13 +10,11 @@ use LaminasTest\Form\TestAsset\StringToArrayFilter;
 
 class ElementWithStringToArrayFilter extends Element implements InputProviderInterface
 {
-    /**
-     * @return array
-     */
+    /** @inheritDoc */
     public function getInputSpecification()
     {
         return [
-            'name'     => $this->getName(),
+            'name'     => (string) $this->getName(),
             'required' => true,
             'filters'  => [
                 ['name' => StringToArrayFilter::class],

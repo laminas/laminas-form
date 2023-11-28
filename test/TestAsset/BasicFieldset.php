@@ -22,12 +22,7 @@ class BasicFieldset extends Fieldset implements InputFilterProviderInterface
         $this->add($nestedFieldset);
     }
 
-    /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
-     *
-     * @return array
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

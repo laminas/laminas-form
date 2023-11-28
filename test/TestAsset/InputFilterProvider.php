@@ -7,6 +7,7 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
+/** @extends Form<array{foo: non-empty-string}> */
 class InputFilterProvider extends Form implements InputFilterProviderInterface
 {
     /**
@@ -24,9 +25,7 @@ class InputFilterProvider extends Form implements InputFilterProviderInterface
         ]);
     }
 
-    /**
-     * @return array[]
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

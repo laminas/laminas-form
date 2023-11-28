@@ -7,12 +7,11 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
+/** @extends Form<array{foo: non-empty-string}> */
 class InputFilterProviderWithFieldset extends Form implements InputFilterProviderInterface
 {
-    /**
-     * @inheritDoc
-     */
-    public function __construct($name = null, $options = [])
+    /** @inheritDoc */
+    public function __construct(string|null $name = null, array $options = [])
     {
         parent::__construct($name, $options);
 
@@ -26,9 +25,7 @@ class InputFilterProviderWithFieldset extends Form implements InputFilterProvide
         $this->add(new BasicFieldset());
     }
 
-    /**
-     * @return array[]
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [

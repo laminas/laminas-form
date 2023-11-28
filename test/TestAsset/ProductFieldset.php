@@ -65,12 +65,7 @@ class ProductFieldset extends Fieldset implements InputFilterProviderInterface
         ]);
     }
 
-    /**
-     * Should return an array specification compatible with
-     * {@link Laminas\InputFilter\Factory::createInputFilter()}.
-     *
-     * @return array
-     */
+    /** @inheritDoc */
     public function getInputFilterSpecification()
     {
         return [
