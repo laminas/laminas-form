@@ -121,6 +121,21 @@ final class FormElementManagerTest extends TestCase
         self::assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
     }
 
+    public function testSetOptionsShouldBeCalledBeforeInitMethodIsCalled(): void
+    {
+        $values = range(1, 10);
+
+        /** @var TestAsset\SelectElementWithValueOptionsCheck $element */
+        $element = $this->manager->get(
+            TestAsset\SelectElementWithValueOptionsCheck::class,
+            [
+                'value_options' => $values,
+            ],
+        );
+
+        self::assertSame($values, $element->getValueOptions());
+    }
+
     /**
      * @group issue-6132
      */

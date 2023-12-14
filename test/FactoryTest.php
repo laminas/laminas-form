@@ -849,4 +849,21 @@ final class FactoryTest extends TestCase
         self::assertInstanceOf(TestAsset\FieldsetWithDependency::class, $targetElement);
         self::assertInstanceOf(InputFilter::class, $targetElement->getDependency());
     }
+
+    public function testSetOptionsShouldBeCalledBeforeInitMethodIsCalled(): void
+    {
+        $values = range(1, 10);
+
+        /** @var TestAsset\SelectElementWithValueOptionsCheck $element */
+        $element = $this->factory->create(
+            [
+                'type' => TestAsset\SelectElementWithValueOptionsCheck::class,
+                'options' => [
+                    'value_options' => $values,
+                ],
+            ]
+        );
+
+        self::assertSame($values, $element->getValueOptions());
+    }
 }
