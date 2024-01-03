@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Element\Captcha;
 use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\Form\Fieldset;
 use Laminas\Form\View\Helper\FormRow as FormRowHelper;
 use Laminas\I18n\Translator\Translator;
 use Laminas\I18n\Translator\TranslatorInterface;
@@ -596,6 +597,78 @@ final class FormRowTest extends AbstractCommonTestCase
                 'captcha' => ['class' => 'dumb'],
                 'label'   => 'baz',
             ]))
+        );
+    }
+
+    public function testCanSetOptionToSetAttributesToLegend(): void
+    {
+        $element = new Element\Radio('foo', [
+            'value_options'     => [
+                'yes' => 'yes',
+                'no'  => 'no',
+            ],
+            'legend_attributes' => [
+                'class' => 'col-form-label',
+            ],
+        ]);
+        $element->setAttribute('id', 'bar');
+        $element->setLabel('baz');
+
+        $markup = $this->helper->render($element);
+        self::assertMatchesRegularExpression(
+            '#^<fieldset><legend class="col-form-label">baz</legend>'
+            . '<label><input type="radio" name="foo" id="bar" value="yes">yes</label>'
+            . '<label><input type="radio" name="foo" value="no">no</label></fieldset>$#',
+            $markup
+        );
+    }
+
+    public function testCanSetOptionToSetAttributesToWrapper(): void
+    {
+        $element = new Element\Radio('foo', [
+            'value_options'      => [
+                'yes' => 'yes',
+                'no'  => 'no',
+            ],
+            'wrapper_attributes' => [
+                'class' => 'row',
+            ],
+        ]);
+        $element->setAttribute('id', 'bar');
+        $element->setLabel('baz');
+
+        $markup = $this->helper->render($element);
+        self::assertMatchesRegularExpression(
+            '#^<fieldset class="row"><legend>baz</legend>'
+            . '<label><input type="radio" name="foo" id="bar" value="yes">yes</label>'
+            . '<label><input type="radio" name="foo" value="no">no</label></fieldset>$#',
+            $markup
+        );
+    }
+
+    public function testCanSetOptionToSetAttributesToWrapperAndLegend(): void
+    {
+        $element = new Element\Radio('foo', [
+            'value_options'      => [
+                'yes' => 'yes',
+                'no'  => 'no',
+            ],
+            'wrapper_attributes' => [
+                'class' => 'row',
+            ],
+            'legend_attributes'  => [
+                'class' => 'col-form-label',
+            ],
+        ]);
+        $element->setAttribute('id', 'bar');
+        $element->setLabel('baz');
+
+        $markup = $this->helper->render($element);
+        self::assertMatchesRegularExpression(
+            '#^<fieldset class="row"><legend class="col-form-label">baz</legend>'
+            . '<label><input type="radio" name="foo" id="bar" value="yes">yes</label>'
+            . '<label><input type="radio" name="foo" value="no">no</label></fieldset>$#',
+            $markup
         );
     }
 }

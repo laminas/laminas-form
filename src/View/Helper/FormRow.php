@@ -12,6 +12,7 @@ use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
 use function in_array;
+use function is_array;
 use function method_exists;
 use function sprintf;
 use function strtolower;
@@ -185,8 +186,24 @@ class FormRow extends AbstractHelper
             || $element instanceof MonthSelect
             || $element instanceof Captcha
         ) {
+            $legendAttributesData    = $element->getOption('legend_attributes');
+            $wrapperAttributesData   = $element->getOption('wrapper_attributes');
+            $wrapperAttributesString = '';
+            $legendAttributesString  = '';
+
+            if (is_array($legendAttributesData) && $legendAttributesData !== []) {
+                $legendAttributesString = ' ' . (new FormLabel())->createAttributesString($legendAttributesData);
+            }
+
+            if (is_array($wrapperAttributesData) && $wrapperAttributesData !== []) {
+                $wrapperAttributesString = ' '
+                    . (new FormCollection())->createAttributesString($wrapperAttributesData);
+            }
+
             $markup = sprintf(
-                '<fieldset><legend>%s</legend>%s</fieldset>',
+                '<fieldset%s><legend%s>%s</legend>%s</fieldset>',
+                $wrapperAttributesString,
+                $legendAttributesString,
                 $label,
                 $elementString
             );
