@@ -7,7 +7,6 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Element\Captcha;
 use Laminas\Form\Exception\InvalidArgumentException;
-use Laminas\Form\Fieldset;
 use Laminas\Form\View\Helper\FormRow as FormRowHelper;
 use Laminas\I18n\Translator\Translator;
 use Laminas\I18n\Translator\TranslatorInterface;
