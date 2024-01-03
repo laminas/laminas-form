@@ -25,7 +25,9 @@ class FormCollection extends AbstractHelper
      * @var array
      */
     protected $validTagAttributes = [
-        'name' => true,
+        'name'     => true,
+        'disabled' => true,
+        'form'     => true,
     ];
 
     /**
