@@ -30,6 +30,7 @@ use LaminasTest\Form\TestAsset\Annotation\EntityObjectPropertyHydrator;
 use LaminasTest\Form\TestAsset\Annotation\Form;
 use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
+use PHPUnit\Framework\Attributes\WithoutErrorHandler;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 
@@ -509,6 +510,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         self::assertCount(2, $inputFilter->get('username')->getValidatorChain());
     }
 
+    #[WithoutErrorHandler]
     public function testLegacyComposedObjectAnnotation(): void
     {
         ErrorHandler::setErrorHandler();
@@ -524,6 +526,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         }
     }
 
+    #[WithoutErrorHandler]
     public function testLegacyStyleFilterAnnotations(): void
     {
         ErrorHandler::setErrorHandler();
@@ -539,6 +542,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         }
     }
 
+    #[WithoutErrorHandler]
     public function testLegacyStyleHydratorAnnotations(): void
     {
         ErrorHandler::setErrorHandler();
@@ -554,6 +558,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         }
     }
 
+    #[WithoutErrorHandler]
     public function testLegacyStyleValidatorAnnotations(): void
     {
         ErrorHandler::setErrorHandler();
