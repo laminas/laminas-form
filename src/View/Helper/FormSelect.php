@@ -96,8 +96,9 @@ class FormSelect extends AbstractHelper
     {
         if (! $element instanceof SelectElement) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Laminas\Form\Element\Select',
-                __METHOD__
+                '%s requires that the element is of type %s',
+                __METHOD__,
+                SelectElement::class
             ));
         }
 
@@ -185,7 +186,7 @@ class FormSelect extends AbstractHelper
                 $value = $optionSpec['value'];
             }
             if (isset($optionSpec['label'])) {
-                $label = $optionSpec['label'];
+                $label = (string) $optionSpec['label'];
             }
             if (isset($optionSpec['selected'])) {
                 $selected = $optionSpec['selected'];

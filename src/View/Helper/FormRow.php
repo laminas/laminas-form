@@ -203,35 +203,35 @@ class FormRow extends AbstractHelper
             || $element instanceof MonthSelect
             || $element instanceof Captcha
         ) {
-            $fieldsetHelper = $this->getFieldsetHelper();
-            assert(is_callable($fieldsetHelper));
-
-            $collection = new Collection();
-            $collection->add($element);
-
-            $markup = $fieldsetHelper($collection);
-
-//                $legendAttributesData    = $element->getOption('legend_attributes');
-//                $wrapperAttributesData   = $element->getOption('wrapper_attributes');
-//                $wrapperAttributesString = '';
-//                $legendAttributesString  = '';
+            //            $fieldsetHelper = $this->getFieldsetHelper();
+//            assert(is_callable($fieldsetHelper));
 //
-//                if (is_array($legendAttributesData) && $legendAttributesData !== []) {
-//                    $legendAttributesString = ' ' . (new FormLabel())->createAttributesString($legendAttributesData);
-//                }
+//            $collection = new Collection();
+//            $collection->add($element);
 //
-//                if (is_array($wrapperAttributesData) && $wrapperAttributesData !== []) {
-//                    $wrapperAttributesString = ' '
-//                        . (new FormCollection())->createAttributesString($wrapperAttributesData);
-//                }
-//
-//                $markup = sprintf(
-//                    '<fieldset%s><legend%s>%s</legend>%s</fieldset>',
-//                    $wrapperAttributesString,
-//                    $legendAttributesString,
-//                    $label,
-//                    $elementString
-//                );
+//            $markup = $fieldsetHelper($collection);
+
+            $legendAttributesData    = $element->getOption('legend_attributes');
+            $wrapperAttributesData   = $element->getOption('wrapper_attributes');
+            $wrapperAttributesString = '';
+            $legendAttributesString  = '';
+
+            if (is_array($legendAttributesData) && $legendAttributesData !== []) {
+                $legendAttributesString = ' ' . (new FormLabel())->createAttributesString($legendAttributesData);
+            }
+
+            if (is_array($wrapperAttributesData) && $wrapperAttributesData !== []) {
+                $wrapperAttributesString = ' '
+                    . (new FormCollection())->createAttributesString($wrapperAttributesData);
+            }
+
+            $markup = sprintf(
+                '<fieldset%s><legend%s>%s</legend>%s</fieldset>',
+                $wrapperAttributesString,
+                $legendAttributesString,
+                $label,
+                $elementString
+            );
 
             return $markup . $elementErrors;
         }
