@@ -7,6 +7,7 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Escaper\Exception\RuntimeException as EscaperException;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception\InvalidArgumentException;
+use Laminas\Form\LabelAwareInterface;
 use Laminas\I18n\View\Helper\AbstractTranslatorHelper as BaseAbstractHelper;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Helper\EscapeHtml;
@@ -557,5 +558,33 @@ abstract class AbstractHelper extends BaseAbstractHelper
         }
 
         return false;
+    }
+
+    /**
+     * translate the label
+     */
+    protected function translateLabel(string $label): string
+    {
+        if (null !== ($translator = $this->getTranslator())) {
+            $label = $translator->translate(
+                $label,
+                $this->getTranslatorTextDomain()
+            );
+        }
+
+        return $label;
+    }
+
+    /**
+     * escape the label
+     */
+    protected function escapeLabel(ElementInterface $element, string $label): string
+    {
+        if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
+            $escapeHtmlHelper = $this->getEscapeHtmlHelper();
+            $label            = $escapeHtmlHelper($label);
+        }
+
+        return $label;
     }
 }

@@ -115,7 +115,6 @@ class FormRow extends AbstractHelper
      */
     public function render(ElementInterface $element, ?string $labelPosition = null): string
     {
-        $escapeHtmlHelper    = $this->getEscapeHtmlHelper();
         $labelHelper         = $this->getLabelHelper();
         $elementHelper       = $this->getElementHelper();
         $elementErrorsHelper = $this->getElementErrorsHelper();
@@ -129,9 +128,7 @@ class FormRow extends AbstractHelper
 
         if (isset($label) && '' !== $label) {
             // Translate the label
-            if (null !== ($translator = $this->getTranslator())) {
-                $label = $translator->translate($label, $this->getTranslatorTextDomain());
-            }
+            $label = $this->translateLabel($label);
         }
 
         // Does this element have errors ?
@@ -170,9 +167,7 @@ class FormRow extends AbstractHelper
                 $labelAttributes = $element->getLabelAttributes();
             }
 
-            if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
-                $label = $escapeHtmlHelper($label);
-            }
+            $label = $this->escapeLabel($element, $label);
 
             if (empty($labelAttributes)) {
                 $labelAttributes = $this->labelAttributes;

@@ -185,7 +185,7 @@ class FormSelect extends AbstractHelper
                 $value = $optionSpec['value'];
             }
             if (isset($optionSpec['label'])) {
-                $label = $optionSpec['label'];
+                $label = (string) $optionSpec['label'];
             }
             if (isset($optionSpec['selected'])) {
                 $selected = $optionSpec['selected'];
@@ -198,12 +198,7 @@ class FormSelect extends AbstractHelper
                 $selected = true;
             }
 
-            if (null !== ($translator = $this->getTranslator())) {
-                $label = $translator->translate(
-                    $label,
-                    $this->getTranslatorTextDomain()
-                );
-            }
+            $label = $this->translateLabel($label);
 
             $attributes = [
                 'value'    => $value,
