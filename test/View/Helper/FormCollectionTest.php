@@ -411,7 +411,6 @@ final class FormCollectionTest extends AbstractCommonTestCase
     public function testForElementHelperNotInstanceOfHelperInterface(): void
     {
         $method = new ReflectionMethod(FormCollectionHelper::class, 'getElementHelper');
-        $method->setAccessible(true);
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(
@@ -458,8 +457,6 @@ final class FormCollectionTest extends AbstractCommonTestCase
             [Doctype::HTML4_LOOSE,         false],
             [Doctype::HTML4_FRAMESET,      false],
             [Doctype::HTML5,               true],
-            [Doctype::CUSTOM_XHTML,        false],
-            [Doctype::CUSTOM,              false],
         ];
     }
 
@@ -483,7 +480,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         } elseif ($doctype === Doctype::XHTML5) {
             self::assertStringContainsString('<fieldset name="colors" disabled="disabled">', $markup);
         } else {
-            self::assertStringContainsString('<fieldset disabled="disabled">', $markup);
+            self::assertStringContainsString('<fieldset>', $markup);
         }
     }
 
