@@ -563,16 +563,9 @@ abstract class AbstractHelper extends BaseAbstractHelper
     /**
      * translate the label
      */
-    protected function translateLabel(string $label): string
+    protected function translateLabel(string|int $label): string|int
     {
-        if (null !== ($translator = $this->getTranslator())) {
-            $label = $translator->translate(
-                $label,
-                $this->getTranslatorTextDomain()
-            );
-        }
-
-        return $label;
+        return $this->getTranslator()?->translate($label, $this->getTranslatorTextDomain()) ?? $label;
     }
 
     /**
@@ -580,11 +573,11 @@ abstract class AbstractHelper extends BaseAbstractHelper
      */
     protected function escapeLabel(ElementInterface $element, string $label): string
     {
-        if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
-            $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-            $label            = $escapeHtmlHelper($label);
+        if ($element instanceof LabelAwareInterface && $element->getLabelOption('disable_html_escape')) {
+            return $label;
         }
 
-        return $label;
+        $escapeHtmlHelper = $this->getEscapeHtmlHelper();
+        return $escapeHtmlHelper($label);
     }
 }

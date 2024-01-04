@@ -185,7 +185,7 @@ class FormSelect extends AbstractHelper
                 $value = $optionSpec['value'];
             }
             if (isset($optionSpec['label'])) {
-                $label = (string) $optionSpec['label'];
+                $label = $optionSpec['label'];
             }
             if (isset($optionSpec['selected'])) {
                 $selected = $optionSpec['selected'];
