@@ -465,6 +465,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
      */
     public function testRenderCollectionWithDisabledAttribute(
         string $doctype,
+        bool $allowsNameAttribute,
         bool $allowsShortAttribute
     ): void {
         $this->helper->setDoctype($doctype);
@@ -475,10 +476,12 @@ final class FormCollectionTest extends AbstractCommonTestCase
 
         $markup = $this->helper->render($collection);
 
-        if ($allowsShortAttribute) {
-            self::assertStringContainsString('<fieldset name="colors" disabled>', $markup);
-        } elseif ($doctype === Doctype::XHTML5) {
-            self::assertStringContainsString('<fieldset name="colors" disabled="disabled">', $markup);
+        if ($allowsNameAttribute) {
+            if ($allowsShortAttribute) {
+                self::assertStringContainsString('<fieldset name="colors" disabled>', $markup);
+            } else {
+                self::assertStringContainsString('<fieldset name="colors" disabled="disabled">', $markup);
+            }
         } else {
             self::assertStringContainsString('<fieldset>', $markup);
         }
@@ -487,18 +490,66 @@ final class FormCollectionTest extends AbstractCommonTestCase
     public static function provideDoctypesAndPermitFlagForDisabledAttribute(): array
     {
         return [
-            [Doctype::XHTML11,             false],
-            [Doctype::XHTML1_STRICT,       false],
-            [Doctype::XHTML1_TRANSITIONAL, false],
-            [Doctype::XHTML1_FRAMESET,     false],
-            [Doctype::XHTML1_RDFA,         false],
-            [Doctype::XHTML1_RDFA11,       false],
-            [Doctype::XHTML_BASIC1,        false],
-            [Doctype::XHTML5,              false],
-            [Doctype::HTML4_STRICT,        false],
-            [Doctype::HTML4_LOOSE,         false],
-            [Doctype::HTML4_FRAMESET,      false],
-            [Doctype::HTML5,               true],
+            [
+                'doctype'              => Doctype::XHTML11,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_STRICT,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_TRANSITIONAL,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_FRAMESET,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_RDFA,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_RDFA11,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML_BASIC1,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML5,
+                'allowsNameAttribute'  => true,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML4_STRICT,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML4_LOOSE,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML4_FRAMESET,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML5,
+                'allowsNameAttribute'  => true,
+                'allowsShortAttribute' => true,
+            ],
         ];
     }
 }
