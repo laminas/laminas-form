@@ -552,4 +552,43 @@ final class FormCollectionTest extends AbstractCommonTestCase
             ],
         ];
     }
+
+    /**
+     * @dataProvider provideDoctypesAndPermitFlagForFormAttribute
+     */
+    public function testRenderCollectionWithFormAttributeAndDoctypeHtml5(
+        string $doctype,
+        bool $allowsFormAttribute
+    ): void {
+        $this->helper->setDoctype($doctype);
+
+        $form       = $this->getForm();
+        $collection = $form->get('colors');
+        $collection->setAttribute('form', 'foo');
+
+        $markup = $this->helper->render($collection);
+        if ($allowsFormAttribute) {
+            self::assertStringContainsString('<fieldset name="colors" form="foo">', $markup);
+        } else {
+            self::assertStringContainsString('<fieldset>', $markup);
+        }
+    }
+
+    public static function provideDoctypesAndPermitFlagForFormAttribute(): array
+    {
+        return [
+            [Doctype::XHTML11,             false],
+            [Doctype::XHTML1_STRICT,       false],
+            [Doctype::XHTML1_TRANSITIONAL, false],
+            [Doctype::XHTML1_FRAMESET,     false],
+            [Doctype::XHTML1_RDFA,         false],
+            [Doctype::XHTML1_RDFA11,       false],
+            [Doctype::XHTML_BASIC1,        false],
+            [Doctype::XHTML5,              true],
+            [Doctype::HTML4_STRICT,        false],
+            [Doctype::HTML4_LOOSE,         false],
+            [Doctype::HTML4_FRAMESET,      false],
+            [Doctype::HTML5,               true],
+        ];
+    }
 }
