@@ -449,6 +449,8 @@ XML,
 
         $markup = $this->helper->render($element);
 
-        self::assertStringContainsString('<select name="day">', $markup);
+        self::assertStringContainsString('<select name="hour">', $markup);
+        self::assertStringContainsString('<select name="minute">', $markup);
+        self::assertStringNotContainsString('<select name="second">', $markup);
     }
 }
