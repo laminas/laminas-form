@@ -349,7 +349,7 @@ XML,
         self::assertContains($element->getMinuteElement(), $elements);
     }
 
-    public function testGetElementsWithSesonds(): void
+    public function testGetElementsWithSeconds(): void
     {
         $element = new DateTimeSelect('foo');
         $element->setShouldShowSeconds(true);
