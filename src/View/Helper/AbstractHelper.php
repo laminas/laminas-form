@@ -562,6 +562,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * translate the label
+     *
+     * @internal
      */
     protected function translateLabel(string|int $label): string|int
     {
@@ -570,6 +572,8 @@ abstract class AbstractHelper extends BaseAbstractHelper
 
     /**
      * escape the label
+     *
+     * @internal
      */
     protected function escapeLabel(ElementInterface $element, string $label): string
     {
