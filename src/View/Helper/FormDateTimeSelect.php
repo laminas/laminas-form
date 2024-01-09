@@ -12,6 +12,7 @@ use Laminas\Form\Exception;
 
 use function array_key_exists;
 use function is_numeric;
+use function preg_match_all;
 use function preg_split;
 use function rtrim;
 use function sprintf;
@@ -203,7 +204,21 @@ class FormDateTimeSelect extends AbstractFormDateSelect
      */
     protected function parsePattern(bool $renderDelimiters = true): array
     {
-        $pattern    = $this->getPattern();
+        $pattern = $this->getPattern();
+
+        // are there any non-latin characters in the pattern?
+        $count = preg_match_all('/[^\p{Latin}\s\-,.:\/\\\'\[\]\(\)]+/u', $pattern, $matches);
+
+        if ($count) {
+            // put single quotes around these characters
+            foreach ($matches[0] as $match) {
+                $pattern = str_replace($match, "'$match'", $pattern);
+            }
+
+            // remove double quotes, if there were already quotes around them
+            $pattern = str_replace("''", "'", $pattern);
+        }
+
         $pregResult = preg_split(
             "/([ \-,.:\/]*'.*?'[ \-,.:\/]*)|([ \-,.:\/]+)/",
             $pattern,

@@ -453,4 +453,19 @@ XML,
         self::assertStringContainsString('<select name="minute">', $markup);
         self::assertStringNotContainsString('<select name="second">', $markup);
     }
+
+    public function testRendersDatesWithZhHansHKLocaleDatePattern(): void
+    {
+        $this->helper->setLocale('zh_Hans_HK');
+        $this->helper->setDateType(IntlDateFormatter::LONG);
+        self::assertSame('y年M月d日 z ah:mm:ss', $this->helper->getPattern());
+
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2022);
+        $element->setMaxYear(2027);
+
+        $markup = $this->helper->render($element);
+
+        self::assertStringContainsString('<select name="year">', $markup);
+    }
 }
