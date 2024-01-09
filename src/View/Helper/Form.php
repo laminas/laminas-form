@@ -64,7 +64,7 @@ class Form extends AbstractHelper
 
         $formContent = '';
 
-        $renderer = $this->view;
+        $renderer = $this->getView();
         assert($renderer instanceof PhpRenderer);
 
         foreach ($form as $element) {
