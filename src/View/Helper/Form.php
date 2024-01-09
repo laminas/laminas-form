@@ -66,7 +66,6 @@ class Form extends AbstractHelper
 
         $renderer = $this->getView();
         assert($renderer instanceof PhpRenderer);
-
         foreach ($form as $element) {
             if ($element instanceof FieldsetInterface) {
                 $formContent .= $renderer->formCollection($element);
