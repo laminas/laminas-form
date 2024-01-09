@@ -565,7 +565,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
      *
      * @internal
      */
-    protected function translateLabel(string|int $label): string|int
+    protected function translateLabel(string $label): string
     {
         return $this->getTranslator()?->translate($label, $this->getTranslatorTextDomain()) ?? $label;
     }
