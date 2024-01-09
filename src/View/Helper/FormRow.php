@@ -119,14 +119,14 @@ class FormRow extends AbstractHelper
         $elementHelper       = $this->getElementHelper();
         $elementErrorsHelper = $this->getElementErrorsHelper();
 
-        $label           = $element->getLabel();
+        $label           = $element->getLabel() ?? '';
         $inputErrorClass = $this->getInputErrorClass();
 
         if ($labelPosition === null) {
             $labelPosition = $this->labelPosition;
         }
 
-        if (isset($label) && '' !== $label) {
+        if ('' !== $label) {
             // Translate the label
             $label = $this->translateLabel($label);
         }
@@ -160,81 +160,76 @@ class FormRow extends AbstractHelper
 
         // hidden elements do not need a <label> -https://github.com/zendframework/zf2/issues/5607
         $type = $element->getAttribute('type');
-        if (isset($label) && '' !== $label && $type !== 'hidden') {
-            $labelAttributes = [];
 
-            if ($element instanceof LabelAwareInterface) {
-                $labelAttributes = $element->getLabelAttributes();
-            }
-
-            $label = $this->escapeLabel($element, $label);
-
-            if (empty($labelAttributes)) {
-                $labelAttributes = $this->labelAttributes;
-            }
-
-            // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
-            // labels. The semantic way is to group them inside a fieldset
-            if (
-                $type === 'multi_checkbox'
-                || $type === 'radio'
-                || $element instanceof MonthSelect
-                || $element instanceof Captcha
-            ) {
-                $markup = sprintf(
-                    '<fieldset><legend>%s</legend>%s</fieldset>',
-                    $label,
-                    $elementString
-                );
-            } else {
-                // Ensure element and label will be separated if element has an `id`-attribute.
-                // If element has label option `always_wrap` it will be nested in any case.
-                if (
-                    $element->hasAttribute('id')
-                    && ($element instanceof LabelAwareInterface && ! $element->getLabelOption('always_wrap'))
-                ) {
-                    $labelOpen  = '';
-                    $labelClose = '';
-                    $label      = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
-                } else {
-                    $labelOpen  = $labelHelper->openTag($labelAttributes);
-                    $labelClose = $labelHelper->closeTag();
-                }
-
-                if (
-                    $label !== '' && (! $element->hasAttribute('id'))
-                    || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
-                ) {
-                    $label = '<span>' . $label . '</span>';
-                }
-
-                // Button element is a special case, because label is always rendered inside it
-                if ($element instanceof Button) {
-                    $labelOpen = $labelClose = $label = '';
-                }
-
-                if ($element instanceof LabelAwareInterface && $element->getLabelOption('label_position')) {
-                    $labelPosition = $element->getLabelOption('label_position');
-                }
-
-                $markup = match ($labelPosition) {
-                    self::LABEL_PREPEND => $labelOpen . $label . $elementString . $labelClose,
-                    default => $labelOpen . $elementString . $label . $labelClose,
-                };
-            }
-
-            if ($this->renderErrors) {
-                $markup .= $elementErrors;
-            }
-        } else {
-            if ($this->renderErrors) {
-                $markup = $elementString . $elementErrors;
-            } else {
-                $markup = $elementString;
-            }
+        if ($label === '' || $type === 'hidden') {
+            return $elementString . $elementErrors;
         }
 
-        return $markup;
+        $labelAttributes = [];
+
+        if ($element instanceof LabelAwareInterface) {
+            $labelAttributes = $element->getLabelAttributes();
+        }
+
+        $label = $this->escapeLabel($element, $label);
+
+        if (empty($labelAttributes)) {
+            $labelAttributes = $this->labelAttributes;
+        }
+
+        // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
+        // labels. The semantic way is to group them inside a fieldset
+        if (
+            $type === 'multi_checkbox'
+            || $type === 'radio'
+            || $element instanceof MonthSelect
+            || $element instanceof Captcha
+        ) {
+            $markup = sprintf(
+                '<fieldset><legend>%s</legend>%s</fieldset>',
+                $label,
+                $elementString
+            );
+
+            return $markup . $elementErrors;
+        }
+
+        // Ensure element and label will be separated if element has an `id`-attribute.
+        // If element has label option `always_wrap` it will be nested in any case.
+        if (
+            $element->hasAttribute('id')
+            && ($element instanceof LabelAwareInterface && ! $element->getLabelOption('always_wrap'))
+        ) {
+            $labelOpen  = '';
+            $labelClose = '';
+            $label      = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
+        } else {
+            $labelOpen  = $labelHelper->openTag($labelAttributes);
+            $labelClose = $labelHelper->closeTag();
+        }
+
+        if (
+            $label !== '' && (! $element->hasAttribute('id'))
+            || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
+        ) {
+            $label = '<span>' . $label . '</span>';
+        }
+
+        // Button element is a special case, because label is always rendered inside it
+        if ($element instanceof Button) {
+            $labelOpen = $labelClose = $label = '';
+        }
+
+        if ($element instanceof LabelAwareInterface && $element->getLabelOption('label_position')) {
+            $labelPosition = $element->getLabelOption('label_position');
+        }
+
+        $markup = match ($labelPosition) {
+            self::LABEL_PREPEND => $labelOpen . $label . $elementString . $labelClose,
+            default => $labelOpen . $elementString . $label . $labelClose,
+        };
+
+        return $markup . $elementErrors;
     }
 
     /**

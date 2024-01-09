@@ -113,6 +113,7 @@ class FormCollection extends AbstractHelper
         $templateMarkup = '';
         $elementHelper  = $this->getElementHelper();
         assert(is_callable($elementHelper));
+
         $fieldsetHelper = $this->getFieldsetHelper();
         assert(is_callable($fieldsetHelper));
 
@@ -128,43 +129,41 @@ class FormCollection extends AbstractHelper
             }
         }
 
-        // Every collection is wrapped by a fieldset if needed
-        if ($this->shouldWrap) {
-            $attributes = $element->getAttributes();
-            if (! $this->getDoctypeHelper()->isHtml5()) {
-                unset(
-                    $attributes['name'],
-                    $attributes['disabled'],
-                    $attributes['form']
-                );
-            }
-            $attributesString = $attributes !== [] ? ' ' . $this->createAttributesString($attributes) : '';
-
-            $label  = $element->getLabel();
-            $legend = '';
-
-            if (! empty($label)) {
-                $label = $this->translateLabel($label);
-                $label = $this->escapeLabel($element, $label);
-
-                $legend = sprintf(
-                    $this->labelWrapper,
-                    $label
-                );
-            }
-
-            $markup = sprintf(
-                $this->wrapper,
-                $markup,
-                $legend,
-                $templateMarkup,
-                $attributesString
-            );
-        } else {
-            $markup .= $templateMarkup;
+        if (! $this->shouldWrap) {
+            return $markup . $templateMarkup;
         }
 
-        return $markup;
+        // Every collection is wrapped by a fieldset if needed
+        $attributes = $element->getAttributes();
+        if (! $this->getDoctypeHelper()->isHtml5()) {
+            unset(
+                $attributes['name'],
+                $attributes['disabled'],
+                $attributes['form']
+            );
+        }
+        $attributesString = $attributes !== [] ? ' ' . $this->createAttributesString($attributes) : '';
+
+        $label  = $element->getLabel();
+        $legend = '';
+
+        if (! empty($label)) {
+            $label = $this->translateLabel($label);
+            $label = $this->escapeLabel($element, $label);
+
+            $legend = sprintf(
+                $this->labelWrapper,
+                $label
+            );
+        }
+
+        return sprintf(
+            $this->wrapper,
+            $markup,
+            $legend,
+            $templateMarkup,
+            $attributesString
+        );
     }
 
     /**
