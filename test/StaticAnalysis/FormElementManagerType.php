@@ -7,6 +7,7 @@ namespace LaminasTest\Form\StaticAnalysis;
 use Laminas\Form\Element\Checkbox;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FormElementManager;
+use LaminasTest\Form\TestAsset\NewProductForm;
 
 final class FormElementManagerType
 {
@@ -22,5 +23,10 @@ final class FormElementManagerType
     public function getReturnsMixedWhenGivenAnAlias(): mixed
     {
         return $this->manager->get('foo');
+    }
+
+    public function getReturnsObjectOfClassWhenGivenFQCN(): NewProductForm
+    {
+        return $this->manager->get(NewProductForm::class);
     }
 }

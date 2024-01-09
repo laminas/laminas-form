@@ -321,9 +321,10 @@ class FormElementManager extends AbstractPluginManager
      * createFromInvokable() will use these and pass them to the instance
      * constructor if not null and a non-empty array.
      *
-     * @param class-string<ElementInterface>|string $name Service name of plugin to retrieve.
+     * @template T of ElementInterface
+     * @param class-string<T>|string $name Service name of plugin to retrieve.
      * @param null|array<mixed> $options Options to use when creating the instance.
-     * @psalm-return ($name is class-string<ElementInterface> ? ElementInterface : mixed)
+     * @psalm-return ($name is class-string<T> ? T : mixed)
      */
     public function get($name, ?array $options = null): mixed
     {
