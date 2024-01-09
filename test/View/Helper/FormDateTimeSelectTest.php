@@ -458,6 +458,7 @@ XML,
     {
         $this->helper->setLocale('zh_Hans_HK');
         $this->helper->setDateType(IntlDateFormatter::LONG);
+        self::assertSame('y年M月d日 z ah:mm:ss', $this->helper->getPattern());
 
         $element = new DateTimeSelect('foo');
         $element->setMinYear(2022);
