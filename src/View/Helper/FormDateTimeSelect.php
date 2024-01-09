@@ -10,6 +10,7 @@ use Laminas\Form\Element\DateTimeSelect as DateTimeSelectElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function array_key_exists;
 use function is_numeric;
 use function preg_split;
 use function rtrim;
@@ -104,14 +105,12 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         $yearOptions   = $this->getYearsOptions($element->getMinYear(), $element->getMaxYear());
         $hourOptions   = $this->getHoursOptions($pattern['hour']);
         $minuteOptions = $this->getMinutesOptions($pattern['minute']);
-        $secondOptions = $this->getSecondsOptions($pattern['second']);
 
         $dayElement    = $element->getDayElement()->setValueOptions($daysOptions);
         $monthElement  = $element->getMonthElement()->setValueOptions($monthsOptions);
         $yearElement   = $element->getYearElement()->setValueOptions($yearOptions);
         $hourElement   = $element->getHourElement()->setValueOptions($hourOptions);
         $minuteElement = $element->getMinuteElement()->setValueOptions($minuteOptions);
-        $secondElement = $element->getSecondElement()->setValueOptions($secondOptions);
 
         if ($element->shouldCreateEmptyOption()) {
             $dayElement->setEmptyOption('');
@@ -119,7 +118,6 @@ class FormDateTimeSelect extends AbstractFormDateSelect
             $monthElement->setEmptyOption('');
             $hourElement->setEmptyOption('');
             $minuteElement->setEmptyOption('');
-            $secondElement->setEmptyOption('');
         }
 
         $data                     = [];
@@ -129,10 +127,18 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         $data[$pattern['hour']]   = $selectHelper->render($hourElement);
         $data[$pattern['minute']] = $selectHelper->render($minuteElement);
 
-        if ($element->shouldShowSeconds()) {
+        if ($element->shouldShowSeconds() && array_key_exists('second', $pattern)) {
+            $secondOptions = $this->getSecondsOptions($pattern['second']);
+            $secondElement = $element->getSecondElement()->setValueOptions($secondOptions);
+
+            if ($element->shouldCreateEmptyOption()) {
+                $secondElement->setEmptyOption('');
+            }
+
             $data[$pattern['second']] = $selectHelper->render($secondElement);
         } else {
             unset($pattern['second']);
+
             if ($shouldRenderDelimiters) {
                 unset($pattern[4]);
             }
@@ -207,7 +213,8 @@ class FormDateTimeSelect extends AbstractFormDateSelect
 
         $result = [];
         foreach ($pregResult as $value) {
-            $noDelimiter = stripos($value, "'") === false;
+            $noDelimiter = str_contains($value, "'") === false;
+
             if ($noDelimiter && stripos($value, 'd') !== false) {
                 $result['day'] = $value;
             } elseif ($noDelimiter && str_contains($value, 'M')) {

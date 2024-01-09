@@ -321,6 +321,8 @@ class Select extends Element implements InputProviderInterface
 
     /**
      * @return mixed
+     * @param (int|string) $key
+     * @psalm-param array-key $key
      */
     protected function getOptionValue(mixed $key, mixed $optionSpec)
     {

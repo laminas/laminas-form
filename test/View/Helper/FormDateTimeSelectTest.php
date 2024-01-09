@@ -340,6 +340,31 @@ XML,
 
         self::assertCount(24, $elements[3]->getValueOptions());
         self::assertCount(60, $elements[4]->getValueOptions());
+
+        // no value options are added for the second-object, as it should not be rendered
+        self::assertCount(0, $elements[5]->getValueOptions());
+
+        self::assertContains($element->getHourElement(), $elements);
+        self::assertContains($element->getSecondElement(), $elements);
+        self::assertContains($element->getMinuteElement(), $elements);
+    }
+
+    public function testGetElementsWithSeconds(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setShouldShowSeconds(true);
+
+        $this->helper->render($element);
+
+        $elements = $element->getElements();
+        self::assertCount(6, $elements);
+
+        foreach ($elements as $childElement) {
+            self::assertInstanceOf(Select::class, $childElement);
+        }
+
+        self::assertCount(24, $elements[3]->getValueOptions());
+        self::assertCount(60, $elements[4]->getValueOptions());
         self::assertCount(60, $elements[5]->getValueOptions());
 
         self::assertContains($element->getHourElement(), $elements);
@@ -412,5 +437,20 @@ XML,
         $shortMarkup = $helper->__invoke($element, $short, $long);
 
         self::assertNotEquals($longMarkup, $shortMarkup);
+    }
+
+    public function testShortTimeFormatDoesNotProvideSecondPart(): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2023);
+        $element->setMaxYear(2023);
+
+        $this->helper->setTimeType(IntlDateFormatter::SHORT);
+
+        $markup = $this->helper->render($element);
+
+        self::assertStringContainsString('<select name="hour">', $markup);
+        self::assertStringContainsString('<select name="minute">', $markup);
+        self::assertStringNotContainsString('<select name="second">', $markup);
     }
 }
