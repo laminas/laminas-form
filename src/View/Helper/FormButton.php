@@ -6,7 +6,6 @@ namespace Laminas\Form\View\Helper;
 
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
-use Laminas\Form\LabelAwareInterface;
 
 use function gettype;
 use function is_array;
@@ -89,17 +88,8 @@ class FormButton extends FormInput
             }
         }
 
-        if (null !== ($translator = $this->getTranslator())) {
-            $buttonContent = $translator->translate(
-                $buttonContent,
-                $this->getTranslatorTextDomain()
-            );
-        }
-
-        if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
-            $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-            $buttonContent    = $escapeHtmlHelper($buttonContent);
-        }
+        $buttonContent = $this->translateLabel($buttonContent);
+        $buttonContent = $this->escapeLabel($element, $buttonContent);
 
         return $openTag . $buttonContent . $this->closeTag();
     }

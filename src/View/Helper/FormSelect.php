@@ -198,12 +198,7 @@ class FormSelect extends AbstractHelper
                 $selected = true;
             }
 
-            if (null !== ($translator = $this->getTranslator())) {
-                $label = $translator->translate(
-                    $label,
-                    $this->getTranslatorTextDomain()
-                );
-            }
+            $label = $this->translateLabel($label);
 
             $attributes = [
                 'value'    => $value,

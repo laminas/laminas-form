@@ -61,14 +61,8 @@ class FormLabel extends AbstractHelper
                 );
             }
 
-            if (null !== ($translator = $this->getTranslator())) {
-                $label = $translator->translate($label, $this->getTranslatorTextDomain());
-            }
-
-            if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
-                $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-                $label            = $escapeHtmlHelper($label);
-            }
+            $label = $this->translateLabel($label);
+            $label = $this->escapeLabel($element, $label);
         }
 
         if ($label && $labelContent) {

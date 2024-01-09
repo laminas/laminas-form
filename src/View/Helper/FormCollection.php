@@ -7,7 +7,6 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Form\Element\Collection as CollectionElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FieldsetInterface;
-use Laminas\Form\LabelAwareInterface;
 use Laminas\View\Helper\HelperInterface;
 use RuntimeException;
 
@@ -145,17 +144,8 @@ class FormCollection extends AbstractHelper
             $legend = '';
 
             if (! empty($label)) {
-                if (null !== ($translator = $this->getTranslator())) {
-                    $label = $translator->translate(
-                        $label,
-                        $this->getTranslatorTextDomain()
-                    );
-                }
-
-                if (! $element instanceof LabelAwareInterface || ! $element->getLabelOption('disable_html_escape')) {
-                    $escapeHtmlHelper = $this->getEscapeHtmlHelper();
-                    $label            = $escapeHtmlHelper($label);
-                }
+                $label = $this->translateLabel($label);
+                $label = $this->escapeLabel($element, $label);
 
                 $legend = sprintf(
                     $this->labelWrapper,
