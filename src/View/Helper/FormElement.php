@@ -99,8 +99,7 @@ class FormElement extends BaseAbstractHelper
      */
     public function render(ElementInterface $element): string
     {
-        $renderer = $this->view;
-
+        $renderer = $this->getView();
         if ($renderer === null || ! method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
             return '';
@@ -163,12 +162,10 @@ class FormElement extends BaseAbstractHelper
      */
     protected function renderHelper(string $name, ElementInterface $element): string
     {
-        $renderer = $this->view;
+        $renderer = $this->getView();
         assert($renderer instanceof PhpRenderer);
-
         $helper = $renderer->plugin($name);
         assert(is_callable($helper));
-
         return $helper($element);
     }
 

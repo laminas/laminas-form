@@ -51,8 +51,7 @@ class FormCaptcha extends AbstractHelper
 
         $helper = $captcha->getHelperName();
 
-        $renderer = $this->view;
-
+        $renderer = $this->getView();
         if ($renderer === null || ! method_exists($renderer, 'plugin')) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the renderer implements plugin(); it does not',

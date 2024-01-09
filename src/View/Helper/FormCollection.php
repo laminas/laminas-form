@@ -103,7 +103,7 @@ class FormCollection extends AbstractHelper
      */
     public function render(ElementInterface $element): string
     {
-        $renderer = $this->view;
+        $renderer = $this->getView();
         if ($renderer !== null && ! method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
             return '';
