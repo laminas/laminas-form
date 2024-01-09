@@ -411,7 +411,6 @@ final class FormCollectionTest extends AbstractCommonTestCase
     public function testForElementHelperNotInstanceOfHelperInterface(): void
     {
         $method = new ReflectionMethod(FormCollectionHelper::class, 'getElementHelper');
-        $method->setAccessible(true);
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage(
@@ -458,8 +457,138 @@ final class FormCollectionTest extends AbstractCommonTestCase
             [Doctype::HTML4_LOOSE,         false],
             [Doctype::HTML4_FRAMESET,      false],
             [Doctype::HTML5,               true],
-            [Doctype::CUSTOM_XHTML,        false],
-            [Doctype::CUSTOM,              false],
+        ];
+    }
+
+    /**
+     * @dataProvider provideDoctypesAndPermitFlagForDisabledAttribute
+     */
+    public function testRenderCollectionWithDisabledAttribute(
+        string $doctype,
+        bool $allowsNameAttribute,
+        bool $allowsShortAttribute
+    ): void {
+        $this->helper->setDoctype($doctype);
+
+        $form       = $this->getForm();
+        $collection = $form->get('colors');
+        $collection->setAttribute('disabled', true);
+
+        $markup = $this->helper->render($collection);
+
+        if ($allowsNameAttribute) {
+            if ($allowsShortAttribute) {
+                self::assertStringContainsString('<fieldset name="colors" disabled>', $markup);
+            } else {
+                self::assertStringContainsString('<fieldset name="colors" disabled="disabled">', $markup);
+            }
+        } else {
+            self::assertStringContainsString('<fieldset>', $markup);
+        }
+    }
+
+    public static function provideDoctypesAndPermitFlagForDisabledAttribute(): array
+    {
+        return [
+            [
+                'doctype'              => Doctype::XHTML11,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_STRICT,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_TRANSITIONAL,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_FRAMESET,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_RDFA,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML1_RDFA11,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML_BASIC1,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::XHTML5,
+                'allowsNameAttribute'  => true,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML4_STRICT,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML4_LOOSE,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML4_FRAMESET,
+                'allowsNameAttribute'  => false,
+                'allowsShortAttribute' => false,
+            ],
+            [
+                'doctype'              => Doctype::HTML5,
+                'allowsNameAttribute'  => true,
+                'allowsShortAttribute' => true,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider provideDoctypesAndPermitFlagForFormAttribute
+     */
+    public function testRenderCollectionWithFormAttributeAndDoctypeHtml5(
+        string $doctype,
+        bool $allowsFormAttribute
+    ): void {
+        $this->helper->setDoctype($doctype);
+
+        $form       = $this->getForm();
+        $collection = $form->get('colors');
+        $collection->setAttribute('form', 'foo');
+
+        $markup = $this->helper->render($collection);
+        if ($allowsFormAttribute) {
+            self::assertStringContainsString('<fieldset name="colors" form="foo">', $markup);
+        } else {
+            self::assertStringContainsString('<fieldset>', $markup);
+        }
+    }
+
+    public static function provideDoctypesAndPermitFlagForFormAttribute(): array
+    {
+        return [
+            [Doctype::XHTML11,             false],
+            [Doctype::XHTML1_STRICT,       false],
+            [Doctype::XHTML1_TRANSITIONAL, false],
+            [Doctype::XHTML1_FRAMESET,     false],
+            [Doctype::XHTML1_RDFA,         false],
+            [Doctype::XHTML1_RDFA11,       false],
+            [Doctype::XHTML_BASIC1,        false],
+            [Doctype::XHTML5,              true],
+            [Doctype::HTML4_STRICT,        false],
+            [Doctype::HTML4_LOOSE,         false],
+            [Doctype::HTML4_FRAMESET,      false],
+            [Doctype::HTML5,               true],
         ];
     }
 }
