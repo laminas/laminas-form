@@ -241,6 +241,9 @@
       <code>Element\DateTime::class</code>
       <code>Element\DateTime::class</code>
     </DeprecatedClass>
+    <LessSpecificReturnStatement>
+      <code>parent::get($name, $options)</code>
+    </LessSpecificReturnStatement>
     <NonInvariantDocblockPropertyType>
       <code>$aliases</code>
       <code>$factories</code>
