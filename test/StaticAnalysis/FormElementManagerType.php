@@ -29,4 +29,9 @@ final class FormElementManagerType
     {
         return $this->manager->get(NewProductForm::class);
     }
+
+    public function getReturnsElementInterfaceWhenGivenInvalidClassStringType(): ElementInterface
+    {
+        return $this->manager->get(self::class);
+    }
 }
