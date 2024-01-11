@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Escaper\Escaper;
+use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\AbstractHelper;
+use Laminas\Form\View\Helper\FormSelect;
 use Laminas\I18n\Translator\Translator;
+
+use function range;
 
 /**
  * Tests for {@see \Laminas\Form\View\Helper\AbstractHelper}
@@ -235,5 +239,17 @@ final class AbstractHelperTest extends AbstractCommonTestCase
             '',
             $this->helper->createAttributesString(['disabled' => null])
         );
+    }
+
+    public function testThatAnIntegerElementLabelWillBeCastToAString(): void
+    {
+        $select = new Select('some-name');
+        $select->setValueOptions(range(0, 10));
+
+        $helper = new FormSelect();
+
+        $markup = $helper->render($select);
+
+        self::assertStringContainsString('<option value="1">1</option>', $markup);
     }
 }
