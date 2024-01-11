@@ -295,6 +295,9 @@
       <code>translate</code>
       <code>translate</code>
     </PossiblyNullReference>
+    <RedundantCastGivenDocblockType>
+      <code>(string) $label</code>
+    </RedundantCastGivenDocblockType>
   </file>
   <file src="src/View/Helper/Form.php">
     <DeprecatedMethod>
