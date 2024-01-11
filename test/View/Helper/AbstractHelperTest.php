@@ -241,6 +241,11 @@ final class AbstractHelperTest extends AbstractCommonTestCase
         );
     }
 
+    /**
+     * @deprecated This test should be removed in 4.0 and string should become a hard requirement for labels
+     *
+     * @covers \Laminas\Form\View\Helper\AbstractHelper::translateLabel
+     */
     public function testThatAnIntegerElementLabelWillBeCastToAString(): void
     {
         $select = new Select('some-name');
