@@ -561,12 +561,17 @@ abstract class AbstractHelper extends BaseAbstractHelper
     }
 
     /**
-     * translate the label
+     * Translate the label
      *
      * @internal
+     *
+     * @todo Reduce argument to only string in the next major
+     * @param string $label
      */
-    protected function translateLabel(string $label): string
+    protected function translateLabel(int|string|float|bool $label): string
     {
+        $label = (string) $label;
+
         return $this->getTranslator()?->translate($label, $this->getTranslatorTextDomain()) ?? $label;
     }
 
