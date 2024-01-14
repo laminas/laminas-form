@@ -13,6 +13,8 @@ use Laminas\Form\Factory;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\Form;
+use Laminas\Form\FormInterface;
+use Laminas\Form\View\Helper\FormCollection;
 use Laminas\Hydrator\ArraySerializableHydrator;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\ObjectPropertyHydrator;
@@ -2416,5 +2418,79 @@ final class FormTest extends TestCase
         $this->form->setInputFilterByName($inputFilterName);
 
         self::assertSame($inputFilter, $this->form->getInputFilter());
+    }
+
+    /**
+     * @return void
+     * @group set-data
+     */
+    public function testCanBindNestedCollectionAfterPrepare2(): void
+    {
+
+        $collection = new Element\Collection('numbers');
+        $collection->setOptions([
+            'count'          => 2,
+            'allow_add'      => false,
+            'allow_remove'   => false,
+            'target_element' => [
+                'type' => TestAsset\PhoneFieldset::class,
+            ],
+        ]);
+
+        $form   = new Form();
+        $object = new ArrayObject();
+        $phone1 = new TestAsset\Entity\Phone();
+        $phone2 = new TestAsset\Entity\Phone();
+        $phone1->setNumber('unmodified');
+        $phone2->setNumber('unmodified');
+        $collection->setObject([$phone1, $phone2]);
+
+        $form->add($collection);
+        $form->setObject($object);
+
+        $value = [
+            'numbers' => [
+                [
+                    'number' => 'modified',
+                    'id'     => '1',
+                ],
+                [
+                    'number' => 'modified',
+                    'id'     => '2',
+                ],
+            ],
+        ];
+
+        $form->bindValues($value);
+        $form->prepare();
+
+        $fieldsets = $collection->getFieldsets();
+
+        $fieldsetFoo = $fieldsets[0];
+        $fieldsetBar = $fieldsets[1];
+
+        $elementsFoo = $fieldsetFoo->getElements();
+        $elementsBar = $fieldsetBar->getElements();
+
+        self::assertCount(2, $elementsFoo);
+        self::assertCount(2, $elementsBar);
+
+        self::assertEquals('numbers[0][id]', $elementsFoo['id']->getName());
+        self::assertEquals('numbers[0][number]', $elementsFoo['number']->getName());
+        self::assertEquals('numbers[1][id]', $elementsBar['id']->getName());
+        self::assertEquals('numbers[1][number]', $elementsBar['number']->getName());
+
+        self::assertEquals($value['numbers'][0]['number'], $fieldsetFoo->getObject()->getNumber());
+        self::assertEquals($value['numbers'][1]['number'], $fieldsetBar->getObject()->getNumber());
+
+        self::assertTrue($form->isValid());
+
+        $form->setData($value);
+        $form->prepare();
+
+        self::assertEquals('numbers[0][id]', $elementsFoo['id']->getName());
+        self::assertEquals('numbers[0][number]', $elementsFoo['number']->getName());
+        self::assertEquals('numbers[1][id]', $elementsBar['id']->getName());
+        self::assertEquals('numbers[1][number]', $elementsBar['number']->getName());
     }
 }
