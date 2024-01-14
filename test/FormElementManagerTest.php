@@ -25,6 +25,7 @@ use Throwable;
 
 use function array_pop;
 use function array_shift;
+use function assert;
 use function count;
 use function method_exists;
 use function strtoupper;
@@ -44,6 +45,7 @@ final class FormElementManagerTest extends TestCase
     public function testInjectToFormFactoryAware(): void
     {
         $form = $this->manager->get('Form');
+        assert($form instanceof Form);
         self::assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }
 
@@ -59,6 +61,7 @@ final class FormElementManagerTest extends TestCase
             return $form;
         });
         $form = $this->manager->get('my-form');
+        assert($form instanceof Form);
         self::assertSame($factory, $form->getFormFactory());
         self::assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }

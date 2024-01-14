@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Laminas\Form\View\Helper;
 
+use Laminas\Form\Fieldset as FieldsetElement;
 use Laminas\Form\Element\Collection as CollectionElement;
 use Laminas\Form\ElementInterface;
+use Laminas\Form\Exception;
 use Laminas\Form\FieldsetInterface;
+use Laminas\Form\LabelAwareInterface;
 use Laminas\View\Helper\HelperInterface;
 use RuntimeException;
 
@@ -47,7 +50,7 @@ class FormCollection extends AbstractHelper
      *
      * @var string
      */
-    protected $labelWrapper = '<legend>%s</legend>';
+    protected $labelWrapper = '<legend%1$s>%2$s</legend>';
 
     /**
      * Where shall the template-data be inserted into
@@ -78,6 +81,13 @@ class FormCollection extends AbstractHelper
     protected $fieldsetHelper;
 
     /**
+     * Form label helper instance
+     *
+     * @var null|FormLabel
+     */
+    protected $labelHelper;
+
+    /**
      * Invoke helper as function
      *
      * Proxies to {@link render()}.
@@ -103,6 +113,14 @@ class FormCollection extends AbstractHelper
      */
     public function render(ElementInterface $element): string
     {
+        if (! $element instanceof FieldsetElement) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                '%s requires that the element is of type %s',
+                __METHOD__,
+                FieldsetElement::class
+            ));
+        }
+
         $renderer = $this->getView();
         if ($renderer !== null && ! method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
@@ -113,6 +131,7 @@ class FormCollection extends AbstractHelper
         $templateMarkup = '';
         $elementHelper  = $this->getElementHelper();
         assert(is_callable($elementHelper));
+
         $fieldsetHelper = $this->getFieldsetHelper();
         assert(is_callable($fieldsetHelper));
 
@@ -128,43 +147,33 @@ class FormCollection extends AbstractHelper
             }
         }
 
-        // Every collection is wrapped by a fieldset if needed
-        if ($this->shouldWrap) {
-            $attributes = $element->getAttributes();
-            if (! $this->getDoctypeHelper()->isHtml5()) {
-                unset(
-                    $attributes['name'],
-                    $attributes['disabled'],
-                    $attributes['form']
-                );
-            }
-            $attributesString = $attributes !== [] ? ' ' . $this->createAttributesString($attributes) : '';
-
-            $label  = $element->getLabel();
-            $legend = '';
-
-            if (! empty($label)) {
-                $label = $this->translateLabel($label);
-                $label = $this->escapeLabel($element, $label);
-
-                $legend = sprintf(
-                    $this->labelWrapper,
-                    $label
-                );
-            }
-
-            $markup = sprintf(
-                $this->wrapper,
-                $markup,
-                $legend,
-                $templateMarkup,
-                $attributesString
-            );
-        } else {
-            $markup .= $templateMarkup;
+        if (! $this->shouldWrap) {
+            return $markup . $templateMarkup;
         }
 
-        return $markup;
+        // Every collection is wrapped by a fieldset if needed
+        $attributes = $element->getAttributes();
+        if (! $this->getDoctypeHelper()->isHtml5()) {
+            unset(
+                $attributes['name'],
+                $attributes['disabled'],
+                $attributes['form']
+            );
+        }
+
+        $label           = $element->getLabel() ?? '';
+        $labelAttributes = [];
+
+        if ($label !== '') {
+            $label = $this->translateLabel($label);
+            $label = $this->escapeLabel($element, $label);
+
+            if ($element instanceof LabelAwareInterface) {
+                $labelAttributes = $element->getLabelAttributes();
+            }
+        }
+
+        return $this->wrapElement($markup, $templateMarkup, $label, $attributes, $labelAttributes);
     }
 
     /**
@@ -370,5 +379,67 @@ class FormCollection extends AbstractHelper
         $this->templateWrapper = $templateWrapper;
 
         return $this;
+    }
+
+    /**
+     * Retrieve the FormLabel helper
+     */
+    protected function getLabelHelper(): FormLabel
+    {
+        if ($this->labelHelper) {
+            return $this->labelHelper;
+        }
+
+        if ($this->view !== null && method_exists($this->view, 'plugin')) {
+            $this->labelHelper = $this->view->plugin('form_label');
+        }
+
+        if (! $this->labelHelper instanceof FormLabel) {
+            $this->labelHelper = new FormLabel();
+        }
+
+        if ($this->hasTranslator()) {
+            $this->labelHelper->setTranslator(
+                $this->getTranslator(),
+                $this->getTranslatorTextDomain()
+            );
+        }
+
+        return $this->labelHelper;
+    }
+
+    public function wrapLabel(string $label, array $labelAttributes = []): string
+    {
+        $labelHelper           = $this->getLabelHelper();
+        $labelAttributesString = '';
+
+        if (is_array($labelAttributes) && $labelAttributes !== []) {
+            $labelAttributesString = ' ' . $labelHelper->createAttributesString($labelAttributes);
+        }
+
+        return sprintf(
+            $this->getLabelWrapper(),
+            $labelAttributesString,
+            $label
+        );
+    }
+
+    public function wrapElement(string $markup, string $templateMarkup, string $label, array $attributes = [], array $labelAttributes = []): string
+    {
+        $legend = '';
+
+        if ($label !== '') {
+            $legend = $this->wrapLabel($label, $labelAttributes);
+        }
+
+        $attributesString = $attributes !== [] ? ' ' . $this->createAttributesString($attributes) : '';
+
+        return sprintf(
+            $this->getWrapper(),
+            $markup,
+            $legend,
+            $templateMarkup,
+            $attributesString
+        );
     }
 }

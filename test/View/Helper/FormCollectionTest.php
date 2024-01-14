@@ -316,7 +316,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         $collection = $form->get('colors');
         $collection->setLabel('foo');
         $this->helper->setShouldWrap(true);
-        $this->helper->setLabelWrapper('<h1>%s</h1>');
+        $this->helper->setLabelWrapper('<h1%1$s>%2$s</h1>');
 
         $markup = $this->helper->render($collection);
 

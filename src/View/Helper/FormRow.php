@@ -6,12 +6,16 @@ namespace Laminas\Form\View\Helper;
 
 use Laminas\Form\Element\Button;
 use Laminas\Form\Element\Captcha;
+use Laminas\Form\Element\Collection;
 use Laminas\Form\Element\MonthSelect;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Form\LabelAwareInterface;
 
+use Laminas\View\Helper\HelperInterface;
+use RuntimeException;
 use function in_array;
+use function is_array;
 use function method_exists;
 use function sprintf;
 use function strtolower;
@@ -62,6 +66,20 @@ class FormRow extends AbstractHelper
      * @var null|FormElement
      */
     protected $elementHelper;
+
+    /**
+     * The view helper used to render sub fieldsets.
+     *
+     * @var null|HelperInterface
+     */
+    protected $fieldsetHelper;
+
+    /**
+     * The name of the default view helper that is used to render sub elements.
+     *
+     * @var string
+     */
+    protected $defaultFieldsetHelper = 'formCollection';
 
     /**
      * Form element errors helper instance
@@ -119,14 +137,14 @@ class FormRow extends AbstractHelper
         $elementHelper       = $this->getElementHelper();
         $elementErrorsHelper = $this->getElementErrorsHelper();
 
-        $label           = $element->getLabel();
+        $label           = $element->getLabel() ?? '';
         $inputErrorClass = $this->getInputErrorClass();
 
         if ($labelPosition === null) {
             $labelPosition = $this->labelPosition;
         }
 
-        if (isset($label) && '' !== $label) {
+        if ('' !== $label) {
             // Translate the label
             $label = $this->translateLabel($label);
         }
@@ -160,81 +178,100 @@ class FormRow extends AbstractHelper
 
         // hidden elements do not need a <label> -https://github.com/zendframework/zf2/issues/5607
         $type = $element->getAttribute('type');
-        if (isset($label) && '' !== $label && $type !== 'hidden') {
-            $labelAttributes = [];
 
-            if ($element instanceof LabelAwareInterface) {
-                $labelAttributes = $element->getLabelAttributes();
-            }
-
-            $label = $this->escapeLabel($element, $label);
-
-            if (empty($labelAttributes)) {
-                $labelAttributes = $this->labelAttributes;
-            }
-
-            // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
-            // labels. The semantic way is to group them inside a fieldset
-            if (
-                $type === 'multi_checkbox'
-                || $type === 'radio'
-                || $element instanceof MonthSelect
-                || $element instanceof Captcha
-            ) {
-                $markup = sprintf(
-                    '<fieldset><legend>%s</legend>%s</fieldset>',
-                    $label,
-                    $elementString
-                );
-            } else {
-                // Ensure element and label will be separated if element has an `id`-attribute.
-                // If element has label option `always_wrap` it will be nested in any case.
-                if (
-                    $element->hasAttribute('id')
-                    && ($element instanceof LabelAwareInterface && ! $element->getLabelOption('always_wrap'))
-                ) {
-                    $labelOpen  = '';
-                    $labelClose = '';
-                    $label      = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
-                } else {
-                    $labelOpen  = $labelHelper->openTag($labelAttributes);
-                    $labelClose = $labelHelper->closeTag();
-                }
-
-                if (
-                    $label !== '' && (! $element->hasAttribute('id'))
-                    || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
-                ) {
-                    $label = '<span>' . $label . '</span>';
-                }
-
-                // Button element is a special case, because label is always rendered inside it
-                if ($element instanceof Button) {
-                    $labelOpen = $labelClose = $label = '';
-                }
-
-                if ($element instanceof LabelAwareInterface && $element->getLabelOption('label_position')) {
-                    $labelPosition = $element->getLabelOption('label_position');
-                }
-
-                $markup = match ($labelPosition) {
-                    self::LABEL_PREPEND => $labelOpen . $label . $elementString . $labelClose,
-                    default => $labelOpen . $elementString . $label . $labelClose,
-                };
-            }
-
-            if ($this->renderErrors) {
-                $markup .= $elementErrors;
-            }
-        } else {
-            if ($this->renderErrors) {
-                $markup = $elementString . $elementErrors;
-            } else {
-                $markup = $elementString;
-            }
+        if ($label === '' || $type === 'hidden') {
+            return $elementString . $elementErrors;
         }
 
-        return $markup;
+        $labelAttributes = [];
+
+        if ($element instanceof LabelAwareInterface) {
+            $labelAttributes = $element->getLabelAttributes();
+        }
+
+        $label = $this->escapeLabel($element, $label);
+
+        if (empty($labelAttributes)) {
+            $labelAttributes = $this->labelAttributes;
+        }
+
+        // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
+        // labels. The semantic way is to group them inside a fieldset
+        if (
+            $type === 'multi_checkbox'
+            || $type === 'radio'
+            || $element instanceof MonthSelect
+            || $element instanceof Captcha
+        ) {
+            //            $fieldsetHelper = $this->getFieldsetHelper();
+//            assert(is_callable($fieldsetHelper));
+//
+//            $collection = new Collection();
+//            $collection->add($element);
+//
+//            $markup = $fieldsetHelper($collection);
+
+            $legendAttributesData    = $element->getOption('legend_attributes');
+            $wrapperAttributesData   = $element->getOption('wrapper_attributes');
+            $wrapperAttributesString = '';
+            $legendAttributesString  = '';
+
+            if (is_array($legendAttributesData) && $legendAttributesData !== []) {
+                $legendAttributesString = ' ' . (new FormLabel())->createAttributesString($legendAttributesData);
+            }
+
+            if (is_array($wrapperAttributesData) && $wrapperAttributesData !== []) {
+                $wrapperAttributesString = ' '
+                    . (new FormCollection())->createAttributesString($wrapperAttributesData);
+            }
+
+            $markup = sprintf(
+                '<fieldset%s><legend%s>%s</legend>%s</fieldset>',
+                $wrapperAttributesString,
+                $legendAttributesString,
+                $label,
+                $elementString
+            );
+
+            return $markup . $elementErrors;
+        }
+
+        // Ensure element and label will be separated if element has an `id`-attribute.
+        // If element has label option `always_wrap` it will be nested in any case.
+        if (
+            $element->hasAttribute('id')
+            && ($element instanceof LabelAwareInterface && ! $element->getLabelOption('always_wrap'))
+        ) {
+            $labelOpen  = '';
+            $labelClose = '';
+            $label      = $labelHelper->openTag($element) . $label . $labelHelper->closeTag();
+        } else {
+            $labelOpen  = $labelHelper->openTag($labelAttributes);
+            $labelClose = $labelHelper->closeTag();
+        }
+
+        if (
+            $label !== '' && (! $element->hasAttribute('id'))
+            || ($element instanceof LabelAwareInterface && $element->getLabelOption('always_wrap'))
+        ) {
+            $label = '<span>' . $label . '</span>';
+        }
+
+        // Button element is a special case, because label is always rendered inside it
+        if ($element instanceof Button) {
+            $labelOpen = $labelClose = $label = '';
+        }
+
+        if ($element instanceof LabelAwareInterface && $element->getLabelOption('label_position')) {
+            $labelPosition = $element->getLabelOption('label_position');
+        }
+
+        $markup = match ($labelPosition) {
+            self::LABEL_PREPEND => $labelOpen . $label . $elementString . $labelClose,
+            default => $labelOpen . $elementString . $label . $labelClose,
+        };
+
+        return $markup . $elementErrors;
     }
 
     /**
@@ -411,5 +448,60 @@ class FormRow extends AbstractHelper
         }
 
         return $this->elementErrorsHelper;
+    }
+
+    /**
+     * Sets the name of the view helper that should be used to render sub elements.
+     *
+     * @param  string $defaultSubHelper The name of the view helper to set.
+     * @return $this
+     */
+    public function setDefaultFieldsetHelper(string $defaultSubHelper)
+    {
+        $this->defaultFieldsetHelper = $defaultSubHelper;
+        return $this;
+    }
+
+    /**
+     * Gets the name of the view helper that should be used to render sub elements.
+     */
+    public function getDefaultFieldsetHelper(): string
+    {
+        return $this->defaultFieldsetHelper;
+    }
+
+    /**
+     * Sets the fieldset helper that should be used by this collection.
+     *
+     * @param  HelperInterface $fieldsetHelper The fieldset helper to use.
+     * @return $this
+     */
+    public function setFieldsetHelper(HelperInterface $fieldsetHelper)
+    {
+        $this->fieldsetHelper = $fieldsetHelper;
+        return $this;
+    }
+
+    /**
+     * Retrieve the fieldset helper.
+     */
+    protected function getFieldsetHelper(): HelperInterface
+    {
+        if ($this->fieldsetHelper) {
+            return $this->fieldsetHelper;
+        }
+
+        if ($this->view !== null && method_exists($this->view, 'plugin')) {
+            $this->fieldsetHelper = $this->view->plugin($this->getDefaultFieldsetHelper());
+        }
+
+        if (! $this->fieldsetHelper instanceof HelperInterface) {
+            throw new RuntimeException(
+                'Invalid element helper set in FormRow. The helper must be an '
+                . 'instance of Laminas\View\Helper\HelperInterface.'
+            );
+        }
+
+        return $this->fieldsetHelper;
     }
 }

@@ -203,13 +203,13 @@ abstract class AbstractFormDateSelect extends AbstractHelper
      * NOTE: we don't use a pattern for years, as years written as two digits can lead to hard to
      * read date for users, so we only use four digits years
      *
-     * @return array
+     * @return array<int, string>
      */
     protected function getYearsOptions(int $minYear, int $maxYear): array
     {
         $result = [];
         for ($i = $maxYear; $i >= $minYear; --$i) {
-            $result[$i] = $i;
+            $result[$i] = (string) $i;
         }
 
         return $result;

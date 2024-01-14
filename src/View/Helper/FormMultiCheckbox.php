@@ -104,8 +104,9 @@ class FormMultiCheckbox extends FormInput
     {
         if (! $element instanceof MultiCheckboxElement) {
             throw new Exception\InvalidArgumentException(sprintf(
-                '%s requires that the element is of type Laminas\Form\Element\MultiCheckbox',
-                __METHOD__
+                '%s requires that the element is of type %s',
+                __METHOD__,
+                MultiCheckboxElement::class
             ));
         }
 
