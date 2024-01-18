@@ -13,8 +13,6 @@ use Laminas\Form\Factory;
 use Laminas\Form\Fieldset;
 use Laminas\Form\FieldsetInterface;
 use Laminas\Form\Form;
-use Laminas\Form\FormInterface;
-use Laminas\Form\View\Helper\FormCollection;
 use Laminas\Hydrator\ArraySerializableHydrator;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\ObjectPropertyHydrator;
@@ -2421,12 +2419,10 @@ final class FormTest extends TestCase
     }
 
     /**
-     * @return void
      * @group set-data
      */
     public function testCanBindNestedCollectionAfterPrepare2(): void
     {
-
         $collection = new Element\Collection('numbers');
         $collection->setOptions([
             'count'          => 2,
