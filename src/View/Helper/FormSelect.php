@@ -298,7 +298,7 @@ class FormSelect extends AbstractHelper
     protected function getFormHiddenHelper(): FormHidden
     {
         if (! $this->formHiddenHelper) {
-            if (method_exists($this->view, 'plugin')) {
+            if ($this->view && method_exists($this->view, 'plugin')) {
                 $this->formHiddenHelper = $this->view->plugin('formhidden');
             }
 
