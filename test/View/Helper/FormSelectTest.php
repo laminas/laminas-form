@@ -8,7 +8,6 @@ use Laminas\Form\Element;
 use Laminas\Form\Element\Select as SelectElement;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
-use Laminas\Form\View\Helper\FormSelect;
 use Laminas\Form\View\Helper\FormSelect as FormSelectHelper;
 use Laminas\I18n\Translator\Translator;
 use LaminasTest\Form\TestAsset\Identifier;
@@ -401,7 +400,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element = new SelectElement('foo');
         $element->setUseHiddenElement(true);
         $element->setUnselectedValue('empty');
-        $helper = new FormSelect();
+        $helper = new FormSelectHelper();
         $markup = $helper->render($element);
         self::assertStringContainsString('<input type="hidden" name="foo" value="empty"><select', $markup);
     }
