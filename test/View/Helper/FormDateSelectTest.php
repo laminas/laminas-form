@@ -47,7 +47,7 @@ final class FormDateSelectTest extends AbstractCommonTestCase
     public function testGeneratesWithoutRenderer(): void
     {
         $element = new DateSelect('foo');
-        $helper = new FormDateSelectHelper();
+        $helper  = new FormDateSelectHelper();
         $markup  = $helper->render($element);
         self::assertStringContainsString('<select name="day"', $markup);
         self::assertStringContainsString('<select name="month"', $markup);
