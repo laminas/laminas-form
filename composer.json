@@ -38,7 +38,7 @@
         "laminas/laminas-text": "^2.11.0",
         "laminas/laminas-validator": "^2.43",
         "laminas/laminas-view": "^2.32",
-        "phpunit/phpunit": "^10.4.2",
+        "phpunit/phpunit": "^11.0.0",
         "psalm/plugin-phpunit": "^0.18.4",
         "vimeo/psalm": "^5.16"
     },
