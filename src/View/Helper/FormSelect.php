@@ -301,11 +301,11 @@ class FormSelect extends AbstractHelper
             return $this->formHiddenHelper;
         }
 
-        if ($this->view && method_exists($this->view, 'plugin')) {
+        if (null !== $this->view && method_exists($this->view, 'plugin')) {
             $this->formHiddenHelper = $this->view->plugin('formhidden');
         }
 
-        if (! $this->formHiddenHelper instanceof FormHidden) {
+        if (null === $this->formHiddenHelper) {
             $this->formHiddenHelper = new FormHidden();
         }
 

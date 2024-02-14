@@ -223,11 +223,11 @@ abstract class AbstractFormDateSelect extends AbstractHelper
             return $this->selectHelper;
         }
 
-        if ($this->view && method_exists($this->view, 'plugin')) {
+        if (null !== $this->view && method_exists($this->view, 'plugin')) {
             $this->selectHelper = $this->view->plugin('formselect');
         }
 
-        if (! $this->selectHelper instanceof FormSelect) {
+        if (null === $this->selectHelper) {
             $this->selectHelper = new FormSelect();
         }
 
