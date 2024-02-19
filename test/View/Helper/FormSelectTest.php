@@ -395,6 +395,16 @@ final class FormSelectTest extends AbstractCommonTestCase
         self::assertStringContainsString('<input type="hidden" name="foo" value="empty"><select', $markup);
     }
 
+    public function testHiddenElementWhenNoRenderer(): void
+    {
+        $element = new SelectElement('foo');
+        $element->setUseHiddenElement(true);
+        $element->setUnselectedValue('empty');
+        $helper = new FormSelectHelper();
+        $markup = $helper->render($element);
+        self::assertStringContainsString('<input type="hidden" name="foo" value="empty"><select', $markup);
+    }
+
     public function testRenderInputNotSelectElementRaisesException(): void
     {
         $element = new Element\Text('foo');

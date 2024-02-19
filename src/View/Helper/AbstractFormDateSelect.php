@@ -9,7 +9,6 @@ use IntlDateFormatter;
 use Laminas\Form\Exception;
 use Locale;
 
-use function assert;
 use function extension_loaded;
 use function method_exists;
 use function preg_split;
@@ -224,12 +223,13 @@ abstract class AbstractFormDateSelect extends AbstractHelper
             return $this->selectHelper;
         }
 
-        if (method_exists($this->view, 'plugin')) {
-            $selectHelper = $this->view->plugin('formselect');
-            assert($selectHelper instanceof FormSelect);
-            $this->selectHelper = $selectHelper;
+        if (null !== $this->view && method_exists($this->view, 'plugin')) {
+            $this->selectHelper = $this->view->plugin('formselect');
         }
-        assert(null !== $this->selectHelper);
+
+        if (null === $this->selectHelper) {
+            $this->selectHelper = new FormSelect();
+        }
 
         return $this->selectHelper;
     }
