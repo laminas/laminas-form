@@ -243,7 +243,7 @@ its value.
 > operations on the uploaded file. The file may be moved by one of the filters
 > attached to form input, but since the request is immutable, the change will not
 > be reflected in it. Therefore, after validation, always use the file
-> information retrieved from `$form->getData()`, _not_ from
+> information retrieved from `$form->getData()`, *not* from
 > `$request->getUploadedFiles()`.
 
 ## File Post-Redirect-Get Plugin
@@ -327,7 +327,7 @@ documentation for more information on its supported options.
 > If the file is coming in as a PSR-7 payload, the move operation will be
 > performed on the passed `UploadedFileInterface` instance. Therefore, it will
 > contain an expired stream and outdated target file name. After running this filter,
-> _do not use_ the request object to get further details about the uploaded file;
+> *do not use* the request object to get further details about the uploaded file;
 > use the new instance of `UploadedFileInterface` returned from the filter
 > invocation.
 
