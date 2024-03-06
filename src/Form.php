@@ -256,7 +256,8 @@ class Form extends Fieldset implements FormInterface
         }
 
         $this->hasValidated = false;
-        $this->data         = $data;
+        // $this->isPrepared   = false;
+        $this->data = $data;
         $this->populateValues($data);
 
         return $this;
