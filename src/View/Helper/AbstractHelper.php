@@ -51,14 +51,14 @@ abstract class AbstractHelper extends BaseAbstractHelper
      * @var array
      */
     protected $booleanAttributes = [
-        'autofocus' => ['on' => 'autofocus', 'off' => ''], // https://html.spec.whatwg.org/#attr-fe-autofocus
-        'checked'   => ['on' => 'checked',   'off' => ''], // https://html.spec.whatwg.org/#attr-input-checked
-        'disabled'  => ['on' => 'disabled',  'off' => ''], // https://html.spec.whatwg.org/#attr-fe-disabled
-        'itemscope' => ['on' => 'itemscope', 'off' => ''], // https://html.spec.whatwg.org/#attr-itemscope
-        'multiple'  => ['on' => 'multiple',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-multiple
-        'readonly'  => ['on' => 'readonly',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-readonly
-        'required'  => ['on' => 'required',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-required
-        'selected'  => ['on' => 'selected',  'off' => ''], // https://html.spec.whatwg.org/#attr-option-selected
+        'autofocus'  => ['on' => 'autofocus', 'off' => ''], // https://html.spec.whatwg.org/#attr-fe-autofocus
+        'checked'    => ['on' => 'checked',   'off' => ''], // https://html.spec.whatwg.org/#attr-input-checked
+        'disabled'   => ['on' => 'disabled',  'off' => ''], // https://html.spec.whatwg.org/#attr-fe-disabled
+        'itemscope'  => ['on' => 'itemscope', 'off' => ''], // https://html.spec.whatwg.org/#attr-itemscope
+        'multiple'   => ['on' => 'multiple',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-multiple
+        'readonly'   => ['on' => 'readonly',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-readonly
+        'required'   => ['on' => 'required',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-required
+        'selected'   => ['on' => 'selected',  'off' => ''], // https://html.spec.whatwg.org/#attr-option-selected
         'novalidate' => ['on' => 'novalidate', 'off' => ''], // https://html.spec.whatwg.org/#attr-option-selected
     ];
 
