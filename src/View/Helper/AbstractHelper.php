@@ -59,7 +59,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
         'readonly'   => ['on' => 'readonly',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-readonly
         'required'   => ['on' => 'required',  'off' => ''], // https://html.spec.whatwg.org/#attr-input-required
         'selected'   => ['on' => 'selected',  'off' => ''], // https://html.spec.whatwg.org/#attr-option-selected
-        'novalidate' => ['on' => 'novalidate', 'off' => ''], // https://html.spec.whatwg.org/#attr-option-selected
+        'novalidate' => ['on' => 'novalidate', 'off' => ''], // https://html.spec.whatwg.org/#attr-fs-novalidate
     ];
 
     /**
