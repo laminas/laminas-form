@@ -30,6 +30,7 @@ use LaminasTest\Form\TestAsset\Annotation\EntityObjectPropertyHydrator;
 use LaminasTest\Form\TestAsset\Annotation\Form;
 use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\WithoutErrorHandler;
 use PHPUnit\Framework\TestCase;
 use Throwable;
@@ -572,5 +573,18 @@ abstract class AbstractBuilderTestCase extends TestCase
         } finally {
             ErrorHandler::restoreErrorHandler();
         }
+    }
+
+    #[DoesNotPerformAssertions]
+    public function testAllowsEventListenerReturnVoid(): void
+    {
+        $entity  = new TestAsset\Annotation\Entity();
+        $builder = $this->createBuilder();
+
+        $builder->getEventManager()->attach('*', function () {
+            // return void;
+        });
+
+        $builder->createForm($entity);
     }
 }
