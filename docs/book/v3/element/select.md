@@ -129,11 +129,11 @@ The following methods are specific to the `Select` element; all other methods
 defined by the [parent `Element` class](element.md#public-methods) are also
 available.
 
-Method signature                         | Description
----------------------------------------- | -----------
-`setOptions(array $options) : void`      | Set options for an element. Accepted options, in addition to the inherited options, include `value_options`, `empty_option`, and `disable_inarray_validator`, which call `setValueOptions()`, `setEmptyOption()` and `setDisableInArrayValidator()`, respectively.
-`setValueOptions(array $options) : void` | Set the value options for the select element. The array must contain key/value pairs.
-`getValueOptions() : array`              | Return the value options.
-`unsetValueOption($key) : void`          | Unset the value option from the select element.
-`setEmptyOption($emptyOption) : void`    | Optionally set a label for an empty option (option with no value). It is set to `null` by default, which means that no empty option will be rendered.
-`getEmptyOption() : string|null`         | Get the label for the empty option (`null` if none).
+| Method signature                         | Description                                                                                                                                                                                                                                                        |
+|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `setOptions(array $options) : void`      | Set options for an element. Accepted options, in addition to the inherited options, include `value_options`, `empty_option`, and `disable_inarray_validator`, which call `setValueOptions()`, `setEmptyOption()` and `setDisableInArrayValidator()`, respectively. |
+| `setValueOptions(array $options) : void` | Set the value options for the select element. The array must contain key/value pairs.                                                                                                                                                                              |
+| `getValueOptions() : array`              | Return the value options.                                                                                                                                                                                                                                          |
+| `unsetValueOption($key) : void`          | Unset the value option from the select element.                                                                                                                                                                                                                    |
+| `setEmptyOption($emptyOption) : void`    | Optionally set a label for an empty option (option with no value). It is set to `null` by default, which means that no empty option will be rendered.                                                                                                              |
+| `getEmptyOption() : string \| null`      | Get the label for the empty option (`null` if none).                                                                                                                                                                                                               |

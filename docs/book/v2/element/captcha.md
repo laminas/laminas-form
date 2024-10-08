@@ -47,8 +47,8 @@ The following methods are specific to the `Captcha` element; all other methods
 defined by the [parent `Element` class](element.md#public-methods) are also
 available.
 
-Method signature                               | Description
----------------------------------------------- | -----------
-`setCaptcha(array|Laminas\Captcha\AdapterInterface $captcha) : void` | Set the CAPTCHA adapter for this element. If `$captcha` is an array, `Laminas\Captcha\Factory::factory()` will be run to create the adapter from the array configuration.
-`getCaptcha() : Laminas\Captcha\AdapterInterface` | Return the CAPTCHA adapter for this element.
-`getInputSpecification() : array`              | Returns a input filter specification, which includes a `Laminas\Filter\StringTrim` filter, and a CAPTCHA validator.
+| Method signature                                                      | Description                                                                                                                                                               |
+|-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `setCaptcha(array\|Laminas\Captcha\AdapterInterface $captcha) : void` | Set the CAPTCHA adapter for this element. If `$captcha` is an array, `Laminas\Captcha\Factory::factory()` will be run to create the adapter from the array configuration. |
+| `getCaptcha() : Laminas\Captcha\AdapterInterface`                     | Return the CAPTCHA adapter for this element.                                                                                                                              |
+| `getInputSpecification() : array`                                     | Returns a input filter specification, which includes a `Laminas\Filter\StringTrim` filter, and a CAPTCHA validator.                                                       |
