@@ -23,6 +23,7 @@ use Laminas\Validator\Digits;
 use Laminas\Validator\ValidatorChain;
 use Laminas\Validator\ValidatorInterface;
 use Laminas\Validator\ValidatorPluginManager;
+use LaminasTest\Form\TestAsset\CustomElementWithRequiredOption;
 use LaminasTest\Form\TestAsset\InputFilter;
 use LaminasTest\Form\TestAsset\Model;
 use PHPUnit\Framework\TestCase;
@@ -848,5 +849,71 @@ final class FactoryTest extends TestCase
 
         self::assertInstanceOf(TestAsset\FieldsetWithDependency::class, $targetElement);
         self::assertInstanceOf(InputFilter::class, $targetElement->getDependency());
+    }
+
+    public function testElementWithRequiredOptionsNestedInFieldsetOrCollection(): void
+    {
+        $formManager = $this->factory->getFormElementManager();
+        $formManager->setFactory(
+            TestAsset\FieldsetWithDependency::class,
+            TestAsset\FieldsetWithDependencyFactory::class
+        );
+
+        $collection = $this->factory->create([
+            'type'    => Form\Element\Collection::class,
+            'name'    => 'my_fieldset_collection',
+            'options' => [
+                'target_element' => [
+                    'type'    => CustomElementWithRequiredOption::class,
+                    'options' => [
+                        'requiredOption' => 'Any String',
+                    ],
+                ],
+            ],
+        ]);
+        self::assertInstanceOf(Form\Element\Collection::class, $collection);
+        $element = $collection->getTargetElement();
+        self::assertInstanceOf(CustomElementWithRequiredOption::class, $element);
+        self::assertSame('Any String', $element->myString);
+    }
+
+    public function testCreateElementWithRequiredOption(): void
+    {
+        $element = $this->factory->create([
+            'type'    => CustomElementWithRequiredOption::class,
+            'name'    => 'foo',
+            'options' => [
+                'requiredOption' => 'Any String',
+            ],
+        ]);
+
+        self::assertInstanceOf(CustomElementWithRequiredOption::class, $element);
+        self::assertSame('Any String', $element->myString);
+    }
+
+    public function testCanCreateElementWithConstructorDependency(): void
+    {
+        $formManager = $this->factory->getFormElementManager();
+        $formManager->setFactory(
+            TestAsset\CustomElementWithConstructorDependency::class,
+            TestAsset\CustomElementWithConstructorDependencyFactory::class
+        );
+
+        $collection = $this->factory->create([
+            'type'    => Form\Element\Collection::class,
+            'name'    => 'my_fieldset_collection',
+            'options' => [
+                'target_element' => [
+                    'type' => TestAsset\CustomElementWithConstructorDependency::class,
+                ],
+            ],
+        ]);
+
+        self::assertInstanceOf(Form\Element\Collection::class, $collection);
+
+        $targetElement = $collection->getTargetElement();
+
+        self::assertInstanceOf(TestAsset\CustomElementWithConstructorDependency::class, $targetElement);
+        self::assertSame('FOO', $targetElement->myString);
     }
 }
