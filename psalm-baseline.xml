@@ -307,6 +307,9 @@
     </TooManyArguments>
   </file>
   <file src="src/FormAbstractServiceFactory.php">
+    <DeprecatedMethod>
+      <code><![CDATA[setPluginManager]]></code>
+    </DeprecatedMethod>
     <PossiblyNullReference>
       <code><![CDATA[setPluginManager]]></code>
       <code><![CDATA[setPluginManager]]></code>
@@ -433,9 +436,6 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="src/View/Helper/FormElementErrors.php">
-    <DeprecatedInterface>
-      <code><![CDATA[$this->getTranslator()]]></code>
-    </DeprecatedInterface>
     <MissingClosureParamType>
       <code><![CDATA[$item]]></code>
     </MissingClosureParamType>
@@ -471,9 +471,6 @@
     </PossiblyNullArgument>
   </file>
   <file src="src/View/Helper/FormRow.php">
-    <DeprecatedInterface>
-      <code><![CDATA[$this->getTranslator()]]></code>
-    </DeprecatedInterface>
     <PossiblyNullReference>
       <code><![CDATA[render]]></code>
     </PossiblyNullReference>
@@ -496,6 +493,10 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="test/Annotation/AbstractBuilderTestCase.php">
+    <DeprecatedMethod>
+      <code><![CDATA[getFilters]]></code>
+      <code><![CDATA[getFilters]]></code>
+    </DeprecatedMethod>
     <PossiblyUndefinedMethod>
       <code><![CDATA[allowEmpty]]></code>
       <code><![CDATA[getFilterChain]]></code>
@@ -1087,6 +1088,10 @@
     </NullArgument>
   </file>
   <file src="test/FormAbstractServiceFactoryTest.php">
+    <DeprecatedMethod>
+      <code><![CDATA[getPluginManager]]></code>
+      <code><![CDATA[getPluginManager]]></code>
+    </DeprecatedMethod>
     <PossiblyNullReference>
       <code><![CDATA[getPluginManager]]></code>
       <code><![CDATA[getPluginManager]]></code>
@@ -1320,9 +1325,6 @@
     </InvalidArgument>
   </file>
   <file src="test/View/Helper/FormButtonTest.php">
-    <DeprecatedInterface>
-      <code><![CDATA[$this->helper->getTranslator()]]></code>
-    </DeprecatedInterface>
     <InvalidArgument>
       <code><![CDATA[$element]]></code>
     </InvalidArgument>
@@ -1372,15 +1374,7 @@
       <code><![CDATA[$element]]></code>
     </InvalidArgument>
   </file>
-  <file src="test/View/Helper/FormRadioTest.php">
-    <DeprecatedInterface>
-      <code><![CDATA[$this->helper->getTranslator()]]></code>
-    </DeprecatedInterface>
-  </file>
   <file src="test/View/Helper/FormRowTest.php">
-    <DeprecatedInterface>
-      <code><![CDATA[$this->helper->getTranslator()]]></code>
-    </DeprecatedInterface>
     <PossiblyInvalidFunctionCall>
       <code><![CDATA[$escapeHelper($label)]]></code>
     </PossiblyInvalidFunctionCall>
