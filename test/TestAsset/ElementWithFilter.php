@@ -10,7 +10,7 @@ use Laminas\I18n\Validator\Alnum;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\NotEmpty;
 
-class ElementWithFilter extends Element implements InputProviderInterface
+final class ElementWithFilter extends Element implements InputProviderInterface
 {
     /** @inheritDoc */
     public function getInputSpecification()

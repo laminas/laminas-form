@@ -10,7 +10,7 @@ use Laminas\I18n\Validator\Alnum;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\Validator\NotEmpty;
 
-class FieldsetWithInputFilter extends Fieldset implements InputFilterProviderInterface
+final class FieldsetWithInputFilter extends Fieldset implements InputFilterProviderInterface
 {
     /** @inheritDoc */
     public function getInputFilterSpecification()

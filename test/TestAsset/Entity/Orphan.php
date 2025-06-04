@@ -6,7 +6,7 @@ namespace LaminasTest\Form\TestAsset\Entity;
 
 use function get_object_vars;
 
-class Orphan
+final class Orphan
 {
     /** @var string */
     public $name;

@@ -10,7 +10,7 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Phone;
 
-class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
+final class PhoneFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {

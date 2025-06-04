@@ -16,6 +16,7 @@ use function method_exists;
 use function sprintf;
 use function strtolower;
 
+/** @final */
 class FormRow extends AbstractHelper
 {
     public const LABEL_APPEND  = 'append';
@@ -133,7 +134,7 @@ class FormRow extends AbstractHelper
 
         // Does this element have errors ?
         if ($element->getMessages() && $inputErrorClass) {
-            $classAttributes  = $element->hasAttribute('class') ? $element->getAttribute('class') . ' ' : '';
+            $classAttributes  = $element->hasAttribute('class') ? (string) $element->getAttribute('class') . ' ' : '';
             $classAttributes .= $inputErrorClass;
 
             $element->setAttribute('class', $classAttributes);

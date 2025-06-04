@@ -7,7 +7,7 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\Form\Fieldset;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
-class InputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
+final class InputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
 {
     /**
      * @inheritDoc

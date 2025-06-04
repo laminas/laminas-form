@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
+use Laminas\Form\Exception\ExceptionInterface;
+
 interface ElementInterface
 {
     /**
@@ -12,7 +14,7 @@ interface ElementInterface
      * In most cases, this will proxy to the attributes for storage, but is
      * present to indicate that elements are generally named.
      *
-     * @return $this
+     * @return self
      */
     public function setName(string $name);
 
@@ -24,14 +26,14 @@ interface ElementInterface
     /**
      * Set options for an element
      *
-     * @return $this
+     * @return self
      */
     public function setOptions(iterable $options);
 
     /**
      * Set a single option for an element
      *
-     * @return $this
+     * @return self
      */
     public function setOption(string $key, mixed $value);
 
@@ -51,7 +53,7 @@ interface ElementInterface
      * Set a single element attribute
      *
      * @param scalar|null $value
-     * @return $this
+     * @return self
      */
     public function setAttribute(string $key, mixed $value);
 
@@ -73,7 +75,7 @@ interface ElementInterface
      * Implementation will decide if this will overwrite or merge.
      *
      * @param iterable<string, scalar|null> $arrayOrTraversable
-     * @return $this
+     * @return self
      */
     public function setAttributes(iterable $arrayOrTraversable);
 
@@ -87,7 +89,7 @@ interface ElementInterface
     /**
      * Set the value of the element
      *
-     * @return $this
+     * @return self
      */
     public function setValue(mixed $value);
 
@@ -101,7 +103,7 @@ interface ElementInterface
     /**
      * Set the label (if any) used for this element
      *
-     * @return $this
+     * @return self
      */
     public function setLabel(?string $label);
 
@@ -113,7 +115,7 @@ interface ElementInterface
     /**
      * Set a list of messages to report when validation fails
      *
-     * @return $this
+     * @return self
      */
     public function setMessages(iterable $messages);
 
@@ -121,6 +123,8 @@ interface ElementInterface
      * Get validation error messages, if any
      *
      * Returns a list of validation failure messages, if any.
+     *
+     * @throws ExceptionInterface
      */
     public function getMessages(): array;
 }

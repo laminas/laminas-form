@@ -12,7 +12,7 @@ use Traversable;
  * @template TValue
  * @implements IteratorAggregateInterface<TKey, TValue>
  */
-class IteratorAggregate implements IteratorAggregateInterface
+final class IteratorAggregate implements IteratorAggregateInterface
 {
     public function __construct(protected Traversable $iterator)
     {

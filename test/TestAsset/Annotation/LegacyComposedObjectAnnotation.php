@@ -10,7 +10,7 @@ use Laminas\Form\Annotation;
  * @Annotation\Name("hierarchical")
  */
 #[Annotation\Name("hierarchical")]
-class LegacyComposedObjectAnnotation
+final class LegacyComposedObjectAnnotation
 {
     /**
      * @var null|Entity

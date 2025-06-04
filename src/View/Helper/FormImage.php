@@ -9,6 +9,7 @@ use Laminas\Form\Exception;
 
 use function sprintf;
 
+/** @final */
 class FormImage extends FormInput
 {
     /**

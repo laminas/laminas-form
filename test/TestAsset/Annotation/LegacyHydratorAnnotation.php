@@ -13,7 +13,7 @@ use Laminas\Form\Annotation;
  */
 #[Annotation\Name("user")]
 #[Annotation\Hydrator(["type" => \Laminas\Hydrator\ClassMethodsHydrator::class, "options" => ["underscoreSeparatedKeys" => false]])]
-class LegacyHydratorAnnotation
+final class LegacyHydratorAnnotation
 {
     /**
      * @Annotation\Options({"label":"Username:", "label_attributes": {"class": "label"}})

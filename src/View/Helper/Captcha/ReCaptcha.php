@@ -13,6 +13,7 @@ use Laminas\Form\View\Helper\FormInput;
 use function assert;
 use function sprintf;
 
+/** @final */
 class ReCaptcha extends FormInput
 {
     /**

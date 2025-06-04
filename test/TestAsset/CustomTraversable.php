@@ -17,7 +17,7 @@ use function reset;
  * @template TValue
  * @implements Iterator<TKey, TValue>
  */
-class CustomTraversable implements Iterator
+final class CustomTraversable implements Iterator
 {
     /** @param array<TKey, TValue> $data */
     public function __construct(private array $data)

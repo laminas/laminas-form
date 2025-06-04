@@ -9,7 +9,7 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Category;
 
-class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
+final class CategoryFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {

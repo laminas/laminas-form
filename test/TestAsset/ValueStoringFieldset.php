@@ -6,7 +6,7 @@ namespace LaminasTest\Form\TestAsset;
 
 use Laminas\Form\Fieldset;
 
-class ValueStoringFieldset extends Fieldset
+final class ValueStoringFieldset extends Fieldset
 {
     /** @var iterable */
     protected $storedValue;

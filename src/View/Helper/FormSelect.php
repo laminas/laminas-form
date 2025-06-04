@@ -19,6 +19,7 @@ use function is_scalar;
 use function method_exists;
 use function sprintf;
 
+/** @final */
 class FormSelect extends AbstractHelper
 {
     /**

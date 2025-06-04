@@ -13,7 +13,7 @@ use LaminasTest\Form\TestAsset\Annotation\Entity;
  * @Annotation\Options({"use_as_base_fieldset":true})
  */
 #[Annotation\Options(["use_as_base_fieldset" => true])]
-class EntityUsingInstanceProperty
+final class EntityUsingInstanceProperty
 {
     /**
      * @var null|Entity

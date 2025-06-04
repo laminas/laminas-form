@@ -14,6 +14,7 @@ use function is_array;
 use function is_object;
 use function sprintf;
 
+/** @final */
 class FormLabel extends AbstractHelper
 {
     public const APPEND  = 'append';

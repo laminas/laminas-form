@@ -8,7 +8,7 @@ use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
-class NestedFieldset extends Fieldset implements InputFilterProviderInterface
+final class NestedFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {

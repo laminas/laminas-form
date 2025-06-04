@@ -9,7 +9,7 @@ interface ElementAttributeRemovalInterface
     /**
      * Remove a single element attribute
      *
-     * @return $this
+     * @return self
      */
     public function removeAttribute(string $key);
 
@@ -17,14 +17,14 @@ interface ElementAttributeRemovalInterface
      * Remove many attributes at once
      *
      * @param list<string> $keys
-     * @return $this
+     * @return self
      */
     public function removeAttributes(array $keys);
 
     /**
      * Remove all attributes at once
      *
-     * @return $this
+     * @return self
      */
     public function clearAttributes();
 }

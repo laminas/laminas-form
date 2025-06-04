@@ -8,7 +8,7 @@ use Laminas\Form\Annotation;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 
-class FieldsetOrderEntity
+final class FieldsetOrderEntity
 {
     /**
      * @var null|Fieldset

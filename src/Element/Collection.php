@@ -26,6 +26,7 @@ use function iterator_to_array;
 use function max;
 use function sprintf;
 
+/** @final */
 class Collection extends Fieldset
 {
     /**
@@ -167,7 +168,7 @@ class Collection extends Fieldset
      * In this case the "object" is a collection of objects
      *
      * @param iterable $object
-     * @return $this
+     * @return self
      * @throws Exception\InvalidArgumentException
      */
     public function setObject($object)
@@ -288,7 +289,7 @@ class Collection extends Fieldset
     /**
      * Set the initial count of target element
      *
-     * @return $this
+     * @return self
      */
     public function setCount(int $count)
     {
@@ -308,7 +309,7 @@ class Collection extends Fieldset
      * Set the target element
      *
      * @param ElementInterface|array|Traversable $elementOrFieldset
-     * @return $this
+     * @return self
      * @throws Exception\InvalidArgumentException
      */
     public function setTargetElement($elementOrFieldset)
@@ -344,9 +345,7 @@ class Collection extends Fieldset
     }
 
     /**
-     * Get allow add
-     *
-     * @return $this
+     * @return self
      */
     public function setAllowAdd(bool $allowAdd)
     {
@@ -363,7 +362,7 @@ class Collection extends Fieldset
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setAllowRemove(bool $allowRemove)
     {
@@ -380,7 +379,7 @@ class Collection extends Fieldset
      * If set to true, a template prototype is automatically added to the form
      * to ease the creation of dynamic elements through JavaScript
      *
-     * @return $this
+     * @return self
      */
     public function setShouldCreateTemplate(bool $shouldCreateTemplate)
     {
@@ -400,7 +399,7 @@ class Collection extends Fieldset
     /**
      * Set the placeholder used in the template generated to help create new elements in JavaScript
      *
-     * @return $this
+     * @return self
      */
     public function setTemplatePlaceholder(string $templatePlaceholder)
     {
@@ -418,7 +417,7 @@ class Collection extends Fieldset
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setCreateNewObjects(bool $createNewObjects)
     {

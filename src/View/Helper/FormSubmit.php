@@ -7,6 +7,7 @@ namespace Laminas\Form\View\Helper;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+/** @final */
 class FormSubmit extends FormInput
 {
     /**

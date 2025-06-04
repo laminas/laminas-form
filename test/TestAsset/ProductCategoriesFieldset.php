@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-class ProductCategoriesFieldset extends ProductFieldset
+final class ProductCategoriesFieldset extends ProductFieldset
 {
     public function __construct()
     {

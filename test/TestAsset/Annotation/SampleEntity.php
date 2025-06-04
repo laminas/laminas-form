@@ -6,7 +6,7 @@ namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
 
-class SampleEntity
+final class SampleEntity
 {
     /**
      * @var null|string

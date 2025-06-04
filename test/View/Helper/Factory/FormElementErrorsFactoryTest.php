@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper\Factory;
 use Generator;
 use Laminas\Form\Element;
 use Laminas\Form\View\Helper\Factory\FormElementErrorsFactory;
+use Laminas\Form\View\Helper\FormElementErrors;
 use Laminas\I18n\Translator\TranslatorInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -30,7 +31,7 @@ final class FormElementErrorsFactoryTest extends TestCase
         $factory    = new FormElementErrorsFactory();
         $viewHelper = $factory($container);
 
-        $this->addToAssertionCount(1);
+        self::assertInstanceOf(FormElementErrors::class, $viewHelper);
     }
 
     /**

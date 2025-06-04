@@ -8,7 +8,7 @@ use Laminas\Form\Form;
 use Laminas\Hydrator\ClassMethodsHydrator;
 
 /** @extends Form<array<string, mixed>> */
-class NewProductForm extends Form
+final class NewProductForm extends Form
 {
     public function __construct()
     {

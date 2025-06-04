@@ -6,6 +6,7 @@ namespace Laminas\Form;
 
 use Countable;
 use IteratorAggregate;
+use Laminas\Form\Exception\ExceptionInterface;
 use Laminas\Hydrator\HydratorInterface;
 use Traversable;
 
@@ -27,7 +28,8 @@ interface FieldsetInterface extends
      *                                                               ElementInterface; however, keeping it flexible
      *                                                               to allow a factory-based form
      *                                                               implementation as well
-     * @return $this
+     * @return self
+     * @throws ExceptionInterface
      */
     public function add($elementOrFieldset, array $flags = []);
 
@@ -44,14 +46,14 @@ interface FieldsetInterface extends
     /**
      * Remove a named element or fieldset
      *
-     * @return $this
+     * @return self
      */
     public function remove(string $elementOrFieldset);
 
     /**
      * Set/change the priority of an element or fieldset
      *
-     * @return $this
+     * @return self
      */
     public function setPriority(string $elementOrFieldset, int $priority);
 
@@ -82,7 +84,7 @@ interface FieldsetInterface extends
      * Set the object used by the hydrator
      *
      * @param  mixed $object
-     * @return $this
+     * @return self
      */
     public function setObject($object);
 
@@ -101,7 +103,7 @@ interface FieldsetInterface extends
     /**
      * Set the hydrator to use when binding an object to the element
      *
-     * @return $this
+     * @return self
      */
     public function setHydrator(HydratorInterface $hydrator);
 

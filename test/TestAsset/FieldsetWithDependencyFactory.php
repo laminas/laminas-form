@@ -7,7 +7,7 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Psr\Container\ContainerInterface;
 
-class FieldsetWithDependencyFactory implements FactoryInterface
+final class FieldsetWithDependencyFactory implements FactoryInterface
 {
     /**
      * @inheritDoc

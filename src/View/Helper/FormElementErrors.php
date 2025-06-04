@@ -13,6 +13,7 @@ use function count;
 use function implode;
 use function sprintf;
 
+/** @final */
 class FormElementErrors extends AbstractHelper
 {
     /** @var string Templates for the open/close/separators for message tags */

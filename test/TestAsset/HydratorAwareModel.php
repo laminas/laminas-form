@@ -8,7 +8,7 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\Hydrator\HydratorAwareInterface;
 use Laminas\Hydrator\HydratorInterface;
 
-class HydratorAwareModel implements HydratorAwareInterface
+final class HydratorAwareModel implements HydratorAwareInterface
 {
     /** @var null|HydratorInterface */
     protected $hydrator;

@@ -9,6 +9,8 @@ use function ini_get;
 /**
  * A view helper to render the hidden input with a Session progress id
  * for file uploads progress tracking.
+ *
+ * @final
  */
 class FormFileApcProgress extends FormFileUploadProgress
 {

@@ -12,6 +12,7 @@ use Laminas\Form\Exception;
 use function assert;
 use function sprintf;
 
+/** @final */
 class Figlet extends AbstractWord
 {
     /**

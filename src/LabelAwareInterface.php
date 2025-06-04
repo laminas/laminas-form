@@ -9,7 +9,7 @@ interface LabelAwareInterface
     /**
      * Set the label (if any) used for this element
      *
-     * @return $this
+     * @return self
      */
     public function setLabel(?string $label);
 
@@ -22,7 +22,7 @@ interface LabelAwareInterface
      * Set the attributes to use with the label
      *
      * @param  array<string, scalar|null> $labelAttributes
-     * @return $this
+     * @return self
      */
     public function setLabelAttributes(array $labelAttributes);
 
@@ -38,12 +38,14 @@ interface LabelAwareInterface
      *
      * Implementation will decide if this will overwrite or merge.
      *
-     * @return $this
+     * @return self
      */
     public function setLabelOptions(iterable $arrayOrTraversable);
 
     /**
      * Get label specific options
+     *
+     * @return array<string, mixed>
      */
     public function getLabelOptions(): array;
 
@@ -51,7 +53,7 @@ interface LabelAwareInterface
      * Set a single label optionn
      *
      * @param  mixed  $value
-     * @return $this
+     * @return self
      */
     public function setLabelOption(string $key, $value);
 
@@ -66,7 +68,7 @@ interface LabelAwareInterface
     /**
      * Remove a single label option
      *
-     * @return $this
+     * @return self
      */
     public function removeLabelOption(string $key);
 
@@ -78,14 +80,14 @@ interface LabelAwareInterface
     /**
      * Remove many attributes at once
      *
-     * @return $this
+     * @return self
      */
     public function removeLabelOptions(array $keys);
 
     /**
      * Clear all label options
      *
-     * @return $this
+     * @return self
      */
     public function clearLabelOptions();
 }

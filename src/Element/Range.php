@@ -11,6 +11,7 @@ use Laminas\Validator\LessThan as LessThanValidator;
 use Laminas\Validator\Step as StepValidator;
 use Laminas\Validator\ValidatorInterface;
 
+/** @final */
 class Range extends NumberElement
 {
     /** @var array<string, scalar|null>  */

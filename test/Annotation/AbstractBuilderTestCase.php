@@ -133,10 +133,10 @@ abstract class AbstractBuilderTestCase extends TestCase
         $traversable = $form->getIterator();
         self::assertInstanceOf(PriorityList::class, $traversable);
         $test = $traversable->getIterator()->current();
-        self::assertSame($email, $test, 'Test is element ' . $test->getName());
+        self::assertSame($email, $test, 'Test is element ' . (string) $test->getName());
 
         $test = $traversable->current();
-        self::assertSame($email, $test, 'Test is element ' . $test->getName());
+        self::assertSame($email, $test, 'Test is element ' . (string) $test->getName());
 
         $hydrator = $form->getHydrator();
         self::assertInstanceOf(ObjectPropertyHydrator::class, $hydrator);
@@ -152,7 +152,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $traversable = $form->getIterator();
         self::assertInstanceOf(PriorityList::class, $traversable);
         $first = $traversable->getIterator()->current();
-        self::assertSame($element, $first, 'Test is element ' . $first->getName());
+        self::assertSame($element, $first, 'Test is element ' . (string) $first->getName());
     }
 
     public function testFieldsetOrderWithPreserve(): void
@@ -166,7 +166,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $traversable = $form->getIterator();
         self::assertInstanceOf(PriorityList::class, $traversable);
         $first = $traversable->getIterator()->current();
-        self::assertSame($fieldset, $first, 'Test is element ' . $first->getName());
+        self::assertSame($fieldset, $first, 'Test is element ' . (string) $first->getName());
     }
 
     public function testCanRetrieveOnlyFormSpecification(): void

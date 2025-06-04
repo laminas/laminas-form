@@ -11,7 +11,7 @@ use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
 use function method_exists;
 use function preg_replace;
 
-class CustomFieldsetHelper extends AbstractHelper
+final class CustomFieldsetHelper extends AbstractHelper
 {
     /** @var FormCollectionHelper|null */
     protected $fieldsetHelper;

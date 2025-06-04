@@ -9,6 +9,7 @@ use IntlDateFormatter;
 use Laminas\Form\Exception;
 use Locale;
 
+use function assert;
 use function extension_loaded;
 use function method_exists;
 use function preg_split;
@@ -77,6 +78,7 @@ abstract class AbstractFormDateSelect extends AbstractHelper
             -1,
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
         );
+        assert($pregResult !== false);
 
         $result = [];
         foreach ($pregResult as $value) {

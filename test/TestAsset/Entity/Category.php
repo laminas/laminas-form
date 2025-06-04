@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset\Entity;
 
-class Category
+final class Category
 {
     /** @var int */
     protected $id;

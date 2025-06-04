@@ -15,6 +15,7 @@ use function is_iterable;
 use function is_object;
 use function sprintf;
 
+/** @final */
 class Captcha extends Element implements InputProviderInterface
 {
     /** @var null|LaminasCaptcha\AdapterInterface */

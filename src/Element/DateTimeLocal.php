@@ -8,6 +8,7 @@ use DateInterval;
 use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\ValidatorInterface;
 
+/** @final */
 class DateTimeLocal extends AbstractDateTime
 {
     /** @var array<string, scalar|null>  */

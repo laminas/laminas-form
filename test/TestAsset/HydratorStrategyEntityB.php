@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-class HydratorStrategyEntityB
+final class HydratorStrategyEntityB
 {
     public function __construct(private int $field1, private string $field2)
     {

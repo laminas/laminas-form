@@ -11,7 +11,7 @@ use Laminas\Stdlib\ArrayObject;
  * @template TValue
  * @extends  ArrayObject<TKey, TValue>
  */
-class CustomCollection extends ArrayObject
+final class CustomCollection extends ArrayObject
 {
     /** @return array<TKey, TValue> */
     public function toArray(): array

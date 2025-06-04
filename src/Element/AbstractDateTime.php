@@ -36,7 +36,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
      * Accepted options for DateTime:
      * - format: A \DateTime compatible string
      *
-     * @return $this
+     * @inheritDoc
      */
     public function setOptions(iterable $options)
     {
@@ -59,7 +59,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
      * If $returnFormattedValue is false, the original value will be
      * returned, regardless of type.
      *
-     * @return mixed
+     * @inheritDoc
      */
     public function getValue(bool $returnFormattedValue = true)
     {
@@ -74,7 +74,7 @@ abstract class AbstractDateTime extends Element implements InputProviderInterfac
     /**
      * Set value for format
      *
-     * @return $this
+     * @return self
      */
     public function setFormat(string $format)
     {

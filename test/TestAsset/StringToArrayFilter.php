@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-use Laminas\Filter\AbstractFilter;
+use Laminas\Filter\FilterInterface;
 
 use function explode;
 use function is_array;
 
-/**
- * @extends AbstractFilter<array{}>
- */
-class StringToArrayFilter extends AbstractFilter
+final class StringToArrayFilter implements FilterInterface
 {
     /**
      * @inheritDoc
      */
-    public function filter($value)
+    public function filter(mixed $value): mixed
     {
         if (! is_array($value)) {
             return explode(',', $value);
         }
         return $value;
+    }
+
+    public function __invoke(mixed $value): mixed
+    {
+        return $this->filter($value);
     }
 }

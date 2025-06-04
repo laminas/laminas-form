@@ -6,7 +6,7 @@ namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Validator\ValidatorInterface;
 
-class UrlValidator implements ValidatorInterface
+final class UrlValidator implements ValidatorInterface
 {
     /**
      * @inheritDoc

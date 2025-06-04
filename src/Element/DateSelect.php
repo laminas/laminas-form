@@ -43,7 +43,7 @@ class DateSelect extends MonthSelect
      * Accepted options for DateSelect (plus the ones from MonthSelect) :
      * - day_attributes: HTML attributes to be rendered with the day element
      *
-     * @return $this
+     * @inheritDoc
      */
     public function setOptions(iterable $options)
     {
@@ -75,7 +75,7 @@ class DateSelect extends MonthSelect
      * Set the day attributes
      *
      * @param array<string, scalar|null> $dayAttributes
-     * @return $this
+     * @return self
      */
     public function setDayAttributes(array $dayAttributes)
     {
@@ -95,7 +95,7 @@ class DateSelect extends MonthSelect
 
     /**
      * @param  PhpDateTime|iterable|string|null|mixed $value
-     * @return $this
+     * @return self
      * @throws InvalidArgumentException
      */
     public function setValue($value)

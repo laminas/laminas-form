@@ -7,7 +7,7 @@ namespace LaminasTest\Form\TestAsset\Annotation;
 use Laminas\Form\Annotation;
 use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
 
-class EntityWithInputFilterInput
+final class EntityWithInputFilterInput
 {
     /**
      * @var null|string

@@ -8,7 +8,7 @@ use Laminas\Form\Fieldset;
 use Laminas\InputFilter\FileInput;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
-class FileInputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
+final class FileInputFilterProviderFieldset extends Fieldset implements InputFilterProviderInterface
 {
     /** @inheritDoc */
     public function __construct($name = null, $options = [])

@@ -12,6 +12,7 @@ use Laminas\Form\Exception;
 use function assert;
 use function sprintf;
 
+/** @final */
 class Image extends AbstractWord
 {
     /**
@@ -41,7 +42,7 @@ class Image extends AbstractWord
         ];
 
         if ($element->hasAttribute('id')) {
-            $imgAttributes['id'] = $element->getAttribute('id') . '-image';
+            $imgAttributes['id'] = (string) $element->getAttribute('id') . '-image';
         }
 
         $closingBracket = $this->getInlineClosingBracket();

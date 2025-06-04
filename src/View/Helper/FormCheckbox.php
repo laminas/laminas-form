@@ -10,6 +10,7 @@ use Laminas\Form\Exception;
 
 use function sprintf;
 
+/** @final */
 class FormCheckbox extends FormInput
 {
     /**

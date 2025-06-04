@@ -10,7 +10,7 @@ use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 
 /** @extends Form<array<string, mixed>> */
-class NestedCollectionsForm extends Form
+final class NestedCollectionsForm extends Form
 {
     public function __construct()
     {

@@ -13,6 +13,7 @@ use Laminas\Form\Exception;
 use function is_numeric;
 use function sprintf;
 
+/** @final */
 class FormDateSelect extends AbstractFormDateSelect
 {
     /**

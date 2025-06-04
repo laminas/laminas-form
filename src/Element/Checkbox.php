@@ -34,7 +34,7 @@ class Checkbox extends Element implements InputProviderInterface
      * - unchecked_value: value for checkbox when unchecked
      * - checked_value: value for checkbox when checked
      *
-     * @return $this
+     * @inheritDoc
      */
     public function setOptions(iterable $options)
     {
@@ -58,7 +58,7 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Do we render hidden element?
      *
-     * @return $this
+     * @return self
      */
     public function setUseHiddenElement(bool $useHiddenElement)
     {
@@ -77,7 +77,7 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Set the value to use when checkbox is unchecked
      *
-     * @return $this
+     * @return self
      */
     public function setUncheckedValue(?string $uncheckedValue)
     {
@@ -96,7 +96,7 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Set the value to use when checkbox is checked
      *
-     * @return $this
+     * @return self
      */
     public function setCheckedValue(string $checkedValue)
     {
@@ -176,10 +176,10 @@ class Checkbox extends Element implements InputProviderInterface
     /**
      * Checks or unchecks the checkbox.
      *
-     * @param  mixed $value A boolean flag or string that is checked against the "checked value".
-     * @return $this
+     * @param mixed $value A boolean flag or string that is checked against the "checked value".
+     * @inheritDoc
      */
-    public function setValue($value)
+    public function setValue(mixed $value)
     {
         // Cast to strings because POST data comes in string form
         $checked     = (string) $value === $this->getCheckedValue();

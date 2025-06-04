@@ -17,7 +17,7 @@ use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 #[Annotation\Attributes(["legend" => "Some Fieldset"])]
 #[Annotation\InputFilter(InputFilter::class)]
 #[Annotation\ValidationGroup(["omit", "keep"])]
-class ClassEntity
+final class ClassEntity
 {
     /**
      * @var null|string

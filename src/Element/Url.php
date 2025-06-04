@@ -10,6 +10,7 @@ use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Uri as UriValidator;
 use Laminas\Validator\ValidatorInterface;
 
+/** @final */
 class Url extends Element implements InputProviderInterface
 {
     /** @var array<string, scalar|null>  */

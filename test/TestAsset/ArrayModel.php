@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-class ArrayModel extends Model
+final class ArrayModel extends Model
 {
     public function toArray(): array
     {

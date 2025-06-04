@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset\Entity;
 
-class Phone
+final class Phone
 {
     /** @var string */
     protected $number;

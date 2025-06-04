@@ -10,7 +10,7 @@ use Laminas\Form\Annotation;
  * @Annotation\Name("extended")
  */
 #[Annotation\Name("extended")]
-class ExtendedEntity extends Entity
+final class ExtendedEntity extends Entity
 {
     /**
      * @var null|string

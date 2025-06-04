@@ -11,7 +11,7 @@ use Laminas\InputFilter\InputFilter;
  * @Annotation\InputFilter({"type":"Laminas\InputFilter\InputFilter"})
  */
 #[Annotation\InputFilter(["type" => InputFilter::class])]
-class EntityWithInputFilterAnnotation
+final class EntityWithInputFilterAnnotation
 {
     /**
      * @var null|string
