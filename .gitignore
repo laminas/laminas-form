@@ -8,3 +8,4 @@
 /vendor/
 /.phpcs-cache
 /.phpunit.cache/
+.markdownlint.json
