@@ -26,7 +26,6 @@
         "doctrine/annotations": "^1.14.3 || ^2.0.2",
         "laminas/laminas-captcha": "^2.18",
         "laminas/laminas-coding-standard": "^3.1.0",
-        "laminas/laminas-db": "^2.20",
         "laminas/laminas-escaper": "^2.17",
         "laminas/laminas-eventmanager": "^3.14.0",
         "laminas/laminas-filter": "^2.41",
