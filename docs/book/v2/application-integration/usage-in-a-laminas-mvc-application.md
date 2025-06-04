@@ -168,6 +168,7 @@ for the application, extend the configuration of the module.
 Add the following lines to the module configuration file, e.g.
 `module/Album/config/module.config.php`:
 
+<!-- markdownlint-disable no-inline-html -->
 <pre class="language-php" data-line="6-7"><code>
 namespace Album;
 
@@ -181,6 +182,7 @@ return [
     // …
 ];
 </code></pre>
+<!-- markdownlint-enable no-inline-html -->
 
 ## Create View Script
 

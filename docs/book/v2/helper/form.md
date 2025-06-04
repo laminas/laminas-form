@@ -7,9 +7,8 @@ If provided a `Laminas\Form\Form` instance, it will:
 
 - `prepare()` the instance
 - iterate it, and:
-  - pass non-collection `Laminas\Form\Element` instances to the `FormRow` helper to
-    render, and
-  - pass collections and fieldsets to the `FormCollection` helper to render.
+    - pass non-collection `Laminas\Form\Element` instances to the `FormRow` helper to render, and
+    - pass collections and fieldsets to the `FormCollection` helper to render.
 
 For more fine-grained control, us the `form()` helper only for emitting the
 opening and closing `<form>` tags, and manually use other helpers to render the

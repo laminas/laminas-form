@@ -138,6 +138,7 @@ for the application, extend the configuration of the module.
 Add the following lines to the module configuration file, e.g.
 `module/Album/config/module.config.php`:
 
+<!-- markdownlint-disable no-inline-html -->
 <pre class="language-php" data-line="8-9"><code>
 namespace Album;
 
@@ -153,6 +154,7 @@ return [
     // …
 ];
 </code></pre>
+<!-- markdownlint-enable no-inline-html -->
 
 The example uses the [reflection factory from laminas-servicemanager](https://docs.laminas.dev/laminas-servicemanager/reflection-abstract-factory/) to resolve the constructor dependencies for the controller class.
 

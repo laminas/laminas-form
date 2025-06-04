@@ -6,7 +6,8 @@ as rendering forms, rendering a text input, rendering a selection box, etc.
 See the [view helpers documentation](https://docs.laminas.dev/laminas-view/helpers/intro/)
 for more information.
 
-> ### IDE auto-completion in templates
+<!-- markdownlint-disable heading-increment -->
+> NOTE: **IDE auto-completion in templates**
 >
 > The `Laminas\Form\View\HelperTrait` trait can be used to provide auto-completion
 > for modern IDEs. It defines the aliases of the view helpers in a DocBlock as
