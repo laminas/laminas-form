@@ -7,10 +7,8 @@ the PECL uploadprogress extension. Unlike other laminas-form view helpers, the
 
 An `id` attribute with a value of `progress_key` will automatically be added.
 
-> ### Render early
->
-> The view helper **must** be rendered *before* the file input in the form, or
-> upload progress will not work correctly.
+NOTE: **Render early**
+The view helper **must** be rendered *before* the file input in the form, or upload progress will not work correctly.
 
 This element should be used with the [Laminas\ProgressBar\Upload\UploadProgress](https://docs.laminas.dev/laminas-progressbar/upload/#upload-progress-handler)
 handler.

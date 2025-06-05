@@ -8,13 +8,12 @@ laminas-form provides support for file uploading by using features from each of
 reusable framework components provide a convenient and secure way for handling
 file uploads in your projects.
 
-> ### Limited to POST uploads
->
-> The file upload features described here are specifically for forms using the
-> `POST` method.  laminas-form does not currently provide specific support for
-> handling uploads via the `PUT` method, but it is possible with vanilla PHP.
-> See the [PUT Method Support](http://php.net/features.file-upload.put-method)
-> in the PHP documentation for more information.
+NOTE: **Limited to POST uploads**
+The file upload features described here are specifically for forms using the
+`POST` method.  laminas-form does not currently provide specific support for
+handling uploads via the `PUT` method, but it is possible with vanilla PHP.
+See the [PUT Method Support](http://php.net/features.file-upload.put-method)
+in the PHP documentation for more information.
 
 ## Basic Example
 

@@ -7,10 +7,8 @@ Progress feature.Unlike other laminas-form view helpers, the
 
 An `id` attribute with a value of `"progress_key"` will automatically be added.
 
-> ### Render early
->
-> The view helper **must** be rendered *before* the file input in the form, or
-> upload progress will not work correctly.
+NOTE: **Render early**
+The view helper **must** be rendered *before* the file input in the form, or upload progress will not work correctly.
 
 Best used with the [Laminas\ProgressBar\Upload\SessionProgress](https://docs.laminas.dev/laminas-progressbar/upload/#session-progress-handler)
 handler.

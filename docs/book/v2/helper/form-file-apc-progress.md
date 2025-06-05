@@ -8,10 +8,9 @@ accept an `Element` as a parameter.
 
 An `id` attribute with a value of `"progress_key"` will automatically be added.
 
-> ### Render early
->
-> The view helper **must** be rendered *before* the file input in the form, or
-> upload progress will not work correctly.
+NOTE: **Render early**
+The view helper **must** be rendered *before* the file input in the form, or
+upload progress will not work correctly.
 
 Best used with the [Laminas\ProgressBar\Upload\ApcProgress](https://docs.laminas.dev/laminas-progressbar/upload/#apc-progress-handler)
 handler.
