@@ -13,6 +13,7 @@ use function assert;
 use function sprintf;
 use function strrev;
 
+/** @final */
 class Dumb extends AbstractWord
 {
     /**

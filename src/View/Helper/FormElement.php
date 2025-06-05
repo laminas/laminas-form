@@ -13,6 +13,7 @@ use function assert;
 use function is_callable;
 use function method_exists;
 
+/** @final */
 class FormElement extends BaseAbstractHelper
 {
     public const DEFAULT_HELPER = 'forminput';

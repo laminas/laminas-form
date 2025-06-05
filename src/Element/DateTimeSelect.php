@@ -17,6 +17,7 @@ use function is_array;
 use function is_string;
 use function sprintf;
 
+/** @final */
 class DateTimeSelect extends DateSelect
 {
     /**
@@ -72,7 +73,7 @@ class DateTimeSelect extends DateSelect
      * - second_attributes: HTML attributes to be rendered with the second element
      * - should_show_seconds: if set to true, the seconds select is shown
      *
-     * @return $this
+     * @inheritDoc
      */
     public function setOptions(iterable $options)
     {

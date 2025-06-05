@@ -16,7 +16,7 @@ use LaminasTest\Form\TestAsset\Annotation\UrlValidator;
 #[Annotation\Name("user")]
 #[Annotation\Attributes(["legend" => "Register"])]
 #[Annotation\Hydrator(ObjectPropertyHydrator::class)]
-class ComplexEntity
+final class ComplexEntity
 {
     /**
      * @var null|string

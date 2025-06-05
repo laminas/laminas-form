@@ -7,7 +7,7 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\Form\Form;
 
 /** @extends Form<array<string, mixed>> */
-class FileInputFilterProviderForm extends Form
+final class FileInputFilterProviderForm extends Form
 {
     /**
      * @inheritDoc

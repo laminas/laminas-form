@@ -8,7 +8,7 @@ use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
 /** @extends Form<array{foo: non-empty-string}> */
-class InputFilterProviderWithFieldset extends Form implements InputFilterProviderInterface
+final class InputFilterProviderWithFieldset extends Form implements InputFilterProviderInterface
 {
     /** @inheritDoc */
     public function __construct(string|null $name = null, array $options = [])

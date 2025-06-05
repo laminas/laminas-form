@@ -10,6 +10,7 @@ use Laminas\Validator\ValidatorInterface;
 
 use function date;
 
+/** @final */
 class Time extends AbstractDateTime
 {
     /** @var array<string, scalar|null>  */

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
+use Laminas\Form\Exception\ExceptionInterface;
 use Laminas\InputFilter\InputFilterInterface;
 
 /**
@@ -22,7 +23,8 @@ interface FormInterface extends FieldsetInterface
      *
      * Typically, also passes data on to the composed input filter.
      *
-     * @return $this
+     * @return self
+     * @throws ExceptionInterface
      */
     public function setData(iterable $data);
 
@@ -38,7 +40,7 @@ interface FormInterface extends FieldsetInterface
     /**
      * Whether or not to bind values to the bound object when validation succeeds
      *
-     * @return $this
+     * @return self
      */
     public function setBindOnValidate(int $bindOnValidateFlag);
 
@@ -46,7 +48,7 @@ interface FormInterface extends FieldsetInterface
      * Set input filter
      *
      * @param InputFilterInterface<TFilteredValues> $inputFilter
-     * @return $this
+     * @return self
      */
     public function setInputFilter(InputFilterInterface $inputFilter);
 
@@ -85,7 +87,7 @@ interface FormInterface extends FieldsetInterface
      *
      * Typically, proxies to the composed input filter
      *
-     * @return $this
+     * @return self
      */
     public function setValidationGroup(array $group);
 

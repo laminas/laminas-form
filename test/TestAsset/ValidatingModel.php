@@ -9,7 +9,7 @@ use Laminas\InputFilter\InputFilterInterface;
 
 use function assert;
 
-class ValidatingModel extends Model implements InputFilterAwareInterface
+final class ValidatingModel extends Model implements InputFilterAwareInterface
 {
     /** @var null|InputFilterInterface */
     protected $inputFilter;

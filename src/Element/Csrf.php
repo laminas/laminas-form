@@ -14,6 +14,7 @@ use Laminas\Validator\Csrf as CsrfValidator;
 use function array_merge;
 use function assert;
 
+/** @final */
 class Csrf extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
     /** @var array<string, scalar|null>  */

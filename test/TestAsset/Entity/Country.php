@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset\Entity;
 
-class Country
+final class Country
 {
     /** @var string */
     protected $name;

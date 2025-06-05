@@ -5,7 +5,9 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
     errorLevel="2"
     errorBaseline="psalm-baseline.xml"
-    findUnusedBaselineEntry="false"
+    findUnusedBaselineEntry="true"
+    findUnusedIssueHandlerSuppression="true"
+    findUnusedPsalmSuppress="true"
     findUnusedCode="false"
 >
     <projectFiles>
@@ -17,25 +19,12 @@
     </projectFiles>
 
     <issueHandlers>
-        <InternalMethod>
+        <MissingOverrideAttribute>
             <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::method"/>
+                <directory name="src" />
+                <directory name="test" />
             </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::willReturn"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::with"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\TestCase::addToAssertionCount"/>
-            </errorLevel>
-        </InternalMethod>
-        <MissingConstructor>
-            <errorLevel type="suppress">
-              <directory name="test" />
-            </errorLevel>
-        </MissingConstructor>
+        </MissingOverrideAttribute>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>

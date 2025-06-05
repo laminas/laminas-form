@@ -9,6 +9,6 @@ use Laminas\InputFilter\InputFilter as InputFilterBase;
 /**
  * @extends InputFilterBase<null>
  */
-class InputFilter extends InputFilterBase
+final class InputFilter extends InputFilterBase
 {
 }

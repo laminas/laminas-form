@@ -96,7 +96,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      * - min_year: min year to use in the year select
      * - max_year: max year to use in the year select
      *
-     * @return $this
+     * @inheritDoc
      */
     public function setOptions(iterable $options)
     {
@@ -153,7 +153,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      * Set the month attributes
      *
      * @param array<string, scalar|null> $monthAttributes
-     * @return $this
+     * @return self
      */
     public function setMonthAttributes(array $monthAttributes)
     {
@@ -175,7 +175,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
      * Set the year attributes
      *
      * @param array<string, scalar|null> $yearAttributes
-     * @return $this
+     * @return self
      */
     public function setYearAttributes(array $yearAttributes)
     {
@@ -194,7 +194,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setMinYear(int $minYear)
     {
@@ -208,7 +208,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setMaxYear(int $maxYear)
     {
@@ -222,7 +222,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setShouldCreateEmptyOption(bool $createEmptyOption)
     {
@@ -236,7 +236,7 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @return $this
+     * @return self
      */
     public function setShouldRenderDelimiters(bool $renderDelimiters)
     {
@@ -250,8 +250,8 @@ class MonthSelect extends Element implements InputProviderInterface, ElementPrep
     }
 
     /**
-     * @param  PhpDateTime|iterable|string|null|mixed $value
-     * @return $this
+     * @inheritDoc
+     * @param PhpDateTime|iterable|string|null|mixed $value
      */
     public function setValue($value)
     {

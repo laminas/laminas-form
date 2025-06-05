@@ -11,7 +11,7 @@ use Laminas\InputFilter\InputFilterInterface;
 
 use function get_object_vars;
 
-class HydratorStrategyEntityA implements InputFilterAwareInterface
+final class HydratorStrategyEntityA implements InputFilterAwareInterface
 {
     /** @var HydratorStrategyEntityB[]  */
     public $entities                           = [];

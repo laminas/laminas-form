@@ -9,7 +9,7 @@ use Laminas\Form\Element\Color as ColorElement;
 use Laminas\Form\Form;
 
 /** @extends Form<array<string, mixed>> */
-class FormCollection extends Form
+final class FormCollection extends Form
 {
     public function __construct()
     {

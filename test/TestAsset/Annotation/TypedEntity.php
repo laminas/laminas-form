@@ -12,7 +12,7 @@ use LaminasTest\Form\TestAsset\Annotation\Form;
  * @Annotation\Type("LaminasTest\Form\TestAsset\Annotation\Form")
  */
 #[Annotation\Type(Form::class)]
-class TypedEntity
+final class TypedEntity
 {
     /**
      * @var null|Element

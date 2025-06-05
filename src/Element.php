@@ -72,20 +72,14 @@ class Element implements
     {
     }
 
-    /**
-     * Set value for name
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setName(string $name)
     {
         $this->setAttribute('name', $name);
         return $this;
     }
 
-    /**
-     * Get value for name
-     */
+    /** @inheritDoc */
     public function getName(): ?string
     {
         $name = $this->getAttribute('name');
@@ -100,7 +94,7 @@ class Element implements
      * - label_attributes: attributes to use when the label is rendered
      * - label_options: label specific options
      *
-     * @return $this
+     * @return self
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions(iterable $options)
@@ -245,13 +239,8 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Set the element value
-     *
-     * @param  mixed $value
-     * @return $this
-     */
-    public function setValue($value)
+    /** @inheritDoc */
+    public function setValue(mixed $value)
     {
         $this->value    = $value;
         $this->hasValue = true;
@@ -259,21 +248,13 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Retrieve the element value
-     *
-     * @return mixed
-     */
+    /** @inheritDoc */
     public function getValue()
     {
         return $this->value;
     }
 
-    /**
-     * Set the label used for this element
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setLabel(?string $label)
     {
         if (is_string($label)) {
@@ -283,9 +264,7 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Retrieve the label used for this element
-     */
+    /** @inheritDoc */
     public function getLabel(): ?string
     {
         return $this->label;
@@ -305,11 +284,7 @@ class Element implements
     }
 
     /**
-     * Set many label options at once
-     *
-     * Implementation will decide if this will overwrite or merge.
-     *
-     * @return $this
+     * @inheritDoc
      * @throws Exception\InvalidArgumentException
      */
     public function setLabelOptions(iterable $arrayOrTraversable)
@@ -320,30 +295,20 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Get label specific options
-     */
+    /** @inheritDoc */
     public function getLabelOptions(): array
     {
         return $this->labelOptions;
     }
 
-    /**
-     * Clear all label options
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function clearLabelOptions()
     {
         $this->labelOptions = [];
         return $this;
     }
 
-    /**
-     * Remove many attributes at once
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function removeLabelOptions(array $keys)
     {
         foreach ($keys as $key) {
@@ -353,24 +318,14 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Set a single label optionn
-     *
-     * @param  mixed  $value
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setLabelOption(string $key, $value)
     {
         $this->labelOptions[$key] = $value;
         return $this;
     }
 
-    /**
-     * Retrieve a single label option
-     *
-     * @param  int|string $key
-     * @return mixed|null
-     */
+    /** @inheritDoc */
     public function getLabelOption($key)
     {
         if (! isset($this->labelOptions[$key])) {
@@ -380,31 +335,20 @@ class Element implements
         return $this->labelOptions[$key];
     }
 
-    /**
-     * Remove a single label option
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function removeLabelOption(string $key)
     {
         unset($this->labelOptions[$key]);
         return $this;
     }
 
-    /**
-     * Does the element has a specific label option ?
-     */
+    /** @inheritDoc */
     public function hasLabelOption(string $key): bool
     {
         return array_key_exists($key, $this->labelOptions);
     }
 
-    /**
-     * Set a list of messages to report when validation fails
-     *
-     * @return $this
-     * @throws Exception\InvalidArgumentException
-     */
+    /** @inheritDoc */
     public function setMessages(iterable $messages)
     {
         if ($messages instanceof Traversable) {
@@ -414,11 +358,7 @@ class Element implements
         return $this;
     }
 
-    /**
-     * Get validation error messages, if any.
-     *
-     * Returns a list of validation failure messages, if any.
-     */
+    /** @inheritDoc */
     public function getMessages(): array
     {
         return $this->messages;

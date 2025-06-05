@@ -15,7 +15,7 @@ use Laminas\Hydrator\ClassMethodsHydrator;
 #[Annotation\Name("user")]
 #[Annotation\Attributes(["legend" => "Register"])]
 #[Annotation\Hydrator(ClassMethodsHydrator::class, options: ["underscoreSeparatedKeys" => false])]
-class EntityWithHydratorArray
+final class EntityWithHydratorArray
 {
     /**
      * @var null|string

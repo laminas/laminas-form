@@ -11,7 +11,7 @@ use Laminas\Form\View\Helper\FormElement;
 use function method_exists;
 use function preg_replace;
 
-class CustomViewHelper extends AbstractHelper
+final class CustomViewHelper extends AbstractHelper
 {
     /** @var FormElement|null */
     protected $elementHelper;

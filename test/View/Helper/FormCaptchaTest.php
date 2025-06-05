@@ -93,11 +93,11 @@ final class FormCaptchaTest extends AbstractCommonTestCase
         $markup = $this->helper->render($element);
         self::assertStringContainsString($captcha->getLabel(), $markup);
         self::assertMatchesRegularExpression(
-            '#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
+            '#<[^>]*(id="' . (string) $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
             $markup
         );
         self::assertMatchesRegularExpression(
-            '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            '#<[^>]*(id="' . (string) $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
         );
     }
@@ -114,11 +114,11 @@ final class FormCaptchaTest extends AbstractCommonTestCase
             $markup
         );
         self::assertMatchesRegularExpression(
-            '#<[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
+            '#<[^>]*(id="' . (string) $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
             $markup
         );
         self::assertMatchesRegularExpression(
-            '#<[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            '#<[^>]*(id="' . (string) $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
         );
     }
@@ -154,15 +154,15 @@ final class FormCaptchaTest extends AbstractCommonTestCase
         self::assertStringContainsString($captcha->getImgUrl(), html_entity_decode($markup));
         self::assertStringContainsString($captcha->getId(), $markup);
         self::assertMatchesRegularExpression(
-            '#<img[^>]*(id="' . $element->getAttribute('id') . '-image")[^>]*>#',
+            '#<img[^>]*(id="' . (string) $element->getAttribute('id') . '-image")[^>]*>#',
             $markup
         );
         self::assertMatchesRegularExpression(
-            '#<input[^>]*(id="' . $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
+            '#<input[^>]*(id="' . (string) $element->getAttribute('id') . '")[^>]*(type="text")[^>]*>#',
             $markup
         );
         self::assertMatchesRegularExpression(
-            '#<input[^>]*(id="' . $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
+            '#<input[^>]*(id="' . (string) $element->getAttribute('id') . '-hidden")[^>]*(type="hidden")[^>]*>#',
             $markup
         );
     }

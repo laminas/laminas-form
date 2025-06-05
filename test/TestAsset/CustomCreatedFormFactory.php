@@ -8,7 +8,7 @@ use DateTime;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Psr\Container\ContainerInterface;
 
-class CustomCreatedFormFactory implements FactoryInterface
+final class CustomCreatedFormFactory implements FactoryInterface
 {
     /**
      * @inheritDoc

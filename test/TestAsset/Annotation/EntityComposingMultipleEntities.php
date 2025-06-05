@@ -11,7 +11,7 @@ use LaminasTest\Form\TestAsset\Annotation\Entity;
  * @Annotation\Name("hierarchical")
  */
 #[Annotation\Name("hierarchical")]
-class EntityComposingMultipleEntities
+final class EntityComposingMultipleEntities
 {
     /**
      * @var null|Entity

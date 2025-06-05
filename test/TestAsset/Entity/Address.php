@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset\Entity;
 
-class Address
+final class Address
 {
     /** @var string */
     protected $street;

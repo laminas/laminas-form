@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Laminas\Form\Element;
 
-use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
@@ -55,7 +54,7 @@ class MultiCheckbox extends Checkbox
 
     /**
      * @param ValueOptionSpec $options
-     * @return $this
+     * @return self
      */
     public function setValueOptions(array $options)
     {
@@ -77,7 +76,7 @@ class MultiCheckbox extends Checkbox
      * This method will only unset a value option when the element was created with a simple array of key-value pairs
      * for value options, for example ['value1' => 'label1', 'value2' => 'label2']
      *
-     * @return $this
+     * @return self
      */
     public function unsetValueOption(string $key)
     {
@@ -94,8 +93,7 @@ class MultiCheckbox extends Checkbox
      * - label_attributes: attributes to use when the label is rendered
      * - value_options: list of values and labels for the select options
      *
-     * @return $this
-     * @throws InvalidArgumentException
+     * @inheritDoc
      */
     public function setOptions(iterable $options)
     {
@@ -134,7 +132,7 @@ class MultiCheckbox extends Checkbox
     /**
      * Set the flag to allow for disabling the automatic addition of an InArray validator.
      *
-     * @return $this
+     * @return self
      */
     public function setDisableInArrayValidator(bool $disableOption)
     {
@@ -185,13 +183,8 @@ class MultiCheckbox extends Checkbox
         return $values;
     }
 
-    /**
-     * Sets the value that should be selected.
-     *
-     * @param  mixed $value The value to set.
-     * @return $this
-     */
-    public function setValue($value)
+    /** @inheritDoc */
+    public function setValue(mixed $value)
     {
         $this->value = $value;
         return $this;

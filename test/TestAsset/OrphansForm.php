@@ -8,7 +8,7 @@ use Laminas\Form\Element\Collection;
 use Laminas\Form\Form;
 
 /** @extends Form<array<string, mixed>> */
-class OrphansForm extends Form
+final class OrphansForm extends Form
 {
     public function __construct()
     {

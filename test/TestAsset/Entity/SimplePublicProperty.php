@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset\Entity;
 
-class SimplePublicProperty
+final class SimplePublicProperty
 {
     /** @var mixed */
     public $foo;

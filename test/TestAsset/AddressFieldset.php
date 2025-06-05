@@ -9,7 +9,7 @@ use Laminas\Form\Fieldset;
 use Laminas\Hydrator\ClassMethodsHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 
-class AddressFieldset extends Fieldset implements InputFilterProviderInterface
+final class AddressFieldset extends Fieldset implements InputFilterProviderInterface
 {
     public function __construct()
     {

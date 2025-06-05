@@ -13,7 +13,7 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
  */
 #[Annotation\Name("hierarchical")]
 #[Annotation\Hydrator(ObjectPropertyHydrator::class)]
-class EntityComposingMultipleEntitiesObjectPropertyHydrator
+final class EntityComposingMultipleEntitiesObjectPropertyHydrator
 {
     /**
      * @var null|list<EntityObjectPropertyHydrator>

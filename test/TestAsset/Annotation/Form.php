@@ -7,6 +7,6 @@ namespace LaminasTest\Form\TestAsset\Annotation;
 use Laminas\Form\Form as BaseForm;
 
 /** @extends BaseForm<array<string, mixed>> */
-class Form extends BaseForm
+final class Form extends BaseForm
 {
 }

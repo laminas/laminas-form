@@ -6,7 +6,7 @@ namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
 
-class LegacyValidatorAnnotation
+final class LegacyValidatorAnnotation
 {
     /**
      * @var null|string

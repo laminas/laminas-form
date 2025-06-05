@@ -17,6 +17,8 @@ use function sprintf;
 
 /**
  * View helper for rendering Form objects
+ *
+ * @final
  */
 class Form extends AbstractHelper
 {

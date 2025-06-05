@@ -8,7 +8,7 @@ use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterAwareInterface;
 use Laminas\InputFilter\InputFilterInterface;
 
-class Cat implements InputFilterAwareInterface
+final class Cat implements InputFilterAwareInterface
 {
     /** @var string */
     protected $name;

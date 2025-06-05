@@ -11,6 +11,7 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
 use function array_key_exists;
+use function assert;
 use function is_numeric;
 use function preg_match_all;
 use function preg_split;
@@ -24,6 +25,7 @@ use function trim;
 use const PREG_SPLIT_DELIM_CAPTURE;
 use const PREG_SPLIT_NO_EMPTY;
 
+/** @final */
 class FormDateTimeSelect extends AbstractFormDateSelect
 {
     /**
@@ -223,6 +225,8 @@ class FormDateTimeSelect extends AbstractFormDateSelect
             -1,
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
         );
+
+        assert($pregResult !== false);
 
         $result = [];
         foreach ($pregResult as $value) {

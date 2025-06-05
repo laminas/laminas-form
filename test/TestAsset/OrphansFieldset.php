@@ -9,7 +9,7 @@ use Laminas\Hydrator\ArraySerializableHydrator;
 use Laminas\InputFilter\InputFilterProviderInterface;
 use LaminasTest\Form\TestAsset\Entity\Orphan;
 
-class OrphansFieldset extends Fieldset implements InputFilterProviderInterface
+final class OrphansFieldset extends Fieldset implements InputFilterProviderInterface
 {
     /**
      * @inheritDoc

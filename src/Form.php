@@ -152,18 +152,7 @@ class Form extends Fieldset implements FormInterface
         return $this;
     }
 
-    /**
-     * Add an element or fieldset
-     *
-     * If $elementOrFieldset is an array or Traversable, passes the argument on
-     * to the composed factory to create the object before attaching it.
-     *
-     * $flags could contain metadata such as the alias under which to register
-     * the element or fieldset, order in which to prioritize it, etc.
-     *
-     * @param  array|Traversable|ElementInterface $elementOrFieldset
-     * @return $this
-     */
+    /** @inheritDoc */
     public function add($elementOrFieldset, array $flags = [])
     {
         // TODO: find a better solution than duplicating the factory code, the problem being that if
@@ -192,7 +181,7 @@ class Form extends Fieldset implements FormInterface
      * available, and prepares any elements and/or fieldsets that require
      * preparation.
      *
-     * @return $this
+     * @return self
      */
     public function prepare()
     {
@@ -228,8 +217,9 @@ class Form extends Fieldset implements FormInterface
         $name = $this->getName();
 
         foreach ($this->iterator as $elementOrFieldset) {
+            assert($elementOrFieldset instanceof ElementInterface);
             if ($form instanceof Form && $form->wrapElements()) {
-                $elementOrFieldset->setName($name . '[' . $elementOrFieldset->getName() . ']');
+                $elementOrFieldset->setName($name . '[' . (string) $elementOrFieldset->getName() . ']');
             }
 
             // Recursively prepare elements
@@ -637,7 +627,7 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set flag indicating whether or not to scan elements and fieldsets for defaults
      *
-     * @return $this
+     * @return self
      */
     public function setUseInputFilterDefaults(bool $useInputFilterDefaults)
     {
@@ -656,7 +646,7 @@ class Form extends Fieldset implements FormInterface
     /**
      * Set flag indicating whether or not to prefer the form input filter over element and fieldset defaults
      *
-     * @return $this
+     * @return self
      */
     public function setPreferFormInputFilter(bool $preferFormInputFilter)
     {

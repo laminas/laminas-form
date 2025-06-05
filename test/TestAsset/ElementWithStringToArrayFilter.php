@@ -8,7 +8,7 @@ use Laminas\Form\Element;
 use Laminas\InputFilter\InputProviderInterface;
 use LaminasTest\Form\TestAsset\StringToArrayFilter;
 
-class ElementWithStringToArrayFilter extends Element implements InputProviderInterface
+final class ElementWithStringToArrayFilter extends Element implements InputProviderInterface
 {
     /** @inheritDoc */
     public function getInputSpecification()

@@ -11,6 +11,6 @@ use Laminas\Hydrator\ObjectPropertyHydrator;
  * @Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")
  */
 #[Annotation\Hydrator(ObjectPropertyHydrator::class)]
-class EntityObjectPropertyHydrator extends Entity
+final class EntityObjectPropertyHydrator extends Entity
 {
 }

@@ -6,7 +6,7 @@ namespace LaminasTest\Form\TestAsset\Annotation;
 
 use Laminas\Form\Annotation;
 
-class LegacyFilterAnnotation
+final class LegacyFilterAnnotation
 {
     /**
      * @var null|string

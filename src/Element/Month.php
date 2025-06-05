@@ -9,6 +9,7 @@ use Laminas\Validator\DateStep as DateStepValidator;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
+/** @final */
 class Month extends AbstractDateTime
 {
     /**

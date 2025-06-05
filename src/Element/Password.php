@@ -8,6 +8,7 @@ use Laminas\Form\Element;
 use Laminas\Form\ElementPrepareAwareInterface;
 use Laminas\Form\FormInterface;
 
+/** @final */
 class Password extends Element implements ElementPrepareAwareInterface
 {
     /** @var array<string, scalar|null>  */

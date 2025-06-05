@@ -10,6 +10,7 @@ use Laminas\Form\Exception;
 use function method_exists;
 use function sprintf;
 
+/** @final */
 class FormCaptcha extends AbstractHelper
 {
     /**

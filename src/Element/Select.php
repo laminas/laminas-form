@@ -18,6 +18,7 @@ use function trigger_error;
 
 use const E_USER_DEPRECATED;
 
+/** @final */
 class Select extends Element implements InputProviderInterface
 {
     /** @var array<string, scalar|null>  */

@@ -22,7 +22,7 @@ use Laminas\Hydrator\ClassMethodsHydrator;
  * }
  * @extends Form<Payload>
  */
-class CreateAddressForm extends Form
+final class CreateAddressForm extends Form
 {
     public function __construct()
     {

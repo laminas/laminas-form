@@ -87,7 +87,7 @@ class Fieldset extends Element implements FieldsetInterface
      * Set options for a fieldset. Accepted options are:
      * - use_as_base_fieldset: is this fieldset use as the base fieldset?
      *
-     * @return $this
+     * @inheritDoc
      * @throws Exception\InvalidArgumentException
      */
     public function setOptions(iterable $options)
@@ -105,11 +105,7 @@ class Fieldset extends Element implements FieldsetInterface
         return $this;
     }
 
-    /**
-     * Compose a form factory to use when calling add() with a non-element/fieldset
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setFormFactory(Factory $formFactory)
     {
         $this->factory = $formFactory;
@@ -131,17 +127,7 @@ class Fieldset extends Element implements FieldsetInterface
         return $this->factory;
     }
 
-    /**
-     * Add an element or fieldset
-     *
-     * $flags could contain metadata such as the alias under which to register
-     * the element or fieldset, order in which to prioritize it, etc.
-     *
-     * @todo   Should we detect if the element/fieldset name conflicts?
-     * @param  array|Traversable|ElementInterface $elementOrFieldset
-     * @return $this
-     * @throws Exception\InvalidArgumentException
-     */
+    /** @inheritDoc */
     public function add($elementOrFieldset, array $flags = [])
     {
         if (
@@ -172,7 +158,7 @@ class Fieldset extends Element implements FieldsetInterface
         if (null === $name || '' === $name) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s: element or fieldset provided is not named, and no name provided in flags',
-                __METHOD__
+                __METHOD__,
             ));
         }
         $order = 0;
@@ -191,9 +177,7 @@ class Fieldset extends Element implements FieldsetInterface
         return $this;
     }
 
-    /**
-     * Does the fieldset have an element/fieldset by the given name?
-     */
+    /** @inheritDoc */
     public function has(string $elementOrFieldset): bool
     {
         return $this->iterator->get($elementOrFieldset) !== null;
@@ -210,17 +194,13 @@ class Fieldset extends Element implements FieldsetInterface
         if (! $element) {
             throw new Exception\InvalidElementException(sprintf(
                 'No element by the name of [%s] found in form',
-                $elementOrFieldset
+                $elementOrFieldset,
             ));
         }
         return $element;
     }
 
-    /**
-     * Remove a named element or fieldset
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function remove(string $elementOrFieldset)
     {
         if (! $this->has($elementOrFieldset)) {
@@ -238,43 +218,26 @@ class Fieldset extends Element implements FieldsetInterface
         return $this;
     }
 
-    /**
-     * Set/change the priority of an element or fieldset
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setPriority(string $elementOrFieldset, int $priority)
     {
         $this->iterator->setPriority($elementOrFieldset, $priority);
         return $this;
     }
 
-    /**
-     * Retrieve all attached elements
-     *
-     * Storage is an implementation detail of the concrete class.
-     */
+    /** @inheritDoc */
     public function getElements(): array
     {
         return $this->elements;
     }
 
-    /**
-     * Retrieve all attached fieldsets
-     *
-     * Storage is an implementation detail of the concrete class.
-     */
+    /** @inheritDoc */
     public function getFieldsets(): array
     {
         return $this->fieldsets;
     }
 
-    /**
-     * Set a hash of element names/messages to use when validation fails
-     *
-     * @return $this
-     * @throws Exception\InvalidArgumentException
-     */
+    /** @inheritDoc */
     public function setMessages(iterable $messages)
     {
         foreach ($messages as $key => $messageSet) {
@@ -297,13 +260,14 @@ class Fieldset extends Element implements FieldsetInterface
      * validation, or, if $elementName is provided, messages for that element
      * only.
      *
-     * @throws Exception\InvalidArgumentException
+     * @inheritDoc
      */
     public function getMessages(?string $elementName = null): array
     {
         if (null === $elementName) {
             $messages = $this->messages;
             foreach ($this->iterator as $name => $element) {
+                assert($element instanceof ElementInterface);
                 $messageSet = $element->getMessages();
                 if ($messageSet === []) {
                     continue;
@@ -317,7 +281,7 @@ class Fieldset extends Element implements FieldsetInterface
             throw new Exception\InvalidArgumentException(sprintf(
                 'Invalid element name "%s" provided to %s',
                 $elementName,
-                __METHOD__
+                __METHOD__,
             ));
         }
 
@@ -334,7 +298,8 @@ class Fieldset extends Element implements FieldsetInterface
         $name = $this->getName();
 
         foreach ($this->iterator as $elementOrFieldset) {
-            $elementOrFieldset->setName($name . '[' . $elementOrFieldset->getName() . ']');
+            assert($elementOrFieldset instanceof ElementInterface);
+            $elementOrFieldset->setName($name . '[' . (string) $elementOrFieldset->getName() . ']');
 
             // Recursively prepare elements
             if ($elementOrFieldset instanceof ElementPrepareAwareInterface) {
@@ -355,6 +320,7 @@ class Fieldset extends Element implements FieldsetInterface
         }
 
         foreach ($this->iterator as $name => $elementOrFieldset) {
+            assert($elementOrFieldset instanceof ElementInterface);
             $valueExists = array_key_exists($name, $data);
 
             if ($elementOrFieldset instanceof FieldsetInterface) {
@@ -382,9 +348,7 @@ class Fieldset extends Element implements FieldsetInterface
         }
     }
 
-    /**
-     * Countable: return count of attached elements/fieldsets
-     */
+    /** @inheritDoc */
     public function count(): int
     {
         return $this->iterator->count();
@@ -495,7 +459,7 @@ class Fieldset extends Element implements FieldsetInterface
         $this->setHydrator(
             $this->getFormFactory()
                 ->getFormElementManager()
-                ->getHydratorFromName($hydratorName)
+                ->getHydratorFromName($hydratorName),
         );
     }
 
@@ -582,7 +546,7 @@ class Fieldset extends Element implements FieldsetInterface
     /**
      * Set if this fieldset is used as a base fieldset
      *
-     * @return $this
+     * @return self
      */
     public function setUseAsBaseFieldset(bool $useAsBaseFieldset)
     {

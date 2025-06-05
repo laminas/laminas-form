@@ -46,11 +46,7 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
     /** @var bool */
     protected $preserveDefinedOrder = false;
 
-    /**
-     * Set form factory to use when building form from annotations
-     *
-     * @return $this
-     */
+    /** @inheritDoc */
     public function setFormFactory(Factory $formFactory)
     {
         $this->formFactory = $formFactory;

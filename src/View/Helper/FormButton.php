@@ -14,6 +14,7 @@ use function is_string;
 use function sprintf;
 use function strtolower;
 
+/** @final */
 class FormButton extends FormInput
 {
     /**

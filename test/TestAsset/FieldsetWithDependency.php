@@ -7,7 +7,7 @@ namespace LaminasTest\Form\TestAsset;
 use Laminas\Form\Fieldset;
 use LaminasTest\Form\TestAsset\InputFilter;
 
-class FieldsetWithDependency extends Fieldset
+final class FieldsetWithDependency extends Fieldset
 {
     private InputFilter $dependency;
 

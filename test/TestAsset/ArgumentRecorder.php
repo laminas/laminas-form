@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-class ArgumentRecorder
+final class ArgumentRecorder
 {
     /** @var array */
     public $args;

@@ -11,6 +11,7 @@ use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
+/** @final */
 class Tel extends Element implements InputProviderInterface
 {
     /** @var array<string, scalar|null>  */

@@ -7,6 +7,7 @@ namespace Laminas\Form\Element;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
 
+/** @final */
 class Radio extends MultiCheckbox
 {
     /** @var array<string, scalar|null>  */

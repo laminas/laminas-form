@@ -12,6 +12,7 @@ use Laminas\Validator\ValidatorInterface;
 
 use function date;
 
+/** @final */
 class Date extends DateTimeElement
 {
     /** @var array<string, scalar|null>  */

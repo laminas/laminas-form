@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+<files psalm-version="6.12.0@cf420941d061a57050b6c468ef2c778faf40aee2">
   <file src="src/Annotation/AbstractBuilder.php">
     <InvalidArrayOffset>
       <code><![CDATA[$params['elementSpec']['spec']['type']]]></code>
@@ -46,42 +46,6 @@
       <code><![CDATA[View\Helper\FormDateTime::class]]></code>
       <code><![CDATA[View\Helper\FormDateTime::class]]></code>
     </DeprecatedClass>
-  </file>
-  <file src="src/Element.php">
-    <LessSpecificReturnStatement>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-    </LessSpecificReturnStatement>
   </file>
   <file src="src/Element/AbstractDateTime.php">
     <DeprecatedClass>
@@ -240,13 +204,6 @@
     </DocblockTypeContradiction>
     <LessSpecificReturnStatement>
       <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
-      <code><![CDATA[$this]]></code>
     </LessSpecificReturnStatement>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$object]]></code>
@@ -254,6 +211,17 @@
     <PossiblyInvalidArgument>
       <code><![CDATA[$object]]></code>
     </PossiblyInvalidArgument>
+    <PossiblyNullArgument>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$name]]></code>
+    </PossiblyNullArgument>
+    <PossiblyNullArrayOffset>
+      <code><![CDATA[$messages]]></code>
+    </PossiblyNullArrayOffset>
+    <PossiblyNullReference>
+      <code><![CDATA[getAttribute]]></code>
+    </PossiblyNullReference>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[! $element->getAttribute('disabled')]]></code>
       <code><![CDATA[$validationGroup]]></code>
@@ -272,6 +240,10 @@
       <code><![CDATA[$validationGroup]]></code>
     </ArgumentTypeCoercion>
     <LessSpecificReturnStatement>
+      <code><![CDATA[$this]]></code>
+      <code><![CDATA[$this]]></code>
+      <code><![CDATA[$this]]></code>
+      <code><![CDATA[$this]]></code>
       <code><![CDATA[$this]]></code>
       <code><![CDATA[$this]]></code>
       <code><![CDATA[$this]]></code>
@@ -325,6 +297,9 @@
     <LessSpecificReturnStatement>
       <code><![CDATA[parent::get($name, $options)]]></code>
     </LessSpecificReturnStatement>
+    <MoreSpecificReturnType>
+      <code><![CDATA[($name is class-string<ElementInterface> ? T : ElementInterface)]]></code>
+    </MoreSpecificReturnType>
     <NonInvariantDocblockPropertyType>
       <code><![CDATA[$aliases]]></code>
       <code><![CDATA[$factories]]></code>
@@ -346,14 +321,6 @@
     <DeprecatedClass>
       <code><![CDATA[new Config($config['form_elements'])]]></code>
     </DeprecatedClass>
-    <MoreSpecificImplementedParamType>
-      <code><![CDATA[$options]]></code>
-    </MoreSpecificImplementedParamType>
-  </file>
-  <file src="src/FormFactoryAwareInterface.php">
-    <MissingReturnType>
-      <code><![CDATA[setFormFactory]]></code>
-    </MissingReturnType>
   </file>
   <file src="src/View/Helper/AbstractHelper.php">
     <ArgumentTypeCoercion>
@@ -387,6 +354,22 @@
       <code><![CDATA[$element->getLabelOption('disable_html_escape')]]></code>
       <code><![CDATA[empty($value)]]></code>
     </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/View/Helper/File/FormFileApcProgress.php">
+    <FalsableReturnStatement>
+      <code><![CDATA[ini_get('apc.rfc1867_name')]]></code>
+    </FalsableReturnStatement>
+    <InvalidFalsableReturnType>
+      <code><![CDATA[string]]></code>
+    </InvalidFalsableReturnType>
+  </file>
+  <file src="src/View/Helper/File/FormFileSessionProgress.php">
+    <FalsableReturnStatement>
+      <code><![CDATA[ini_get('session.upload_progress.name')]]></code>
+    </FalsableReturnStatement>
+    <InvalidFalsableReturnType>
+      <code><![CDATA[string]]></code>
+    </InvalidFalsableReturnType>
   </file>
   <file src="src/View/Helper/Form.php">
     <DeprecatedMethod>
@@ -497,6 +480,9 @@
       <code><![CDATA[getFilters]]></code>
       <code><![CDATA[getFilters]]></code>
     </DeprecatedMethod>
+    <PossiblyNullReference>
+      <code><![CDATA[getName]]></code>
+    </PossiblyNullReference>
     <PossiblyUndefinedMethod>
       <code><![CDATA[allowEmpty]]></code>
       <code><![CDATA[getFilterChain]]></code>
@@ -564,6 +550,7 @@
   </file>
   <file src="test/Element/CsrfTest.php">
     <DeprecatedClass>
+      <code><![CDATA[$this->createMock(Csrf::class)]]></code>
       <code><![CDATA[Csrf::class]]></code>
       <code><![CDATA[Csrf::class]]></code>
       <code><![CDATA[Csrf::class]]></code>
@@ -962,6 +949,9 @@
       <code><![CDATA[$inputSpec['validators']]]></code>
       <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
+    <RedundantCondition>
+      <code><![CDATA[assertIsArray]]></code>
+    </RedundantCondition>
     <UndefinedInterfaceMethod>
       <code><![CDATA[getValidator]]></code>
     </UndefinedInterfaceMethod>
@@ -1080,6 +1070,10 @@
     </PossiblyUndefinedVariable>
   </file>
   <file src="test/FieldsetTest.php">
+    <InternalMethod>
+      <code><![CDATA[addToAssertionCount]]></code>
+      <code><![CDATA[addToAssertionCount]]></code>
+    </InternalMethod>
     <InvalidArgument>
       <code><![CDATA['foo']]></code>
     </InvalidArgument>
@@ -1104,7 +1098,20 @@
       <code><![CDATA[$container]]></code>
     </MissingClosureParamType>
   </file>
+  <file src="test/FormElementManagerTest.php">
+    <InternalMethod>
+      <code><![CDATA[addToAssertionCount]]></code>
+    </InternalMethod>
+  </file>
   <file src="test/FormTest.php">
+    <InaccessibleProperty>
+      <code><![CDATA[$model->bar]]></code>
+      <code><![CDATA[$model->foo]]></code>
+      <code><![CDATA[$model->foobar]]></code>
+    </InaccessibleProperty>
+    <InternalMethod>
+      <code><![CDATA[addToAssertionCount]]></code>
+    </InternalMethod>
     <PossiblyUndefinedMethod>
       <code><![CDATA[get]]></code>
       <code><![CDATA[get]]></code>
@@ -1197,6 +1204,11 @@
       <code><![CDATA[Annotation\ContinueIfEmpty(true)]]></code>
     </DeprecatedClass>
   </file>
+  <file src="test/TestAsset/CreateAddressForm.php">
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[setHydrator]]></code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="test/TestAsset/CustomCollection.php">
     <PropertyNotSetInConstructor>
       <code><![CDATA[CustomCollection]]></code>
@@ -1213,11 +1225,67 @@
       <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
+  <file src="test/TestAsset/CustomTraversable.php">
+    <FalsableReturnStatement>
+      <code><![CDATA[current($this->data)]]></code>
+    </FalsableReturnStatement>
+    <InvalidFalsableReturnType>
+      <code><![CDATA[current]]></code>
+    </InvalidFalsableReturnType>
+  </file>
   <file src="test/TestAsset/CustomViewHelper.php">
     <PossiblyNullArgument>
       <code><![CDATA[$element->getName()]]></code>
       <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
+  </file>
+  <file src="test/TestAsset/Entity/Address.php">
+    <MissingConstructor>
+      <code><![CDATA[$city]]></code>
+      <code><![CDATA[$street]]></code>
+    </MissingConstructor>
+  </file>
+  <file src="test/TestAsset/Entity/Cat.php">
+    <MissingConstructor>
+      <code><![CDATA[$name]]></code>
+    </MissingConstructor>
+  </file>
+  <file src="test/TestAsset/Entity/Category.php">
+    <MissingConstructor>
+      <code><![CDATA[$id]]></code>
+      <code><![CDATA[$name]]></code>
+    </MissingConstructor>
+  </file>
+  <file src="test/TestAsset/Entity/City.php">
+    <MissingConstructor>
+      <code><![CDATA[$country]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$zipCode]]></code>
+    </MissingConstructor>
+  </file>
+  <file src="test/TestAsset/Entity/Country.php">
+    <MissingConstructor>
+      <code><![CDATA[$continent]]></code>
+      <code><![CDATA[$name]]></code>
+    </MissingConstructor>
+  </file>
+  <file src="test/TestAsset/Entity/Orphan.php">
+    <MissingConstructor>
+      <code><![CDATA[$name]]></code>
+    </MissingConstructor>
+  </file>
+  <file src="test/TestAsset/Entity/Phone.php">
+    <MissingConstructor>
+      <code><![CDATA[$number]]></code>
+    </MissingConstructor>
+  </file>
+  <file src="test/TestAsset/Entity/Product.php">
+    <MissingConstructor>
+      <code><![CDATA[$categories]]></code>
+      <code><![CDATA[$madeInCountry]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[$price]]></code>
+    </MissingConstructor>
   </file>
   <file src="test/TestAsset/FieldsetWithDependency.php">
     <MissingParamType>
@@ -1257,16 +1325,21 @@
       <code><![CDATA[$options]]></code>
     </MissingParamType>
   </file>
+  <file src="test/TestAsset/NewProductForm.php">
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[setHydrator]]></code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="test/TestAsset/OrphansFieldset.php">
     <MissingParamType>
       <code><![CDATA[$name]]></code>
       <code><![CDATA[$options]]></code>
     </MissingParamType>
   </file>
-  <file src="test/TestAsset/StringToArrayFilter.php">
-    <DeprecatedClass>
-      <code><![CDATA[AbstractFilter]]></code>
-    </DeprecatedClass>
+  <file src="test/TestAsset/OrphansForm.php">
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[setBindOnValidate]]></code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="test/TestAsset/ValueStoringFieldset.php">
     <PropertyNotSetInConstructor>
@@ -1351,6 +1424,7 @@
   </file>
   <file src="test/View/Helper/FormElementErrorsTest.php">
     <DeprecatedInterface>
+      <code><![CDATA[$this->createMock(TranslatorInterface::class)]]></code>
       <code><![CDATA[?TranslatorInterface]]></code>
       <code><![CDATA[AbstractValidator::getDefaultTranslator()]]></code>
     </DeprecatedInterface>
@@ -1375,6 +1449,10 @@
     </InvalidArgument>
   </file>
   <file src="test/View/Helper/FormRowTest.php">
+    <DeprecatedInterface>
+      <code><![CDATA[$this->createMock(TranslatorInterface::class)]]></code>
+      <code><![CDATA[$this->createMock(TranslatorInterface::class)]]></code>
+    </DeprecatedInterface>
     <PossiblyInvalidFunctionCall>
       <code><![CDATA[$escapeHelper($label)]]></code>
     </PossiblyInvalidFunctionCall>
