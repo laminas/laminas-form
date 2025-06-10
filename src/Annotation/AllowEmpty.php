@@ -17,8 +17,6 @@ use function is_bool;
  * Presence of this annotation is a hint that the associated
  * \Laminas\InputFilter\Input should enable the allowEmpty flag.
  *
- * @deprecated 2.4.8 Use `@Validator({"name":"NotEmpty"})` instead.
- *
  * @Annotation
  * @NamedArgumentConstructor
  */
