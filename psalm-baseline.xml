@@ -1188,21 +1188,10 @@
         ])]]></code>
     </DeprecatedClass>
   </file>
-  <file src="test/TestAsset/Annotation/ComplexEntity.php">
-    <DeprecatedClass>
-      <code><![CDATA[Annotation\AllowEmpty()]]></code>
-    </DeprecatedClass>
-  </file>
   <file src="test/TestAsset/Annotation/LegacyHydratorAnnotation.php">
     <MissingPropertyType>
       <code><![CDATA[$username]]></code>
     </MissingPropertyType>
-  </file>
-  <file src="test/TestAsset/Annotation/SampleEntity.php">
-    <DeprecatedClass>
-      <code><![CDATA[Annotation\AllowEmpty(true)]]></code>
-      <code><![CDATA[Annotation\ContinueIfEmpty(true)]]></code>
-    </DeprecatedClass>
   </file>
   <file src="test/TestAsset/CreateAddressForm.php">
     <UndefinedInterfaceMethod>
