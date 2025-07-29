@@ -39,9 +39,9 @@
         "laminas/laminas-session": "^2.24",
         "laminas/laminas-text": "^2.12.1",
         "laminas/laminas-view": "^2.39",
-        "phpunit/phpunit": "^10.5.46",
+        "phpunit/phpunit": "^10.5.48",
         "psalm/plugin-phpunit": "^0.19.5",
-        "vimeo/psalm": "^6.12.0"
+        "vimeo/psalm": "^6.13.0"
     },
     "conflict": {
         "doctrine/annotations": "<1.14.0",
