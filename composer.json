@@ -55,7 +55,7 @@
     "suggest": {
         "doctrine/annotations": "^1.14, required to use laminas-form annotations support",
         "laminas/laminas-captcha": "^2.16, required for using CAPTCHA form elements",
-        "laminas/laminas-eventmanager": "^3.10, reuired for laminas-form annotations support",
+        "laminas/laminas-eventmanager": "^3.10, required for laminas-form annotations support",
         "laminas/laminas-i18n": "^2.21, required when using laminas-form view helpers",
         "laminas/laminas-recaptcha": "^3.6, in order to use the ReCaptcha form element",
         "laminas/laminas-servicemanager": "^3.20, required to use the form factories or provide services",
