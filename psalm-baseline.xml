@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="6.13.0@70cdf647255a1362b426bb0f522a85817b8c791c">
+<files psalm-version="6.13.1@1e3b7f0a8ab32b23197b91107adc0a7ed8a05b51">
   <file src="src/Annotation/AbstractBuilder.php">
     <InvalidArrayOffset>
       <code><![CDATA[$params['elementSpec']['spec']['type']]]></code>
@@ -411,6 +411,14 @@
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$count]]></code>
     </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/View/Helper/FormElement.php">
+    <DeprecatedClass>
+      <code><![CDATA[BaseAbstractHelper]]></code>
+    </DeprecatedClass>
+    <DeprecatedMethod>
+      <code><![CDATA[plugin]]></code>
+    </DeprecatedMethod>
   </file>
   <file src="src/View/Helper/FormElementErrors.php">
     <MissingClosureParamType>
@@ -1333,6 +1341,10 @@
     <DeprecatedMethod>
       <code><![CDATA[getEncoding]]></code>
       <code><![CDATA[getEncoding]]></code>
+      <code><![CDATA[getHelperPluginManager]]></code>
+      <code><![CDATA[plugin]]></code>
+      <code><![CDATA[plugin]]></code>
+      <code><![CDATA[setHelperPluginManager]]></code>
       <code><![CDATA[setView]]></code>
     </DeprecatedMethod>
     <InternalMethod>
@@ -1417,8 +1429,13 @@
   </file>
   <file src="test/View/Helper/FormElementTest.php">
     <DeprecatedClass>
+      <code><![CDATA[$this->helper->setView($this->renderer)]]></code>
       <code><![CDATA[Csrf::class]]></code>
     </DeprecatedClass>
+    <DeprecatedMethod>
+      <code><![CDATA[getHelperPluginManager]]></code>
+      <code><![CDATA[setHelperPluginManager]]></code>
+    </DeprecatedMethod>
     <PossiblyNullIterator>
       <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyNullIterator>
@@ -1436,8 +1453,17 @@
       <code><![CDATA[$this->createMock(TranslatorInterface::class)]]></code>
       <code><![CDATA[$this->createMock(TranslatorInterface::class)]]></code>
     </DeprecatedInterface>
+    <DeprecatedMethod>
+      <code><![CDATA[getHelperPluginManager]]></code>
+      <code><![CDATA[resolver]]></code>
+    </DeprecatedMethod>
     <PossiblyInvalidFunctionCall>
       <code><![CDATA[$escapeHelper($label)]]></code>
     </PossiblyInvalidFunctionCall>
+  </file>
+  <file src="test/View/Helper/FormTest.php">
+    <DeprecatedMethod>
+      <code><![CDATA[plugin]]></code>
+    </DeprecatedMethod>
   </file>
 </files>
