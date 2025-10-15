@@ -29,7 +29,6 @@ use function array_shift;
 use function assert;
 use function count;
 use function method_exists;
-use function strtoupper;
 
 #[Group('Laminas_Form')]
 final class FormElementManagerTest extends TestCase
@@ -214,25 +213,6 @@ final class FormElementManagerTest extends TestCase
 
         self::assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
         self::assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
-    }
-
-    public function testAllAliasesShouldBeCanonicalized(): void
-    {
-        if (method_exists($this->manager, 'configure')) {
-            $this->markTestSkipped('Check canonicalized makes sense only on v2');
-        }
-
-        $r = new ReflectionProperty($this->manager, 'aliases');
-        $r->setAccessible(true);
-        $aliases = $r->getValue($this->manager);
-
-        foreach ($aliases as $name => $alias) {
-            $this->manager->get($name . ' ');
-            $this->manager->get(strtoupper($name));
-            $this->manager->get($name);
-        }
-
-        $this->addToAssertionCount(1);
     }
 
     public function testOptionsAreSetInInvokableForm(): void
