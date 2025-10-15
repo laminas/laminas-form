@@ -24,7 +24,6 @@ use function unlink;
  */
 final class ImageTest extends AbstractCommonTestCase
 {
-    private ?string $tmpDir = null;
     private string $testDir;
     private ImageCaptcha $captcha;
 
@@ -47,7 +46,7 @@ final class ImageTest extends AbstractCommonTestCase
             );
         }
 
-        $this->testDir = $this->getTmpDir() . '/Laminas_test_images';
+        $this->testDir = sys_get_temp_dir() . '/Laminas_test_images';
         if (! is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
@@ -72,19 +71,6 @@ final class ImageTest extends AbstractCommonTestCase
             }
         }
         parent::tearDown();
-    }
-
-    /**
-     * Determine system TMP directory
-     *
-     * @return string
-     */
-    protected function getTmpDir()
-    {
-        if (null === $this->tmpDir) {
-            $this->tmpDir = sys_get_temp_dir();
-        }
-        return $this->tmpDir;
     }
 
     public function getElement(): CaptchaElement
