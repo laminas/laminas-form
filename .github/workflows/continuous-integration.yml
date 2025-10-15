@@ -29,3 +29,16 @@ jobs:
       - uses: ramsey/composer-install@3.1.1
       - run: make install-tools
       - run: make composer-require-checker
+
+  rector:
+    name: Rector on Default PHP
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: shivammathur/setup-php@2.34.1
+        with:
+          php-version: ${{ env.default_php }}
+          tools: composer
+      - uses: ramsey/composer-install@v3
+      - run: make install-tools
+      - run: make rector-ci
