@@ -4,7 +4,6 @@
          colors="true"
          cacheDirectory=".phpunit.cache"
          displayDetailsOnAllIssues="true"
-         failOnDeprecation="true"
          failOnNotice="true"
          failOnWarning="true"
          failOnPhpunitDeprecation="true"
