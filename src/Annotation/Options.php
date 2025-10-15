@@ -20,7 +20,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-final class Options
+final readonly class Options
 {
     /**
      * Receive and process the contents of an annotation

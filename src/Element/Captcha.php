@@ -10,9 +10,8 @@ use Laminas\Form\Element;
 use Laminas\Form\Exception;
 use Laminas\InputFilter\InputProviderInterface;
 
-use function gettype;
+use function get_debug_type;
 use function is_iterable;
-use function is_object;
 use function sprintf;
 
 /** @final */
@@ -54,7 +53,7 @@ class Captcha extends Element implements InputProviderInterface
                 '%s expects either a Laminas\Captcha\AdapterInterface or specification'
                 . ' to pass to Laminas\Captcha\Factory; received "%s"',
                 __METHOD__,
-                is_object($captcha) ? $captcha::class : gettype($captcha)
+                get_debug_type($captcha)
             ));
         }
         $this->captcha = $captcha;

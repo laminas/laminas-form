@@ -14,10 +14,9 @@ use Traversable;
 
 use function assert;
 use function class_exists;
-use function gettype;
+use function get_debug_type;
 use function is_array;
 use function is_iterable;
-use function is_object;
 use function is_string;
 use function method_exists;
 use function sprintf;
@@ -302,7 +301,7 @@ class Factory
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array, or object implementing Traversable or ArrayAccess; received "%s"',
                 $method,
-                is_object($spec) ? $spec::class : gettype($spec)
+                get_debug_type($spec)
             ));
         }
 

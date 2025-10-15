@@ -17,7 +17,7 @@ final class StringToArrayFilter implements FilterInterface
     public function filter(mixed $value): mixed
     {
         if (! is_array($value)) {
-            return explode(',', $value);
+            return explode(',', (string) $value);
         }
         return $value;
     }

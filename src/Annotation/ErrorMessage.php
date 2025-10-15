@@ -18,7 +18,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-final class ErrorMessage
+final readonly class ErrorMessage
 {
     /**
      * Receive and process the contents of an annotation

@@ -19,7 +19,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-final class Type
+final readonly class Type
 {
     /**
      * Receive and process the contents of an annotation

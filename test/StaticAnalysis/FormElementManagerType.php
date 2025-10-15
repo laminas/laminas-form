@@ -9,7 +9,7 @@ use Laminas\Form\ElementInterface;
 use Laminas\Form\FormElementManager;
 use LaminasTest\Form\TestAsset\NewProductForm;
 
-final class FormElementManagerType
+final readonly class FormElementManagerType
 {
     private function __construct(private FormElementManager $manager)
     {

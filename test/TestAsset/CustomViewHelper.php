@@ -20,7 +20,7 @@ final class CustomViewHelper extends AbstractHelper
     {
         $elementHelper = $this->getElementHelper();
 
-        $name = preg_replace('/[^a-z0-9_-]+/', '', $element->getName());
+        $name = preg_replace('/[^a-z0-9_-]+/', '', (string) $element->getName());
 
         return '<div id="custom' . $name . '">' . $elementHelper($element) . '</div>';
     }

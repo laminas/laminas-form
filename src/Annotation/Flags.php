@@ -21,7 +21,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-final class Flags
+final readonly class Flags
 {
     /**
      * Receive and process the contents of an annotation

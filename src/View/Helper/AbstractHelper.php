@@ -442,13 +442,13 @@ abstract class AbstractHelper extends BaseAbstractHelper
             return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
         } else {
             foreach ($this->translatableAttributePrefixes as $prefix) {
-                if (0 === mb_strpos($key, $prefix)) {
+                if (0 === mb_strpos($key, (string) $prefix)) {
                     // prefix matches => return translated $value
                     return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
                 }
             }
             foreach (self::$defaultTranslatableHtmlAttributePrefixes as $prefix) {
-                if (0 === mb_strpos($key, $prefix)) {
+                if (0 === mb_strpos($key, (string) $prefix)) {
                     // default prefix matches => return translated $value
                     return $this->getTranslator()->translate($value, $this->getTranslatorTextDomain());
                 }
@@ -548,7 +548,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     protected function hasAllowedPrefix(string $attribute): bool
     {
         foreach ($this->validTagAttributePrefixes as $prefix) {
-            if (str_starts_with($attribute, $prefix)) {
+            if (str_starts_with($attribute, (string) $prefix)) {
                 return true;
             }
         }

@@ -71,7 +71,7 @@ final class FormElementManagerTest extends TestCase
 
     public function testLoadingInvalidElementRaisesException(): void
     {
-        $this->manager->setInvokableClass('test', static::class);
+        $this->manager->setInvokableClass('test', self::class);
         $this->expectException($this->getInvalidServiceException());
         $this->manager->get('test');
     }

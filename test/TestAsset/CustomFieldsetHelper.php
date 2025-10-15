@@ -20,7 +20,7 @@ final class CustomFieldsetHelper extends AbstractHelper
     {
         $fieldsetHelper = $this->getFieldsetHelper();
 
-        $name = preg_replace('/[^a-z0-9_-]+/', '', $fieldset->getName());
+        $name = preg_replace('/[^a-z0-9_-]+/', '', (string) $fieldset->getName());
         return '<div id="customFieldset' . $name . '">' . $fieldsetHelper($fieldset) . '</div>';
     }
 

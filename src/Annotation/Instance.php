@@ -18,7 +18,7 @@ use Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor;
  * @NamedArgumentConstructor
  */
 #[Attribute]
-final class Instance
+final readonly class Instance
 {
     /**
      * Receive and process the contents of an annotation

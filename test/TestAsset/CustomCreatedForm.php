@@ -10,7 +10,7 @@ use Laminas\Form\Form;
 /** @extends Form<array<string, mixed>> */
 final class CustomCreatedForm extends Form
 {
-    public function __construct(private DateTime $created, ?string $name = null, array $options = [])
+    public function __construct(private readonly DateTime $created, ?string $name = null, array $options = [])
     {
         parent::__construct($name, $options);
     }
