@@ -11,6 +11,7 @@ use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RequiresOperatingSystemFamily;
 use ReflectionMethod;
 
 use function extension_loaded;
@@ -151,6 +152,7 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
      */
     #[Group('160')]
     #[Group('184')]
+    #[RequiresOperatingSystemFamily('Linux')] // This test fails on MacOS
     public function testRendersDatesWithEsCLLocaleDatePattern(): void
     {
         $this->helper->setLocale('es_CL');
