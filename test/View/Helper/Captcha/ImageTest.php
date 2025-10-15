@@ -10,9 +10,10 @@ use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\Image as ImageCaptchaHelper;
 use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 
 use function class_exists;
-use function extension_loaded;
 use function function_exists;
 use function is_dir;
 use function mkdir;
@@ -20,8 +21,12 @@ use function sys_get_temp_dir;
 use function unlink;
 
 /**
+ * Deprecations are ignored here because laminas-captcha calls imagedestroy()
+ *
  * @property ImageCaptchaHelper $helper
  */
+#[RequiresPhpExtension('gd')]
+#[IgnoreDeprecations]
 final class ImageTest extends AbstractCommonTestCase
 {
     private string $testDir;
@@ -29,9 +34,6 @@ final class ImageTest extends AbstractCommonTestCase
 
     protected function setUp(): void
     {
-        if (! extension_loaded('gd')) {
-            $this->markTestSkipped('The GD extension is not available.');
-        }
         if (! function_exists('imagepng')) {
             $this->markTestSkipped('Image CAPTCHA requires PNG support');
         }
