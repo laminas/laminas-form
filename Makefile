@@ -78,4 +78,4 @@ rector-fix: ## Apply Rector changes
 	tools/rector/vendor/bin/rector process -c tools/rector/rector.php
 .PHONY: rector-fix
 
-qa: composer-validate cs sa test composer-require-checker docs-lint ## Run all QA Checks
+qa: composer-validate cs sa test composer-require-checker docs-lint rector ## Run all QA Checks
