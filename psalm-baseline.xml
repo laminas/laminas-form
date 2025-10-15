@@ -59,14 +59,6 @@
             ])]]></code>
     </DeprecatedClass>
   </file>
-  <file src="src/Element/Captcha.php">
-    <DocblockTypeContradiction>
-      <code><![CDATA[gettype($captcha)]]></code>
-    </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType>
-      <code><![CDATA[is_object($captcha)]]></code>
-    </RedundantConditionGivenDocblockType>
-  </file>
   <file src="src/Element/Collection.php">
     <DocblockTypeContradiction>
       <code><![CDATA[is_array($object)]]></code>
@@ -173,9 +165,6 @@
     </InvalidStringClass>
   </file>
   <file src="src/Factory.php">
-    <DocblockTypeContradiction>
-      <code><![CDATA[gettype($spec)]]></code>
-    </DocblockTypeContradiction>
     <LessSpecificReturnStatement>
       <code><![CDATA[$this->create($spec)]]></code>
       <code><![CDATA[$this->create($spec)]]></code>
@@ -188,9 +177,6 @@
       <code><![CDATA[$elements]]></code>
       <code><![CDATA[$fieldsets]]></code>
     </PossibleRawObjectIteration>
-    <RedundantConditionGivenDocblockType>
-      <code><![CDATA[is_object($spec)]]></code>
-    </RedundantConditionGivenDocblockType>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[empty($hydratorOptions)]]></code>
     </RiskyTruthyFalsyComparison>
@@ -374,14 +360,6 @@
       <code><![CDATA[formRow]]></code>
     </UndefinedMagicMethod>
   </file>
-  <file src="src/View/Helper/FormButton.php">
-    <DocblockTypeContradiction>
-      <code><![CDATA[gettype($attributesOrElement)]]></code>
-    </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType>
-      <code><![CDATA[is_object($attributesOrElement)]]></code>
-    </RedundantConditionGivenDocblockType>
-  </file>
   <file src="src/View/Helper/FormCaptcha.php">
     <DeprecatedMethod>
       <code><![CDATA[getView]]></code>
@@ -439,12 +417,6 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="src/View/Helper/FormLabel.php">
-    <DocblockTypeContradiction>
-      <code><![CDATA[gettype($attributesOrElement)]]></code>
-    </DocblockTypeContradiction>
-    <RedundantConditionGivenDocblockType>
-      <code><![CDATA[is_object($attributesOrElement)]]></code>
-    </RedundantConditionGivenDocblockType>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$labelContent]]></code>
       <code><![CDATA[empty($label)]]></code>
@@ -1100,11 +1072,6 @@
       <code><![CDATA[$container]]></code>
     </MissingClosureParamType>
   </file>
-  <file src="test/FormElementManagerTest.php">
-    <InternalMethod>
-      <code><![CDATA[addToAssertionCount]]></code>
-    </InternalMethod>
-  </file>
   <file src="test/FormTest.php">
     <InaccessibleProperty>
       <code><![CDATA[$model->bar]]></code>
@@ -1212,7 +1179,6 @@
   </file>
   <file src="test/TestAsset/CustomFieldsetHelper.php">
     <PossiblyNullArgument>
-      <code><![CDATA[$fieldset->getName()]]></code>
       <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
@@ -1226,7 +1192,6 @@
   </file>
   <file src="test/TestAsset/CustomViewHelper.php">
     <PossiblyNullArgument>
-      <code><![CDATA[$element->getName()]]></code>
       <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
   </file>
@@ -1354,11 +1319,6 @@
     <UnsafeInstantiation>
       <code><![CDATA[new $helperClass()]]></code>
     </UnsafeInstantiation>
-  </file>
-  <file src="test/View/Helper/AbstractHelperTest.php">
-    <DeprecatedMethod>
-      <code><![CDATA[getMockForAbstractClass]]></code>
-    </DeprecatedMethod>
   </file>
   <file src="test/View/Helper/Factory/FormElementErrorsFactoryTest.php">
     <DeprecatedInterface>
