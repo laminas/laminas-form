@@ -10,6 +10,7 @@ use Laminas\Validator\DateStep;
 use Laminas\Validator\GreaterThan;
 use Laminas\Validator\LessThan;
 use Laminas\Validator\Regex;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class WeekTest extends TestCase
@@ -69,9 +70,7 @@ final class WeekTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider weekValuesDataProvider
-     */
+    #[DataProvider('weekValuesDataProvider')]
     public function testHTML5WeekValidation(string $value, bool $expected): void
     {
         $element   = new WeekElement('foo');

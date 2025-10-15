@@ -9,6 +9,7 @@ use Laminas\Form\Element;
 use Laminas\Form\View\Helper\Factory\FormElementErrorsFactory;
 use Laminas\Form\View\Helper\FormElementErrors;
 use Laminas\I18n\Translator\TranslatorInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -34,9 +35,7 @@ final class FormElementErrorsFactoryTest extends TestCase
         self::assertInstanceOf(FormElementErrors::class, $viewHelper);
     }
 
-    /**
-     * @dataProvider configProvider
-     */
+    #[DataProvider('configProvider')]
     public function testFactoryShouldCreateHelperAndSetOptions(
         array $config,
         array $result
@@ -70,9 +69,7 @@ final class FormElementErrorsFactoryTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider configProvider
-     */
+    #[DataProvider('configProvider')]
     public function testFactoryShouldCreateHelperWithTranslateOption(
         array $config,
         array $result

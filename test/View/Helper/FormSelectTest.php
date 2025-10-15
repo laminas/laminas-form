@@ -11,6 +11,8 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormSelect as FormSelectHelper;
 use Laminas\I18n\Translator\Translator;
 use LaminasTest\Form\TestAsset\Identifier;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 use function key;
 use function sprintf;
@@ -164,9 +166,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         // @codingStandardsIgnoreEnd
     }
 
-    /**
-     * @group Laminas-290
-     */
+    #[Group('Laminas-290')]
     public function testFalseDisabledValueWillNotRenderOptionsWithDisabledAttribute(): void
     {
         $element = $this->getElement();
@@ -176,9 +176,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         self::assertStringNotContainsString('disabled', $markup);
     }
 
-    /**
-     * @group Laminas-290
-     */
+    #[Group('Laminas-290')]
     public function testOmittingDisabledValueWillNotRenderOptionsWithDisabledAttribute(): void
     {
         $element = $this->getElement();
@@ -208,10 +206,8 @@ final class FormSelectTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @group Laminas-338
-     * @dataProvider getScalarOptionsDataProvider
-     */
+    #[DataProvider('getScalarOptionsDataProvider')]
+    #[Group('Laminas-338')]
     public function testScalarOptionValues(array $options): void
     {
         $element = new SelectElement('foo');

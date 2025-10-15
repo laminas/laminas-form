@@ -8,6 +8,7 @@ use Laminas\Form\Element\Number;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FormElementManager;
 use Laminas\Form\FormElementManagerFactory;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -21,9 +22,7 @@ final class FormElementManagerFactoryTest extends TestCase
         self::assertInstanceOf(FormElementManager::class, $elements);
     }
 
-    /**
-     * @depends testFactoryReturnsPluginManager
-     */
+    #[Depends('testFactoryReturnsPluginManager')]
     public function testFactoryConfiguresPluginManagerUnderContainerInterop(): void
     {
         $container = $this->createMock(ContainerInterface::class);

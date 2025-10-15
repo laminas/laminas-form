@@ -10,6 +10,7 @@ use Laminas\Form\Element\DateSelect as DateSelectElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Validator\Date;
 use LaminasTest\Form\TestAsset\CustomTraversable;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 final class DateSelectTest extends TestCase
@@ -111,9 +112,7 @@ final class DateSelectTest extends TestCase
         self::assertSame('test', $sut->getDayAttributes()['class']);
     }
 
-    /**
-     * @group issue-7114
-     */
+    #[Group('issue-7114')]
     public function testValueSetterReturnsSameObjectType(): void
     {
         $element = new DateSelectElement();

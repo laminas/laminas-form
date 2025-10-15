@@ -12,6 +12,8 @@ use Laminas\I18n\Translator\Translator;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Validator\Date;
 use Laminas\View\Resolver\TemplatePathStack;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\Group;
 
 use function explode;
 use function uniqid;
@@ -19,6 +21,8 @@ use function uniqid;
 /**
  * @property FormRowHelper $helper
  */
+#[CoversMethod(FormRowHelper::class, 'render')]
+#[CoversMethod(FormRowHelper::class, '__invoke')]
 final class FormRowTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
@@ -487,9 +491,6 @@ final class FormRowTest extends AbstractCommonTestCase
         self::assertSame('append', $this->helper->getLabelPosition());
     }
 
-    /**
-     * @covers \Laminas\Form\View\Helper\FormRow::render
-     */
     public function testCanSetLabelPositionViaRender(): void
     {
         $element = new Element('foo');
@@ -521,9 +522,6 @@ final class FormRowTest extends AbstractCommonTestCase
         self::assertSame($labelPositionBeforeRender, $this->helper->getLabelPosition());
     }
 
-    /**
-     * @covers \Laminas\Form\View\Helper\FormRow::__invoke
-     */
     public function testCanSetLabelPositionViaInvoke(): void
     {
         $element = new Element('foo');
@@ -543,9 +541,6 @@ final class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    /**
-     * @covers \Laminas\Form\View\Helper\FormRow::__invoke
-     */
     public function testSetLabelPositionViaInvokeIsNotCached(): void
     {
         $labelPositionBeforeRender = $this->helper->getLabelPosition();
@@ -581,9 +576,7 @@ final class FormRowTest extends AbstractCommonTestCase
         );
     }
 
-    /**
-     * @group issue-7030
-     */
+    #[Group('issue-7030')]
     public function testWrapFieldsetAroundCaptchaWithLabel(): void
     {
         self::assertMatchesRegularExpression(

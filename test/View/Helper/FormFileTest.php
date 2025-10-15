@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormFile as FormFileHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function sprintf;
 
@@ -149,9 +150,7 @@ final class FormFileTest extends AbstractCommonTestCase
         return $element;
     }
 
-    /**
-     * @dataProvider validAttributes
-     */
+    #[DataProvider('validAttributes')]
     public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
         string $attribute,
         string $assertion

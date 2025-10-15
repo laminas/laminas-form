@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDate as FormDateHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function sprintf;
 
@@ -119,12 +120,11 @@ final class FormDateTest extends AbstractCommonTestCase
         return $element;
     }
 
-    /**
-     * @dataProvider validAttributes
-     * @return void
-     */
-    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
-    {
+    #[DataProvider('validAttributes')]
+    public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
+        string $attribute,
+        string $assertion,
+    ): void {
         $element = $this->getCompleteElement();
         $markup  = $this->helper->render($element);
         $expect  = match ($attribute) {

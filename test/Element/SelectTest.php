@@ -8,6 +8,7 @@ use Laminas\Form\Element\Select as SelectElement;
 use Laminas\Validator\Explode;
 use Laminas\Validator\InArray;
 use LaminasTest\Form\TestAsset\CustomTraversable;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function count;
@@ -136,9 +137,7 @@ final class SelectTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider selectOptionsDataProvider
-     */
+    #[DataProvider('selectOptionsDataProvider')]
     public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new SelectElement('my-select');
@@ -155,9 +154,8 @@ final class SelectTest extends TestCase
     /**
      * Testing that InArray Validator Haystack is Updated if the Options
      * are added after the validator is attached
-     *
-     * @dataProvider selectOptionsDataProvider
      */
+    #[DataProvider('selectOptionsDataProvider')]
     public function testInArrayValidatorHaystakIsUpdated(array $valueTests, array $options): void
     {
         $element   = new SelectElement('my-select');

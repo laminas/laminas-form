@@ -8,6 +8,7 @@ use DateTime;
 use DateTimeImmutable;
 use Laminas\Form\Element\MonthSelect as MonthSelectElement;
 use Laminas\Validator\Regex;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class MonthSelectTest extends TestCase
@@ -54,9 +55,7 @@ final class MonthSelectTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider monthValuesDataProvider
-     */
+    #[DataProvider('monthValuesDataProvider')]
     public function testMonthValidation(string $value, bool $expected): void
     {
         $element   = new MonthSelectElement('foo');

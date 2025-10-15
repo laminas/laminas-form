@@ -17,6 +17,7 @@ use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\PluginManagerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\Form\TestAsset\InvokableForm;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -30,9 +31,7 @@ use function count;
 use function method_exists;
 use function strtoupper;
 
-/**
- * @group      Laminas_Form
- */
+#[Group('Laminas_Form')]
 final class FormElementManagerTest extends TestCase
 {
     private FormElementManager $manager;
@@ -49,9 +48,7 @@ final class FormElementManagerTest extends TestCase
         self::assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }
 
-    /**
-     * @group issue-3735
-     */
+    #[Group('issue-3735')]
     public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement(): void
     {
         $factory = new Factory();
@@ -124,9 +121,7 @@ final class FormElementManagerTest extends TestCase
         self::assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
     }
 
-    /**
-     * @group issue-6132
-     */
+    #[Group('issue-6132')]
     public function testSharedFormElementsAreNotInitializedMultipleTimes(): void
     {
         $element = $this->getMockBuilder(Element::class)
@@ -149,10 +144,8 @@ final class FormElementManagerTest extends TestCase
         self::assertInstanceof(Form::class, $form);
     }
 
-    /**
-     * @group issue-58
-     * @group issue-64
-     */
+    #[Group('issue-58')]
+    #[Group('issue-64')]
     public function testInjectFactoryInitializerShouldBeRegisteredFirst(): void
     {
         // @codingStandardsIgnoreStart
@@ -177,10 +170,8 @@ final class FormElementManagerTest extends TestCase
         self::assertSame([$manager, 'injectFactory'], $first);
     }
 
-    /**
-     * @group issue-58
-     * @group issue-64
-     */
+    #[Group('issue-58')]
+    #[Group('issue-64')]
     public function testCallElementInitInitializerShouldBeRegisteredLast(): void
     {
         // @codingStandardsIgnoreStart
@@ -205,9 +196,7 @@ final class FormElementManagerTest extends TestCase
         self::assertSame([$manager, 'callElementInit'], $last);
     }
 
-    /**
-     * @group issue-62
-     */
+    #[Group('issue-62')]
     public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory(): void
     {
         $this->manager->setInvokableClass('foo', TestAsset\ElementWithFilter::class);

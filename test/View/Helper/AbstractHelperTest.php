@@ -10,30 +10,33 @@ use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\View\Helper\FormSelect;
 use Laminas\I18n\Translator\Translator;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 use function range;
 
 /**
  * Tests for {@see \Laminas\Form\View\Helper\AbstractHelper}
- *
- * @covers \Laminas\Form\View\Helper\AbstractHelper
  */
+#[CoversClass(AbstractHelper::class)]
+#[CoversMethod(AbstractHelper::class, 'translateLabel')]
 final class AbstractHelperTest extends AbstractCommonTestCase
 {
     protected function setUp(): void
     {
-        $this->helper = $this->getMockForAbstractClass(AbstractHelper::class);
+        $this->helper = new class extends AbstractHelper {
+        };
         parent::setUp();
     }
 
-    /**
-     * @group issue-5991
-     */
+    #[Group('issue-5991')]
     public function testWillEscapeValueAttributeValuesCorrectly(): void
     {
         self::assertSame(
             'data-value="breaking&#x20;your&#x20;HTML&#x20;like&#x20;a&#x20;boss&#x21;&#x20;&#x5C;"',
-            $this->helper->createAttributesString(['data-value' => 'breaking your HTML like a boss! \\'])
+            $this->helper->createAttributesString(['data-value' => 'breaking your HTML like a boss! \\']),
         );
     }
 
@@ -45,7 +48,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         self::assertSame(
             'data-value="' . $escaper->escapeHtmlAttr('Título') . '"',
-            $this->helper->createAttributesString(['data-value' => 'Título'])
+            $this->helper->createAttributesString(['data-value' => 'Título']),
         );
     }
 
@@ -55,7 +58,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         self::assertNotSame(
             'data-value="' . $escaper->escapeHtmlAttr('Título') . '"',
-            $this->helper->createAttributesString(['data-value' => 'Título'])
+            $this->helper->createAttributesString(['data-value' => 'Título']),
         );
     }
 
@@ -77,13 +80,11 @@ final class AbstractHelperTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider addAttributesData
-     */
+    #[DataProvider('addAttributesData')]
     public function testWillIncludeAdditionalAttributes(
         string $attribute,
         ?string $expected = null,
-        ?bool $exception = null
+        ?bool $exception = null,
     ): void {
         if ($exception) {
             $this->expectException(InvalidArgumentException::class);
@@ -93,7 +94,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         self::assertSame(
             $expected,
-            $this->helper->createAttributesString([$attribute => 'value'])
+            $this->helper->createAttributesString([$attribute => 'value']),
         );
     }
 
@@ -116,13 +117,11 @@ final class AbstractHelperTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider addAttributesPrefixData
-     */
+    #[DataProvider('addAttributesPrefixData')]
     public function testWillIncludeAdditionalAttributesByPrefix(
         string $prefix,
         ?string $expected = null,
-        ?bool $exception = null
+        ?bool $exception = null,
     ): void {
         if ($exception) {
             $this->expectException(InvalidArgumentException::class);
@@ -132,7 +131,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         self::assertSame(
             $expected,
-            $this->helper->createAttributesString([$prefix . 'attr' => 'value'])
+            $this->helper->createAttributesString([$prefix . 'attr' => 'value']),
         );
     }
 
@@ -148,7 +147,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
             ->method('translate')
             ->with(
                 self::equalTo('Welcome'),
-                self::equalTo('view-helper-text-domain')
+                self::equalTo('view-helper-text-domain'),
             )
             ->willReturn('Willkommen');
 
@@ -158,22 +157,22 @@ final class AbstractHelperTest extends AbstractCommonTestCase
             ->setTranslatorEnabled(true)
             ->setTranslator(
                 $translator,
-                'view-helper-text-domain'
+                'view-helper-text-domain',
             );
 
         self::assertSame(
             'data-translate-me="Willkommen"',
-            $this->helper->createAttributesString(['data-translate-me' => 'Welcome'])
+            $this->helper->createAttributesString(['data-translate-me' => 'Welcome']),
         );
 
         self::assertSame(
             'data-translatable-welcome="Willkommen"',
-            $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome'])
+            $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome']),
         );
 
         self::assertSame(
             'class="Welcome"',
-            $this->helper->createAttributesString(['class' => 'Welcome'])
+            $this->helper->createAttributesString(['class' => 'Welcome']),
         );
     }
 
@@ -189,7 +188,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
             ->method('translate')
             ->with(
                 self::equalTo('Welcome'),
-                self::equalTo('view-helper-text-domain')
+                self::equalTo('view-helper-text-domain'),
             )
             ->willReturn('Willkommen');
 
@@ -200,22 +199,22 @@ final class AbstractHelperTest extends AbstractCommonTestCase
             ->setTranslatorEnabled(true)
             ->setTranslator(
                 $translator,
-                'view-helper-text-domain'
+                'view-helper-text-domain',
             );
 
         self::assertSame(
             'data-translate-me="Willkommen"',
-            $this->helper->createAttributesString(['data-translate-me' => 'Welcome'])
+            $this->helper->createAttributesString(['data-translate-me' => 'Welcome']),
         );
 
         self::assertSame(
             'data-translatable-welcome="Willkommen"',
-            $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome'])
+            $this->helper->createAttributesString(['data-translatable-welcome' => 'Welcome']),
         );
 
         self::assertSame(
             'class="Welcome"',
-            $this->helper->createAttributesString(['class' => 'Welcome'])
+            $this->helper->createAttributesString(['class' => 'Welcome']),
         );
     }
 
@@ -223,7 +222,7 @@ final class AbstractHelperTest extends AbstractCommonTestCase
     {
         self::assertSame(
             'data-value=""',
-            $this->helper->createAttributesString(['data-value' => "\xc3\x28"])
+            $this->helper->createAttributesString(['data-value' => "\xc3\x28"]),
         );
     }
 
@@ -233,18 +232,16 @@ final class AbstractHelperTest extends AbstractCommonTestCase
 
         self::assertSame(
             'disabled="disabled"',
-            $this->helper->createAttributesString(['disabled' => 'disabled'])
+            $this->helper->createAttributesString(['disabled' => 'disabled']),
         );
         self::assertSame(
             '',
-            $this->helper->createAttributesString(['disabled' => null])
+            $this->helper->createAttributesString(['disabled' => null]),
         );
     }
 
     /**
      * @deprecated This test should be removed in 4.0 and string should become a hard requirement for labels
-     *
-     * @covers \Laminas\Form\View\Helper\AbstractHelper::translateLabel
      */
     public function testThatAnIntegerElementLabelWillBeCastToAString(): void
     {

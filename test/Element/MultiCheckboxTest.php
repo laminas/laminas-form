@@ -7,6 +7,7 @@ namespace LaminasTest\Form\Element;
 use Laminas\Form\Element\MultiCheckbox as MultiCheckboxElement;
 use Laminas\Validator\Explode;
 use Laminas\Validator\InArray;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function count;
@@ -22,9 +23,7 @@ final class MultiCheckboxTest extends TestCase
         return [[true], [false]];
     }
 
-    /**
-     * @dataProvider useHiddenAttributeDataProvider
-     */
+    #[DataProvider('useHiddenAttributeDataProvider')]
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement): void
     {
         $element = new MultiCheckboxElement();
@@ -76,9 +75,7 @@ final class MultiCheckboxTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider multiCheckboxOptionsDataProvider
-     */
+    #[DataProvider('multiCheckboxOptionsDataProvider')]
     public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new MultiCheckboxElement('my-checkbox');
@@ -93,9 +90,8 @@ final class MultiCheckboxTest extends TestCase
     /**
      * Testing that InArray Validator Haystack is Updated if the Options
      * are added after the validator is attached
-     *
-     * @dataProvider multiCheckboxOptionsDataProvider
      */
+    #[DataProvider('multiCheckboxOptionsDataProvider')]
     public function testInArrayValidatorHaystackIsUpdated(array $valueTests, array $options): void
     {
         $element          = new MultiCheckboxElement('my-checkbox');

@@ -6,11 +6,10 @@ namespace LaminasTest\Form;
 
 use Laminas\Form\Factory;
 use Laminas\Form\FormFactoryAwareTrait;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @requires PHP 5.4
- */
+#[RequiresPhp('5.4')]
 final class FormFactoryAwareTraitTest extends TestCase
 {
     public function testSetFormFactory(): void

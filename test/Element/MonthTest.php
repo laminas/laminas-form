@@ -11,6 +11,7 @@ use Laminas\Validator\DateStep;
 use Laminas\Validator\GreaterThan;
 use Laminas\Validator\LessThan;
 use Laminas\Validator\Regex;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class MonthTest extends TestCase
@@ -71,9 +72,7 @@ final class MonthTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider monthValuesDataProvider
-     */
+    #[DataProvider('monthValuesDataProvider')]
     public function testHTML5MonthValidation(string $value, bool $expected): void
     {
         $element   = new MonthElement('foo');

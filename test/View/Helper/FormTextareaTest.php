@@ -7,6 +7,7 @@ namespace LaminasTest\Form\View\Helper;
 use Laminas\Form\Element;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormTextarea as FormTextareaHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function sprintf;
 
@@ -238,9 +239,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         return $element;
     }
 
-    /**
-     * @dataProvider validAttributes
-     */
+    #[DataProvider('validAttributes')]
     public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
         string $attribute,
         string $assertion
@@ -262,9 +261,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider booleanAttributeTypes
-     */
+    #[DataProvider('booleanAttributeTypes')]
     public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off): void
     {
         $element = new Element('foo');
@@ -323,9 +320,7 @@ final class FormTextareaTest extends AbstractCommonTestCase
         }
     }
 
-    /**
-     * @dataProvider booleanAttributeTypes
-     */
+    #[DataProvider('booleanAttributeTypes')]
     public function testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5(
         string $attribute,
         string $on,

@@ -12,6 +12,8 @@ use Laminas\Validator\Csrf;
 use Laminas\View\Helper\Doctype;
 use Laminas\View\Renderer\PhpRenderer;
 use Laminas\View\Renderer\RendererInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 use function substr_count;
@@ -69,9 +71,7 @@ final class FormElementTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider getInputElements
-     */
+    #[DataProvider('getInputElements')]
     public function testRendersExpectedInputElement(string $type): void
     {
         $element = new Element('foo');
@@ -110,10 +110,8 @@ final class FormElementTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider getMultiElements
-     * @group multi
-     */
+    #[DataProvider('getMultiElements')]
+    #[Group('multi')]
     public function testRendersMultiElementsAsExpected(string $type, string $inputType, string $additionalMarkup): void
     {
         if ($type === 'radio') {

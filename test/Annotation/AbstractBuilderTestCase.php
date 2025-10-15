@@ -30,7 +30,9 @@ use LaminasTest\Form\TestAsset\Annotation\EntityObjectPropertyHydrator;
 use LaminasTest\Form\TestAsset\Annotation\Form;
 use LaminasTest\Form\TestAsset\Annotation\InputFilter;
 use LaminasTest\Form\TestAsset\Annotation\InputFilterInput;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\WithoutErrorHandler;
 use PHPUnit\Framework\TestCase;
 use Throwable;
@@ -342,10 +344,8 @@ abstract class AbstractBuilderTestCase extends TestCase
         ], $passwordFilterSpec);
     }
 
-    /**
-     * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotation
-     * @group issue-7108
-     */
+    #[DataProvider('provideOptionsAnnotationAndComposedObjectAnnotation')]
+    #[Group('issue-7108')]
     public function testOptionsAnnotationAndComposedObjectAnnotation(string $childName): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
@@ -369,10 +369,8 @@ abstract class AbstractBuilderTestCase extends TestCase
         yield ['childTheSecond'];
     }
 
-    /**
-     * @dataProvider provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection
-     * @group issue-7108
-     */
+    #[DataProvider('provideOptionsAnnotationAndComposedObjectAnnotationNoneCollection')]
+    #[Group('issue-7108')]
     public function testOptionsAnnotationAndComposedObjectAnnotationNoneCollection(string $childName): void
     {
         $entity  = new TestAsset\Annotation\EntityUsingComposedObjectAndOptions();
@@ -499,9 +497,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         }
     }
 
-    /**
-     * @group issue-6753
-     */
+    #[Group('issue-6753')]
     public function testInputFilterAnnotationAllowsComposition(): void
     {
         $entity      = new TestAsset\Annotation\EntityWithInputFilterAnnotation();

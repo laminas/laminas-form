@@ -8,6 +8,8 @@ use Laminas\Form\Element;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormInput as FormInputHelper;
 use Laminas\I18n\Translator\Translator;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 use function sprintf;
 
@@ -82,9 +84,7 @@ final class FormInputTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider inputTypes
-     */
+    #[DataProvider('inputTypes')]
     public function testOnlyAllowsValidInputTypes(string $type, string $assertion): void
     {
         $element = new Element('foo');
@@ -309,9 +309,9 @@ final class FormInputTest extends AbstractCommonTestCase
     }
 
     /**
-     * @dataProvider validAttributes
      * @return       void
      */
+    #[DataProvider('validAttributes')]
     public function testAllValidFormMarkupAttributesPresentInElementAreRendered(string $attribute, string $assertion)
     {
         $element = $this->getCompleteElement();
@@ -333,9 +333,7 @@ final class FormInputTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider nonXhtmlDoctypes
-     */
+    #[DataProvider('nonXhtmlDoctypes')]
     public function testRenderingOmitsClosingSlashWhenDoctypeIsNotXhtml(string $doctype): void
     {
         $element = new Element('foo');
@@ -357,9 +355,7 @@ final class FormInputTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider xhtmlDoctypes
-     */
+    #[DataProvider('xhtmlDoctypes')]
     public function testRenderingIncludesClosingSlashWhenDoctypeIsXhtml(string $doctype): void
     {
         $element = new Element('foo');
@@ -386,10 +382,8 @@ final class FormInputTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @group Laminas-391
-     * @dataProvider booleanAttributeTypes
-     */
+    #[DataProvider('booleanAttributeTypes')]
+    #[Group('Laminas-391')]
     public function testBooleanAttributeTypesAreRenderedCorrectly(string $attribute, string $on, string $off): void
     {
         $element = new Element('foo');
@@ -449,10 +443,8 @@ final class FormInputTest extends AbstractCommonTestCase
         }
     }
 
-    /**
-     * @group Laminas-391
-     * @dataProvider booleanAttributeTypes
-     */
+    #[DataProvider('booleanAttributeTypes')]
+    #[Group('Laminas-391')]
     public function testBooleanAttributeTypesAreRenderedCorrectlyWithoutValueForHtml5(
         string $attribute,
         string $on,
@@ -550,9 +542,7 @@ final class FormInputTest extends AbstractCommonTestCase
         self::assertSame($this->helper, $this->helper->__invoke());
     }
 
-    /**
-     * @group Laminas-489
-     */
+    #[Group('Laminas-489')]
     public function testCanTranslatePlaceholder(): void
     {
         $element = new Element('test');
@@ -594,9 +584,7 @@ final class FormInputTest extends AbstractCommonTestCase
         self::assertStringContainsString('title="translated&#x20;string"', $markup);
     }
 
-    /**
-     * @group issue-7166
-     */
+    #[Group('issue-7166')]
     public function testPasswordValueShouldNotBeRendered(): void
     {
         $element = new Element('foo');

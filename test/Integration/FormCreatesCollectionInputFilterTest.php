@@ -8,6 +8,7 @@ use Laminas\Form\Form;
 use Laminas\Form\InputFilterProviderFieldset;
 use Laminas\InputFilter\CollectionInputFilter;
 use Laminas\Validator;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 use function sprintf;
@@ -73,9 +74,7 @@ final class FormCreatesCollectionInputFilterTest extends TestCase
         return $form;
     }
 
-    /**
-     * @depends testCollectionInputFilterContainsExpectedValidators
-     */
+    #[Depends('testCollectionInputFilterContainsExpectedValidators')]
     public function testCollectionElementDoesNotCreateDiscreteElementInInputFilter(Form $form): void
     {
         $inputFilter = $form->getInputFilter();

@@ -25,6 +25,8 @@ use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputInterface;
 use LaminasTest\Form\TestAsset\Entity\Category;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -348,9 +350,7 @@ final class FormTest extends TestCase
         self::assertIsArray($data);
     }
 
-    /**
-     * @group Laminas-336
-     */
+    #[Group('Laminas-336')]
     public function testCanAddFileEnctypeAttribute(): void
     {
         $file = new Element\File('file_resource');
@@ -365,9 +365,7 @@ final class FormTest extends TestCase
         self::assertEquals($enctype, 'multipart/form-data');
     }
 
-    /**
-     * @group Laminas-336
-     */
+    #[Group('Laminas-336')]
     public function testCanAddFileEnctypeFromCollectionAttribute(): void
     {
         $file = new Element\File('file_resource');
@@ -1724,9 +1722,7 @@ final class FormTest extends TestCase
         self::assertEquals('form[element]', $element->getName());
     }
 
-    /**
-     * @group issue-4996
-     */
+    #[Group('issue-4996')]
     public function testCanOverrideDefaultInputSettings(): void
     {
         $myFieldset = new TestAsset\MyFieldset();
@@ -1738,9 +1734,7 @@ final class FormTest extends TestCase
         self::assertFalse($inputFilter->get('email')->isRequired());
     }
 
-    /**
-     * @group issue-5007
-     */
+    #[Group('issue-5007')]
     public function testComplexFormInputFilterMergesIntoExisting(): void
     {
         $this->form->setPreferFormInputFilter(true);
@@ -1771,9 +1765,7 @@ final class FormTest extends TestCase
         self::assertFalse($this->form->getInputFilter()->get('importance')->isRequired());
     }
 
-    /**
-     * @group issue-5007
-     */
+    #[Group('issue-5007')]
     public function testInputFilterOrderOfPrecedence1(): void
     {
         $spec = [
@@ -1823,9 +1815,7 @@ final class FormTest extends TestCase
         );
     }
 
-    /**
-     * @group issue-5015
-     */
+    #[Group('issue-5015')]
     public function testCanSetPreferFormInputFilterFlagViaSetOptions(): void
     {
         $flag = ! $this->form->getPreferFormInputFilter();
@@ -1835,9 +1825,7 @@ final class FormTest extends TestCase
         self::assertSame($flag, $this->form->getPreferFormInputFilter());
     }
 
-    /**
-     * @group issue-5015
-     */
+    #[Group('issue-5015')]
     public function testFactoryCanSetPreferFormInputFilterFlag(): void
     {
         $factory = new Factory();
@@ -1853,17 +1841,13 @@ final class FormTest extends TestCase
         }
     }
 
-    /**
-     * @group issue-5028
-     */
+    #[Group('issue-5028')]
     public function testPreferFormInputFilterFlagIsEnabledByDefault(): void
     {
         self::assertTrue($this->form->getPreferFormInputFilter());
     }
 
-    /**
-     * @group issue-5050
-     */
+    #[Group('issue-5050')]
     public function testFileInputFilterNotOverwritten(): void
     {
         $form = new TestAsset\FileInputFilterProviderForm();
@@ -2080,9 +2064,7 @@ final class FormTest extends TestCase
         self::assertTrue($this->form->isValid());
     }
 
-    /**
-     * @dataProvider formWithSelectMultipleAndEmptyUnselectedValueDataProvider
-     */
+    #[DataProvider('formWithSelectMultipleAndEmptyUnselectedValueDataProvider')]
     public function testFormWithSelectMultipleAndEmptyUnselectedValue(
         bool $expectedIsValid,
         array $expectedFormData,

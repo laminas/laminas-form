@@ -11,6 +11,8 @@ use Laminas\View\Helper\Doctype;
 use LaminasTest\Form\TestAsset\CustomFieldsetHelper;
 use LaminasTest\Form\TestAsset\CustomViewHelper;
 use LaminasTest\Form\TestAsset\FormCollection;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use ReflectionMethod;
 use RuntimeException;
 
@@ -115,9 +117,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         self::assertStringContainsString('id="customFieldsetfieldsets"', $markup);
     }
 
-    /**
-     * @group issue-7167
-     */
+    #[Group('issue-7167')]
     public function testShouldNotWrapAtSubInvokeHelper(): void
     {
         self::assertStringNotContainsString(
@@ -126,9 +126,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         );
     }
 
-    /**
-     * @group issue-7167
-     */
+    #[Group('issue-7167')]
     public function testShouldWrapAtRecursiveHelperCall(): void
     {
         self::assertStringContainsString(
@@ -421,9 +419,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         $method->invokeArgs(new FormCollectionHelper(), []);
     }
 
-    /**
-     * @dataProvider provideDoctypesAndPermitFlagForNameAttribute
-     */
+    #[DataProvider('provideDoctypesAndPermitFlagForNameAttribute')]
     public function testRenderCollectionWithNameAttributeAndDoctypeHtml5(
         string $doctype,
         bool $allowsNameAttribute
@@ -460,9 +456,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider provideDoctypesAndPermitFlagForDisabledAttribute
-     */
+    #[DataProvider('provideDoctypesAndPermitFlagForDisabledAttribute')]
     public function testRenderCollectionWithDisabledAttribute(
         string $doctype,
         bool $allowsNameAttribute,
@@ -553,9 +547,7 @@ final class FormCollectionTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider provideDoctypesAndPermitFlagForFormAttribute
-     */
+    #[DataProvider('provideDoctypesAndPermitFlagForFormAttribute')]
     public function testRenderCollectionWithFormAttributeAndDoctypeHtml5(
         string $doctype,
         bool $allowsFormAttribute

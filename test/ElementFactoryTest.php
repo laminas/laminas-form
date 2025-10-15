@@ -7,6 +7,7 @@ namespace LaminasTest\Form;
 use Generator;
 use Laminas\Form\ElementFactory;
 use LaminasTest\Form\TestAsset\ArgumentRecorder;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -20,9 +21,7 @@ final class ElementFactoryTest extends TestCase
         yield 'null' => [null, []];
     }
 
-    /**
-     * @dataProvider validCreationOptions
-     */
+    #[DataProvider('validCreationOptions')]
     public function testValidCreationOptions(array|null $creationOptions, array $expectedValue): void
     {
         $container = $this->createMock(ContainerInterface::class);

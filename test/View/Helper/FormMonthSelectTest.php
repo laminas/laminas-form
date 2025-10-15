@@ -9,6 +9,7 @@ use Laminas\Form\Element\MonthSelect;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormMonthSelect as FormMonthSelectHelper;
+use PHPUnit\Framework\Attributes\Group;
 
 use function extension_loaded;
 
@@ -99,9 +100,7 @@ final class FormMonthSelectTest extends AbstractCommonTestCase
         self::assertCount(12, $element->getMonthElement()->getValueOptions());
     }
 
-    /**
-     * @group issue-6656
-     */
+    #[Group('issue-6656')]
     public function testGetElements(): void
     {
         $element = new MonthSelect('foo');
