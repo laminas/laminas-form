@@ -8,6 +8,7 @@ use Laminas\Form\Element\Email as EmailElement;
 use Laminas\Validator\Explode;
 use Laminas\Validator\Regex;
 use Laminas\Validator\ValidatorInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class EmailTest extends TestCase
@@ -40,10 +41,10 @@ final class EmailTest extends TestCase
     }
 
     /**
-     * @dataProvider emailAttributesDataProvider
      * @param array<string, scalar> $attributes
      * @param list<class-string<ValidatorInterface>> $expectedValidators
      */
+    #[DataProvider('emailAttributesDataProvider')]
     public function testProvidesInputSpecificationBasedOnAttributes(array $attributes, array $expectedValidators): void
     {
         $element = new EmailElement();

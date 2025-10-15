@@ -6,6 +6,7 @@ namespace LaminasTest\Form\Element;
 
 use Laminas\Form\Element\Radio as RadioElement;
 use Laminas\Validator\InArray;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class RadioTest extends TestCase
@@ -15,9 +16,7 @@ final class RadioTest extends TestCase
         return [[true], [false]];
     }
 
-    /**
-     * @dataProvider useHiddenAttributeDataProvider
-     */
+    #[DataProvider('useHiddenAttributeDataProvider')]
     public function testProvidesInputSpecificationThatIncludesValidatorsBasedOnAttributes(bool $useHiddenElement): void
     {
         $element = new RadioElement();
@@ -62,9 +61,7 @@ final class RadioTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider radioOptionsDataProvider
-     */
+    #[DataProvider('radioOptionsDataProvider')]
     public function testInArrayValidationOfOptions(array $valueTests, array $options): void
     {
         $element = new RadioElement('my-radio');

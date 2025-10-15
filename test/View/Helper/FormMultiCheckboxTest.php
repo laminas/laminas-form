@@ -10,6 +10,7 @@ use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormMultiCheckbox as FormMultiCheckboxHelper;
 use Laminas\I18n\Translator\Translator;
+use PHPUnit\Framework\Attributes\Group;
 
 use function sprintf;
 use function substr_count;
@@ -415,10 +416,8 @@ final class FormMultiCheckboxTest extends AbstractCommonTestCase
         self::assertMatchesRegularExpression('#<span>label1</span>#', $markup);
     }
 
-    /**
-     * @group issue-6649
-     * @group issue-6655
-     */
+    #[Group('issue-6649')]
+    #[Group('issue-6655')]
     public function testRenderWithoutValueOptions(): void
     {
         $element = new MultiCheckboxElement('foo');

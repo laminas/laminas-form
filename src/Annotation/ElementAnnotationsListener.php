@@ -42,29 +42,31 @@ use function is_array;
 final class ElementAnnotationsListener extends AbstractAnnotationsListener
 {
     /**
+     * phpcs:disable Generic.Files.LineLength
+     *
      * @inheritDoc
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleAllowEmptyAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleAttributesAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleComposedObjectAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleContinueIfEmptyAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleErrorMessageAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleFilterAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleFlagsAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleHydratorAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleInputAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleInstanceAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleOptionsAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleRequiredAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleTypeAnnotation'], $priority);
-        $this->listeners[] = $events->attach('configureElement', [$this, 'handleValidatorAnnotation'], $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleAllowEmptyAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleAttributesAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleComposedObjectAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleContinueIfEmptyAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleErrorMessageAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleFilterAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleFlagsAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleHydratorAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleInputAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleInstanceAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleOptionsAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleRequiredAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleTypeAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('configureElement', $this->handleValidatorAnnotation(...), $priority);
 
-        $this->listeners[] = $events->attach('discoverName', [$this, 'handleNameAnnotation'], $priority);
-        $this->listeners[] = $events->attach('discoverName', [$this, 'discoverFallbackName'], $priority);
+        $this->listeners[] = $events->attach('discoverName', $this->handleNameAnnotation(...), $priority);
+        $this->listeners[] = $events->attach('discoverName', $this->discoverFallbackName(...), $priority);
 
-        $this->listeners[] = $events->attach('checkForExclude', [$this, 'handleExcludeAnnotation'], $priority);
+        $this->listeners[] = $events->attach('checkForExclude', $this->handleExcludeAnnotation(...), $priority);
     }
 
     /**

@@ -8,6 +8,8 @@ use Laminas\Form\Element;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormReset as FormResetHelper;
 use Laminas\I18n\Translator\Translator;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 use function sprintf;
 
@@ -121,9 +123,7 @@ final class FormResetTest extends AbstractCommonTestCase
         return $element;
     }
 
-    /**
-     * @dataProvider validAttributes
-     */
+    #[DataProvider('validAttributes')]
     public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
         string $attribute,
         string $assertion
@@ -151,9 +151,7 @@ final class FormResetTest extends AbstractCommonTestCase
         self::assertSame($this->helper, $this->helper->__invoke());
     }
 
-    /**
-     * @group Laminas-489
-     */
+    #[Group('Laminas-489')]
     public function testCanTranslateValue(): void
     {
         $element = new Element('foo');

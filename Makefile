@@ -30,6 +30,7 @@ install: install-tools ## Install PHP dependencies
 
 install-tools: ## Install standalone dev tools
 	cd tools/crc && composer install
+	cd tools/rector && composer install
 
 update: ## Update PHP dependencies
 	composer update
@@ -39,6 +40,7 @@ bump: bump-tools ## Bump dev dependencies and update
 
 bump-tools: ## Bump and update standalone dev tools
 	cd tools/crc && composer update && composer bump -D && composer update
+	cd tools/rector && composer update && composer bump -D && composer update
 
 clean: ## Clear out caches and documentation assets
 	rm -rf documentation-theme
@@ -64,4 +66,16 @@ composer-validate: ## Validate composer.json and lock
 composer-require-checker: ## Check for symbols from un-declared dependencies
 	tools/crc/vendor/bin/composer-require-checker check --config-file=tools/crc/config.json
 
-qa: composer-validate cs sa test composer-require-checker docs-lint ## Run all QA Checks
+rector: ## Run Rector and show the diff
+	tools/rector/vendor/bin/rector process --dry-run -vv -c tools/rector/rector.php
+.PHONY: rector
+
+rector-ci: ## Run Rector and show the diff in GitHub format for CI
+	tools/rector/vendor/bin/rector process --dry-run --output-format=github -vv -c tools/rector/rector.php
+.PHONY: rector
+
+rector-fix: ## Apply Rector changes
+	tools/rector/vendor/bin/rector process -c tools/rector/rector.php
+.PHONY: rector-fix
+
+qa: composer-validate cs sa test composer-require-checker docs-lint rector ## Run all QA Checks

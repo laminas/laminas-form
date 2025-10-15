@@ -49,7 +49,7 @@ final class ComposedObject
             trigger_error(sprintf(
                 'Passing a single array to the constructor of %s is deprecated since 3.0.0,'
                     . ' please use separate parameters.',
-                static::class
+                self::class
             ), E_USER_DEPRECATED);
 
             $this->targetObject = $targetObject['target_object'] ?? null;

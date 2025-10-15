@@ -23,7 +23,7 @@ use function is_bool;
 #[Attribute]
 final class ContinueIfEmpty
 {
-    private bool $continueIfEmpty;
+    private readonly bool $continueIfEmpty;
 
     /**
      * Receive and process the contents of an annotation

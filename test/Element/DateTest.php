@@ -12,15 +12,15 @@ use Laminas\Validator\Date;
 use Laminas\Validator\DateStep;
 use Laminas\Validator\GreaterThan;
 use Laminas\Validator\LessThan;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 use function date;
 use function date_default_timezone_get;
 use function date_default_timezone_set;
 
-/**
- * @covers \Laminas\Form\Element\Date
- */
+#[CoversClass(DateElement::class)]
 final class DateTest extends TestCase
 {
     /**
@@ -145,9 +145,7 @@ final class DateTest extends TestCase
         }
     }
 
-    /**
-     * @group issue-6245
-     */
+    #[Group('issue-6245')]
     public function testStepValidatorIgnoresDaylightSavings(): void
     {
         date_default_timezone_set('Europe/London');

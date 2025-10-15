@@ -14,6 +14,7 @@ use Laminas\Hydrator;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\InputFilter\InputFilter;
 use Laminas\ServiceManager\PluginManagerInterface;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use stdClass;
@@ -494,9 +495,7 @@ final class FieldsetTest extends TestCase
         self::assertEquals('notModified', $object->disabled);
     }
 
-    /**
-     * @group issue-7109
-     */
+    #[Group('issue-7109')]
     public function testBindValuesDoesNotSkipElementsWithFalsyDisabledValues(): void
     {
         $object               = new stdClass();
@@ -543,10 +542,8 @@ final class FieldsetTest extends TestCase
         self::assertTrue($allowed);
     }
 
-    /**
-     * @group issue-6585
-     * @group issue-6614
-     */
+    #[Group('issue-6585')]
+    #[Group('issue-6614')]
     public function testBindValuesPreservesNewValueAfterValidation(): void
     {
         $form = new Form();

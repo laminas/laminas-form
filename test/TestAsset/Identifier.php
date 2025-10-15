@@ -6,7 +6,7 @@ namespace LaminasTest\Form\TestAsset;
 
 use Stringable;
 
-final class Identifier implements Stringable
+final readonly class Identifier implements Stringable
 {
     public function __construct(private int $id)
     {

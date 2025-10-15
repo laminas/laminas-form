@@ -10,6 +10,7 @@ use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormButton as FormButtonHelper;
 use Laminas\I18n\Translator\Translator;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function sprintf;
 
@@ -104,9 +105,7 @@ final class FormButtonTest extends AbstractCommonTestCase
         ];
     }
 
-    /**
-     * @dataProvider inputTypes
-     */
+    #[DataProvider('inputTypes')]
     public function testOpenTagOnlyAllowsValidButtonTypes(string $type, string $assertion): void
     {
         $element = new Element('foo');
@@ -189,9 +188,7 @@ final class FormButtonTest extends AbstractCommonTestCase
         return $element;
     }
 
-    /**
-     * @dataProvider validAttributes
-     */
+    #[DataProvider('validAttributes')]
     public function testAllValidFormMarkupAttributesPresentInElementAreRendered(
         string $attribute,
         string $assertion

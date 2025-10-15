@@ -23,7 +23,7 @@ use function is_bool;
 #[Attribute]
 final class AllowEmpty
 {
-    private bool $allowEmpty;
+    private readonly bool $allowEmpty;
 
     /**
      * Receive and process the contents of an annotation

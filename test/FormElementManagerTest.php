@@ -17,6 +17,7 @@ use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\PluginManagerInterface;
 use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\Form\TestAsset\InvokableForm;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -28,11 +29,8 @@ use function array_shift;
 use function assert;
 use function count;
 use function method_exists;
-use function strtoupper;
 
-/**
- * @group      Laminas_Form
- */
+#[Group('Laminas_Form')]
 final class FormElementManagerTest extends TestCase
 {
     private FormElementManager $manager;
@@ -49,9 +47,7 @@ final class FormElementManagerTest extends TestCase
         self::assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
     }
 
-    /**
-     * @group issue-3735
-     */
+    #[Group('issue-3735')]
     public function testInjectsFormElementManagerToFormComposedByFormFactoryAwareElement(): void
     {
         $factory = new Factory();
@@ -75,7 +71,7 @@ final class FormElementManagerTest extends TestCase
 
     public function testLoadingInvalidElementRaisesException(): void
     {
-        $this->manager->setInvokableClass('test', static::class);
+        $this->manager->setInvokableClass('test', self::class);
         $this->expectException($this->getInvalidServiceException());
         $this->manager->get('test');
     }
@@ -124,9 +120,7 @@ final class FormElementManagerTest extends TestCase
         self::assertEquals('bar', $element->getLabel(), 'Specified options in array[options]');
     }
 
-    /**
-     * @group issue-6132
-     */
+    #[Group('issue-6132')]
     public function testSharedFormElementsAreNotInitializedMultipleTimes(): void
     {
         $element = $this->getMockBuilder(Element::class)
@@ -149,10 +143,8 @@ final class FormElementManagerTest extends TestCase
         self::assertInstanceof(Form::class, $form);
     }
 
-    /**
-     * @group issue-58
-     * @group issue-64
-     */
+    #[Group('issue-58')]
+    #[Group('issue-64')]
     public function testInjectFactoryInitializerShouldBeRegisteredFirst(): void
     {
         // @codingStandardsIgnoreStart
@@ -177,10 +169,8 @@ final class FormElementManagerTest extends TestCase
         self::assertSame([$manager, 'injectFactory'], $first);
     }
 
-    /**
-     * @group issue-58
-     * @group issue-64
-     */
+    #[Group('issue-58')]
+    #[Group('issue-64')]
     public function testCallElementInitInitializerShouldBeRegisteredLast(): void
     {
         // @codingStandardsIgnoreStart
@@ -205,9 +195,7 @@ final class FormElementManagerTest extends TestCase
         self::assertSame([$manager, 'callElementInit'], $last);
     }
 
-    /**
-     * @group issue-62
-     */
+    #[Group('issue-62')]
     public function testAddingInvokableCreatesAliasAndMapsClassToElementFactory(): void
     {
         $this->manager->setInvokableClass('foo', TestAsset\ElementWithFilter::class);
@@ -225,25 +213,6 @@ final class FormElementManagerTest extends TestCase
 
         self::assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
         self::assertEquals(ElementFactory::class, $factories[TestAsset\ElementWithFilter::class]);
-    }
-
-    public function testAllAliasesShouldBeCanonicalized(): void
-    {
-        if (method_exists($this->manager, 'configure')) {
-            $this->markTestSkipped('Check canonicalized makes sense only on v2');
-        }
-
-        $r = new ReflectionProperty($this->manager, 'aliases');
-        $r->setAccessible(true);
-        $aliases = $r->getValue($this->manager);
-
-        foreach ($aliases as $name => $alias) {
-            $this->manager->get($name . ' ');
-            $this->manager->get(strtoupper($name));
-            $this->manager->get($name);
-        }
-
-        $this->addToAssertionCount(1);
     }
 
     public function testOptionsAreSetInInvokableForm(): void

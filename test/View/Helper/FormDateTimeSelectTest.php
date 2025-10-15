@@ -10,6 +10,8 @@ use Laminas\Form\Element\DateTimeSelect;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RequiresOperatingSystemFamily;
 use ReflectionMethod;
 
 use function extension_loaded;
@@ -147,10 +149,10 @@ final class FormDateTimeSelectTest extends AbstractCommonTestCase
      * This kind of test could be repeated for all defined locales, but `es_CL` is sufficient
      * for now, since this test was initially designed to catch a regression in the logic
      * that reads out `ext-intl` patterns for us.
-     *
-     * @group 160
-     * @group 184
      */
+    #[Group('160')]
+    #[Group('184')]
+    #[RequiresOperatingSystemFamily('Linux')] // This test fails on MacOS
     public function testRendersDatesWithEsCLLocaleDatePattern(): void
     {
         $this->helper->setLocale('es_CL');

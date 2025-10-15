@@ -25,6 +25,7 @@ use Laminas\Validator\ValidatorInterface;
 use Laminas\Validator\ValidatorPluginManager;
 use LaminasTest\Form\TestAsset\InputFilter;
 use LaminasTest\Form\TestAsset\Model;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 final class FactoryTest extends TestCase
@@ -786,9 +787,7 @@ final class FactoryTest extends TestCase
         );
     }
 
-    /**
-     * @group issue-6949
-     */
+    #[Group('issue-6949')]
     public function testPrepareAndInjectWillThrowAndException(): void
     {
         $fieldset = $this->factory->createFieldset(['name' => 'myFieldset']);

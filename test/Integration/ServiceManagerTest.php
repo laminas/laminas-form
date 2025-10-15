@@ -75,7 +75,7 @@ final class ServiceManagerTest extends TestCase
         {
             public bool $initialized = false;
 
-            public function __construct(private FormElementManager $manager)
+            public function __construct(private readonly FormElementManager $manager)
             {
             }
 

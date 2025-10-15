@@ -33,6 +33,7 @@ use LaminasTest\Form\TestAsset\Entity\Product;
 use LaminasTest\Form\TestAsset\FormCollection;
 use LaminasTest\Form\TestAsset\PhoneFieldset;
 use LaminasTest\Form\TestAsset\ProductFieldset;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -524,10 +525,8 @@ final class CollectionTest extends TestCase
         self::assertNotSame($categories[1], $cat2);
     }
 
-    /**
-     * @group issue-6585
-     * @group issue-6614
-     */
+    #[Group('issue-6585')]
+    #[Group('issue-6614')]
     public function testAddingCollectionElementAfterBind(): void
     {
         $form = new Form();
@@ -563,10 +562,8 @@ final class CollectionTest extends TestCase
         self::assertTrue($form->isValid());
     }
 
-    /**
-     * @group issue-6585
-     * @group issue-6614
-     */
+    #[Group('issue-6585')]
+    #[Group('issue-6614')]
     public function testDoesNotCreateNewObjectsWhenUsingNestedCollections(): void
     {
         $addressesFieldset = new AddressFieldset();
@@ -1234,10 +1231,8 @@ final class CollectionTest extends TestCase
         self::assertEquals(3, $collection->getCount());
     }
 
-    /**
-     * @group issue-6263
-     * @group issue-6518
-     */
+    #[Group('issue-6263')]
+    #[Group('issue-6518')]
     public function testCollectionProperlyHandlesAddingObjectsOfTypeElementInterface(): void
     {
         $form = new Form('test');
@@ -1266,10 +1261,9 @@ final class CollectionTest extends TestCase
 
     /**
      * Unit test to ensure behavior of extract() method is unaffected by refactor
-     *
-     * @group issue-6263
-     * @group issue-6518
      */
+    #[Group('issue-6263')]
+    #[Group('issue-6518')]
     public function testCollectionShouldSilentlyIgnorePopulatingFieldsetWithDisallowedObject(): void
     {
         $mainFieldset = new Fieldset();
@@ -1305,10 +1299,8 @@ final class CollectionTest extends TestCase
         self::assertEquals('bar', $result->collection[0]['test']);
     }
 
-    /**
-     * @group issue-6263
-     * @group issue-6298
-     */
+    #[Group('issue-6263')]
+    #[Group('issue-6298')]
     public function testCanHydrateObject(): void
     {
         $form   = $this->form;

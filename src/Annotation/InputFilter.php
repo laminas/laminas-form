@@ -27,7 +27,7 @@ use function sprintf;
 #[Attribute]
 final class InputFilter
 {
-    private string|array $inputFilter;
+    private readonly string|array $inputFilter;
 
     /**
      * Receive and process the contents of an annotation
@@ -39,7 +39,7 @@ final class InputFilter
         if (! is_array($inputFilter) && ! is_string($inputFilter)) {
             throw new Exception\DomainException(sprintf(
                 '%s expects the annotation to define an array or string; received "%s"',
-                static::class,
+                self::class,
                 gettype($inputFilter)
             ));
         }

@@ -12,6 +12,7 @@ use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\Factory;
 use LaminasTest\Form\TestAsset;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
 use function array_shift;
@@ -93,9 +94,7 @@ final class CaptchaTest extends TestCase
         self::assertSame($captcha, $test);
     }
 
-    /**
-     * @group issue-3446
-     */
+    #[Group('issue-3446')]
     public function testAllowsPassingTraversableOptionsToConstructor(): void
     {
         $options = new TestAsset\IteratorAggregate(new ArrayIterator([

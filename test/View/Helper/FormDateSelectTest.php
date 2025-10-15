@@ -9,6 +9,7 @@ use Laminas\Form\Element\DateSelect;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateSelect as FormDateSelectHelper;
+use PHPUnit\Framework\Attributes\Group;
 
 use function extension_loaded;
 
@@ -109,9 +110,7 @@ final class FormDateSelectTest extends AbstractCommonTestCase
         self::assertCount(31, $element->getDayElement()->getValueOptions());
     }
 
-    /**
-     * @group issue-6656
-     */
+    #[Group('issue-6656')]
     public function testGetElements(): void
     {
         $element = new DateSelect('foo');
@@ -136,10 +135,9 @@ final class FormDateSelectTest extends AbstractCommonTestCase
      * This kind of test could be repeated for all defined locales, but `es_CL` is sufficient
      * for now, since this test was initially designed to catch a regression in the logic
      * that reads out `ext-intl` patterns for us.
-     *
-     * @group 160
-     * @group 184
      */
+    #[Group('160')]
+    #[Group('184')]
     public function testRendersDatesWithEsCLLocaleDatePattern(): void
     {
         $this->helper->setLocale('es_CL');

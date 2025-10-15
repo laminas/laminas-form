@@ -6,12 +6,10 @@ namespace LaminasTest\Form;
 
 use Laminas\Form\LabelAwareTrait;
 use LaminasTest\Form\TestAsset\CustomTraversable;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @requires PHP 5.4
- * @group      Laminas_Form
- */
+#[Group('Laminas_Form')]
 final class LabelAwareTraitTest extends TestCase
 {
     public function testSetLabelAttributes(): void

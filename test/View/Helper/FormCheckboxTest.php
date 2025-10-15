@@ -8,6 +8,7 @@ use Laminas\Form\Element;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
 use Laminas\Form\View\Helper\FormCheckbox as FormCheckboxHelper;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @property FormCheckboxHelper $helper
@@ -84,9 +85,7 @@ final class FormCheckboxTest extends AbstractCommonTestCase
         self::assertStringContainsString('name="0"', $markup);
     }
 
-    /**
-     * @group Laminas-457
-     */
+    #[Group('Laminas-457')]
     public function testBaseElementType(): void
     {
         $element = new Element('foo');
@@ -94,9 +93,7 @@ final class FormCheckboxTest extends AbstractCommonTestCase
         $markup = $this->helper->render($element);
     }
 
-    /**
-     * @group issue-7286
-     */
+    #[Group('issue-7286')]
     public function testDisabledOptionIssetOnHiddenElement(): void
     {
         $element = new Element\Checkbox('foo');
