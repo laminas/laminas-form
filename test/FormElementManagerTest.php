@@ -160,8 +160,7 @@ final class FormElementManagerTest extends TestCase
             'initializers' => $initializers,
         ]);
 
-        $r = new ReflectionProperty($manager, 'initializers');
-        $r->setAccessible(true);
+        $r      = new ReflectionProperty($manager, 'initializers');
         $actual = $r->getValue($manager);
 
         self::assertGreaterThan(2, count($actual));
@@ -186,8 +185,7 @@ final class FormElementManagerTest extends TestCase
             'initializers' => $initializers,
         ]);
 
-        $r = new ReflectionProperty($manager, 'initializers');
-        $r->setAccessible(true);
+        $r      = new ReflectionProperty($manager, 'initializers');
         $actual = $r->getValue($manager);
 
         self::assertGreaterThan(2, count($actual));
@@ -200,15 +198,13 @@ final class FormElementManagerTest extends TestCase
     {
         $this->manager->setInvokableClass('foo', TestAsset\ElementWithFilter::class);
 
-        $r = new ReflectionProperty($this->manager, 'aliases');
-        $r->setAccessible(true);
+        $r       = new ReflectionProperty($this->manager, 'aliases');
         $aliases = $r->getValue($this->manager);
 
         self::assertArrayHasKey('foo', $aliases);
         self::assertEquals(TestAsset\ElementWithFilter::class, $aliases['foo']);
 
-        $r = new ReflectionProperty($this->manager, 'factories');
-        $r->setAccessible(true);
+        $r         = new ReflectionProperty($this->manager, 'factories');
         $factories = $r->getValue($this->manager);
 
         self::assertArrayHasKey(TestAsset\ElementWithFilter::class, $factories);
