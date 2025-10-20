@@ -59,7 +59,7 @@ final class FormElementErrorsFactoryTest extends TestCase
                 '',
                 array_map(
                     static fn($value): string => ucfirst($value),
-                    explode('_', $option)
+                    explode('_', (string) $option)
                 )
             );
 

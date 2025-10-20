@@ -253,7 +253,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
         $strings       = [];
 
         foreach ($attributes as $key => $value) {
-            $key = strtolower($key);
+            $key = strtolower((string) $key);
 
             if (isset($this->booleanAttributes[$key])) {
                 if (! $value) {
@@ -384,7 +384,7 @@ abstract class AbstractHelper extends BaseAbstractHelper
     protected function prepareAttributes(array $attributes): array
     {
         foreach ($attributes as $key => $value) {
-            $attribute = strtolower($key);
+            $attribute = strtolower((string) $key);
 
             if (
                 ! isset($this->validGlobalAttributes[$attribute])
