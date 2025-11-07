@@ -6,7 +6,6 @@ namespace Laminas\Form\Element;
 
 use Laminas\Form\Element;
 
-/** @final */
 class Image extends Element
 {
     /** @var array<string, scalar|null>  */

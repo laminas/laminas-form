@@ -923,9 +923,6 @@
       <code><![CDATA[$inputSpec['validators']]]></code>
       <code><![CDATA[$inputSpec['validators']]]></code>
     </PossiblyUndefinedArrayOffset>
-    <RedundantCondition>
-      <code><![CDATA[assertIsArray]]></code>
-    </RedundantCondition>
     <UndefinedInterfaceMethod>
       <code><![CDATA[getValidator]]></code>
     </UndefinedInterfaceMethod>
@@ -1268,6 +1265,15 @@
       <code><![CDATA[$name]]></code>
       <code><![CDATA[$options]]></code>
     </MissingParamType>
+  </file>
+  <file src="test/TestAsset/HydratorStrategy.php">
+    <InvalidExtendClass>
+      <code><![CDATA[DefaultStrategy]]></code>
+    </InvalidExtendClass>
+    <MethodSignatureMismatch>
+      <code><![CDATA[public function extract($value, ?object $object = null): array]]></code>
+      <code><![CDATA[public function hydrate($value, ?array $data = null)]]></code>
+    </MethodSignatureMismatch>
   </file>
   <file src="test/TestAsset/InputFilterProvider.php">
     <MissingParamType>

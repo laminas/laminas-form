@@ -10,7 +10,6 @@ use Laminas\Form\FormInterface;
 use Laminas\InputFilter\FileInput;
 use Laminas\InputFilter\InputProviderInterface;
 
-/** @final */
 class File extends Element implements InputProviderInterface, ElementPrepareAwareInterface
 {
     /** @var array<string, scalar|null>  */

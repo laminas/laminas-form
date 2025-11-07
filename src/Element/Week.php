@@ -11,7 +11,6 @@ use Laminas\Validator\LessThan as LessThanValidator;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
-/** @final */
 class Week extends AbstractDateTime
 {
     /** @var array<string, scalar|null>  */

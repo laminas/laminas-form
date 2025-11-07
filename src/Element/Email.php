@@ -11,7 +11,6 @@ use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
-/** @final */
 class Email extends Element implements InputProviderInterface
 {
     /** @var array<string, scalar|null>  */

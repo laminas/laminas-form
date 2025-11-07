@@ -11,7 +11,6 @@ use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Regex as RegexValidator;
 use Laminas\Validator\ValidatorInterface;
 
-/** @final */
 class Color extends Element implements InputProviderInterface
 {
     /** @var array<string, scalar|null>  */

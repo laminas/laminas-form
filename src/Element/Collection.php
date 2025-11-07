@@ -26,7 +26,6 @@ use function iterator_to_array;
 use function max;
 use function sprintf;
 
-/** @final */
 class Collection extends Fieldset
 {
     /**
@@ -168,7 +167,7 @@ class Collection extends Fieldset
      * In this case the "object" is a collection of objects
      *
      * @param iterable $object
-     * @return self
+     * @return static
      * @throws Exception\InvalidArgumentException
      */
     public function setObject($object)
