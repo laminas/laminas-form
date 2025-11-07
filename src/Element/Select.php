@@ -10,6 +10,7 @@ use Laminas\InputFilter\InputProviderInterface;
 use Laminas\Validator\Explode as ExplodeValidator;
 use Laminas\Validator\InArray as InArrayValidator;
 use Laminas\Validator\ValidatorInterface;
+use Stringable;
 
 use function array_key_exists;
 use function is_array;
@@ -18,7 +19,23 @@ use function trigger_error;
 
 use const E_USER_DEPRECATED;
 
-/** @final */
+/**
+ * @psalm-type ValueOption = array{
+ *     value: string|int|Stringable,
+ *     label: string,
+ *     selected?: bool,
+ *     disabled?: bool,
+ *     attributes?: array<array-key, mixed>,
+ * }|scalar|Stringable
+ * @psalm-type BasicValueOptions = array<array-key, ValueOption>
+ * @psalm-type OptGroup = array{
+ *     options: BasicValueOptions,
+ *     disabled?: bool,
+ *     label: string,
+ * }
+ * @psalm-type ValueOptions = array<array-key, OptGroup|ValueOption>
+ * @final
+ */
 class Select extends Element implements InputProviderInterface
 {
     /** @var array<string, scalar|null>  */
@@ -39,7 +56,7 @@ class Select extends Element implements InputProviderInterface
      */
     protected $emptyOption;
 
-    /** @var array */
+    /** @var ValueOptions */
     protected $valueOptions = [];
 
     /** @var bool */
@@ -48,12 +65,14 @@ class Select extends Element implements InputProviderInterface
     /** @var string */
     protected $unselectedValue = '';
 
+    /** @return ValueOptions */
     public function getValueOptions(): array
     {
         return $this->valueOptions;
     }
 
     /**
+     * @param ValueOptions $options
      * @return $this
      */
     public function setValueOptions(array $options)

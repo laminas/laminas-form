@@ -442,9 +442,6 @@
     <DeprecatedMethod>
       <code><![CDATA[ArrayUtils::inArray((string) $value, $stringSelectedOptions, true)]]></code>
     </DeprecatedMethod>
-    <PossiblyInvalidArgument>
-      <code><![CDATA[$optionSpec]]></code>
-    </PossiblyInvalidArgument>
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[$attributes['multiple']]]></code>
     </RiskyTruthyFalsyComparison>
