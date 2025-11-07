@@ -18,6 +18,7 @@ use function is_array;
 use function is_scalar;
 use function method_exists;
 use function sprintf;
+use function strval;
 
 /** @final */
 class FormSelect extends AbstractHelper
@@ -161,7 +162,7 @@ class FormSelect extends AbstractHelper
         $optionStrings = [];
         $escapeHtml    = $this->getEscapeHtmlHelper();
 
-        $stringSelectedOptions = array_map('strval', $selectedOptions);
+        $stringSelectedOptions = array_map(strval(...), $selectedOptions);
 
         foreach ($options as $key => $optionSpec) {
             $value    = '';
