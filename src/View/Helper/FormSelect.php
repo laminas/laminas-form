@@ -9,6 +9,7 @@ use Laminas\Form\Element\Select as SelectElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 use Laminas\Stdlib\ArrayUtils;
+use Stringable;
 
 use function array_key_exists;
 use function array_map;
@@ -19,7 +20,10 @@ use function is_scalar;
 use function method_exists;
 use function sprintf;
 
-/** @final */
+/**
+ * @final
+ * @psalm-import-type ValueOptions from SelectElement
+ */
 class FormSelect extends AbstractHelper
 {
     /**
@@ -153,6 +157,7 @@ class FormSelect extends AbstractHelper
      * )
      * </code>
      *
+     * @param ValueOptions $options
      * @param  array $selectedOptions Option values that should be marked as selected
      */
     public function renderOptions(array $options, array $selectedOptions = []): string
@@ -169,13 +174,14 @@ class FormSelect extends AbstractHelper
             $selected = false;
             $disabled = false;
 
-            if (is_scalar($optionSpec)) {
+            if (is_scalar($optionSpec) || $optionSpec instanceof Stringable) {
                 $optionSpec = [
-                    'label' => $optionSpec,
+                    'label' => (string) $optionSpec,
                     'value' => $key,
                 ];
             }
 
+            /** @psalm-suppress RedundantConditionGivenDocblockType Retain defensive check that `options` is an array */
             if (isset($optionSpec['options']) && is_array($optionSpec['options'])) {
                 $optionStrings[] = $this->renderOptgroup($optionSpec, $selectedOptions);
                 continue;
@@ -206,6 +212,7 @@ class FormSelect extends AbstractHelper
                 'disabled' => $disabled,
             ];
 
+            /** @psalm-suppress RedundantConditionGivenDocblockType Retain defensive check that `attributes` is an array */
             if (isset($optionSpec['attributes']) && is_array($optionSpec['attributes'])) {
                 $attributes = array_merge($attributes, $optionSpec['attributes']);
             }
@@ -227,6 +234,8 @@ class FormSelect extends AbstractHelper
      * See {@link renderOptions()} for the options specification. Basically,
      * an optgroup is simply an option that has an additional "options" key
      * with an array following the specification for renderOptions().
+     *
+     * @param ValueOptions $optgroup
      */
     public function renderOptgroup(array $optgroup, array $selectedOptions = []): string
     {

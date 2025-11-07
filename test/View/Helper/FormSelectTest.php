@@ -20,6 +20,7 @@ use function substr_count;
 
 /**
  * @property FormSelectHelper $helper
+ * @psalm-import-type ValueOptions from SelectElement
  */
 final class FormSelectTest extends AbstractCommonTestCase
 {
@@ -112,6 +113,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element                = $this->getElement();
         $options                = $element->getValueOptions();
         $options[1]['disabled'] = true;
+        /** @psalm-var ValueOptions $options Psalm cannot infer merged array shape */
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
@@ -123,6 +125,7 @@ final class FormSelectTest extends AbstractCommonTestCase
         $element                = $this->getElement();
         $options                = $element->getValueOptions();
         $options[1]['selected'] = true;
+        /** @psalm-var ValueOptions $options Psalm cannot infer merged array shape */
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
@@ -139,6 +142,7 @@ final class FormSelectTest extends AbstractCommonTestCase
                 'value' => 'bar',
             ],
         ];
+        /** @psalm-var ValueOptions $options Psalm cannot infer merged array shape */
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
@@ -158,6 +162,7 @@ final class FormSelectTest extends AbstractCommonTestCase
                 'value' => 'bar',
             ],
         ];
+        /** @psalm-var ValueOptions $options Psalm cannot infer merged array shape */
         $element->setValueOptions($options);
 
         $markup = $this->helper->render($element);
