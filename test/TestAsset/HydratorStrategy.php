@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
-use Laminas\Hydrator\Strategy\DefaultStrategy;
+use Laminas\Hydrator\Strategy\StrategyInterface;
 
 use function is_array;
 
-final class HydratorStrategy extends DefaultStrategy
+final class HydratorStrategy implements StrategyInterface
 {
     /**
      * A simulated storage device which is just an array with Car objects.
