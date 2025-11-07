@@ -58,7 +58,7 @@ final class FormElementErrorsFactoryTest extends TestCase
             $methodName = 'get' . implode(
                 '',
                 array_map(
-                    static fn($value): string => ucfirst($value),
+                    ucfirst(...),
                     explode('_', (string) $option)
                 )
             );
