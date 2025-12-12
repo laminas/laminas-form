@@ -29,6 +29,11 @@ use function sprintf;
 /** @final */
 class Collection extends Fieldset implements CollectionInterface
 {
+    /**
+     * @deprecated Please use the constant CollectionInterface::DEFAULT_TEMPLATE_PLACEHOLDER instead
+     */
+    public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
+
     /** @var array|ArrayAccess */
     protected $object;
 
