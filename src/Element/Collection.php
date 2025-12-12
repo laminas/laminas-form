@@ -27,13 +27,8 @@ use function max;
 use function sprintf;
 
 /** @final */
-class Collection extends Fieldset
+class Collection extends Fieldset implements CollectionInterface
 {
-    /**
-     * Default template placeholder
-     */
-    public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
-
     /** @var array|ArrayAccess */
     protected $object;
 

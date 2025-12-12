@@ -24,13 +24,13 @@ class FormElement extends BaseAbstractHelper
      * @var array<class-string<ElementInterface>, string>
      */
     protected $classMap = [
-        Element\Button::class         => 'formbutton',
-        Element\Captcha::class        => 'formcaptcha',
-        Element\Csrf::class           => 'formhidden',
-        Element\Collection::class     => 'formcollection',
-        Element\DateTimeSelect::class => 'formdatetimeselect',
-        Element\DateSelect::class     => 'formdateselect',
-        Element\MonthSelect::class    => 'formmonthselect',
+        Element\Button::class              => 'formbutton',
+        Element\Captcha::class             => 'formcaptcha',
+        Element\Csrf::class                => 'formhidden',
+        Element\CollectionInterface::class => 'formcollection',
+        Element\DateTimeSelect::class      => 'formdatetimeselect',
+        Element\DateSelect::class          => 'formdateselect',
+        Element\MonthSelect::class         => 'formmonthselect',
     ];
 
     /**

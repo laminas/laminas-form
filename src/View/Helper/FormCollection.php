@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form\View\Helper;
 
-use Laminas\Form\Element\Collection as CollectionElement;
+use Laminas\Form\Element\CollectionInterface;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FieldsetInterface;
 use Laminas\View\Helper\HelperInterface;
@@ -118,7 +118,7 @@ class FormCollection extends AbstractHelper
         $fieldsetHelper = $this->getFieldsetHelper();
         assert(is_callable($fieldsetHelper));
 
-        if ($element instanceof CollectionElement && $element->shouldCreateTemplate()) {
+        if ($element instanceof CollectionInterface && $element->shouldCreateTemplate()) {
             $templateMarkup = $this->renderTemplate($element);
         }
 
@@ -170,7 +170,7 @@ class FormCollection extends AbstractHelper
     /**
      * Only render a template
      */
-    public function renderTemplate(CollectionElement $collection): string
+    public function renderTemplate(CollectionInterface $collection): string
     {
         $elementHelper = $this->getElementHelper();
         assert(is_callable($elementHelper));

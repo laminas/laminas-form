@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace LaminasTest\Form\View\Helper;
 
 use Laminas\Form\Element\Collection;
+use Laminas\Form\Element\CollectionInterface;
+use Laminas\Form\Element\Color;
+use Laminas\Form\Form;
 use Laminas\Form\View\Helper\FormCollection as FormCollectionHelper;
 use Laminas\I18n\Translator\Translator;
 use Laminas\View\Helper\Doctype;
@@ -169,6 +172,25 @@ final class FormCollectionTest extends AbstractCommonTestCase
         $markup = $this->helper->renderTemplate($collection);
         self::assertStringContainsString('<span data-template', $markup);
         self::assertStringContainsString($collection->getTemplatePlaceholder(), $markup);
+    }
+
+    public function testCanRenderTemplateForCustomCollection(): void
+    {
+        $collection = self::createStub(CollectionInterface::class);
+        $collection->method('getName')
+            ->willReturn('colors');
+        $collection->method('shouldCreateTemplate')
+            ->willReturn(true);
+        $collection->method('getTemplateElement')
+            ->willReturn(new Color('__foo__'));
+
+        $form = new Form('collection');
+        $form->add($collection);
+        $form->prepare();
+
+        $markup = $this->helper->renderTemplate($collection);
+        self::assertStringContainsString('<span data-template', $markup);
+        self::assertStringContainsString('__foo__', $markup);
     }
 
     public function testCanTranslateLegend(): void

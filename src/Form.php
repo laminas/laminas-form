@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Laminas\Form\Element\Collection;
+use Laminas\Form\Element\CollectionInterface;
 use Laminas\Hydrator\HydratorInterface;
 use Laminas\InputFilter\CollectionInputFilter;
 use Laminas\InputFilter\InputFilter;
@@ -543,7 +543,7 @@ class Form extends Fieldset implements FormInterface
                 continue;
             }
 
-            if ($fieldset instanceof Collection) {
+            if ($fieldset instanceof CollectionInterface) {
                 if (! isset($data[$key]) && $fieldset->getCount() === 0) {
                     unset($validationGroup[$key]);
                     continue;
@@ -674,7 +674,7 @@ class Form extends Fieldset implements FormInterface
         $inputFactory = $formFactory->getInputFilterFactory();
 
         if (
-            $fieldset instanceof Collection
+            $fieldset instanceof CollectionInterface
             && ($targetElement = $fieldset->getTargetElement()) instanceof FieldsetInterface
         ) {
             $elements = $targetElement->getElements();
@@ -683,7 +683,7 @@ class Form extends Fieldset implements FormInterface
         }
 
         if (
-            ! $fieldset instanceof Collection
+            ! $fieldset instanceof CollectionInterface
             || ! $fieldset->getTargetElement() instanceof FieldsetInterface
             || $inputFilter instanceof CollectionInputFilter
         ) {
@@ -752,7 +752,7 @@ class Form extends Fieldset implements FormInterface
                     } else {
                         // Add input filter for collections via getInputFilterSpecification()
                         if (
-                            $childFieldset instanceof Collection
+                            $childFieldset instanceof CollectionInterface
                             && null !== ($targetElement = $childFieldset->getTargetElement())
                             && $targetElement instanceof InputFilterProviderInterface
                             && [] !== $targetElement->getInputFilterSpecification()

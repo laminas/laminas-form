@@ -197,6 +197,15 @@ final class FormElementTest extends TestCase
         self::assertStringContainsString('<legend>foo</legend>', $markup);
     }
 
+    public function testRenderCustomCollectionAsExpected(): void
+    {
+        $element = self::createStub(Element\CollectionInterface::class);
+        $element->method('getLabel')->willReturn('foo');
+
+        $markup = $this->helper->render($element);
+        self::assertStringContainsString('<legend>foo</legend>', $markup);
+    }
+
     public function testRendersButtonAsExpected(): void
     {
         $element = new Element\Button('foo');

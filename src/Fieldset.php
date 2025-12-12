@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Form;
 
-use Laminas\Form\Element\Collection;
+use Laminas\Form\Element\CollectionInterface;
 use Laminas\Hydrator;
 use Laminas\Hydrator\HydratorAwareInterface;
 use Laminas\Hydrator\HydratorInterface;
@@ -329,7 +329,7 @@ class Fieldset extends Element implements FieldsetInterface
                     continue;
                 }
 
-                if ($elementOrFieldset instanceof Element\Collection) {
+                if ($elementOrFieldset instanceof Element\CollectionInterface) {
                     if ($valueExists && null !== $data[$name]) {
                         $elementOrFieldset->populateValues($data[$name]);
                         continue;
@@ -515,7 +515,7 @@ class Fieldset extends Element implements FieldsetInterface
             }
 
             if (! array_key_exists($name, $values)) {
-                if (! $element instanceof Collection) {
+                if (! $element instanceof CollectionInterface) {
                     continue;
                 }
 
