@@ -10,9 +10,12 @@ use Laminas\Form\Element\DateTimeSelect;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RequiresOperatingSystemFamily;
 use ReflectionMethod;
+
+use ReflectionProperty;
 
 use function extension_loaded;
 use function substr;
@@ -326,6 +329,38 @@ XML,
                 "Option value with locale={$locale} contains non numeric characters!"
             );
         }
+    }
+
+    #[DataProvider('provideRenderIcu78Pattern')]
+    public function testRenderIcu78Pattern(string $pattern, string $expected): void
+    {
+        $element = new DateTimeSelect('foo');
+        $element->setMinYear(2023);
+        $element->setMaxYear(2023);
+
+        $helper = clone $this->helper;
+        $helper->setDateType(IntlDateFormatter::SHORT);
+        $patternReflection = new ReflectionProperty($helper, 'pattern');
+        $patternReflection->setValue($helper, $pattern);
+
+        $actual = $helper->render($element);
+        self::assertMatchesRegularExpression($expected, $actual);
+    }
+
+    public static function provideRenderIcu78Pattern(): array
+    {
+        // phpcs:disable Generic.Files.LineLength.TooLong
+        return [
+            'zh_Hant'    => [
+                'y/M/dBh:mm:ss [z]',
+                '|^<select name="year".+/<select name="month".+/<select name="day".+><select name="hour".+:<select name="minute".+</select>$|s',
+            ],
+            'zh_Hant_HK' => [
+                'd/M/yah:mm:ss [z]',
+                '|<select name="day".+/<select name="month".+/<select name="year".+><select name="hour".+:<select name="minute".+</select>$|s',
+            ],
+        ];
+        // phpcs:enable
     }
 
     public function testGetElements(): void
