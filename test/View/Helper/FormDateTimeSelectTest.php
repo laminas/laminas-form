@@ -9,12 +9,12 @@ use IntlDateFormatter;
 use Laminas\Form\Element\DateTimeSelect;
 use Laminas\Form\Element\Select;
 use Laminas\Form\Exception\DomainException;
+use Laminas\Form\Exception\IntlException;
 use Laminas\Form\View\Helper\FormDateTimeSelect as FormDateTimeSelectHelper;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\RequiresOperatingSystemFamily;
 use ReflectionMethod;
-
 use ReflectionProperty;
 
 use function extension_loaded;
@@ -361,6 +361,21 @@ XML,
             ],
         ];
         // phpcs:enable
+    }
+
+    public function testRenderInvalidPatternThrowsException(): void
+    {
+        $element = new DateTimeSelect('foo');
+
+        $helper = clone $this->helper;
+        $helper->setDateType(IntlDateFormatter::SHORT);
+        $patternReflection = new ReflectionProperty($helper, 'pattern');
+        $patternReflection->setValue($helper, 'y-M-d');
+
+        self::expectException(IntlException::class);
+        self::expectExceptionMessage("missing 'hour'");
+
+        $helper->render($element);
     }
 
     public function testGetElements(): void
