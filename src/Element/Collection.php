@@ -77,7 +77,7 @@ class Collection extends Fieldset implements CollectionInterface
      *
      * @var string
      */
-    protected $templatePlaceholder = self::DEFAULT_TEMPLATE_PLACEHOLDER;
+    protected $templatePlaceholder = CollectionInterface::DEFAULT_TEMPLATE_PLACEHOLDER;
 
     /**
      * Whether or not to create new objects during modify
