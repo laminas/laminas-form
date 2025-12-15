@@ -6,6 +6,7 @@ namespace LaminasTest\Form;
 
 use ArrayObject;
 use Laminas\Form\Element;
+use Laminas\Form\Element\CollectionInterface;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidArgumentException;
@@ -1321,6 +1322,29 @@ final class FormTest extends TestCase
         self::assertTrue($this->form->isValid());
     }
 
+    public function testRemoveCustomCollectionFromValidationGroupWhenZeroCountAndNoData(): void
+    {
+        $dataWithoutCollection = [
+            'foo' => 'bar',
+        ];
+        $this->populateForm();
+
+        $collection = self::createStub(CollectionInterface::class);
+        $collection->method('getName')->willReturn('categories');
+        $collection->method('getCount')->willReturn(0);
+
+        $this->form->add($collection);
+        $this->form->setValidationGroup([
+            'foo',
+            'categories' => [
+                'name',
+            ],
+        ]);
+        $this->form->setData($dataWithoutCollection);
+
+        self::assertTrue($this->form->isValid());
+    }
+
     public function testFieldsetValidationGroupStillPreparedWhenEmptyData(): void
     {
         $emptyData = [];
@@ -2395,5 +2419,21 @@ final class FormTest extends TestCase
         $this->form->setInputFilterByName($inputFilterName);
 
         self::assertSame($inputFilter, $this->form->getInputFilter());
+    }
+
+    public function testAttachInputFilterDefaultsAttachesCollectionInputFilterToCustomCollection(): void
+    {
+        $collection = self::createStub(CollectionInterface::class);
+        $collection->method('getName')->willReturn('custom_collection_input_filter_provider');
+        $collection->method('getCount')->willReturn(1);
+        $collection->method('getTargetElement')->willReturn(new TestAsset\InputFilterProviderFieldset());
+        $this->form->add($collection);
+
+        $inputFilter = new InputFilter();
+        $this->form->attachInputFilterDefaults($inputFilter, $collection);
+        $nestedInputFilter = $this->form->getInputFilter()
+            ->get('custom_collection_input_filter_provider');
+        self::assertInstanceOf(CollectionInputFilter::class, $nestedInputFilter);
+        self::assertInstanceOf(Input::class, $nestedInputFilter->getInputFilter()->get('foo'));
     }
 }

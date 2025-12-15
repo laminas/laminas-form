@@ -518,6 +518,48 @@ final class FieldsetTest extends TestCase
         self::assertEquals('modified', $object->disabled);
     }
 
+    public function testBindValuesHydratesCollection(): void
+    {
+        $expected = ['bar'];
+
+        $object             = new stdClass();
+        $object->collection = [];
+
+        $collection = new Element\Collection('collection', ['target_element' => new Element()]);
+
+        $form = new Form();
+        $form->add($collection);
+        $form->setObject($object);
+        $form->setHydrator($this->hydrator);
+
+        $form->bindValues(['collection' => ['bar']]);
+
+        self::assertEquals($expected, $object->collection);
+    }
+
+    public function testBindValuesHydratesCustomCollection(): void
+    {
+        $expected = ['bar'];
+
+        $object             = new stdClass();
+        $object->collection = [];
+
+        $collection = self::createStub(Element\CollectionInterface::class);
+        $collection->method('getName')->willReturn('collection');
+        $collection->method('getTargetElement')
+            ->willReturn(new Element());
+        $collection->method('getElements')->willReturn([new Element()]);
+
+        $form = new Form();
+        $form->add($collection);
+        $form->setObject($object);
+        $form->setHydrator($this->hydrator);
+
+        $form->bindValues(['collection' => ['bar']]);
+
+        self::assertEquals($expected, $object->collection);
+    }
+
     public function testSetObjectWithStringRaisesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -595,6 +637,20 @@ final class FieldsetTest extends TestCase
 
         $this->fieldset->populateValues(['subElement' => null]);
         self::assertNull($subElement->getValue());
+    }
+
+    public function testPopulateValuesPopulatesCollection(): void
+    {
+        $expected   = ['foo' => ['bar']];
+        $collection = $this->createMock(Element\CollectionInterface::class);
+        $collection->method('getName')
+            ->willReturn('collection');
+        $collection->expects(self::once())
+            ->method('populateValues')
+            ->with($expected);
+        $this->fieldset->add($collection);
+
+        $this->fieldset->populateValues(['collection' => $expected]);
     }
 
     public function testSetNullValueWhenTraversableProvided(): void

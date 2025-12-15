@@ -27,10 +27,10 @@ use function max;
 use function sprintf;
 
 /** @final */
-class Collection extends Fieldset
+class Collection extends Fieldset implements CollectionInterface
 {
     /**
-     * Default template placeholder
+     * @deprecated Please use the constant CollectionInterface::DEFAULT_TEMPLATE_PLACEHOLDER instead
      */
     public const DEFAULT_TEMPLATE_PLACEHOLDER = '__index__';
 
@@ -77,7 +77,7 @@ class Collection extends Fieldset
      *
      * @var string
      */
-    protected $templatePlaceholder = self::DEFAULT_TEMPLATE_PLACEHOLDER;
+    protected $templatePlaceholder = CollectionInterface::DEFAULT_TEMPLATE_PLACEHOLDER;
 
     /**
      * Whether or not to create new objects during modify
