@@ -7,7 +7,6 @@ namespace Laminas\Form\Element;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\FieldsetInterface;
 
-/** @final */
 interface CollectionInterface extends FieldsetInterface
 {
     /**
