@@ -10,10 +10,15 @@ use Laminas\Form\Element\DateTimeSelect as DateTimeSelectElement;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Exception;
 
+use function array_diff;
+use function array_intersect;
 use function array_key_exists;
+use function array_keys;
 use function assert;
+use function implode;
 use function is_numeric;
 use function preg_match_all;
+use function preg_replace;
 use function preg_split;
 use function rtrim;
 use function sprintf;
@@ -102,12 +107,11 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         $shouldRenderDelimiters = $element->shouldRenderDelimiters();
         $selectHelper           = $this->getSelectElementHelper();
         $pattern                = $this->parsePattern($shouldRenderDelimiters);
-
-        $daysOptions   = $this->getDaysOptions($pattern['day']);
-        $monthsOptions = $this->getMonthsOptions($pattern['month']);
-        $yearOptions   = $this->getYearsOptions($element->getMinYear(), $element->getMaxYear());
-        $hourOptions   = $this->getHoursOptions($pattern['hour']);
-        $minuteOptions = $this->getMinutesOptions($pattern['minute']);
+        $daysOptions            = $this->getDaysOptions($pattern['day']);
+        $monthsOptions          = $this->getMonthsOptions($pattern['month']);
+        $yearOptions            = $this->getYearsOptions($element->getMinYear(), $element->getMaxYear());
+        $hourOptions            = $this->getHoursOptions($pattern['hour']);
+        $minuteOptions          = $this->getMinutesOptions($pattern['minute']);
 
         $dayElement    = $element->getDayElement()->setValueOptions($daysOptions);
         $monthElement  = $element->getMonthElement()->setValueOptions($monthsOptions);
@@ -220,7 +224,7 @@ class FormDateTimeSelect extends AbstractFormDateSelect
         }
 
         $pregResult = preg_split(
-            "/([ \-,.:\/]*'.*?'[ \-,.:\/]*)|([ \-,.:\/]+)/",
+            "/([ \-,.:0abvxz\/]*'.*?'[ \-,.:0abvxz\/]*)|([ \-,.:0abvxz\/]+)/i",
             $pattern,
             -1,
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
@@ -244,12 +248,19 @@ class FormDateTimeSelect extends AbstractFormDateSelect
                 $result['minute'] = $value;
             } elseif ($noDelimiter && str_contains($value, 's')) {
                 $result['second'] = $value;
-            } elseif ($noDelimiter && stripos($value, 'a') !== false) {
-                // ignore ante/post meridiem marker
-                continue;
             } elseif ($renderDelimiters) {
-                $result[] = str_replace("'", '', $value);
+                $result[] = preg_replace("/['0abvxz[\]]/i", '', $value);
             }
+        }
+
+        $valid = ['day', 'month', 'year', 'hour', 'minute'];
+        if (array_intersect($valid, array_keys($result)) !== $valid) {
+            throw new Exception\IntlException(sprintf(
+                "Cannot parse date format '%s' for locale '%s': missing '%s'",
+                $pattern,
+                $this->getLocale(),
+                implode("', '", array_diff($valid, array_keys($result)))
+            ));
         }
 
         return $result;
