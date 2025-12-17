@@ -14,7 +14,6 @@ use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\InputFilter\ReplaceableInputInterface;
 use Laminas\Stdlib\ArrayUtils;
-use Laminas\Stdlib\PriorityList;
 use Traversable;
 
 use function array_key_exists;
@@ -23,6 +22,7 @@ use function assert;
 use function in_array;
 use function is_array;
 use function is_object;
+use function iterator_to_array;
 use function sprintf;
 
 /**
@@ -549,14 +549,12 @@ class Form extends Fieldset implements FormInterface
         array $data,
         array &$validationGroup
     ): void {
+        $elements = iterator_to_array($formOrFieldset->getIterator());
         foreach ($validationGroup as $key => &$value) {
-            $iterator = $formOrFieldset->getIterator();
-            assert($iterator instanceof PriorityList);
-            $fieldset = $iterator->get((string) $key);
-
-            if (! $fieldset) {
+            if (! isset($elements[$key])) {
                 continue;
             }
+            $fieldset = $elements[$key];
 
             if ($fieldset instanceof CollectionInterface) {
                 if (! isset($data[$key]) && $fieldset->getCount() === 0) {
