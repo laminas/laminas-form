@@ -14,6 +14,7 @@ use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\InputFilter\InputProviderInterface;
 use Laminas\InputFilter\ReplaceableInputInterface;
 use Laminas\Stdlib\ArrayUtils;
+use Laminas\Stdlib\PriorityList;
 use Traversable;
 
 use function array_key_exists;
@@ -534,10 +535,15 @@ class Form extends Fieldset implements FormInterface
      * Prepare the validation group in case Collection elements were used (this function also handle
      * the case where elements could have been dynamically added or removed from a collection using JavaScript)
      */
-    protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup): void
-    {
+    protected function prepareValidationGroup(
+        FieldsetInterface $formOrFieldset,
+        array $data,
+        array &$validationGroup
+    ): void {
         foreach ($validationGroup as $key => &$value) {
-            $fieldset = $formOrFieldset->iterator->get((string) $key);
+            $iterator = $formOrFieldset->getIterator();
+            assert($iterator instanceof PriorityList);
+            $fieldset = $iterator->get((string) $key);
 
             if (! $fieldset) {
                 continue;

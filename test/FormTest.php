@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form;
 
-use ArrayIterator;
 use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Element\CollectionInterface;
