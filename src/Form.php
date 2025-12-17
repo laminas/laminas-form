@@ -535,7 +535,16 @@ class Form extends Fieldset implements FormInterface
      * Prepare the validation group in case Collection elements were used (this function also handle
      * the case where elements could have been dynamically added or removed from a collection using JavaScript)
      */
-    protected function prepareValidationGroup(
+    protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup): void
+    {
+        $this->prepareFieldsetValidationGroup($formOrFieldset, $data, $validationGroup);
+    }
+
+    /**
+     * @fixme This is here to preserve BC on `prepareValidationGroup` and can be removed on next major if that method's
+     *        signature is changed to accept a `FieldsetInterface`
+     */
+    private function prepareFieldsetValidationGroup(
         FieldsetInterface $formOrFieldset,
         array $data,
         array &$validationGroup
@@ -569,7 +578,7 @@ class Form extends Fieldset implements FormInterface
             if (! isset($data[$key])) {
                 $data[$key] = [];
             }
-            $this->prepareValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
+            $this->prepareFieldsetValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
         }
     }
 
