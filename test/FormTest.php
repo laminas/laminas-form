@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form;
 
+use ArrayIterator;
 use ArrayObject;
 use Laminas\Form\Element;
 use Laminas\Form\Element\CollectionInterface;
@@ -25,6 +26,7 @@ use Laminas\InputFilter\Input;
 use Laminas\InputFilter\InputFilter;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\InputFilter\InputInterface;
+use Laminas\Stdlib\PriorityList;
 use LaminasTest\Form\TestAsset\Entity\Category;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -605,6 +607,54 @@ final class FormTest extends TestCase
         self::assertInstanceOf(Category::class, $model->categories[0]);
         self::assertEquals('category', $model->categories[0]->getName());
         self::assertFalse(isset($model->foobar));
+    }
+
+    public function testFormWithNestedCustomCollectionAndValidationGroupBindValuesToModel(): void
+    {
+        $model = new stdClass();
+        $data  = [
+            'foo'       => 'abcde',
+            'top_level' => [
+                'categories' => [
+                    [
+                        'name' => 'category',
+                    ],
+                ],
+            ],
+        ];
+        $this->populateForm();
+
+        $collection = self::createStub(CollectionInterface::class);
+        $collection->method('getName')
+            ->willReturn('categories');
+        $collection->method('getIterator')
+            ->willReturn(new PriorityList());
+        $collection->method('getTargetElement')
+            ->willReturn(new TestAsset\CategoryFieldset());
+
+        $fieldset = new Fieldset('top_level');
+        $fieldset->add($collection);
+
+        $this->form->add($fieldset);
+        $this->form->setHydrator(new ObjectPropertyHydrator());
+        $this->form->bind($model);
+        $this->form->setData($data);
+        $this->form->setValidationGroup([
+            'foo',
+            'top_level' => [
+                'categories' => [
+                    'name',
+                ],
+            ],
+        ]);
+        $this->form->isValid();
+
+        self::assertTrue(isset($model->top_level));
+        self::assertIsArray($model->top_level);
+        self::assertTrue(isset($model->top_level['categories']));
+        self::assertIsArray($model->top_level['categories']);
+        self::assertIsArray($model->top_level['categories'][0]);
+        self::assertEquals('category', $model->top_level['categories'][0]['name']);
     }
 
     public function testSettingValidationGroupWithoutCollectionBindsOnlyThoseValuesToModel(): void
