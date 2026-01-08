@@ -22,6 +22,7 @@ use function assert;
 use function in_array;
 use function is_array;
 use function is_object;
+use function iterator_to_array;
 use function sprintf;
 
 /**
@@ -536,12 +537,24 @@ class Form extends Fieldset implements FormInterface
      */
     protected function prepareValidationGroup(Fieldset $formOrFieldset, array $data, array &$validationGroup): void
     {
-        foreach ($validationGroup as $key => &$value) {
-            $fieldset = $formOrFieldset->iterator->get((string) $key);
+        $this->prepareFieldsetValidationGroup($formOrFieldset, $data, $validationGroup);
+    }
 
-            if (! $fieldset) {
+    /**
+     * @fixme This is here to preserve BC on `prepareValidationGroup` and can be removed on next major if that method's
+     *        signature is changed to accept a `FieldsetInterface`
+     */
+    private function prepareFieldsetValidationGroup(
+        FieldsetInterface $formOrFieldset,
+        array $data,
+        array &$validationGroup
+    ): void {
+        $elements = iterator_to_array($formOrFieldset->getIterator());
+        foreach ($validationGroup as $key => &$value) {
+            if (! isset($elements[$key])) {
                 continue;
             }
+            $fieldset = $elements[$key];
 
             if ($fieldset instanceof CollectionInterface) {
                 if (! isset($data[$key]) && $fieldset->getCount() === 0) {
@@ -563,7 +576,7 @@ class Form extends Fieldset implements FormInterface
             if (! isset($data[$key])) {
                 $data[$key] = [];
             }
-            $this->prepareValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
+            $this->prepareFieldsetValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
         }
     }
 
