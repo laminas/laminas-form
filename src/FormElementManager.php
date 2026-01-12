@@ -18,6 +18,7 @@ use function array_search;
 use function array_unshift;
 use function class_exists;
 use function get_debug_type;
+use function method_exists;
 use function sprintf;
 
 /**
@@ -213,7 +214,11 @@ class FormElementManager extends AbstractPluginManager
      */
     public function injectFactory(ContainerInterface $container, mixed $instance): void
     {
-        if (! $instance instanceof Fieldset) {
+        if (! $instance instanceof FieldsetInterface) {
+            return;
+        }
+
+        if (! method_exists($instance, 'getFormFactory')) {
             return;
         }
 
