@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\TestAsset;
 
+use ArrayIterator;
 use Laminas\Form\Element;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Factory;
@@ -23,7 +24,7 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
 
     public function getIterator(): Traversable
     {
-        return new \ArrayIterator([]);
+        return new ArrayIterator([]);
     }
 
     public function count(): int
@@ -31,6 +32,9 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return 0;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setName(string $name)
     {
         return $this;
@@ -41,11 +45,17 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return null;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setOptions(iterable $options)
     {
         return $this;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setOption(string $key, mixed $value)
     {
         return $this;
@@ -56,16 +66,25 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return [];
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getOption(string $option)
     {
         return null;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setAttribute(string $key, mixed $value)
     {
         return $this;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getAttribute(string $key)
     {
         return null;
@@ -76,6 +95,9 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return false;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setAttributes(iterable $arrayOrTraversable)
     {
         return $this;
@@ -86,16 +108,25 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return [];
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setValue(mixed $value)
     {
         return $this;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getValue()
     {
         return null;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setLabel(?string $label)
     {
         return $this;
@@ -106,6 +137,9 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return null;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setMessages(iterable $messages)
     {
         return $this;
@@ -138,11 +172,17 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return new Element();
     }
 
+    /**
+     * @inheritDoc
+     */
     public function remove(string $elementOrFieldset)
     {
         return $this;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setPriority(string $elementOrFieldset, int $priority)
     {
         return $this;
@@ -170,6 +210,9 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return $this;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getObject()
     {
         return null;
@@ -180,6 +223,9 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return false;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setHydrator(HydratorInterface $hydrator)
     {
         return $this;
@@ -190,6 +236,9 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return null;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function bindValues(array $values = [])
     {
         return null;
@@ -200,6 +249,9 @@ final class FieldsetInterfaceImplementation implements FieldsetInterface
         return false;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setFormFactory(Factory $formFactory)
     {
         $this->formFactory = $formFactory;
