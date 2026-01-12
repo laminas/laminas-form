@@ -9,6 +9,7 @@ use Laminas\Form\ElementFactory;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\Exception\InvalidElementException;
 use Laminas\Form\Factory;
+use Laminas\Form\FieldsetInterface;
 use Laminas\Form\Form;
 use Laminas\Form\FormElementManager;
 use Laminas\Hydrator\HydratorInterface;
@@ -16,6 +17,7 @@ use Laminas\Hydrator\HydratorPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\PluginManagerInterface;
 use Laminas\ServiceManager\ServiceManager;
+use LaminasTest\Form\TestAsset\FieldsetInterfaceImplementation;
 use LaminasTest\Form\TestAsset\InvokableForm;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -60,6 +62,20 @@ final class FormElementManagerTest extends TestCase
         assert($form instanceof Form);
         self::assertSame($factory, $form->getFormFactory());
         self::assertSame($this->manager, $form->getFormFactory()->getFormElementManager());
+    }
+
+    public function testInjectFormElementManagerToCustomFieldset(): void
+    {
+        $factory = new Factory();
+        $this->manager->setFactory('my-fieldset', static function ($elements) use ($factory): FieldsetInterface {
+            $fieldset = new FieldsetInterfaceImplementation();
+            $fieldset->setFormFactory($factory);
+            return $fieldset;
+        });
+        $fieldset = $this->manager->get('my-fieldset');
+        assert($fieldset instanceof FieldsetInterfaceImplementation);
+        self::assertSame($factory, $fieldset->getFormFactory());
+        self::assertSame($this->manager, $fieldset->getFormFactory()->getFormElementManager());
     }
 
     public function testRegisteringInvalidElementRaisesException(): void
