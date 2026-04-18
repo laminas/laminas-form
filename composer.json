@@ -40,7 +40,7 @@
         "laminas/laminas-session": "^2.25.1",
         "laminas/laminas-text": "^2.12.1",
         "laminas/laminas-view": "^2.43",
-        "phpunit/phpunit": "^11.5.50",
+        "phpunit/phpunit": "^12.5.22",
         "psalm/plugin-phpunit": "^0.19.5",
         "vimeo/psalm": "^6.13.1"
     },
