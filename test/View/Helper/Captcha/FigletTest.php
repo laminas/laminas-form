@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace LaminasTest\Form\View\Helper\Captcha;
 
+use Laminas\Captcha\AbstractWord;
 use Laminas\Captcha\Figlet as FigletCaptcha;
 use Laminas\Form\Element\Captcha as CaptchaElement;
 use Laminas\Form\Exception\DomainException;
 use Laminas\Form\View\Helper\Captcha\Figlet as FigletCaptchaHelper;
+use Laminas\Text\Figlet\Figlet as FigletRenderer;
 use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
 
 /**
@@ -15,12 +17,16 @@ use LaminasTest\Form\View\Helper\AbstractCommonTestCase;
  */
 final class FigletTest extends AbstractCommonTestCase
 {
-    private FigletCaptcha $captcha;
+    private AbstractWord $captcha;
+    private FigletRenderer $figlet;
 
     protected function setUp(): void
     {
-        $this->helper  = new FigletCaptchaHelper();
-        $this->captcha = new FigletCaptcha();
+        $this->helper = new FigletCaptchaHelper();
+        /** @psalm-suppress DeprecatedClass Tests the deprecated Figlet integration while it remains supported */
+        $captcha       = new FigletCaptcha();
+        $this->captcha = $captcha;
+        $this->figlet  = $captcha->getFiglet();
         parent::setUp();
     }
 
@@ -68,7 +74,7 @@ final class FigletTest extends AbstractCommonTestCase
         $element = $this->getElement();
         $markup  = $this->helper->render($element);
         self::assertStringContainsString(
-            '<pre>' . $this->captcha->getFiglet()->render($this->captcha->getWord()) . '</pre>'
+            '<pre>' . $this->figlet->render($this->captcha->getWord()) . '</pre>'
             . $this->helper->getSeparator() . '<input',
             $markup
         );

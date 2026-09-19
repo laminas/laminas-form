@@ -184,7 +184,7 @@ final class MultiCheckboxTest extends TestCase
     public function testDeprecatedValueOptionsAsAttribute(): void
     {
         $trigger = false;
-        set_error_handler(function (int $code, string $message) use (&$trigger): bool {
+        set_error_handler(static function (int $code, string $message) use (&$trigger): bool {
             self::assertStringContainsString(
                 'Providing multi-checkbox value options via attributes is deprecated',
                 $message

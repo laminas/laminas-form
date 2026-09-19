@@ -577,7 +577,7 @@ abstract class AbstractBuilderTestCase extends TestCase
         $entity  = new TestAsset\Annotation\Entity();
         $builder = $this->createBuilder();
 
-        $builder->getEventManager()->attach('*', function () {
+        $builder->getEventManager()->attach('*', static function () {
             // return void;
         });
 

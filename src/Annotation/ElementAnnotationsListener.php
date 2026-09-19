@@ -144,11 +144,15 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
             $elementSpec['spec']['type'] = Collection::class;
             $elementSpec['spec']['name'] = $name;
 
+            $targetElementOptions = $specification['options'] ?? [];
+            assert(is_array($targetElementOptions));
+            $targetElementOptions['input_filter_spec'] = $inputFilter;
+            $targetElementOptions['target_type']       = $class;
+            $specification['options']                  = $targetElementOptions;
+
             $elementSpec['spec']['options'] = new ArrayObject($this->mergeOptions($elementSpec, $annotation));
 
-            $elementSpec['spec']['options']['target_element']                                 = $specification;
-            $elementSpec['spec']['options']['target_element']['options']['input_filter_spec'] = $inputFilter;
-            $elementSpec['spec']['options']['target_element']['options']['target_type']       = $class;
+            $elementSpec['spec']['options']['target_element'] = $specification;
 
             if (isset($specification['hydrator'])) {
                 $elementSpec['spec']['hydrator'] = $specification['hydrator'];

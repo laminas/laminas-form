@@ -104,6 +104,7 @@ final class FormCaptchaTest extends AbstractCommonTestCase
 
     public function testPassingElementWithFigletCaptchaRendersCorrectly(): void
     {
+        /** @psalm-suppress DeprecatedClass Tests the deprecated Figlet integration while it remains supported */
         $captcha = new Captcha\Figlet();
         $element = $this->getElement();
         $element->setCaptcha($captcha);
