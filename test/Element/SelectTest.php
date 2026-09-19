@@ -179,7 +179,7 @@ final class SelectTest extends TestCase
     public function testDeprecateOptionsInAttributes(): void
     {
         $trigger = false;
-        set_error_handler(function (int $code, string $message) use (&$trigger): bool {
+        set_error_handler(static function (int $code, string $message) use (&$trigger): bool {
             self::assertStringContainsString(
                 'Providing multi-select value options via attributes is deprecated',
                 $message
