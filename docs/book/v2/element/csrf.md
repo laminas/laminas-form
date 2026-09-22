@@ -55,10 +55,10 @@ The following methods are specific to the `Csrf` element; all other methods
 defined by the [parent `Element` class](element.md#public-methods) are also
 available.
 
-Method signature                                          | Description
---------------------------------------------------------- | -----------
-`getInputSpecification() : array`                         | Returns an input filter specification, which includes a `Laminas\Filter\StringTrim` filter and `Laminas\Validator\Csrf` to validate the CSRF value.
-`setCsrfValidatorOptions(array $options) : void`          | Set the options that are used by the CSRF validator.
-`getCsrfValidatorOptions() : array`                       | Get the options that are used by the CSRF validator.
-`setCsrfValidator(Laminas\Validator\Csrf $validator) : void` | Override the default CSRF validator by setting another one.
-`getCsrfValidator() : Laminas\Validator\Csrf`               | Get the CSRF validator.
+| Method signature                                             | Description                                                                                                                                         |
+|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `getInputSpecification() : array`                            | Returns an input filter specification, which includes a `Laminas\Filter\StringTrim` filter and `Laminas\Validator\Csrf` to validate the CSRF value. |
+| `setCsrfValidatorOptions(array $options) : void`             | Set the options that are used by the CSRF validator.                                                                                                |
+| `getCsrfValidatorOptions() : array`                          | Get the options that are used by the CSRF validator.                                                                                                |
+| `setCsrfValidator(Laminas\Validator\Csrf $validator) : void` | Override the default CSRF validator by setting another one.                                                                                         |
+| `getCsrfValidator() : Laminas\Validator\Csrf`                | Get the CSRF validator.                                                                                                                             |

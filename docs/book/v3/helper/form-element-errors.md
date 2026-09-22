@@ -60,18 +60,18 @@ echo $helper->render($element);
 The following public methods are in addition to those inherited from the
 [AbstractHelper](abstract-helper.md#public-methods):
 
-Method signature                                                     | Description
--------------------------------------------------------------------- | -----------
-`setMessageOpenFormat(string $messageOpenFormat) : void`             | Set the (`printf`) formatted string used to open message representation; uses `<ul%s><li>` by default; attributes are inserted for the placeholder.
-`getMessageOpenFormat() : string`                                    | Returns the formatted string used to open message representation.
-`setMessageSeparatorString(string $messageSeparatorString) : string` | Sets the string used to separate messages; defaults to `</li><li>`.
-`getMessageSeparatorString() : string`                               | Returns the string used to separate messages.
-`setMessageCloseString(string $messageCloseString) : void`           | Sets the string used to close message representation; defaults to `</li></ul>`.
-`getMessageCloseString() : string`                                   | Returns the string used to close message representation.
-`setAttributes(array $attributes) : void`                            | Set the attributes that will go on the message open format as key/value pairs.
-`getAttributes() : array`                                            | Returns the attributes that will go on the message open format.
-`setTranslateMessages(bool $flag) : self`                            | Indicate whether or not element validation error messages should be translated during `render()`. Default is to translate them.
-`render(ElementInterface $element [, array $attributes = array()]) : string` | Renders validation errors for the provided `$element`. Attributes provided will be used in the `messageOpenFormat`, and merged with any provided previously via `setAttributes()`.
+| Method signature                                                             | Description                                                                                                                                                                        |
+|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `setMessageOpenFormat(string $messageOpenFormat) : void`                     | Set the (`printf`) formatted string used to open message representation; uses `<ul%s><li>` by default; attributes are inserted for the placeholder.                                |
+| `getMessageOpenFormat() : string`                                            | Returns the formatted string used to open message representation.                                                                                                                  |
+| `setMessageSeparatorString(string $messageSeparatorString) : string`         | Sets the string used to separate messages; defaults to `</li><li>`.                                                                                                                |
+| `getMessageSeparatorString() : string`                                       | Returns the string used to separate messages.                                                                                                                                      |
+| `setMessageCloseString(string $messageCloseString) : void`                   | Sets the string used to close message representation; defaults to `</li></ul>`.                                                                                                    |
+| `getMessageCloseString() : string`                                           | Returns the string used to close message representation.                                                                                                                           |
+| `setAttributes(array $attributes) : void`                                    | Set the attributes that will go on the message open format as key/value pairs.                                                                                                     |
+| `getAttributes() : array`                                                    | Returns the attributes that will go on the message open format.                                                                                                                    |
+| `setTranslateMessages(bool $flag) : self`                                    | Indicate whether or not element validation error messages should be translated during `render()`. Default is to translate them.                                                    |
+| `render(ElementInterface $element [, array $attributes = array()]) : string` | Renders validation errors for the provided `$element`. Attributes provided will be used in the `messageOpenFormat`, and merged with any provided previously via `setAttributes()`. |
 
 ## Usage in a laminas-mvc Application
 
