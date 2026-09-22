@@ -174,7 +174,7 @@ final class BuilderAbstractFactoryTest extends TestCase
                 ['config', $config],
                 [
                     'test-listener',
-                    new class () {
+                    new class {
                     },
                 ],
             ]);

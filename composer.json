@@ -28,8 +28,9 @@
         "psr/container": "^1.1.2"
     },
     "require-dev": {
-        "ext-intl": "*",
         "ext-gd": "*",
+        "ext-intl": "*",
+        "boundwize/structarmed": "^0.17.10",
         "doctrine/annotations": "^1.14.3 || ^2.0.2",
         "laminas/laminas-captcha": "^2.19",
         "laminas/laminas-coding-standard": "^3.1.0",
