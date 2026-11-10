@@ -26,12 +26,10 @@ class Url extends Element implements InputProviderInterface
      */
     public function getValidator(): ValidatorInterface
     {
-        if (null === $this->validator) {
-            $this->validator = new UriValidator([
-                'allowAbsolute' => true,
-                'allowRelative' => false,
-            ]);
-        }
+        $this->validator ??= new UriValidator([
+            'allowAbsolute' => true,
+            'allowRelative' => false,
+        ]);
         return $this->validator;
     }
 

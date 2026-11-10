@@ -16,7 +16,7 @@ final class FormElementManagerFactoryTest extends TestCase
 {
     public function testFactoryReturnsPluginManager(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $factory   = new FormElementManagerFactory();
         $elements  = $factory($container, FormElementManager::class);
         self::assertInstanceOf(FormElementManager::class, $elements);
@@ -25,8 +25,8 @@ final class FormElementManagerFactoryTest extends TestCase
     #[Depends('testFactoryReturnsPluginManager')]
     public function testFactoryConfiguresPluginManagerUnderContainerInterop(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
-        $element   = $this->createMock(ElementInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
+        $element   = $this->createStub(ElementInterface::class);
         $factory   = new FormElementManagerFactory();
         $elements  = $factory($container, FormElementManager::class, [
             'services' => [
@@ -38,7 +38,7 @@ final class FormElementManagerFactoryTest extends TestCase
 
     public function testConfiguresFormElementsServicesWhenFound(): void
     {
-        $element = $this->createMock(ElementInterface::class);
+        $element = $this->createStub(ElementInterface::class);
         $config  = [
             'form_elements' => [
                 'aliases'   => [

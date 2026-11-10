@@ -64,9 +64,7 @@ final class FormCaptchaTest extends AbstractCommonTestCase
      */
     protected function getTmpDir()
     {
-        if (null === $this->tmpDir) {
-            $this->tmpDir = sys_get_temp_dir();
-        }
+        $this->tmpDir ??= sys_get_temp_dir();
 
         return $this->tmpDir;
     }

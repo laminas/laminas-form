@@ -94,9 +94,7 @@ class FormRow extends AbstractHelper
             return $this;
         }
 
-        if ($labelPosition === null) {
-            $labelPosition = $this->getLabelPosition();
-        }
+        $labelPosition ??= $this->getLabelPosition();
 
         if ($renderErrors !== null) {
             $this->setRenderErrors($renderErrors);
@@ -123,9 +121,7 @@ class FormRow extends AbstractHelper
         $label           = $element->getLabel() ?? '';
         $inputErrorClass = $this->getInputErrorClass();
 
-        if ($labelPosition === null) {
-            $labelPosition = $this->labelPosition;
-        }
+        $labelPosition ??= $this->labelPosition;
 
         if ('' !== $label) {
             // Translate the label

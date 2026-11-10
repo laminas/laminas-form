@@ -24,7 +24,7 @@ final class ElementFactoryTest extends TestCase
     #[DataProvider('validCreationOptions')]
     public function testValidCreationOptions(array|null $creationOptions, array $expectedValue): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $factory   = new ElementFactory();
         $result    = $factory->__invoke($container, ArgumentRecorder::class, $creationOptions);
         self::assertInstanceOf(ArgumentRecorder::class, $result);

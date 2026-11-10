@@ -128,17 +128,13 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
 
         if ($annotation->isCollection()) {
             // Compose specification as a fieldset into parent form/fieldset
-            if (! isset($specification['type'])) {
-                //use input filter provider fieldset so we can compose the input filter into the fieldset
-                //it is assumed that if someone uses a custom fieldset, they will take care of the input
-                //filtering themselves or consume the input_filter_spec option.
-                $specification['type'] = InputFilterProviderFieldset::class;
-            }
+            //use input filter provider fieldset so we can compose the input filter into the fieldset
+            //it is assumed that if someone uses a custom fieldset, they will take care of the input
+            //filtering themselves or consume the input_filter_spec option.
+            $specification['type'] ??= InputFilterProviderFieldset::class;
 
-            $inputFilter = $specification['input_filter'];
-            if (! isset($inputFilter['type'])) {
-                $inputFilter['type'] = InputFilter::class;
-            }
+            $inputFilter           = $specification['input_filter'];
+            $inputFilter['type'] ??= InputFilter::class;
             unset($specification['input_filter']);
 
             $elementSpec['spec']['type'] = Collection::class;
@@ -159,18 +155,14 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
             }
         } else {
             // Compose input filter into parent input filter
-            $inputFilter = $specification['input_filter'];
-            if (! isset($inputFilter['type'])) {
-                $inputFilter['type'] = InputFilter::class;
-            }
-            $inputSpec = $e->getParam('inputSpec');
+            $inputFilter           = $specification['input_filter'];
+            $inputFilter['type'] ??= InputFilter::class;
+            $inputSpec             = $e->getParam('inputSpec');
             $inputSpec->exchangeArray($inputFilter);
             unset($specification['input_filter']);
 
             // Compose specification as a fieldset into parent form/fieldset
-            if (! isset($specification['type'])) {
-                $specification['type'] = Fieldset::class;
-            }
+            $specification['type'] ??= Fieldset::class;
 
             if (isset($elementSpec['spec']['options'])) {
                 $specification['options'] ??= [];
@@ -242,10 +234,8 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $inputSpec = $e->getParam('inputSpec');
-        if (! isset($inputSpec['filters'])) {
-            $inputSpec['filters'] = [];
-        }
+        $inputSpec              = $e->getParam('inputSpec');
+        $inputSpec['filters'] ??= [];
         $inputSpec['filters'][] = $annotation->getFilterSpecification();
     }
 
@@ -348,10 +338,8 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
         $inputSpec['required'] = $required;
 
         if ($required) {
-            $elementSpec = $e->getParam('elementSpec');
-            if (! isset($elementSpec['spec']['attributes'])) {
-                $elementSpec['spec']['attributes'] = [];
-            }
+            $elementSpec                         = $e->getParam('elementSpec');
+            $elementSpec['spec']['attributes'] ??= [];
 
             $elementSpec['spec']['attributes']['required'] = 'required';
         }
@@ -385,10 +373,8 @@ final class ElementAnnotationsListener extends AbstractAnnotationsListener
             return;
         }
 
-        $inputSpec = $e->getParam('inputSpec');
-        if (! isset($inputSpec['validators'])) {
-            $inputSpec['validators'] = [];
-        }
+        $inputSpec                 = $e->getParam('inputSpec');
+        $inputSpec['validators'] ??= [];
         $inputSpec['validators'][] = $annotation->getValidatorSpecification();
     }
 

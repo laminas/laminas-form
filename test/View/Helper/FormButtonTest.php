@@ -298,7 +298,7 @@ final class FormButtonTest extends AbstractCommonTestCase
 
     public function testTranslatorMethods(): void
     {
-        $translatorMock = $this->createMock(Translator::class);
+        $translatorMock = $this->createStub(Translator::class);
         $this->helper->setTranslator($translatorMock, 'foo');
 
         self::assertEquals($translatorMock, $this->helper->getTranslator());

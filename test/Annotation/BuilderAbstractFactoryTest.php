@@ -21,7 +21,7 @@ final class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryReturnsAnnotationBuilder(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $events    = $this->createMock(EventManagerInterface::class);
+        $events    = $this->createStub(EventManagerInterface::class);
 
         $container->expects(self::atLeast(2))
             ->method('get')
@@ -55,7 +55,7 @@ final class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryReturnsAttributeBuilderForPhp8(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $events    = $this->createMock(EventManagerInterface::class);
+        $events    = $this->createStub(EventManagerInterface::class);
 
         $container->expects(self::atLeast(2))
             ->method('get')
@@ -89,7 +89,7 @@ final class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryCanSetPreserveDefinedOrderFlagFromConfiguration(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $events    = $this->createMock(EventManagerInterface::class);
+        $events    = $this->createStub(EventManagerInterface::class);
         $config    = [
             'form_annotation_builder' => [
                 'preserve_defined_order' => true,
@@ -120,7 +120,7 @@ final class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryAllowsAttachingListenersFromConfiguration(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $events    = $this->createMock(EventManagerInterface::class);
+        $events    = $this->createStub(EventManagerInterface::class);
         $listener  = $this->createMock(ListenerAggregateInterface::class);
         $config    = [
             'form_annotation_builder' => [
@@ -157,7 +157,7 @@ final class BuilderAbstractFactoryTest extends TestCase
     public function testFactoryThrowsExceptionWhenAttachingInvalidListeners(): void
     {
         $container = $this->createMock(ContainerInterface::class);
-        $events    = $this->createMock(EventManagerInterface::class);
+        $events    = $this->createStub(EventManagerInterface::class);
         $config    = [
             'form_annotation_builder' => [
                 'listeners' => [

@@ -310,9 +310,7 @@ class FormSelect extends AbstractHelper
             $this->formHiddenHelper = $this->view->plugin('formhidden');
         }
 
-        if (null === $this->formHiddenHelper) {
-            $this->formHiddenHelper = new FormHidden();
-        }
+        $this->formHiddenHelper ??= new FormHidden();
 
         return $this->formHiddenHelper;
     }

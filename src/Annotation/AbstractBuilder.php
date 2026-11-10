@@ -243,14 +243,10 @@ abstract class AbstractBuilder implements EventManagerAwareInterface, FormFactor
         // Compose as a fieldset or an element, based on specification type.
         // If preserve defined order is true, all elements are composed as elements to keep their ordering
         if (! $this->preserveDefinedOrder() && is_subclass_of($type, FieldsetInterface::class)) {
-            if (! isset($formSpec['fieldsets'])) {
-                $formSpec['fieldsets'] = [];
-            }
+            $formSpec['fieldsets'] ??= [];
             $formSpec['fieldsets'][] = $params['elementSpec'];
         } else {
-            if (! isset($formSpec['elements'])) {
-                $formSpec['elements'] = [];
-            }
+            $formSpec['elements'] ??= [];
             $formSpec['elements'][] = $params['elementSpec'];
         }
     }

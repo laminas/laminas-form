@@ -117,12 +117,10 @@ class Checkbox extends Element implements InputProviderInterface
      */
     protected function getValidator(): ?ValidatorInterface
     {
-        if (null === $this->validator) {
-            $this->validator = new InArrayValidator([
-                'haystack' => [$this->checkedValue, $this->uncheckedValue],
-                'strict'   => false,
-            ]);
-        }
+        $this->validator ??= new InArrayValidator([
+            'haystack' => [$this->checkedValue, $this->uncheckedValue],
+            'strict'   => false,
+        ]);
         return $this->validator;
     }
 

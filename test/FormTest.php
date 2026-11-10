@@ -1693,7 +1693,7 @@ final class FormTest extends TestCase
 
         $element  = new TestAsset\ElementWithStringToArrayFilter('foo');
         $hydrator = $this->createMock(ArraySerializableHydrator::class);
-        $hydrator->expects($this->any())->method('hydrate')->with($filteredData, $this->anything());
+        $hydrator->method('hydrate')->with($filteredData, $this->anything());
 
         $this->form->add($element);
         $this->form->setHydrator($hydrator);
@@ -2459,7 +2459,7 @@ final class FormTest extends TestCase
     public function testSetInputFilterByNameMethodShouldSetValidInputFilterForForm(): void
     {
         $inputFilterName    = uniqid('input_filter_');
-        $inputFilter        = $this->createMock(InputFilterInterface::class);
+        $inputFilter        = $this->createStub(InputFilterInterface::class);
         $inputFilterFactory = new InputFilterFactory();
         $inputFilterFactory->getInputFilterManager()->setService($inputFilterName, $inputFilter);
 

@@ -162,9 +162,7 @@ class DateSelect extends MonthSelect
      */
     protected function getValidator(): ValidatorInterface
     {
-        if (null === $this->validator) {
-            $this->validator = new DateValidator(['format' => 'Y-m-d']);
-        }
+        $this->validator ??= new DateValidator(['format' => 'Y-m-d']);
 
         return $this->validator;
     }

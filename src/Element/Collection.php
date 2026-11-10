@@ -437,9 +437,7 @@ class Collection extends Fieldset implements CollectionInterface
      */
     public function getTemplateElement()
     {
-        if ($this->templateElement === null) {
-            $this->templateElement = $this->createTemplateElement();
-        }
+        $this->templateElement ??= $this->createTemplateElement();
 
         return $this->templateElement;
     }
