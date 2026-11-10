@@ -24,9 +24,7 @@ final class ElementFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, ?array $options = null): object
     {
-        if ($options === null) {
-            $options = [];
-        }
+        $options ??= [];
 
         if (isset($options['name'])) {
             $name = $options['name'];

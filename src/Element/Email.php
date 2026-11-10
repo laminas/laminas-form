@@ -78,11 +78,9 @@ class Email extends Element implements InputProviderInterface
      */
     public function getEmailValidator(): ValidatorInterface
     {
-        if (null === $this->emailValidator) {
-            $this->emailValidator = new RegexValidator(
-                '/^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'
-            );
-        }
+        $this->emailValidator ??= new RegexValidator(
+            '/^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/'
+        );
         return $this->emailValidator;
     }
 

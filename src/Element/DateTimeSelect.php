@@ -323,9 +323,7 @@ class DateTimeSelect extends DateSelect
      */
     protected function getValidator(): ValidatorInterface
     {
-        if (null === $this->validator) {
-            $this->validator = new DateValidator(['format' => 'Y-m-d H:i:s']);
-        }
+        $this->validator ??= new DateValidator(['format' => 'Y-m-d H:i:s']);
 
         return $this->validator;
     }

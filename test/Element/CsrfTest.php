@@ -38,7 +38,7 @@ final class CsrfTest extends TestCase
     public function testAllowSettingCustomCsrfValidator(): void
     {
         $element       = new CsrfElement('foo');
-        $validatorMock = $this->createMock(Csrf::class);
+        $validatorMock = $this->createStub(Csrf::class);
         $element->setCsrfValidator($validatorMock);
         self::assertEquals($validatorMock, $element->getCsrfValidator());
     }

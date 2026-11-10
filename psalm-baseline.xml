@@ -521,7 +521,7 @@
   </file>
   <file src="test/Element/CsrfTest.php">
     <DeprecatedClass>
-      <code><![CDATA[$this->createMock(Csrf::class)]]></code>
+      <code><![CDATA[$this->createStub(Csrf::class)]]></code>
       <code><![CDATA[Csrf::class]]></code>
       <code><![CDATA[Csrf::class]]></code>
       <code><![CDATA[Csrf::class]]></code>

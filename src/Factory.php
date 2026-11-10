@@ -136,9 +136,7 @@ class Factory
      */
     public function createElement(array $spec): ElementInterface
     {
-        if (! isset($spec['type'])) {
-            $spec['type'] = Element::class;
-        }
+        $spec['type'] ??= Element::class;
 
         return $this->create($spec);
     }
@@ -148,9 +146,7 @@ class Factory
      */
     public function createFieldset(array $spec): FieldsetInterface
     {
-        if (! isset($spec['type'])) {
-            $spec['type'] = Fieldset::class;
-        }
+        $spec['type'] ??= Fieldset::class;
 
         return $this->create($spec);
     }
@@ -160,9 +156,7 @@ class Factory
      */
     public function createForm(array $spec): FormInterface
     {
-        if (! isset($spec['type'])) {
-            $spec['type'] = Form::class;
-        }
+        $spec['type'] ??= Form::class;
 
         return $this->create($spec);
     }
@@ -326,9 +320,7 @@ class Factory
             $flags = $elementSpecification['flags'] ?? [];
             $spec  = $elementSpecification['spec'] ?? [];
 
-            if (! isset($spec['type'])) {
-                $spec['type'] = Element::class;
-            }
+            $spec['type'] ??= Element::class;
 
             $element = $this->create($spec);
             $fieldset->add($element, $flags);

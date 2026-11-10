@@ -241,7 +241,7 @@ final class FormElementManagerTest extends TestCase
 
     public function testGetHydratorByNameMethodShouldUseHydratorManagerIfExists(): void
     {
-        $hydrator = $this->createMock(HydratorInterface::class);
+        $hydrator = $this->createStub(HydratorInterface::class);
 
         // Hydrator manager
         $hydratorManager = $this->createMock(PluginManagerInterface::class);
@@ -272,7 +272,7 @@ final class FormElementManagerTest extends TestCase
 
     public function testGetHydratorByNameMethodShouldUseServiceManagerAsFallback(): void
     {
-        $hydrator = $this->createMock(HydratorInterface::class);
+        $hydrator = $this->createStub(HydratorInterface::class);
 
         // Service container
         $container = $this->createMock(ContainerInterface::class);

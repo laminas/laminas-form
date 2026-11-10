@@ -397,9 +397,7 @@ class FormMultiCheckbox extends FormInput
             $this->inputHelper = $this->view->plugin('form_input');
         }
 
-        if (null === $this->inputHelper) {
-            $this->inputHelper = new FormInput();
-        }
+        $this->inputHelper ??= new FormInput();
 
         return $this->inputHelper;
     }

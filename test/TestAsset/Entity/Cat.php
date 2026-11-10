@@ -51,9 +51,7 @@ final class Cat implements InputFilterAwareInterface
      */
     public function getInputFilter()
     {
-        if (null === $this->inputFilter) {
-            $this->inputFilter = new InputFilter();
-        }
+        $this->inputFilter ??= new InputFilter();
         return $this->inputFilter;
     }
 }

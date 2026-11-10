@@ -5,8 +5,8 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use Rector\Config\RectorConfig;
-use Rector\Php81\Rector\Array_\FirstClassCallableRector;
-use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
+use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
 
 return RectorConfig::configure()
     ->withPhpSets(php82: true)
@@ -16,13 +16,14 @@ return RectorConfig::configure()
          *
          * When we upgrade to SMv4 and get rid of initializers, this rule can be enabled again.
          */
-        FirstClassCallableRector::class,
+        ArrayToFirstClassCallableRector::class,
+        /**
+         * False positives: several tests assert through dynamic calls like `$this->$assertion(...)`.
+         */
+        AddDoesNotPerformAssertionToNonAssertingTestRector::class,
     ])
-    ->withSets([
-        PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
-        PHPUnitSetList::PHPUNIT_100,
-        PHPUnitSetList::PHPUNIT_110,
-    ])
+    ->withComposerBased(phpunit: true)
+    ->withAttributesSets(phpunit: true)
     ->withPaths([
         __DIR__ . '/../../src',
         __DIR__ . '/../../test',
