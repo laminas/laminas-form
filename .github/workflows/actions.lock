@@ -11,16 +11,16 @@ workflows:
     '.github/workflows/rector.yml':
         - 'actions/checkout@v7.0.1'
         - 'ramsey/composer-install@4.0.0'
-        - 'shivammathur/setup-php@2.37.2'
+        - 'shivammathur/setup-php@2.40.0'
     '.github/workflows/release-on-milestone-closed.yml': []
     '.github/workflows/require-checker.yml':
         - 'actions/checkout@v7.0.1'
         - 'ramsey/composer-install@4.0.0'
-        - 'shivammathur/setup-php@2.37.2'
+        - 'shivammathur/setup-php@2.40.0'
     '.github/workflows/structarmed.yml':
         - 'actions/checkout@v7.0.1'
         - 'ramsey/composer-install@4.0.0'
-        - 'shivammathur/setup-php@2.37.2'
+        - 'shivammathur/setup-php@2.40.0'
     '.github/workflows/verify-github-actions-lockfile.yml':
         - 'actions/checkout@v7.0.1'
 dependencies:
@@ -56,8 +56,8 @@ dependencies:
         repo_id: 296427614
         uses:
             - 'actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306'
-    'shivammathur/setup-php@2.37.2':
-        ref: '2.37.2'
-        commit: 'sha1-f3e473d116dcccaddc5834248c87452386958240'
+    'shivammathur/setup-php@2.40.0':
+        ref: '2.40.0'
+        commit: 'sha1-eb7c497e18156a6bbabfef1d3a82760b9eda3962'
         owner_id: 1571086
         repo_id: 206578964
