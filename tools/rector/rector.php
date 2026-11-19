@@ -9,7 +9,7 @@ use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
 
 return RectorConfig::configure()
-    ->withPhpSets(php82: true)
+    ->withPhpSets(php83: true)
     ->withSkip([
         /**
          * This breaks tests for FormElementManager initializers.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="6.13.1@1e3b7f0a8ab32b23197b91107adc0a7ed8a05b51">
+<files psalm-version="6.20.13@9dd07528c4f058df1572d40ab2db5c1566a728f2">
   <file src="src/Annotation/AbstractBuilder.php">
     <InvalidArrayOffset>
       <code><![CDATA[$params['elementSpec']['spec']['type']]]></code>
@@ -87,6 +87,11 @@
     <TooManyArguments>
       <code><![CDATA[bindValues]]></code>
     </TooManyArguments>
+  </file>
+  <file src="src/Element/CollectionInterface.php">
+    <MissingClassConstType>
+      <code><![CDATA[DEFAULT_TEMPLATE_PLACEHOLDER = '__index__']]></code>
+    </MissingClassConstType>
   </file>
   <file src="src/Element/Csrf.php">
     <DeprecatedClass>
@@ -302,6 +307,15 @@
       <code><![CDATA[new Config($config['form_elements'])]]></code>
     </DeprecatedClass>
   </file>
+  <file src="src/FormInterface.php">
+    <MissingClassConstType>
+      <code><![CDATA[BIND_MANUAL       = 0x01]]></code>
+      <code><![CDATA[BIND_ON_VALIDATE  = 0x00]]></code>
+      <code><![CDATA[VALUES_AS_ARRAY   = 0x13]]></code>
+      <code><![CDATA[VALUES_NORMALIZED = 0x11]]></code>
+      <code><![CDATA[VALUES_RAW        = 0x12]]></code>
+    </MissingClassConstType>
+  </file>
   <file src="src/View/Helper/AbstractHelper.php">
     <ArgumentTypeCoercion>
       <code><![CDATA[$encoding]]></code>
@@ -334,6 +348,12 @@
       <code><![CDATA[$element->getLabelOption('disable_html_escape')]]></code>
       <code><![CDATA[empty($value)]]></code>
     </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/View/Helper/Captcha/AbstractWord.php">
+    <MissingClassConstType>
+      <code><![CDATA[CAPTCHA_APPEND  = 'append']]></code>
+      <code><![CDATA[CAPTCHA_PREPEND = 'prepend']]></code>
+    </MissingClassConstType>
   </file>
   <file src="src/View/Helper/File/FormFileApcProgress.php">
     <FalsableReturnStatement>
@@ -423,6 +443,10 @@
     </RiskyTruthyFalsyComparison>
   </file>
   <file src="src/View/Helper/FormMultiCheckbox.php">
+    <MissingClassConstType>
+      <code><![CDATA[LABEL_APPEND  = 'append']]></code>
+      <code><![CDATA[LABEL_PREPEND = 'prepend']]></code>
+    </MissingClassConstType>
     <PossiblyNullArgument>
       <code><![CDATA[$this->view]]></code>
     </PossiblyNullArgument>
