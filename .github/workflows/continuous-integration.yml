@@ -7,7 +7,7 @@ on:
     tags:
 
 env:
-  default_php: 8.2
+  default_php: '8.3'
   php_extensions: intl
 
 jobs:
@@ -17,48 +17,19 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
-      -   name: Gather CI configuration
-          id: matrix
-          uses: laminas/laminas-ci-matrix-action@1816e09e14bfc59d5c544779adcb9bc91089f424 # v1
+      - name: Gather CI configuration
+        id: matrix
+        uses: laminas/laminas-ci-matrix-action@1.36.0
 
   qa:
     name: QA Checks
-    needs: [ matrix ]
+    needs: [matrix]
     runs-on: ${{ matrix.operatingSystem }}
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
     steps:
-      -   name: ${{ matrix.name }}
-          uses: laminas/laminas-continuous-integration-action@cb7d4165f568f679dae98b2ad06dc64d0219d04e # v1
-          with:
+      - name: ${{ matrix.name }}
+        uses: laminas/laminas-continuous-integration-action@1.48.0
+        with:
             job: ${{ matrix.job }}
-
-  composer-require-checker:
-    name: "Check for missing dependencies"
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
-
-        with:
-          php-version: ${{ env.default_php }}
-          ini-values: memory_limit=-1
-          extensions: ${{ env.php_extensions }}
-      - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
-      - run: make install-tools
-      - run: make composer-require-checker
-
-  rector:
-    name: Rector on Default PHP
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
-        with:
-          php-version: ${{ env.default_php }}
-          tools: composer
-      - uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
-      - run: make install-tools
-      - run: make rector-ci

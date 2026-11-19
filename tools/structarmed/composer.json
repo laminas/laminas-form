@@ -1,0 +1,10 @@
+{
+    "config": {
+        "platform": {
+            "php": "8.3.99"
+        }
+    },
+    "require-dev": {
+        "boundwize/structarmed": "^0.21.27"
+    }
+}

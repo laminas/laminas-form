@@ -1,0 +1,29 @@
+name: "Rector"
+
+on:
+    pull_request:
+    push:
+        branches:
+        tags:
+
+env:
+    default_php: '8.3'
+    php_extensions: gd,intl,mbstring,json
+
+jobs:
+    rector:
+        name: Rector on Default PHP
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7.0.1
+            - uses: shivammathur/setup-php@2.37.2
+              with:
+                    php-version: ${{ env.default_php }}
+                    extensions: ${{ env.php_extensions }}
+                    tools: composer
+                    coverage: none
+            - uses: ramsey/composer-install@4.0.0
+            - uses: ramsey/composer-install@4.0.0
+              with:
+                    working-directory: tools/rector
+            - run: tools/rector/vendor/bin/rector process --dry-run --output-format=github -c tools/rector/rector.php

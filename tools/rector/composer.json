@@ -1,10 +1,10 @@
 {
     "config": {
         "platform": {
-            "php": "8.2.99"
+            "php": "8.3.99"
         }
     },
     "require-dev": {
-        "rector/rector": "^2.2.7"
+        "rector/rector": "^2.8.5"
     }
 }

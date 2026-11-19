@@ -1,0 +1,29 @@
+name: "Composer Require Checker"
+
+on:
+  pull_request:
+  push:
+    branches:
+    tags:
+
+env:
+  default_php: '8.3'
+  php_extensions: bcmath,gd,intl,mbstring,json
+
+jobs:
+  composer-require-checker:
+    name: Composer Require Checker on Default PHP
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: shivammathur/setup-php@2.37.2
+        with:
+            php-version: ${{ env.default_php }}
+            extensions: ${{ env.php_extensions }}
+            tools: composer
+            coverage: none
+      - uses: ramsey/composer-install@4.0.0
+      - uses: ramsey/composer-install@4.0.0
+        with:
+            working-directory: tools/crc
+      - run: tools/crc/vendor/bin/composer-require-checker check --config-file=tools/crc/config.json
