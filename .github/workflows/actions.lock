@@ -5,7 +5,7 @@ version: 'v0.0.3'
 workflows:
     '.github/workflows/continuous-integration.yml':
         - 'laminas/laminas-ci-matrix-action@1.36.0'
-        - 'laminas/laminas-continuous-integration-action@1.48.0'
+        - 'laminas/laminas-continuous-integration-action@v1.49'
     '.github/workflows/docs-build.yml':
         - 'laminas/documentation-theme@master'
     '.github/workflows/rector.yml':
@@ -44,9 +44,9 @@ dependencies:
         commit: 'sha1-1816e09e14bfc59d5c544779adcb9bc91089f424'
         owner_id: 47865178
         repo_id: 336072567
-    'laminas/laminas-continuous-integration-action@1.48.0':
-        ref: '1.48.0'
-        commit: 'sha1-cb7d4165f568f679dae98b2ad06dc64d0219d04e'
+    'laminas/laminas-continuous-integration-action@v1.49':
+        ref: 'v1.49'
+        commit: 'sha1-7ac5da4ae550e27c92e227ee47064bc349242126'
         owner_id: 47865178
         repo_id: 336055313
     'ramsey/composer-install@4.0.0':
