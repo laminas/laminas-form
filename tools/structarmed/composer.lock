@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8a0d0a2b43423e79d9c551f09e66275",
+    "content-hash": "c70b2e4fd3fb45959aeebc38e6ad1ad7",
     "packages": [],
     "packages-dev": [
         {
@@ -79,16 +79,16 @@
         },
         {
             "name": "boundwize/structarmed",
-            "version": "0.21.27",
+            "version": "0.22.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/boundwize/structarmed.git",
-                "reference": "007ea38073b64b49b7f906b78515086f356c6b8f"
+                "reference": "d2ee66f2e641419cd6235a3d46d061216953d787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/boundwize/structarmed/zipball/007ea38073b64b49b7f906b78515086f356c6b8f",
-                "reference": "007ea38073b64b49b7f906b78515086f356c6b8f",
+                "url": "https://api.github.com/repos/boundwize/structarmed/zipball/d2ee66f2e641419cd6235a3d46d061216953d787",
+                "reference": "d2ee66f2e641419cd6235a3d46d061216953d787",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,7 @@
             ],
             "support": {
                 "issues": "https://github.com/boundwize/structarmed/issues",
-                "source": "https://github.com/boundwize/structarmed/tree/0.21.27"
+                "source": "https://github.com/boundwize/structarmed/tree/0.22.15"
             },
             "funding": [
                 {
@@ -153,8 +153,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-11-18T17:16:38+00:00",
-            "published-time": "2026-11-18T17:17:00+00:00"
+            "time": "2026-11-28T13:08:37+00:00",
+            "published-time": "2026-11-28T13:09:04+00:00"
         },
         {
             "name": "fidry/cpu-core-counter",
